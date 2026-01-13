@@ -6,22 +6,7 @@ export const OurProgrammes = () => {
     { image: '/p4.jpg', title: 'Diplomas &', subtitle: 'Certifications', width: 461, height: 644 },
   ];
 
-  const partnersRow1 = [
-    { logo: '/mid.png', name: 'Middlesex University' },
-    { logo: '/king.png', name: "King's College London" },
-  ];
 
-  const partnersRow2 = [
-    { logo: '/nus.png', name: 'NUS' },
-    { logo: '/c11.png', name: 'CII' },
-    { logo: '/ficci.png', name: 'FICCI' },
-  ];
-
-  const partnersRow3 = [
-    { logo: '/gt.png', name: 'Grant Thornton' },
-    { logo: '', name: '' },
-    { logo: '', name: '' },
-  ];
 
   return (
     <section className="bg-[#f6f7f0] py-16 md:py-24">
