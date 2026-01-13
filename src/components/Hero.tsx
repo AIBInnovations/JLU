@@ -44,46 +44,62 @@ const MenuOverlay = ({ isOpen, onClose, menuButtonRef, heroRef }: MenuOverlayPro
   // Medium circle size for menu
   const circleSize = 1600;
 
+  // Menu button dimensions (pill shape)
+  const buttonWidth = 168;
+  const buttonHeight = 48;
+
   // Get the menu button position relative to the hero container for the expansion origin
-  const getCirclePosition = () => {
+  const getButtonPosition = () => {
     if (menuButtonRef.current && heroRef.current) {
       const buttonRect = menuButtonRef.current.getBoundingClientRect();
       const heroRect = heroRef.current.getBoundingClientRect();
-      // Position circle so its center aligns with menu button center, relative to hero
-      const buttonCenterX = buttonRect.left - heroRect.left + buttonRect.width / 2;
-      const buttonCenterY = buttonRect.top - heroRect.top + buttonRect.height / 2;
+      // Position relative to hero
       return {
-        left: buttonCenterX - circleSize / 2,
-        top: buttonCenterY - circleSize / 2,
+        left: buttonRect.left - heroRect.left,
+        top: buttonRect.top - heroRect.top,
+        centerX: buttonRect.left - heroRect.left + buttonRect.width / 2,
+        centerY: buttonRect.top - heroRect.top + buttonRect.height / 2,
       };
     }
-    // Fallback - position from right side of hero
-    return { right: -800, top: -1074 };
+    // Fallback
+    return { left: 0, top: 0, centerX: 0, centerY: 0 };
   };
 
-  const circlePos = getCirclePosition();
+  const buttonPos = getButtonPosition();
 
   return (
     <AnimatePresence>
       {isOpen && (
         <>
-          {/* Circular expanding background - exact Figma specs */}
+          {/* Pill-to-circle expanding background - starts behind menu button */}
           <motion.div
-            initial={{ scale: 0, opacity: 1 }}
-            animate={{ scale: 1, opacity: 1 }}
-            exit={{ scale: 0, opacity: 1 }}
+            initial={{
+              width: buttonWidth,
+              height: buttonHeight,
+              borderRadius: '6px',
+              left: buttonPos.left,
+              top: buttonPos.top,
+            }}
+            animate={{
+              width: circleSize,
+              height: circleSize,
+              borderRadius: '800px',
+              left: buttonPos.centerX - circleSize / 2,
+              top: buttonPos.centerY - circleSize / 2,
+            }}
+            exit={{
+              width: buttonWidth,
+              height: buttonHeight,
+              borderRadius: '6px',
+              left: buttonPos.left,
+              top: buttonPos.top,
+            }}
             transition={{
-              duration: 0.7,
-              ease: [0.32, 0, 0.67, 0],  // ease-in for open
+              duration: 0.6,
+              ease: [0.4, 0, 0.2, 1],
             }}
             className="absolute bg-white"
             style={{
-              width: `${circleSize}px`,
-              height: `${circleSize}px`,
-              left: `${circlePos.left}px`,
-              top: `${circlePos.top}px`,
-              borderRadius: '50039px',
-              transformOrigin: 'center center',
               zIndex: 100,
               border: '12px solid #d1d5db',
             }}
@@ -92,15 +108,15 @@ const MenuOverlay = ({ isOpen, onClose, menuButtonRef, heroRef }: MenuOverlayPro
           {/* Content layer - positioned within circle */}
           <motion.div
             initial={{ opacity: 0 }}
-            animate={{ opacity: 1, transition: { duration: 0.3, delay: 0.6 } }}
-            exit={{ opacity: 0, transition: { duration: 0.3, delay: 0 } }}
+            animate={{ opacity: 1, transition: { duration: 0.3, delay: 0.5 } }}
+            exit={{ opacity: 0, transition: { duration: 0.15, delay: 0 } }}
             className="absolute overflow-hidden flex items-center justify-center"
             style={{
               zIndex: 101,
               width: `${circleSize}px`,
               height: `${circleSize}px`,
-              left: `${circlePos.left}px`,
-              top: `${circlePos.top}px`,
+              left: `${buttonPos.centerX - circleSize / 2}px`,
+              top: `${buttonPos.centerY - circleSize / 2}px`,
               borderRadius: '50%',
             }}
           >
@@ -223,15 +239,16 @@ const MenuOverlay = ({ isOpen, onClose, menuButtonRef, heroRef }: MenuOverlayPro
 interface MenuButtonProps {
   onClick: () => void;
   buttonRef: React.RefObject<HTMLButtonElement | null>;
+  isHidden?: boolean;
 }
 
-const MenuButton = ({ onClick, buttonRef }: MenuButtonProps) => {
+const MenuButton = ({ onClick, buttonRef, isHidden }: MenuButtonProps) => {
   return (
     <button
       ref={buttonRef}
       onClick={onClick}
       aria-label="Open menu"
-      className="flex h-[48px] w-[168px] items-center justify-center rounded-md bg-white text-[#0c3b5f] shadow-lg shadow-black/5 transition-all hover:shadow-xl hover:shadow-black/10"
+      className={`relative z-60 flex h-[48px] w-[168px] items-center justify-center rounded-md bg-white text-[#0c3b5f] shadow-lg shadow-black/5 transition-all hover:shadow-xl hover:shadow-black/10 ${isHidden ? 'opacity-0 pointer-events-none' : 'opacity-100'}`}
     >
       <span className="text-sm font-medium tracking-wide pl-4 mr-auto">Menu</span>
       {/* Vertical divider line */}
@@ -327,7 +344,7 @@ export const Hero = () => {
             </motion.div>
 
             {/* Menu Button */}
-            <MenuButton onClick={() => setIsMenuOpen(true)} buttonRef={menuButtonRef} />
+            <MenuButton onClick={() => setIsMenuOpen(true)} buttonRef={menuButtonRef} isHidden={isMenuOpen} />
           </motion.nav>
 
           {/* Hero headline */}

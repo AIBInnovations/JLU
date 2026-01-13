@@ -142,8 +142,8 @@ export const WhyJlu = () => {
                 flexDirection: 'column',
                 justifyContent: 'space-between',
                 padding: 'clamp(20px, 2vw, 24px)',
-                marginTop: index % 2 === 0 ? '80px' : '0',
-                marginBottom: index % 2 === 0 ? '0' : '80px',
+                marginTop: index === 3 ? '200px' : (index === 0 || index === 2 ? '80px' : '0'),
+                marginBottom: index === 1 ? '80px' : '0',
               }}
             >
               <div>
