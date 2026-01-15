@@ -1,6 +1,7 @@
 import { useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { useIsMobile } from '../hooks/useIsMobile';
 
 // Register GSAP plugin
 gsap.registerPlugin(ScrollTrigger);
@@ -9,6 +10,7 @@ export const PassionSection = () => {
   // Refs for GSAP animations
   const wrapperRef = useRef<HTMLDivElement>(null);
   const panelsRef = useRef<HTMLDivElement[]>([]);
+  const isMobile = useIsMobile();
 
   // Section data
   const sections = [
@@ -36,6 +38,11 @@ export const PassionSection = () => {
     const panels = panelsRef.current.filter(Boolean);
     const triggers: ScrollTrigger[] = [];
 
+    // Small delay to ensure DOM is ready after mobile/desktop switch
+    const timeout = setTimeout(() => {
+      ScrollTrigger.refresh();
+    }, 100);
+
     // Create pinning effect for each panel except the last one
     // Each panel pins in place while the next one scrolls over it
     panels.forEach((panel, index) => {
@@ -57,10 +64,11 @@ export const PassionSection = () => {
 
     // Cleanup on unmount
     return () => {
+      clearTimeout(timeout);
       triggers.forEach((trigger) => trigger.kill());
       ScrollTrigger.refresh();
     };
-  }, []);
+  }, [isMobile]);
 
   // Helper to add panel refs
   const addPanelRef = (el: HTMLDivElement | null, index: number) => {
@@ -118,16 +126,16 @@ export const PassionSection = () => {
 
             {/* Text Content - Centered */}
             <div className="absolute inset-0 flex items-center justify-center">
-              <div className="text-center">
+              <div className="text-center px-4">
                 {/* Primary heading - solid filled text */}
                 <h2
                   className="text-white"
                   style={{
                     fontFamily: 'Anton, sans-serif',
-                    fontSize: 'clamp(80px, 10vw, 145px)',
+                    fontSize: isMobile ? 'clamp(48px, 12vw, 80px)' : 'clamp(80px, 10vw, 145px)',
                     fontWeight: 400,
                     lineHeight: '130%',
-                    letterSpacing: '3px',
+                    letterSpacing: isMobile ? '2px' : '3px',
                     textAlign: 'center',
                   }}
                 >
@@ -140,13 +148,13 @@ export const PassionSection = () => {
                     key={i}
                     style={{
                       fontFamily: 'Anton, sans-serif',
-                      fontSize: 'clamp(60px, 8vw, 120px)',
+                      fontSize: isMobile ? 'clamp(36px, 10vw, 60px)' : 'clamp(60px, 8vw, 120px)',
                       fontWeight: 400,
                       lineHeight: '130%',
-                      letterSpacing: '3px',
+                      letterSpacing: isMobile ? '2px' : '3px',
                       textAlign: 'center',
                       color: 'transparent',
-                      WebkitTextStroke: '4px rgba(255,255,255,0.6)',
+                      WebkitTextStroke: isMobile ? '2px rgba(255,255,255,0.6)' : '4px rgba(255,255,255,0.6)',
                     }}
                   >
                     {text}

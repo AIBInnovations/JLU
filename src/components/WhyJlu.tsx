@@ -1,6 +1,7 @@
 import { useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { useIsMobile } from '../hooks/useIsMobile';
 
 // Register GSAP plugin
 gsap.registerPlugin(ScrollTrigger);
@@ -9,35 +10,35 @@ export const WhyJlu = () => {
   // Refs for GSAP animations
   const wrapperRef = useRef<HTMLDivElement>(null);
   const whyJluRef = useRef<HTMLDivElement>(null);
+  const isMobile = useIsMobile();
 
   const whyJluCards = [
     {
       bg: '#c3fd7a',
-      title: '100+',
-      subtitle: 'Lorem ipsum dolor',
-      description: 'Lorem ipsum dolor sit amet consectetur. Feugiat mi enim lectus convallis scelerisque dexjfdi kedj.',
+      title: 'Multiplicity',
+      subtitle: '',
+      description: 'Where ideas, cultures, and disciplines converge.',
       textColor: '#21313c'
     },
     {
       bg: '#4a90a4',
-      title: 'Lorem ipsum',
+      title: 'Worldly Outlook',
       subtitle: '',
-      description: 'Lorem ipsum dolor sit amet consectetur. Feugiat mi enim lectus convallis scelerisque',
-      links: ['Lorem ipsum', 'Lorem ipsum'],
+      description: 'An education shaped by global exposure and open horizons.',
       textColor: '#ffffff'
     },
     {
       bg: '#e85a71',
-      title: '100%',
-      subtitle: 'Lorem ipsum dolor',
-      description: 'Lorem ipsum dolor sit amet consectetur. Feugiat mi enim lectus convallis scelerisque dexjfdi kedj.',
+      title: 'A Lived Campus',
+      subtitle: '',
+      description: 'Spaces that invite learning, connection, and pause.',
       textColor: '#ffffff'
     },
     {
       bg: '#f4c950',
-      title: 'Lorem ipsum',
+      title: 'Lasting Impressions',
       subtitle: '',
-      description: 'Lorem ipsum dolor sit amet consectetur. Feugiat mi enim lectus convallis scelerisque dexjfdi kedj sit amet .',
+      description: 'Experiences that stay, long after you move on.',
       textColor: '#ffffff'
     }
   ];
@@ -47,6 +48,11 @@ export const WhyJlu = () => {
 
     const wrapper = wrapperRef.current;
     const whyJluSection = whyJluRef.current;
+
+    // Small delay to ensure DOM is ready after mobile/desktop switch
+    const timeout = setTimeout(() => {
+      ScrollTrigger.refresh();
+    }, 100);
 
     // Pin "WHY JLU?" text - it stays fixed while cards scroll over it
     const whyJluPin = ScrollTrigger.create({
@@ -59,18 +65,18 @@ export const WhyJlu = () => {
 
     // Cleanup
     return () => {
+      clearTimeout(timeout);
       whyJluPin.kill();
       ScrollTrigger.refresh();
     };
-  }, []);
+  }, [isMobile]);
 
   return (
     <div
       ref={wrapperRef}
       style={{
         position: 'relative',
-        height: '160vh',
-        // Invisible wrapper - no background
+        height: isMobile ? '160vh' : '160vh',
         background: 'transparent',
         overflow: 'hidden',
       }}
@@ -93,13 +99,15 @@ export const WhyJlu = () => {
       >
         <h1
           style={{
-            fontSize: 'clamp(3rem, 8vw, 6rem)',
+            fontSize: isMobile ? 'clamp(1.5rem, 6vw, 2.5rem)' : 'clamp(3rem, 8vw, 6rem)',
             fontWeight: 'bold',
             color: '#000000',
             letterSpacing: '-0.02em',
+            textAlign: 'center',
+            padding: '0 1rem',
           }}
         >
-          WHY JLU?
+          The JLU Experience
         </h1>
       </div>
 
@@ -107,25 +115,26 @@ export const WhyJlu = () => {
       <div
         style={{
           position: 'absolute',
-          top: '60vh',
+          top: isMobile ? '85vh' : '60vh',
           left: 0,
           width: '100%',
           minHeight: '100vh',
           display: 'flex',
-          alignItems: 'center',
+          alignItems: isMobile ? 'flex-start' : 'center',
           justifyContent: 'center',
           zIndex: 20,
-          // CRITICAL: Transparent background - only cards visible
-          background: 'transparent',
-          padding: '0 clamp(40px, 5vw, 80px)',
+          background: isMobile
+            ? 'linear-gradient(to bottom, transparent 0%, transparent 4%, #f6f7f0 4%)'
+            : 'linear-gradient(to bottom, transparent 0%, transparent 36%, #f6f7f0 36%)',
+          padding: isMobile ? '0 8px' : '0 clamp(40px, 5vw, 80px)',
         }}
       >
         <div
           style={{
             display: 'flex',
-            gap: 'clamp(8px, 1vw, 12px)',
-            alignItems: 'center',
-            // Transparent inner container
+            flexDirection: 'row',
+            gap: isMobile ? '6px' : 'clamp(8px, 1vw, 12px)',
+            alignItems: isMobile ? 'flex-start' : 'center',
             background: 'transparent',
           }}
         >
@@ -133,26 +142,28 @@ export const WhyJlu = () => {
             <div
               key={index}
               style={{
-                // Card-specific background color - ONLY this is visible
                 background: card.bg,
-                width: 'clamp(280px, 24vw, 458px)',
-                height: 'clamp(280px, 24vw, 455px)',
+                width: isMobile ? 'calc((100vw - 34px) / 4)' : 'clamp(280px, 24vw, 458px)',
+                height: isMobile ? '180px' : 'clamp(280px, 24vw, 455px)',
                 flexShrink: 0,
                 display: 'flex',
                 flexDirection: 'column',
                 justifyContent: 'space-between',
-                padding: 'clamp(20px, 2vw, 24px)',
-                marginTop: index === 3 ? '200px' : (index === 0 || index === 2 ? '80px' : '0'),
-                marginBottom: index === 1 ? '80px' : '0',
+                padding: isMobile ? '10px' : 'clamp(20px, 2vw, 24px)',
+                marginTop: isMobile
+                  ? (index === 3 ? '60px' : (index === 0 || index === 2 ? '25px' : '0'))
+                  : (index === 3 ? '200px' : (index === 0 || index === 2 ? '80px' : '0')),
+                marginBottom: isMobile ? '0' : (index === 1 ? '80px' : '0'),
               }}
             >
               <div>
-                <div style={{ display: 'flex', alignItems: 'baseline', gap: '8px' }}>
+                <div style={{ display: 'flex', alignItems: 'baseline', gap: '4px', flexWrap: 'wrap' }}>
                   <span
                     style={{
-                      fontSize: 'clamp(2rem, 4vw, 3rem)',
+                      fontSize: isMobile ? '0.7rem' : 'clamp(2rem, 4vw, 3rem)',
                       fontWeight: 'bold',
                       color: card.textColor,
+                      lineHeight: 1.2,
                     }}
                   >
                     {card.title}
@@ -160,7 +171,7 @@ export const WhyJlu = () => {
                   {card.subtitle && (
                     <span
                       style={{
-                        fontSize: 'clamp(1rem, 1.5vw, 1.25rem)',
+                        fontSize: isMobile ? '0.5rem' : 'clamp(1rem, 1.5vw, 1.25rem)',
                         fontWeight: 600,
                         color: card.textColor,
                       }}
@@ -174,30 +185,14 @@ export const WhyJlu = () => {
               <div>
                 <p
                   style={{
-                    fontSize: 'clamp(0.875rem, 1vw, 1rem)',
+                    fontSize: isMobile ? '0.5rem' : 'clamp(0.875rem, 1vw, 1rem)',
                     color: card.textColor,
-                    marginBottom: '8px',
+                    marginBottom: '4px',
+                    lineHeight: 1.3,
                   }}
                 >
                   {card.description}
                 </p>
-                {card.links && (
-                  <div style={{ display: 'flex', flexDirection: 'column', gap: '4px' }}>
-                    {card.links.map((link, linkIndex) => (
-                      <a
-                        key={linkIndex}
-                        href="#"
-                        style={{
-                          fontSize: '0.875rem',
-                          color: card.textColor,
-                          textDecoration: 'underline',
-                        }}
-                      >
-                        {link}
-                      </a>
-                    ))}
-                  </div>
-                )}
               </div>
             </div>
           ))}

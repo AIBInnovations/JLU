@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useIsMobile } from '../hooks/useIsMobile';
 
 interface Event {
   day: string;
@@ -56,7 +57,8 @@ const galleryImages = ['/e1.jpg', '/e2.jpg', '/e3.jpg', '/e4.jpg', '/e5.jpg'];
 
 export const EventsSection = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
-  const visibleCards = 3;
+  const isMobile = useIsMobile();
+  const visibleCards = 3; // Same for mobile and desktop
 
   const handlePrev = () => {
     setCurrentIndex((prev) => Math.max(0, prev - 1));
@@ -69,40 +71,70 @@ export const EventsSection = () => {
   return (
     <section className="bg-[#f6f7f0] py-16 md:py-24">
       {/* Header */}
-      <div className="text-center mb-12 md:mb-16">
+      <div className="text-center mb-12 md:mb-16 px-4">
         <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-[#21313c] mb-4">
-          UPCOMING EVENTS
+          Moments worth stepping into
         </h2>
-        <div className="mx-auto" style={{ width: '274px', height: '0px', border: '4px solid #B2FF53' }} />
+        <p className="text-gray-600 text-sm md:text-base max-w-2xl mx-auto leading-relaxed">
+          Conversations that provoke thought, gatherings that celebrate culture, and experiences that bring the community together.
+        </p>
+        <p className="text-gray-500 text-xs md:text-sm max-w-xl mx-auto mt-3">
+          Campus life moves with intention, offering moments to participate, reflect, and engage.
+        </p>
+        <div className="mx-auto mt-6" style={{ width: '274px', height: '0px', border: '4px solid #B2FF53' }} />
       </div>
 
       {/* Content */}
-      <div className="px-6 md:px-12 lg:px-24">
-        <div className="flex flex-col lg:flex-row gap-8 lg:gap-12 lg:items-start">
+      <div className="px-2 md:px-12 lg:px-24">
+        <div className="flex flex-row gap-2 md:gap-6 lg:gap-12 items-start">
           {/* Left side - Title */}
           <div
-            className="lg:shrink-0 flex flex-col justify-between"
-            style={{ height: 'clamp(280px, 20vw, 389px)' }}
+            className="shrink-0 flex flex-col"
+            style={{
+              height: isMobile ? '180px' : 'clamp(280px, 20vw, 389px)',
+              width: isMobile ? 'calc((100vw - 40px) / 3)' : 'auto',
+              justifyContent: isMobile ? 'center' : 'space-between',
+              alignItems: isMobile ? 'center' : 'flex-start',
+              textAlign: isMobile ? 'center' : 'left',
+            }}
           >
-            <div>
-              <h3 className="text-4xl md:text-5xl lg:text-6xl font-bold text-[#21313c] leading-tight mb-4">
+            <div style={{ textAlign: isMobile ? 'center' : 'left' }}>
+              <h3
+                className="font-bold text-[#21313c] leading-tight"
+                style={{ fontSize: isMobile ? '0.85rem' : 'clamp(1.875rem, 4vw, 3.75rem)', marginBottom: isMobile ? '4px' : '16px' }}
+              >
                 SEE WHAT's
                 <br />
                 GOING ON
               </h3>
-              <p className="text-gray-600 text-sm md:text-base max-w-xs">
-                Lorem ipsum dolor sit amet consectetur. Feugiat mi enim lectus convallis scelerisque
+              <p
+                className="text-gray-600"
+                style={{
+                  fontSize: isMobile ? '0.5rem' : 'clamp(0.875rem, 1vw, 1rem)',
+                  maxWidth: isMobile ? '100%' : '20rem',
+                  lineHeight: 1.3,
+                  marginBottom: isMobile ? '4px' : '0'
+                }}
+              >
+                {isMobile ? 'Lorem ipsum dolor sit amet consectetur.' : 'Lorem ipsum dolor sit amet consectetur. Feugiat mi enim lectus convallis scelerisque'}
               </p>
             </div>
-            <button className="bg-[#c3fd7a] text-[#21313c] px-6 py-3 rounded-full font-semibold text-sm hover:bg-[#b3ed6a] transition-colors w-fit">
+            <button
+              className="bg-[#c3fd7a] text-[#21313c] rounded-full font-semibold hover:bg-[#b3ed6a] transition-colors w-fit"
+              style={{
+                padding: isMobile ? '2px 6px' : '12px 24px',
+                fontSize: isMobile ? '0.35rem' : '0.875rem',
+                marginTop: isMobile ? '2px' : '0'
+              }}
+            >
               View full Calender
             </button>
           </div>
 
           {/* Right side - Event Cards Carousel */}
-          <div className="lg:flex-1 overflow-hidden py-4 pl-4">
+          <div className="flex-1 overflow-hidden py-2 md:py-4">
             <div
-              className="flex gap-4 md:gap-6 transition-transform duration-300"
+              className="flex gap-2 md:gap-6 transition-transform duration-300"
               style={{ transform: `translateX(-${currentIndex * (100 / visibleCards)}%)` }}
             >
               {events.map((event, index) => (
@@ -110,45 +142,51 @@ export const EventsSection = () => {
                   key={index}
                   className="bg-[#f6f7f0] overflow-hidden shrink-0 flex flex-col shadow-[0_4px_20px_rgba(0,0,0,0.15)]"
                   style={{
-                    width: 'clamp(320px, 26vw, 501px)',
-                    height: 'clamp(280px, 20vw, 389px)',
+                    width: isMobile ? 'calc((100vw - 40px) / 3)' : 'clamp(320px, 26vw, 501px)',
+                    height: isMobile ? '180px' : 'clamp(280px, 20vw, 389px)',
                   }}
                 >
                   {/* Card Content */}
-                  <div className="p-5 md:p-6 flex flex-col h-full">
-                    <div className="flex gap-4">
+                  <div className={`${isMobile ? 'p-2' : 'p-5 md:p-6'} flex flex-col h-full`}>
+                    <div className={`flex ${isMobile ? 'flex-col gap-1' : 'gap-4'}`}>
                       {/* Date Badge */}
-                      <div className={`${event.color} text-white p-3 text-center shrink-0`} style={{ minWidth: '60px' }}>
-                        <div className="text-xs font-medium">{event.month}</div>
-                        <div className="text-2xl md:text-3xl font-bold">{event.day}</div>
+                      <div
+                        className={`${event.color} text-white text-center shrink-0`}
+                        style={{
+                          minWidth: isMobile ? '35px' : '60px',
+                          padding: isMobile ? '4px' : '12px'
+                        }}
+                      >
+                        <div className={`${isMobile ? 'text-[8px]' : 'text-xs'} font-medium`}>{event.month}</div>
+                        <div className={`${isMobile ? 'text-sm' : 'text-2xl md:text-3xl'} font-bold`}>{event.day}</div>
                       </div>
 
                       {/* Title */}
-                      <h4 className="font-semibold text-[#21313c] text-sm md:text-base leading-snug">
-                        {event.title}
+                      <h4 className={`font-semibold text-[#21313c] ${isMobile ? 'text-[8px] leading-tight' : 'text-sm md:text-base leading-snug'}`}>
+                        {isMobile ? event.title.substring(0, 40) + '...' : event.title}
                       </h4>
                     </div>
 
                     {/* Event Details */}
-                    <div className="mt-auto space-y-2">
-                      <div className="flex items-center gap-2 text-gray-500 text-xs md:text-sm">
-                        <svg className="w-4 h-4 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <div className={`mt-auto ${isMobile ? 'space-y-0.5' : 'space-y-2'}`}>
+                      <div className={`flex items-center gap-1 text-gray-500 ${isMobile ? 'text-[7px]' : 'text-xs md:text-sm'}`}>
+                        <svg className={`${isMobile ? 'w-2 h-2' : 'w-4 h-4'} shrink-0`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
                         </svg>
-                        {event.time}
+                        {isMobile ? event.time.split(' ').slice(0, 2).join(' ') : event.time}
                       </div>
-                      <div className="flex items-center gap-2 text-gray-500 text-xs md:text-sm">
-                        <svg className="w-4 h-4 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <div className={`flex items-center gap-1 text-gray-500 ${isMobile ? 'text-[7px]' : 'text-xs md:text-sm'}`}>
+                        <svg className={`${isMobile ? 'w-2 h-2' : 'w-4 h-4'} shrink-0`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
                         </svg>
-                        {event.location}
+                        {isMobile ? event.location.split(',')[0] : event.location}
                       </div>
 
                       {/* Read More */}
                       <a
                         href="#"
-                        className="text-[#8bc34a] font-semibold text-sm mt-2 inline-block hover:underline"
+                        className={`text-[#8bc34a] font-semibold ${isMobile ? 'text-[8px]' : 'text-sm'} mt-1 inline-block hover:underline`}
                       >
                         Read More
                       </a>
@@ -184,16 +222,16 @@ export const EventsSection = () => {
       </div>
 
       {/* Infinite Scroll Gallery */}
-      <div className="mt-16 md:mt-24 overflow-hidden">
+      <div className="mt-12 md:mt-24 overflow-hidden">
         <div className="flex animate-scroll">
           {/* First set of images */}
           {galleryImages.map((image, index) => (
             <div
               key={`first-${index}`}
-              className="shrink-0 mx-2"
+              className="shrink-0 mx-1 md:mx-2"
               style={{
-                width: 'clamp(350px, 29vw, 552px)',
-                height: 'clamp(380px, 32vw, 606px)',
+                width: isMobile ? '120px' : 'clamp(350px, 29vw, 552px)',
+                height: isMobile ? '150px' : 'clamp(380px, 32vw, 606px)',
               }}
             >
               <img
@@ -207,10 +245,10 @@ export const EventsSection = () => {
           {galleryImages.map((image, index) => (
             <div
               key={`second-${index}`}
-              className="shrink-0 mx-2"
+              className="shrink-0 mx-1 md:mx-2"
               style={{
-                width: 'clamp(350px, 29vw, 552px)',
-                height: 'clamp(380px, 32vw, 606px)',
+                width: isMobile ? '120px' : 'clamp(350px, 29vw, 552px)',
+                height: isMobile ? '150px' : 'clamp(380px, 32vw, 606px)',
               }}
             >
               <img

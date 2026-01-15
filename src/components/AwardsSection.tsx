@@ -1,6 +1,7 @@
 import { useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { useIsMobile } from '../hooks/useIsMobile';
 
 // Register GSAP plugin
 gsap.registerPlugin(ScrollTrigger);
@@ -11,6 +12,7 @@ export const AwardsSection = () => {
   const headerRef = useRef<HTMLDivElement>(null);
   const textContentRef = useRef<HTMLDivElement>(null);
   const middleCardRef = useRef<HTMLDivElement>(null);
+  const isMobile = useIsMobile();
 
   const awards = [
     { image: '/aw1.jpg', title: 'QS Diamond Rating badge', year: '2022' },
@@ -29,6 +31,11 @@ export const AwardsSection = () => {
     const middleCard = middleCardRef.current;
 
     const triggers: ScrollTrigger[] = [];
+
+    // Small delay to ensure DOM is ready after mobile/desktop switch
+    const timeout = setTimeout(() => {
+      ScrollTrigger.refresh();
+    }, 100);
 
     // Pin "AWARDS AND ACHIEVEMENTS" text - it stays fixed while cards scroll over it
     const headerPin = ScrollTrigger.create({
@@ -57,18 +64,18 @@ export const AwardsSection = () => {
 
     // Cleanup
     return () => {
+      clearTimeout(timeout);
       triggers.forEach((trigger) => trigger.kill());
       ScrollTrigger.refresh();
     };
-  }, []);
+  }, [isMobile]);
 
   return (
     <div
       ref={wrapperRef}
       style={{
         position: 'relative',
-        height: '250vh',
-        // Invisible wrapper - no background
+        height: isMobile ? '200vh' : '250vh',
         background: 'transparent',
         overflow: 'hidden',
       }}
@@ -93,11 +100,12 @@ export const AwardsSection = () => {
         <div ref={textContentRef}>
           <h2
             style={{
-              fontSize: 'clamp(2rem, 5vw, 4rem)',
+              fontSize: isMobile ? 'clamp(1.5rem, 6vw, 2rem)' : 'clamp(2rem, 5vw, 4rem)',
               fontWeight: 'bold',
               color: '#21313c',
               textAlign: 'center',
               lineHeight: 1.1,
+              padding: '0 1rem',
             }}
           >
             AWARDS AND
@@ -107,10 +115,11 @@ export const AwardsSection = () => {
           <p
             style={{
               color: '#6b7280',
-              fontSize: 'clamp(0.75rem, 1vw, 1rem)',
+              fontSize: isMobile ? '0.75rem' : 'clamp(0.75rem, 1vw, 1rem)',
               textAlign: 'center',
-              marginTop: '2rem',
-              maxWidth: '28rem',
+              marginTop: isMobile ? '1rem' : '2rem',
+              maxWidth: isMobile ? '18rem' : '28rem',
+              padding: '0 1rem',
             }}
           >
             Lorem ipsum dolor sit amet consectetur. Feugiat mi enim
@@ -121,23 +130,23 @@ export const AwardsSection = () => {
         </div>
       </div>
 
-      {/* Cards Container - Scrolls over with original scattered positioning */}
+      {/* Cards Container - Scrolls over with scattered positioning */}
       <div
         style={{
           position: 'absolute',
-          top: '120vh',
+          top: isMobile ? '100vh' : '120vh',
           left: 0,
           width: '100%',
           zIndex: 20,
-          // CRITICAL: Transparent background - only cards visible
           background: 'transparent',
         }}
       >
+        {/* Scattered positioning - same layout for mobile and desktop */}
         <div
           style={{
             position: 'relative',
             width: '100%',
-            aspectRatio: '1920/1558',
+            aspectRatio: isMobile ? '390/600' : '1920/1558',
             background: 'transparent',
           }}
         >
@@ -145,14 +154,14 @@ export const AwardsSection = () => {
           <div
             style={{
               position: 'absolute',
-              left: '15%',
-              top: '5%',
+              left: isMobile ? '8%' : '15%',
+              top: isMobile ? '3%' : '5%',
             }}
           >
             <div
               style={{
-                width: 'clamp(166px, 17.4vw, 333px)',
-                height: 'clamp(167px, 17.5vw, 335px)',
+                width: isMobile ? '80px' : 'clamp(166px, 17.4vw, 333px)',
+                height: isMobile ? '80px' : 'clamp(167px, 17.5vw, 335px)',
                 overflow: 'hidden',
               }}
             >
@@ -162,11 +171,11 @@ export const AwardsSection = () => {
                 style={{ width: '100%', height: '100%', objectFit: 'cover' }}
               />
             </div>
-            <div style={{ marginTop: '8px' }}>
-              <p style={{ color: '#21313c', fontSize: 'clamp(0.7rem, 0.9vw, 0.875rem)', fontWeight: 500 }}>
+            <div style={{ marginTop: isMobile ? '4px' : '8px' }}>
+              <p style={{ color: '#21313c', fontSize: isMobile ? '0.45rem' : 'clamp(0.7rem, 0.9vw, 0.875rem)', fontWeight: 500 }}>
                 {awards[0].title}
               </p>
-              <p style={{ color: '#8bc34a', fontSize: 'clamp(0.65rem, 0.8vw, 0.75rem)' }}>{awards[0].year}</p>
+              <p style={{ color: '#8bc34a', fontSize: isMobile ? '0.4rem' : 'clamp(0.65rem, 0.8vw, 0.75rem)' }}>{awards[0].year}</p>
             </div>
           </div>
 
@@ -174,14 +183,14 @@ export const AwardsSection = () => {
           <div
             style={{
               position: 'absolute',
-              right: '15%',
-              top: '8%',
+              right: isMobile ? '8%' : '15%',
+              top: isMobile ? '6%' : '8%',
             }}
           >
             <div
               style={{
-                width: 'clamp(166px, 17.4vw, 333px)',
-                height: 'clamp(167px, 17.5vw, 335px)',
+                width: isMobile ? '80px' : 'clamp(166px, 17.4vw, 333px)',
+                height: isMobile ? '80px' : 'clamp(167px, 17.5vw, 335px)',
                 overflow: 'hidden',
               }}
             >
@@ -191,11 +200,11 @@ export const AwardsSection = () => {
                 style={{ width: '100%', height: '100%', objectFit: 'cover' }}
               />
             </div>
-            <div style={{ marginTop: '8px' }}>
-              <p style={{ color: '#21313c', fontSize: 'clamp(0.7rem, 0.9vw, 0.875rem)', fontWeight: 500 }}>
+            <div style={{ marginTop: isMobile ? '4px' : '8px' }}>
+              <p style={{ color: '#21313c', fontSize: isMobile ? '0.45rem' : 'clamp(0.7rem, 0.9vw, 0.875rem)', fontWeight: 500 }}>
                 {awards[1].title}
               </p>
-              <p style={{ color: '#8bc34a', fontSize: 'clamp(0.65rem, 0.8vw, 0.75rem)' }}>{awards[1].year}</p>
+              <p style={{ color: '#8bc34a', fontSize: isMobile ? '0.4rem' : 'clamp(0.65rem, 0.8vw, 0.75rem)' }}>{awards[1].year}</p>
             </div>
           </div>
 
@@ -205,14 +214,14 @@ export const AwardsSection = () => {
             style={{
               position: 'absolute',
               left: '50%',
-              top: '28%',
+              top: isMobile ? '22%' : '28%',
               transform: 'translateX(-50%)',
             }}
           >
             <div
               style={{
-                width: 'clamp(166px, 17.4vw, 333px)',
-                height: 'clamp(167px, 17.5vw, 335px)',
+                width: isMobile ? '80px' : 'clamp(166px, 17.4vw, 333px)',
+                height: isMobile ? '80px' : 'clamp(167px, 17.5vw, 335px)',
                 overflow: 'hidden',
               }}
             >
@@ -222,11 +231,11 @@ export const AwardsSection = () => {
                 style={{ width: '100%', height: '100%', objectFit: 'cover' }}
               />
             </div>
-            <div style={{ marginTop: '8px' }}>
-              <p style={{ color: '#21313c', fontSize: 'clamp(0.7rem, 0.9vw, 0.875rem)', fontWeight: 500 }}>
+            <div style={{ marginTop: isMobile ? '4px' : '8px' }}>
+              <p style={{ color: '#21313c', fontSize: isMobile ? '0.45rem' : 'clamp(0.7rem, 0.9vw, 0.875rem)', fontWeight: 500 }}>
                 {awards[2].title}
               </p>
-              <p style={{ color: '#8bc34a', fontSize: 'clamp(0.65rem, 0.8vw, 0.75rem)' }}>{awards[2].year}</p>
+              <p style={{ color: '#8bc34a', fontSize: isMobile ? '0.4rem' : 'clamp(0.65rem, 0.8vw, 0.75rem)' }}>{awards[2].year}</p>
             </div>
           </div>
 
@@ -234,14 +243,14 @@ export const AwardsSection = () => {
           <div
             style={{
               position: 'absolute',
-              left: '12%',
-              top: '52%',
+              left: isMobile ? '5%' : '12%',
+              top: isMobile ? '42%' : '52%',
             }}
           >
             <div
               style={{
-                width: 'clamp(166px, 17.4vw, 333px)',
-                height: 'clamp(167px, 17.5vw, 335px)',
+                width: isMobile ? '80px' : 'clamp(166px, 17.4vw, 333px)',
+                height: isMobile ? '80px' : 'clamp(167px, 17.5vw, 335px)',
                 overflow: 'hidden',
               }}
             >
@@ -251,11 +260,11 @@ export const AwardsSection = () => {
                 style={{ width: '100%', height: '100%', objectFit: 'cover' }}
               />
             </div>
-            <div style={{ marginTop: '8px' }}>
-              <p style={{ color: '#21313c', fontSize: 'clamp(0.7rem, 0.9vw, 0.875rem)', fontWeight: 500 }}>
+            <div style={{ marginTop: isMobile ? '4px' : '8px' }}>
+              <p style={{ color: '#21313c', fontSize: isMobile ? '0.45rem' : 'clamp(0.7rem, 0.9vw, 0.875rem)', fontWeight: 500 }}>
                 {awards[3].title}
               </p>
-              <p style={{ color: '#8bc34a', fontSize: 'clamp(0.65rem, 0.8vw, 0.75rem)' }}>{awards[3].year}</p>
+              <p style={{ color: '#8bc34a', fontSize: isMobile ? '0.4rem' : 'clamp(0.65rem, 0.8vw, 0.75rem)' }}>{awards[3].year}</p>
             </div>
           </div>
 
@@ -263,14 +272,14 @@ export const AwardsSection = () => {
           <div
             style={{
               position: 'absolute',
-              right: '18%',
-              top: '55%',
+              right: isMobile ? '10%' : '18%',
+              top: isMobile ? '45%' : '55%',
             }}
           >
             <div
               style={{
-                width: 'clamp(166px, 17.4vw, 333px)',
-                height: 'clamp(167px, 17.5vw, 335px)',
+                width: isMobile ? '80px' : 'clamp(166px, 17.4vw, 333px)',
+                height: isMobile ? '80px' : 'clamp(167px, 17.5vw, 335px)',
                 overflow: 'hidden',
               }}
             >
@@ -280,11 +289,11 @@ export const AwardsSection = () => {
                 style={{ width: '100%', height: '100%', objectFit: 'cover' }}
               />
             </div>
-            <div style={{ marginTop: '8px' }}>
-              <p style={{ color: '#21313c', fontSize: 'clamp(0.7rem, 0.9vw, 0.875rem)', fontWeight: 500 }}>
+            <div style={{ marginTop: isMobile ? '4px' : '8px' }}>
+              <p style={{ color: '#21313c', fontSize: isMobile ? '0.45rem' : 'clamp(0.7rem, 0.9vw, 0.875rem)', fontWeight: 500 }}>
                 {awards[4].title}
               </p>
-              <p style={{ color: '#8bc34a', fontSize: 'clamp(0.65rem, 0.8vw, 0.75rem)' }}>{awards[4].year}</p>
+              <p style={{ color: '#8bc34a', fontSize: isMobile ? '0.4rem' : 'clamp(0.65rem, 0.8vw, 0.75rem)' }}>{awards[4].year}</p>
             </div>
           </div>
         </div>
