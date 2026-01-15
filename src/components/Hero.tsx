@@ -551,7 +551,13 @@ export const Hero = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.8, duration: 0.6 }}
           whileHover={{ scale: 1.05 }}
-          onClick={() => window.scrollBy({ top: window.innerHeight * 0.5, behavior: 'smooth' })}
+          onClick={() => {
+            // Scroll to horizontal scroll section (after hero and image grid)
+            const heroHeight = window.innerHeight;
+            const imageGridHeight = isMobile ? 100 : 900; // Scroll past hero + image grid to horizontal scroll
+            const targetScroll = heroHeight + imageGridHeight;
+            window.scrollTo({ top: targetScroll, behavior: 'smooth' });
+          }}
           className="absolute left-1/2 -translate-x-1/2 bottom-0 translate-y-1/2 z-30 cursor-pointer"
           style={{
             width: '101px',
@@ -624,9 +630,12 @@ export const Hero = () => {
       {/* Image grid section */}
       <section className="relative px-0 pb-12 md:pb-20">
         <div className="relative mx-0 sm:-mx-10 lg:-mx-16">
-          <div
+          <motion.div
             className="flex w-full items-end"
             style={{ padding: '0', gap: isMobile ? '4px' : '0' }}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.2 }}
           >
             {[
               { src: '/posthero1.jpg', alt: 'Student portrait', height: 710, mobileHeight: 180 },
@@ -636,13 +645,18 @@ export const Hero = () => {
               <motion.div
                 key={img.src}
                 className="flex-1 flex items-end overflow-hidden"
-                initial={{ opacity: 0, y: 40 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, amount: 0.3 }}
-                transition={{
-                  duration: 0.8,
-                  delay: i * 0.15,
-                  ease: [0.25, 0.1, 0.25, 1]
+                variants={{
+                  hidden: { opacity: 0, y: isMobile ? 60 : 40, scale: isMobile ? 0.95 : 1 },
+                  visible: {
+                    opacity: 1,
+                    y: 0,
+                    scale: 1,
+                    transition: {
+                      duration: isMobile ? 0.6 : 0.8,
+                      delay: i * (isMobile ? 0.15 : 0.15),
+                      ease: [0.25, 0.1, 0.25, 1]
+                    }
+                  }
                 }}
               >
                 <motion.img
@@ -655,7 +669,7 @@ export const Hero = () => {
                 />
               </motion.div>
             ))}
-          </div>
+          </motion.div>
         </div>
       </section>
     </div>

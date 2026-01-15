@@ -102,6 +102,7 @@ export const PassionSection = () => {
         className="relative"
         style={{
           height: `${sections.length * 100}vh`,
+          marginTop: isMobile ? '-20vh' : '0',
         }}
       >
         {sections.map((section, index) => (

@@ -76,7 +76,7 @@ export const WhyJlu = () => {
       ref={wrapperRef}
       style={{
         position: 'relative',
-        height: isMobile ? '160vh' : '160vh',
+        height: isMobile ? '150vh' : '160vh',
         background: 'transparent',
         overflow: 'hidden',
       }}
@@ -115,10 +115,9 @@ export const WhyJlu = () => {
       <div
         style={{
           position: 'absolute',
-          top: isMobile ? '85vh' : '60vh',
+          top: isMobile ? '90vh' : '65vh',
           left: 0,
           width: '100%',
-          minHeight: '100vh',
           display: 'flex',
           alignItems: isMobile ? 'flex-start' : 'center',
           justifyContent: 'center',
@@ -127,6 +126,7 @@ export const WhyJlu = () => {
             ? 'linear-gradient(to bottom, transparent 0%, transparent 4%, #f6f7f0 4%)'
             : 'linear-gradient(to bottom, transparent 0%, transparent 36%, #f6f7f0 36%)',
           padding: isMobile ? '0 8px' : '0 clamp(40px, 5vw, 80px)',
+          paddingBottom: isMobile ? '40px' : '0',
         }}
       >
         <div
