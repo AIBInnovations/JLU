@@ -6,7 +6,9 @@ import { useIsMobile } from '../hooks/useIsMobile';
 // NAVIGATION DATA
 // ============================================
 const navigationItems = [
-  { label: 'About Us', href: '#', hasSubmenu: false },
+  { label: 'About Us', href: '/about', hasSubmenu: false },
+  { label: 'Programs', href: '/programs', hasSubmenu: false },
+  { label: 'Events', href: '/events', hasSubmenu: false },
   {
     label: 'Academics',
     href: '#',
@@ -26,7 +28,7 @@ const navigationItems = [
   { label: 'Research', href: '#', hasSubmenu: false },
   { label: 'Campus Life', href: '#', hasSubmenu: false },
   { label: 'International Office', href: '#', hasSubmenu: false },
-  { label: 'News & Events', href: '#', hasSubmenu: false },
+  { label: 'News & Events', href: '/events', hasSubmenu: false },
 ];
 
 // ============================================
@@ -40,7 +42,7 @@ interface MenuOverlayProps {
 }
 
 const MenuOverlay = ({ isOpen, onClose, menuButtonRef, heroRef }: MenuOverlayProps) => {
-  const [activeItem, setActiveItem] = useState<string>('Academics');
+  const [activeItem, setActiveItem] = useState<string>('');
   const isMobile = useIsMobile();
 
   // Medium circle size for menu - smaller on mobile
@@ -510,11 +512,13 @@ export const Hero = () => {
                 pointerEvents: isMenuOpen && isMobile ? 'none' : 'auto',
               }}
             >
-              <img
-                src="/jlulogo.png"
-                alt="Jagran Lakecity University logo"
-                className="h-14 w-auto object-contain drop-shadow-lg sm:h-16"
-              />
+              <a href="/">
+                <img
+                  src="/jlulogo.png"
+                  alt="Jagran Lakecity University logo"
+                  className="h-14 w-auto object-contain drop-shadow-lg sm:h-16 cursor-pointer"
+                />
+              </a>
             </motion.div>
 
             {/* Menu Button - toggles menu open/close */}

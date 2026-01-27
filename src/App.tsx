@@ -1,16 +1,17 @@
 import { useEffect } from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Lenis from 'lenis';
-import {
-  Hero,
-  HorizontalScroll,
-  WhyJlu,
-  PassionSection,
-  VoiceOfJlu,
-  EventsSection,
-  OurProgrammes,
-  AwardsSection,
-  Footer,
-} from './components';
+import HomePage from './pages/HomePage';
+import AboutPage from './pages/AboutPage';
+import ProgramsPage from './pages/ProgramsPage';
+import EventsPage from './pages/EventsPage';
+import NewsAndEventsPage from './pages/NewsAndEventsPage';
+import AcademicsPage from './pages/AcademicsPage';
+import CampusPage from './pages/CampusPage';
+import AdmissionsPage from './pages/AdmissionsPage';
+import ResearchPage from './pages/ResearchPage';
+import InternationalOfficePage from './pages/InternationalOfficePage';
+import CampusLifePage from './pages/CampusLifePage';
 
 function App() {
   useEffect(() => {
@@ -33,34 +34,21 @@ function App() {
   }, []);
 
   return (
-    <div className="bg-[#f6f7f0] min-h-screen overflow-x-hidden">
-      {/* Hero Section with Navigation */}
-      <Hero />
-
-      {/* Horizontal Scrolling Section */}
-      <HorizontalScroll />
-
-      {/* Why JLU Section with Colored Cards */}
-      <WhyJlu />
-
-      {/* Passion, Study, Success Section */}
-      <PassionSection />
-
-      {/* Voices of JLU Section */}
-      <VoiceOfJlu />
-
-      {/* Events Section */}
-      <EventsSection />
-
-      {/* Our Programmes Section */}
-      <OurProgrammes />
-
-      {/* Awards and Achievements */}
-      <AwardsSection />
-
-      {/* Footer */}
-      <Footer />
-    </div>
+    <Router>
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/about" element={<AboutPage />} />
+        <Route path="/programs" element={<ProgramsPage />} />
+        <Route path="/events" element={<EventsPage />} />
+        <Route path="/news-events" element={<NewsAndEventsPage />} />
+        <Route path="/academics" element={<AcademicsPage />} />
+        <Route path="/campus" element={<CampusPage />} />
+        <Route path="/admissions" element={<AdmissionsPage />} />
+        <Route path="/research" element={<ResearchPage />} />
+        <Route path="/international-office" element={<InternationalOfficePage />} />
+        <Route path="/campus-life" element={<CampusLifePage />} />
+      </Routes>
+    </Router>
   );
 }
 
