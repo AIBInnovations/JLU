@@ -428,7 +428,9 @@ const MenuButton = ({ onClick, buttonRef, isOpen }: MenuButtonProps) => {
 export const Hero = () => {
   const heroRef = useRef<HTMLDivElement>(null);
   const menuButtonRef = useRef<HTMLButtonElement>(null);
+  const exploreButtonRef = useRef<HTMLButtonElement>(null);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isVideoOpen, setIsVideoOpen] = useState(false);
   const isMobile = useIsMobile();
 
   // Refs for GSAP animation
@@ -575,21 +577,176 @@ export const Hero = () => {
             }}
           />
 
-          {/* Explore JLU Button (z-index: 40) */}
+          {/* Explore JLU Button (z-index: 120) */}
           <motion.button
+            ref={exploreButtonRef}
+            onClick={() => setIsVideoOpen(true)}
             initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 2, ease: [0.25, 0.1, 0.25, 1] }}
-            className="absolute bottom-8 right-8 sm:bottom-12 sm:right-12 lg:bottom-16 lg:right-16 bg-white text-[#21313c] font-semibold shadow-lg shadow-black/10 transition-all hover:shadow-xl hover:shadow-black/20 hover:scale-105"
+            animate={{ opacity: isVideoOpen ? 0 : 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 1.5, ease: 'easeOut' }}
+            className="absolute bottom-8 right-8 sm:bottom-12 sm:right-12 lg:bottom-16 lg:right-16 bg-white text-[#21313c] font-semibold cursor-pointer"
             style={{
-              zIndex: 40,
+              zIndex: 120,
               padding: isMobile ? '12px 24px' : '16px 32px',
               borderRadius: '8px',
               fontSize: isMobile ? '14px' : '16px',
+              visibility: isVideoOpen ? 'hidden' : 'visible',
+              pointerEvents: isVideoOpen ? 'none' : 'auto',
             }}
           >
             Explore JLU
           </motion.button>
+
+          {/* Video Expansion Overlay (z-index: 60) */}
+          <AnimatePresence>
+            {isVideoOpen && (() => {
+              const getButtonPosition = () => {
+                if (exploreButtonRef.current && heroRef.current) {
+                  const buttonRect = exploreButtonRef.current.getBoundingClientRect();
+                  const heroRect = heroRef.current.getBoundingClientRect();
+
+                  if (isMobile) {
+                    return {
+                      left: buttonRect.left,
+                      top: buttonRect.top,
+                      width: buttonRect.width,
+                      height: buttonRect.height,
+                      centerX: buttonRect.left + buttonRect.width / 2,
+                      centerY: buttonRect.top + buttonRect.height / 2,
+                    };
+                  }
+
+                  return {
+                    left: buttonRect.left - heroRect.left,
+                    top: buttonRect.top - heroRect.top,
+                    width: buttonRect.width,
+                    height: buttonRect.height,
+                    centerX: buttonRect.left - heroRect.left + buttonRect.width / 2,
+                    centerY: buttonRect.top - heroRect.top + buttonRect.height / 2,
+                  };
+                }
+                return { left: 0, top: 0, width: 0, height: 0, centerX: 0, centerY: 0 };
+              };
+
+              const buttonPos = getButtonPosition();
+
+              return (
+                <>
+                  {isMobile ? (
+                    <>
+                      {/* Mobile: Button expands to fullscreen */}
+                      <motion.div
+                        initial={{
+                          width: buttonPos.width,
+                          height: buttonPos.height,
+                          borderRadius: '8px',
+                          left: buttonPos.left,
+                          top: buttonPos.top,
+                        }}
+                        animate={{
+                          width: '100vw',
+                          height: '100vh',
+                          borderRadius: '0px',
+                          left: 0,
+                          top: 0,
+                        }}
+                        exit={{
+                          width: buttonPos.width,
+                          height: buttonPos.height,
+                          borderRadius: '8px',
+                          left: buttonPos.left,
+                          top: buttonPos.top,
+                        }}
+                        transition={{
+                          duration: 1,
+                          ease: [0.16, 1, 0.3, 1],
+                        }}
+                        className="fixed bg-white"
+                        style={{ zIndex: 58 }}
+                      />
+
+                      {/* Mobile Video Content */}
+                      <motion.div
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1, transition: { duration: 0.4, delay: 0.6 } }}
+                        exit={{ opacity: 0, transition: { duration: 0.2, delay: 0 } }}
+                        className="fixed inset-0"
+                        style={{ zIndex: 59 }}
+                      >
+                        <button
+                          onClick={() => setIsVideoOpen(false)}
+                          className="absolute top-4 right-4 w-10 h-10 flex items-center justify-center bg-white rounded-full hover:bg-gray-100 transition-colors shadow-lg z-10"
+                          aria-label="Close video"
+                        >
+                          <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                            <line x1="6" y1="6" x2="18" y2="18" stroke="#21313c" strokeWidth="2" strokeLinecap="round" />
+                            <line x1="18" y1="6" x2="6" y2="18" stroke="#21313c" strokeWidth="2" strokeLinecap="round" />
+                          </svg>
+                        </button>
+                        <video
+                          className="w-full h-full object-cover"
+                          src="/video.mp4"
+                          autoPlay
+                          playsInline
+                        />
+                      </motion.div>
+                    </>
+                  ) : (
+                    <>
+                      {/* Desktop: Button expands to full hero size */}
+                      <motion.div
+                        initial={{
+                          clipPath: `inset(${buttonPos.top}px ${heroRef.current ? heroRef.current.offsetWidth - buttonPos.left - buttonPos.width : 0}px ${heroRef.current ? heroRef.current.offsetHeight - buttonPos.top - buttonPos.height : 0}px ${buttonPos.left}px round 8px)`,
+                        }}
+                        animate={{
+                          clipPath: 'inset(0px 0px 0px 0px round 24px)',
+                        }}
+                        exit={{
+                          clipPath: `inset(${buttonPos.top}px ${heroRef.current ? heroRef.current.offsetWidth - buttonPos.left - buttonPos.width : 0}px ${heroRef.current ? heroRef.current.offsetHeight - buttonPos.top - buttonPos.height : 0}px ${buttonPos.left}px round 8px)`,
+                        }}
+                        transition={{
+                          duration: 0.8,
+                          ease: [0.4, 0, 0.2, 1],
+                        }}
+                        className="absolute inset-0 bg-white"
+                        style={{ zIndex: 100 }}
+                      />
+
+                      {/* Desktop Video Content */}
+                      <motion.div
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1, transition: { duration: 0.4, delay: 0.5 } }}
+                        exit={{ opacity: 0, transition: { duration: 0.2, delay: 0 } }}
+                        className="absolute inset-0 overflow-hidden"
+                        style={{
+                          zIndex: 101,
+                          borderRadius: '24px',
+                        }}
+                      >
+                        <button
+                          onClick={() => setIsVideoOpen(false)}
+                          className="absolute top-8 right-8 w-12 h-12 flex items-center justify-center bg-white rounded-full hover:bg-gray-100 transition-colors shadow-lg"
+                          style={{ zIndex: 102 }}
+                          aria-label="Close video"
+                        >
+                          <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                            <line x1="6" y1="6" x2="18" y2="18" stroke="#21313c" strokeWidth="2" strokeLinecap="round" />
+                            <line x1="18" y1="6" x2="6" y2="18" stroke="#21313c" strokeWidth="2" strokeLinecap="round" />
+                          </svg>
+                        </button>
+                        <video
+                          className="w-full h-full object-cover"
+                          src="/video.mp4"
+                          autoPlay
+                          playsInline
+                        />
+                      </motion.div>
+                    </>
+                  )}
+                </>
+              );
+            })()}
+          </AnimatePresence>
 
           {/* Navigation bar (z-index: 50) */}
           <nav
