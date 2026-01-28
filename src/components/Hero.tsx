@@ -1,5 +1,6 @@
-import { useRef, useState } from 'react';
+import { useRef, useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { gsap } from 'gsap';
 import { useIsMobile } from '../hooks/useIsMobile';
 
 // ============================================
@@ -430,20 +431,88 @@ export const Hero = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const isMobile = useIsMobile();
 
+  // Refs for GSAP animation
+  const backgroundRef = useRef<HTMLImageElement>(null);
+  const buildingRef = useRef<HTMLImageElement>(null);
+  const textRef = useRef<HTMLDivElement>(null);
+  const navRef = useRef<HTMLElement>(null);
+
+  // GSAP Timeline Animation
+  useEffect(() => {
+    const tl = gsap.timeline({ defaults: { ease: 'power2.out' } });
+
+    // Set initial states - both images start as a line in the middle
+    gsap.set(backgroundRef.current, {
+      opacity: 1,
+      clipPath: 'polygon(0% 50%, 100% 50%, 100% 50%, 0% 50%)',
+      scale: 1,
+      force3D: true,
+    });
+    gsap.set(buildingRef.current, {
+      opacity: 1,
+      clipPath: 'polygon(0% 50%, 100% 50%, 100% 50%, 0% 50%)',
+      scale: 1,
+      force3D: true,
+    });
+    gsap.set(textRef.current, {
+      opacity: 0,
+      y: 400,
+      force3D: true,
+    });
+    gsap.set(navRef.current, {
+      opacity: 0,
+      y: -30,
+      force3D: true,
+    });
+
+    // Animation sequence
+    tl
+      // 1. Both images reveal from middle to top and bottom
+      .to([backgroundRef.current, buildingRef.current], {
+        clipPath: 'polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)',
+        duration: 1.5,
+        ease: 'power2.inOut',
+        force3D: true,
+      })
+      // 2. Subtle zoom effect on both images
+      .to([backgroundRef.current, buildingRef.current], {
+        scale: 1.05,
+        duration: 0.8,
+        ease: 'power2.out',
+        force3D: true,
+      }, '-=0.5')
+      // 3. Text slides up and fades in (behind building)
+      .to(textRef.current, {
+        opacity: 1,
+        y: 0,
+        duration: 1.2,
+        ease: 'power2.out',
+        force3D: true,
+      }, '-=1.2')
+      // 4. Navigation fades in
+      .to(navRef.current, {
+        opacity: 1,
+        y: 0,
+        duration: 0.8,
+        ease: 'power2.out',
+        force3D: true,
+      }, '-=0.8');
+
+    return () => {
+      tl.kill();
+    };
+  }, []);
+
   return (
     <div className="bg-[#f6f7f0]">
-      {/* Hero Section */}
-      <section className="relative" style={{ padding: isMobile ? '12px 12px 0 12px' : '20px 17px 0 17px' }}>
+      {/* Cinematic Hero Section */}
+      <section
+        className="relative w-full overflow-hidden"
+        style={{ height: isMobile ? 'calc(100vh - 16px)' : 'calc(100vh - 4px)', padding: isMobile ? '16px' : '24px' }}
+      >
         <div
           ref={heroRef}
-          className="relative w-full overflow-hidden"
-          style={{
-            width: '1887px',
-            maxWidth: '100%',
-            aspectRatio: isMobile ? '9 / 14' : '1887 / 949',
-            minHeight: isMobile ? '55vh' : 'auto',
-            maxHeight: isMobile ? '65vh' : 'none',
-          }}
+          className="relative w-full h-full overflow-hidden rounded-3xl"
         >
           {/* Menu Overlay - renders inside hero container */}
           <MenuOverlay
@@ -453,27 +522,80 @@ export const Hero = () => {
             heroRef={heroRef}
           />
 
-          {/* Background image - crop from bottom, show top */}
-          <motion.img
-            initial={{ scale: 1.08 }}
-            animate={{ scale: 1 }}
-            transition={{ duration: 1.4, ease: [0.25, 0.1, 0.25, 1] }}
-            src="/herobg.png"
-            alt="JLU Campus"
-            className="absolute inset-0 h-full w-full object-cover"
-            style={{ objectPosition: 'center top' }}
+          {/* Layer 1: Background Image (z-index: 1) */}
+          <img
+            ref={backgroundRef}
+            src="/onlybg.png"
+            alt="Background"
+            className="absolute inset-0 w-full h-full object-cover"
+            style={{
+              zIndex: 1,
+              objectPosition: 'center top',
+            }}
           />
 
-          {/* Gradient overlay */}
-          <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/10 to-black/30" />
+          {/* Layer 2: Text - JAGRAN LAKECITY UNIVERSITY (z-index: 2) */}
+          <div
+            ref={textRef}
+            className="absolute inset-0 flex items-center justify-center"
+            style={{ zIndex: 2, paddingBottom: isMobile ? '30%' : '10%' }}
+          >
+            <h1
+              className="text-center font-bold uppercase tracking-wider select-none"
+              style={{
+                fontFamily: "'Humane', sans-serif",
+                fontSize: isMobile ? 'clamp(2.5rem, 10vw, 4rem)' : 'clamp(15rem, 20vw, 20rem)',
+                lineHeight: 1.1,
+                letterSpacing: isMobile ? '0.05em' : '0.01em',
+                wordSpacing: isMobile ? '0.5em' : '1em',
+                whiteSpace: 'nowrap',
+                background: 'linear-gradient(to bottom, rgba(255,255,255,1) 0%, rgba(255,255,255,1) 10%, rgba(255,255,255,0) 70%)',
+                WebkitBackgroundClip: 'text',
+                backgroundClip: 'text',
+                WebkitTextFillColor: 'transparent',
+                textShadow: 'none',
+              }}
+            >
+              JAGRAN LAKECITY
+            </h1>
+          </div>
 
-          {/* Navigation bar */}
-          <motion.nav
-            initial={{ y: -30, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            transition={{ duration: 0.8, delay: 0.2, ease: [0.25, 0.1, 0.25, 1] }}
-            className="relative flex items-center justify-between px-6 pt-6 sm:px-10 lg:px-16"
-            style={{ zIndex: 60 }}
+          {/* Layer 3: Building/Foreground Image (z-index: 3) */}
+          <img
+            ref={buildingRef}
+            src="/jluherot.png"
+            alt="JLU Building"
+            className="absolute inset-0"
+            style={{
+              zIndex: 3,
+              width: '100%',
+              height: '100%',
+              objectFit: 'cover',
+              objectPosition: 'center bottom',
+            }}
+          />
+
+          {/* Explore JLU Button (z-index: 40) */}
+          <motion.button
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 2, ease: [0.25, 0.1, 0.25, 1] }}
+            className="absolute bottom-8 right-8 sm:bottom-12 sm:right-12 lg:bottom-16 lg:right-16 bg-white text-[#21313c] font-semibold shadow-lg shadow-black/10 transition-all hover:shadow-xl hover:shadow-black/20 hover:scale-105"
+            style={{
+              zIndex: 40,
+              padding: isMobile ? '12px 24px' : '16px 32px',
+              borderRadius: '8px',
+              fontSize: isMobile ? '14px' : '16px',
+            }}
+          >
+            Explore JLU
+          </motion.button>
+
+          {/* Navigation bar (z-index: 50) */}
+          <nav
+            ref={navRef}
+            className="absolute top-0 left-0 right-0 flex items-center justify-between px-6 pt-6 sm:px-10 lg:px-16"
+            style={{ zIndex: 50 }}
           >
             {/* Search button - hidden when menu is open on mobile */}
             <button
@@ -501,10 +623,7 @@ export const Hero = () => {
             </button>
 
             {/* Centered logo - hidden when menu is open on mobile */}
-            <motion.div
-              initial={{ opacity: 0, y: -15, scale: 0.95 }}
-              animate={{ opacity: 1, y: 0, scale: 1 }}
-              transition={{ duration: 0.6, delay: 0.3, ease: [0.25, 0.1, 0.25, 1] }}
+            <div
               className="absolute left-1/2 -translate-x-1/2"
               style={{
                 opacity: isMenuOpen && isMobile ? 0 : 1,
@@ -519,82 +638,16 @@ export const Hero = () => {
                   className="h-14 w-auto object-contain drop-shadow-lg sm:h-16 cursor-pointer"
                 />
               </a>
-            </motion.div>
+            </div>
 
             {/* Menu Button - toggles menu open/close */}
             <MenuButton onClick={() => setIsMenuOpen(!isMenuOpen)} buttonRef={menuButtonRef} isOpen={isMenuOpen} />
-          </motion.nav>
-
-          {/* Hero headline */}
-          <motion.div
-            className="absolute inset-0 z-20 flex flex-col items-center justify-center px-6 text-center"
-          >
-            <motion.p
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.3, duration: 0.8, ease: [0.25, 0.1, 0.25, 1] }}
-              className="text-lg font-medium text-white/90 drop-shadow-[0_4px_12px_rgba(0,0,0,0.4)] md:text-xl"
-            >
-              A confluence of minds, cultures, and lived experiences
-            </motion.p>
-            <motion.h1
-              initial={{ opacity: 0, y: 50 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.4, duration: 1, ease: [0.25, 0.1, 0.25, 1] }}
-              className="mt-4 max-w-4xl text-4xl font-bold leading-tight text-white drop-shadow-[0_8px_24px_rgba(0,0,0,0.45)] md:text-5xl lg:text-6xl"
-            >
-              Igniting minds, changing lives
-            </motion.h1>
-          </motion.div>
-
+          </nav>
         </div>
-
-        {/* Scroll indicator - 101x101 ellipse centered at bottom edge */}
-        <motion.div
-          initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.8, duration: 0.6 }}
-          whileHover={{ scale: 1.05 }}
-          onClick={() => {
-            // Scroll to horizontal scroll section (after hero and image grid)
-            const heroHeight = window.innerHeight;
-            const imageGridHeight = isMobile ? 100 : 900; // Scroll past hero + image grid to horizontal scroll
-            const targetScroll = heroHeight + imageGridHeight;
-            window.scrollTo({ top: targetScroll, behavior: 'smooth' });
-          }}
-          className="absolute left-1/2 -translate-x-1/2 bottom-0 translate-y-1/2 z-30 cursor-pointer"
-          style={{
-            width: '101px',
-            height: '101px',
-          }}
-        >
-          <div
-            className="w-full h-full rounded-full bg-[#f6f7f0] flex items-center justify-center"
-            style={{
-              boxShadow: '0 4px 20px rgba(0,0,0,0.1)',
-            }}
-          >
-            {/* Inner circle with border */}
-            <div className="flex items-center justify-center rounded-full border border-gray-400" style={{ width: '90px', height: '90px' }}>
-              <svg
-                className="w-4 h-10"
-                viewBox="0 0 17 46"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M8.5 0V44M8.5 44L1 36.5M8.5 44L16 36.5"
-                  stroke="#21313c"
-                  strokeWidth={1}
-                />
-              </svg>
-            </div>
-          </div>
-        </motion.div>
       </section>
 
       {/* Intro text section */}
-      <section className="relative px-4 pb-12 pt-14 sm:px-10 lg:px-16">
+      <section className="relative px-4 pb-12 pt-14 sm:px-10 lg:px-16 bg-[#f6f7f0]">
         <div className="mx-auto flex max-w-6xl flex-col gap-6">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -632,7 +685,7 @@ export const Hero = () => {
       </section>
 
       {/* Image grid section */}
-      <section className="relative px-0 pb-12 md:pb-20">
+      <section className="relative px-0 pb-12 md:pb-20 bg-[#f6f7f0]">
         <div className="relative mx-0 sm:-mx-10 lg:-mx-16">
           <motion.div
             className="flex w-full items-end"
