@@ -1,25 +1,18 @@
 import { motion, useInView } from 'framer-motion';
 import { useRef, useState, useEffect } from 'react';
 import { useIsMobile } from '../hooks/useIsMobile';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+gsap.registerPlugin(ScrollTrigger);
 
 export const HorizontalScroll = () => {
   const containerRef = useRef<HTMLDivElement>(null);
+  const scrollContainerRef = useRef<HTMLDivElement>(null);
   const isInView = useInView(containerRef, { once: true, margin: '-100px' });
   const isMobile = useIsMobile();
   const [viewportWidth, setViewportWidth] = useState(typeof window !== 'undefined' ? window.innerWidth : 375);
-  const [animationKey, setAnimationKey] = useState(0);
-  const [hasPlayed, setHasPlayed] = useState(false);
-
-  // Track when animation has played
-  useEffect(() => {
-    if (isInView && !hasPlayed) {
-      setHasPlayed(true);
-    }
-  }, [isInView, hasPlayed]);
-
-  const handleReplay = () => {
-    setAnimationKey(prev => prev + 1);
-  };
+  const [animationKey] = useState(0);
 
   const cards = [
     {
@@ -49,6 +42,37 @@ export const HorizontalScroll = () => {
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
+  // ScrollTrigger horizontal scroll effect
+  useEffect(() => {
+    if (!containerRef.current || !scrollContainerRef.current || isMobile) return;
+
+    const section = containerRef.current;
+    const scrollContainer = scrollContainerRef.current;
+
+    // Calculate scroll distance with extra padding to ensure last card is fully visible
+    const scrollDistance = scrollContainer.scrollWidth - window.innerWidth + 50;
+
+    // Create horizontal scroll animation
+    const scrollTrigger = gsap.to(scrollContainer, {
+      x: -scrollDistance,
+      ease: 'none',
+      force3D: true,
+      scrollTrigger: {
+        trigger: section,
+        start: 'top top',
+        end: () => `+=${scrollDistance + window.innerHeight * 1.5}`,
+        scrub: true,
+        pin: true,
+        anticipatePin: 1,
+        invalidateOnRefresh: true,
+      },
+    });
+
+    return () => {
+      scrollTrigger.scrollTrigger?.kill();
+    };
+  }, [isMobile, animationKey]);
+
   // Calculate total content width and animation distance dynamically
   const gap = isMobile ? 12 : 24;
   const padding = isMobile ? 16 : 24; // pl-4 = 16px, md:pl-6 = 24px
@@ -70,9 +94,10 @@ export const HorizontalScroll = () => {
     >
       <div className="h-full flex items-center">
         <motion.div
+          ref={scrollContainerRef}
           key={animationKey}
           initial={{ x: 0 }}
-          animate={isInView || animationKey > 0 ? { x: animationDistance } : { x: 0 }}
+          animate={isMobile && (isInView || animationKey > 0) ? { x: animationDistance } : { x: 0 }}
           transition={{ duration: isMobile ? 6 : 8, ease: "easeInOut" }}
           className="flex pl-4 md:pl-6"
           style={{ gap: isMobile ? '12px' : '24px' }}
@@ -113,33 +138,6 @@ export const HorizontalScroll = () => {
           ))}
         </motion.div>
       </div>
-
-      {/* Replay Button */}
-      {hasPlayed && (
-        <button
-          onClick={handleReplay}
-          className="absolute left-1/2 -translate-x-1/2 flex items-center justify-center bg-white/90 backdrop-blur-sm text-[#21313c] rounded-full hover:bg-white transition-colors shadow-lg"
-          style={{
-            width: isMobile ? '36px' : '44px',
-            height: isMobile ? '36px' : '44px',
-            bottom: isMobile ? '16px' : '40px',
-          }}
-        >
-          <svg
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-            style={{ width: isMobile ? '16px' : '20px', height: isMobile ? '16px' : '20px' }}
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={2}
-              d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"
-            />
-          </svg>
-        </button>
-      )}
     </section>
   );
 };

@@ -1,6 +1,6 @@
 import { useRef, useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 import { useIsMobile } from '../hooks/useIsMobile';
 
 const navigationItems = [
@@ -135,7 +135,7 @@ const MenuOverlay = ({ isOpen, onClose, menuButtonRef }: MenuOverlayProps) => {
                           transition={{ delay: 0.6 + index * 0.05, duration: 0.5 }}
                         >
                           <Link
-                            to={item.href}
+                            href={item.href}
                             onClick={() => handleNavClick(item.label)}
                             className={`text-sm font-medium transition-colors cursor-pointer flex items-center gap-1.5 ${
                               activeItem === item.label
@@ -301,7 +301,7 @@ const MenuOverlay = ({ isOpen, onClose, menuButtonRef }: MenuOverlayProps) => {
                           transition={{ delay: 0.15 + index * 0.05, duration: 0.4 }}
                         >
                           <Link
-                            to={item.href}
+                            href={item.href}
                             onClick={() => handleNavClick(item.label)}
                             className={`text-lg font-medium transition-colors cursor-pointer flex items-center gap-2 ${
                               activeItem === item.label
@@ -496,7 +496,7 @@ export const Header = () => {
             pointerEvents: isMenuOpen && isMobile ? 'none' : 'auto',
           }}
         >
-          <Link to="/">
+          <Link href="/">
             <img
               src="/jlulogo.png"
               alt="Jagran Lakecity University logo"

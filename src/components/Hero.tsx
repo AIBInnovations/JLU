@@ -843,41 +843,52 @@ export const Hero = () => {
 
       {/* Image grid section */}
       <section className="relative px-0 pb-12 md:pb-20 bg-[#f6f7f0]">
-        <div className="relative mx-0 sm:-mx-10 lg:-mx-16">
+        <div className="relative mx-auto max-w-7xl px-8 sm:px-12 lg:px-16">
           <motion.div
-            className="flex w-full items-end"
-            style={{ padding: '0', gap: isMobile ? '4px' : '0' }}
+            className="flex w-full items-end justify-center"
+            style={{ gap: isMobile ? '16px' : '10px' }}
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, amount: 0.2 }}
           >
             {[
-              { src: '/posthero1.jpg', alt: 'Student portrait', height: 710, mobileHeight: 180 },
-              { src: '/posthero2.jpg', alt: 'Students collaborating', height: 557, mobileHeight: 140 },
-              { src: '/posthero3.jpg', alt: 'Group around laptop', height: 659, mobileHeight: 165 },
-            ].map((img, i) => (
+              { src: '/posthero1.jpg', alt: 'Student portrait', height: 550, mobileHeight: 150 },
+              { src: '/posthero2.jpg', alt: 'Students collaborating', height: 430, mobileHeight: 120 },
+              { src: '/posthero3.jpg', alt: 'Group around laptop', height: 510, mobileHeight: 140 },
+            ].map((img) => (
               <motion.div
                 key={img.src}
-                className="flex-1 flex items-end overflow-hidden"
+                className="flex items-end"
+                style={{
+                  flex: '0 0 41%',
+                  width: '41%',
+                }}
                 variants={{
-                  hidden: { opacity: 0, y: isMobile ? 60 : 40, scale: isMobile ? 0.95 : 1 },
-                  visible: {
-                    opacity: 1,
-                    y: 0,
-                    scale: 1,
-                    transition: {
-                      duration: isMobile ? 0.6 : 0.8,
-                      delay: i * (isMobile ? 0.15 : 0.15),
-                      ease: [0.25, 0.1, 0.25, 1]
-                    }
-                  }
+                  hidden: {},
+                  visible: {}
                 }}
               >
                 <motion.img
                   src={img.src}
                   alt={img.alt}
                   className="block w-full object-cover"
-                  style={{ height: isMobile ? `${img.mobileHeight}px` : `${img.height}px` }}
+                  style={{
+                    height: isMobile ? `${img.mobileHeight}px` : `${img.height}px`,
+                    borderTopLeftRadius: isMobile ? '12px' : '16px',
+                    borderTopRightRadius: isMobile ? '12px' : '16px',
+                  }}
+                  variants={{
+                    hidden: {
+                      clipPath: 'inset(100% 0% 0% 0%)',
+                    },
+                    visible: {
+                      clipPath: 'inset(0% 0% 0% 0%)',
+                      transition: {
+                        duration: isMobile ? 0.8 : 1.2,
+                        ease: [0.22, 1, 0.36, 1],
+                      }
+                    }
+                  }}
                   whileHover={{ scale: 1.02 }}
                   transition={{ duration: 0.5 }}
                 />
