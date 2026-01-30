@@ -14,7 +14,7 @@ interface Product {
 }
 
 export const BestSellers = () => {
-  const isMobile = useIsMobile();
+  // const isMobile = useIsMobile();
   const [currentIndex, setCurrentIndex] = useState(0);
   const [direction, setDirection] = useState(0);
 
