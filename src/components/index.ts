@@ -25,5 +25,7 @@ export { VoiceOfJlu } from './VoiceOfJlu';
 export { EventsSection } from './EventsSection';
 export { OurProgrammes } from './OurProgrammes';
 export { AwardsSection } from './AwardsSection';
+export { BestSellers } from './BestSellers';
 export { Footer } from './Footer';
 export { InternationalOffice } from './InternationalOffice';
+export { default as PageLoader } from './PageLoader';

@@ -1,3 +1,5 @@
+'use client';
+
 import { useIsMobile } from '../hooks/useIsMobile';
 
 export const Footer = () => {

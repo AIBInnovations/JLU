@@ -1,4 +1,7 @@
+'use client';
+
 import { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import { useIsMobile } from '../hooks/useIsMobile';
 
 interface Event {
@@ -56,141 +59,174 @@ const events: Event[] = [
 const galleryImages = ['/e1.jpg', '/e2.jpg', '/e3.jpg', '/e4.jpg', '/e5.jpg'];
 
 export const EventsSection = () => {
-  const [currentIndex, setCurrentIndex] = useState(0);
   const isMobile = useIsMobile();
-  const visibleCards = 3; // Same for mobile and desktop
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [direction, setDirection] = useState(0);
 
-  const handlePrev = () => {
-    setCurrentIndex((prev) => Math.max(0, prev - 1));
+  const slideVariants = {
+    enter: (direction: number) => ({
+      x: direction > 0 ? 400 : -400,
+      opacity: 0,
+      scale: 0.8,
+    }),
+    center: {
+      zIndex: 1,
+      x: 0,
+      opacity: 1,
+      scale: 1,
+    },
+    exit: (direction: number) => ({
+      zIndex: 0,
+      x: direction < 0 ? 400 : -400,
+      opacity: 0,
+      scale: 0.8,
+    }),
   };
 
-  const handleNext = () => {
-    setCurrentIndex((prev) => Math.min(events.length - visibleCards, prev + 1));
+  const swipeConfidenceThreshold = 10000;
+  const swipePower = (offset: number, velocity: number) => {
+    return Math.abs(offset) * velocity;
+  };
+
+  const paginate = (newDirection: number) => {
+    setDirection(newDirection);
+    setCurrentIndex((prevIndex) => {
+      if (newDirection === 1) {
+        return prevIndex === events.length - 1 ? 0 : prevIndex + 1;
+      } else {
+        return prevIndex === 0 ? events.length - 1 : prevIndex - 1;
+      }
+    });
+  };
+
+  // Get visible cards (current and next 2)
+  const getVisibleCards = () => {
+    const cards = [];
+    for (let i = 0; i < 3; i++) {
+      const index = (currentIndex + i) % events.length;
+      cards.push({ ...events[index], offset: i });
+    }
+    return cards;
   };
 
   return (
-    <section className="bg-[#f6f7f0] py-16 md:py-24">
-      {/* Header */}
-      <div className="text-center mb-12 md:mb-16 px-4">
-        <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-[#21313c] mb-4">
-          Moments worth stepping into
-        </h2>
-        <p className="text-gray-600 text-sm md:text-base max-w-2xl mx-auto leading-relaxed">
-          Conversations that provoke thought, gatherings that celebrate culture, and experiences that bring the community together.
-        </p>
-        <p className="text-gray-500 text-xs md:text-sm max-w-xl mx-auto mt-3">
-          Campus life moves with intention, offering moments to participate, reflect, and engage.
-        </p>
-        <div className="mx-auto mt-6" style={{ width: '274px', height: '0px', border: '4px solid #B2FF53' }} />
-      </div>
+    <section className="bg-[#f6f7f0] py-16 md:py-24 px-4 md:px-12 lg:px-24">
+      <div className="max-w-7xl mx-auto">
+        {/* Header */}
+        <div className="text-center mb-12 md:mb-16">
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-[#21313c] mb-4">
+            Moments worth stepping into
+          </h2>
+          <p className="text-gray-600 text-sm md:text-base max-w-2xl mx-auto leading-relaxed">
+            Conversations that provoke thought, gatherings that celebrate culture, and experiences that bring the community together.
+          </p>
+          <div className="mx-auto mt-6" style={{ width: '274px', height: '0px', border: '4px solid #B2FF53' }} />
+        </div>
 
-      {/* Content */}
-      <div className="px-2 md:px-12 lg:px-24">
-        <div className="flex flex-row gap-2 md:gap-6 lg:gap-12 items-start">
-          {/* Left side - Title */}
+        {/* Main Content - Split Layout */}
+        <div className="flex flex-col lg:flex-row gap-4 lg:gap-6 items-start mb-16">
+          {/* Left Side - Image + Text */}
           <div
-            className="shrink-0 flex flex-col"
+            className="shrink-0 flex flex-col space-y-4"
             style={{
-              height: isMobile ? '180px' : 'clamp(280px, 20vw, 389px)',
-              width: isMobile ? 'calc((100vw - 40px) / 3)' : 'auto',
-              justifyContent: isMobile ? 'center' : 'space-between',
-              alignItems: isMobile ? 'center' : 'flex-start',
-              textAlign: isMobile ? 'center' : 'left',
+              width: isMobile ? '100%' : 'clamp(350px, 28vw, 550px)',
             }}
           >
-            <div style={{ textAlign: isMobile ? 'center' : 'left' }}>
-              <h3
-                className="font-bold text-[#21313c] leading-tight"
-                style={{ fontSize: isMobile ? '0.85rem' : 'clamp(1.875rem, 4vw, 3.75rem)', marginBottom: isMobile ? '4px' : '16px' }}
-              >
-                SEE WHAT's
-                <br />
-                GOING ON
-              </h3>
-              <p
-                className="text-gray-600"
-                style={{
-                  fontSize: isMobile ? '0.5rem' : 'clamp(0.875rem, 1vw, 1rem)',
-                  maxWidth: isMobile ? '100%' : '20rem',
-                  lineHeight: 1.3,
-                  marginBottom: isMobile ? '4px' : '0'
-                }}
-              >
-                {isMobile ? 'Lorem ipsum dolor sit amet consectetur.' : 'Lorem ipsum dolor sit amet consectetur. Feugiat mi enim lectus convallis scelerisque'}
-              </p>
-            </div>
-            <button
-              className="bg-[#c3fd7a] text-[#21313c] rounded-full font-semibold hover:bg-[#b3ed6a] transition-colors w-fit"
+            {/* Image */}
+            <div
+              className="relative rounded-2xl overflow-hidden shadow-2xl"
               style={{
-                padding: isMobile ? '2px 6px' : '12px 24px',
-                fontSize: isMobile ? '0.35rem' : '0.875rem',
-                marginTop: isMobile ? '2px' : '0'
+                height: isMobile ? '300px' : 'clamp(450px, 32vw, 650px)',
               }}
             >
-              View full Calender
-            </button>
+              <img
+                src="/events-hero.jpg"
+                alt="Campus Events"
+                className="w-full h-full object-cover"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
+            </div>
+
+            {/* Text Content */}
+            <div>
+              <h3 className="text-2xl md:text-3xl lg:text-4xl font-bold text-[#21313c] mb-3 leading-tight">
+                SEE WHAT's<br />GOING ON
+              </h3>
+              <p className="text-gray-600 text-xs md:text-sm mb-4 leading-relaxed">
+                Lorem ipsum dolor sit amet consectetur. Feugiat mi enim lectus convallis scelerisque
+              </p>
+              <button className="bg-[#c3fd7a] text-[#21313c] px-4 py-2 md:px-6 md:py-3 rounded-full text-sm font-semibold hover:bg-[#b3ed6a] transition-colors">
+                View full Calendar
+              </button>
+            </div>
           </div>
 
-          {/* Right side - Event Cards Carousel */}
-          <div className="flex-1 overflow-hidden py-2 md:py-4">
+          {/* Right Side - Horizontal Scrolling Cards */}
+          <div className="flex-1 overflow-visible py-4">
             <div
-              className="flex gap-2 md:gap-6 transition-transform duration-300"
-              style={{ transform: `translateX(-${currentIndex * (100 / visibleCards)}%)` }}
+              className="flex gap-4 md:gap-6 transition-transform duration-500"
+              style={{
+                transform: `translateX(-${currentIndex * (isMobile ? 100 : 33.33)}%)`,
+              }}
             >
               {events.map((event, index) => (
                 <div
                   key={index}
-                  className="bg-[#f6f7f0] overflow-hidden shrink-0 flex flex-col shadow-[0_4px_20px_rgba(0,0,0,0.15)]"
+                  className="bg-white rounded-2xl overflow-hidden shrink-0 flex flex-col p-4 md:p-6"
                   style={{
-                    width: isMobile ? 'calc((100vw - 40px) / 3)' : 'clamp(320px, 26vw, 501px)',
-                    height: isMobile ? '180px' : 'clamp(280px, 20vw, 389px)',
+                    width: isMobile ? 'calc(100vw - 2rem)' : 'clamp(300px, 26vw, 420px)',
+                    height: isMobile ? 'auto' : 'clamp(380px, 28vw, 550px)',
+                    boxShadow: '0 20px 60px rgba(0, 0, 0, 0.3), 0 10px 30px rgba(0, 0, 0, 0.15)',
                   }}
                 >
                   {/* Card Content */}
-                  <div className={`${isMobile ? 'p-2' : 'p-5 md:p-6'} flex flex-col h-full`}>
-                    <div className={`flex ${isMobile ? 'flex-col gap-1' : 'gap-4'}`}>
-                      {/* Date Badge */}
-                      <div
-                        className={`${event.color} text-white text-center shrink-0`}
-                        style={{
-                          minWidth: isMobile ? '35px' : '60px',
-                          padding: isMobile ? '4px' : '12px'
-                        }}
-                      >
-                        <div className={`${isMobile ? 'text-[8px]' : 'text-xs'} font-medium`}>{event.month}</div>
-                        <div className={`${isMobile ? 'text-sm' : 'text-2xl md:text-3xl'} font-bold`}>{event.day}</div>
+                  <div className="flex gap-3 md:gap-4 mb-4">
+                    {/* Date Badge */}
+                    <div
+                      className={`${event.color} text-white text-center shrink-0 rounded-lg`}
+                      style={{
+                        minWidth: isMobile ? '50px' : '70px',
+                        padding: isMobile ? '8px' : '12px',
+                      }}
+                    >
+                      <div className="text-xs font-medium uppercase">{event.month}</div>
+                      <div className={`${isMobile ? 'text-xl' : 'text-3xl'} font-bold`}>
+                        {event.day}
                       </div>
-
-                      {/* Title */}
-                      <h4 className={`font-semibold text-[#21313c] ${isMobile ? 'text-[8px] leading-tight' : 'text-sm md:text-base leading-snug'}`}>
-                        {isMobile ? event.title.substring(0, 40) + '...' : event.title}
-                      </h4>
                     </div>
 
-                    {/* Event Details */}
-                    <div className={`mt-auto ${isMobile ? 'space-y-0.5' : 'space-y-2'}`}>
-                      <div className={`flex items-center gap-1 text-gray-500 ${isMobile ? 'text-[7px]' : 'text-xs md:text-sm'}`}>
-                        <svg className={`${isMobile ? 'w-2 h-2' : 'w-4 h-4'} shrink-0`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-                        </svg>
-                        {isMobile ? event.time.split(' ').slice(0, 2).join(' ') : event.time}
-                      </div>
-                      <div className={`flex items-center gap-1 text-gray-500 ${isMobile ? 'text-[7px]' : 'text-xs md:text-sm'}`}>
-                        <svg className={`${isMobile ? 'w-2 h-2' : 'w-4 h-4'} shrink-0`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-                        </svg>
-                        {isMobile ? event.location.split(',')[0] : event.location}
-                      </div>
+                    {/* Title */}
+                    <h4 className="font-bold text-[#21313c] text-sm md:text-lg leading-snug">
+                      {event.title}
+                    </h4>
+                  </div>
 
-                      {/* Read More */}
-                      <a
-                        href="#"
-                        className={`text-[#8bc34a] font-semibold ${isMobile ? 'text-[8px]' : 'text-sm'} mt-1 inline-block hover:underline`}
-                      >
-                        Read More
-                      </a>
+                  {/* Event Details */}
+                  <div className="mt-auto space-y-2">
+                    <div className="flex items-center gap-2 text-gray-600 text-xs md:text-sm">
+                      <svg className="w-4 h-4 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                      </svg>
+                      {event.time}
                     </div>
+                    <div className="flex items-center gap-2 text-gray-600 text-xs md:text-sm">
+                      <svg className="w-4 h-4 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                      </svg>
+                      {event.location}
+                    </div>
+
+                    {/* Read More */}
+                    <a
+                      href="#"
+                      className="text-[#8bc34a] font-semibold text-xs md:text-sm inline-flex items-center gap-2 hover:gap-3 transition-all group mt-2"
+                    >
+                      Read More
+                      <svg className="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                      </svg>
+                    </a>
                   </div>
                 </div>
               ))}
@@ -199,65 +235,87 @@ export const EventsSection = () => {
         </div>
 
         {/* Navigation Arrows */}
-        <div className="flex justify-center gap-4 mt-8 md:mt-12">
+        <div className="flex justify-center gap-4 mb-8 -mt-4">
           <button
-            onClick={handlePrev}
+            onClick={() => setCurrentIndex((prev) => Math.max(0, prev - 1))}
             disabled={currentIndex === 0}
-            className="w-12 h-12 rounded-full border-2 border-gray-300 flex items-center justify-center text-gray-500 hover:border-gray-400 hover:text-gray-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+            className="w-12 h-12 rounded-full bg-white shadow-lg flex items-center justify-center hover:bg-gray-100 transition-colors border-2 border-gray-200 disabled:opacity-50 disabled:cursor-not-allowed"
+            aria-label="Previous event"
           >
-            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+            <svg
+              className="w-6 h-6 text-[#21313c]"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M15 19l-7-7 7-7"
+              />
             </svg>
           </button>
           <button
-            onClick={handleNext}
-            disabled={currentIndex >= events.length - visibleCards}
-            className="w-12 h-12 rounded-full border-2 border-gray-300 flex items-center justify-center text-gray-500 hover:border-gray-400 hover:text-gray-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+            onClick={() => setCurrentIndex((prev) => Math.min(events.length - (isMobile ? 1 : 3), prev + 1))}
+            disabled={currentIndex >= events.length - (isMobile ? 1 : 3)}
+            className="w-12 h-12 rounded-full bg-white shadow-lg flex items-center justify-center hover:bg-gray-100 transition-colors border-2 border-gray-200 disabled:opacity-50 disabled:cursor-not-allowed"
+            aria-label="Next event"
           >
-            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+            <svg
+              className="w-6 h-6 text-[#21313c]"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M9 5l7 7-7 7"
+              />
             </svg>
           </button>
         </div>
-      </div>
 
-      {/* Infinite Scroll Gallery */}
-      <div className="mt-12 md:mt-24 overflow-hidden">
-        <div className="flex animate-scroll">
-          {/* First set of images */}
-          {galleryImages.map((image, index) => (
-            <div
-              key={`first-${index}`}
-              className="shrink-0 mx-1 md:mx-2"
-              style={{
-                width: isMobile ? '120px' : 'clamp(350px, 29vw, 552px)',
-                height: isMobile ? '150px' : 'clamp(380px, 32vw, 606px)',
-              }}
-            >
-              <img
-                src={image}
-                alt={`Event gallery ${index + 1}`}
-                className="w-full h-full object-cover"
-              />
-            </div>
-          ))}
-          {/* Duplicate set for seamless loop */}
-          {galleryImages.map((image, index) => (
-            <div
-              key={`second-${index}`}
-              className="shrink-0 mx-1 md:mx-2"
-              style={{
-                width: isMobile ? '120px' : 'clamp(350px, 29vw, 552px)',
-                height: isMobile ? '150px' : 'clamp(380px, 32vw, 606px)',
-              }}
-            >
-              <img
-                src={image}
-                alt={`Event gallery ${index + 1}`}
-                className="w-full h-full object-cover"
-              />
-            </div>
-          ))}
+        {/* Infinite Scroll Gallery */}
+        <div className="mt-24 md:mt-32 overflow-hidden">
+          <div className="flex animate-scroll">
+            {/* First set of images */}
+            {galleryImages.map((image, index) => (
+              <div
+                key={`first-${index}`}
+                className="shrink-0 mx-1 md:mx-2"
+                style={{
+                  width: isMobile ? '120px' : 'clamp(350px, 29vw, 552px)',
+                  height: isMobile ? '150px' : 'clamp(380px, 32vw, 606px)',
+                }}
+              >
+                <img
+                  src={image}
+                  alt={`Event gallery ${index + 1}`}
+                  className="w-full h-full object-cover rounded-lg"
+                />
+              </div>
+            ))}
+            {/* Duplicate set for seamless loop */}
+            {galleryImages.map((image, index) => (
+              <div
+                key={`second-${index}`}
+                className="shrink-0 mx-1 md:mx-2"
+                style={{
+                  width: isMobile ? '120px' : 'clamp(350px, 29vw, 552px)',
+                  height: isMobile ? '150px' : 'clamp(380px, 32vw, 606px)',
+                }}
+              >
+                <img
+                  src={image}
+                  alt={`Event gallery ${index + 1}`}
+                  className="w-full h-full object-cover rounded-lg"
+                />
+              </div>
+            ))}
+          </div>
         </div>
       </div>
 

@@ -1,3 +1,5 @@
+'use client';
+
 import { useRef, useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { gsap } from 'gsap';
@@ -431,6 +433,7 @@ export const Hero = () => {
   const exploreButtonRef = useRef<HTMLButtonElement>(null);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isVideoOpen, setIsVideoOpen] = useState(false);
+  const [hasExploreAnimated, setHasExploreAnimated] = useState(false);
   const isMobile = useIsMobile();
 
   // Refs for GSAP animation
@@ -439,11 +442,51 @@ export const Hero = () => {
   const textRef = useRef<HTMLDivElement>(null);
   const navRef = useRef<HTMLElement>(null);
 
-  // GSAP Timeline Animation
-  useEffect(() => {
-    const tl = gsap.timeline({ defaults: { ease: 'power2.out' } });
+  // Track image loading state
+  const [imagesLoaded, setImagesLoaded] = useState(false);
 
-    // Set initial states - both images start as a line in the middle
+  // Wait for images to load before starting animation
+  useEffect(() => {
+    let count = 0;
+    const totalImages = 2;
+
+    const handleImageLoad = () => {
+      count++;
+      if (count === totalImages) {
+        // Add a small delay to ensure everything is painted
+        setTimeout(() => setImagesLoaded(true), 200);
+      }
+    };
+
+    if (backgroundRef.current && buildingRef.current) {
+      if (backgroundRef.current.complete) {
+        handleImageLoad();
+      } else {
+        backgroundRef.current.addEventListener('load', handleImageLoad);
+      }
+
+      if (buildingRef.current.complete) {
+        handleImageLoad();
+      } else {
+        buildingRef.current.addEventListener('load', handleImageLoad);
+      }
+    }
+
+    return () => {
+      if (backgroundRef.current) {
+        backgroundRef.current.removeEventListener('load', handleImageLoad);
+      }
+      if (buildingRef.current) {
+        buildingRef.current.removeEventListener('load', handleImageLoad);
+      }
+    };
+  }, []);
+
+  // GSAP Timeline Animation - only runs after images are loaded
+  useEffect(() => {
+    if (!imagesLoaded) return;
+
+    // Set initial states immediately - both images start as a line in the middle
     gsap.set(backgroundRef.current, {
       opacity: 1,
       clipPath: 'polygon(0% 50%, 100% 50%, 100% 50%, 0% 50%)',
@@ -467,43 +510,51 @@ export const Hero = () => {
       force3D: true,
     });
 
-    // Animation sequence
-    tl
-      // 1. Both images reveal from middle to top and bottom
-      .to([backgroundRef.current, buildingRef.current], {
-        clipPath: 'polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)',
-        duration: 1.5,
-        ease: 'power2.inOut',
-        force3D: true,
-      })
-      // 2. Subtle zoom effect on both images
-      .to([backgroundRef.current, buildingRef.current], {
-        scale: 1.05,
-        duration: 0.8,
-        ease: 'power2.out',
-        force3D: true,
-      }, '-=0.5')
-      // 3. Text slides up and fades in (behind building)
-      .to(textRef.current, {
-        opacity: 1,
-        y: 0,
-        duration: 1.2,
-        ease: 'power2.out',
-        force3D: true,
-      }, '-=1.2')
-      // 4. Navigation fades in
-      .to(navRef.current, {
-        opacity: 1,
-        y: 0,
-        duration: 0.8,
-        ease: 'power2.out',
-        force3D: true,
-      }, '-=0.8');
+    let tl: gsap.core.Timeline | null = null;
+
+    // Wait for page loader to complete (~4 seconds) before starting animation
+    const loaderDelay = setTimeout(() => {
+      tl = gsap.timeline({ defaults: { ease: 'power2.out' } });
+
+      // Animation sequence
+      tl
+        // 1. Both images reveal from middle to top and bottom
+        .to([backgroundRef.current, buildingRef.current], {
+          clipPath: 'polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)',
+          duration: 1.5,
+          ease: 'power2.inOut',
+          force3D: true,
+        })
+        // 2. Subtle zoom effect on both images
+        .to([backgroundRef.current, buildingRef.current], {
+          scale: 1.05,
+          duration: 0.8,
+          ease: 'power2.out',
+          force3D: true,
+        }, '-=0.5')
+        // 3. Text slides up and fades in (behind building)
+        .to(textRef.current, {
+          opacity: 1,
+          y: 0,
+          duration: 1.2,
+          ease: 'power2.out',
+          force3D: true,
+        }, '-=1.2')
+        // 4. Navigation fades in
+        .to(navRef.current, {
+          opacity: 1,
+          y: 0,
+          duration: 0.8,
+          ease: 'power2.out',
+          force3D: true,
+        }, '-=0.8');
+    }, 4000); // Wait 4 seconds for page loader to complete
 
     return () => {
-      tl.kill();
+      clearTimeout(loaderDelay);
+      if (tl) tl.kill();
     };
-  }, []);
+  }, [imagesLoaded]);
 
   return (
     <div className="bg-[#f6f7f0]">
@@ -533,6 +584,7 @@ export const Hero = () => {
             style={{
               zIndex: 1,
               objectPosition: 'center top',
+              clipPath: 'polygon(0% 50%, 100% 50%, 100% 50%, 0% 50%)',
             }}
           />
 
@@ -540,7 +592,7 @@ export const Hero = () => {
           <div
             ref={textRef}
             className="absolute inset-0 flex items-center justify-center"
-            style={{ zIndex: 2, paddingBottom: isMobile ? '30%' : '10%' }}
+            style={{ zIndex: 2, paddingBottom: isMobile ? '30%' : '10%', opacity: 0 }}
           >
             <h1
               className="text-center font-bold uppercase tracking-wider select-none"
@@ -574,6 +626,7 @@ export const Hero = () => {
               height: '100%',
               objectFit: 'cover',
               objectPosition: 'center bottom',
+              clipPath: 'polygon(0% 50%, 100% 50%, 100% 50%, 0% 50%)',
             }}
           />
 
@@ -581,9 +634,21 @@ export const Hero = () => {
           <motion.button
             ref={exploreButtonRef}
             onClick={() => setIsVideoOpen(true)}
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: isVideoOpen ? 0 : 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 1.5, ease: 'easeOut' }}
+            initial={{ opacity: 0, y: 100 }}
+            animate={{
+              opacity: isVideoOpen ? 0 : 1,
+              y: isVideoOpen ? 100 : 0
+            }}
+            transition={{
+              duration: 1,
+              delay: !hasExploreAnimated ? 7 : 0,
+              ease: [0.22, 1, 0.36, 1]
+            }}
+            onAnimationComplete={() => {
+              if (!hasExploreAnimated) {
+                setHasExploreAnimated(true);
+              }
+            }}
             className="absolute bottom-8 right-8 sm:bottom-12 sm:right-12 lg:bottom-16 lg:right-16 bg-white text-[#21313c] font-semibold cursor-pointer"
             style={{
               zIndex: 120,
@@ -688,6 +753,7 @@ export const Hero = () => {
                           src="/video.mp4"
                           autoPlay
                           playsInline
+                          onEnded={() => setIsVideoOpen(false)}
                         />
                       </motion.div>
                     </>
@@ -739,6 +805,7 @@ export const Hero = () => {
                           src="/video.mp4"
                           autoPlay
                           playsInline
+                          onEnded={() => setIsVideoOpen(false)}
                         />
                       </motion.div>
                     </>
@@ -752,7 +819,7 @@ export const Hero = () => {
           <nav
             ref={navRef}
             className="absolute top-0 left-0 right-0 flex items-center justify-between px-6 pt-6 sm:px-10 lg:px-16"
-            style={{ zIndex: 50 }}
+            style={{ zIndex: 50, opacity: 0 }}
           >
             {/* Search button - hidden when menu is open on mobile */}
             <button

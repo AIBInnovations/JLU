@@ -1,3 +1,5 @@
+'use client';
+
 import { motion } from 'framer-motion';
 import { useInView } from 'framer-motion';
 import { useRef } from 'react';
@@ -43,25 +45,36 @@ const facultyMembers: FacultyMember[] = [
 
 export const FacultyGrid = () => {
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: '-100px' });
+  const isInView = useInView(ref, { once: true, amount: 0.3 });
 
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.1,
-        delayChildren: 0.2,
+        staggerChildren: 0.15,
+        delayChildren: 0.1,
       },
     },
   };
 
-  const cardVariants = {
-    hidden: { opacity: 0, y: 40 },
+  // Variants for top row (slide from right)
+  const topRowVariants = {
+    hidden: { opacity: 0, x: 100 },
     visible: {
       opacity: 1,
-      y: 0,
-      transition: { duration: 0.5, ease: [0.25, 0.1, 0.25, 1] as const },
+      x: 0,
+      transition: { duration: 0.8, ease: [0.42, 0, 0.58, 1] as const },
+    },
+  };
+
+  // Variants for bottom row (slide from left)
+  const bottomRowVariants = {
+    hidden: { opacity: 0, x: -100 },
+    visible: {
+      opacity: 1,
+      x: 0,
+      transition: { duration: 0.8, ease: [0.42, 0, 0.58, 1] as const },
     },
   };
 
@@ -93,7 +106,7 @@ export const FacultyGrid = () => {
           {facultyMembers.map((member, index) => (
             <motion.div
               key={index}
-              variants={cardVariants}
+              variants={index < 3 ? topRowVariants : bottomRowVariants}
               whileHover={{ y: -8 }}
               className="group cursor-pointer"
             >

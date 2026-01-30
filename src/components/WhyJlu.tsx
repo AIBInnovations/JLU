@@ -1,3 +1,5 @@
+'use client';
+
 import { useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
@@ -154,6 +156,7 @@ export const WhyJlu = () => {
                   ? (index === 3 ? '60px' : (index === 0 || index === 2 ? '25px' : '0'))
                   : (index === 3 ? '200px' : (index === 0 || index === 2 ? '80px' : '0')),
                 marginBottom: isMobile ? '0' : (index === 1 ? '80px' : '0'),
+                borderRadius: isMobile ? '12px' : '16px',
               }}
             >
               <div>

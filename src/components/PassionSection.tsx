@@ -1,4 +1,6 @@
-import { useEffect, useRef } from 'react';
+'use client';
+
+import { useEffect, useRef, useState } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { useIsMobile } from '../hooks/useIsMobile';
@@ -7,289 +9,268 @@ import { useIsMobile } from '../hooks/useIsMobile';
 gsap.registerPlugin(ScrollTrigger);
 
 export const PassionSection = () => {
-  // Refs for GSAP animations
   const wrapperRef = useRef<HTMLDivElement>(null);
-  const panelsRef = useRef<HTMLDivElement[]>([]);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const panel1Ref = useRef<HTMLDivElement>(null);
+  const panel2Ref = useRef<HTMLDivElement>(null);
+  const panel3Ref = useRef<HTMLDivElement>(null);
   const videoRefs = useRef<HTMLVideoElement[]>([]);
+  const textRef = useRef<HTMLDivElement>(null);
+  const [currentText, setCurrentText] = useState(0);
   const isMobile = useIsMobile();
 
-  // Section data with full video playback (all use same video file)
+  // Section data
   const sections = [
-    {
-      image: '/passion.jpg',
-      video: '/p.mp4',
-      primary: 'PASSION',
-      secondary: ['STUDY', 'SUCCESS'],
-    },
-    {
-      image: '/study.jpg',
-      video: '/p.mp4',
-      primary: 'STUDY',
-      secondary: ['SUCCESS', 'PASSION'],
-    },
-    {
-      image: '/success.jpg',
-      video: '/p.mp4',
-      primary: 'SUCCESS',
-      secondary: ['STUDY', 'PASSION'],
-    },
+    { video: '/p.mp4', text: 'PASSION' },
+    { video: '/s.mp4', text: 'STUDY' },
+    { video: '/p.mp4', text: 'SUCCESS' },
   ];
 
   useEffect(() => {
-    // Ensure refs are available
-    if (!wrapperRef.current || panelsRef.current.length === 0) return;
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (!wrapperRef.current || !containerRef.current) return;
 
-    const panels = panelsRef.current.filter(Boolean);
-    const videos = videoRefs.current.filter(Boolean);
+    const videos = videoRefs.current;
     const triggers: ScrollTrigger[] = [];
-    const cleanupFunctions: (() => void)[] = [];
 
-    // Force load all videos
+    // Load videos
     videos.forEach((video) => {
       if (video) {
         video.load();
+        video.muted = true;
+        video.playsInline = true;
+        video.loop = true;
+        video.play().catch(() => {});
       }
     });
 
-    // Small delay to ensure DOM is ready
-    const timeout = setTimeout(() => {
-      ScrollTrigger.refresh();
-    }, 100);
+    const container = containerRef.current;
 
-    // Create scroll-controlled video animation for each panel
-    panels.forEach((panel, index) => {
-      const video = videos[index];
+    // Initial state - container is small and centered
+    if (!prefersReducedMotion) {
+      const initialScale = isMobile ? 0.75 : 0.65;
 
-      if (!video) return;
+      gsap.set(container, {
+        scale: initialScale,
+        borderRadius: '24px',
+        transformOrigin: 'center center',
+      });
 
-      // Video setup
-      video.muted = true;
-      video.playsInline = true;
-      video.preload = 'auto';
+      // Scale up animation
+      const scaleAnimation = gsap.to(container, {
+        scale: 1,
+        borderRadius: '0px',
+        ease: 'power2.out',
+      });
 
-      // Wait for video metadata
-      const handleMetadata = () => {
-        console.log(`Video ${index} metadata loaded, duration: ${video.duration}s`);
+      const scaleTrigger = ScrollTrigger.create({
+        trigger: wrapperRef.current,
+        start: 'top 80%',
+        end: 'top 20%',
+        scrub: 1,
+        animation: scaleAnimation,
+      });
 
-        // Initialize video
-        video.currentTime = 0;
-        video.pause();
+      triggers.push(scaleTrigger);
 
-        let isScrolling = false;
-        let scrollTimeout: number | null = null;
-        let rafId: number | null = null;
+      // Text fade in
+      if (textRef.current) {
+        gsap.set(textRef.current, { opacity: 0, y: 50 });
 
-        // Auto-play when not scrolling
-        const autoPlay = () => {
-          if (!isScrolling && video.paused) {
-            video.playbackRate = 1.0;
-            video.play().catch(() => {});
-          }
-          rafId = requestAnimationFrame(autoPlay);
-        };
-
-        // Start auto-play loop
-        rafId = requestAnimationFrame(autoPlay);
-
-        // GSAP scroll animation
-        const videoAnimation = gsap.to(video, {
-          currentTime: video.duration,
-          duration: 1,
-          ease: 'none',
-          paused: true,
+        const textFadeIn = gsap.to(textRef.current, {
+          opacity: 1,
+          y: 0,
+          ease: 'power2.out',
         });
 
-        // ScrollTrigger for scroll control
-        const videoTrigger = ScrollTrigger.create({
-          trigger: panel,
-          start: 'top bottom',
-          end: 'bottom top',
-          scrub: 0.5,
-          animation: videoAnimation,
-          onUpdate: () => {
-            // Pause video during scrolling
-            if (!video.paused) {
-              video.pause();
-            }
-
-            isScrolling = true;
-
-            // Reset timeout
-            if (scrollTimeout) {
-              clearTimeout(scrollTimeout);
-            }
-
-            // Mark as not scrolling after delay
-            scrollTimeout = window.setTimeout(() => {
-              isScrolling = false;
-            }, 150);
-          },
+        const textTrigger = ScrollTrigger.create({
+          trigger: wrapperRef.current,
+          start: 'top 60%',
+          end: 'top 30%',
+          scrub: 1,
+          animation: textFadeIn,
         });
 
-        triggers.push(videoTrigger);
-
-        // Cleanup function
-        const cleanup = () => {
-          if (rafId !== null) {
-            cancelAnimationFrame(rafId);
-          }
-          if (scrollTimeout) {
-            clearTimeout(scrollTimeout);
-          }
-          videoAnimation.kill();
-          video.pause();
-        };
-
-        cleanupFunctions.push(cleanup);
-      };
-
-      // Load metadata
-      if (video.readyState >= 1) {
-        // Metadata already loaded
-        handleMetadata();
-      } else {
-        video.addEventListener('loadedmetadata', handleMetadata, { once: true });
+        triggers.push(textTrigger);
       }
+    }
 
-      // Pin each panel except the last one
-      if (index < panels.length - 1) {
-        const pinTrigger = ScrollTrigger.create({
-          trigger: panel,
-          start: 'top top',
-          end: () => `+=${window.innerHeight}`,
-          pin: true,
-          pinSpacing: false,
-          anticipatePin: 1,
-        });
+    // Set initial clip-path for panels 2 and 3 using GSAP
+    if (panel2Ref.current) {
+      gsap.set(panel2Ref.current, { clipPath: 'inset(100% 0 0 0)' });
+    }
+    if (panel3Ref.current) {
+      gsap.set(panel3Ref.current, { clipPath: 'inset(100% 0 0 0)' });
+    }
 
-        triggers.push(pinTrigger);
-      }
+    // Create a single timeline for both panel reveals
+    const panelTimeline = gsap.timeline();
+
+    if (panel2Ref.current) {
+      panelTimeline.to(panel2Ref.current, {
+        clipPath: 'inset(0% 0 0 0)',
+        ease: 'none',
+        duration: 1,
+      });
+    }
+
+    if (panel3Ref.current) {
+      panelTimeline.to(panel3Ref.current, {
+        clipPath: 'inset(0% 0 0 0)',
+        ease: 'none',
+        duration: 1,
+      });
+    }
+
+    // Pin the container and control the panel timeline
+    const pinTrigger = ScrollTrigger.create({
+      trigger: wrapperRef.current,
+      start: 'top top',
+      end: () => `+=${window.innerHeight * 3}`,
+      pin: container,
+      pinSpacing: true,
+      anticipatePin: 1,
+      scrub: true,
+      animation: panelTimeline,
+      onUpdate: (self) => {
+        const progress = self.progress;
+
+        // Update text based on which panel is revealed
+        if (progress < 0.33) {
+          setCurrentText(0); // PASSION - page 1 visible
+        } else if (progress < 0.66) {
+          setCurrentText(1); // STUDY - page 2 revealed
+        } else {
+          setCurrentText(2); // SUCCESS - page 3 revealed
+        }
+      },
     });
 
-    // Cleanup on unmount
+    triggers.push(pinTrigger);
+
+    // Refresh after setup
+    setTimeout(() => ScrollTrigger.refresh(), 100);
+
     return () => {
-      clearTimeout(timeout);
-      cleanupFunctions.forEach((cleanup) => cleanup());
-      triggers.forEach((trigger) => trigger.kill());
+      triggers.forEach((t) => t.kill());
       ScrollTrigger.refresh();
     };
   }, [isMobile]);
 
-  // Helper to add panel refs
-  const addPanelRef = (el: HTMLDivElement | null, index: number) => {
-    if (el) panelsRef.current[index] = el;
-  };
-
-  // Helper to add video refs
   const addVideoRef = (el: HTMLVideoElement | null, index: number) => {
     if (el) videoRefs.current[index] = el;
   };
 
   return (
-    <>
-      {/*
-        ============================================
-        PASSION SECTION - Sticky Overlap Effect
-        ============================================
-
-        Structure:
-        - Wrapper contains all 3 panels (PASSION, STUDY, SUCCESS)
-        - Each panel is 100vh tall and full-width
-        - First two panels pin in place while the next scrolls over
-        - Creates a "stacked cards" effect
-
-        Z-Index Strategy:
-        - Earlier panels have lower z-index (10, 11, 12)
-        - This allows later panels to naturally overlap earlier ones
-
-        ScrollTrigger Config:
-        - pin: true - pins the panel to viewport
-        - pinSpacing: false - prevents extra scroll space
-        - scrub: true - smooth animation tied to scroll
-      */}
+    <div
+      ref={wrapperRef}
+      className="relative"
+      style={{ height: '400vh' }}
+    >
+      {/* Main container that scales and pins */}
       <div
-        ref={wrapperRef}
-        className="relative"
-        style={{
-          height: `${sections.length * 100}vh`,
-          marginTop: isMobile ? '-20vh' : '0',
-        }}
+        ref={containerRef}
+        className="relative w-full h-screen overflow-hidden"
       >
-        {sections.map((section, index) => (
-          <div
-            key={index}
-            ref={(el) => addPanelRef(el, index)}
-            className="absolute w-full h-screen top-0 left-0 overflow-hidden"
-            style={{
-              top: `${index * 100}vh`,
-              zIndex: 10 + index,
-              borderTopLeftRadius: '24px',
-              borderTopRightRadius: '24px',
-            }}
-          >
-            {/* Background Video - cinematic scroll-controlled */}
-            <video
-              ref={(el) => addVideoRef(el, index)}
-              src={section.video}
-              className="absolute inset-0 w-full h-full object-cover"
-              style={{
-                transform: 'scale(1.25)',
-                minWidth: '100%',
-                minHeight: '100%',
-                willChange: 'transform',
-              }}
-              muted
-              playsInline
-              preload="auto"
-              crossOrigin="anonymous"
-              disablePictureInPicture
-              disableRemotePlayback
-            />
+        {/* Panel 1 - PASSION */}
+        <div
+          ref={panel1Ref}
+          className="absolute inset-0 w-full h-full"
+          style={{ zIndex: 1 }}
+        >
+          <video
+            ref={(el) => addVideoRef(el, 0)}
+            src="/p.mp4"
+            className="absolute inset-0 w-full h-full object-cover"
+            style={{ transform: 'scale(1.1)' }}
+            autoPlay
+            loop
+            muted
+            playsInline
+            preload="auto"
+          />
+        </div>
 
-            {/* Dark overlay for text readability */}
-            <div className="absolute inset-0 bg-black/20" />
+        {/* Panel 2 - STUDY */}
+        <div
+          ref={panel2Ref}
+          className="absolute inset-0 w-full h-full"
+          style={{ zIndex: 2 }}
+        >
+          <video
+            ref={(el) => addVideoRef(el, 1)}
+            src="/s.mp4"
+            className="absolute inset-0 w-full h-full object-cover"
+            style={{ transform: 'scale(1.1)' }}
+            autoPlay
+            loop
+            muted
+            playsInline
+            preload="auto"
+          />
+        </div>
 
-            {/* Text Content - Centered */}
-            <div className="absolute inset-0 flex items-center justify-center">
-              <div className="text-center px-4">
-                {/* Primary heading - solid filled text */}
-                <h2
-                  className="text-white"
-                  style={{
-                    fontFamily: 'Anton, sans-serif',
-                    fontSize: isMobile ? 'clamp(48px, 12vw, 80px)' : 'clamp(80px, 10vw, 145px)',
-                    fontWeight: 300,
-                    lineHeight: '130%',
-                    letterSpacing: isMobile ? '2px' : '3px',
-                    textAlign: 'center',
-                  }}
-                >
-                  {section.primary}
-                </h2>
+        {/* Panel 3 - SUCCESS (highest z-index) */}
+        <div
+          ref={panel3Ref}
+          className="absolute inset-0 w-full h-full"
+          style={{ zIndex: 4 }}
+        >
+          <video
+            ref={(el) => addVideoRef(el, 2)}
+            src="/video.mp4"
+            className="absolute inset-0 w-full h-full object-cover"
+            style={{ transform: 'scale(1.1)' }}
+            autoPlay
+            loop
+            muted
+            playsInline
+            preload="auto"
+          />
+        </div>
 
-                {/* Secondary text - outline only (no fill) */}
-                {section.secondary.map((text, i) => (
-                  <p
-                    key={i}
-                    style={{
-                      fontFamily: 'Anton, sans-serif',
-                      fontSize: isMobile ? 'clamp(36px, 10vw, 60px)' : 'clamp(60px, 8vw, 120px)',
-                      fontWeight: 300,
-                      lineHeight: '130%',
-                      letterSpacing: isMobile ? '2px' : '3px',
-                      textAlign: 'center',
-                      color: 'transparent',
-                      WebkitTextStroke: isMobile ? '2px rgba(255,255,255,0.6)' : '4px rgba(255,255,255,0.6)',
-                    }}
-                  >
-                    {text}
-                  </p>
-                ))}
-              </div>
-            </div>
+        {/* Dark overlay for better text visibility */}
+        <div
+          className="absolute inset-0 w-full h-full"
+          style={{
+            zIndex: 10,
+            backgroundColor: 'rgba(0, 0, 0, 0.35)',
+            pointerEvents: 'none',
+          }}
+        />
+
+        {/* Text overlay - always on top of all panels */}
+        <div
+          ref={textRef}
+          className="absolute inset-0 flex items-center justify-center z-50 pointer-events-none"
+        >
+          <div className="text-center px-4">
+            {/* All three words - filled or outlined based on currentText */}
+            {sections.map((section, index) => (
+              <h2
+                key={index}
+                className="transition-all duration-500"
+                style={{
+                  fontFamily: 'Anton, sans-serif',
+                  fontSize: index === currentText
+                    ? (isMobile ? 'clamp(48px, 12vw, 80px)' : 'clamp(80px, 10vw, 145px)')
+                    : (isMobile ? 'clamp(36px, 10vw, 60px)' : 'clamp(60px, 8vw, 120px)'),
+                  fontWeight: 300,
+                  lineHeight: '130%',
+                  letterSpacing: isMobile ? '2px' : '3px',
+                  color: index === currentText ? '#ffffff' : 'transparent',
+                  WebkitTextStroke: index === currentText
+                    ? '0px'
+                    : (isMobile ? '2px rgba(255,255,255,0.6)' : '4px rgba(255,255,255,0.6)'),
+                  WebkitTextFillColor: index === currentText ? '#ffffff' : 'transparent',
+                }}
+              >
+                {section.text}
+              </h2>
+            ))}
           </div>
-        ))}
+        </div>
       </div>
-    </>
+    </div>
   );
 };

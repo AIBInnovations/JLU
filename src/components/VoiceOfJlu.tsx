@@ -1,15 +1,50 @@
-import { useState, useEffect } from 'react';
+'use client';
+
+import { useState, useEffect, useRef } from 'react';
+import { motion } from 'framer-motion';
+import { useInView } from 'framer-motion';
 import { useIsMobile } from '../hooks/useIsMobile';
 
 export const VoiceOfJlu = () => {
   const isMobile = useIsMobile();
   const [activeCard, setActiveCard] = useState<number | null>(null);
   const [mobileIndex, setMobileIndex] = useState(0);
+  const facultyRef = useRef(null);
+  const isInView = useInView(facultyRef, { once: true, amount: 0.3 });
 
   // Set default active card based on device - closed on mobile, 7th card open on desktop
   useEffect(() => {
     setActiveCard(isMobile ? null : 7);
   }, []);
+
+  const containerVariants = {
+    hidden: { opacity: 1 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.1,
+        delayChildren: 0.2,
+      },
+    },
+  };
+
+  // Top row: slides from right to left (fast to slow)
+  const topRowVariants = {
+    hidden: { x: '150%' },
+    visible: {
+      x: 0,
+      transition: { duration: 1.2, ease: [0.6, 0, 0.2, 1] as const },
+    },
+  };
+
+  // Bottom row: slides from left to right (fast to slow)
+  const bottomRowVariants = {
+    hidden: { x: '-150%' },
+    visible: {
+      x: 0,
+      transition: { duration: 1.2, ease: [0.6, 0, 0.2, 1] as const },
+    },
+  };
 
   const handlePrevCard = () => {
     setMobileIndex((prev) => Math.max(0, prev - 1));
@@ -189,16 +224,21 @@ export const VoiceOfJlu = () => {
       )}
 
       {/* Our Faculty Section */}
-      <div className="mt-16 md:mt-24 lg:mt-32 px-4 md:px-12 lg:px-24">
+      <div ref={facultyRef} className="mt-16 md:mt-24 lg:mt-32 px-4 md:px-12 lg:px-24">
         {/* Faculty Header */}
-        <div className="flex justify-between items-start mb-8 md:mb-12 lg:mb-16">
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.6 }}
+          className="flex justify-between items-start mb-8 md:mb-12 lg:mb-16"
+        >
           <h2 className="text-2xl md:text-5xl lg:text-6xl font-bold text-[#21313c]">
             OUR FACULTY
           </h2>
           <span className="text-2xl md:text-5xl lg:text-6xl font-bold text-[#21313c]">
             2025
           </span>
-        </div>
+        </motion.div>
 
         {/* Faculty Grid */}
         {isMobile ? (
@@ -231,75 +271,105 @@ export const VoiceOfJlu = () => {
             ))}
           </div>
         ) : (
-          /* Desktop: Original layout */
-          <div className="flex flex-col gap-8 lg:gap-12">
-            {/* First Row */}
-            <div className="flex justify-end gap-4 lg:gap-6">
-              {faculty.slice(0, 3).map((member, index) => (
-                <div
-                  key={index}
-                  style={{
-                    width: 'clamp(150px, 17.6vw, 338px)',
-                  }}
-                >
-                  <div
-                    className="overflow-hidden"
+          /* Desktop: Images slide out from behind fixed wrappers */
+          <div className="relative overflow-hidden">
+            {/* Faculty Content */}
+            <motion.div
+              variants={containerVariants}
+              initial="hidden"
+              animate={isInView ? 'visible' : 'hidden'}
+              className="flex flex-col gap-8 lg:gap-12 relative z-20"
+            >
+              {/* First Row - slides from right to left */}
+              <div className="flex justify-end gap-4 lg:gap-6">
+                {faculty.slice(0, 3).map((member, index) => (
+                  <motion.div
+                    key={index}
+                    variants={topRowVariants}
+                    whileHover={{ y: -8 }}
                     style={{
-                      width: '100%',
-                      height: 'clamp(200px, 20.8vw, 400px)',
+                      width: 'clamp(150px, 17.6vw, 338px)',
                     }}
                   >
-                    <img
-                      src={member.image}
-                      alt={member.name}
-                      className="w-full h-full object-cover"
-                    />
-                  </div>
-                  <div className="mt-3">
-                    <h3 className="text-[#21313c] font-semibold text-sm md:text-base lg:text-lg">
-                      {member.name}
-                    </h3>
-                    <p className="text-gray-500 text-xs md:text-sm">
-                      {member.title}
-                    </p>
-                  </div>
-                </div>
-              ))}
-            </div>
+                    <div
+                      className="overflow-hidden"
+                      style={{
+                        width: '100%',
+                        height: 'clamp(200px, 20.8vw, 400px)',
+                        borderRadius: '16px',
+                      }}
+                    >
+                      <motion.img
+                        src={member.image}
+                        alt={member.name}
+                        className="w-full h-full object-cover"
+                        whileHover={{ scale: 1.08 }}
+                        transition={{ duration: 0.4 }}
+                      />
+                    </div>
+                    <div className="mt-3">
+                      <h3 className="text-[#21313c] font-semibold text-sm md:text-base lg:text-lg">
+                        {member.name}
+                      </h3>
+                      <p className="text-gray-500 text-xs md:text-sm">
+                        {member.title}
+                      </p>
+                    </div>
+                  </motion.div>
+                ))}
+              </div>
 
-            {/* Second Row */}
-            <div className="flex justify-start gap-4 lg:gap-6">
-              {faculty.slice(3, 6).map((member, index) => (
-                <div
-                  key={index + 3}
-                  style={{
-                    width: 'clamp(150px, 17.6vw, 338px)',
-                  }}
-                >
-                  <div
-                    className="overflow-hidden"
+              {/* Second Row - slides from left to right */}
+              <div className="flex justify-start gap-4 lg:gap-6">
+                {faculty.slice(3, 6).map((member, index) => (
+                  <motion.div
+                    key={index + 3}
+                    variants={bottomRowVariants}
+                    whileHover={{ y: -8 }}
                     style={{
-                      width: '100%',
-                      height: 'clamp(200px, 20.8vw, 400px)',
+                      width: 'clamp(150px, 17.6vw, 338px)',
                     }}
                   >
-                    <img
-                      src={member.image}
-                      alt={member.name}
-                      className="w-full h-full object-cover"
-                    />
-                  </div>
-                  <div className="mt-3">
-                    <h3 className="text-[#21313c] font-semibold text-sm md:text-base lg:text-lg">
-                      {member.name}
-                    </h3>
-                    <p className="text-gray-500 text-xs md:text-sm">
-                      {member.title}
-                    </p>
-                  </div>
-                </div>
-              ))}
-            </div>
+                    <div
+                      className="overflow-hidden"
+                      style={{
+                        width: '100%',
+                        height: 'clamp(200px, 20.8vw, 400px)',
+                        borderRadius: '16px',
+                      }}
+                    >
+                      <motion.img
+                        src={member.image}
+                        alt={member.name}
+                        className="w-full h-full object-cover"
+                        whileHover={{ scale: 1.08 }}
+                        transition={{ duration: 0.4 }}
+                      />
+                    </div>
+                    <div className="mt-3">
+                      <h3 className="text-[#21313c] font-semibold text-sm md:text-base lg:text-lg">
+                        {member.name}
+                      </h3>
+                      <p className="text-gray-500 text-xs md:text-sm">
+                        {member.title}
+                      </p>
+                    </div>
+                  </motion.div>
+                ))}
+              </div>
+            </motion.div>
+
+            {/* Fixed Left Wrapper - stays in place */}
+            <div
+              className="absolute top-0 left-0 w-1/2 h-full bg-[#f6f7f0] z-10"
+              style={{ pointerEvents: 'none' }}
+            />
+
+            {/* Fixed Right Wrapper - stays in place */}
+            <div
+              className="absolute top-0 right-0 w-1/2 h-full bg-[#f6f7f0] z-10"
+              style={{ pointerEvents: 'none' }}
+            />
           </div>
         )}
       </div>
