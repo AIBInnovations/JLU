@@ -433,7 +433,6 @@ export const Hero = () => {
   const exploreButtonRef = useRef<HTMLButtonElement>(null);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isVideoOpen, setIsVideoOpen] = useState(false);
-  const [hasExploreAnimated, setHasExploreAnimated] = useState(false);
   const isMobile = useIsMobile();
 
   // Refs for GSAP animation
@@ -509,10 +508,15 @@ export const Hero = () => {
       y: -30,
       force3D: true,
     });
+    gsap.set(exploreButtonRef.current, {
+      opacity: 0,
+      y: 30,
+      force3D: true,
+    });
 
     let tl: gsap.core.Timeline | null = null;
 
-    // Wait for page loader to complete (~4 seconds) before starting animation
+    // Start animation immediately (page loader deactivated)
     const loaderDelay = setTimeout(() => {
       tl = gsap.timeline({ defaults: { ease: 'power2.out' } });
 
@@ -525,13 +529,13 @@ export const Hero = () => {
           ease: 'power2.inOut',
           force3D: true,
         })
-        // 2. Subtle zoom effect on both images
+        // 2. Subtle zoom effect on both images (reduced for performance)
         .to([backgroundRef.current, buildingRef.current], {
-          scale: 1.05,
-          duration: 0.8,
+          scale: 1.02,
+          duration: 0.6,
           ease: 'power2.out',
           force3D: true,
-        }, '-=0.5')
+        }, '-=0.3')
         // 3. Text slides up and fades in (behind building)
         .to(textRef.current, {
           opacity: 1,
@@ -547,8 +551,16 @@ export const Hero = () => {
           duration: 0.8,
           ease: 'power2.out',
           force3D: true,
+        }, '-=0.8')
+        // 5. Explore button fades in (same time as nav)
+        .to(exploreButtonRef.current, {
+          opacity: 1,
+          y: 0,
+          duration: 0.8,
+          ease: 'power2.out',
+          force3D: true,
         }, '-=0.8');
-    }, 4000); // Wait 4 seconds for page loader to complete
+    }, 0); // Start immediately (page loader deactivated)
 
     return () => {
       clearTimeout(loaderDelay);
@@ -566,6 +578,11 @@ export const Hero = () => {
         <div
           ref={heroRef}
           className="relative w-full h-full overflow-hidden rounded-3xl"
+          style={{
+            willChange: 'transform',
+            backfaceVisibility: 'hidden',
+            transform: 'translateZ(0)',
+          }}
         >
           {/* Menu Overlay - renders inside hero container */}
           <MenuOverlay
@@ -585,6 +602,9 @@ export const Hero = () => {
               zIndex: 1,
               objectPosition: 'center top',
               clipPath: 'polygon(0% 50%, 100% 50%, 100% 50%, 0% 50%)',
+              willChange: 'transform, clip-path',
+              backfaceVisibility: 'hidden',
+              transform: 'translateZ(0)',
             }}
           />
 
@@ -592,7 +612,14 @@ export const Hero = () => {
           <div
             ref={textRef}
             className="absolute inset-0 flex items-center justify-center"
-            style={{ zIndex: 2, paddingBottom: isMobile ? '30%' : '10%', opacity: 0 }}
+            style={{
+              zIndex: 2,
+              paddingBottom: isMobile ? '30%' : '10%',
+              opacity: 0,
+              willChange: 'transform, opacity',
+              backfaceVisibility: 'hidden',
+              transform: 'translateZ(0)',
+            }}
           >
             <h1
               className="text-center font-bold uppercase tracking-wider select-none"
@@ -627,28 +654,16 @@ export const Hero = () => {
               objectFit: 'cover',
               objectPosition: 'center bottom',
               clipPath: 'polygon(0% 50%, 100% 50%, 100% 50%, 0% 50%)',
+              willChange: 'transform, clip-path',
+              backfaceVisibility: 'hidden',
+              transform: 'translateZ(0)',
             }}
           />
 
           {/* Explore JLU Button (z-index: 120) */}
-          <motion.button
+          <button
             ref={exploreButtonRef}
             onClick={() => setIsVideoOpen(true)}
-            initial={{ opacity: 0, y: 100 }}
-            animate={{
-              opacity: isVideoOpen ? 0 : 1,
-              y: isVideoOpen ? 100 : 0
-            }}
-            transition={{
-              duration: 1,
-              delay: !hasExploreAnimated ? 7 : 0,
-              ease: [0.22, 1, 0.36, 1]
-            }}
-            onAnimationComplete={() => {
-              if (!hasExploreAnimated) {
-                setHasExploreAnimated(true);
-              }
-            }}
             className="absolute bottom-8 right-8 sm:bottom-12 sm:right-12 lg:bottom-16 lg:right-16 bg-white text-[#21313c] font-semibold cursor-pointer"
             style={{
               zIndex: 120,
@@ -657,10 +672,11 @@ export const Hero = () => {
               fontSize: isMobile ? '14px' : '16px',
               visibility: isVideoOpen ? 'hidden' : 'visible',
               pointerEvents: isVideoOpen ? 'none' : 'auto',
+              opacity: 0,
             }}
           >
             Explore JLU
-          </motion.button>
+          </button>
 
           {/* Video Expansion Overlay (z-index: 60) */}
           <AnimatePresence>
@@ -929,20 +945,18 @@ export const Hero = () => {
                 style={{
                   flex: '0 0 41%',
                   width: '41%',
+                  position: 'relative',
                 }}
                 variants={{
                   hidden: {},
                   visible: {}
                 }}
               >
-                <motion.img
-                  src={img.src}
-                  alt={img.alt}
-                  className="block w-full object-cover"
+                <motion.div
                   style={{
-                    height: isMobile ? `${img.mobileHeight}px` : `${img.height}px`,
-                    borderTopLeftRadius: isMobile ? '12px' : '16px',
-                    borderTopRightRadius: isMobile ? '12px' : '16px',
+                    position: 'relative',
+                    width: '100%',
+                    filter: 'none',
                   }}
                   variants={{
                     hidden: {
@@ -958,7 +972,32 @@ export const Hero = () => {
                   }}
                   whileHover={{ scale: 1.02 }}
                   transition={{ duration: 0.5 }}
-                />
+                >
+                  <img
+                    src={img.src}
+                    alt={img.alt}
+                    className="block w-full object-cover"
+                    style={{
+                      height: isMobile ? `${img.mobileHeight}px` : `${img.height}px`,
+                      borderTopLeftRadius: isMobile ? '12px' : '16px',
+                      borderTopRightRadius: isMobile ? '12px' : '16px',
+                      borderBottomLeftRadius: 0,
+                      borderBottomRightRadius: 0,
+                      display: 'block',
+                    }}
+                  />
+                  <div
+                    style={{
+                      position: 'absolute',
+                      inset: 0,
+                      backgroundColor: 'rgba(0, 0, 0, 0.15)',
+                      borderTopLeftRadius: isMobile ? '12px' : '16px',
+                      borderTopRightRadius: isMobile ? '12px' : '16px',
+                      borderBottomLeftRadius: 0,
+                      borderBottomRightRadius: 0,
+                    }}
+                  />
+                </motion.div>
               </motion.div>
             ))}
           </motion.div>

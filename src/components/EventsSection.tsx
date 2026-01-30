@@ -14,43 +14,43 @@ interface Event {
 
 const events: Event[] = [
   {
-    day: '14',
-    month: 'Oct',
-    title: 'Lorem ipsum dolor sit amet consectetur. Feugiat mi enim lectus convallis.',
-    location: 'Perrin Theater, Keiter Center for the Arts',
-    time: '12:00 PM 1:00 PM',
+    day: '15',
+    month: 'Feb',
+    title: 'Annual Tech Fest - Innovation Summit 2025',
+    location: 'JLU Main Auditorium, Bhopal Campus',
+    time: '10:00 AM - 6:00 PM',
     color: 'bg-[#3b82f6]',
-  },
-  {
-    day: '14',
-    month: 'Oct',
-    title: 'Lorem ipsum dolor sit amet consectetur. Feugiat mi enim lectus convallis.',
-    location: 'Perrin Theater, Keiter Center for the Arts',
-    time: '12:00 PM 1:00 PM',
-    color: 'bg-[#e85a71]',
-  },
-  {
-    day: '14',
-    month: 'Oct',
-    title: 'Lorem ipsum dolor sit amet consectetur. Feugiat mi enim lectus convallis.',
-    location: 'Perrin Theater, Keiter Center for the Arts',
-    time: '12:00 PM 1:00 PM',
-    color: 'bg-[#d4c84a]',
   },
   {
     day: '20',
-    month: 'Nov',
-    title: 'Lorem ipsum dolor sit amet consectetur. Feugiat mi enim lectus convallis.',
-    location: 'Main Auditorium',
-    time: '10:00 AM 12:00 PM',
-    color: 'bg-[#3b82f6]',
+    month: 'Feb',
+    title: 'Guest Lecture: Industry Leaders Forum',
+    location: 'Conference Hall, Faculty of Management',
+    time: '2:00 PM - 4:00 PM',
+    color: 'bg-[#e85a71]',
   },
   {
     day: '25',
-    month: 'Nov',
-    title: 'Lorem ipsum dolor sit amet consectetur. Feugiat mi enim lectus convallis.',
-    location: 'Convention Center',
-    time: '9:00 AM 5:00 PM',
+    month: 'Feb',
+    title: 'Cultural Night - Celebrating Diversity',
+    location: 'Open Air Theatre, JLU Campus',
+    time: '6:00 PM - 10:00 PM',
+    color: 'bg-[#d4c84a]',
+  },
+  {
+    day: '05',
+    month: 'Mar',
+    title: 'Sports Week - Inter-Faculty Championship',
+    location: 'JLU Sports Complex',
+    time: '9:00 AM - 5:00 PM',
+    color: 'bg-[#3b82f6]',
+  },
+  {
+    day: '12',
+    month: 'Mar',
+    title: 'Research Symposium - Emerging Technologies',
+    location: 'Faculty of Engineering & Technology',
+    time: '10:00 AM - 3:00 PM',
     color: 'bg-[#e85a71]',
   },
 ];
@@ -62,59 +62,52 @@ export const EventsSection = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
 
   return (
-    <section className="bg-[#f6f7f0] py-16 md:py-24 px-4 md:px-12 lg:px-24">
-      <div className="max-w-7xl mx-auto">
+    <section className="bg-[#f6f7f0] min-h-screen flex items-center py-12 md:py-16 px-4 md:px-12 lg:px-24 relative">
+      <div className="max-w-7xl mx-auto w-full">
         {/* Header */}
-        <div className="text-center mb-12 md:mb-16">
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-[#21313c] mb-4">
+        <div className="text-center mb-8 md:mb-12">
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-[#21313c] mb-3">
             Moments worth stepping into
           </h2>
           <p className="text-gray-600 text-sm md:text-base max-w-2xl mx-auto leading-relaxed">
-            Conversations that provoke thought, gatherings that celebrate culture, and experiences that bring the community together.
+            From tech fests to cultural nights, experience the vibrant campus life at Jagran Lakecity University.
           </p>
-          <div className="mx-auto mt-6" style={{ width: '274px', height: '0px', border: '4px solid #B2FF53' }} />
+          <div className="mx-auto mt-4" style={{ width: '274px', height: '0px', border: '4px solid #B2FF53' }} />
         </div>
 
         {/* Main Content - Split Layout */}
-        <div className="flex flex-col lg:flex-row gap-4 lg:gap-6 items-start mb-16">
+        <div className="flex flex-col lg:flex-row gap-4 lg:gap-6 items-start mb-6">
           {/* Left Side - Image + Text */}
           <div
-            className="shrink-0 flex flex-col space-y-4"
+            className="shrink-0 flex flex-col space-y-4 -ml-8 md:-ml-16 lg:-ml-24"
             style={{
-              width: isMobile ? '100%' : 'clamp(350px, 28vw, 550px)',
+              width: isMobile ? '100%' : 'clamp(450px, 40vw, 750px)',
             }}
           >
             {/* Image */}
             <div
-              className="relative rounded-2xl overflow-hidden shadow-2xl"
+              className="relative overflow-hidden shadow-2xl"
               style={{
-                height: isMobile ? '300px' : 'clamp(450px, 32vw, 650px)',
+                height: isMobile ? '400px' : 'clamp(550px, 45vw, 850px)',
               }}
             >
               <img
-                src="/events-hero.jpg"
+                src="/event1.jpg"
                 alt="Campus Events"
-                className="w-full h-full object-cover"
+                className="w-full h-full object-cover rounded-xl"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
-            </div>
 
-            {/* Text Content */}
-            <div>
-              <h3 className="text-2xl md:text-3xl lg:text-4xl font-bold text-[#21313c] mb-3 leading-tight">
-                SEE WHAT's<br />GOING ON
-              </h3>
-              <p className="text-gray-600 text-xs md:text-sm mb-4 leading-relaxed">
-                Lorem ipsum dolor sit amet consectetur. Feugiat mi enim lectus convallis scelerisque
-              </p>
-              <button className="bg-[#c3fd7a] text-[#21313c] px-4 py-2 md:px-6 md:py-3 rounded-full text-sm font-semibold hover:bg-[#b3ed6a] transition-colors">
-                View full Calendar
+              {/* Button positioned inside image */}
+              <button className="absolute bottom-6 left-1/2 transform -translate-x-1/2 bg-[#c3fd7a] text-[#21313c] px-4 py-2 md:px-6 md:py-3 rounded-full text-sm font-semibold hover:bg-[#b3ed6a] transition-colors shadow-lg">
+                View Full Calendar
               </button>
             </div>
+
           </div>
 
           {/* Right Side - Horizontal Scrolling Cards */}
-          <div className="flex-1 overflow-visible py-4">
+          <div className="flex-1 overflow-visible">
             <div
               className="flex gap-4 md:gap-6 transition-transform duration-500"
               style={{
@@ -186,8 +179,58 @@ export const EventsSection = () => {
           </div>
         </div>
 
-        {/* Navigation Arrows */}
-        <div className="flex justify-center gap-4 mb-8 -mt-4">
+        {/* Infinite Scroll Gallery */}
+        <div className="mt-32 md:mt-40 overflow-hidden -mx-4 md:-mx-12 lg:-mx-24">
+          <div className="flex gap-2 md:gap-4 animate-scroll">
+            {/* First set of images */}
+            {galleryImages.map((image, index) => (
+              <div
+                key={`first-${index}`}
+                className="shrink-0"
+                style={{
+                  width: isMobile ? '100px' : 'clamp(280px, 22vw, 420px)',
+                  height: isMobile ? '120px' : 'clamp(300px, 24vw, 460px)',
+                }}
+              >
+                <img
+                  src={image}
+                  alt={`Event gallery ${index + 1}`}
+                  className="w-full h-full object-cover rounded-xl"
+                />
+              </div>
+            ))}
+            {/* Duplicate set for seamless loop */}
+            {galleryImages.map((image, index) => (
+              <div
+                key={`second-${index}`}
+                className="shrink-0"
+                style={{
+                  width: isMobile ? '100px' : 'clamp(280px, 22vw, 420px)',
+                  height: isMobile ? '120px' : 'clamp(300px, 24vw, 460px)',
+                }}
+              >
+                <img
+                  src={image}
+                  alt={`Event gallery ${index + 1}`}
+                  className="w-full h-full object-cover rounded-xl"
+                />
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Text Content - Positioned Independently */}
+        <div className="absolute text-left" style={{ top: '48%', right: '41%', maxWidth: '250px' }}>
+          <h3 className="text-2xl md:text-3xl lg:text-4xl font-bold text-[#21313c] mb-3 leading-tight">
+            SEE WHAT'S GOING ON
+          </h3>
+          <p className="text-gray-600 text-xs md:text-sm leading-relaxed">
+            Stay updated with the latest events, workshops, seminars, and cultural activities happening at JLU Bhopal.
+          </p>
+        </div>
+
+        {/* Navigation Arrows - Positioned Independently */}
+        <div className="absolute flex justify-center gap-4" style={{ top: '50%', left: '72%', transform: 'translateX(-50%)' }}>
           <button
             onClick={() => setCurrentIndex((prev) => Math.max(0, prev - 1))}
             disabled={currentIndex === 0}
@@ -229,46 +272,6 @@ export const EventsSection = () => {
             </svg>
           </button>
         </div>
-
-        {/* Infinite Scroll Gallery */}
-        <div className="mt-24 md:mt-32 overflow-hidden">
-          <div className="flex animate-scroll">
-            {/* First set of images */}
-            {galleryImages.map((image, index) => (
-              <div
-                key={`first-${index}`}
-                className="shrink-0 mx-1 md:mx-2"
-                style={{
-                  width: isMobile ? '120px' : 'clamp(350px, 29vw, 552px)',
-                  height: isMobile ? '150px' : 'clamp(380px, 32vw, 606px)',
-                }}
-              >
-                <img
-                  src={image}
-                  alt={`Event gallery ${index + 1}`}
-                  className="w-full h-full object-cover rounded-lg"
-                />
-              </div>
-            ))}
-            {/* Duplicate set for seamless loop */}
-            {galleryImages.map((image, index) => (
-              <div
-                key={`second-${index}`}
-                className="shrink-0 mx-1 md:mx-2"
-                style={{
-                  width: isMobile ? '120px' : 'clamp(350px, 29vw, 552px)',
-                  height: isMobile ? '150px' : 'clamp(380px, 32vw, 606px)',
-                }}
-              >
-                <img
-                  src={image}
-                  alt={`Event gallery ${index + 1}`}
-                  className="w-full h-full object-cover rounded-lg"
-                />
-              </div>
-            ))}
-          </div>
-        </div>
       </div>
 
       <style>{`
@@ -281,10 +284,7 @@ export const EventsSection = () => {
           }
         }
         .animate-scroll {
-          animation: scroll 20s linear infinite;
-        }
-        .animate-scroll:hover {
-          animation-play-state: paused;
+          animation: scroll 14s linear infinite;
         }
       `}</style>
     </section>

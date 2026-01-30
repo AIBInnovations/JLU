@@ -165,12 +165,13 @@ export const AwardsSection = () => {
                 width: isMobile ? '80px' : 'clamp(166px, 17.4vw, 333px)',
                 height: isMobile ? '80px' : 'clamp(167px, 17.5vw, 335px)',
                 overflow: 'hidden',
+                borderRadius: '16px',
               }}
             >
               <img
                 src={awards[0].image}
                 alt={awards[0].title}
-                style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: '16px' }}
               />
             </div>
             <div style={{ marginTop: isMobile ? '4px' : '8px' }}>
@@ -194,12 +195,13 @@ export const AwardsSection = () => {
                 width: isMobile ? '80px' : 'clamp(166px, 17.4vw, 333px)',
                 height: isMobile ? '80px' : 'clamp(167px, 17.5vw, 335px)',
                 overflow: 'hidden',
+                borderRadius: '16px',
               }}
             >
               <img
                 src={awards[1].image}
                 alt={awards[1].title}
-                style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: '16px' }}
               />
             </div>
             <div style={{ marginTop: isMobile ? '4px' : '8px' }}>
@@ -225,12 +227,13 @@ export const AwardsSection = () => {
                 width: isMobile ? '80px' : 'clamp(166px, 17.4vw, 333px)',
                 height: isMobile ? '80px' : 'clamp(167px, 17.5vw, 335px)',
                 overflow: 'hidden',
+                borderRadius: '16px',
               }}
             >
               <img
                 src={awards[2].image}
                 alt={awards[2].title}
-                style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: '16px' }}
               />
             </div>
             <div style={{ marginTop: isMobile ? '4px' : '8px' }}>
@@ -254,12 +257,13 @@ export const AwardsSection = () => {
                 width: isMobile ? '80px' : 'clamp(166px, 17.4vw, 333px)',
                 height: isMobile ? '80px' : 'clamp(167px, 17.5vw, 335px)',
                 overflow: 'hidden',
+                borderRadius: '16px',
               }}
             >
               <img
                 src={awards[3].image}
                 alt={awards[3].title}
-                style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: '16px' }}
               />
             </div>
             <div style={{ marginTop: isMobile ? '4px' : '8px' }}>
@@ -283,12 +287,13 @@ export const AwardsSection = () => {
                 width: isMobile ? '80px' : 'clamp(166px, 17.4vw, 333px)',
                 height: isMobile ? '80px' : 'clamp(167px, 17.5vw, 335px)',
                 overflow: 'hidden',
+                borderRadius: '16px',
               }}
             >
               <img
                 src={awards[4].image}
                 alt={awards[4].title}
-                style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: '16px' }}
               />
             </div>
             <div style={{ marginTop: isMobile ? '4px' : '8px' }}>

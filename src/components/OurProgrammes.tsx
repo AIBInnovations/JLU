@@ -8,16 +8,16 @@ export const OurProgrammes = () => {
   const [activeCard, setActiveCard] = useState<number | null>(null);
 
   const programmes = [
-    { image: '/p1.jpg', title: 'Undergraduate', subtitle: 'Programmes', width: 461, height: 638 },
-    { image: '/p2.jpg', title: 'Postgraduate', subtitle: 'Programmes', width: 461, height: 638 },
-    { image: '/p3.jpg', title: 'Ph.D.', subtitle: 'Programmes', width: 461, height: 638 },
-    { image: '/p4.jpg', title: 'Diplomas &', subtitle: 'Certifications', width: 461, height: 644 },
+    { image: '/p1.jpg', title: 'Undergraduate', subtitle: 'Programmes', width: 461, height: 520 },
+    { image: '/p2.jpg', title: 'Postgraduate', subtitle: 'Programmes', width: 461, height: 520 },
+    { image: '/p3.jpg', title: 'Ph.D.', subtitle: 'Programmes', width: 461, height: 520 },
+    { image: '/p4.jpg', title: 'Diplomas &', subtitle: 'Certifications', width: 461, height: 520 },
   ];
 
 
 
   return (
-    <section className="bg-[#f6f7f0] py-16 md:py-24">
+    <section className="bg-[#f6f7f0] py-8 md:py-12">
       {/* Header */}
       <div className="text-center mb-12 md:mb-16 px-4">
         <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-[#21313c] mb-4">
@@ -41,7 +41,7 @@ export const OurProgrammes = () => {
         {programmes.map((programme, index) => (
           <div
             key={index}
-            className="relative overflow-hidden cursor-pointer group"
+            className="relative overflow-hidden cursor-pointer group rounded-2xl"
             style={{
               width: isMobile ? 'calc((100vw - 14px) / 4)' : `${programme.width}px`,
               height: isMobile ? '180px' : `${programme.height}px`,
@@ -172,7 +172,7 @@ export const OurProgrammes = () => {
                 className="border border-t-0 border-gray-300 flex items-center justify-center"
                 style={{ width: 'calc(33.33vw - 2.67px)', height: '60px' }}
               >
-                <img src="/gt.png" alt="Grant Thornton" style={{ maxHeight: '30px' }} className="object-contain" />
+                <img src="/gt.png" alt="Grant Thornton" style={{ maxHeight: '22px' }} className="object-contain" />
               </div>
               <div
                 className="border border-t-0 border-l-0 border-gray-300"
@@ -268,7 +268,7 @@ export const OurProgrammes = () => {
                 <img
                   src="/gt.png"
                   alt="Grant Thornton"
-                  className="max-h-24 object-contain"
+                  className="max-h-16 object-contain"
                 />
               </div>
               <div
@@ -289,11 +289,11 @@ export const OurProgrammes = () => {
       )}
 
       {/* Three Image Cards Section */}
-      <div className="mt-8 md:mt-24">
-        <div className="flex">
+      <div className="mt-8 md:mt-24" style={{ padding: isMobile ? '0 16px' : '0 10px' }}>
+        <div className="flex" style={{ gap: isMobile ? '16px' : '10px' }}>
           {/* First card - l */}
           <div
-            className="overflow-hidden w-1/3"
+            className="overflow-hidden flex-1 rounded-t-2xl group cursor-pointer"
             style={{
               height: isMobile ? '180px' : 'auto',
               maxHeight: isMobile ? '180px' : '739px',
@@ -303,13 +303,13 @@ export const OurProgrammes = () => {
             <img
               src="/l.jpg"
               alt="Image 1"
-              className="w-full h-full object-cover"
+              className="w-full h-full object-cover rounded-t-2xl transition-transform duration-500 group-hover:scale-110"
             />
           </div>
 
           {/* Second card - ll */}
           <div
-            className="overflow-hidden w-1/3"
+            className="overflow-hidden flex-1 rounded-t-2xl group cursor-pointer"
             style={{
               height: isMobile ? '160px' : 'auto',
               maxHeight: isMobile ? '160px' : '661px',
@@ -319,13 +319,13 @@ export const OurProgrammes = () => {
             <img
               src="/ll.jpg"
               alt="Image 2"
-              className="w-full h-full object-cover"
+              className="w-full h-full object-cover rounded-t-2xl transition-transform duration-500 group-hover:scale-110"
             />
           </div>
 
           {/* Third card - lll */}
           <div
-            className="overflow-hidden w-1/3"
+            className="overflow-hidden flex-1 rounded-t-2xl group cursor-pointer"
             style={{
               height: isMobile ? '188px' : 'auto',
               maxHeight: isMobile ? '188px' : '766px',
@@ -334,7 +334,7 @@ export const OurProgrammes = () => {
             <img
               src="/lll.jpg"
               alt="Image 3"
-              className="w-full h-full object-cover"
+              className="w-full h-full object-cover rounded-t-2xl transition-transform duration-500 group-hover:scale-110"
             />
           </div>
         </div>

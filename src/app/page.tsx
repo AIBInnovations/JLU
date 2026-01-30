@@ -10,13 +10,13 @@ import {
   OurProgrammes,
   AwardsSection,
   Footer,
-  PageLoader,
+  // PageLoader, // Deactivated for now
 } from '@/components';
 
 export default function HomePage() {
   return (
     <>
-      <PageLoader />
+      {/* <PageLoader /> */}
       <div className="bg-[#f6f7f0] min-h-screen overflow-x-hidden">
         {/* Hero Section with Navigation */}
         <Hero />

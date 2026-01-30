@@ -25,15 +25,15 @@ export const HorizontalScroll = () => {
       bg: 'bg-[#f6f7f0]',
       hasText: true,
       isTextCard: true,
-      title: "JLU's Impact",
-      content: "Lorem ipsum dolor sit amet consectetur. Lectus vivamus congue massa tortor non. Pretium lobortis ultrices urna faucibus leo. Adipiscing a eu accumsan ornare. Sodales in tempor pretium nibh vulputate tincidunt aliquam.\n\nLorem ipsum dolor sit amet consectetur. Lectus vivamus congue massa tortor non."
+      title: "Excellence in Education",
+      content: "Jagran Lakecity University stands as the first university in MP & CG to receive the prestigious QS I-Gauge DIAMOND rating. Recognized as 'University of the Year' for five consecutive years (2015-2019) and ranked #1 multidisciplinary private university in Madhya Pradesh.\n\nSpread across a sprawling 232-acre campus, JLU offers 50+ degree programs to over 2,500 students, fostering innovation and academic excellence."
     },
-    { width: 540, height: 500, mobileWidth: 200, mobileHeight: 260, bg: 'bg-[#c3fd7a]', hasText: true, isTextCard: false },
+    { width: 540, height: 500, mobileWidth: 200, mobileHeight: 260, bg: 'bg-[#c3fd7a]', hasText: true, isTextCard: false, stat: '232', statLabel: 'Acres of Campus' },
     { width: 770, height: 500, mobileWidth: 280, mobileHeight: 260, bg: 'bg-gray-200', hasText: false, isTextCard: false, image: '/2nd.jpg' },
-    { width: 540, height: 500, mobileWidth: 200, mobileHeight: 260, bg: 'bg-[#1D4ED8]', hasText: true, isTextCard: false, textColor: 'text-white' },
-    { width: 300, height: 170, mobileWidth: 150, mobileHeight: 100, bg: 'bg-gray-200', hasText: false, isTextCard: false, image: '/9th.jpg' },
+    { width: 540, height: 500, mobileWidth: 200, mobileHeight: 260, bg: 'bg-[#1D4ED8]', hasText: true, isTextCard: false, textColor: 'text-white', stat: '2,500+', statLabel: 'Students Enrolled' },
+    { width: 540, height: 500, mobileWidth: 250, mobileHeight: 260, bg: 'bg-gray-200', hasText: false, isTextCard: false, image: '/9th.jpg' },
     { width: 670, height: 500, mobileWidth: 250, mobileHeight: 260, bg: 'bg-gray-200', hasText: false, isTextCard: false , image: '/6th.jpg' },
-    { width: 540, height: 500, mobileWidth: 200, mobileHeight: 260, bg: 'bg-[#E9D502]', hasText: true, isTextCard: false },
+    { width: 540, height: 500, mobileWidth: 200, mobileHeight: 260, bg: 'bg-[#E9D502]', hasText: true, isTextCard: false, stat: '50+', statLabel: 'Degree Programs' },
     { width: 1320, height: 500, mobileWidth: 320, mobileHeight: 260, bg: 'bg-gray-200', hasText: false, isTextCard: false, image: '/8th.jpg' },
   ];
 
@@ -130,9 +130,9 @@ export const HorizontalScroll = () => {
                 </div>
               ) : card.hasText ? (
                 <div className={`relative ${card.image ? 'bg-white/85 backdrop-blur-sm rounded-lg p-4 md:p-6' : ''} text-center`}>
-                  <div className={`text-4xl md:text-8xl font-bold ${card.textColor ?? 'text-[#21313c]'} mb-2 md:mb-4 drop-shadow-sm`}>600+</div>
+                  <div className={`text-4xl md:text-8xl font-bold ${card.textColor ?? 'text-[#21313c]'} mb-2 md:mb-4 drop-shadow-sm`}>{card.stat ?? '600+'}</div>
                   <p className={`${card.textColor ?? 'text-[#21313c]'} text-xs md:text-lg drop-shadow-sm`}>
-                    Lorem ipsum dolor sit amet consectetur.
+                    {card.statLabel ?? 'Lorem ipsum dolor sit amet consectetur.'}
                   </p>
                 </div>
               ) : null}

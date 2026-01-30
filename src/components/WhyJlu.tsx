@@ -20,28 +20,32 @@ export const WhyJlu = () => {
       title: 'Multiplicity',
       subtitle: '',
       description: 'Where ideas, cultures, and disciplines converge.',
-      textColor: '#21313c'
+      textColor: '#21313c',
+      image: '/j1.jpg'
     },
     {
       bg: '#4a90a4',
       title: 'Worldly Outlook',
       subtitle: '',
       description: 'An education shaped by global exposure and open horizons.',
-      textColor: '#ffffff'
+      textColor: '#ffffff',
+      image: '/j2.jpg'
     },
     {
       bg: '#e85a71',
       title: 'A Lived Campus',
       subtitle: '',
       description: 'Spaces that invite learning, connection, and pause.',
-      textColor: '#ffffff'
+      textColor: '#ffffff',
+      image: '/j3.jpg'
     },
     {
       bg: '#f4c950',
       title: 'Lasting Impressions',
       subtitle: '',
       description: 'Experiences that stay, long after you move on.',
-      textColor: '#ffffff'
+      textColor: '#ffffff',
+      image: '/j4.jpg'
     }
   ];
 
