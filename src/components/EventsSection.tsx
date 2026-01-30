@@ -60,53 +60,6 @@ const galleryImages = ['/e1.jpg', '/e2.jpg', '/e3.jpg', '/e4.jpg', '/e5.jpg'];
 export const EventsSection = () => {
   const isMobile = useIsMobile();
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [direction, setDirection] = useState(0);
-
-  const slideVariants = {
-    enter: (direction: number) => ({
-      x: direction > 0 ? 400 : -400,
-      opacity: 0,
-      scale: 0.8,
-    }),
-    center: {
-      zIndex: 1,
-      x: 0,
-      opacity: 1,
-      scale: 1,
-    },
-    exit: (direction: number) => ({
-      zIndex: 0,
-      x: direction < 0 ? 400 : -400,
-      opacity: 0,
-      scale: 0.8,
-    }),
-  };
-
-  const swipeConfidenceThreshold = 10000;
-  const swipePower = (offset: number, velocity: number) => {
-    return Math.abs(offset) * velocity;
-  };
-
-  const paginate = (newDirection: number) => {
-    setDirection(newDirection);
-    setCurrentIndex((prevIndex) => {
-      if (newDirection === 1) {
-        return prevIndex === events.length - 1 ? 0 : prevIndex + 1;
-      } else {
-        return prevIndex === 0 ? events.length - 1 : prevIndex - 1;
-      }
-    });
-  };
-
-  // Get visible cards (current and next 2)
-  const getVisibleCards = () => {
-    const cards = [];
-    for (let i = 0; i < 3; i++) {
-      const index = (currentIndex + i) % events.length;
-      cards.push({ ...events[index], offset: i });
-    }
-    return cards;
-  };
 
   return (
     <section className="bg-[#f6f7f0] py-16 md:py-24 px-4 md:px-12 lg:px-24">
