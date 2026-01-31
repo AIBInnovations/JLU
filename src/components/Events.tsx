@@ -459,76 +459,94 @@ const Events = () => {
       </div>
 
       {/* Don't Miss Our Updates Section */}
-      <div className="w-full bg-[#f6f7f0]">
+      <div className="w-full bg-[#f6f7f0]" style={{ paddingLeft: '40px', paddingRight: '40px', paddingBottom: '80px' }}>
         <div
-          className="mx-auto"
+          className="mx-auto flex flex-col items-center justify-center bg-[#f0c14b]"
           style={{
-            maxWidth: '1440px',
-            paddingTop: '100px',
-            paddingRight: '120px',
-            paddingBottom: '100px',
-            paddingLeft: '120px',
+            maxWidth: '1400px',
+            paddingTop: '80px',
+            paddingRight: '80px',
+            paddingBottom: '80px',
+            paddingLeft: '80px',
+            borderRadius: '32px',
           }}
         >
-          <div
-            className="flex flex-col md:flex-row md:items-center md:justify-between gap-12"
-            style={{
-              backgroundColor: '#fff',
-              padding: '60px',
-              border: '1px solid #e5e5e5',
-            }}
+          <motion.div
+            className="text-center mb-12"
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
           >
-            <div style={{ maxWidth: '400px' }}>
+            <span
+              className="text-[#21313c]/60 uppercase tracking-widest block mb-6"
+              style={{ fontSize: '12px', letterSpacing: '0.2em' }}
+            >
+              Stay Connected
+            </span>
+            <h2
+              className="text-[#21313c]"
+              style={{
+                fontSize: 'clamp(2.5rem, 5vw, 4rem)',
+                fontWeight: 600,
+                lineHeight: 1.1,
+                letterSpacing: '-0.03em',
+              }}
+            >
+              Don't Miss Our<br />
               <span
-                className="text-[#999] uppercase tracking-widest block"
-                style={{ fontSize: '11px', marginBottom: '16px', letterSpacing: '0.2em' }}
-              >
-                Stay Connected
-              </span>
-              <h2
                 className="text-[#21313c]"
-                style={{
-                  fontSize: 'clamp(1.75rem, 3vw, 2.5rem)',
-                  fontWeight: 600,
-                  lineHeight: 1.1,
-                  letterSpacing: '-0.02em',
-                  marginBottom: '12px',
-                }}
+                style={{ fontFamily: "'Times New Roman', serif", fontStyle: 'italic', fontWeight: 400 }}
               >
-                Don't Miss Our Updates
-              </h2>
-              <p className="text-[#666]" style={{ fontSize: '15px', lineHeight: 1.6 }}>
-                Join the JLU community and stay informed about upcoming events, achievements, and campus life.
-              </p>
-            </div>
-            <div className="flex items-center gap-4">
-              <div className="relative">
-                <input
-                  type="email"
-                  placeholder="Enter your email"
-                  className="bg-[#f6f7f0] text-[#21313c] placeholder-[#999] focus:outline-none focus:bg-[#eef0e5] transition-colors"
-                  style={{
-                    padding: '16px 24px',
-                    fontSize: '15px',
-                    minWidth: '300px',
-                    border: '1px solid #e5e5e5',
-                    borderRadius: '100px',
-                  }}
-                />
-              </div>
-              <button
-                className="bg-[#21313c] text-white font-medium hover:bg-[#333] transition-colors flex items-center gap-2"
-                style={{
-                  padding: '16px 32px',
-                  fontSize: '14px',
-                  borderRadius: '100px',
-                }}
-              >
-                Subscribe
-                <span>→</span>
-              </button>
-            </div>
-          </div>
+                Updates
+              </span>
+            </h2>
+          </motion.div>
+
+          <motion.p
+            className="text-[#21313c]/80 text-center mb-10"
+            style={{ fontSize: '16px', lineHeight: 1.7, maxWidth: '500px' }}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+          >
+            Join the JLU community and stay informed about upcoming events, achievements, and campus life.
+          </motion.p>
+
+          <motion.div
+            className="flex items-center gap-4"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.3 }}
+          >
+            <input
+              type="email"
+              placeholder="Enter your email"
+              className="bg-white text-[#21313c] placeholder-[#999] focus:outline-none transition-colors"
+              style={{
+                padding: '16px 24px',
+                fontSize: '15px',
+                minWidth: '300px',
+                border: 'none',
+                borderRadius: '100px',
+              }}
+            />
+            <motion.button
+              className="bg-[#21313c] text-white font-semibold flex items-center gap-3"
+              style={{
+                padding: '16px 32px',
+                fontSize: '14px',
+                borderRadius: '100px',
+              }}
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.98 }}
+            >
+              Subscribe
+              <span>→</span>
+            </motion.button>
+          </motion.div>
         </div>
       </div>
     </section>

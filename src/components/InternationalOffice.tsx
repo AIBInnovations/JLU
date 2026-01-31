@@ -11,13 +11,37 @@ if (typeof window !== 'undefined') {
   gsap.registerPlugin(ScrollTrigger);
 }
 
+// Custom easing for smooth animations
+const customEase: [number, number, number, number] = [0.22, 1, 0.36, 1];
+
+// Stagger animation variants
+const staggerContainer = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.1,
+      delayChildren: 0.1,
+    },
+  },
+};
+
+const staggerItem = {
+  hidden: { opacity: 0, y: 30 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.6, ease: customEase },
+  },
+};
+
 const partners = [
-  { id: 1, name: 'Harvard University', column: 1 },
-  { id: 2, name: 'University of Melbourne', column: 2 },
-  { id: 3, name: 'NUS Singapore', column: 1 },
-  { id: 4, name: 'LSE London', column: 2 },
-  { id: 5, name: 'University of Toronto', column: 1 },
-  { id: 6, name: 'ETH Zurich', column: 2 },
+  { id: 1, name: 'Harvard University', country: 'USA', column: 1 },
+  { id: 2, name: 'University of Melbourne', country: 'Australia', column: 2 },
+  { id: 3, name: 'NUS Singapore', country: 'Singapore', column: 1 },
+  { id: 4, name: 'LSE London', country: 'UK', column: 2 },
+  { id: 5, name: 'University of Toronto', country: 'Canada', column: 1 },
+  { id: 6, name: 'ETH Zurich', country: 'Switzerland', column: 2 },
 ];
 
 const pathwayFeatures = [
@@ -378,6 +402,7 @@ const InternationalOffice = () => {
     offset: ['start start', 'end start'],
   });
   const y = useTransform(scrollYProgress, [0, 1], ['0%', '30%']);
+  const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
 
   return (
     <section className="w-screen m-0 p-0 overflow-x-hidden">
@@ -391,7 +416,7 @@ const InternationalOffice = () => {
           }}
           initial={{ clipPath: 'inset(100% 0% 0% 0%)' }}
           animate={{ clipPath: 'inset(0% 0% 0% 0%)' }}
-          transition={{ duration: 2, ease: [0.22, 1, 0.36, 1] }}
+          transition={{ duration: 1.8, ease: customEase }}
         >
           <motion.div className="absolute inset-0" style={{ y }}>
             <Image
@@ -403,14 +428,14 @@ const InternationalOffice = () => {
             />
           </motion.div>
           {/* Black Overlay */}
-          <div className="absolute inset-0 bg-black/30" />
+          <motion.div className="absolute inset-0 bg-black/30" style={{ opacity }} />
         </motion.div>
 
         {/* Paragraph at Top Left */}
         <motion.div
-          initial={{ opacity: 0, y: -20 }}
+          initial={{ opacity: 0, y: -30 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.3 }}
+          transition={{ duration: 1, delay: 0.5, ease: customEase }}
           className="absolute top-0 left-0"
           style={{
             paddingLeft: '40px',
@@ -418,22 +443,37 @@ const InternationalOffice = () => {
             maxWidth: '800px',
           }}
         >
-          <h2
+          <motion.h2
             className="text-white font-semibold leading-tight mb-5"
             style={{
               fontSize: 'clamp(1.5rem, 3vw, 2.5rem)',
             }}
           >
-            YOUR <span style={{ fontFamily: "'Times New Roman', serif", fontStyle: 'italic', color: '#f0c14b', textShadow: '2px 2px 4px rgba(0,0,0,0.5)' }}>global</span> JOURNEY
-          </h2>
-          <p
-            className="text-white font-semibold leading-tight"
+            YOUR{' '}
+            <span
+              style={{
+                fontFamily: "'Times New Roman', serif",
+                fontStyle: 'italic',
+                color: '#f0c14b',
+                textShadow: '2px 2px 4px rgba(0,0,0,0.5)',
+              }}
+            >
+              global
+            </span>{' '}
+            JOURNEY
+          </motion.h2>
+          <motion.p
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.8, delay: 0.8 }}
+            className="text-white font-semibold leading-relaxed"
             style={{
-              fontSize: 'clamp(1.25rem, 2.5vw, 2rem)',
+              fontSize: 'clamp(1.1rem, 2vw, 1.5rem)',
             }}
           >
-            The International Office supports students from across the world — from admissions and visas to campus life and global opportunities.
-          </p>
+            The International Office supports students from across the world —<br />
+            from admissions and visas to campus life and global opportunities.
+          </motion.p>
         </motion.div>
 
         {/* Large "International" Text - Bottom Left */}
@@ -445,16 +485,17 @@ const InternationalOffice = () => {
           }}
         >
           <motion.h1
-            initial={{ opacity: 0, y: 100 }}
+            initial={{ opacity: 0, y: 120 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.1 }}
+            transition={{ duration: 1.2, delay: 0.2, ease: customEase }}
             className="font-normal select-none"
             style={{
               fontFamily: "system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif",
               fontSize: 'clamp(5rem, 12vw, 12rem)',
               lineHeight: 0.85,
               letterSpacing: '-0.02em',
-              background: 'linear-gradient(to bottom, rgba(255,255,255,1) 0%, rgba(255,255,255,0.7) 50%, rgba(255,255,255,0) 85%)',
+              background:
+                'linear-gradient(to bottom, rgba(255,255,255,1) 0%, rgba(255,255,255,0.7) 50%, rgba(255,255,255,0) 85%)',
               WebkitBackgroundClip: 'text',
               backgroundClip: 'text',
               WebkitTextFillColor: 'transparent',
@@ -471,56 +512,111 @@ const InternationalOffice = () => {
           className="mx-auto"
           style={{
             maxWidth: '1440px',
-            paddingTop: '80px',
+            paddingTop: '140px',
             paddingRight: '120px',
-            paddingBottom: '80px',
+            paddingBottom: '140px',
             paddingLeft: '120px',
           }}
         >
-          <div className="flex justify-between" style={{ gap: '64px' }}>
+          <div className="flex justify-between" style={{ gap: '80px' }}>
             {/* Left Side - Content */}
-            <div style={{ maxWidth: '400px' }}>
-              <h2 className="text-3xl md:text-4xl font-bold text-[#21313c] mb-6">
-                Global partnerships<br />that open doors
+            <motion.div
+              initial={{ opacity: 0, x: -50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8, ease: customEase }}
+              viewport={{ once: true }}
+              style={{ maxWidth: '480px' }}
+            >
+              <span
+                className="text-[#999] uppercase tracking-widest block mb-6"
+                style={{ fontSize: '12px', letterSpacing: '0.2em' }}
+              >
+                Global Network
+              </span>
+              <h2
+                className="text-[#21313c] mb-8"
+                style={{
+                  fontSize: 'clamp(2.5rem, 4vw, 3.5rem)',
+                  fontWeight: 600,
+                  lineHeight: 1.1,
+                  letterSpacing: '-0.03em',
+                }}
+              >
+                Global partnerships{' '}
+                <span style={{ fontFamily: "'Times New Roman', serif", fontStyle: 'italic', fontWeight: 400 }}>
+                  that open doors
+                </span>
               </h2>
-              <p className="text-base text-[#666666] leading-relaxed">
+              <p
+                className="text-[#666]"
+                style={{ fontSize: '18px', lineHeight: 1.8 }}
+              >
                 Our university collaborates with institutions worldwide to enable exchange programs, joint research, and global learning pathways. We believe in borderless education.
               </p>
-            </div>
+            </motion.div>
 
             {/* Right Side - Partners Grid */}
-            <div className="flex-1">
-              <div className="flex" style={{ gap: '80px' }}>
+            <motion.div
+              className="flex-1"
+              variants={staggerContainer}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
+            >
+              <div className="flex" style={{ gap: '60px' }}>
                 {/* Column 1 */}
                 <div className="flex-1">
                   {partners.filter(p => p.column === 1).map((partner) => (
-                    <div
+                    <motion.div
                       key={partner.id}
-                      className="py-4 border-b border-gray-200"
+                      variants={staggerItem}
+                      className="py-5 border-b border-[#e5e5e5] group cursor-pointer"
+                      whileHover={{ x: 8 }}
+                      transition={{ duration: 0.3 }}
                     >
-                      <span className="text-lg text-[#888888]">{partner.name}</span>
-                    </div>
+                      <span className="text-lg text-[#21313c] font-medium block group-hover:text-[#f0c14b] transition-colors">
+                        {partner.name}
+                      </span>
+                      <span className="text-sm text-[#999]">{partner.country}</span>
+                    </motion.div>
                   ))}
                 </div>
                 {/* Column 2 */}
                 <div className="flex-1">
                   {partners.filter(p => p.column === 2).map((partner) => (
-                    <div
+                    <motion.div
                       key={partner.id}
-                      className="py-4 border-b border-gray-200"
+                      variants={staggerItem}
+                      className="py-5 border-b border-[#e5e5e5] group cursor-pointer"
+                      whileHover={{ x: 8 }}
+                      transition={{ duration: 0.3 }}
                     >
-                      <span className="text-lg text-[#888888]">{partner.name}</span>
-                    </div>
+                      <span className="text-lg text-[#21313c] font-medium block group-hover:text-[#f0c14b] transition-colors">
+                        {partner.name}
+                      </span>
+                      <span className="text-sm text-[#999]">{partner.country}</span>
+                    </motion.div>
                   ))}
                 </div>
               </div>
-              <div className="flex justify-end mt-8">
-                <a href="#" className="inline-flex items-center gap-2 text-[#21313c] font-medium hover:underline">
+              <motion.div
+                className="flex justify-end mt-10"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.4 }}
+                viewport={{ once: true }}
+              >
+                <motion.a
+                  href="#"
+                  className="inline-flex items-center gap-3 text-[#21313c] font-medium group"
+                  style={{ fontSize: '15px' }}
+                  whileHover={{ x: 5 }}
+                >
                   View all 150+ Partners
-                  <span>→</span>
-                </a>
-              </div>
-            </div>
+                  <span className="group-hover:translate-x-2 transition-transform duration-300">→</span>
+                </motion.a>
+              </motion.div>
+            </motion.div>
           </div>
         </div>
       </div>
@@ -531,88 +627,190 @@ const InternationalOffice = () => {
           className="mx-auto"
           style={{
             maxWidth: '1440px',
-            paddingTop: '80px',
+            paddingTop: '140px',
             paddingRight: '120px',
-            paddingBottom: '80px',
+            paddingBottom: '140px',
             paddingLeft: '120px',
           }}
         >
-          <h2 className="text-3xl md:text-4xl font-bold text-[#21313c] mb-12">
-            Foundation & Prep
-          </h2>
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, ease: customEase }}
+            viewport={{ once: true }}
+            className="mb-16"
+          >
+            <span
+              className="text-[#999] uppercase tracking-widest block mb-6"
+              style={{ fontSize: '12px', letterSpacing: '0.2em' }}
+            >
+              Programs
+            </span>
+            <h2
+              className="text-[#21313c]"
+              style={{
+                fontSize: 'clamp(2.5rem, 4vw, 3.5rem)',
+                fontWeight: 600,
+                lineHeight: 1.1,
+                letterSpacing: '-0.03em',
+              }}
+            >
+              Foundation &{' '}
+              <span style={{ fontFamily: "'Times New Roman', serif", fontStyle: 'italic', fontWeight: 400 }}>
+                Prep
+              </span>
+            </h2>
+          </motion.div>
 
-          <div className="flex" style={{ gap: '64px' }}>
+          <div className="flex" style={{ gap: '80px' }}>
             {/* Image */}
-            <div
-              className="relative shrink-0 overflow-hidden rounded-lg"
+            <motion.div
+              initial={{ opacity: 0, x: -60, scale: 0.95 }}
+              whileInView={{ opacity: 1, x: 0, scale: 1 }}
+              transition={{ duration: 1, ease: customEase }}
+              viewport={{ once: true }}
+              className="relative shrink-0 overflow-hidden group cursor-pointer"
               style={{ width: '580px', height: '580px' }}
             >
-              <Image
-                src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?w=1200&q=80"
-                alt="Pathway Programs"
-                fill
-                className="object-cover"
-              />
-            </div>
+              <motion.div
+                className="absolute inset-0"
+                whileHover={{ scale: 1.05 }}
+                transition={{ duration: 0.8, ease: customEase }}
+              >
+                <Image
+                  src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?w=1200&q=80"
+                  alt="Pathway Programs"
+                  fill
+                  className="object-cover"
+                />
+              </motion.div>
+              <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent" />
+            </motion.div>
 
             {/* Content */}
-            <div className="flex-1 flex flex-col justify-center">
-              <h3 className="text-2xl md:text-3xl font-bold text-[#21313c] mb-4">
-                Pathway programs for a<br />smooth transition
+            <motion.div
+              className="flex-1 flex flex-col justify-center"
+              initial={{ opacity: 0, x: 60 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8, delay: 0.2, ease: customEase }}
+              viewport={{ once: true }}
+            >
+              <h3
+                className="text-[#21313c] mb-6"
+                style={{
+                  fontSize: '32px',
+                  fontWeight: 600,
+                  lineHeight: 1.2,
+                }}
+              >
+                Pathway programs for a{' '}
+                <span style={{ fontFamily: "'Times New Roman', serif", fontStyle: 'italic', fontWeight: 400 }}>
+                  smooth transition
+                </span>
               </h3>
-              <p className="text-base text-[#666666] leading-relaxed mb-8">
+              <p
+                className="text-[#666] mb-10"
+                style={{ fontSize: '18px', lineHeight: 1.8 }}
+              >
                 Designed for international students to build academic readiness and cultural confidence before entering full-time degree programs.
               </p>
 
               {/* Features List */}
-              <div className="flex flex-col gap-4 mb-8">
+              <motion.div
+                className="flex flex-col gap-5 mb-10"
+                variants={staggerContainer}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true }}
+              >
                 {pathwayFeatures.map((feature, index) => (
-                  <div key={index} className="flex items-center gap-3">
-                    <span className="text-[#666666]">✓</span>
-                    <span className="text-base text-[#21313c]">{feature}</span>
-                  </div>
+                  <motion.div
+                    key={index}
+                    variants={staggerItem}
+                    className="flex items-center gap-4"
+                  >
+                    <span
+                      className="w-6 h-6 rounded-full bg-[#21313c] text-white flex items-center justify-center"
+                      style={{ fontSize: '12px' }}
+                    >
+                      ✓
+                    </span>
+                    <span className="text-lg text-[#21313c] font-medium">{feature}</span>
+                  </motion.div>
                 ))}
-              </div>
+              </motion.div>
 
-              <a
-                href="#"
-                className="inline-flex items-center gap-3 px-6 py-3 bg-white border border-gray-300 text-[#21313c] font-medium rounded-full hover:bg-gray-50 transition-colors w-fit"
+              <motion.button
+                className="inline-flex items-center gap-3 px-8 py-4 bg-[#21313c] text-white font-medium w-fit"
+                style={{ borderRadius: '100px' }}
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
               >
                 Explore pathway programs
                 <span>→</span>
-              </a>
-            </div>
+              </motion.button>
+            </motion.div>
           </div>
         </div>
       </div>
 
       {/* Summer Schools Section */}
-      <div className="w-full bg-[#d9d9d9]">
+      <div className="w-full bg-[#21313c]">
         <div
           className="mx-auto flex flex-col items-center justify-center"
           style={{
             maxWidth: '1440px',
-            height: '480px',
-            paddingTop: '80px',
+            minHeight: '560px',
+            paddingTop: '120px',
             paddingRight: '120px',
-            paddingBottom: '80px',
+            paddingBottom: '120px',
             paddingLeft: '120px',
-            gap: '44px',
           }}
         >
-          <h2 className="text-3xl md:text-4xl font-bold text-[#21313c] text-center">
-            Summer schools that<br />connect cultures
-          </h2>
-          <p className="text-base text-[#666666] text-center max-w-2xl">
-            Short-term international programs that combine academic learning, cultural exposure, and global networking in a vibrant environment.
-          </p>
-          <a
-            href="#"
-            className="inline-flex items-center gap-3 px-6 py-3 bg-white text-[#21313c] font-medium rounded-full hover:bg-gray-100 transition-colors"
+          <motion.div
+            className="text-center"
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, ease: customEase }}
+            viewport={{ once: true }}
           >
-            View summer schools
-            <span>→</span>
-          </a>
+            <span
+              className="text-white/50 uppercase tracking-widest block mb-8"
+              style={{ fontSize: '12px', letterSpacing: '0.3em' }}
+            >
+              Summer Programs
+            </span>
+            <h2
+              className="text-white mb-8"
+              style={{
+                fontSize: 'clamp(2.5rem, 5vw, 4rem)',
+                fontWeight: 600,
+                lineHeight: 1.1,
+                letterSpacing: '-0.03em',
+              }}
+            >
+              Summer schools that{' '}
+              <span style={{ fontFamily: "'Times New Roman', serif", fontStyle: 'italic', fontWeight: 400, color: '#f0c14b' }}>
+                connect cultures
+              </span>
+            </h2>
+            <p
+              className="text-white/70 max-w-2xl mx-auto mb-12"
+              style={{ fontSize: '18px', lineHeight: 1.8 }}
+            >
+              Short-term international programs that combine academic learning, cultural exposure, and global networking in a vibrant environment.
+            </p>
+            <motion.button
+              className="inline-flex items-center gap-3 px-10 py-4 bg-white text-[#21313c] font-semibold"
+              style={{ borderRadius: '100px' }}
+              whileHover={{ scale: 1.05, backgroundColor: '#f0c14b' }}
+              whileTap={{ scale: 0.98 }}
+              transition={{ duration: 0.3 }}
+            >
+              View summer schools
+              <span>→</span>
+            </motion.button>
+          </motion.div>
         </div>
       </div>
 
@@ -625,39 +823,82 @@ const InternationalOffice = () => {
           className="mx-auto"
           style={{
             maxWidth: '1440px',
-            paddingTop: '80px',
+            paddingTop: '140px',
             paddingRight: '120px',
-            paddingBottom: '80px',
+            paddingBottom: '140px',
             paddingLeft: '120px',
           }}
         >
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-[#21313c] mb-4">
-              Visa & immigration support you<br />can rely on
+          <motion.div
+            className="text-center mb-20"
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, ease: customEase }}
+            viewport={{ once: true }}
+          >
+            <span
+              className="text-[#999] uppercase tracking-widest block mb-6"
+              style={{ fontSize: '12px', letterSpacing: '0.2em' }}
+            >
+              Support Services
+            </span>
+            <h2
+              className="text-[#21313c] mb-6"
+              style={{
+                fontSize: 'clamp(2.5rem, 4vw, 3.5rem)',
+                fontWeight: 600,
+                lineHeight: 1.1,
+                letterSpacing: '-0.03em',
+              }}
+            >
+              Visa & immigration support{' '}
+              <span style={{ fontFamily: "'Times New Roman', serif", fontStyle: 'italic', fontWeight: 400 }}>
+                you can rely on
+              </span>
             </h2>
-            <p className="text-base text-[#666666] max-w-2xl mx-auto">
+            <p
+              className="text-[#666] max-w-2xl mx-auto"
+              style={{ fontSize: '18px', lineHeight: 1.8 }}
+            >
               Navigating immigration can be complex. Our dedicated team is here to guide you every step of the way, ensuring legal compliance and peace of mind.
             </p>
-          </div>
+          </motion.div>
 
           {/* Support Cards */}
-          <div className="flex justify-between">
-            {visaSupport.map((item) => (
-              <div
+          <motion.div
+            className="grid grid-cols-4 gap-6"
+            variants={staggerContainer}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+          >
+            {visaSupport.map((item, index) => (
+              <motion.div
                 key={item.id}
-                className="bg-[#f8f8f8] p-6"
-                style={{ width: '270px' }}
+                variants={staggerItem}
+                className="bg-[#f6f7f0] p-8 group cursor-pointer"
+                style={{ borderRadius: '16px' }}
+                whileHover={{ y: -8, transition: { duration: 0.3 } }}
               >
-                {/* Icon Placeholder */}
+                {/* Number */}
                 <div
-                  className="bg-[#d9d9d9] mb-6"
-                  style={{ width: '48px', height: '48px', borderRadius: '8px' }}
-                />
-                <h3 className="text-lg font-bold text-[#21313c] mb-3">{item.title}</h3>
-                <p className="text-sm text-[#666666] leading-relaxed">{item.description}</p>
-              </div>
+                  className="text-[#f0c14b] font-bold mb-6"
+                  style={{ fontSize: '48px', lineHeight: 1 }}
+                >
+                  0{index + 1}
+                </div>
+                <h3
+                  className="text-[#21313c] mb-4 group-hover:text-[#f0c14b] transition-colors"
+                  style={{ fontSize: '20px', fontWeight: 600 }}
+                >
+                  {item.title}
+                </h3>
+                <p className="text-[#666]" style={{ fontSize: '15px', lineHeight: 1.7 }}>
+                  {item.description}
+                </p>
+              </motion.div>
             ))}
-          </div>
+          </motion.div>
         </div>
       </div>
 
@@ -667,53 +908,116 @@ const InternationalOffice = () => {
           className="mx-auto"
           style={{
             maxWidth: '1440px',
-            paddingTop: '80px',
+            paddingTop: '140px',
             paddingRight: '120px',
-            paddingBottom: '80px',
+            paddingBottom: '140px',
             paddingLeft: '120px',
           }}
         >
-          <div className="flex justify-between" style={{ gap: '64px' }}>
+          <div className="flex justify-between" style={{ gap: '80px' }}>
             {/* Left Side - Content */}
-            <div style={{ maxWidth: '500px' }}>
-              <h2 className="text-3xl md:text-4xl font-bold text-[#21313c] mb-6">
-                Life in Bhopal
+            <motion.div
+              style={{ maxWidth: '520px' }}
+              initial={{ opacity: 0, x: -50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8, ease: customEase }}
+              viewport={{ once: true }}
+            >
+              <span
+                className="text-[#999] uppercase tracking-widest block mb-6"
+                style={{ fontSize: '12px', letterSpacing: '0.2em' }}
+              >
+                City of Lakes
+              </span>
+              <h2
+                className="text-[#21313c] mb-8"
+                style={{
+                  fontSize: 'clamp(2.5rem, 4vw, 3.5rem)',
+                  fontWeight: 600,
+                  lineHeight: 1.1,
+                  letterSpacing: '-0.03em',
+                }}
+              >
+                Life in{' '}
+                <span style={{ fontFamily: "'Times New Roman', serif", fontStyle: 'italic', fontWeight: 400 }}>
+                  Bhopal
+                </span>
               </h2>
-              <p className="text-base text-[#666666] leading-relaxed mb-10">
+              <p
+                className="text-[#666] mb-12"
+                style={{ fontSize: '18px', lineHeight: 1.8 }}
+              >
                 Discover a city that blends culture, safety, affordability, and student-friendly living. Known as the City of Lakes, Bhopal offers a serene environment perfect for academic focus and cultural exploration.
               </p>
 
               {/* Features Grid */}
-              <div className="grid grid-cols-2 gap-8 mb-10">
+              <motion.div
+                className="grid grid-cols-2 gap-8 mb-12"
+                variants={staggerContainer}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true }}
+              >
                 {bhopalFeatures.map((feature) => (
-                  <div key={feature.id}>
-                    <h3 className="text-lg font-bold text-[#21313c] mb-2">{feature.title}</h3>
-                    <p className="text-sm text-[#666666]">{feature.description}</p>
-                  </div>
+                  <motion.div key={feature.id} variants={staggerItem} className="group">
+                    <h3
+                      className="text-[#21313c] mb-3 group-hover:text-[#f0c14b] transition-colors"
+                      style={{ fontSize: '20px', fontWeight: 600 }}
+                    >
+                      {feature.title}
+                    </h3>
+                    <p className="text-[#666]" style={{ fontSize: '15px', lineHeight: 1.7 }}>
+                      {feature.description}
+                    </p>
+                  </motion.div>
                 ))}
-              </div>
+              </motion.div>
 
-              <a
-                href="#"
-                className="inline-flex items-center gap-3 px-6 py-3 bg-white border border-gray-300 text-[#21313c] font-medium rounded-full hover:bg-gray-50 transition-colors"
+              <motion.button
+                className="inline-flex items-center gap-3 px-8 py-4 bg-[#21313c] text-white font-medium"
+                style={{ borderRadius: '100px' }}
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
               >
                 Explore life in Bhopal
                 <span>→</span>
-              </a>
-            </div>
+              </motion.button>
+            </motion.div>
 
             {/* Right Side - Image */}
-            <div
-              className="relative shrink-0 overflow-hidden rounded-lg"
-              style={{ width: '580px', height: '624px' }}
+            <motion.div
+              initial={{ opacity: 0, x: 60, scale: 0.95 }}
+              whileInView={{ opacity: 1, x: 0, scale: 1 }}
+              transition={{ duration: 1, ease: customEase }}
+              viewport={{ once: true }}
+              className="relative shrink-0 overflow-hidden group cursor-pointer"
+              style={{ width: '580px', height: '680px', borderRadius: '16px' }}
             >
-              <Image
-                src="https://images.unsplash.com/photo-1548013146-72479768bada?w=1200&q=80"
-                alt="Life in Bhopal"
-                fill
-                className="object-cover"
-              />
-            </div>
+              <motion.div
+                className="absolute inset-0"
+                whileHover={{ scale: 1.05 }}
+                transition={{ duration: 0.8, ease: customEase }}
+              >
+                <Image
+                  src="https://images.unsplash.com/photo-1548013146-72479768bada?w=1200&q=80"
+                  alt="Life in Bhopal"
+                  fill
+                  className="object-cover"
+                />
+              </motion.div>
+              <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
+              <div className="absolute bottom-8 left-8 right-8">
+                <span
+                  className="text-white/60 uppercase tracking-wider block mb-2"
+                  style={{ fontSize: '11px' }}
+                >
+                  Explore
+                </span>
+                <h3 className="text-white font-semibold" style={{ fontSize: '24px' }}>
+                  The Heart of India
+                </h3>
+              </div>
+            </motion.div>
           </div>
         </div>
       </div>

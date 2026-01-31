@@ -11,6 +11,24 @@ const ProgramsList = () => {
 
   const programs = [
     {
+      name: 'Business and Management',
+      certification: 'BBA / MBA',
+      duration: '3-4 Years',
+      type: 'Full Time',
+    },
+    {
+      name: 'Media, Journalism and Communication',
+      certification: 'BA / MA',
+      duration: '3-4 Years',
+      type: 'Full Time',
+    },
+    {
+      name: 'Design, Fashion and Architecture',
+      certification: 'B.Des / B.Arch',
+      duration: '4-5 Years',
+      type: 'Full Time',
+    },
+    {
       name: 'BSC Sound Design & Music Video Production',
       certification: 'BSC',
       duration: '3 Years',

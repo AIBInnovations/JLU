@@ -158,12 +158,18 @@ const Research = () => {
 
           <div className="flex justify-between" style={{ gap: '64px' }}>
             {/* Left Side - Content */}
-            <div style={{ maxWidth: '500px' }}>
-              <h3 className="text-2xl md:text-3xl font-bold text-[#21313c] mb-4">
-                An environment built for<br />discovery
-              </h3>
-              <p className="text-base text-[#21313c] leading-relaxed">
-                Our research ecosystem brings together centres of excellence, faculty expertise, and cross-disciplinary collaboration to solve the world's most pressing challenges.
+            <div style={{ maxWidth: '580px' }}>
+              <p className="text-[#21313c] leading-relaxed" style={{ fontSize: '20px', lineHeight: '28px' }}>
+                Research at JLU is shaped by exploration rather than expectation.
+              </p>
+              <p className="text-[#21313c] leading-relaxed mt-4" style={{ fontSize: '20px', lineHeight: '28px' }}>
+                It grows from thoughtful questions, careful observation, and a willingness to look beyond the obvious.
+              </p>
+              <p className="text-[#21313c] leading-relaxed mt-4" style={{ fontSize: '20px', lineHeight: '28px' }}>
+                Across disciplines, faculty and students engage in work that seeks relevance, depth, and long-term value.
+              </p>
+              <p className="text-[#21313c] leading-relaxed mt-4" style={{ fontSize: '20px', lineHeight: '28px' }}>
+                Knowledge here is not only generated, it is examined, refined, and shared.
               </p>
             </div>
 

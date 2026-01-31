@@ -1,15 +1,38 @@
 'use client';
 
 import Image from 'next/image';
-import { motion, useScroll, useTransform } from 'framer-motion';
+import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion';
 import { useState, useRef } from 'react';
 
 const infrastructureItems = [
-  { id: 1, label: 'Academic Blocks' },
-  { id: 2, label: 'Studios & Labs' },
-  { id: 3, label: 'Library & Learning Spaces' },
-  { id: 4, label: 'Indoor Multipurpose Hall' },
+  { id: 1, label: 'University Campus', description: 'A thoughtfully planned campus that supports academic focus and student life.' },
+  { id: 2, label: 'Student Accommodation', description: 'Comfortable residential spaces designed for safety, community, and everyday living.' },
+  { id: 3, label: 'Dining Facilities', description: 'Multiple dining options that cater to diverse tastes and daily needs.' },
 ];
+
+// Custom easing for smooth animations
+const customEase: [number, number, number, number] = [0.22, 1, 0.36, 1];
+
+// Stagger animation variants
+const staggerContainer = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.1,
+      delayChildren: 0.2,
+    },
+  },
+};
+
+const staggerItem = {
+  hidden: { opacity: 0, y: 30 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.8, ease: customEase },
+  },
+};
 
 const Campus = () => {
   const [activeInfrastructure, setActiveInfrastructure] = useState(1);
@@ -19,6 +42,7 @@ const Campus = () => {
     offset: ['start start', 'end start'],
   });
   const y = useTransform(scrollYProgress, [0, 1], ['0%', '30%']);
+  const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
 
   return (
     <section className="w-screen m-0 p-0 overflow-x-hidden">
@@ -32,7 +56,7 @@ const Campus = () => {
           }}
           initial={{ clipPath: 'inset(100% 0% 0% 0%)' }}
           animate={{ clipPath: 'inset(0% 0% 0% 0%)' }}
-          transition={{ duration: 2, ease: [0.22, 1, 0.36, 1] }}
+          transition={{ duration: 1.8, ease: customEase }}
         >
           <motion.div className="absolute inset-0" style={{ y }}>
             <Image
@@ -44,14 +68,14 @@ const Campus = () => {
             />
           </motion.div>
           {/* Black Overlay */}
-          <div className="absolute inset-0 bg-black/30" />
+          <motion.div className="absolute inset-0 bg-black/30" style={{ opacity }} />
         </motion.div>
 
         {/* Paragraph at Top Left */}
         <motion.div
-          initial={{ opacity: 0, y: -20 }}
+          initial={{ opacity: 0, y: -30 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.3 }}
+          transition={{ duration: 1, delay: 0.5, ease: customEase }}
           className="absolute top-0 left-0"
           style={{
             paddingLeft: '40px',
@@ -59,22 +83,25 @@ const Campus = () => {
             maxWidth: '800px',
           }}
         >
-          <h2
+          <motion.h2
             className="text-white font-semibold leading-tight mb-5"
             style={{
               fontSize: 'clamp(1.5rem, 3vw, 2.5rem)',
             }}
           >
             WHERE <span style={{ fontFamily: "'Times New Roman', serif", fontStyle: 'italic', color: '#f0c14b', textShadow: '2px 2px 4px rgba(0,0,0,0.5)' }}>learning</span> LIVES
-          </h2>
-          <p
+          </motion.h2>
+          <motion.p
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.8, delay: 0.8 }}
             className="text-white font-semibold leading-tight"
             style={{
               fontSize: 'clamp(1.25rem, 2.5vw, 2rem)',
             }}
           >
             Life at our campus goes beyond classrooms and lectures. It is a vibrant ecosystem where academic excellence, creativity, collaboration, and community life come together.
-          </p>
+          </motion.p>
         </motion.div>
 
         {/* Large "Campus" Text - Bottom Left */}
@@ -86,9 +113,9 @@ const Campus = () => {
           }}
         >
           <motion.h1
-            initial={{ opacity: 0, y: 100 }}
+            initial={{ opacity: 0, y: 120 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.1 }}
+            transition={{ duration: 1.2, delay: 0.2, ease: customEase }}
             className="font-normal select-none"
             style={{
               fontFamily: "system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif",
@@ -106,7 +133,7 @@ const Campus = () => {
         </div>
       </div>
 
-      {/* Campus Infrastructure Section - Awwwards Style */}
+      {/* Campus Infrastructure Section */}
       <div className="w-full bg-white">
         <div
           className="mx-auto"
@@ -120,19 +147,23 @@ const Campus = () => {
         >
           {/* Section Header */}
           <motion.div
-            initial={{ opacity: 0, y: 40 }}
+            initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
+            transition={{ duration: 1, ease: customEase }}
+            viewport={{ once: true, margin: '-100px' }}
             className="flex justify-between items-end mb-20"
           >
             <div>
-              <span
+              <motion.span
+                initial={{ opacity: 0, x: -20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.6, delay: 0.2 }}
+                viewport={{ once: true }}
                 className="text-[#999] uppercase tracking-widest block mb-6"
                 style={{ fontSize: '12px', letterSpacing: '0.2em' }}
               >
                 Facilities
-              </span>
+              </motion.span>
               <h2
                 className="text-[#21313c]"
                 style={{
@@ -148,7 +179,11 @@ const Campus = () => {
                 </span>
               </h2>
             </div>
-            <p
+            <motion.p
+              initial={{ opacity: 0, x: 30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8, delay: 0.3 }}
+              viewport={{ once: true }}
               className="text-[#666]"
               style={{
                 fontSize: '16px',
@@ -157,52 +192,41 @@ const Campus = () => {
               }}
             >
               Our campus is a masterwork of modern design, featuring state-of-the-art facilities that foster innovation and collaboration.
-            </p>
+            </motion.p>
           </motion.div>
 
           <div className="flex justify-between" style={{ gap: '80px' }}>
             {/* Left Side - Content */}
             <motion.div
-              initial={{ opacity: 0, x: -40 }}
+              initial={{ opacity: 0, x: -50 }}
               whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.6 }}
+              transition={{ duration: 0.8, ease: customEase }}
               viewport={{ once: true }}
               style={{ maxWidth: '480px', paddingTop: '40px' }}
             >
-              <h3
-                className="text-[#21313c] mb-6"
-                style={{
-                  fontSize: '32px',
-                  fontWeight: 600,
-                  lineHeight: 1.2,
-                }}
-              >
-                Architectural Excellence<br />for Future Leaders
-              </h3>
-              <p
-                className="text-[#666] mb-12"
-                style={{ fontSize: '16px', lineHeight: 1.8 }}
-              >
-                Every space is designed with intention — to inspire learning, encourage collaboration, and support growth.
-              </p>
 
               {/* Infrastructure Items */}
-              <div className="flex flex-col">
-                {infrastructureItems.map((item, index) => (
+              <motion.div
+                className="flex flex-col"
+                variants={staggerContainer}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true }}
+              >
+                {infrastructureItems.map((item) => (
                   <motion.button
                     key={item.id}
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.4, delay: index * 0.1 }}
-                    viewport={{ once: true }}
+                    variants={staggerItem}
                     onClick={() => setActiveInfrastructure(item.id)}
-                    className={`group flex items-center justify-between py-6 border-b border-[#e5e5e5] text-left transition-colors ${
+                    className={`group flex items-center justify-between py-6 border-b border-[#e5e5e5] text-left transition-all duration-500 ${
                       activeInfrastructure === item.id ? 'bg-[#f6f7f0] -mx-6 px-6' : ''
                     }`}
+                    whileHover={{ x: activeInfrastructure === item.id ? 0 : 8 }}
+                    transition={{ duration: 0.3 }}
                   >
                     <span className="flex items-center gap-6">
                       <span
-                        className={`font-medium transition-colors ${
+                        className={`font-medium transition-colors duration-300 ${
                           activeInfrastructure === item.id ? 'text-[#f0c14b]' : 'text-[#ccc]'
                         }`}
                         style={{ fontSize: '14px', minWidth: '30px' }}
@@ -210,7 +234,7 @@ const Campus = () => {
                         {String(item.id).padStart(2, '0')}
                       </span>
                       <span
-                        className={`transition-colors ${
+                        className={`transition-all duration-300 ${
                           activeInfrastructure === item.id ? 'text-[#21313c]' : 'text-[#666] group-hover:text-[#21313c]'
                         }`}
                         style={{ fontSize: '18px', fontWeight: activeInfrastructure === item.id ? 600 : 400 }}
@@ -220,6 +244,7 @@ const Campus = () => {
                     </span>
                     <motion.span
                       animate={{ x: activeInfrastructure === item.id ? 0 : -10, opacity: activeInfrastructure === item.id ? 1 : 0 }}
+                      transition={{ duration: 0.3 }}
                       className="text-[#21313c]"
                       style={{ fontSize: '20px' }}
                     >
@@ -227,32 +252,42 @@ const Campus = () => {
                     </motion.span>
                   </motion.button>
                 ))}
-              </div>
+              </motion.div>
             </motion.div>
 
             {/* Right Side - Image */}
             <motion.div
-              initial={{ opacity: 0, x: 40 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.6, delay: 0.2 }}
+              initial={{ opacity: 0, x: 50, scale: 0.95 }}
+              whileInView={{ opacity: 1, x: 0, scale: 1 }}
+              transition={{ duration: 1, delay: 0.2, ease: customEase }}
               viewport={{ once: true }}
               className="relative shrink-0 overflow-hidden"
               style={{ width: '580px', height: '650px' }}
             >
-              <motion.div
-                className="absolute inset-0"
-                whileHover={{ scale: 1.03 }}
-                transition={{ duration: 0.6 }}
-              >
-                <Image
-                  src="https://images.unsplash.com/photo-1541339907198-e08756dedf3f?w=1200&q=80"
-                  alt="Campus Infrastructure"
-                  fill
-                  className="object-cover"
-                />
-              </motion.div>
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={activeInfrastructure}
+                  initial={{ opacity: 0, scale: 1.1 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0, scale: 0.95 }}
+                  transition={{ duration: 0.6, ease: customEase }}
+                  className="absolute inset-0"
+                  whileHover={{ scale: 1.03 }}
+                >
+                  <Image
+                    src="https://images.unsplash.com/photo-1541339907198-e08756dedf3f?w=1200&q=80"
+                    alt="Campus Infrastructure"
+                    fill
+                    className="object-cover"
+                  />
+                </motion.div>
+              </AnimatePresence>
               {/* Overlay Badge */}
-              <div
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.5 }}
+                viewport={{ once: true }}
                 className="absolute bottom-8 left-8 bg-white px-6 py-4"
                 style={{ maxWidth: '280px' }}
               >
@@ -262,13 +297,13 @@ const Campus = () => {
                 <span className="text-[#21313c] font-semibold" style={{ fontSize: '16px' }}>
                   {infrastructureItems.find(i => i.id === activeInfrastructure)?.label}
                 </span>
-              </div>
+              </motion.div>
             </motion.div>
           </div>
         </div>
       </div>
 
-      {/* Residences & Dining Section - Awwwards Style */}
+      {/* Academic Infrastructure Section */}
       <div className="w-full bg-[#21313c]">
         <div
           className="mx-auto"
@@ -282,53 +317,31 @@ const Campus = () => {
         >
           {/* Section Header */}
           <motion.div
-            initial={{ opacity: 0, y: 40 }}
+            initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
+            transition={{ duration: 1, ease: customEase }}
             viewport={{ once: true }}
             className="mb-20"
           >
-            <span
+            <motion.span
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              viewport={{ once: true }}
               className="text-[#999] uppercase tracking-widest block mb-6"
               style={{ fontSize: '12px', letterSpacing: '0.2em' }}
             >
-              Living & Dining
-            </span>
-            <div className="flex justify-between items-end">
-              <h2
-                className="text-white"
-                style={{
-                  fontSize: 'clamp(2.5rem, 5vw, 4rem)',
-                  fontWeight: 600,
-                  lineHeight: 1.1,
-                  letterSpacing: '-0.03em',
-                }}
-              >
-                More than a room,<br />
-                <span style={{ fontFamily: "'Times New Roman', serif", fontStyle: 'italic', fontWeight: 400 }}>
-                  a place to belong
-                </span>
-              </h2>
-              <p
-                className="text-[#999]"
-                style={{
-                  fontSize: '16px',
-                  lineHeight: 1.7,
-                  maxWidth: '350px',
-                }}
-              >
-                Experience vibrant campus life where comfort meets community.
-              </p>
-            </div>
+              Academic Infrastructure
+            </motion.span>
           </motion.div>
 
           {/* Cards Grid */}
           <div className="grid grid-cols-2 gap-8">
-            {/* Student Accommodation Card */}
+            {/* Gurudev Gupta Media Studio Card */}
             <motion.div
-              initial={{ opacity: 0, y: 50 }}
+              initial={{ opacity: 0, y: 60 }}
               whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
+              transition={{ duration: 0.8, ease: customEase }}
               viewport={{ once: true }}
               className="group cursor-pointer"
             >
@@ -336,58 +349,49 @@ const Campus = () => {
                 <motion.div
                   className="absolute inset-0"
                   whileHover={{ scale: 1.05 }}
-                  transition={{ duration: 0.6 }}
+                  transition={{ duration: 0.8, ease: customEase }}
                 >
                   <Image
-                    src="https://images.unsplash.com/photo-1555854877-bab0e564b8d5?w=1200&q=80"
-                    alt="Student Accommodation"
+                    src="https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?w=1200&q=80"
+                    alt="Gurudev Gupta Media Studio"
                     fill
                     className="object-cover"
                   />
                 </motion.div>
                 <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent" />
                 {/* Number Badge */}
-                <div
+                <motion.div
                   className="absolute top-6 left-6 w-12 h-12 bg-[#f0c14b] flex items-center justify-center"
                   style={{ borderRadius: '50%' }}
+                  whileHover={{ scale: 1.1, rotate: 10 }}
+                  transition={{ duration: 0.3 }}
                 >
                   <span className="text-[#21313c] font-semibold" style={{ fontSize: '14px' }}>01</span>
-                </div>
+                </motion.div>
                 {/* Bottom Label */}
                 <div className="absolute bottom-0 left-0 right-0 p-8">
                   <h4 className="text-white font-semibold mb-2" style={{ fontSize: '24px' }}>
-                    Student Accommodation
+                    Gurudev Gupta Media Studio
                   </h4>
-                  <div className="flex items-center gap-2 text-white opacity-0 group-hover:opacity-100 transition-opacity">
-                    <span style={{ fontSize: '14px' }}>Explore</span>
-                    <span>→</span>
-                  </div>
                 </div>
               </div>
-              <p
+              <motion.p
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.2 }}
+                viewport={{ once: true }}
                 className="text-[#ccc] mb-6"
                 style={{ fontSize: '16px', lineHeight: 1.7 }}
               >
-                Modern living spaces tailored for academic success and personal growth. From private studios to shared apartments.
-              </p>
-              <div className="flex flex-wrap gap-3">
-                {['Safety & Security', 'Comfortable Living', 'Community Spaces'].map((tag) => (
-                  <span
-                    key={tag}
-                    className="px-4 py-2 border border-[#3a4a55] text-[#999] text-xs uppercase tracking-wider"
-                    style={{ borderRadius: '100px' }}
-                  >
-                    {tag}
-                  </span>
-                ))}
-              </div>
+                A professional studio environment for media production and hands on learning.
+              </motion.p>
             </motion.div>
 
-            {/* Dining & Nutrition Card */}
+            {/* M S Gill Culinary Studios Card */}
             <motion.div
-              initial={{ opacity: 0, y: 50 }}
+              initial={{ opacity: 0, y: 60 }}
               whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.15 }}
+              transition={{ duration: 0.8, delay: 0.15, ease: customEase }}
               viewport={{ once: true }}
               className="group cursor-pointer"
               style={{ marginTop: '80px' }}
@@ -396,117 +400,203 @@ const Campus = () => {
                 <motion.div
                   className="absolute inset-0"
                   whileHover={{ scale: 1.05 }}
-                  transition={{ duration: 0.6 }}
+                  transition={{ duration: 0.8, ease: customEase }}
                 >
                   <Image
-                    src="https://images.unsplash.com/photo-1567521464027-f127ff144326?w=1200&q=80"
-                    alt="Dining & Nutrition"
+                    src="https://images.unsplash.com/photo-1556910103-1c02745aae4d?w=1200&q=80"
+                    alt="M S Gill Culinary Studios"
                     fill
                     className="object-cover"
                   />
                 </motion.div>
                 <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent" />
                 {/* Number Badge */}
-                <div
+                <motion.div
                   className="absolute top-6 left-6 w-12 h-12 bg-[#f0c14b] flex items-center justify-center"
                   style={{ borderRadius: '50%' }}
+                  whileHover={{ scale: 1.1, rotate: 10 }}
+                  transition={{ duration: 0.3 }}
                 >
                   <span className="text-[#21313c] font-semibold" style={{ fontSize: '14px' }}>02</span>
-                </div>
+                </motion.div>
                 {/* Bottom Label */}
                 <div className="absolute bottom-0 left-0 right-0 p-8">
                   <h4 className="text-white font-semibold mb-2" style={{ fontSize: '24px' }}>
-                    Dining & Nutrition
+                    M S Gill Culinary Studios
                   </h4>
-                  <div className="flex items-center gap-2 text-white opacity-0 group-hover:opacity-100 transition-opacity">
-                    <span style={{ fontSize: '14px' }}>Explore</span>
-                    <span>→</span>
-                  </div>
                 </div>
               </div>
-              <p
+              <motion.p
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.2 }}
+                viewport={{ once: true }}
                 className="text-[#ccc] mb-6"
                 style={{ fontSize: '16px', lineHeight: 1.7 }}
               >
-                Global flavors and healthy choices served daily. Our dining halls are social hubs where ideas are shared.
-              </p>
-              <div className="flex flex-wrap gap-3">
-                {['Diverse Cuisine', 'Hygienic Kitchens', 'Social Spaces'].map((tag) => (
-                  <span
-                    key={tag}
-                    className="px-4 py-2 border border-[#3a4a55] text-[#999] text-xs uppercase tracking-wider"
-                    style={{ borderRadius: '100px' }}
-                  >
-                    {tag}
-                  </span>
-                ))}
+                Industry standard kitchens designed for hospitality and culinary training.
+              </motion.p>
+            </motion.div>
+
+            {/* Technology Labs Card */}
+            <motion.div
+              initial={{ opacity: 0, y: 60 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.2, ease: customEase }}
+              viewport={{ once: true }}
+              className="group cursor-pointer"
+            >
+              <div className="relative overflow-hidden mb-8" style={{ height: '480px' }}>
+                <motion.div
+                  className="absolute inset-0"
+                  whileHover={{ scale: 1.05 }}
+                  transition={{ duration: 0.8, ease: customEase }}
+                >
+                  <Image
+                    src="https://images.unsplash.com/photo-1581092921461-eab62e97a780?w=1200&q=80"
+                    alt="Technology Labs"
+                    fill
+                    className="object-cover"
+                  />
+                </motion.div>
+                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent" />
+                {/* Number Badge */}
+                <motion.div
+                  className="absolute top-6 left-6 w-12 h-12 bg-[#f0c14b] flex items-center justify-center"
+                  style={{ borderRadius: '50%' }}
+                  whileHover={{ scale: 1.1, rotate: 10 }}
+                  transition={{ duration: 0.3 }}
+                >
+                  <span className="text-[#21313c] font-semibold" style={{ fontSize: '14px' }}>03</span>
+                </motion.div>
+                {/* Bottom Label */}
+                <div className="absolute bottom-0 left-0 right-0 p-8">
+                  <h4 className="text-white font-semibold mb-2" style={{ fontSize: '24px' }}>
+                    Technology Labs
+                  </h4>
+                </div>
               </div>
+              <motion.p
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.2 }}
+                viewport={{ once: true }}
+                className="text-[#ccc] mb-6"
+                style={{ fontSize: '16px', lineHeight: 1.7 }}
+              >
+                Well equipped labs supporting engineering, computing, and applied sciences.
+              </motion.p>
+            </motion.div>
+
+            {/* Shri Cyril Shroff Moot Court Card */}
+            <motion.div
+              initial={{ opacity: 0, y: 60 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.25, ease: customEase }}
+              viewport={{ once: true }}
+              className="group cursor-pointer"
+              style={{ marginTop: '80px' }}
+            >
+              <div className="relative overflow-hidden mb-8" style={{ height: '480px' }}>
+                <motion.div
+                  className="absolute inset-0"
+                  whileHover={{ scale: 1.05 }}
+                  transition={{ duration: 0.8, ease: customEase }}
+                >
+                  <Image
+                    src="https://images.unsplash.com/photo-1589829545856-d10d557cf95f?w=1200&q=80"
+                    alt="Shri Cyril Shroff Moot Court"
+                    fill
+                    className="object-cover"
+                  />
+                </motion.div>
+                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent" />
+                {/* Number Badge */}
+                <motion.div
+                  className="absolute top-6 left-6 w-12 h-12 bg-[#f0c14b] flex items-center justify-center"
+                  style={{ borderRadius: '50%' }}
+                  whileHover={{ scale: 1.1, rotate: 10 }}
+                  transition={{ duration: 0.3 }}
+                >
+                  <span className="text-[#21313c] font-semibold" style={{ fontSize: '14px' }}>04</span>
+                </motion.div>
+                {/* Bottom Label */}
+                <div className="absolute bottom-0 left-0 right-0 p-8">
+                  <h4 className="text-white font-semibold mb-2" style={{ fontSize: '24px' }}>
+                    Shri Cyril Shroff Moot Court
+                  </h4>
+                </div>
+              </div>
+              <motion.p
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.2 }}
+                viewport={{ once: true }}
+                className="text-[#ccc] mb-6"
+                style={{ fontSize: '16px', lineHeight: 1.7 }}
+              >
+                A dedicated space for legal practice, debates, and mock trials.
+              </motion.p>
             </motion.div>
           </div>
         </div>
       </div>
 
-      {/* Sports & Wellness Section - Awwwards Style */}
-      <div className="w-full bg-[#f6f7f0]">
+      {/* Sports & Wellness Section */}
+      <div className="w-full bg-white">
         <div
           className="mx-auto"
           style={{
             maxWidth: '1440px',
-            paddingTop: '140px',
+            minHeight: '1160px',
+            paddingTop: '100px',
             paddingRight: '120px',
-            paddingBottom: '140px',
+            paddingBottom: '100px',
             paddingLeft: '120px',
           }}
         >
           {/* Section Header */}
           <motion.div
-            initial={{ opacity: 0, y: 40 }}
+            initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
+            transition={{ duration: 0.8, ease: customEase }}
             viewport={{ once: true }}
-            className="flex justify-between items-start mb-20"
+            className="mb-16"
+            style={{ maxWidth: '1200px' }}
           >
-            <div style={{ maxWidth: '600px' }}>
-              <span
-                className="text-[#999] uppercase tracking-widest block mb-6"
-                style={{ fontSize: '12px', letterSpacing: '0.2em' }}
-              >
-                Health & Fitness
-              </span>
-              <h2
-                className="text-[#21313c]"
-                style={{
-                  fontSize: 'clamp(2.5rem, 5vw, 4rem)',
-                  fontWeight: 600,
-                  lineHeight: 1.1,
-                  letterSpacing: '-0.03em',
-                }}
-              >
-                Cultivating{' '}
-                <span style={{ fontFamily: "'Times New Roman', serif", fontStyle: 'italic', fontWeight: 400 }}>
-                  balance
-                </span>
-              </h2>
-            </div>
-            <div
-              className="text-[#666] pt-8"
+            <h2
+              className="text-[#21313c]"
               style={{
-                fontSize: '16px',
-                lineHeight: 1.8,
-                maxWidth: '380px',
+                fontFamily: 'Inter, sans-serif',
+                fontWeight: 700,
+                fontSize: '48px',
+                lineHeight: '100%',
+                marginBottom: '24px',
               }}
             >
-              Physical wellbeing is integral to academic success. Our sports programs foster teamwork and promote a lifelong commitment to health.
-            </div>
+              Sports & Wellness
+            </h2>
+            <p
+              className="text-[#21313c]"
+              style={{
+                fontFamily: 'Inter, sans-serif',
+                fontWeight: 600,
+                fontSize: '40px',
+                lineHeight: '120%',
+                maxWidth: '1200px',
+              }}
+            >
+              Cultivating balance, Fueling excellence
+            </p>
           </motion.div>
 
           {/* Sports Cards - Bento Grid */}
           <div className="grid grid-cols-12 gap-6">
-            {/* Left Card - Outdoor Sports (Large) */}
+            {/* Left Card - Sports Facilities (Large) */}
             <motion.div
-              initial={{ opacity: 0, y: 50 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
+              initial={{ opacity: 0, y: 60, scale: 0.95 }}
+              whileInView={{ opacity: 1, y: 0, scale: 1 }}
+              transition={{ duration: 0.8, ease: customEase }}
               viewport={{ once: true }}
               className="col-span-7 group cursor-pointer"
             >
@@ -514,11 +604,11 @@ const Campus = () => {
                 <motion.div
                   className="absolute inset-0"
                   whileHover={{ scale: 1.05 }}
-                  transition={{ duration: 0.6 }}
+                  transition={{ duration: 0.8, ease: customEase }}
                 >
                   <Image
                     src="https://images.unsplash.com/photo-1574629810360-7efbbe195018?w=1200&q=80"
-                    alt="Outdoor Sports Facilities"
+                    alt="Sports Facilities"
                     fill
                     className="object-cover"
                   />
@@ -527,26 +617,28 @@ const Campus = () => {
 
                 {/* Content */}
                 <div className="absolute inset-0 flex flex-col justify-between p-10">
-                  <span
-                    className="text-white/60 uppercase tracking-widest"
-                    style={{ fontSize: '11px', letterSpacing: '0.2em' }}
-                  >
-                    Key Facility
-                  </span>
+                  <div />
                   <div>
-                    <h4
+                    <motion.h4
+                      initial={{ opacity: 0, y: 20 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.6, delay: 0.4 }}
+                      viewport={{ once: true }}
                       className="text-white mb-4"
                       style={{ fontSize: '32px', fontWeight: 600, lineHeight: 1.2 }}
                     >
-                      Outdoor Sports<br />Facilities
-                    </h4>
-                    <p className="text-white/80 mb-6" style={{ fontSize: '15px', lineHeight: 1.7, maxWidth: '400px' }}>
-                      International-standard grounds for football, cricket, athletics, and more. Train where champions are made.
-                    </p>
-                    <div className="flex items-center gap-3 text-white">
-                      <span style={{ fontSize: '14px', fontWeight: 500 }}>Explore Facilities</span>
-                      <span className="group-hover:translate-x-2 transition-transform">→</span>
-                    </div>
+                      Sports Facilities
+                    </motion.h4>
+                    <motion.p
+                      initial={{ opacity: 0, y: 20 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.6, delay: 0.5 }}
+                      viewport={{ once: true }}
+                      className="text-white/80 mb-6"
+                      style={{ fontSize: '15px', lineHeight: 1.7, maxWidth: '400px' }}
+                    >
+                      Facilities that encourage physical fitness, teamwork, and competitive spirit.
+                    </motion.p>
                   </div>
                 </div>
               </div>
@@ -554,11 +646,11 @@ const Campus = () => {
 
             {/* Right Column */}
             <div className="col-span-5 flex flex-col gap-6">
-              {/* Fitness Card */}
+              {/* The Pyramid, University Library Card */}
               <motion.div
-                initial={{ opacity: 0, y: 50 }}
+                initial={{ opacity: 0, y: 60 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.1 }}
+                transition={{ duration: 0.8, delay: 0.1, ease: customEase }}
                 viewport={{ once: true }}
                 className="group cursor-pointer"
               >
@@ -566,11 +658,11 @@ const Campus = () => {
                   <motion.div
                     className="absolute inset-0"
                     whileHover={{ scale: 1.05 }}
-                    transition={{ duration: 0.6 }}
+                    transition={{ duration: 0.8, ease: customEase }}
                   >
                     <Image
-                      src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=1200&q=80"
-                      alt="Fitness & Wellness Areas"
+                      src="https://images.unsplash.com/photo-1521587760476-6c12a4b040da?w=1200&q=80"
+                      alt="The Pyramid, University Library"
                       fill
                       className="object-cover"
                     />
@@ -578,21 +670,20 @@ const Campus = () => {
                   <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent" />
                   <div className="absolute bottom-0 left-0 right-0 p-8">
                     <h4 className="text-white font-semibold mb-2" style={{ fontSize: '22px' }}>
-                      Fitness & Wellness Areas
+                      The Pyramid, University Library
                     </h4>
-                    <div className="flex items-center gap-2 text-white opacity-0 group-hover:opacity-100 transition-opacity">
-                      <span style={{ fontSize: '14px' }}>View Details</span>
-                      <span>→</span>
-                    </div>
+                    <p className="text-white/80" style={{ fontSize: '14px', lineHeight: 1.6 }}>
+                      A central space for study, research, and reflection.
+                    </p>
                   </div>
                 </div>
               </motion.div>
 
-              {/* Indoor Sports Card */}
+              {/* Indoor Multipurpose Hall Card */}
               <motion.div
-                initial={{ opacity: 0, y: 50 }}
+                initial={{ opacity: 0, y: 60 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.2 }}
+                transition={{ duration: 0.8, delay: 0.2, ease: customEase }}
                 viewport={{ once: true }}
                 className="group cursor-pointer"
               >
@@ -600,11 +691,11 @@ const Campus = () => {
                   <motion.div
                     className="absolute inset-0"
                     whileHover={{ scale: 1.05 }}
-                    transition={{ duration: 0.6 }}
+                    transition={{ duration: 0.8, ease: customEase }}
                   >
                     <Image
                       src="https://images.unsplash.com/photo-1519311965067-36d3e5f33d39?w=1200&q=80"
-                      alt="Indoor Sports Complex"
+                      alt="Indoor Multipurpose Hall"
                       fill
                       className="object-cover"
                     />
@@ -612,195 +703,224 @@ const Campus = () => {
                   <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent" />
                   <div className="absolute bottom-0 left-0 right-0 p-8">
                     <h4 className="text-white font-semibold mb-2" style={{ fontSize: '22px' }}>
-                      Indoor Sports Complex
+                      Indoor Multipurpose Hall
                     </h4>
-                    <div className="flex items-center gap-2 text-white opacity-0 group-hover:opacity-100 transition-opacity">
-                      <span style={{ fontSize: '14px' }}>View Details</span>
-                      <span>→</span>
-                    </div>
+                    <p className="text-white/80" style={{ fontSize: '14px', lineHeight: 1.6 }}>
+                      A flexible venue for sports, events, and campus activities.
+                    </p>
                   </div>
                 </div>
               </motion.div>
             </div>
           </div>
-
-          {/* Bottom Stats & Link */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.3 }}
-            viewport={{ once: true }}
-            className="mt-16 pt-12 border-t border-[#d1d1d1] flex justify-between items-center"
-          >
-            <div className="flex gap-16">
-              {[
-                { value: '15+', label: 'Sports Facilities' },
-                { value: '20+', label: 'Sports Programs' },
-                { value: '5', label: 'Playing Fields' },
-              ].map((stat, index) => (
-                <div key={index}>
-                  <span
-                    className="text-[#21313c] block mb-1"
-                    style={{ fontSize: '36px', fontWeight: 700, letterSpacing: '-0.02em' }}
-                  >
-                    {stat.value}
-                  </span>
-                  <span
-                    className="text-[#666] uppercase tracking-wider"
-                    style={{ fontSize: '11px', letterSpacing: '0.1em' }}
-                  >
-                    {stat.label}
-                  </span>
-                </div>
-              ))}
-            </div>
-            <button
-              className="px-8 py-3 border border-[#21313c] text-[#21313c] text-sm font-medium hover:bg-[#21313c] hover:text-white transition-colors flex items-center gap-3"
-              style={{ borderRadius: '100px' }}
-            >
-              View All Facilities
-              <span>→</span>
-            </button>
-          </motion.div>
         </div>
       </div>
 
       {/* Campus Gallery Section */}
-      <div className="w-full bg-white" style={{ paddingBottom: '100px' }}>
+      <div className="w-full bg-white" style={{ paddingBottom: '120px' }}>
         <div
-          className="relative mx-auto"
-          style={{ maxWidth: '1440px', height: '900px', marginTop: '60px' }}
+          className="relative mx-auto overflow-hidden"
+          style={{ maxWidth: '1440px', height: '1000px' }}
         >
-          {/* Card 1 - Top Left - Aerial View */}
-          <div
-            className="absolute overflow-hidden rounded-lg"
-            style={{ width: '380px', height: '220px', top: '40px', left: '120px' }}
+          {/* Card 1 - Top Left */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, ease: customEase }}
+            viewport={{ once: true }}
+            className="absolute overflow-hidden group cursor-pointer"
+            style={{ width: '403px', height: '238px', top: '0px', left: '188px', borderRadius: '16px' }}
           >
             <Image
-              src="https://jlu.edu.in/wp-content/uploads/2025/01/arialview.webp"
-              alt="JLU Campus Aerial View"
+              src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?w=800&q=80"
+              alt="Students in library"
               fill
-              className="object-cover hover:scale-105 transition-transform duration-500"
+              className="object-cover group-hover:scale-105 transition-transform duration-500"
             />
-          </div>
-          {/* Card 2 - Top Center Right - Smart Classroom */}
-          <div
-            className="absolute overflow-hidden rounded-lg"
-            style={{ width: '280px', height: '300px', top: '20px', left: '700px' }}
+          </motion.div>
+
+          {/* Card 2 - Top Center */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.1, ease: customEase }}
+            viewport={{ once: true }}
+            className="absolute overflow-hidden group cursor-pointer"
+            style={{ width: '308px', height: '325px', top: '0px', left: '753px', borderRadius: '16px' }}
           >
             <Image
-              src="https://jlu.edu.in/wp-content/uploads/2024/01/smart-class-new.jpg"
-              alt="JLU Smart Classroom"
+              src="https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=600&q=80"
+              alt="Event hall"
               fill
-              className="object-cover hover:scale-105 transition-transform duration-500"
+              className="object-cover group-hover:scale-105 transition-transform duration-500"
             />
-          </div>
-          {/* Card 3 - Top Right - Hostel */}
-          <div
-            className="absolute overflow-hidden rounded-lg"
-            style={{ width: '180px', height: '180px', top: '60px', left: '1100px' }}
+          </motion.div>
+
+          {/* Card 3 - Top Right (partially cut) */}
+          <motion.div
+            initial={{ opacity: 0, x: 30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.6, delay: 0.15, ease: customEase }}
+            viewport={{ once: true }}
+            className="absolute overflow-hidden group cursor-pointer"
+            style={{ width: '193px', height: '193px', top: '-50px', left: '1284px', borderRadius: '16px' }}
           >
             <Image
-              src="https://jlu.edu.in/wp-content/uploads/2024/01/hostelinfra.jpg"
-              alt="JLU Hostel"
+              src="https://images.unsplash.com/photo-1562774053-701939374585?w=400&q=80"
+              alt="Campus building"
               fill
-              className="object-cover hover:scale-105 transition-transform duration-500"
+              className="object-cover group-hover:scale-105 transition-transform duration-500"
             />
-          </div>
-          {/* Card 4 - Middle Right - Gymnasium */}
-          <div
-            className="absolute overflow-hidden rounded-lg"
-            style={{ width: '200px', height: '200px', top: '320px', left: '1080px' }}
+          </motion.div>
+
+          {/* Card 4 - Middle Right */}
+          <motion.div
+            initial={{ opacity: 0, x: 30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.6, delay: 0.2, ease: customEase }}
+            viewport={{ once: true }}
+            className="absolute overflow-hidden group cursor-pointer"
+            style={{ width: '215px', height: '215px', top: '302px', left: '1154px', borderRadius: '16px' }}
           >
             <Image
-              src="https://jlu.edu.in/wp-content/uploads/2024/01/gym.jpg"
-              alt="JLU Gymnasium"
+              src="https://images.unsplash.com/photo-1532094349884-543bc11b234d?w=400&q=80"
+              alt="Lab equipment"
               fill
-              className="object-cover hover:scale-105 transition-transform duration-500"
+              className="object-cover group-hover:scale-105 transition-transform duration-500"
             />
-          </div>
-          {/* Card 5 - Middle Left - Student Clubs */}
-          <div
-            className="absolute overflow-hidden rounded-lg"
-            style={{ width: '250px', height: '300px', top: '300px', left: '60px' }}
+          </motion.div>
+
+          {/* Card 5 - Middle Left */}
+          <motion.div
+            initial={{ opacity: 0, x: -30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.6, delay: 0.2, ease: customEase }}
+            viewport={{ once: true }}
+            className="absolute overflow-hidden group cursor-pointer"
+            style={{ width: '267px', height: '325px', top: '308px', left: '0px', borderRadius: '16px' }}
           >
             <Image
-              src="https://jlu.edu.in/wp-content/uploads/2025/01/sclubs.webp"
-              alt="JLU Student Clubs"
+              src="https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=500&q=80"
+              alt="Campus event"
               fill
-              className="object-cover hover:scale-105 transition-transform duration-500"
+              className="object-cover group-hover:scale-105 transition-transform duration-500"
             />
-          </div>
-          {/* Card 6 - Bottom Left - Sports Infrastructure */}
-          <div
-            className="absolute overflow-hidden rounded-lg"
-            style={{ width: '200px', height: '160px', top: '680px', left: '100px' }}
+          </motion.div>
+
+          {/* Card 6 - Bottom Right Upper */}
+          <motion.div
+            initial={{ opacity: 0, x: 30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.6, delay: 0.3, ease: customEase }}
+            viewport={{ once: true }}
+            className="absolute overflow-hidden group cursor-pointer"
+            style={{ width: '286px', height: '343px', top: '601px', left: '1154px', borderRadius: '16px' }}
           >
             <Image
-              src="https://jlu.edu.in/wp-content/uploads/2024/01/sports-infra.jpg"
-              alt="JLU Sports Infrastructure"
+              src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=600&q=80"
+              alt="Students together"
               fill
-              className="object-cover hover:scale-105 transition-transform duration-500"
+              className="object-cover group-hover:scale-105 transition-transform duration-500"
             />
-          </div>
-          {/* Card 7 - Bottom Center Left - Faculties */}
-          <div
-            className="absolute overflow-hidden rounded-lg"
-            style={{ width: '200px', height: '280px', top: '580px', left: '380px' }}
+          </motion.div>
+
+          {/* Card 7 - Bottom Center */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.35, ease: customEase }}
+            viewport={{ once: true }}
+            className="absolute overflow-hidden group cursor-pointer"
+            style={{ width: '399px', height: '210px', top: '790px', left: '627px', borderRadius: '16px' }}
           >
             <Image
-              src="https://jlu.edu.in/wp-content/uploads/2025/02/faculties-at-jlu.webp"
-              alt="JLU Faculties"
+              src="https://images.unsplash.com/photo-1523580494863-6f3031224c94?w=800&q=80"
+              alt="Graduation"
               fill
-              className="object-cover hover:scale-105 transition-transform duration-500"
+              className="object-cover group-hover:scale-105 transition-transform duration-500"
             />
-          </div>
-          {/* Card 8 - Bottom Center Right - Main Campus */}
-          <div
-            className="absolute overflow-hidden rounded-lg"
-            style={{ width: '360px', height: '180px', top: '700px', left: '680px' }}
+          </motion.div>
+
+          {/* Card 8 - Bottom Center Left */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.4, ease: customEase }}
+            viewport={{ once: true }}
+            className="absolute overflow-hidden group cursor-pointer"
+            style={{ width: '214px', height: '325px', top: '675px', left: '319px', borderRadius: '16px' }}
           >
             <Image
-              src="https://jlu.edu.in/wp-content/uploads/2023/10/slider-1-29.jpg"
-              alt="JLU Main Campus"
+              src="https://images.unsplash.com/photo-1481627834876-b7833e8f5570?w=400&q=80"
+              alt="Library"
               fill
-              className="object-cover hover:scale-105 transition-transform duration-500"
+              className="object-cover group-hover:scale-105 transition-transform duration-500"
             />
-          </div>
-          {/* Card 9 - Bottom Right - Campus Gallery */}
-          <div
-            className="absolute overflow-hidden rounded-lg"
-            style={{ width: '260px', height: '300px', top: '560px', left: '1080px' }}
+          </motion.div>
+
+          {/* Card 9 - Bottom Left (partially cut) */}
+          <motion.div
+            initial={{ opacity: 0, x: -30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.6, delay: 0.4, ease: customEase }}
+            viewport={{ once: true }}
+            className="absolute overflow-hidden group cursor-pointer"
+            style={{ width: '212px', height: '175px', top: '750px', left: '-56px', borderRadius: '16px' }}
           >
             <Image
-              src="https://jlu.edu.in/wp-content/uploads/2023/06/gallery-16-free-img.jpg"
-              alt="JLU Campus Gallery"
+              src="https://images.unsplash.com/photo-1574629810360-7efbbe195018?w=400&q=80"
+              alt="Sports"
               fill
-              className="object-cover hover:scale-105 transition-transform duration-500"
+              className="object-cover group-hover:scale-105 transition-transform duration-500"
             />
-          </div>
+          </motion.div>
 
           {/* Center Content */}
           <div className="absolute inset-0 flex flex-col items-center justify-center text-center pointer-events-none">
-            <h2
-              className="text-[#21313c] mb-6"
+            <motion.h2
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.2, ease: customEase }}
+              viewport={{ once: true }}
+              className="text-[#21313c] mb-4"
               style={{
-                fontSize: 'clamp(1.75rem, 3vw, 2.5rem)',
+                fontSize: 'clamp(2rem, 4vw, 3rem)',
                 fontWeight: 600,
                 lineHeight: 1.2,
                 letterSpacing: '-0.02em',
               }}
             >
-              Campus Gallery: A Living<br />Learning Environment
-            </h2>
-            <a
+              Campus Gallery:{' '}
+              <span style={{ fontFamily: "'Times New Roman', serif", fontStyle: 'italic', fontWeight: 400, color: '#8b4513' }}>
+                A Living
+              </span>
+              <br />
+              Learning Environment
+            </motion.h2>
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.3, ease: customEase }}
+              viewport={{ once: true }}
+              className="text-[#666] mb-8"
+              style={{ fontSize: '18px', lineHeight: 1.7, maxWidth: '400px' }}
+            >
+              Experience the vibrant life, learning, and celebrations at JLU campus.
+            </motion.p>
+            <motion.a
               href="#"
-              className="pointer-events-auto px-8 py-3 border border-[#21313c] text-[#21313c] text-sm font-medium hover:bg-[#21313c] hover:text-white transition-colors flex items-center gap-3"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.4, ease: customEase }}
+              viewport={{ once: true }}
+              className="pointer-events-auto px-8 py-4 bg-[#21313c] text-white font-medium flex items-center gap-3"
               style={{ borderRadius: '100px' }}
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.98 }}
             >
               Explore Gallery
               <span>→</span>
-            </a>
+            </motion.a>
           </div>
         </div>
       </div>

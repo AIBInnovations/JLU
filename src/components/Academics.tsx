@@ -29,92 +29,70 @@ const facultiesData = [
   {
     id: 1,
     name: 'Faculty of Management',
+    description: 'Focused on developing thoughtful leaders, managers, and entrepreneurs who understand both business and people.',
     schools: [
-      'Jagran Lakecity Business School',
-      'Jagran School of Sports Management',
-      'Jagran School of Hospitality & Aviation Management',
-      'Centre for Executive Education',
+      { name: 'Jagran Lakecity Business School', description: 'Builds strong foundations in management through case thinking, industry exposure, and leadership development.' },
+      { name: 'Jagran School of Sports Management', description: 'Prepares students for the business side of sports, combining management principles with the realities of the sports ecosystem.' },
+      { name: 'Jagran School of Hospitality and Aviation Management', description: 'Designed for global service industries, with a focus on professionalism, operational excellence, and customer experience.' },
     ],
   },
   {
     id: 2,
-    name: 'Faculty of Journalism & Social Science',
+    name: 'Faculty of Journalism and Social Science',
+    description: 'Dedicated to understanding society, communication, culture, and responsible storytelling.',
     schools: [
-      'Jagran School of Journalism & Communication',
-      'School of Social Sciences',
-      'School of Psychology & Behavioral Sciences',
-      'School of Public Policy & Governance',
+      { name: 'Jagran School of Journalism', description: 'Trains journalists to report with integrity, context, and curiosity across media platforms.' },
+      { name: 'Jagran School of Advertising and Public Relations', description: 'Focuses on brand communication, creative strategy, and audience engagement in a rapidly evolving media world.' },
+      { name: 'Jagran School of Events and Entertainment', description: 'Prepares students for the dynamic fields of events, media, and entertainment through practical exposure.' },
+      { name: 'Jagran School of Languages and Social Science', description: 'Encourages cultural awareness, critical thinking, and communication through language and social inquiry.' },
     ],
   },
   {
     id: 3,
-    name: 'Faculty of Fashion, Design & Arts',
+    name: 'Faculty of Fashion, Design and Arts',
+    description: 'A creative environment where ideas are shaped through design, form, and thoughtful expression.',
     schools: [
-      'School of Fashion Design',
-      'School of Interior Design',
-      'School of Visual Arts & Animation',
-      'School of Fine Arts & Photography',
+      { name: 'Jagran School of Design', description: 'Nurtures design thinking and creative problem solving across visual and applied disciplines.' },
+      { name: 'Jagran School of Architecture', description: 'Balances creativity with structure, preparing students to design spaces that respond to people and context.' },
+      { name: 'Jagran School of Fashion', description: 'Explores fashion as culture, creativity, and industry, blending design sensibility with practical insight.' },
     ],
   },
   {
     id: 4,
-    name: 'Faculty of Engineering & Technology',
+    name: 'Faculty of Engineering and Technology',
+    description: 'Built for problem solvers, innovators, and future focused technologists.',
     schools: [
-      'School of Computer Science & Engineering',
-      'School of Mechanical Engineering',
-      'School of Civil Engineering',
-      'School of Electronics & Communication',
-      'School of Artificial Intelligence & Data Science',
+      { name: 'Jagran School of Artificial Intelligence', description: 'Focused on emerging technologies, data driven thinking, and intelligent systems.' },
+      { name: 'Jagran School of Engineering', description: 'Offers strong technical foundations combined with practical learning and industry awareness.' },
+      { name: 'Jagran School of Computer Application', description: 'Prepares students for careers in software, computing, and digital solutions through hands on learning.' },
     ],
   },
   {
     id: 5,
     name: 'Faculty of Pharmacy',
-    schools: [
-      'School of Pharmaceutical Sciences',
-      'Department of Pharmacology',
-      'Department of Pharmaceutical Chemistry',
-      'Centre for Drug Research & Development',
-    ],
+    description: 'Combines scientific learning with responsibility, preparing students for healthcare, research, and pharmaceutical sciences.',
+    schools: [],
   },
   {
     id: 6,
     name: 'Faculty of Law',
-    schools: [
-      'School of Legal Studies',
-      'Centre for Constitutional Law',
-      'Centre for Corporate & Business Law',
-      'Legal Aid Clinic',
-    ],
+    description: 'Develops legal professionals with clarity of thought, ethical grounding, and practical understanding of the law.',
+    schools: [],
   },
   {
     id: 7,
-    name: 'IICA - Jagran Centre for Creative Skills',
-    schools: [
-      'School of Film & Television',
-      'School of Acting & Theatre',
-      'School of Music Production',
-      'School of Digital Media & Content Creation',
-    ],
+    name: 'IICA, Jagran Centre for Creative Skills',
+    description: 'A skill focused centre bridging education and employability through industry connected, practice based learning.',
+    schools: [],
   },
 ];
 
-const methodologyCards = [
-  {
-    id: 1,
-    title: 'Experiential Learning',
-    description: 'Jagran Lakecity University hosts a wide range of signature events that bring the campus to life. From academic conclaves, award ceremonies, and leadership forums to cultural showcases and student-led festivals, these events create shared experiences that define the university\'s vibrant atmosphere.',
-  },
-  {
-    id: 2,
-    title: 'Case-based teaching',
-    description: 'JLU events go beyond celebration — they are platforms for learning and leadership development. Students gain exposure to real-world conversations, industry perspectives, and collaborative problem-solving while actively contributing to planning, execution, and participation.',
-  },
-  {
-    id: 3,
-    title: 'Global exposure',
-    description: 'JLU events go beyond celebration — they are platforms for learning and leadership development. Students gain exposure to real-world conversations, industry perspectives, and collaborative problem-solving while actively contributing to planning, execution, and participation.',
-  },
+const learningMethods = [
+  'Dialogue-led sessions',
+  'Project-based exploration',
+  'Case discussions and simulations',
+  'Industry and field exposure',
+  'Collaborative and cross-disciplinary work',
 ];
 
 const testimonials = [
@@ -478,12 +456,14 @@ const Academics = () => {
                     >
                       {String(faculty.id).padStart(2, '0')}
                     </span>
-                    <span
-                      className="text-white font-medium group-hover:text-[#f0c14b] transition-colors"
-                      style={{ fontSize: '24px' }}
-                    >
-                      {faculty.name}
-                    </span>
+                    <div>
+                      <span
+                        className="text-white font-medium group-hover:text-[#f0c14b] transition-colors block"
+                        style={{ fontSize: '24px' }}
+                      >
+                        {faculty.name}
+                      </span>
+                    </div>
                   </div>
                   <motion.span
                     animate={{ rotate: openFaculty === faculty.id ? 45 : 0 }}
@@ -508,34 +488,46 @@ const Academics = () => {
                     className="pb-10 pl-14"
                     style={{ marginLeft: '30px' }}
                   >
-                    <div className="grid grid-cols-2 gap-x-16 gap-y-4">
-                      {faculty.schools.map((school, schoolIndex) => (
-                        <motion.div
-                          key={schoolIndex}
-                          initial={{ opacity: 0, x: -20 }}
-                          animate={{ opacity: 1, x: 0 }}
-                          transition={{ duration: 0.3, delay: schoolIndex * 0.05 }}
-                          className="group/school flex items-center gap-4 cursor-pointer py-2"
-                        >
-                          <span className="w-2 h-2 bg-[#f0c14b] rounded-full opacity-0 group-hover/school:opacity-100 transition-opacity" />
-                          <span
-                            className="text-[#ccc] group-hover/school:text-white transition-colors"
-                            style={{ fontSize: '16px' }}
-                          >
-                            {school}
-                          </span>
-                        </motion.div>
-                      ))}
-                    </div>
-                    <motion.button
-                      initial={{ opacity: 0 }}
-                      animate={{ opacity: 1 }}
-                      transition={{ delay: 0.3 }}
-                      className="mt-8 flex items-center gap-3 text-[#f0c14b] hover:text-white transition-colors"
+                    {/* Faculty Description */}
+                    <p
+                      className="text-[#999] mb-8"
+                      style={{ fontSize: '16px', lineHeight: 1.7, maxWidth: '600px' }}
                     >
-                      <span style={{ fontSize: '14px', fontWeight: 500 }}>View All Programs</span>
-                      <span>→</span>
-                    </motion.button>
+                      {faculty.description}
+                    </p>
+
+                    {/* Schools List */}
+                    {faculty.schools.length > 0 && (
+                      <div className="flex flex-col gap-6">
+                        {faculty.schools.map((school, schoolIndex) => (
+                          <motion.div
+                            key={schoolIndex}
+                            initial={{ opacity: 0, x: -20 }}
+                            animate={{ opacity: 1, x: 0 }}
+                            transition={{ duration: 0.3, delay: schoolIndex * 0.05 }}
+                            className="group/school cursor-pointer"
+                          >
+                            <div className="flex items-start gap-4">
+                              <span className="w-2 h-2 bg-[#f0c14b] rounded-full mt-2 flex-shrink-0" />
+                              <div>
+                                <span
+                                  className="text-white group-hover/school:text-[#f0c14b] transition-colors block mb-1"
+                                  style={{ fontSize: '18px', fontWeight: 500 }}
+                                >
+                                  {school.name}
+                                </span>
+                                <span
+                                  className="text-[#999]"
+                                  style={{ fontSize: '14px', lineHeight: 1.6 }}
+                                >
+                                  {school.description}
+                                </span>
+                              </div>
+                            </div>
+                          </motion.div>
+                        ))}
+                      </div>
+                    )}
                   </div>
                 </motion.div>
               </motion.div>
@@ -544,7 +536,7 @@ const Academics = () => {
         </div>
       </div>
 
-      {/* Teaching Methodology Section - Awwwards Style */}
+      {/* Teaching Methodology Section */}
       <div className="w-full bg-[#f6f7f0]">
         <div
           className="mx-auto"
@@ -556,134 +548,92 @@ const Academics = () => {
             paddingLeft: '120px',
           }}
         >
-          {/* Section Header */}
-          <motion.div
-            initial={{ opacity: 0, y: 40 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-            className="flex justify-between items-start mb-24"
-          >
-            <div style={{ maxWidth: '600px' }}>
-              <span
-                className="text-[#999] uppercase tracking-widest block mb-6"
-                style={{ fontSize: '12px', letterSpacing: '0.2em' }}
-              >
-                How We Teach
-              </span>
-              <h2
-                className="text-[#21313c]"
-                style={{
-                  fontSize: 'clamp(2.5rem, 5vw, 4rem)',
-                  fontWeight: 600,
-                  lineHeight: 1.1,
-                  letterSpacing: '-0.03em',
-                }}
-              >
-                Teaching that{' '}
-                <span style={{ fontFamily: "'Times New Roman', serif", fontStyle: 'italic', fontWeight: 400 }}>
-                  transforms
-                </span>
-              </h2>
-            </div>
-            <div
-              className="text-[#666] pt-8"
-              style={{
-                fontSize: '16px',
-                lineHeight: 1.8,
-                maxWidth: '380px',
-              }}
+          <div className="flex justify-between" style={{ gap: '80px' }}>
+            {/* Left Side - Content */}
+            <motion.div
+              initial={{ opacity: 0, x: -40 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8 }}
+              viewport={{ once: true }}
+              style={{ maxWidth: '580px' }}
             >
-              Learning happens through doing. Our methods blend theory with practice, reflection with action.
-            </div>
-          </motion.div>
-
-          {/* Methodology Cards - Horizontal Scroll */}
-          <div className="flex gap-6">
-            {methodologyCards.map((card, index) => (
-              <motion.div
-                key={card.id}
-                initial={{ opacity: 0, y: 50 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
-                viewport={{ once: true }}
-                className="group relative cursor-pointer flex-1"
+              <h2
+                className="text-[#21313c] mb-12"
                 style={{
-                  minHeight: '520px',
+                  fontSize: 'clamp(2rem, 4vw, 3rem)',
+                  fontWeight: 600,
+                  lineHeight: 1.2,
+                  letterSpacing: '-0.02em',
                 }}
               >
-                {/* Card Background */}
-                <div
-                  className="absolute inset-0 transition-colors duration-500"
-                  style={{
-                    backgroundColor: index === 0 ? '#21313c' : index === 1 ? '#fff' : '#f0c14b',
-                  }}
+                How learning takes shape
+              </h2>
+
+              <div className="space-y-6">
+                <p className="text-[#21313c]" style={{ fontSize: '20px', lineHeight: '28px' }}>
+                  At JLU, teaching is not a one-way transfer of information.
+                </p>
+                <p className="text-[#21313c]" style={{ fontSize: '20px', lineHeight: '28px' }}>
+                  It is a shared process shaped by conversation, exploration, and experience.
+                </p>
+                <p className="text-[#21313c]" style={{ fontSize: '20px', lineHeight: '28px' }}>
+                  Classrooms open into studios, labs, field spaces, and real-world contexts. Faculty guide rather than dictate, encouraging students to question, interpret, and arrive at their own understanding.
+                </p>
+              </div>
+
+              {/* Image below text */}
+              <div className="relative w-full overflow-hidden mt-10" style={{ height: '280px' }}>
+                <Image
+                  src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?w=800&q=80"
+                  alt="Students learning and collaborating at JLU"
+                  fill
+                  className="object-cover"
                 />
+              </div>
+            </motion.div>
 
-                {/* Card Content */}
-                <div
-                  className="relative h-full flex flex-col justify-between p-10"
-                >
-                  {/* Top Section */}
-                  <div>
-                    {/* Number */}
-                    <span
-                      className={`block mb-12 ${index === 0 ? 'text-[#666]' : index === 1 ? 'text-[#ccc]' : 'text-[#21313c]/40'}`}
-                      style={{
-                        fontSize: '80px',
-                        fontWeight: 700,
-                        lineHeight: 1,
-                        letterSpacing: '-0.04em',
-                      }}
-                    >
-                      0{card.id}
+            {/* Right Side - Learning Methods */}
+            <motion.div
+              initial={{ opacity: 0, x: 40 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+              viewport={{ once: true }}
+              style={{ maxWidth: '500px', paddingTop: '60px' }}
+            >
+              <p className="text-[#21313c] mb-8" style={{ fontSize: '20px', lineHeight: '28px', fontWeight: 500 }}>
+                Learning happens through:
+              </p>
+
+              <div className="space-y-4 mb-12">
+                {learningMethods.map((method, index) => (
+                  <motion.div
+                    key={index}
+                    initial={{ opacity: 0, x: 20 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    transition={{ duration: 0.4, delay: 0.3 + index * 0.1 }}
+                    viewport={{ once: true }}
+                    className="flex items-center gap-4"
+                  >
+                    <span className="text-[#f0c14b]" style={{ fontSize: '20px' }}>•</span>
+                    <span className="text-[#21313c]" style={{ fontSize: '18px', lineHeight: '24px' }}>
+                      {method}
                     </span>
+                  </motion.div>
+                ))}
+              </div>
 
-                    {/* Title */}
-                    <h3
-                      className={`mb-6 ${index === 0 ? 'text-white' : 'text-[#21313c]'}`}
-                      style={{
-                        fontSize: '28px',
-                        fontWeight: 600,
-                        lineHeight: 1.2,
-                      }}
-                    >
-                      {card.title}
-                    </h3>
-
-                    {/* Description */}
-                    <p
-                      className={`${index === 0 ? 'text-[#ccc]' : 'text-[#666]'}`}
-                      style={{
-                        fontSize: '15px',
-                        lineHeight: 1.8,
-                      }}
-                    >
-                      {card.description}
-                    </p>
-                  </div>
-
-                  {/* Bottom Section - Arrow */}
-                  <div className="flex justify-end">
-                    <motion.div
-                      className={`w-14 h-14 rounded-full flex items-center justify-center transition-colors ${
-                        index === 0
-                          ? 'bg-white/10 group-hover:bg-white/20'
-                          : index === 1
-                          ? 'bg-[#21313c]/10 group-hover:bg-[#21313c]/20'
-                          : 'bg-[#21313c]/10 group-hover:bg-[#21313c]/20'
-                      }`}
-                      whileHover={{ scale: 1.1 }}
-                      transition={{ duration: 0.3 }}
-                    >
-                      <span className={`text-xl ${index === 0 ? 'text-white' : 'text-[#21313c]'}`}>
-                        →
-                      </span>
-                    </motion.div>
-                  </div>
-                </div>
-              </motion.div>
-            ))}
+              <div className="space-y-6 pt-8 border-t border-[#d1d1d1]">
+                <p className="text-[#21313c]" style={{ fontSize: '20px', lineHeight: '28px', fontWeight: 500 }}>
+                  The focus is simple.
+                </p>
+                <p className="text-[#21313c]" style={{ fontSize: '20px', lineHeight: '28px' }}>
+                  Help students develop clarity of thought, confidence in expression, and the ability to apply what they know.
+                </p>
+                <p className="text-[#21313c]" style={{ fontSize: '20px', lineHeight: '28px' }}>
+                  Education here adapts to the learner, not the other way around.
+                </p>
+              </div>
+            </motion.div>
           </div>
         </div>
       </div>

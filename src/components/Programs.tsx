@@ -131,9 +131,9 @@ const Programs = () => {
             paddingRight: '120px',
           }}
         >
-          <div className="flex justify-between items-start" style={{ gap: '80px' }}>
+          <div className="flex justify-between items-center" style={{ gap: '80px' }}>
             {/* Left - Large Number */}
-            <div className="shrink-0">
+            <div className="shrink-0 text-center">
               <span
                 className="font-bold text-[#21313c] block"
                 style={{
@@ -157,7 +157,7 @@ const Programs = () => {
             </div>
 
             {/* Right - Content */}
-            <div style={{ maxWidth: '600px', paddingTop: '24px' }}>
+            <div style={{ maxWidth: '600px' }}>
               <div
                 className="text-[#666] mb-8 flex items-center flex-wrap"
                 style={{
@@ -198,131 +198,6 @@ const Programs = () => {
               </p>
             </div>
           </div>
-        </div>
-      </div>
-
-      {/* Program Categories Section */}
-      <div className="w-full bg-[#f6f7f0]">
-        <div
-          className="mx-auto"
-          style={{
-            maxWidth: '1440px',
-            paddingTop: '100px',
-            paddingRight: '120px',
-            paddingBottom: '100px',
-            paddingLeft: '120px',
-          }}
-        >
-          {/* Business and Management */}
-          <motion.div
-            initial={{ opacity: 0, y: 40 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            viewport={{ once: true }}
-            className="group py-12 border-b border-[#d1d1d1] cursor-pointer"
-          >
-            <div className="flex items-start justify-between gap-16">
-              <div className="flex items-start gap-8" style={{ flex: 1 }}>
-                <span className="text-[#999] text-sm font-medium" style={{ minWidth: '40px' }}>01</span>
-                <div style={{ maxWidth: '700px' }}>
-                  <h3
-                    className="text-[#21313c] mb-4 group-hover:text-[#666] transition-colors"
-                    style={{ fontSize: '32px', fontWeight: 600, lineHeight: 1.2 }}
-                  >
-                    Business and Management
-                  </h3>
-                  <p className="text-[#666] mb-8" style={{ fontSize: '16px', lineHeight: 1.7 }}>
-                    Designed for those drawn to leadership, decision making, and enterprise. These programs explore how organisations work, how markets evolve, and how ideas turn into action.
-                  </p>
-                  <div className="flex flex-wrap gap-2">
-                    {['UG Programs', 'PG Programs', 'PhD', 'Diploma'].map((tag) => (
-                      <span
-                        key={tag}
-                        className="px-4 py-2 bg-white text-[#21313c] text-xs font-medium uppercase tracking-wider rounded-full hover:bg-[#21313c] hover:text-white transition-colors cursor-pointer"
-                      >
-                        {tag}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-              </div>
-              <span className="text-[#21313c] text-2xl group-hover:translate-x-2 transition-transform">→</span>
-            </div>
-          </motion.div>
-
-          {/* Media, Journalism and Communication */}
-          <motion.div
-            initial={{ opacity: 0, y: 40 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.1 }}
-            viewport={{ once: true }}
-            className="group py-12 border-b border-[#d1d1d1] cursor-pointer"
-          >
-            <div className="flex items-start justify-between gap-16">
-              <div className="flex items-start gap-8" style={{ flex: 1 }}>
-                <span className="text-[#999] text-sm font-medium" style={{ minWidth: '40px' }}>02</span>
-                <div style={{ maxWidth: '700px' }}>
-                  <h3
-                    className="text-[#21313c] mb-4 group-hover:text-[#666] transition-colors"
-                    style={{ fontSize: '32px', fontWeight: 600, lineHeight: 1.2 }}
-                  >
-                    Media, Journalism and Communication
-                  </h3>
-                  <p className="text-[#666] mb-8" style={{ fontSize: '16px', lineHeight: 1.7 }}>
-                    For storytellers, analysts, and communicators who want to engage with society, culture, and media through meaningful narratives and responsible expression.
-                  </p>
-                  <div className="flex flex-wrap gap-2">
-                    {['UG Programs', 'PG Programs', 'PhD', 'Diploma'].map((tag) => (
-                      <span
-                        key={tag}
-                        className="px-4 py-2 bg-white text-[#21313c] text-xs font-medium uppercase tracking-wider rounded-full hover:bg-[#21313c] hover:text-white transition-colors cursor-pointer"
-                      >
-                        {tag}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-              </div>
-              <span className="text-[#21313c] text-2xl group-hover:translate-x-2 transition-transform">→</span>
-            </div>
-          </motion.div>
-
-          {/* Design, Fashion and Architecture */}
-          <motion.div
-            initial={{ opacity: 0, y: 40 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            viewport={{ once: true }}
-            className="group py-12 cursor-pointer"
-          >
-            <div className="flex items-start justify-between gap-16">
-              <div className="flex items-start gap-8" style={{ flex: 1 }}>
-                <span className="text-[#999] text-sm font-medium" style={{ minWidth: '40px' }}>03</span>
-                <div style={{ maxWidth: '700px' }}>
-                  <h3
-                    className="text-[#21313c] mb-4 group-hover:text-[#666] transition-colors"
-                    style={{ fontSize: '32px', fontWeight: 600, lineHeight: 1.2 }}
-                  >
-                    Design, Fashion and Architecture
-                  </h3>
-                  <p className="text-[#666] mb-8" style={{ fontSize: '16px', lineHeight: 1.7 }}>
-                    Programs that translate imagination into form. Students learn to think visually, work with materials, and create spaces and objects that shape how we live.
-                  </p>
-                  <div className="flex flex-wrap gap-2">
-                    {['UG Programs', 'PG Programs', 'PhD', 'Diploma'].map((tag) => (
-                      <span
-                        key={tag}
-                        className="px-4 py-2 bg-white text-[#21313c] text-xs font-medium uppercase tracking-wider rounded-full hover:bg-[#21313c] hover:text-white transition-colors cursor-pointer"
-                      >
-                        {tag}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-              </div>
-              <span className="text-[#21313c] text-2xl group-hover:translate-x-2 transition-transform">→</span>
-            </div>
-          </motion.div>
         </div>
       </div>
 

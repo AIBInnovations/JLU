@@ -2,52 +2,99 @@
 
 import { motion } from 'framer-motion';
 
+const governanceBodies = [
+  'Governing Body',
+  'Board of Management',
+  'Academic Council',
+];
+
 const Governance = () => {
   return (
-    <section className="bg-[#f6f7f0] py-20 px-6 md:px-12 lg:px-24">
+    <section className="bg-[#f6f7f0]">
       <div className="max-w-7xl mx-auto">
         {/* Governance Section */}
-        <div className="mb-20">
-          <motion.h2
-            initial={{ opacity: 0, y: 20 }}
+        <div
+          className="mb-20"
+          style={{
+            maxWidth: '1200px',
+            paddingTop: '80px',
+            paddingLeft: '120px',
+            paddingRight: '40px',
+          }}
+        >
+          {/* Governance Content */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
+            transition={{ duration: 0.8 }}
             viewport={{ once: true }}
-            className="text-4xl md:text-5xl font-bold text-[#21313c] mb-12"
+            style={{ maxWidth: '900px' }}
           >
-            Governance
-          </motion.h2>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '44px' }}>
+              <h2
+                className="font-bold text-[#21313c]"
+                style={{
+                  fontFamily: 'Inter, sans-serif',
+                  fontSize: '40px',
+                  lineHeight: '48px',
+                }}
+              >
+                Governance
+              </h2>
 
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20">
-            {/* Left - Description */}
-            <motion.div
-              initial={{ opacity: 0, x: -30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8 }}
-              viewport={{ once: true }}
-              className="space-y-6"
-            >
-              <p className="text-base md:text-lg leading-relaxed text-[#21313c]">
-                Strong governance ensures that JLU grows with clarity of purpose and integrity of action. The university's academic and administrative leadership work together to uphold standards, inspire innovation and guide long term institutional development.
-              </p>
-              <p className="text-base md:text-lg leading-relaxed text-[#21313c]">
-                These bodies play a key role in shaping academic direction, institutional policies and strategic growth, ensuring that JLU remains responsive to educational needs and global standards.
-              </p>
-            </motion.div>
+              {/* Governing Bodies List - Now below the title */}
+              <div
+                style={{
+                  display: 'flex',
+                  flexDirection: 'row',
+                  gap: '60px',
+                  flexWrap: 'wrap',
+                }}
+              >
+                {governanceBodies.map((body, index) => (
+                  <div
+                    key={index}
+                    className="text-[#21313c]"
+                    style={{
+                      fontFamily: 'Inter, sans-serif',
+                      fontWeight: 500,
+                      fontSize: '18px',
+                      lineHeight: '24px',
+                      paddingBottom: '12px',
+                      borderBottom: '2px solid #21313c',
+                    }}
+                  >
+                    {body}
+                  </div>
+                ))}
+              </div>
 
-            {/* Right - Governing Bodies List */}
-            <motion.div
-              initial={{ opacity: 0, x: 30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8, delay: 0.2 }}
-              viewport={{ once: true }}
-              className="flex flex-col gap-8 justify-center"
-            >
-              <div className="text-lg md:text-xl text-[#21313c]">Governing Body</div>
-              <div className="text-lg md:text-xl text-[#21313c]">Board of Management</div>
-              <div className="text-lg md:text-xl text-[#21313c]">Academic Council</div>
-            </motion.div>
-          </div>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
+                <p
+                  className="text-[#21313c]"
+                  style={{
+                    fontFamily: 'Inter, sans-serif',
+                    fontWeight: 400,
+                    fontSize: '20px',
+                    lineHeight: '28px',
+                  }}
+                >
+                  Strong governance ensures that JLU grows with clarity of purpose and integrity of action. The university's academic and administrative leadership work together to uphold standards, inspire innovation and guide long term institutional development.
+                </p>
+                <p
+                  className="text-[#21313c]"
+                  style={{
+                    fontFamily: 'Inter, sans-serif',
+                    fontWeight: 400,
+                    fontSize: '20px',
+                    lineHeight: '28px',
+                  }}
+                >
+                  These bodies play a key role in shaping academic direction, institutional policies and strategic growth, ensuring that JLU remains responsive to educational needs and global standards.
+                </p>
+              </div>
+            </div>
+          </motion.div>
         </div>
 
         {/* JLU Leadership Section */}

@@ -4,6 +4,30 @@ import Image from 'next/image';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { useState, useRef } from 'react';
 
+// Custom easing for smooth animations
+const customEase: [number, number, number, number] = [0.22, 1, 0.36, 1];
+
+// Stagger animation variants
+const staggerContainer = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.1,
+      delayChildren: 0.1,
+    },
+  },
+};
+
+const staggerItem = {
+  hidden: { opacity: 0, y: 30 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.6, ease: customEase },
+  },
+};
+
 const pastEventsImages = [
   'https://images.unsplash.com/photo-1523580494863-6f3031224c94?w=800&q=80', // Convocation
   'https://images.unsplash.com/photo-1532094349884-543bc11b234d?w=800&q=80', // Science Expo
@@ -156,463 +180,618 @@ const NewsAndEvents = () => {
         </div>
       </div>
 
-      {/* JLU in the news Section */}
-      <div className="w-full bg-[#f6f7f0]">
-        <div
-          className="mx-auto"
-          style={{
-            maxWidth: '1440px',
-            paddingTop: '64px',
-            paddingRight: '120px',
-            paddingBottom: '64px',
-            paddingLeft: '120px',
-          }}
-        >
-          {/* Title with line */}
-          <div className="flex items-end gap-6 mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold text-[#21313c] whitespace-nowrap">
-              JLU in the news
-            </h2>
-            <div
-              className="bg-gray-300 mb-2"
-              style={{ width: '798px', height: '1px' }}
-            />
-          </div>
-
-          {/* News Grid */}
-          <div className="flex flex-col lg:flex-row gap-8">
-            {/* Left - Large Card */}
-            <div className="lg:w-2/3">
-              {/* Image */}
-              <div
-                className="relative w-full overflow-hidden rounded-lg"
-                style={{ height: '560px', maxWidth: '580px' }}
-              >
-                <Image
-                  src="https://images.unsplash.com/photo-1524178232363-1fb2b075b655?w=1200&q=80"
-                  alt="JLU Award Ceremony"
-                  fill
-                  className="object-cover"
-                />
-              </div>
-              {/* Content */}
-              <div className="mt-6">
-                <p className="text-xs text-[#21313c] tracking-wider mb-2">AWARD</p>
-                <h3 className="text-2xl md:text-3xl font-bold text-[#21313c] mb-4">
-                  JLU Receives National Excellence Award for Innovation in Research
-                </h3>
-                <p className="text-base text-[#21313c] mb-4">
-                  The university has been recognized for its groundbreaking work in sustainable technology and urban planning initiatives.
-                </p>
-                <a href="#" className="inline-flex items-center gap-2 text-[#21313c] font-medium hover:underline">
-                  Read Story
-                  <span>→</span>
-                </a>
-              </div>
-            </div>
-
-            {/* Right - Two Small Cards */}
-            <div className="lg:w-1/3 flex flex-col gap-6">
-              {/* Card 1 */}
-              <div className="flex gap-4">
-                <div
-                  className="relative shrink-0 overflow-hidden rounded-lg"
-                  style={{ width: '270px', height: '241px' }}
-                >
-                  <Image
-                    src="https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=800&q=80"
-                    alt="AI Ethics Symposium"
-                    fill
-                    className="object-cover"
-                  />
-                </div>
-                <div className="flex flex-col justify-center">
-                  <p className="text-xs text-[#21313c] tracking-wider mb-2">PRESS</p>
-                  <h4 className="text-lg font-bold text-[#21313c] mb-3">
-                    International Symposium on AI Ethics Hosted at JLU Campus
-                  </h4>
-                  <a href="#" className="inline-flex items-center gap-2 text-sm text-[#21313c] font-medium hover:underline">
-                    Read Story
-                    <span>→</span>
-                  </a>
-                </div>
-              </div>
-
-              {/* Card 2 */}
-              <div className="flex gap-4">
-                <div
-                  className="relative shrink-0 overflow-hidden rounded-lg"
-                  style={{ width: '270px', height: '241px' }}
-                >
-                  <Image
-                    src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=800&q=80"
-                    alt="Research Center"
-                    fill
-                    className="object-cover"
-                  />
-                </div>
-                <div className="flex flex-col justify-center">
-                  <p className="text-xs text-[#21313c] tracking-wider mb-2">ANNOUNCEMENT</p>
-                  <h4 className="text-lg font-bold text-[#21313c] mb-3">
-                    New Interdisciplinary Research Center to Open in Fall 2026
-                  </h4>
-                  <a href="#" className="inline-flex items-center gap-2 text-sm text-[#21313c] font-medium hover:underline">
-                    Read Story
-                    <span>→</span>
-                  </a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
       {/* What's happening on campus Section */}
       <div className="w-full bg-[#f6f7f0]">
         <div
           className="mx-auto"
           style={{
             maxWidth: '1440px',
-            paddingTop: '64px',
+            paddingTop: '140px',
             paddingRight: '120px',
-            paddingBottom: '64px',
+            paddingBottom: '140px',
             paddingLeft: '120px',
           }}
         >
-          <h2 className="text-3xl md:text-4xl font-bold text-[#21313c] mb-12">
-            What's happening on campus
-          </h2>
+          <motion.div
+            className="mb-16"
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, ease: customEase }}
+            viewport={{ once: true }}
+          >
+            <span
+              className="text-[#999] uppercase tracking-widest block mb-6"
+              style={{ fontSize: '12px', letterSpacing: '0.2em' }}
+            >
+              Events Calendar
+            </span>
+            <h2
+              className="text-[#21313c]"
+              style={{
+                fontSize: 'clamp(2.5rem, 4vw, 3.5rem)',
+                fontWeight: 600,
+                lineHeight: 1.1,
+                letterSpacing: '-0.03em',
+              }}
+            >
+              What&apos;s happening{' '}
+              <span style={{ fontFamily: "'Times New Roman', serif", fontStyle: 'italic', fontWeight: 400 }}>
+                on campus
+              </span>
+            </h2>
+          </motion.div>
 
           {/* Filters */}
-          <div className="flex flex-col md:flex-row md:items-end gap-6 md:gap-12">
+          <motion.div
+            className="flex flex-col md:flex-row md:items-end gap-6 md:gap-12 mb-16"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.2, ease: customEase }}
+            viewport={{ once: true }}
+          >
             <div className="flex-1">
-              <label className="block text-sm text-[#21313c] mb-1">Keyword</label>
+              <label className="block text-sm text-[#999] mb-2 uppercase tracking-wider" style={{ fontSize: '11px' }}>Keyword</label>
               <input
                 type="text"
                 placeholder="Enter keyword"
-                className="w-full border-b border-gray-300 bg-transparent py-2 text-[#21313c] placeholder-gray-400 focus:outline-none"
+                className="w-full border-b-2 border-[#21313c]/20 bg-transparent py-3 text-[#21313c] placeholder-[#999] focus:outline-none focus:border-[#21313c] transition-colors"
               />
             </div>
             <div className="flex-1">
-              <label className="block text-sm text-[#21313c] mb-1">Year</label>
-              <select className="w-full border-b border-gray-300 bg-transparent py-2 text-[#21313c] focus:outline-none appearance-none">
+              <label className="block text-sm text-[#999] mb-2 uppercase tracking-wider" style={{ fontSize: '11px' }}>Year</label>
+              <select className="w-full border-b-2 border-[#21313c]/20 bg-transparent py-3 text-[#21313c] focus:outline-none focus:border-[#21313c] appearance-none cursor-pointer transition-colors">
                 <option value="-Any-">-Any-</option>
                 <option value="2026">2026</option>
                 <option value="2025">2025</option>
                 <option value="2024">2024</option>
               </select>
             </div>
-            <div className="flex items-end pb-2">
-              <button className="text-[#21313c] underline font-medium hover:no-underline">
-                Apply
-              </button>
-            </div>
-          </div>
+            <motion.button
+              className="px-8 py-3 bg-[#21313c] text-white font-medium rounded-full"
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
+            >
+              Apply Filters
+            </motion.button>
+          </motion.div>
 
           {/* Events and Calendar */}
-          <div
-            className="flex flex-col lg:flex-row lg:items-center justify-between mx-auto mt-20"
-            style={{ width: '1200px', height: '600px', gap: '40px' }}
-          >
+          <div className="flex flex-col lg:flex-row justify-between" style={{ gap: '60px' }}>
             {/* Left - Events List */}
-            <div className="lg:w-auto">
-              <div className="flex flex-col" style={{ width: '621px', gap: '32px' }}>
-                {/* Event 1 */}
-                <div>
-                  <div className="flex items-start" style={{ height: '119px', gap: '32px' }}>
-                    <div className="text-center" style={{ minWidth: '60px' }}>
-                      <p className="text-[#21313c] leading-none" style={{ fontSize: '44px', fontWeight: 700 }}>15</p>
-                      <p className="text-[#21313c]" style={{ fontSize: '24px', fontWeight: 500, lineHeight: '34px' }}>JAN</p>
-                    </div>
-                    <div>
-                      <p className="text-[#21313c] mb-2" style={{ fontSize: '16px', lineHeight: '24px' }}>
-                        <span style={{ fontWeight: 600 }}>Jagran Lakecity University</span>{' '}
-                        <span style={{ fontWeight: 400 }}>Jagran Lakecity University SEH, Bhopal</span>
-                      </p>
-                      <h4 className="text-[#21313c]" style={{ fontSize: '28px', fontWeight: 600, lineHeight: '100%' }}>
-                        Global Alumni Networking Summit
-                      </h4>
-                    </div>
+            <motion.div
+              className="flex-1"
+              variants={staggerContainer}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
+            >
+              {/* Event 1 */}
+              <motion.div
+                variants={staggerItem}
+                className="group cursor-pointer py-8 border-b border-[#21313c]/10 hover:border-[#21313c]/30 transition-colors"
+              >
+                <div className="flex items-start gap-8">
+                  <div className="text-center" style={{ minWidth: '80px' }}>
+                    <p className="text-[#f0c14b] leading-none" style={{ fontSize: '48px', fontWeight: 700 }}>15</p>
+                    <p className="text-[#21313c] uppercase tracking-wider" style={{ fontSize: '14px', fontWeight: 500 }}>JAN</p>
                   </div>
-                  <div className="border-b border-gray-300" style={{ width: '621px' }} />
+                  <div className="flex-1">
+                    <p className="text-[#999] mb-2" style={{ fontSize: '14px' }}>
+                      Jagran Lakecity University SEH, Bhopal
+                    </p>
+                    <h4
+                      className="text-[#21313c] group-hover:text-[#f0c14b] transition-colors"
+                      style={{ fontSize: '24px', fontWeight: 600, lineHeight: 1.3 }}
+                    >
+                      Global Alumni Networking Summit
+                    </h4>
+                  </div>
+                  <motion.span
+                    className="text-[#21313c] opacity-0 group-hover:opacity-100 transition-opacity"
+                    whileHover={{ x: 5 }}
+                  >
+                    →
+                  </motion.span>
                 </div>
+              </motion.div>
 
-                {/* Event 2 */}
-                <div>
-                  <div className="flex items-start" style={{ height: '119px', gap: '32px' }}>
-                    <div className="text-center" style={{ minWidth: '60px' }}>
-                      <p className="text-[#21313c] leading-none" style={{ fontSize: '44px', fontWeight: 700 }}>22</p>
-                      <p className="text-[#21313c]" style={{ fontSize: '24px', fontWeight: 500, lineHeight: '34px' }}>JAN</p>
-                    </div>
-                    <div>
-                      <p className="text-[#21313c] mb-2" style={{ fontSize: '16px', lineHeight: '24px' }}>
-                        <span style={{ fontWeight: 600 }}>Jagran Lakecity University</span>{' '}
-                        <span style={{ fontWeight: 400 }}>Jagran Lakecity University SEH, Bhopal</span>
-                      </p>
-                      <h4 className="text-[#21313c]" style={{ fontSize: '28px', fontWeight: 600, lineHeight: '100%' }}>
-                        Annual Winter Cultural Fest 'Aura'
-                      </h4>
-                    </div>
+              {/* Event 2 */}
+              <motion.div
+                variants={staggerItem}
+                className="group cursor-pointer py-8 border-b border-[#21313c]/10 hover:border-[#21313c]/30 transition-colors"
+              >
+                <div className="flex items-start gap-8">
+                  <div className="text-center" style={{ minWidth: '80px' }}>
+                    <p className="text-[#f0c14b] leading-none" style={{ fontSize: '48px', fontWeight: 700 }}>22</p>
+                    <p className="text-[#21313c] uppercase tracking-wider" style={{ fontSize: '14px', fontWeight: 500 }}>JAN</p>
                   </div>
-                  <div className="border-b border-gray-300" style={{ width: '621px' }} />
+                  <div className="flex-1">
+                    <p className="text-[#999] mb-2" style={{ fontSize: '14px' }}>
+                      Jagran Lakecity University SEH, Bhopal
+                    </p>
+                    <h4
+                      className="text-[#21313c] group-hover:text-[#f0c14b] transition-colors"
+                      style={{ fontSize: '24px', fontWeight: 600, lineHeight: 1.3 }}
+                    >
+                      Annual Winter Cultural Fest &apos;Aura&apos;
+                    </h4>
+                  </div>
+                  <motion.span
+                    className="text-[#21313c] opacity-0 group-hover:opacity-100 transition-opacity"
+                    whileHover={{ x: 5 }}
+                  >
+                    →
+                  </motion.span>
                 </div>
+              </motion.div>
 
-                {/* Event 3 */}
-                <div>
-                  <div className="flex items-start" style={{ height: '119px', gap: '32px' }}>
-                    <div className="text-center" style={{ minWidth: '60px' }}>
-                      <p className="text-[#21313c] leading-none" style={{ fontSize: '44px', fontWeight: 700 }}>05</p>
-                      <p className="text-[#21313c]" style={{ fontSize: '24px', fontWeight: 500, lineHeight: '34px' }}>FEB</p>
-                    </div>
-                    <div>
-                      <p className="text-[#21313c] mb-2" style={{ fontSize: '16px', lineHeight: '24px' }}>
-                        <span style={{ fontWeight: 600 }}>Jagran Lakecity University</span>{' '}
-                        <span style={{ fontWeight: 400 }}>Jagran Lakecity University SEH, Bhopal</span>
-                      </p>
-                      <h4 className="text-[#21313c]" style={{ fontSize: '28px', fontWeight: 600, lineHeight: '100%' }}>
-                        Workshop on Quantum Computing
-                      </h4>
-                    </div>
+              {/* Event 3 */}
+              <motion.div
+                variants={staggerItem}
+                className="group cursor-pointer py-8 border-b border-[#21313c]/10 hover:border-[#21313c]/30 transition-colors"
+              >
+                <div className="flex items-start gap-8">
+                  <div className="text-center" style={{ minWidth: '80px' }}>
+                    <p className="text-[#f0c14b] leading-none" style={{ fontSize: '48px', fontWeight: 700 }}>05</p>
+                    <p className="text-[#21313c] uppercase tracking-wider" style={{ fontSize: '14px', fontWeight: 500 }}>FEB</p>
                   </div>
-                  <div className="border-b border-gray-300" style={{ width: '621px' }} />
+                  <div className="flex-1">
+                    <p className="text-[#999] mb-2" style={{ fontSize: '14px' }}>
+                      Jagran Lakecity University SEH, Bhopal
+                    </p>
+                    <h4
+                      className="text-[#21313c] group-hover:text-[#f0c14b] transition-colors"
+                      style={{ fontSize: '24px', fontWeight: 600, lineHeight: 1.3 }}
+                    >
+                      Workshop on Quantum Computing
+                    </h4>
+                  </div>
+                  <motion.span
+                    className="text-[#21313c] opacity-0 group-hover:opacity-100 transition-opacity"
+                    whileHover={{ x: 5 }}
+                  >
+                    →
+                  </motion.span>
                 </div>
-              </div>
+              </motion.div>
 
               {/* View all link */}
-              <a href="#" className="inline-block text-[#21313c] underline font-medium hover:no-underline mt-10">
+              <motion.a
+                href="#"
+                className="inline-flex items-center gap-3 mt-10 text-[#21313c] font-medium group"
+                whileHover={{ x: 5 }}
+              >
                 View all upcoming events
-              </a>
-            </div>
+                <span className="group-hover:translate-x-2 transition-transform duration-300">→</span>
+              </motion.a>
+            </motion.div>
 
             {/* Right - Calendar */}
-            <div>
+            <motion.div
+              initial={{ opacity: 0, x: 50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8, ease: customEase }}
+              viewport={{ once: true }}
+            >
               <div
-                className="bg-[#d9d9d9] flex flex-col"
-                style={{ width: '539px', height: '600px' }}
+                className="bg-[#21313c] flex flex-col"
+                style={{ width: '480px', height: '520px', borderRadius: '16px' }}
               >
                 {/* Calendar Header */}
-                <div className="flex items-center justify-between px-6 py-4">
-                  <p className="text-sm font-medium text-[#21313c]">January 2026</p>
-                  <div className="flex gap-3">
-                    <button className="text-[#21313c] text-sm">←</button>
-                    <button className="text-[#21313c] text-sm">→</button>
+                <div className="flex items-center justify-between px-8 py-6 border-b border-white/10">
+                  <p className="text-lg font-semibold text-white">January 2026</p>
+                  <div className="flex gap-2">
+                    <motion.button
+                      className="w-10 h-10 rounded-full bg-white/10 text-white flex items-center justify-center hover:bg-white/20 transition-colors"
+                      whileHover={{ scale: 1.1 }}
+                      whileTap={{ scale: 0.95 }}
+                    >
+                      ←
+                    </motion.button>
+                    <motion.button
+                      className="w-10 h-10 rounded-full bg-white/10 text-white flex items-center justify-center hover:bg-white/20 transition-colors"
+                      whileHover={{ scale: 1.1 }}
+                      whileTap={{ scale: 0.95 }}
+                    >
+                      →
+                    </motion.button>
                   </div>
                 </div>
                 {/* Calendar Placeholder */}
                 <div className="flex-1 flex items-center justify-center">
-                  <p className="text-3xl font-medium text-[#21313c]">Calendar</p>
+                  <p className="text-3xl font-medium text-white/50">Calendar</p>
                 </div>
               </div>
-            </div>
+            </motion.div>
           </div>
         </div>
       </div>
 
       {/* Highlights from past events Section */}
-      <div className="w-full bg-[#f6f7f0]">
+      <div className="w-full bg-white">
         <div
           className="mx-auto"
           style={{
             maxWidth: '1440px',
-            paddingTop: '64px',
+            paddingTop: '140px',
             paddingRight: '120px',
-            paddingBottom: '64px',
+            paddingBottom: '140px',
             paddingLeft: '120px',
           }}
         >
-          <div className="flex items-center justify-between mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold text-[#21313c]">
-              Highlights from past events
-            </h2>
-            <div className="flex gap-4">
-              <button
+          <motion.div
+            className="flex items-end justify-between mb-16"
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, ease: customEase }}
+            viewport={{ once: true }}
+          >
+            <div>
+              <span
+                className="text-[#999] uppercase tracking-widest block mb-6"
+                style={{ fontSize: '12px', letterSpacing: '0.2em' }}
+              >
+                Archive
+              </span>
+              <h2
+                className="text-[#21313c]"
+                style={{
+                  fontSize: 'clamp(2.5rem, 4vw, 3.5rem)',
+                  fontWeight: 600,
+                  lineHeight: 1.1,
+                  letterSpacing: '-0.03em',
+                }}
+              >
+                Highlights from{' '}
+                <span style={{ fontFamily: "'Times New Roman', serif", fontStyle: 'italic', fontWeight: 400 }}>
+                  past events
+                </span>
+              </h2>
+            </div>
+            <div className="flex gap-3">
+              <motion.button
                 onClick={handlePrev}
                 disabled={currentSlide === 0}
-                className="w-12 h-12 border border-[#21313c] flex items-center justify-center text-[#21313c] hover:bg-[#21313c] hover:text-white transition-colors disabled:opacity-30 disabled:cursor-not-allowed"
+                className="w-14 h-14 rounded-full border-2 border-[#21313c] flex items-center justify-center text-[#21313c] hover:bg-[#21313c] hover:text-white transition-all disabled:opacity-30 disabled:cursor-not-allowed"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
               >
                 ←
-              </button>
-              <button
+              </motion.button>
+              <motion.button
                 onClick={handleNext}
                 disabled={currentSlide >= maxSlide}
-                className="w-12 h-12 border border-[#21313c] flex items-center justify-center text-[#21313c] hover:bg-[#21313c] hover:text-white transition-colors disabled:opacity-30 disabled:cursor-not-allowed"
+                className="w-14 h-14 rounded-full border-2 border-[#21313c] flex items-center justify-center text-[#21313c] hover:bg-[#21313c] hover:text-white transition-all disabled:opacity-30 disabled:cursor-not-allowed"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
               >
                 →
-              </button>
+              </motion.button>
             </div>
-          </div>
+          </motion.div>
 
           {/* Cards Carousel */}
           <div className="overflow-hidden">
-            <div
-              className="flex transition-transform duration-300 ease-in-out"
+            <motion.div
+              className="flex"
               style={{
-                transform: `translateX(-${currentSlide * (477 + 24)}px)`,
-                gap: '24px',
+                transform: `translateX(-${currentSlide * (400 + 32)}px)`,
+                gap: '32px',
               }}
+              animate={{ x: -currentSlide * (400 + 32) }}
+              transition={{ duration: 0.6, ease: customEase }}
             >
               {pastEventsData.map((event, index) => (
-                <div key={event.id} className="shrink-0" style={{ width: '477px' }}>
+                <motion.div
+                  key={event.id}
+                  className="shrink-0 group cursor-pointer"
+                  style={{ width: '400px' }}
+                  initial={{ opacity: 0, y: 40 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6, delay: index * 0.1, ease: customEase }}
+                  viewport={{ once: true }}
+                >
                   {/* Card Image */}
-                  <div
+                  <motion.div
                     className="relative overflow-hidden"
-                    style={{ width: '477px', height: '600px' }}
+                    style={{ width: '400px', height: '500px', borderRadius: '16px' }}
+                    whileHover={{ scale: 1.02 }}
+                    transition={{ duration: 0.4 }}
                   >
-                    <Image
-                      src={pastEventsImages[index]}
-                      alt={event.title}
-                      fill
-                      className="object-cover"
-                    />
-                    <span className="absolute top-4 left-4 bg-white px-3 py-1 text-sm font-medium text-[#21313c] z-10">
+                    <motion.div
+                      className="absolute inset-0"
+                      whileHover={{ scale: 1.08 }}
+                      transition={{ duration: 0.8, ease: customEase }}
+                    >
+                      <Image
+                        src={pastEventsImages[index]}
+                        alt={event.title}
+                        fill
+                        className="object-cover"
+                      />
+                    </motion.div>
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
+                    <span className="absolute top-6 left-6 bg-[#f0c14b] px-4 py-2 text-sm font-semibold text-[#21313c] z-10">
                       {event.year}
                     </span>
-                  </div>
+                    <div className="absolute bottom-6 left-6 right-6">
+                      <h3 className="text-2xl font-bold text-white mb-2">
+                        {event.title}
+                      </h3>
+                    </div>
+                  </motion.div>
                   {/* Card Content */}
                   <div className="mt-6">
-                    <h3 className="text-2xl font-bold text-[#21313c] mb-2">
-                      {event.title}
-                    </h3>
-                    <p className="text-base text-[#21313c] mb-4">
+                    <p className="text-[#666] mb-4" style={{ fontSize: '15px', lineHeight: 1.7 }}>
                       {event.description}
                     </p>
-                    <a href="#" className="inline-block text-[#21313c] underline font-medium hover:no-underline">
-                      View Archive
-                    </a>
+                    <motion.a
+                      href="#"
+                      className="inline-flex items-center gap-2 text-[#21313c] font-medium group-hover:text-[#f0c14b] transition-colors"
+                      whileHover={{ x: 3 }}
+                    >
+                      View Archive <span>→</span>
+                    </motion.a>
                   </div>
-                </div>
+                </motion.div>
               ))}
-            </div>
+            </motion.div>
           </div>
         </div>
       </div>
 
       {/* Campus in moments Section */}
-      <div className="w-full bg-[#d9d9d9]">
+      <div className="w-full bg-white">
         <div
           className="relative mx-auto overflow-hidden"
           style={{ maxWidth: '1440px', height: '1000px' }}
         >
         {/* Card 1 - Top Left - Students Studying */}
-        <div
-          className="absolute overflow-hidden"
-          style={{ width: '403px', height: '238px', top: '0px', left: '188px' }}
+        <motion.div
+          className="absolute overflow-hidden cursor-pointer group"
+          style={{ width: '403px', height: '238px', top: '0px', left: '188px', borderRadius: '16px' }}
+          initial={{ opacity: 0, y: 60 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
+          viewport={{ once: true }}
         >
-          <Image
-            src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?w=800&q=80"
-            alt="Students collaborating"
-            fill
-            className="object-cover"
-          />
-        </div>
+          <motion.div
+            className="absolute inset-0"
+            whileHover={{ scale: 1.08 }}
+            transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+          >
+            <Image
+              src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?w=800&q=80"
+              alt="Students collaborating"
+              fill
+              className="object-cover"
+            />
+          </motion.div>
+          <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-300" />
+        </motion.div>
         {/* Card 2 - Top Center - Graduation */}
-        <div
-          className="absolute overflow-hidden"
-          style={{ width: '308px', height: '325px', top: '0px', left: '753px' }}
+        <motion.div
+          className="absolute overflow-hidden cursor-pointer group"
+          style={{ width: '308px', height: '325px', top: '0px', left: '753px', borderRadius: '16px' }}
+          initial={{ opacity: 0, y: 60 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
+          viewport={{ once: true }}
         >
-          <Image
-            src="https://images.unsplash.com/photo-1523580494863-6f3031224c94?w=800&q=80"
-            alt="Graduation ceremony"
-            fill
-            className="object-cover"
-          />
-        </div>
+          <motion.div
+            className="absolute inset-0"
+            whileHover={{ scale: 1.08 }}
+            transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+          >
+            <Image
+              src="https://images.unsplash.com/photo-1523580494863-6f3031224c94?w=800&q=80"
+              alt="Graduation ceremony"
+              fill
+              className="object-cover"
+            />
+          </motion.div>
+          <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-300" />
+        </motion.div>
         {/* Card 3 - Top Right (partially cut) - Campus Architecture */}
-        <div
-          className="absolute overflow-hidden"
-          style={{ width: '193px', height: '193px', top: '-50px', left: '1284px' }}
+        <motion.div
+          className="absolute overflow-hidden cursor-pointer group"
+          style={{ width: '193px', height: '193px', top: '-50px', left: '1284px', borderRadius: '16px' }}
+          initial={{ opacity: 0, x: 60 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.8, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
+          viewport={{ once: true }}
         >
-          <Image
-            src="https://images.unsplash.com/photo-1562774053-701939374585?w=400&q=80"
-            alt="Campus building"
-            fill
-            className="object-cover"
-          />
-        </div>
+          <motion.div
+            className="absolute inset-0"
+            whileHover={{ scale: 1.08 }}
+            transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+          >
+            <Image
+              src="https://images.unsplash.com/photo-1562774053-701939374585?w=400&q=80"
+              alt="Campus building"
+              fill
+              className="object-cover"
+            />
+          </motion.div>
+          <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-300" />
+        </motion.div>
         {/* Card 4 - Middle Right - Lab Work */}
-        <div
-          className="absolute overflow-hidden"
-          style={{ width: '215px', height: '215px', top: '302px', left: '1154px' }}
+        <motion.div
+          className="absolute overflow-hidden cursor-pointer group"
+          style={{ width: '215px', height: '215px', top: '302px', left: '1154px', borderRadius: '16px' }}
+          initial={{ opacity: 0, x: 60 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.8, delay: 0.4, ease: [0.22, 1, 0.36, 1] }}
+          viewport={{ once: true }}
         >
-          <Image
-            src="https://images.unsplash.com/photo-1532094349884-543bc11b234d?w=400&q=80"
-            alt="Students in lab"
-            fill
-            className="object-cover"
-          />
-        </div>
+          <motion.div
+            className="absolute inset-0"
+            whileHover={{ scale: 1.08 }}
+            transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+          >
+            <Image
+              src="https://images.unsplash.com/photo-1532094349884-543bc11b234d?w=400&q=80"
+              alt="Students in lab"
+              fill
+              className="object-cover"
+            />
+          </motion.div>
+          <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-300" />
+        </motion.div>
         {/* Card 5 - Middle Left - Cultural Event */}
-        <div
-          className="absolute overflow-hidden"
-          style={{ width: '267px', height: '325px', top: '308px', left: '0px' }}
+        <motion.div
+          className="absolute overflow-hidden cursor-pointer group"
+          style={{ width: '267px', height: '325px', top: '308px', left: '0px', borderRadius: '16px' }}
+          initial={{ opacity: 0, x: -60 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.8, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
+          viewport={{ once: true }}
         >
-          <Image
-            src="https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=600&q=80"
-            alt="Cultural performance"
-            fill
-            className="object-cover"
-          />
-        </div>
+          <motion.div
+            className="absolute inset-0"
+            whileHover={{ scale: 1.08 }}
+            transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+          >
+            <Image
+              src="https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=600&q=80"
+              alt="Cultural performance"
+              fill
+              className="object-cover"
+            />
+          </motion.div>
+          <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-300" />
+        </motion.div>
         {/* Card 6 - Bottom Left (partially cut) - Sports */}
-        <div
-          className="absolute overflow-hidden"
-          style={{ width: '212px', height: '175px', top: '750px', left: '-56px' }}
+        <motion.div
+          className="absolute overflow-hidden cursor-pointer group"
+          style={{ width: '212px', height: '175px', top: '750px', left: '-56px', borderRadius: '16px' }}
+          initial={{ opacity: 0, x: -60 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.8, delay: 0.5, ease: [0.22, 1, 0.36, 1] }}
+          viewport={{ once: true }}
         >
-          <Image
-            src="https://images.unsplash.com/photo-1574629810360-7efbbe195018?w=400&q=80"
-            alt="Sports activity"
-            fill
-            className="object-cover"
-          />
-        </div>
+          <motion.div
+            className="absolute inset-0"
+            whileHover={{ scale: 1.08 }}
+            transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+          >
+            <Image
+              src="https://images.unsplash.com/photo-1574629810360-7efbbe195018?w=400&q=80"
+              alt="Sports activity"
+              fill
+              className="object-cover"
+            />
+          </motion.div>
+          <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-300" />
+        </motion.div>
         {/* Card 7 - Bottom Center Left - Library */}
-        <div
-          className="absolute overflow-hidden"
-          style={{ width: '214px', height: '325px', top: '675px', left: '319px' }}
+        <motion.div
+          className="absolute overflow-hidden cursor-pointer group"
+          style={{ width: '214px', height: '325px', top: '675px', left: '319px', borderRadius: '16px' }}
+          initial={{ opacity: 0, y: 60 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.6, ease: [0.22, 1, 0.36, 1] }}
+          viewport={{ once: true }}
         >
-          <Image
-            src="https://images.unsplash.com/photo-1481627834876-b7833e8f5570?w=400&q=80"
-            alt="Library"
-            fill
-            className="object-cover"
-          />
-        </div>
+          <motion.div
+            className="absolute inset-0"
+            whileHover={{ scale: 1.08 }}
+            transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+          >
+            <Image
+              src="https://images.unsplash.com/photo-1481627834876-b7833e8f5570?w=400&q=80"
+              alt="Library"
+              fill
+              className="object-cover"
+            />
+          </motion.div>
+          <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-300" />
+        </motion.div>
         {/* Card 8 - Bottom Center - Campus Garden */}
-        <div
-          className="absolute overflow-hidden"
-          style={{ width: '399px', height: '210px', top: '790px', left: '627px' }}
+        <motion.div
+          className="absolute overflow-hidden cursor-pointer group"
+          style={{ width: '399px', height: '210px', top: '790px', left: '627px', borderRadius: '16px' }}
+          initial={{ opacity: 0, y: 60 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.7, ease: [0.22, 1, 0.36, 1] }}
+          viewport={{ once: true }}
         >
-          <Image
-            src="https://images.unsplash.com/photo-1541339907198-e08756dedf3f?w=800&q=80"
-            alt="Campus grounds"
-            fill
-            className="object-cover"
-          />
-        </div>
+          <motion.div
+            className="absolute inset-0"
+            whileHover={{ scale: 1.08 }}
+            transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+          >
+            <Image
+              src="https://images.unsplash.com/photo-1541339907198-e08756dedf3f?w=800&q=80"
+              alt="Campus grounds"
+              fill
+              className="object-cover"
+            />
+          </motion.div>
+          <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-300" />
+        </motion.div>
         {/* Card 9 - Bottom Right - Student Life */}
-        <div
-          className="absolute overflow-hidden"
-          style={{ width: '286px', height: '343px', top: '601px', left: '1154px' }}
+        <motion.div
+          className="absolute overflow-hidden cursor-pointer group"
+          style={{ width: '286px', height: '343px', top: '601px', left: '1154px', borderRadius: '16px' }}
+          initial={{ opacity: 0, x: 60 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.8, delay: 0.6, ease: [0.22, 1, 0.36, 1] }}
+          viewport={{ once: true }}
         >
-          <Image
-            src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=600&q=80"
-            alt="Students socializing"
-            fill
-            className="object-cover"
-          />
-        </div>
+          <motion.div
+            className="absolute inset-0"
+            whileHover={{ scale: 1.08 }}
+            transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+          >
+            <Image
+              src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=600&q=80"
+              alt="Students socializing"
+              fill
+              className="object-cover"
+            />
+          </motion.div>
+          <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-300" />
+        </motion.div>
 
         {/* Center Content */}
         <div className="absolute inset-0 flex flex-col items-center justify-center text-center">
-          <h2 className="text-5xl font-bold text-[#21313c] mb-4">
-            Campus in moments
-          </h2>
-          <p className="text-xl text-[#21313c] mb-4">
-            A glimpse into life, learning, and celebrations at JLU.
-          </p>
-          <a href="#" className="text-lg font-bold text-[#21313c] underline hover:no-underline">
+          <motion.h2
+            className="text-4xl md:text-5xl font-bold text-[#21313c] mb-4"
+            initial={{ opacity: 0, scale: 1.2 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
+            viewport={{ once: true }}
+          >
+            Campus Gallery:{' '}
+            <span style={{ fontFamily: "'Times New Roman', serif", fontStyle: 'italic', fontWeight: 400 }}>
+              A Living
+            </span>
+            <br />
+            Learning Environment
+          </motion.h2>
+          <motion.p
+            className="text-xl text-[#666] mb-6 max-w-md"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
+            viewport={{ once: true }}
+          >
+            Experience the vibrant life, learning, and celebrations at JLU campus.
+          </motion.p>
+          <motion.a
+            href="#"
+            className="inline-flex items-center gap-2 px-8 py-4 bg-[#21313c] text-white font-semibold rounded-full hover:bg-[#1a3a3a] transition-colors"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.4, ease: [0.22, 1, 0.36, 1] }}
+            viewport={{ once: true }}
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.98 }}
+          >
             Explore Gallery
-          </a>
+            <span>→</span>
+          </motion.a>
         </div>
         </div>
       </div>
@@ -620,97 +799,176 @@ const NewsAndEvents = () => {
       {/* Media resources Section */}
       <div className="w-full bg-[#f6f7f0]">
         <div
-          className="mx-auto flex justify-between"
+          className="mx-auto flex flex-col lg:flex-row justify-between gap-12"
           style={{
             maxWidth: '1440px',
-            height: '629px',
-            paddingTop: '80px',
+            paddingTop: '140px',
             paddingRight: '120px',
-            paddingBottom: '80px',
+            paddingBottom: '140px',
             paddingLeft: '120px',
           }}
         >
         {/* Left Side - Media Resources */}
-        <div style={{ maxWidth: '500px' }}>
-          <h2 className="text-4xl md:text-5xl font-bold text-[#21313c] mb-4">
-            Media resources
+        <motion.div
+          className="flex-1"
+          style={{ maxWidth: '500px' }}
+          initial={{ opacity: 0, x: -50 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.8, ease: customEase }}
+          viewport={{ once: true }}
+        >
+          <span
+            className="text-[#999] uppercase tracking-widest block mb-6"
+            style={{ fontSize: '12px', letterSpacing: '0.2em' }}
+          >
+            Downloads
+          </span>
+          <h2
+            className="text-[#21313c] mb-4"
+            style={{
+              fontSize: 'clamp(2.5rem, 4vw, 3.5rem)',
+              fontWeight: 600,
+              lineHeight: 1.1,
+              letterSpacing: '-0.03em',
+            }}
+          >
+            Media{' '}
+            <span style={{ fontFamily: "'Times New Roman', serif", fontStyle: 'italic', fontWeight: 400 }}>
+              resources
+            </span>
           </h2>
-          <p className="text-base text-[#21313c] mb-10">
+          <p className="text-[#666] mb-12" style={{ fontSize: '16px', lineHeight: 1.8 }}>
             Official resources and assets for journalists, institutional partners, and media outlets covering university activities.
           </p>
 
           {/* Download Items */}
-          <div className="flex flex-col gap-6">
+          <motion.div
+            className="flex flex-col"
+            variants={staggerContainer}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+          >
             {/* Item 1 - University Logo Pack */}
-            <div className="flex items-center gap-4">
-              <div className="w-14 h-14 border border-[#21313c] flex items-center justify-center">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+            <motion.a
+              href="#"
+              variants={staggerItem}
+              className="flex items-center gap-6 py-6 border-b border-[#21313c]/10 group cursor-pointer hover:border-[#21313c]/30 transition-colors"
+              whileHover={{ x: 8 }}
+              transition={{ duration: 0.3 }}
+            >
+              <div className="w-14 h-14 rounded-full border-2 border-[#21313c] flex items-center justify-center group-hover:bg-[#21313c] group-hover:text-white transition-all">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                   <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
                   <polyline points="7 10 12 15 17 10" />
                   <line x1="12" y1="15" x2="12" y2="3" />
                 </svg>
               </div>
-              <div>
-                <h3 className="text-lg font-bold text-[#21313c]">University Logo Pack</h3>
-                <p className="text-sm text-[#21313c]">PNG, SVG, EPS (45MB)</p>
+              <div className="flex-1">
+                <h3 className="text-lg font-semibold text-[#21313c] group-hover:text-[#f0c14b] transition-colors">University Logo Pack</h3>
+                <p className="text-sm text-[#999]">PNG, SVG, EPS (45MB)</p>
               </div>
-            </div>
+              <span className="text-[#21313c] opacity-0 group-hover:opacity-100 transition-opacity">→</span>
+            </motion.a>
 
             {/* Item 2 - Brand Guidelines */}
-            <div className="flex items-center gap-4">
-              <div className="w-14 h-14 border border-[#21313c] flex items-center justify-center">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                  <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
-                  <polyline points="7 10 12 15 17 10" />
-                  <line x1="12" y1="15" x2="12" y2="3" />
+            <motion.a
+              href="#"
+              variants={staggerItem}
+              className="flex items-center gap-6 py-6 border-b border-[#21313c]/10 group cursor-pointer hover:border-[#21313c]/30 transition-colors"
+              whileHover={{ x: 8 }}
+              transition={{ duration: 0.3 }}
+            >
+              <div className="w-14 h-14 rounded-full border-2 border-[#21313c] flex items-center justify-center group-hover:bg-[#21313c] group-hover:text-white transition-all">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                  <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+                  <polyline points="14 2 14 8 20 8" />
+                  <line x1="16" y1="13" x2="8" y2="13" />
+                  <line x1="16" y1="17" x2="8" y2="17" />
+                  <polyline points="10 9 9 9 8 9" />
                 </svg>
               </div>
-              <div>
-                <h3 className="text-lg font-bold text-[#21313c]">Brand Guidelines</h3>
-                <p className="text-sm text-[#21313c]">PDF (12MB)</p>
+              <div className="flex-1">
+                <h3 className="text-lg font-semibold text-[#21313c] group-hover:text-[#f0c14b] transition-colors">Brand Guidelines</h3>
+                <p className="text-sm text-[#999]">PDF (12MB)</p>
               </div>
-            </div>
+              <span className="text-[#21313c] opacity-0 group-hover:opacity-100 transition-opacity">→</span>
+            </motion.a>
 
             {/* Item 3 - Leadership Photos */}
-            <div className="flex items-center gap-4">
-              <div className="w-14 h-14 border border-[#21313c] flex items-center justify-center">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                  <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
-                  <polyline points="17 8 12 3 7 8" />
-                  <line x1="12" y1="3" x2="12" y2="15" />
+            <motion.a
+              href="#"
+              variants={staggerItem}
+              className="flex items-center gap-6 py-6 border-b border-[#21313c]/10 group cursor-pointer hover:border-[#21313c]/30 transition-colors"
+              whileHover={{ x: 8 }}
+              transition={{ duration: 0.3 }}
+            >
+              <div className="w-14 h-14 rounded-full border-2 border-[#21313c] flex items-center justify-center group-hover:bg-[#21313c] group-hover:text-white transition-all">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                  <rect x="3" y="3" width="18" height="18" rx="2" ry="2" />
+                  <circle cx="8.5" cy="8.5" r="1.5" />
+                  <polyline points="21 15 16 10 5 21" />
                 </svg>
               </div>
-              <div>
-                <h3 className="text-lg font-bold text-[#21313c]">Leadership Photos</h3>
-                <p className="text-sm text-[#21313c]">High-Res Gallery</p>
+              <div className="flex-1">
+                <h3 className="text-lg font-semibold text-[#21313c] group-hover:text-[#f0c14b] transition-colors">Leadership Photos</h3>
+                <p className="text-sm text-[#999]">High-Res Gallery</p>
               </div>
-            </div>
-          </div>
-        </div>
+              <span className="text-[#21313c] opacity-0 group-hover:opacity-100 transition-opacity">→</span>
+            </motion.a>
+          </motion.div>
+        </motion.div>
 
         {/* Right Side - Press Inquiries Card */}
-        <div
-          className="bg-[#d9d9d9] flex flex-col justify-center"
-          style={{ width: '450px', padding: '40px' }}
+        <motion.div
+          className="bg-[#21313c] flex flex-col justify-center"
+          style={{ width: '480px', padding: '48px', borderRadius: '16px' }}
+          initial={{ opacity: 0, x: 50 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.8, ease: customEase }}
+          viewport={{ once: true }}
         >
-          <p className="text-xs font-medium text-[#21313c] tracking-wider mb-4">
-            PRESS INQUIRIES
-          </p>
-          <h3 className="text-2xl md:text-3xl font-bold text-[#21313c] mb-4">
-            Get in touch with our communications team
+          <span
+            className="text-[#f0c14b] uppercase tracking-widest block mb-6"
+            style={{ fontSize: '12px', letterSpacing: '0.2em' }}
+          >
+            Press Inquiries
+          </span>
+          <h3
+            className="text-white mb-4"
+            style={{
+              fontSize: 'clamp(1.75rem, 3vw, 2.25rem)',
+              fontWeight: 600,
+              lineHeight: 1.2,
+              letterSpacing: '-0.02em',
+            }}
+          >
+            Get in touch with our{' '}
+            <span style={{ fontFamily: "'Times New Roman', serif", fontStyle: 'italic', fontWeight: 400 }}>
+              communications
+            </span>{' '}
+            team
           </h3>
-          <p className="text-sm text-[#21313c] mb-8">
+          <p className="text-white/70 mb-10" style={{ fontSize: '15px', lineHeight: 1.8 }}>
             For urgent media requests, interview coordination, or campus filming permissions, please contact our office directly.
           </p>
           <div className="flex flex-col gap-4">
-            <button className="w-full py-4 bg-[#c4c4c4] text-[#21313c] font-medium hover:bg-[#b0b0b0] transition-colors">
+            <motion.button
+              className="w-full py-4 bg-[#f0c14b] text-[#21313c] font-semibold rounded-full hover:bg-[#e5b63e] transition-colors"
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
+            >
               Download Media Kit
-            </button>
-            <button className="w-full py-4 bg-white border border-[#21313c] text-[#21313c] font-medium hover:bg-gray-50 transition-colors">
+            </motion.button>
+            <motion.button
+              className="w-full py-4 bg-transparent border-2 border-white text-white font-semibold rounded-full hover:bg-white hover:text-[#21313c] transition-colors"
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
+            >
               Contact Communications
-            </button>
+            </motion.button>
           </div>
-        </div>
+        </motion.div>
         </div>
       </div>
     </section>

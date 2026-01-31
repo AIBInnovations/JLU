@@ -3,6 +3,7 @@
 import { useRef, useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import { useIsMobile } from '../hooks/useIsMobile';
 
 const navigationItems = [
@@ -39,12 +40,14 @@ interface MenuOverlayProps {
 }
 
 const MenuOverlay = ({ isOpen, onClose, menuButtonRef }: MenuOverlayProps) => {
-  const [activeItem, setActiveItem] = useState<string>('');
+  const pathname = usePathname();
   const isMobile = useIsMobile();
 
-  const handleNavClick = (label: string) => {
-    setActiveItem(label);
-    onClose();
+  const isActive = (href: string) => {
+    if (href === '/') {
+      return pathname === '/';
+    }
+    return pathname.startsWith(href);
   };
 
   const circleSize = isMobile ? 2000 : 1600;
@@ -138,14 +141,14 @@ const MenuOverlay = ({ isOpen, onClose, menuButtonRef }: MenuOverlayProps) => {
                         >
                           <Link
                             href={item.href}
-                            onClick={() => handleNavClick(item.label)}
+                            onClick={onClose}
                             className={`text-sm font-medium transition-colors cursor-pointer flex items-center gap-1.5 ${
-                              activeItem === item.label
+                              isActive(item.href)
                                 ? 'text-[#03463B]'
                                 : 'text-[#03463B]/60 hover:text-[#03463B]'
                             }`}
                           >
-                            {activeItem === item.label && (
+                            {isActive(item.href) && (
                               <span className="w-1.5 h-1.5 rounded-full bg-[#03463B]" />
                             )}
                             {item.label}
@@ -304,14 +307,14 @@ const MenuOverlay = ({ isOpen, onClose, menuButtonRef }: MenuOverlayProps) => {
                         >
                           <Link
                             href={item.href}
-                            onClick={() => handleNavClick(item.label)}
+                            onClick={onClose}
                             className={`text-lg font-medium transition-colors cursor-pointer flex items-center gap-2 ${
-                              activeItem === item.label
+                              isActive(item.href)
                                 ? 'text-[#03463B]'
                                 : 'text-[#03463B]/60 hover:text-[#03463B]'
                             }`}
                           >
-                            {activeItem === item.label && (
+                            {isActive(item.href) && (
                               <span className="w-2 h-2 rounded-full bg-[#03463B]" />
                             )}
                             {item.label}
