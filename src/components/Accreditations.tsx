@@ -7,8 +7,8 @@ const Accreditations = () => {
   const images = ['/l1.jpg', '/l2.jpg', '/l3.jpg', '/l4.jpg', '/l5.jpg', '/l6.jpg', '/l7.jpg', '/l8.jpg'];
 
   return (
-    <section className="bg-[#f6f7f0] py-20 px-6 md:px-12 lg:px-24">
-      <div className="max-w-7xl mx-auto">
+    <section className="bg-[#f6f7f0] py-20" style={{ paddingLeft: '80px', paddingRight: '80px' }}>
+      <div className="max-w-360 mx-auto">
         {/* Heading */}
         <motion.h2
           initial={{ opacity: 0, y: 20 }}
@@ -40,12 +40,7 @@ const Accreditations = () => {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: index * 0.1 }}
               viewport={{ once: true }}
-              className="relative mx-auto rounded-2xl overflow-hidden"
-              style={{
-                width: '270px',
-                height: '270px',
-                maxWidth: '100%',
-              }}
+              className="relative rounded-2xl overflow-hidden aspect-square w-full"
             >
               <Image
                 src={src}
@@ -53,6 +48,8 @@ const Accreditations = () => {
                 fill
                 className="object-cover rounded-2xl"
               />
+              {/* 10% Black Overlay */}
+              <div className="absolute inset-0 bg-black/10 rounded-2xl" />
             </motion.div>
           ))}
         </div>

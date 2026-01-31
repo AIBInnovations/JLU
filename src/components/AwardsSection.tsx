@@ -162,8 +162,8 @@ export const AwardsSection = () => {
           >
             <div
               style={{
-                width: isMobile ? '80px' : 'clamp(166px, 17.4vw, 333px)',
-                height: isMobile ? '80px' : 'clamp(167px, 17.5vw, 335px)',
+                width: isMobile ? '80px' : 'clamp(166px, 17vw, 400px)',
+                height: isMobile ? '80px' : 'clamp(167px, 17vw, 400px)',
                 overflow: 'hidden',
                 borderRadius: '16px',
               }}
@@ -192,8 +192,8 @@ export const AwardsSection = () => {
           >
             <div
               style={{
-                width: isMobile ? '80px' : 'clamp(166px, 17.4vw, 333px)',
-                height: isMobile ? '80px' : 'clamp(167px, 17.5vw, 335px)',
+                width: isMobile ? '80px' : 'clamp(166px, 17vw, 400px)',
+                height: isMobile ? '80px' : 'clamp(167px, 17vw, 400px)',
                 overflow: 'hidden',
                 borderRadius: '16px',
               }}
@@ -224,8 +224,8 @@ export const AwardsSection = () => {
           >
             <div
               style={{
-                width: isMobile ? '80px' : 'clamp(166px, 17.4vw, 333px)',
-                height: isMobile ? '80px' : 'clamp(167px, 17.5vw, 335px)',
+                width: isMobile ? '80px' : 'clamp(166px, 17vw, 400px)',
+                height: isMobile ? '80px' : 'clamp(167px, 17vw, 400px)',
                 overflow: 'hidden',
                 borderRadius: '16px',
               }}
@@ -254,8 +254,8 @@ export const AwardsSection = () => {
           >
             <div
               style={{
-                width: isMobile ? '80px' : 'clamp(166px, 17.4vw, 333px)',
-                height: isMobile ? '80px' : 'clamp(167px, 17.5vw, 335px)',
+                width: isMobile ? '80px' : 'clamp(166px, 17vw, 400px)',
+                height: isMobile ? '80px' : 'clamp(167px, 17vw, 400px)',
                 overflow: 'hidden',
                 borderRadius: '16px',
               }}
@@ -284,8 +284,8 @@ export const AwardsSection = () => {
           >
             <div
               style={{
-                width: isMobile ? '80px' : 'clamp(166px, 17.4vw, 333px)',
-                height: isMobile ? '80px' : 'clamp(167px, 17.5vw, 335px)',
+                width: isMobile ? '80px' : 'clamp(166px, 17vw, 400px)',
+                height: isMobile ? '80px' : 'clamp(167px, 17vw, 400px)',
                 overflow: 'hidden',
                 borderRadius: '16px',
               }}

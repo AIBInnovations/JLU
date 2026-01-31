@@ -901,25 +901,43 @@ export const Hero = () => {
 
       {/* Intro text section */}
       <section className="relative px-4 pb-12 pt-14 sm:px-10 lg:px-16 bg-[#f6f7f0]">
-        <div className="mx-auto flex max-w-6xl flex-col gap-6">
+        <div className="mx-auto flex max-w-[1800px] flex-col gap-6">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: '-100px' }}
-            transition={{ duration: 0.8, ease: [0.25, 0.1, 0.25, 1] }}
+            transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
           >
-            <h2 className="ml-0 max-w-4xl text-2xl font-normal leading-tight text-[#111827] sm:-ml-20 sm:text-3xl lg:-ml-28 lg:text-4xl">
-              A university with a pulse
+            <h2
+              className="max-w-4xl leading-tight text-[#21313c]"
+              style={{
+                fontFamily: 'Inter, sans-serif',
+                fontSize: 'clamp(2rem, 4vw, 3.5rem)',
+                fontWeight: 600,
+                letterSpacing: '-0.03em',
+              }}
+            >
+              A university with a{' '}
+              <span style={{ fontFamily: "'Times New Roman', serif", fontStyle: 'italic', fontWeight: 400 }}>
+                pulse
+              </span>
             </h2>
           </motion.div>
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: '-100px' }}
-            transition={{ duration: 0.6, delay: 0.2, ease: [0.25, 0.1, 0.25, 1] }}
-            className="ml-0 sm:-ml-20 lg:-ml-28"
+            transition={{ duration: 0.6, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
           >
-            <p className="max-w-3xl text-base leading-relaxed text-[#2b2b2b] sm:text-lg">
+            <p
+              className="max-w-3xl text-[#666]"
+              style={{
+                fontFamily: 'Inter, sans-serif',
+                fontSize: '18px',
+                lineHeight: 1.7,
+                fontWeight: 400,
+              }}
+            >
               Jagran Lakecity University is not defined by buildings alone. It is defined by the rhythm of daily life, the exchange of ideas, and the quiet confidence of people who belong here.
             </p>
           </motion.div>
@@ -927,10 +945,18 @@ export const Hero = () => {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: '-100px' }}
-            transition={{ duration: 0.6, delay: 0.3, ease: [0.25, 0.1, 0.25, 1] }}
-            className="flex w-full translate-x-0 justify-end sm:translate-x-8 lg:translate-x-16 xl:translate-x-24 2xl:translate-x-32"
+            transition={{ duration: 0.6, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
+            className="flex w-full justify-end"
           >
-            <p className="max-w-md text-right text-xs leading-relaxed text-[#2b2b2b] sm:text-sm">
+            <p
+              className="max-w-md text-right text-[#999]"
+              style={{
+                fontFamily: 'Inter, sans-serif',
+                fontSize: '14px',
+                lineHeight: 1.6,
+                fontWeight: 400,
+              }}
+            >
               Learning unfolds naturally, through dialogue, discovery, and shared moments that extend far beyond formal spaces.
             </p>
           </motion.div>
@@ -938,11 +964,11 @@ export const Hero = () => {
       </section>
 
       {/* Image grid section */}
-      <section className="relative px-0 pb-12 md:pb-20 bg-[#f6f7f0]">
-        <div className="relative mx-auto max-w-7xl px-8 sm:px-12 lg:px-16">
+      <section className="relative px-0 pb-12 md:pb-20 bg-[#f6f7f0] overflow-hidden">
+        <div className="relative mx-auto max-w-[1800px] px-4 sm:px-10 lg:px-16">
           <motion.div
             className="flex w-full items-end justify-center"
-            style={{ gap: isMobile ? '16px' : '10px' }}
+            style={{ gap: isMobile ? '12px' : '16px' }}
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, amount: 0.2 }}
@@ -956,8 +982,8 @@ export const Hero = () => {
                 key={img.src}
                 className="flex items-end"
                 style={{
-                  flex: '0 0 41%',
-                  width: '41%',
+                  flex: '1 1 0',
+                  maxWidth: '33.333%',
                   position: 'relative',
                 }}
                 variants={{

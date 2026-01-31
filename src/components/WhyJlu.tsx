@@ -131,7 +131,7 @@ export const WhyJlu = () => {
           background: isMobile
             ? 'linear-gradient(to bottom, transparent 0%, transparent 4%, #f6f7f0 4%)'
             : 'linear-gradient(to bottom, transparent 0%, transparent 36%, #f6f7f0 36%)',
-          padding: isMobile ? '0 8px' : '0 clamp(40px, 5vw, 80px)',
+          padding: isMobile ? '0 8px' : '0 clamp(40px, 5vw, 120px)',
           paddingBottom: isMobile ? '40px' : '0',
         }}
       >
@@ -149,8 +149,8 @@ export const WhyJlu = () => {
               key={index}
               style={{
                 background: card.bg,
-                width: isMobile ? 'calc((100vw - 34px) / 4)' : 'clamp(280px, 24vw, 458px)',
-                height: isMobile ? '180px' : 'clamp(280px, 24vw, 455px)',
+                width: isMobile ? 'calc((100vw - 34px) / 4)' : 'clamp(280px, 23vw, 520px)',
+                height: isMobile ? '180px' : 'clamp(280px, 23vw, 520px)',
                 flexShrink: 0,
                 display: 'flex',
                 flexDirection: 'column',

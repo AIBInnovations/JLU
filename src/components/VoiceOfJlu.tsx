@@ -176,14 +176,14 @@ export const VoiceOfJlu = () => {
         </div>
       ) : (
         /* Desktop: Original layout */
-        <div className="flex justify-between items-center px-6">
+        <div className="flex justify-between items-center px-6 lg:px-12 xl:px-16 2xl:px-24">
           {voices.map((voice, index) => (
             <div
               key={index}
               className="relative cursor-pointer transition-all duration-300 overflow-hidden"
               style={{
-                width: index === activeCard ? 'clamp(200px, 31vw, 597px)' : 'clamp(60px, 7.6vw, 146px)',
-                height: 'clamp(280px, 36vw, 696px)',
+                width: index === activeCard ? 'clamp(200px, 28vw, 680px)' : 'clamp(60px, 7vw, 160px)',
+                height: 'clamp(280px, 34vw, 780px)',
                 borderRadius: index === activeCard ? '60px' : '80px',
               }}
               onClick={() => setActiveCard(index === activeCard ? null : index)}
@@ -224,7 +224,7 @@ export const VoiceOfJlu = () => {
       )}
 
       {/* Our Faculty Section */}
-      <div ref={facultyRef} className="mt-16 md:mt-24 lg:mt-32 px-4 md:px-12 lg:px-24">
+      <div ref={facultyRef} className="mt-16 md:mt-24 lg:mt-32 px-4 md:px-12 lg:px-16 xl:px-20 2xl:px-32">
         {/* Faculty Header */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -288,14 +288,14 @@ export const VoiceOfJlu = () => {
                     variants={topRowVariants}
                     whileHover={{ y: -8 }}
                     style={{
-                      width: 'clamp(150px, 17.6vw, 338px)',
+                      width: 'clamp(150px, 18vw, 400px)',
                     }}
                   >
                     <div
                       className="overflow-hidden"
                       style={{
                         width: '100%',
-                        height: 'clamp(200px, 20.8vw, 400px)',
+                        height: 'clamp(200px, 21vw, 480px)',
                         borderRadius: '16px',
                       }}
                     >
@@ -327,14 +327,14 @@ export const VoiceOfJlu = () => {
                     variants={bottomRowVariants}
                     whileHover={{ y: -8 }}
                     style={{
-                      width: 'clamp(150px, 17.6vw, 338px)',
+                      width: 'clamp(150px, 18vw, 400px)',
                     }}
                   >
                     <div
                       className="overflow-hidden"
                       style={{
                         width: '100%',
-                        height: 'clamp(200px, 20.8vw, 400px)',
+                        height: 'clamp(200px, 21vw, 480px)',
                         borderRadius: '16px',
                       }}
                     >

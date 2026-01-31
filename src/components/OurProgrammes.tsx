@@ -43,8 +43,8 @@ export const OurProgrammes = () => {
             key={index}
             className="relative overflow-hidden cursor-pointer group rounded-2xl"
             style={{
-              width: isMobile ? 'calc((100vw - 14px) / 4)' : `${programme.width}px`,
-              height: isMobile ? '180px' : `${programme.height}px`,
+              width: isMobile ? 'calc((100vw - 14px) / 4)' : 'clamp(280px, 24vw, 520px)',
+              height: isMobile ? '180px' : 'clamp(320px, 28vw, 580px)',
             }}
             onClick={() => isMobile && setActiveCard(activeCard === index ? null : index)}
           >
@@ -103,7 +103,7 @@ export const OurProgrammes = () => {
       </div>
 
       {/* Text Section - Hero style layout */}
-      <div className="mt-16 md:mt-24 px-6 md:px-12 lg:px-24">
+      <div className="mt-16 md:mt-24 px-6 md:px-12 lg:px-16 xl:px-20 2xl:px-32">
         {/* Big Text - Left aligned */}
         <div className="mb-6">
           <h3 className="text-xl md:text-2xl lg:text-3xl font-bold text-[#21313c] leading-tight lg:w-1/2">
@@ -191,7 +191,7 @@ export const OurProgrammes = () => {
         </div>
       ) : (
         /* Desktop: Original layout */
-        <div className="mt-16 md:mt-24" style={{ padding: '0 23px' }}>
+        <div className="mt-16 md:mt-24 px-4 lg:px-16 xl:px-20 2xl:px-32">
           {/* First Row - 2 boxes left aligned */}
           <div>
             <p className="text-xs text-gray-500 mb-2">Lorem ipsum</p>
@@ -199,7 +199,7 @@ export const OurProgrammes = () => {
               {/* Middlesex */}
               <div
                 className="border border-gray-300 flex items-center justify-center"
-                style={{ width: '472px', height: '284px' }}
+                style={{ width: 'clamp(300px, 25vw, 520px)', height: 'clamp(180px, 15vw, 300px)' }}
               >
                 <img
                   src="/mid.png"
@@ -210,7 +210,7 @@ export const OurProgrammes = () => {
               {/* King's College */}
               <div
                 className="border border-l-0 border-gray-300 flex items-center justify-center"
-                style={{ width: '472px', height: '284px' }}
+                style={{ width: 'clamp(300px, 25vw, 520px)', height: 'clamp(180px, 15vw, 300px)' }}
               >
                 <img
                   src="/king.png"
@@ -221,7 +221,7 @@ export const OurProgrammes = () => {
             </div>
           </div>
 
-          {/* Bottom boxes - 6 boxes (625x240) */}
+          {/* Bottom boxes - 6 boxes */}
           <div className="mt-6">
             <p className="text-xs text-gray-500 mb-2">Lorem ipsum</p>
 
@@ -229,7 +229,7 @@ export const OurProgrammes = () => {
             <div className="flex">
               <div
                 className="border border-gray-300 flex items-center justify-center"
-                style={{ width: '625px', height: '240px' }}
+                style={{ width: 'clamp(280px, 32vw, 680px)', height: 'clamp(160px, 13vw, 260px)' }}
               >
                 <img
                   src="/nus.png"
@@ -239,7 +239,7 @@ export const OurProgrammes = () => {
               </div>
               <div
                 className="border border-l-0 border-gray-300 flex items-center justify-center"
-                style={{ width: '625px', height: '240px' }}
+                style={{ width: 'clamp(280px, 32vw, 680px)', height: 'clamp(160px, 13vw, 260px)' }}
               >
                 <img
                   src="/c11.png"
@@ -249,7 +249,7 @@ export const OurProgrammes = () => {
               </div>
               <div
                 className="border border-l-0 border-gray-300 flex items-center justify-center"
-                style={{ width: '625px', height: '240px' }}
+                style={{ width: 'clamp(280px, 32vw, 680px)', height: 'clamp(160px, 13vw, 260px)' }}
               >
                 <img
                   src="/ficci.png"
@@ -263,7 +263,7 @@ export const OurProgrammes = () => {
             <div className="flex">
               <div
                 className="border border-t-0 border-gray-300 flex items-center justify-center"
-                style={{ width: '625px', height: '240px' }}
+                style={{ width: 'clamp(280px, 32vw, 680px)', height: 'clamp(160px, 13vw, 260px)' }}
               >
                 <img
                   src="/gt.png"
@@ -273,13 +273,13 @@ export const OurProgrammes = () => {
               </div>
               <div
                 className="border border-t-0 border-l-0 border-gray-300"
-                style={{ width: '625px', height: '240px' }}
+                style={{ width: 'clamp(280px, 32vw, 680px)', height: 'clamp(160px, 13vw, 260px)' }}
               >
                 {/* Empty box */}
               </div>
               <div
                 className="border border-t-0 border-l-0 border-gray-300"
-                style={{ width: '625px', height: '240px' }}
+                style={{ width: 'clamp(280px, 32vw, 680px)', height: 'clamp(160px, 13vw, 260px)' }}
               >
                 {/* Empty box */}
               </div>
@@ -289,15 +289,14 @@ export const OurProgrammes = () => {
       )}
 
       {/* Three Image Cards Section */}
-      <div className="mt-8 md:mt-24" style={{ padding: isMobile ? '0 16px' : '0 10px' }}>
+      <div className="mt-8 md:mt-24 px-4 lg:px-16 xl:px-20 2xl:px-32">
         <div className="flex" style={{ gap: isMobile ? '16px' : '10px' }}>
           {/* First card - l */}
           <div
             className="overflow-hidden flex-1 rounded-t-2xl group cursor-pointer"
             style={{
-              height: isMobile ? '180px' : 'auto',
-              maxHeight: isMobile ? '180px' : '739px',
-              marginTop: isMobile ? '8px' : 'clamp(0px, 1.4vw, 27px)',
+              height: isMobile ? '180px' : 'clamp(500px, 40vw, 850px)',
+              marginTop: isMobile ? '8px' : 'clamp(0px, 1.4vw, 30px)',
             }}
           >
             <img
@@ -311,9 +310,8 @@ export const OurProgrammes = () => {
           <div
             className="overflow-hidden flex-1 rounded-t-2xl group cursor-pointer"
             style={{
-              height: isMobile ? '160px' : 'auto',
-              maxHeight: isMobile ? '160px' : '661px',
-              marginTop: isMobile ? '28px' : 'clamp(0px, 5.5vw, 105px)',
+              height: isMobile ? '160px' : 'clamp(450px, 36vw, 780px)',
+              marginTop: isMobile ? '28px' : 'clamp(0px, 5.5vw, 120px)',
             }}
           >
             <img
@@ -327,8 +325,7 @@ export const OurProgrammes = () => {
           <div
             className="overflow-hidden flex-1 rounded-t-2xl group cursor-pointer"
             style={{
-              height: isMobile ? '188px' : 'auto',
-              maxHeight: isMobile ? '188px' : '766px',
+              height: isMobile ? '188px' : 'clamp(520px, 42vw, 900px)',
             }}
           >
             <img

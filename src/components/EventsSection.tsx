@@ -62,8 +62,8 @@ export const EventsSection = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
 
   return (
-    <section className="bg-[#f6f7f0] min-h-screen flex items-center py-12 md:py-16 px-4 md:px-12 lg:px-24 relative">
-      <div className="max-w-7xl mx-auto w-full">
+    <section className="bg-[#f6f7f0] min-h-screen flex items-center py-12 md:py-16 px-4 md:px-12 lg:px-16 xl:px-20 2xl:px-32 relative">
+      <div className="max-w-[1800px] mx-auto w-full">
         {/* Header */}
         <div className="text-center mb-8 md:mb-12">
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-[#21313c] mb-3">
@@ -79,16 +79,16 @@ export const EventsSection = () => {
         <div className="flex flex-col lg:flex-row gap-4 lg:gap-6 items-start mb-6">
           {/* Left Side - Image + Text */}
           <div
-            className="shrink-0 flex flex-col space-y-4 -ml-8 md:-ml-16 lg:-ml-24"
+            className="shrink-0 flex flex-col space-y-4 -ml-8 md:-ml-16 lg:-ml-16 xl:-ml-20 2xl:-ml-32"
             style={{
-              width: isMobile ? '100%' : 'clamp(450px, 40vw, 750px)',
+              width: isMobile ? '100%' : 'clamp(450px, 38vw, 900px)',
             }}
           >
             {/* Image */}
             <div
               className="relative overflow-hidden shadow-2xl"
               style={{
-                height: isMobile ? '400px' : 'clamp(550px, 45vw, 850px)',
+                height: isMobile ? '400px' : 'clamp(550px, 42vw, 950px)',
               }}
             >
               <img
@@ -119,8 +119,8 @@ export const EventsSection = () => {
                   key={index}
                   className="bg-white rounded-2xl overflow-hidden shrink-0 flex flex-col p-4 md:p-6"
                   style={{
-                    width: isMobile ? 'calc(100vw - 2rem)' : 'clamp(300px, 26vw, 420px)',
-                    height: isMobile ? 'auto' : 'clamp(380px, 28vw, 550px)',
+                    width: isMobile ? 'calc(100vw - 2rem)' : 'clamp(300px, 22vw, 480px)',
+                    height: isMobile ? 'auto' : 'clamp(380px, 26vw, 600px)',
                     boxShadow: '0 20px 60px rgba(0, 0, 0, 0.3), 0 10px 30px rgba(0, 0, 0, 0.15)',
                   }}
                 >
@@ -180,7 +180,7 @@ export const EventsSection = () => {
         </div>
 
         {/* Infinite Scroll Gallery */}
-        <div className="mt-32 md:mt-40 overflow-hidden -mx-4 md:-mx-12 lg:-mx-24">
+        <div className="mt-32 md:mt-40 overflow-hidden -mx-4 md:-mx-12 lg:-mx-16 xl:-mx-20 2xl:-mx-32">
           <div className="flex gap-2 md:gap-4 animate-scroll">
             {/* First set of images */}
             {galleryImages.map((image, index) => (
@@ -188,8 +188,8 @@ export const EventsSection = () => {
                 key={`first-${index}`}
                 className="shrink-0"
                 style={{
-                  width: isMobile ? '100px' : 'clamp(280px, 22vw, 420px)',
-                  height: isMobile ? '120px' : 'clamp(300px, 24vw, 460px)',
+                  width: isMobile ? '100px' : 'clamp(280px, 20vw, 500px)',
+                  height: isMobile ? '120px' : 'clamp(300px, 22vw, 540px)',
                 }}
               >
                 <img
@@ -205,8 +205,8 @@ export const EventsSection = () => {
                 key={`second-${index}`}
                 className="shrink-0"
                 style={{
-                  width: isMobile ? '100px' : 'clamp(280px, 22vw, 420px)',
-                  height: isMobile ? '120px' : 'clamp(300px, 24vw, 460px)',
+                  width: isMobile ? '100px' : 'clamp(280px, 20vw, 500px)',
+                  height: isMobile ? '120px' : 'clamp(300px, 22vw, 540px)',
                 }}
               >
                 <img

@@ -161,7 +161,7 @@ export const Footer = () => {
           </motion.div>
 
           {/* Right - Content */}
-          <div className="flex-1 px-12 pt-8 pb-4 flex flex-col">
+          <div className="flex-1 px-12 xl:px-16 2xl:px-24 pt-8 pb-4 flex flex-col">
             {/* Header Section */}
             <div className="flex justify-between items-start mb-8">
               <h2 className="text-5xl lg:text-6xl font-normal leading-tight text-[#d4e4a0]">
@@ -259,7 +259,7 @@ export const Footer = () => {
                 className="select-none"
                 style={{
                   fontFamily: "'Haettenschweiler', 'Arial Narrow Bold', Impact, sans-serif",
-                  fontSize: 'clamp(8rem, 14vw, 16rem)',
+                  fontSize: 'clamp(8rem, 12vw, 20rem)',
                   lineHeight: 0.75,
                   letterSpacing: '-0.02em',
                 }}
