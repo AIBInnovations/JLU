@@ -1,7 +1,17 @@
 'use client';
 
-import { motion } from 'framer-motion';
-import { useState } from 'react';
+import Image from 'next/image';
+import { motion, useScroll, useTransform } from 'framer-motion';
+import { useState, useRef } from 'react';
+
+const pastEventsImages = [
+  'https://images.unsplash.com/photo-1523580494863-6f3031224c94?w=800&q=80', // Convocation
+  'https://images.unsplash.com/photo-1532094349884-543bc11b234d?w=800&q=80', // Science Expo
+  'https://images.unsplash.com/photo-1574629810360-7efbbe195018?w=800&q=80', // Sports Meet
+  'https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=800&q=80', // Cultural Fest
+  'https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=800&q=80', // Tech Summit
+  'https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=800&q=80', // Alumni Meet
+];
 
 const pastEventsData = [
   {
@@ -46,6 +56,12 @@ const NewsAndEvents = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const cardsPerView = 3;
   const maxSlide = Math.max(0, pastEventsData.length - cardsPerView);
+  const heroRef = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: heroRef,
+    offset: ['start start', 'end start'],
+  });
+  const y = useTransform(scrollYProgress, [0, 1], ['0%', '30%']);
 
   const handlePrev = () => {
     setCurrentSlide((prev) => Math.max(0, prev - 1));
@@ -56,90 +72,87 @@ const NewsAndEvents = () => {
   };
   return (
     <section className="w-screen m-0 p-0 overflow-x-hidden">
-      {/* Hero Section with Split Layout */}
-      <div className="w-screen bg-[#f6f7f0] m-0 p-0">
-        <div className="relative w-full overflow-hidden">
-        <div className="flex flex-col lg:flex-row min-h-screen">
-          {/* Left Side - Decorative Shapes */}
-          <div className="relative w-full lg:w-1/2 h-[400px] lg:h-auto overflow-hidden">
-            {/* Circle 1 - Top Center */}
-            <div
-              className="absolute bg-[#d1d1d1]"
-              style={{
-                width: '312px',
-                height: '312px',
-                top: '-93px',
-                left: '406px',
-                borderRadius: '11000px',
-              }}
+      {/* Hero Section with Image */}
+      <div ref={heroRef} className="relative w-screen m-0 p-0 overflow-hidden">
+        {/* Hero Image with reveal animation */}
+        <motion.div
+          className="relative w-screen"
+          style={{
+            minHeight: '100vh',
+          }}
+          initial={{ clipPath: 'inset(100% 0% 0% 0%)' }}
+          animate={{ clipPath: 'inset(0% 0% 0% 0%)' }}
+          transition={{ duration: 2, ease: [0.22, 1, 0.36, 1] }}
+        >
+          <motion.div className="absolute inset-0" style={{ y }}>
+            <Image
+              src="https://images.unsplash.com/photo-1523580494863-6f3031224c94?w=1920&q=80"
+              alt="News & Events"
+              fill
+              className="object-cover scale-110"
+              priority
             />
+          </motion.div>
+          {/* Black Overlay */}
+          <div className="absolute inset-0 bg-black/30" />
+        </motion.div>
 
-            {/* Circle 2 - Middle Right */}
-            <div
-              className="absolute bg-[#d1d1d1]"
-              style={{
-                width: '312px',
-                height: '312px',
-                top: '219px',
-                left: '403px',
-                borderRadius: '11000px',
-              }}
-            />
+        {/* Paragraph at Top Left */}
+        <motion.div
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.3 }}
+          className="absolute top-0 left-0"
+          style={{
+            paddingLeft: '40px',
+            paddingTop: '120px',
+            maxWidth: '800px',
+          }}
+        >
+          <h2
+            className="text-white font-semibold leading-tight mb-5"
+            style={{
+              fontSize: 'clamp(1.5rem, 3vw, 2.5rem)',
+            }}
+          >
+            STAY <span style={{ fontFamily: "'Times New Roman', serif", fontStyle: 'italic', color: '#f0c14b', textShadow: '2px 2px 4px rgba(0,0,0,0.5)' }}>connected</span>
+          </h2>
+          <p
+            className="text-white font-semibold leading-tight"
+            style={{
+              fontSize: 'clamp(1.25rem, 2.5vw, 2rem)',
+            }}
+          >
+            Stay updated with the latest news, announcements, and events happening at Jagran Lakecity University.
+          </p>
+        </motion.div>
 
-            {/* Circle 3 - Middle Center */}
-            <div
-              className="absolute bg-[#d1d1d1]"
-              style={{
-                width: '312px',
-                height: '312px',
-                top: '219px',
-                left: '91px',
-                borderRadius: '11000px',
-              }}
-            />
-
-            {/* Circle 4 - Middle Left (partially cut off) */}
-            <div
-              className="absolute bg-[#d1d1d1]"
-              style={{
-                width: '312px',
-                height: '312px',
-                top: '219px',
-                left: '-221px',
-                borderRadius: '11000px',
-              }}
-            />
-
-            {/* Circle 5 - Bottom Center */}
-            <div
-              className="absolute bg-[#d1d1d1]"
-              style={{
-                width: '312px',
-                height: '312px',
-                top: '531px',
-                left: '91px',
-                borderRadius: '11000px',
-              }}
-            />
-          </div>
-
-          {/* Right Side - Text Content */}
-          <div className="relative w-full lg:w-1/2 flex items-center px-8 md:px-12 lg:px-16 py-12 lg:py-0">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-              className="max-w-xl"
-            >
-              <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-[#21313c] mb-6">
-                News & Events
-              </h1>
-              <p className="text-lg md:text-xl text-[#21313c] leading-relaxed">
-                Stay updated with the latest news, announcements, and events happening at Jagran Lakecity University.
-              </p>
-            </motion.div>
-          </div>
-        </div>
+        {/* Large "News & Events" Text - Bottom Left */}
+        <div
+          className="absolute bottom-0 left-0"
+          style={{
+            paddingLeft: '40px',
+            paddingBottom: '0px',
+          }}
+        >
+          <motion.h1
+            initial={{ opacity: 0, y: 100 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.1 }}
+            className="font-normal select-none"
+            style={{
+              fontFamily: "system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif",
+              fontSize: 'clamp(6rem, 12vw, 12rem)',
+              lineHeight: 0.85,
+              letterSpacing: '-0.02em',
+              background: 'linear-gradient(to bottom, rgba(255,255,255,1) 0%, rgba(255,255,255,0.7) 50%, rgba(255,255,255,0) 85%)',
+              WebkitBackgroundClip: 'text',
+              backgroundClip: 'text',
+              WebkitTextFillColor: 'transparent',
+            }}
+          >
+            News & Events
+          </motion.h1>
         </div>
       </div>
 
@@ -170,11 +183,18 @@ const NewsAndEvents = () => {
           <div className="flex flex-col lg:flex-row gap-8">
             {/* Left - Large Card */}
             <div className="lg:w-2/3">
-              {/* Image Placeholder */}
+              {/* Image */}
               <div
-                className="bg-[#d9d9d9] w-full"
+                className="relative w-full overflow-hidden rounded-lg"
                 style={{ height: '560px', maxWidth: '580px' }}
-              />
+              >
+                <Image
+                  src="https://images.unsplash.com/photo-1524178232363-1fb2b075b655?w=1200&q=80"
+                  alt="JLU Award Ceremony"
+                  fill
+                  className="object-cover"
+                />
+              </div>
               {/* Content */}
               <div className="mt-6">
                 <p className="text-xs text-[#21313c] tracking-wider mb-2">AWARD</p>
@@ -196,9 +216,16 @@ const NewsAndEvents = () => {
               {/* Card 1 */}
               <div className="flex gap-4">
                 <div
-                  className="bg-[#d9d9d9] flex-shrink-0"
+                  className="relative shrink-0 overflow-hidden rounded-lg"
                   style={{ width: '270px', height: '241px' }}
-                />
+                >
+                  <Image
+                    src="https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=800&q=80"
+                    alt="AI Ethics Symposium"
+                    fill
+                    className="object-cover"
+                  />
+                </div>
                 <div className="flex flex-col justify-center">
                   <p className="text-xs text-[#21313c] tracking-wider mb-2">PRESS</p>
                   <h4 className="text-lg font-bold text-[#21313c] mb-3">
@@ -214,9 +241,16 @@ const NewsAndEvents = () => {
               {/* Card 2 */}
               <div className="flex gap-4">
                 <div
-                  className="bg-[#d9d9d9] flex-shrink-0"
+                  className="relative shrink-0 overflow-hidden rounded-lg"
                   style={{ width: '270px', height: '241px' }}
-                />
+                >
+                  <Image
+                    src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=800&q=80"
+                    alt="Research Center"
+                    fill
+                    className="object-cover"
+                  />
+                </div>
                 <div className="flex flex-col justify-center">
                   <p className="text-xs text-[#21313c] tracking-wider mb-2">ANNOUNCEMENT</p>
                   <h4 className="text-lg font-bold text-[#21313c] mb-3">
@@ -417,14 +451,20 @@ const NewsAndEvents = () => {
                 gap: '24px',
               }}
             >
-              {pastEventsData.map((event) => (
+              {pastEventsData.map((event, index) => (
                 <div key={event.id} className="shrink-0" style={{ width: '477px' }}>
                   {/* Card Image */}
                   <div
-                    className="bg-[#d9d9d9] relative"
+                    className="relative overflow-hidden"
                     style={{ width: '477px', height: '600px' }}
                   >
-                    <span className="absolute top-4 left-4 bg-white px-3 py-1 text-sm font-medium text-[#21313c]">
+                    <Image
+                      src={pastEventsImages[index]}
+                      alt={event.title}
+                      fill
+                      className="object-cover"
+                    />
+                    <span className="absolute top-4 left-4 bg-white px-3 py-1 text-sm font-medium text-[#21313c] z-10">
                       {event.year}
                     </span>
                   </div>
@@ -453,51 +493,114 @@ const NewsAndEvents = () => {
           className="relative mx-auto overflow-hidden"
           style={{ maxWidth: '1440px', height: '1000px' }}
         >
-        {/* Card 1 - Top Left */}
+        {/* Card 1 - Top Left - Students Studying */}
         <div
-          className="absolute bg-white"
+          className="absolute overflow-hidden"
           style={{ width: '403px', height: '238px', top: '0px', left: '188px' }}
-        />
-        {/* Card 2 - Top Center */}
+        >
+          <Image
+            src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?w=800&q=80"
+            alt="Students collaborating"
+            fill
+            className="object-cover"
+          />
+        </div>
+        {/* Card 2 - Top Center - Graduation */}
         <div
-          className="absolute bg-white"
+          className="absolute overflow-hidden"
           style={{ width: '308px', height: '325px', top: '0px', left: '753px' }}
-        />
-        {/* Card 3 - Top Right (partially cut) */}
+        >
+          <Image
+            src="https://images.unsplash.com/photo-1523580494863-6f3031224c94?w=800&q=80"
+            alt="Graduation ceremony"
+            fill
+            className="object-cover"
+          />
+        </div>
+        {/* Card 3 - Top Right (partially cut) - Campus Architecture */}
         <div
-          className="absolute bg-white"
+          className="absolute overflow-hidden"
           style={{ width: '193px', height: '193px', top: '-50px', left: '1284px' }}
-        />
-        {/* Card 4 - Middle Right */}
+        >
+          <Image
+            src="https://images.unsplash.com/photo-1562774053-701939374585?w=400&q=80"
+            alt="Campus building"
+            fill
+            className="object-cover"
+          />
+        </div>
+        {/* Card 4 - Middle Right - Lab Work */}
         <div
-          className="absolute bg-white"
+          className="absolute overflow-hidden"
           style={{ width: '215px', height: '215px', top: '302px', left: '1154px' }}
-        />
-        {/* Card 5 - Middle Left */}
+        >
+          <Image
+            src="https://images.unsplash.com/photo-1532094349884-543bc11b234d?w=400&q=80"
+            alt="Students in lab"
+            fill
+            className="object-cover"
+          />
+        </div>
+        {/* Card 5 - Middle Left - Cultural Event */}
         <div
-          className="absolute bg-white"
+          className="absolute overflow-hidden"
           style={{ width: '267px', height: '325px', top: '308px', left: '0px' }}
-        />
-        {/* Card 6 - Bottom Left (partially cut) */}
+        >
+          <Image
+            src="https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=600&q=80"
+            alt="Cultural performance"
+            fill
+            className="object-cover"
+          />
+        </div>
+        {/* Card 6 - Bottom Left (partially cut) - Sports */}
         <div
-          className="absolute bg-white"
+          className="absolute overflow-hidden"
           style={{ width: '212px', height: '175px', top: '750px', left: '-56px' }}
-        />
-        {/* Card 7 - Bottom Center Left */}
+        >
+          <Image
+            src="https://images.unsplash.com/photo-1574629810360-7efbbe195018?w=400&q=80"
+            alt="Sports activity"
+            fill
+            className="object-cover"
+          />
+        </div>
+        {/* Card 7 - Bottom Center Left - Library */}
         <div
-          className="absolute bg-white"
+          className="absolute overflow-hidden"
           style={{ width: '214px', height: '325px', top: '675px', left: '319px' }}
-        />
-        {/* Card 8 - Bottom Center */}
+        >
+          <Image
+            src="https://images.unsplash.com/photo-1481627834876-b7833e8f5570?w=400&q=80"
+            alt="Library"
+            fill
+            className="object-cover"
+          />
+        </div>
+        {/* Card 8 - Bottom Center - Campus Garden */}
         <div
-          className="absolute bg-white"
+          className="absolute overflow-hidden"
           style={{ width: '399px', height: '210px', top: '790px', left: '627px' }}
-        />
-        {/* Card 9 - Bottom Right */}
+        >
+          <Image
+            src="https://images.unsplash.com/photo-1541339907198-e08756dedf3f?w=800&q=80"
+            alt="Campus grounds"
+            fill
+            className="object-cover"
+          />
+        </div>
+        {/* Card 9 - Bottom Right - Student Life */}
         <div
-          className="absolute bg-white"
+          className="absolute overflow-hidden"
           style={{ width: '286px', height: '343px', top: '601px', left: '1154px' }}
-        />
+        >
+          <Image
+            src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=600&q=80"
+            alt="Students socializing"
+            fill
+            className="object-cover"
+          />
+        </div>
 
         {/* Center Content */}
         <div className="absolute inset-0 flex flex-col items-center justify-center text-center">

@@ -1,7 +1,8 @@
 'use client';
 
-import { motion } from 'framer-motion';
-import { useState } from 'react';
+import Image from 'next/image';
+import { motion, useScroll, useTransform } from 'framer-motion';
+import { useState, useRef } from 'react';
 
 const researchAreas = [
   { id: 1, name: 'Centres of Excellence', active: true },
@@ -28,54 +29,114 @@ const facultySpotlight = [
     id: 1,
     name: 'Shri. Abhishek Mohan Gupta',
     title: 'Pro - Chancellor',
+    image: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=800&q=80',
   },
   {
     id: 2,
     name: 'Mr. Pankaj Das',
     title: 'Registrar',
+    image: 'https://images.unsplash.com/photo-1560250097-0b93528c311a?w=800&q=80',
   },
   {
     id: 3,
     name: 'Dr. Nilanjan Chattopadhyay',
     title: 'Vice Chancellor',
+    image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=800&q=80',
   },
 ];
 
 const Research = () => {
   const [activeArea, setActiveArea] = useState(1);
+  const heroRef = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: heroRef,
+    offset: ['start start', 'end start'],
+  });
+  const y = useTransform(scrollYProgress, [0, 1], ['0%', '30%']);
 
   return (
     <section className="w-screen m-0 p-0 overflow-x-hidden">
-      {/* Hero Section */}
-      <div
-        className="relative w-screen bg-[#d9d9d9] overflow-hidden m-0 p-0"
-        style={{ minHeight: '100vh' }}
-      >
-        {/* Content */}
-        <div
-          className="absolute"
+      {/* Hero Section with Image */}
+      <div ref={heroRef} className="relative w-screen m-0 p-0 overflow-hidden">
+        {/* Hero Image with reveal animation */}
+        <motion.div
+          className="relative w-screen"
           style={{
-            top: '200px',
-            left: '120px',
-            maxWidth: '600px',
+            minHeight: '100vh',
+          }}
+          initial={{ clipPath: 'inset(100% 0% 0% 0%)' }}
+          animate={{ clipPath: 'inset(0% 0% 0% 0%)' }}
+          transition={{ duration: 2, ease: [0.22, 1, 0.36, 1] }}
+        >
+          <motion.div className="absolute inset-0" style={{ y }}>
+            <Image
+              src="https://images.unsplash.com/photo-1507413245164-6160d8298b31?w=1920&q=80"
+              alt="Research"
+              fill
+              className="object-cover scale-110"
+              priority
+            />
+          </motion.div>
+          {/* Black Overlay */}
+          <div className="absolute inset-0 bg-black/30" />
+        </motion.div>
+
+        {/* Paragraph at Top Left */}
+        <motion.div
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.3 }}
+          className="absolute top-0 left-0"
+          style={{
+            paddingLeft: '40px',
+            paddingTop: '120px',
+            maxWidth: '800px',
           }}
         >
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
+          <h2
+            className="text-white font-semibold leading-tight mb-5"
+            style={{
+              fontSize: 'clamp(1.5rem, 3vw, 2.5rem)',
+            }}
           >
-            <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-[#21313c] mb-6 leading-tight">
-              Research that<br />matters
-            </h1>
-            <p className="text-base text-[#21313c] leading-relaxed mb-8" style={{ maxWidth: '500px' }}>
-              Advancing knowledge through interdisciplinary inquiry, innovation, and real-world impact.
-            </p>
-            <a href="#" className="inline-flex items-center gap-3 text-[#21313c] font-medium underline hover:no-underline">
-              Explore our research ecosystem
-              <span>→</span>
-            </a>
-          </motion.div>
+            RESEARCH THAT <span style={{ fontFamily: "'Times New Roman', serif", fontStyle: 'italic', color: '#f0c14b', textShadow: '2px 2px 4px rgba(0,0,0,0.5)' }}>matters</span>
+          </h2>
+          <p
+            className="text-white font-semibold leading-tight"
+            style={{
+              fontSize: 'clamp(1.25rem, 2.5vw, 2rem)',
+            }}
+          >
+            Advancing knowledge through interdisciplinary inquiry, innovation, and real-world impact.
+          </p>
+        </motion.div>
+
+        {/* Large "Research" Text - Bottom Left */}
+        <div
+          className="absolute bottom-0 left-0"
+          style={{
+            paddingLeft: '40px',
+            paddingBottom: '0px',
+          }}
+        >
+          <motion.h1
+            initial={{ opacity: 0, y: 100 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.1 }}
+            className="font-normal select-none"
+            style={{
+              fontFamily: "system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif",
+              fontSize: 'clamp(8rem, 16vw, 16rem)',
+              lineHeight: 0.85,
+              letterSpacing: '-0.02em',
+              background: 'linear-gradient(to bottom, rgba(255,255,255,1) 0%, rgba(255,255,255,0.7) 50%, rgba(255,255,255,0) 85%)',
+              WebkitBackgroundClip: 'text',
+              backgroundClip: 'text',
+              WebkitTextFillColor: 'transparent',
+            }}
+          >
+            Research
+          </motion.h1>
         </div>
       </div>
 
@@ -212,32 +273,28 @@ const Research = () => {
 
             {/* Right Side - Journal Card */}
             <div
-              className="bg-[#d9d9d9] shrink-0"
+              className="relative shrink-0 overflow-hidden rounded-lg"
               style={{ width: '580px', height: '500px' }}
             >
-              {/* Inner Card */}
+              <Image
+                src="https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?w=1200&q=80"
+                alt="Research Journal"
+                fill
+                className="object-cover"
+              />
+              <div className="absolute inset-0 bg-black/40" />
+              {/* Publication Badge */}
               <div
-                className="bg-[#e8e8e8]"
+                className="absolute bottom-0 left-0 right-0 bg-white/90 flex flex-col items-center justify-center"
                 style={{
-                  width: '580px',
-                  height: '270px',
+                  height: '116px',
+                  gap: '8px',
+                  paddingTop: '20px',
+                  paddingBottom: '20px',
                 }}
               >
-                {/* Publication Badge */}
-                <div
-                  className="bg-[#a0a0a0] flex flex-col items-center justify-center"
-                  style={{
-                    width: '403px',
-                    height: '116px',
-                    marginLeft: '89px',
-                    gap: '8px',
-                    paddingTop: '20px',
-                    paddingBottom: '20px',
-                  }}
-                >
-                  <p className="text-xl font-bold text-[#21313c]">Academic Insights</p>
-                  <p className="text-sm text-[#21313c]">Vol. 12, No. 2, Spring 2026</p>
-                </div>
+                <p className="text-xl font-bold text-[#21313c]">Academic Insights</p>
+                <p className="text-sm text-[#21313c]">Vol. 12, No. 2, Spring 2026</p>
               </div>
             </div>
           </div>
@@ -278,11 +335,18 @@ const Research = () => {
                 className="flex flex-col"
                 style={{ width: '380px' }}
               >
-                {/* Image Placeholder */}
+                {/* Image */}
                 <div
-                  className="bg-[#c4c4c4]"
+                  className="relative overflow-hidden"
                   style={{ width: '380px', height: '420px' }}
-                />
+                >
+                  <Image
+                    src={faculty.image}
+                    alt={faculty.name}
+                    fill
+                    className="object-cover"
+                  />
+                </div>
                 {/* Content */}
                 <div className="mt-6">
                   <h3 className="text-2xl font-bold text-[#21313c] mb-2">

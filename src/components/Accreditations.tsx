@@ -1,10 +1,10 @@
 'use client';
 
+import Image from 'next/image';
 import { motion } from 'framer-motion';
 
 const Accreditations = () => {
-  // Create array of 8 items for the boxes
-  const boxes = Array.from({ length: 8 }, (_, i) => i + 1);
+  const images = ['/l1.jpg', '/l2.jpg', '/l3.jpg', '/l4.jpg', '/l5.jpg', '/l6.jpg', '/l7.jpg', '/l8.jpg'];
 
   return (
     <section className="bg-[#f6f7f0] py-20 px-6 md:px-12 lg:px-24">
@@ -33,20 +33,27 @@ const Accreditations = () => {
 
         {/* Grid of 8 boxes */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-          {boxes.map((box, index) => (
+          {images.map((src, index) => (
             <motion.div
-              key={box}
+              key={index}
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: index * 0.1 }}
               viewport={{ once: true }}
-              className="bg-[#d1d1d1] mx-auto"
+              className="relative mx-auto rounded-2xl overflow-hidden"
               style={{
                 width: '270px',
                 height: '270px',
                 maxWidth: '100%',
               }}
-            />
+            >
+              <Image
+                src={src}
+                alt={`Accreditation ${index + 1}`}
+                fill
+                className="object-cover rounded-2xl"
+              />
+            </motion.div>
           ))}
         </div>
       </div>

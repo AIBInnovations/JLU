@@ -1,7 +1,8 @@
 'use client';
 
-import { motion } from 'framer-motion';
-import { useState } from 'react';
+import Image from 'next/image';
+import { motion, useScroll, useTransform } from 'framer-motion';
+import { useState, useRef } from 'react';
 
 const eventsData = [
   {
@@ -36,267 +37,294 @@ const eventsData = [
 const Events = () => {
   const [keyword, setKeyword] = useState('');
   const [year, setYear] = useState('-Any-');
+  const heroRef = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: heroRef,
+    offset: ['start start', 'end start'],
+  });
+  const y = useTransform(scrollYProgress, [0, 1], ['0%', '30%']);
+
   return (
     <section className="w-screen m-0 p-0 overflow-x-hidden">
-      {/* Hero Section with Split Layout */}
-      <div className="w-screen bg-[#f6f7f0] m-0 p-0">
-        <div className="relative w-full overflow-hidden">
-        <div className="flex flex-col lg:flex-row min-h-screen">
-          {/* Left Side - Decorative Shapes */}
-          <div className="relative w-full lg:w-1/2 h-[400px] lg:h-auto overflow-hidden">
-            {/* Circle 1 - Top Center */}
-            <div
-              className="absolute bg-[#d1d1d1]"
-              style={{
-                width: '312px',
-                height: '312px',
-                top: '-93px',
-                left: '406px',
-                borderRadius: '11000px',
-              }}
+      {/* Hero Section with Image */}
+      <div ref={heroRef} className="relative w-screen m-0 p-0 overflow-hidden">
+        {/* Hero Image with reveal animation */}
+        <motion.div
+          className="relative w-screen"
+          style={{
+            minHeight: '100vh',
+          }}
+          initial={{ clipPath: 'inset(100% 0% 0% 0%)' }}
+          animate={{ clipPath: 'inset(0% 0% 0% 0%)' }}
+          transition={{ duration: 2, ease: [0.22, 1, 0.36, 1] }}
+        >
+          <motion.div className="absolute inset-0" style={{ y }}>
+            <Image
+              src="https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=1920&q=80"
+              alt="Events at JLU"
+              fill
+              className="object-cover scale-110"
+              priority
             />
+          </motion.div>
+          {/* Black Overlay */}
+          <div className="absolute inset-0 bg-black/30" />
+        </motion.div>
 
-            {/* Circle 2 - Middle Right */}
-            <div
-              className="absolute bg-[#d1d1d1]"
-              style={{
-                width: '312px',
-                height: '312px',
-                top: '219px',
-                left: '403px',
-                borderRadius: '11000px',
-              }}
-            />
+        {/* Paragraph at Top Left */}
+        <motion.div
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.3 }}
+          className="absolute top-0 left-0"
+          style={{
+            paddingLeft: '40px',
+            paddingTop: '120px',
+            maxWidth: '800px',
+          }}
+        >
+          <h2
+            className="text-white font-semibold leading-tight mb-5"
+            style={{
+              fontSize: 'clamp(1.5rem, 3vw, 2.5rem)',
+            }}
+          >
+            ALWAYS IN <span style={{ fontFamily: "'Times New Roman', serif", fontStyle: 'italic', color: '#f0c14b', textShadow: '2px 2px 4px rgba(0,0,0,0.5)' }}>Motion</span>
+          </h2>
+          <p
+            className="text-white font-semibold leading-tight"
+            style={{
+              fontSize: 'clamp(1.25rem, 2.5vw, 2rem)',
+            }}
+          >
+            Something is always unfolding. Conversations, gatherings, ideas, celebrations. Small moments and larger milestones. All part of the everyday rhythm.
+          </p>
+        </motion.div>
 
-            {/* Circle 3 - Middle Center */}
-            <div
-              className="absolute bg-[#d1d1d1]"
-              style={{
-                width: '312px',
-                height: '312px',
-                top: '219px',
-                left: '91px',
-                borderRadius: '11000px',
-              }}
-            />
-
-            {/* Circle 4 - Middle Left (partially cut off) */}
-            <div
-              className="absolute bg-[#d1d1d1]"
-              style={{
-                width: '312px',
-                height: '312px',
-                top: '219px',
-                left: '-221px',
-                borderRadius: '11000px',
-              }}
-            />
-
-            {/* Circle 5 - Bottom Center */}
-            <div
-              className="absolute bg-[#d1d1d1]"
-              style={{
-                width: '312px',
-                height: '312px',
-                top: '531px',
-                left: '91px',
-                borderRadius: '11000px',
-              }}
-            />
-          </div>
-
-          {/* Right Side - Text Content */}
-          <div className="relative w-full lg:w-1/2 flex items-center px-8 md:px-12 lg:px-16 py-12 lg:py-0">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-              className="max-w-xl"
-            >
-              <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-[#21313c] mb-6">
-                Events
-              </h1>
-              <p className="text-lg md:text-xl text-[#21313c] leading-relaxed">
-                Discover academic, cultural, and student-led events that bring the JLU campus together and create meaningful experiences beyond the classroom.
-              </p>
-            </motion.div>
-          </div>
-        </div>
+        {/* Large "Events" Text - Bottom Left */}
+        <div
+          className="absolute bottom-0 left-0"
+          style={{
+            paddingLeft: '40px',
+            paddingBottom: '0px',
+          }}
+        >
+          <motion.h1
+            initial={{ opacity: 0, y: 100 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.1 }}
+            className="font-normal select-none"
+            style={{
+              fontFamily: "system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif",
+              fontSize: 'clamp(8rem, 16vw, 16rem)',
+              lineHeight: 0.85,
+              letterSpacing: '-0.02em',
+              background: 'linear-gradient(to bottom, rgba(255,255,255,1) 0%, rgba(255,255,255,0.7) 50%, rgba(255,255,255,0) 85%)',
+              WebkitBackgroundClip: 'text',
+              backgroundClip: 'text',
+              WebkitTextFillColor: 'transparent',
+            }}
+          >
+            Events
+          </motion.h1>
         </div>
       </div>
 
       {/* Latest Past Events Section */}
-      <div className="w-full bg-[#f6f7f0]">
+      <div className="w-full bg-white">
         <div
           className="mx-auto"
           style={{
             maxWidth: '1440px',
-            paddingTop: '96px',
+            paddingTop: '100px',
             paddingRight: '120px',
-            paddingBottom: '64px',
+            paddingBottom: '100px',
             paddingLeft: '120px',
-            marginTop: '64px',
           }}
         >
-          <h2 className="text-3xl md:text-4xl font-bold text-[#21313c] mb-10">
-            Latest Past Events
-          </h2>
-
-          {/* Filters */}
-          <div className="flex flex-col md:flex-row gap-6 md:gap-12 mb-8">
-            <div className="flex-1">
-              <label className="block text-sm text-[#21313c] mb-1">Keyword</label>
-              <input
-                type="text"
-                placeholder="Enter keyword"
-                value={keyword}
-                onChange={(e) => setKeyword(e.target.value)}
-                className="w-full border-b border-[#21313c] bg-transparent py-2 text-[#21313c] placeholder-gray-400 focus:outline-none"
-              />
-            </div>
-            <div className="flex-1">
-              <label className="block text-sm text-[#21313c] mb-1">Year</label>
-              <select
-                value={year}
-                onChange={(e) => setYear(e.target.value)}
-                className="w-full border-b border-[#21313c] bg-transparent py-2 text-[#21313c] focus:outline-none appearance-none"
+          {/* Section Header */}
+          <div className="flex justify-between items-end mb-16" style={{ borderBottom: '1px solid #e5e5e5', paddingBottom: '40px' }}>
+            <div>
+              <span
+                className="text-[#999] uppercase tracking-widest block"
+                style={{ fontSize: '12px', marginBottom: '16px', letterSpacing: '0.2em' }}
               >
-                <option value="-Any-">-Any-</option>
-                <option value="2025">2025</option>
-                <option value="2024">2024</option>
-                <option value="2023">2023</option>
-              </select>
+                Archive
+              </span>
+              <h2
+                className="text-[#21313c]"
+                style={{
+                  fontSize: 'clamp(2.5rem, 5vw, 4rem)',
+                  fontWeight: 600,
+                  lineHeight: 1,
+                  letterSpacing: '-0.02em',
+                }}
+              >
+                Latest Past Events
+              </h2>
             </div>
-            <div className="flex items-end">
-              <button className="text-[#21313c] underline font-medium hover:no-underline">
-                Apply
+
+            {/* Filters - Inline Design */}
+            <div className="flex items-end gap-8">
+              <div style={{ minWidth: '200px' }}>
+                <label
+                  className="block text-[#999] uppercase tracking-wider"
+                  style={{ fontSize: '10px', marginBottom: '8px', letterSpacing: '0.15em' }}
+                >
+                  Keyword
+                </label>
+                <input
+                  type="text"
+                  placeholder="Search events..."
+                  value={keyword}
+                  onChange={(e) => setKeyword(e.target.value)}
+                  className="w-full bg-transparent text-[#21313c] placeholder-[#999] focus:outline-none"
+                  style={{
+                    borderBottom: '1px solid #21313c',
+                    paddingBottom: '8px',
+                    fontSize: '15px',
+                  }}
+                />
+              </div>
+              <div style={{ minWidth: '120px' }}>
+                <label
+                  className="block text-[#999] uppercase tracking-wider"
+                  style={{ fontSize: '10px', marginBottom: '8px', letterSpacing: '0.15em' }}
+                >
+                  Year
+                </label>
+                <select
+                  value={year}
+                  onChange={(e) => setYear(e.target.value)}
+                  className="w-full bg-transparent text-[#21313c] focus:outline-none appearance-none cursor-pointer"
+                  style={{
+                    borderBottom: '1px solid #21313c',
+                    paddingBottom: '8px',
+                    fontSize: '15px',
+                  }}
+                >
+                  <option value="-Any-">All Years</option>
+                  <option value="2025">2025</option>
+                  <option value="2024">2024</option>
+                  <option value="2023">2023</option>
+                </select>
+              </div>
+              <button
+                className="px-6 py-2.5 bg-[#21313c] text-white text-sm font-medium hover:bg-[#333] transition-colors"
+                style={{ borderRadius: '100px' }}
+              >
+                Apply Filter
               </button>
             </div>
           </div>
 
           {/* Events List */}
-          <div className="divide-y divide-gray-200">
-            {eventsData.map((event) => (
-              <div key={event.id} className="py-10">
-                <div className="flex flex-col lg:flex-row lg:gap-16">
-                  {/* Left - Date and Title */}
-                  <div className="lg:w-2/5 mb-6 lg:mb-0">
-                    <p className="text-base text-[#21313c] mb-2">{event.date}</p>
-                    <h3 className="text-2xl md:text-3xl font-bold text-[#21313c]">
+          <div>
+            {eventsData.map((event, index) => (
+              <motion.div
+                key={event.id}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+                viewport={{ once: true }}
+                className="group cursor-pointer"
+                style={{
+                  borderBottom: '1px solid #e5e5e5',
+                  marginLeft: '-24px',
+                  marginRight: '-24px',
+                  paddingLeft: '24px',
+                  paddingRight: '24px',
+                }}
+              >
+                <div
+                  className="grid items-start py-10 group-hover:bg-[#fafafa] transition-colors"
+                  style={{
+                    gridTemplateColumns: '140px 1fr 1fr 40px',
+                    gap: '40px',
+                    marginLeft: '-24px',
+                    marginRight: '-24px',
+                    paddingLeft: '24px',
+                    paddingRight: '24px',
+                  }}
+                >
+                  {/* Date Column */}
+                  <div>
+                    <span
+                      className="text-[#21313c] font-semibold block"
+                      style={{ fontSize: '13px', lineHeight: 1.4 }}
+                    >
+                      {event.date.split(' ')[0]}
+                    </span>
+                    <span
+                      className="text-[#21313c] block"
+                      style={{ fontSize: '13px' }}
+                    >
+                      {event.date.split(' ').slice(1).join(' ')}
+                    </span>
+                  </div>
+
+                  {/* Title & Venue Column */}
+                  <div>
+                    <h3
+                      className="text-[#21313c] group-hover:text-[#666] transition-colors"
+                      style={{
+                        fontSize: '24px',
+                        fontWeight: 600,
+                        lineHeight: 1.2,
+                        marginBottom: '12px',
+                      }}
+                    >
                       {event.title}
                     </h3>
+                    {event.venue && (
+                      <span
+                        className="inline-block px-3 py-1 bg-[#f6f7f0] text-[#666] rounded"
+                        style={{ fontSize: '12px' }}
+                      >
+                        {event.venue}
+                      </span>
+                    )}
                   </div>
 
-                  {/* Right - Details */}
-                  <div className="lg:w-3/5">
-                    <p className="text-sm text-[#21313c] mb-3">
-                      <span className="font-bold">{event.organization}</span>{' '}
-                      {event.location}
-                    </p>
-                    <p className="text-base text-[#21313c] mb-1">
+                  {/* Description & Location Column */}
+                  <div>
+                    <p
+                      className="text-[#666] mb-3"
+                      style={{ fontSize: '15px', lineHeight: 1.6 }}
+                    >
                       {event.description}
                     </p>
-                    {event.venue && (
-                      <p className="text-base text-[#21313c] mb-4">
-                        Venue: {event.venue}
-                      </p>
-                    )}
-                    <a
-                      href="#"
-                      className="inline-block text-[#21313c] underline font-medium hover:no-underline mt-4"
+                    <p
+                      className="text-[#999]"
+                      style={{ fontSize: '13px' }}
                     >
-                      Explore Event
-                    </a>
+                      {event.location}
+                    </p>
+                  </div>
+
+                  {/* Arrow Column */}
+                  <div className="flex items-center justify-end h-full">
+                    <span
+                      className="text-[#21313c] opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all"
+                      style={{ fontSize: '20px' }}
+                    >
+                      →
+                    </span>
                   </div>
                 </div>
-              </div>
+              </motion.div>
             ))}
           </div>
-        </div>
-      </div>
 
-      {/* Campus Life & Signature Events Section */}
-      <div className="w-full bg-[#d9d9d9]">
-        <div
-          className="mx-auto"
-          style={{
-            maxWidth: '1440px',
-            minHeight: '1218px',
-            paddingTop: '64px',
-            paddingRight: '120px',
-            paddingBottom: '64px',
-            paddingLeft: '120px',
-          }}
-        >
-          <div className="flex flex-col lg:flex-row gap-12 lg:gap-16">
-            {/* Left Side - Staggered Cards */}
-            <div className="lg:w-1/2 flex gap-6">
-              {/* First Column */}
-              <div className="flex flex-col gap-6">
-                <div
-                  className="bg-white p-4"
-                  style={{ width: '270px', height: '330px' }}
-                >
-                  <h3 className="text-lg font-bold text-[#21313c] underline">
-                    Academic & Professional Exposure
-                  </h3>
-                </div>
-                <div
-                  className="bg-white p-4"
-                  style={{ width: '270px', height: '330px' }}
-                >
-                  <h3 className="text-lg font-bold text-[#21313c]">
-                    Community & Culture
-                  </h3>
-                </div>
-                <div
-                  className="bg-white p-4"
-                  style={{ width: '270px', height: '330px' }}
-                >
-                  <h3 className="text-lg font-bold text-[#21313c]">
-                    Industry & Global Engagement
-                  </h3>
-                </div>
-              </div>
-
-              {/* Second Column - Offset */}
-              <div className="flex flex-col gap-6 mt-40">
-                <div
-                  className="bg-white p-4"
-                  style={{ width: '270px', height: '330px' }}
-                >
-                  <h3 className="text-lg font-bold text-[#21313c]">
-                    Student-Led Initiatives
-                  </h3>
-                </div>
-                <div
-                  className="bg-white p-4"
-                  style={{ width: '270px', height: '330px' }}
-                >
-                  <h3 className="text-lg font-bold text-[#21313c]">
-                    Leadership & Personal Growth
-                  </h3>
-                </div>
-              </div>
-            </div>
-
-            {/* Right Side - Text Content */}
-            <div className="lg:w-1/2 flex items-center">
-              <div className="text-center lg:text-center">
-                <p className="text-base font-medium text-[#21313c] mb-4">
-                  Campus Life & Signature Events
-                </p>
-                <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-[#21313c] mb-6">
-                  Experiences that go beyond classrooms
-                </h2>
-                <p className="text-base text-[#21313c] leading-relaxed mb-8 max-w-lg mx-auto">
-                  At Jagran Lakecity University, events are an integral part of campus life. From academic conferences and cultural showcases to leadership forums and student-led initiatives, every event is designed to encourage participation, dialogue, and real-world exposure.
-                </p>
-                <button className="inline-block px-6 py-2 border border-[#21313c] rounded-full text-[#21313c] font-medium hover:bg-[#21313c] hover:text-white transition-colors">
-                  View All Events
-                </button>
-              </div>
-            </div>
+          {/* View All Events Link */}
+          <div className="flex justify-center mt-16">
+            <button
+              className="px-8 py-3 border border-[#21313c] text-[#21313c] text-sm font-medium hover:bg-[#21313c] hover:text-white transition-colors flex items-center gap-3"
+              style={{ borderRadius: '100px' }}
+            >
+              View All Past Events
+              <span>→</span>
+            </button>
           </div>
         </div>
       </div>
@@ -307,56 +335,125 @@ const Events = () => {
           className="mx-auto"
           style={{
             maxWidth: '1440px',
-            paddingTop: '64px',
+            paddingTop: '100px',
             paddingRight: '120px',
-            paddingBottom: '64px',
+            paddingBottom: '100px',
             paddingLeft: '120px',
           }}
         >
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-[#21313c] text-center mb-12">
-            Events That Shape Campus Life
-          </h2>
+          {/* Section Header */}
+          <div className="flex justify-between items-end mb-16">
+            <div style={{ maxWidth: '500px' }}>
+              <span
+                className="text-[#999] uppercase tracking-widest block"
+                style={{ fontSize: '12px', marginBottom: '16px', letterSpacing: '0.2em' }}
+              >
+                Experience
+              </span>
+              <h2
+                className="text-[#21313c]"
+                style={{
+                  fontSize: 'clamp(2rem, 4vw, 3rem)',
+                  fontWeight: 600,
+                  lineHeight: 1.1,
+                  letterSpacing: '-0.02em',
+                }}
+              >
+                Events That Shape Campus Life
+              </h2>
+            </div>
+            <p
+              className="text-[#666]"
+              style={{ maxWidth: '400px', fontSize: '16px', lineHeight: 1.7 }}
+            >
+              Where learning meets experience. Each event is designed to inspire, connect, and transform.
+            </p>
+          </div>
 
-          <div className="grid md:grid-cols-2 gap-6">
+          <div className="grid md:grid-cols-2 gap-8">
             {/* Card 1 - Signature Events */}
-            <div className="bg-[#d9d9d9] p-8 relative min-h-[450px] flex flex-col justify-between">
-              <div>
-                {/* White Circle */}
-                <div
-                  className="absolute bg-white rounded-full"
-                  style={{ width: '60px', height: '60px', top: '24px', right: '24px' }}
-                />
-                <h3 className="text-2xl md:text-3xl font-bold text-[#21313c] mb-8 max-w-[80%]">
+            <motion.div
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
+              viewport={{ once: true }}
+              className="group relative overflow-hidden cursor-pointer"
+              style={{ minHeight: '520px' }}
+            >
+              <Image
+                src="https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=1200&q=80"
+                alt="Signature Events"
+                fill
+                className="object-cover transition-transform duration-700 group-hover:scale-105"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent" />
+              <div className="absolute inset-0 flex flex-col justify-end p-10">
+                <span
+                  className="text-white/60 uppercase tracking-widest mb-4"
+                  style={{ fontSize: '11px', letterSpacing: '0.2em' }}
+                >
+                  01 — Signature
+                </span>
+                <h3
+                  className="text-white mb-4"
+                  style={{ fontSize: '28px', fontWeight: 600, lineHeight: 1.2 }}
+                >
                   Signature Events & Campus Experiences
                 </h3>
-                <p className="text-base text-[#21313c] leading-relaxed">
-                  Jagran Lakecity University hosts a wide range of signature events that bring the campus to life. From academic conclaves, award ceremonies, and leadership forums to cultural showcases and student-led festivals, these events create shared experiences that define the university's vibrant atmosphere.
+                <p
+                  className="text-white/80 mb-6"
+                  style={{ fontSize: '15px', lineHeight: 1.7, maxWidth: '90%' }}
+                >
+                  From academic conclaves and award ceremonies to cultural showcases and student-led festivals — experiences that define our vibrant atmosphere.
                 </p>
+                <div className="flex items-center gap-3 text-white">
+                  <span style={{ fontSize: '14px', fontWeight: 500 }}>Explore Events</span>
+                  <span className="group-hover:translate-x-2 transition-transform">→</span>
+                </div>
               </div>
-              <a href="#" className="inline-block text-[#21313c] underline font-medium hover:no-underline mt-8">
-                Explore All Events
-              </a>
-            </div>
+            </motion.div>
 
             {/* Card 2 - Learning, Leadership */}
-            <div className="bg-[#d9d9d9] p-8 relative min-h-[450px] flex flex-col justify-between">
-              <div>
-                {/* White Circle */}
-                <div
-                  className="absolute bg-white rounded-full"
-                  style={{ width: '60px', height: '60px', top: '24px', right: '24px' }}
-                />
-                <h3 className="text-2xl md:text-3xl font-bold text-[#21313c] mb-8 max-w-[80%]">
+            <motion.div
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.1 }}
+              viewport={{ once: true }}
+              className="group relative overflow-hidden cursor-pointer"
+              style={{ minHeight: '520px' }}
+            >
+              <Image
+                src="https://images.unsplash.com/photo-1517486808906-6ca8b3f04846?w=1200&q=80"
+                alt="Learning & Leadership"
+                fill
+                className="object-cover transition-transform duration-700 group-hover:scale-105"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent" />
+              <div className="absolute inset-0 flex flex-col justify-end p-10">
+                <span
+                  className="text-white/60 uppercase tracking-widest mb-4"
+                  style={{ fontSize: '11px', letterSpacing: '0.2em' }}
+                >
+                  02 — Leadership
+                </span>
+                <h3
+                  className="text-white mb-4"
+                  style={{ fontSize: '28px', fontWeight: 600, lineHeight: 1.2 }}
+                >
                   Learning, Leadership & Community Impact
                 </h3>
-                <p className="text-base text-[#21313c] leading-relaxed">
-                  JLU events go beyond celebration — they are platforms for learning and leadership development. Students gain exposure to real-world conversations, industry perspectives, and collaborative problem-solving while actively contributing to planning, execution, and participation.
+                <p
+                  className="text-white/80 mb-6"
+                  style={{ fontSize: '15px', lineHeight: 1.7, maxWidth: '90%' }}
+                >
+                  Platforms for learning and leadership development. Students gain exposure to real-world conversations and collaborative problem-solving.
                 </p>
+                <div className="flex items-center gap-3 text-white">
+                  <span style={{ fontSize: '14px', fontWeight: 500 }}>Explore Events</span>
+                  <span className="group-hover:translate-x-2 transition-transform">→</span>
+                </div>
               </div>
-              <a href="#" className="inline-block text-[#21313c] underline font-medium hover:no-underline mt-8">
-                Explore All Events
-              </a>
-            </div>
+            </motion.div>
           </div>
         </div>
       </div>
@@ -367,39 +464,69 @@ const Events = () => {
           className="mx-auto"
           style={{
             maxWidth: '1440px',
-            paddingTop: '64px',
+            paddingTop: '100px',
             paddingRight: '120px',
-            paddingBottom: '64px',
+            paddingBottom: '100px',
             paddingLeft: '120px',
           }}
         >
           <div
-            className="bg-[#d9d9d9] flex items-center"
+            className="flex flex-col md:flex-row md:items-center md:justify-between gap-12"
             style={{
-              minHeight: '280px',
-              paddingRight: '44px',
-              paddingLeft: '44px',
+              backgroundColor: '#fff',
+              padding: '60px',
+              border: '1px solid #e5e5e5',
             }}
           >
-            <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-[10px] w-full">
-              <div>
-                <h2 className="text-3xl md:text-4xl font-bold text-[#21313c] mb-2">
-                  Don't Miss Our Updates
-                </h2>
-                <p className="text-base text-[#21313c]">
-                  Join us and be a part of JLU family!
-                </p>
-              </div>
-              <div className="flex gap-4">
+            <div style={{ maxWidth: '400px' }}>
+              <span
+                className="text-[#999] uppercase tracking-widest block"
+                style={{ fontSize: '11px', marginBottom: '16px', letterSpacing: '0.2em' }}
+              >
+                Stay Connected
+              </span>
+              <h2
+                className="text-[#21313c]"
+                style={{
+                  fontSize: 'clamp(1.75rem, 3vw, 2.5rem)',
+                  fontWeight: 600,
+                  lineHeight: 1.1,
+                  letterSpacing: '-0.02em',
+                  marginBottom: '12px',
+                }}
+              >
+                Don't Miss Our Updates
+              </h2>
+              <p className="text-[#666]" style={{ fontSize: '15px', lineHeight: 1.6 }}>
+                Join the JLU community and stay informed about upcoming events, achievements, and campus life.
+              </p>
+            </div>
+            <div className="flex items-center gap-4">
+              <div className="relative">
                 <input
                   type="email"
                   placeholder="Enter your email"
-                  className="px-4 py-3 bg-white text-[#21313c] placeholder-gray-400 focus:outline-none min-w-[250px]"
+                  className="bg-[#f6f7f0] text-[#21313c] placeholder-[#999] focus:outline-none focus:bg-[#eef0e5] transition-colors"
+                  style={{
+                    padding: '16px 24px',
+                    fontSize: '15px',
+                    minWidth: '300px',
+                    border: '1px solid #e5e5e5',
+                    borderRadius: '100px',
+                  }}
                 />
-                <button className="px-6 py-3 bg-white text-[#21313c] font-medium hover:bg-gray-100 transition-colors">
-                  Subscribe
-                </button>
               </div>
+              <button
+                className="bg-[#21313c] text-white font-medium hover:bg-[#333] transition-colors flex items-center gap-2"
+                style={{
+                  padding: '16px 32px',
+                  fontSize: '14px',
+                  borderRadius: '100px',
+                }}
+              >
+                Subscribe
+                <span>→</span>
+              </button>
             </div>
           </div>
         </div>

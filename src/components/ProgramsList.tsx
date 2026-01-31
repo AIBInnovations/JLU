@@ -5,8 +5,9 @@ import { useState } from 'react';
 
 const ProgramsList = () => {
   const [activeTab, setActiveTab] = useState('UG Programs');
+  const [currentPage, setCurrentPage] = useState(1);
 
-  const tabs = ['UG Programs', 'PG Programs', 'PHD', 'Diploma Programs'];
+  const tabs = ['UG Programs', 'PG Programs', 'PhD', 'Diploma Programs'];
 
   const programs = [
     {
@@ -71,6 +72,8 @@ const ProgramsList = () => {
     },
   ];
 
+  const totalPages = 9;
+
   return (
     <section className="w-full">
       <div className="w-full bg-white">
@@ -78,96 +81,131 @@ const ProgramsList = () => {
           className="mx-auto"
           style={{
             maxWidth: '1440px',
-            paddingTop: '64px',
+            paddingTop: '80px',
             paddingRight: '120px',
-            paddingBottom: '64px',
+            paddingBottom: '100px',
             paddingLeft: '120px',
           }}
         >
-        {/* Tabs */}
-        <div className="flex gap-4 mb-12 flex-wrap">
-          {tabs.map((tab) => (
-            <button
-              key={tab}
-              onClick={() => setActiveTab(tab)}
-              className={`px-6 py-3 rounded-lg font-medium transition-colors ${
-                activeTab === tab
-                  ? 'bg-[#d1d1d1] text-[#21313c]'
-                  : 'bg-[#f6f7f0] text-[#21313c] hover:bg-[#e5e5e5]'
-              }`}
-            >
-              {tab}
-            </button>
-          ))}
-        </div>
-
-        {/* Table Header */}
-        <div className="mb-6">
-          <div className="grid grid-cols-2 gap-4 pb-4 border-b border-gray-300">
-            <h3 className="text-lg font-bold text-[#21313c]">Programs</h3>
-            <h3 className="text-lg font-bold text-[#21313c]">Certification</h3>
+          {/* Tabs */}
+          <div className="flex items-center gap-3 mb-16">
+            {tabs.map((tab) => (
+              <button
+                key={tab}
+                onClick={() => setActiveTab(tab)}
+                className={`px-5 py-2.5 text-sm font-medium transition-all ${
+                  activeTab === tab
+                    ? 'bg-[#21313c] text-white'
+                    : 'bg-transparent text-[#21313c] hover:bg-[#f6f7f0]'
+                }`}
+                style={{ borderRadius: '100px' }}
+              >
+                {tab}
+              </button>
+            ))}
           </div>
-        </div>
 
-        {/* Programs List */}
-        <div className="space-y-6">
-          {programs.map((program, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.4, delay: index * 0.05 }}
-              viewport={{ once: true }}
-              className="grid grid-cols-1 md:grid-cols-2 gap-4 pb-6 border-b border-gray-200"
-            >
-              {/* Program Name and Details */}
-              <div>
-                <h4 className="text-lg font-bold text-[#21313c] mb-2">
-                  {program.name}
-                </h4>
-                <div className="flex gap-2">
-                  <span className="px-3 py-1 bg-[#f6f7f0] text-[#21313c] text-sm rounded">
-                    {program.duration}
+          {/* Table Header */}
+          <div
+            className="grid gap-8 pb-4 mb-2"
+            style={{
+              gridTemplateColumns: '1fr 200px 120px',
+              borderBottom: '1px solid #e5e5e5',
+            }}
+          >
+            <span className="text-xs font-medium uppercase tracking-wider text-[#999]">Programs</span>
+            <span className="text-xs font-medium uppercase tracking-wider text-[#999]">Duration</span>
+            <span className="text-xs font-medium uppercase tracking-wider text-[#999]">Degree</span>
+          </div>
+
+          {/* Programs List */}
+          <div>
+            {programs.map((program, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.4, delay: index * 0.03 }}
+                viewport={{ once: true }}
+                className="group grid gap-8 py-6 cursor-pointer hover:bg-[#fafafa] transition-colors"
+                style={{
+                  gridTemplateColumns: '1fr 200px 120px',
+                  borderBottom: '1px solid #f0f0f0',
+                  marginLeft: '-16px',
+                  marginRight: '-16px',
+                  paddingLeft: '16px',
+                  paddingRight: '16px',
+                }}
+              >
+                {/* Program Name */}
+                <div className="flex items-center gap-4">
+                  <span className="text-[#21313c] font-medium group-hover:text-[#666] transition-colors" style={{ fontSize: '17px' }}>
+                    {program.name}
                   </span>
-                  <span className="px-3 py-1 bg-[#f6f7f0] text-[#21313c] text-sm rounded">
-                    {program.type}
+                  <span className="opacity-0 group-hover:opacity-100 transition-opacity text-[#21313c]">→</span>
+                </div>
+
+                {/* Duration & Type */}
+                <div className="flex items-center gap-3">
+                  <span className="text-[#666] text-sm">{program.duration}</span>
+                  <span className="w-1 h-1 rounded-full bg-[#ccc]" />
+                  <span className="text-[#666] text-sm">{program.type}</span>
+                </div>
+
+                {/* Certification */}
+                <div className="flex items-center">
+                  <span
+                    className="px-3 py-1 text-xs font-medium text-[#21313c] bg-[#f6f7f0] rounded"
+                  >
+                    {program.certification}
                   </span>
                 </div>
-              </div>
+              </motion.div>
+            ))}
+          </div>
 
-              {/* Certification */}
-              <div className="flex items-start">
-                <p className="text-lg text-[#21313c]">{program.certification}</p>
-              </div>
-            </motion.div>
-          ))}
-        </div>
-
-        {/* Pagination */}
-        <div className="flex items-center justify-center gap-2 mt-12">
-          <button className="w-10 h-10 rounded-full bg-[#21313c] text-white font-medium">
-            1
-          </button>
-          <button className="w-10 h-10 rounded-full bg-[#f6f7f0] text-[#21313c] font-medium hover:bg-[#e5e5e5]">
-            2
-          </button>
-          <button className="w-10 h-10 rounded-full bg-[#f6f7f0] text-[#21313c] font-medium hover:bg-[#e5e5e5]">
-            3
-          </button>
-          <button className="w-10 h-10 rounded-full bg-[#f6f7f0] text-[#21313c] font-medium hover:bg-[#e5e5e5]">
-            4
-          </button>
-          <button className="w-10 h-10 rounded-full bg-[#f6f7f0] text-[#21313c] font-medium hover:bg-[#e5e5e5]">
-            5
-          </button>
-          <span className="text-[#21313c]">...</span>
-          <button className="w-10 h-10 rounded-full bg-[#f6f7f0] text-[#21313c] font-medium hover:bg-[#e5e5e5]">
-            9
-          </button>
-          <button className="px-4 py-2 bg-[#f6f7f0] text-[#21313c] font-medium rounded-lg hover:bg-[#e5e5e5]">
-            Next Page
-          </button>
-        </div>
+          {/* Pagination */}
+          <div className="flex items-center justify-between mt-16 pt-8" style={{ borderTop: '1px solid #e5e5e5' }}>
+            <span className="text-sm text-[#666]">
+              Page {currentPage} of {totalPages}
+            </span>
+            <div className="flex items-center gap-2">
+              {[1, 2, 3, 4, 5].map((page) => (
+                <button
+                  key={page}
+                  onClick={() => setCurrentPage(page)}
+                  className={`w-10 h-10 flex items-center justify-center text-sm font-medium transition-colors ${
+                    currentPage === page
+                      ? 'bg-[#21313c] text-white'
+                      : 'bg-transparent text-[#21313c] hover:bg-[#f6f7f0]'
+                  }`}
+                  style={{ borderRadius: '50%' }}
+                >
+                  {page}
+                </button>
+              ))}
+              <span className="text-[#999] px-2">...</span>
+              <button
+                onClick={() => setCurrentPage(9)}
+                className={`w-10 h-10 flex items-center justify-center text-sm font-medium transition-colors ${
+                  currentPage === 9
+                    ? 'bg-[#21313c] text-white'
+                    : 'bg-transparent text-[#21313c] hover:bg-[#f6f7f0]'
+                }`}
+                style={{ borderRadius: '50%' }}
+              >
+                9
+              </button>
+              <button
+                onClick={() => setCurrentPage(Math.min(currentPage + 1, totalPages))}
+                className="ml-4 px-6 py-2.5 bg-[#21313c] text-white text-sm font-medium hover:bg-[#333] transition-colors flex items-center gap-2"
+                style={{ borderRadius: '100px' }}
+              >
+                Next
+                <span>→</span>
+              </button>
+            </div>
+          </div>
         </div>
       </div>
     </section>

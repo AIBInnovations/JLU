@@ -1,6 +1,8 @@
 'use client';
 
-import { motion } from 'framer-motion';
+import Image from 'next/image';
+import { motion, useScroll, useTransform } from 'framer-motion';
+import { useRef } from 'react';
 
 const studentLifeItems = [
   {
@@ -45,41 +47,99 @@ const careersItems = [
 ];
 
 const CampusLife = () => {
+  const heroRef = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: heroRef,
+    offset: ['start start', 'end start'],
+  });
+  const y = useTransform(scrollYProgress, [0, 1], ['0%', '30%']);
+
   return (
     <section className="w-screen m-0 p-0 overflow-x-hidden">
-      {/* Hero Section */}
-      <div className="w-screen bg-[#d9d9d9] m-0 p-0">
-        <div
-          className="w-full relative"
+      {/* Hero Section with Image */}
+      <div ref={heroRef} className="relative w-screen m-0 p-0 overflow-hidden">
+        {/* Hero Image with reveal animation */}
+        <motion.div
+          className="relative w-screen"
           style={{
             minHeight: '100vh',
           }}
+          initial={{ clipPath: 'inset(100% 0% 0% 0%)' }}
+          animate={{ clipPath: 'inset(0% 0% 0% 0%)' }}
+          transition={{ duration: 2, ease: [0.22, 1, 0.36, 1] }}
         >
-          <div
-            className="absolute"
+          <motion.div className="absolute inset-0" style={{ y }}>
+            <Image
+              src="https://images.unsplash.com/photo-1523580494863-6f3031224c94?w=1920&q=80"
+              alt="Campus Life"
+              fill
+              className="object-cover scale-110"
+              priority
+            />
+          </motion.div>
+          {/* Black Overlay */}
+          <div className="absolute inset-0 bg-black/30" />
+        </motion.div>
+
+        {/* Paragraph at Top Left */}
+        <motion.div
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.3 }}
+          className="absolute top-0 left-0"
+          style={{
+            paddingLeft: '40px',
+            paddingTop: '120px',
+            maxWidth: '800px',
+          }}
+        >
+          <h2
+            className="text-white font-semibold leading-tight mb-5"
             style={{
-              top: '200px',
-              left: '120px',
-              maxWidth: '550px',
+              fontSize: 'clamp(1.5rem, 3vw, 2.5rem)',
             }}
           >
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-            >
-              <h1 className="text-5xl md:text-6xl font-bold text-[#21313c] mb-6 leading-tight">
-                Life beyond<br />classrooms
-              </h1>
-              <p className="text-base text-[#21313c] leading-relaxed mb-8" style={{ maxWidth: '450px' }}>
-                From student leadership and vibrant clubs to innovation hubs and career pathways — campus life here shapes who you become.
-              </p>
-              <button className="inline-flex items-center gap-2 px-6 py-3 bg-white rounded-full text-[#21313c] font-medium hover:bg-gray-100 transition-colors">
-                Explore student life
-                <span>→</span>
-              </button>
-            </motion.div>
-          </div>
+            LIFE, <span style={{ fontFamily: "'Times New Roman', serif", fontStyle: 'italic', color: '#f0c14b', textShadow: '2px 2px 4px rgba(0,0,0,0.5)' }}>Between</span> EVERYTHING
+          </h2>
+          <p
+            className="text-white font-semibold leading-relaxed"
+            style={{
+              fontSize: 'clamp(1.1rem, 2vw, 1.5rem)',
+            }}
+          >
+            Campus life at JLU lives in the in-between.<br />
+            Between classes and conversations.<br />
+            Between ideas and friendships.<br />
+            Between who you were and who you are becoming.
+          </p>
+        </motion.div>
+
+        {/* Large "Campus Life" Text - Bottom Left */}
+        <div
+          className="absolute bottom-0 left-0"
+          style={{
+            paddingLeft: '40px',
+            paddingBottom: '0px',
+          }}
+        >
+          <motion.h1
+            initial={{ opacity: 0, y: 100 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.1 }}
+            className="font-normal select-none"
+            style={{
+              fontFamily: "system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif",
+              fontSize: 'clamp(6rem, 14vw, 14rem)',
+              lineHeight: 0.85,
+              letterSpacing: '-0.02em',
+              background: 'linear-gradient(to bottom, rgba(255,255,255,1) 0%, rgba(255,255,255,0.7) 50%, rgba(255,255,255,0) 85%)',
+              WebkitBackgroundClip: 'text',
+              backgroundClip: 'text',
+              WebkitTextFillColor: 'transparent',
+            }}
+          >
+            Campus Life
+          </motion.h1>
         </div>
       </div>
 
@@ -253,11 +313,18 @@ const CampusLife = () => {
             gap: '64px',
           }}
         >
-          {/* Image Placeholder */}
+          {/* Image */}
           <div
-            className="bg-[#d9d9d9] shrink-0"
+            className="relative shrink-0 overflow-hidden rounded-lg"
             style={{ width: '580px', height: '580px' }}
-          />
+          >
+            <Image
+              src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=1200&q=80"
+              alt="Campus Community"
+              fill
+              className="object-cover"
+            />
+          </div>
 
           {/* Content */}
           <div style={{ maxWidth: '436px' }}>

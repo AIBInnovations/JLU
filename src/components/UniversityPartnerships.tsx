@@ -1,5 +1,6 @@
 'use client';
 
+import Image from 'next/image';
 import { motion } from 'framer-motion';
 
 const UniversityPartnerships = () => {
@@ -24,7 +25,7 @@ const UniversityPartnerships = () => {
             </p>
           </motion.div>
 
-          {/* Right - Image Placeholder */}
+          {/* Right - Image */}
           <motion.div
             initial={{ opacity: 0, x: 30 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -33,40 +34,49 @@ const UniversityPartnerships = () => {
             className="w-full"
           >
             <div
-              className="bg-[#d1d1d1]"
+              className="relative"
               style={{
                 width: '580px',
                 height: '400px',
                 maxWidth: '100%',
               }}
-            />
+            >
+              <Image
+                src="https://jlu.edu.in/wp-content/uploads/2023/07/JLU-Partnership.jpg"
+                alt="University Partnerships"
+                fill
+                className="object-cover"
+              />
+            </div>
           </motion.div>
         </div>
 
         {/* Honorary Doctorates and JLU Ignited Mind Awards */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 justify-items-center">
           {/* Honorary Doctorates */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
-            className="bg-[#d1d1d1] flex flex-col"
+            className="relative flex flex-col items-end text-right overflow-hidden p-8 w-full"
             style={{
-              width: '580px',
-              maxWidth: '100%',
+              maxWidth: '580px',
               height: '400px',
-              paddingTop: '32px',
-              paddingRight: '32px',
-              paddingBottom: '32px',
-              paddingLeft: '32px',
               gap: '80px',
             }}
           >
-            <h3 className="text-xl md:text-2xl font-bold text-[#21313c]">
+            <Image
+              src="/ex1.jpg"
+              alt="Honorary Doctorates"
+              fill
+              className="object-cover"
+            />
+            <div className="absolute inset-0 bg-black/40" />
+            <h3 className="relative z-10 text-xl md:text-2xl font-bold text-white">
               Honorary Doctorates
             </h3>
-            <p className="text-sm md:text-base leading-relaxed text-[#21313c]">
+            <p className="relative z-10 text-sm md:text-base leading-relaxed text-white">
               Jagran Lakecity University has conferred honorary doctorates upon distinguished individuals who have made exceptional contributions to their fields and to society. These honours reflect respect for excellence, leadership and social impact.
             </p>
           </motion.div>
@@ -77,22 +87,24 @@ const UniversityPartnerships = () => {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
             viewport={{ once: true }}
-            className="bg-[#d1d1d1] flex flex-col"
+            className="relative flex flex-col items-end text-right overflow-hidden p-8 w-full"
             style={{
-              width: '580px',
-              maxWidth: '100%',
+              maxWidth: '580px',
               height: '400px',
-              paddingTop: '32px',
-              paddingRight: '32px',
-              paddingBottom: '32px',
-              paddingLeft: '32px',
               gap: '80px',
             }}
           >
-            <h3 className="text-xl md:text-2xl font-bold text-[#21313c]">
+            <Image
+              src="/ex.jpg"
+              alt="JLU Ignited Mind Awards"
+              fill
+              className="object-cover"
+            />
+            <div className="absolute inset-0 bg-black/40" />
+            <h3 className="relative z-10 text-xl md:text-2xl font-bold text-white">
               JLU Ignited Mind Awards
             </h3>
-            <p className="text-sm md:text-base leading-relaxed text-[#21313c]">
+            <p className="relative z-10 text-sm md:text-base leading-relaxed text-white">
               The Ignited Mind Awards recognise individuals who embody innovation, leadership and positive change. They celebrate voices that inspire, challenge norms and contribute meaningfully to society.
             </p>
           </motion.div>

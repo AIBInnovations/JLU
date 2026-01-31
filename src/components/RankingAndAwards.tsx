@@ -161,6 +161,7 @@ const RankingAndAwards = () => {
                 width: isMobile ? '80px' : 'clamp(166px, 17.4vw, 333px)',
                 height: isMobile ? '80px' : 'clamp(167px, 17.5vw, 335px)',
                 overflow: 'hidden',
+                borderRadius: '16px',
               }}
             >
               <img
@@ -190,6 +191,7 @@ const RankingAndAwards = () => {
                 width: isMobile ? '80px' : 'clamp(166px, 17.4vw, 333px)',
                 height: isMobile ? '80px' : 'clamp(167px, 17.5vw, 335px)',
                 overflow: 'hidden',
+                borderRadius: '16px',
               }}
             >
               <img
@@ -221,6 +223,7 @@ const RankingAndAwards = () => {
                 width: isMobile ? '80px' : 'clamp(166px, 17.4vw, 333px)',
                 height: isMobile ? '80px' : 'clamp(167px, 17.5vw, 335px)',
                 overflow: 'hidden',
+                borderRadius: '16px',
               }}
             >
               <img
@@ -250,6 +253,7 @@ const RankingAndAwards = () => {
                 width: isMobile ? '80px' : 'clamp(166px, 17.4vw, 333px)',
                 height: isMobile ? '80px' : 'clamp(167px, 17.5vw, 335px)',
                 overflow: 'hidden',
+                borderRadius: '16px',
               }}
             >
               <img
@@ -279,6 +283,7 @@ const RankingAndAwards = () => {
                 width: isMobile ? '80px' : 'clamp(166px, 17.4vw, 333px)',
                 height: isMobile ? '80px' : 'clamp(167px, 17.5vw, 335px)',
                 overflow: 'hidden',
+                borderRadius: '16px',
               }}
             >
               <img

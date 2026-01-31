@@ -1,5 +1,6 @@
 'use client';
 
+import Image from 'next/image';
 import { motion } from 'framer-motion';
 
 const JluStaff = () => {
@@ -28,7 +29,7 @@ const JluStaff = () => {
           Behind every classroom, event and initiative is a dedicated team that supports the university's everyday functioning. JLU's staff form the backbone of the institution, contributing with commitment, care and professionalism.
         </motion.p>
 
-        {/* Image Placeholder */}
+        {/* Staff Image */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -37,13 +38,20 @@ const JluStaff = () => {
           className="w-full"
         >
           <div
-            className="bg-[#d1d1d1] mx-auto"
+            className="relative mx-auto"
             style={{
               width: '1200px',
               height: '500px',
               maxWidth: '100%',
             }}
-          />
+          >
+            <Image
+              src="/staff.jpg"
+              alt="JLU Staff"
+              fill
+              className="object-cover"
+            />
+          </div>
         </motion.div>
       </div>
     </section>

@@ -1,79 +1,92 @@
 'use client';
 
-import { motion } from 'framer-motion';
+import Image from 'next/image';
+import { motion, useScroll, useTransform } from 'framer-motion';
+import { useRef } from 'react';
 
 const About = () => {
+  const heroRef = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: heroRef,
+    offset: ['start start', 'end start'],
+  });
+  const y = useTransform(scrollYProgress, [0, 1], ['0%', '30%']);
+
   return (
     <section className="w-screen bg-[#f6f7f0] m-0 p-0 overflow-x-hidden">
-      <div
-        className="w-full flex items-center"
-        style={{
-          minHeight: '100vh',
-          paddingLeft: '120px',
-          paddingRight: '120px',
-        }}
-      >
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
-          {/* Image Placeholder */}
-          <motion.div
-            initial={{ opacity: 0, x: -50 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-            className="w-full flex justify-center lg:justify-start"
-          >
-            <img
+      {/* Hero Section with Image */}
+      <div ref={heroRef} className="relative w-screen m-0 p-0 overflow-hidden">
+        {/* Hero Image with reveal animation */}
+        <motion.div
+          className="relative w-screen"
+          style={{
+            minHeight: '100vh',
+          }}
+          initial={{ clipPath: 'inset(100% 0% 0% 0%)' }}
+          animate={{ clipPath: 'inset(0% 0% 0% 0%)' }}
+          transition={{ duration: 2, ease: [0.22, 1, 0.36, 1] }}
+        >
+          <motion.div className="absolute inset-0" style={{ y }}>
+            <Image
               src="/about1.jpg"
               alt="About JLU"
-              className="shadow-lg object-cover"
-              style={{
-                width: '477px',
-                height: '606px',
-                maxWidth: '100%',
-                borderTopLeftRadius: '64px',
-                borderTopRightRadius: '64px',
-                borderBottomLeftRadius: '64px',
-                borderBottomRightRadius: '0px',
-              }}
+              fill
+              className="object-cover scale-110"
+              priority
             />
           </motion.div>
+          {/* Black Overlay */}
+          <div className="absolute inset-0 bg-black/30" />
+        </motion.div>
 
-          {/* Content */}
-          <motion.div
-            initial={{ opacity: 0, x: 50 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            viewport={{ once: true }}
-            className="space-y-8"
+        {/* Paragraph at Top Left */}
+        <motion.div
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.3 }}
+          className="absolute top-0 left-0"
+          style={{
+            paddingLeft: '40px',
+            paddingTop: '120px',
+            maxWidth: '800px',
+          }}
+        >
+          <p
+            className="text-white font-semibold leading-tight"
+            style={{
+              fontSize: 'clamp(1.5rem, 3vw, 2.5rem)',
+            }}
           >
-            {/* Heading */}
-            <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-[#21313c] leading-tight">
-              ABOUT JLU
-            </h1>
+            A university with a pulse. Jagran Lakecity University is not defined by buildings alone. It is defined by the rhythm of daily life, the exchange of ideas, and the quiet confidence of people who belong here.
+          </p>
+        </motion.div>
 
-            {/* Subheading */}
-            <h2 className="text-xl md:text-2xl lg:text-3xl font-medium text-[#21313c] leading-snug">
-              A University Shaped by People<br />
-              Built in Central India, Connected to the world.
-            </h2>
-
-            {/* Description Paragraphs */}
-            <div className="space-y-6 text-[#21313c]">
-              <p className="text-base md:text-lg leading-relaxed">
-                Jagran Lakecity University is a place where people come before processes,
-                and ideas take shape through lived experience. Here, learning is not just
-                academic achievement, it is shaped by the voices of students, faculty,
-                leaders and partners who contribute to a shared journey of growth, exploration
-                and discovery.
-              </p>
-
-              <p className="text-base md:text-lg leading-relaxed">
-                Rooted in Bhopal, at the heart of Central India, JLU has grown into a truly
-                global university, attracting perspectives from across the world while remaining
-                deeply grounded in community, culture and purpose.
-              </p>
-            </div>
-          </motion.div>
+        {/* Large "About Us" Text - Bottom Left */}
+        <div
+          className="absolute bottom-0 left-0"
+          style={{
+            paddingLeft: '40px',
+            paddingBottom: '0px',
+          }}
+        >
+          <motion.h1
+            initial={{ opacity: 0, y: 100 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.1 }}
+            className="font-normal select-none"
+            style={{
+              fontFamily: "system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif",
+              fontSize: 'clamp(8rem, 16vw, 16rem)',
+              lineHeight: 0.85,
+              letterSpacing: '-0.02em',
+              background: 'linear-gradient(to bottom, rgba(255,255,255,1) 0%, rgba(255,255,255,0.7) 50%, rgba(255,255,255,0) 85%)',
+              WebkitBackgroundClip: 'text',
+              backgroundClip: 'text',
+              WebkitTextFillColor: 'transparent',
+            }}
+          >
+            About Us
+          </motion.h1>
         </div>
       </div>
     </section>

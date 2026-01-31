@@ -52,25 +52,26 @@ const Governance = () => {
 
         {/* JLU Leadership Section */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
-          {/* Image Placeholder */}
-          <motion.div
-            initial={{ opacity: 0, x: -50 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-            className="w-full"
-          >
-            <img
-              src="/leader.jpg"
-              alt="JLU Leadership"
-              className="object-cover object-top"
+          {/* Image with reveal from top to bottom */}
+          <div className="w-full">
+            <motion.div
+              initial={{ clipPath: 'polygon(0% 0%, 100% 0%, 100% 0%, 0% 0%)' }}
+              whileInView={{ clipPath: 'polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)' }}
+              transition={{ duration: 1.2, ease: 'easeOut' }}
+              viewport={{ once: true }}
               style={{
                 width: '580px',
                 height: '357px',
                 maxWidth: '100%',
               }}
-            />
-          </motion.div>
+            >
+              <img
+                src="/leader.jpg"
+                alt="JLU Leadership"
+                className="object-cover object-top w-full h-full"
+              />
+            </motion.div>
+          </div>
 
           {/* Content */}
           <motion.div

@@ -1,7 +1,8 @@
 'use client';
 
-import { motion } from 'framer-motion';
-import { useState } from 'react';
+import Image from 'next/image';
+import { motion, useScroll, useTransform } from 'framer-motion';
+import { useState, useRef } from 'react';
 
 const academicPaths = [
   {
@@ -82,6 +83,12 @@ const faqData = [
 
 const Admissions = () => {
   const [openFaq, setOpenFaq] = useState<number | null>(1);
+  const heroRef = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: heroRef,
+    offset: ['start start', 'end start'],
+  });
+  const y = useTransform(scrollYProgress, [0, 1], ['0%', '30%']);
 
   const toggleFaq = (id: number) => {
     setOpenFaq(openFaq === id ? null : id);
@@ -89,41 +96,84 @@ const Admissions = () => {
 
   return (
     <section className="w-screen m-0 p-0 overflow-x-hidden">
-      {/* Hero Section */}
-      <div
-        className="relative w-screen bg-[#d9d9d9] overflow-hidden m-0 p-0"
-        style={{ minHeight: '100vh' }}
-      >
-        {/* Content */}
-        <div
-          className="absolute"
+      {/* Hero Section with Image */}
+      <div ref={heroRef} className="relative w-screen m-0 p-0 overflow-hidden">
+        {/* Hero Image with reveal animation */}
+        <motion.div
+          className="relative w-screen h-screen"
+          initial={{ clipPath: 'inset(100% 0% 0% 0%)' }}
+          animate={{ clipPath: 'inset(0% 0% 0% 0%)' }}
+          transition={{ duration: 2, ease: [0.22, 1, 0.36, 1] }}
+        >
+          <motion.div className="absolute inset-0" style={{ y }}>
+            <Image
+              src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?w=1920&q=80"
+              alt="Admissions"
+              fill
+              className="object-cover scale-110"
+              priority
+            />
+          </motion.div>
+          {/* Black Overlay */}
+          <div className="absolute inset-0 bg-black/30" />
+        </motion.div>
+
+        {/* Paragraph at Top Left */}
+        <motion.div
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.3 }}
+          className="absolute top-0 left-0"
           style={{
-            top: '180px',
-            left: '120px',
-            maxWidth: '450px',
+            paddingLeft: '40px',
+            paddingTop: '120px',
+            maxWidth: '800px',
           }}
         >
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
+          <h2
+            className="text-white font-semibold leading-tight mb-5"
+            style={{
+              fontSize: 'clamp(1.5rem, 3vw, 2.5rem)',
+            }}
           >
-            <h1 className="text-5xl md:text-6xl font-bold text-[#21313c] mb-6 leading-tight">
-              Your journey<br />starts here.
-            </h1>
-            <p className="text-base text-[#21313c] leading-relaxed mb-8">
-              Admissions at Jagran Lakecity University are designed to help you choose the right path — with clarity, confidence, and support at every step.
-            </p>
-            <div className="flex items-center gap-6">
-              <button className="inline-flex items-center gap-2 px-6 py-3 bg-white rounded-full text-[#21313c] font-medium hover:bg-gray-100 transition-colors">
-                Apply
-                <span>→</span>
-              </button>
-              <a href="#" className="text-[#21313c] font-medium hover:underline">
-                Explore programs
-              </a>
-            </div>
-          </motion.div>
+            YOUR <span style={{ fontFamily: "'Times New Roman', serif", fontStyle: 'italic', color: '#f0c14b', textShadow: '2px 2px 4px rgba(0,0,0,0.5)' }}>journey</span> STARTS HERE
+          </h2>
+          <p
+            className="text-white font-semibold leading-tight"
+            style={{
+              fontSize: 'clamp(1.25rem, 2.5vw, 2rem)',
+            }}
+          >
+            Admissions at Jagran Lakecity University are designed to help you choose the right path — with clarity, confidence, and support at every step.
+          </p>
+        </motion.div>
+
+        {/* Large "Admissions" Text - Bottom Left */}
+        <div
+          className="absolute bottom-0 left-0"
+          style={{
+            paddingLeft: '40px',
+            paddingBottom: '0px',
+          }}
+        >
+          <motion.h1
+            initial={{ opacity: 0, y: 100 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.1 }}
+            className="font-normal select-none"
+            style={{
+              fontFamily: "system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif",
+              fontSize: 'clamp(6rem, 14vw, 14rem)',
+              lineHeight: 0.85,
+              letterSpacing: '-0.02em',
+              background: 'linear-gradient(to bottom, rgba(255,255,255,1) 0%, rgba(255,255,255,0.7) 50%, rgba(255,255,255,0) 85%)',
+              WebkitBackgroundClip: 'text',
+              backgroundClip: 'text',
+              WebkitTextFillColor: 'transparent',
+            }}
+          >
+            Admissions
+          </motion.h1>
         </div>
       </div>
 
@@ -180,21 +230,31 @@ const Admissions = () => {
             </h2>
 
             <div className="flex" style={{ gap: '24px' }}>
-              {beyondDegrees.map((item) => (
+              {beyondDegrees.map((item, index) => (
                 <div
                   key={item.id}
-                  className="flex bg-white"
+                  className="flex bg-white overflow-hidden"
                   style={{
                     width: '580px',
                     height: '280px',
                     paddingRight: '24px',
                   }}
                 >
-                  {/* Grey image placeholder */}
+                  {/* Image */}
                   <div
-                    className="bg-[#d9d9d9] shrink-0"
+                    className="relative shrink-0"
                     style={{ width: '264px', height: '280px' }}
-                  />
+                  >
+                    <Image
+                      src={index === 0
+                        ? "https://images.unsplash.com/photo-1552664730-d307ca884978?w=800&q=80"
+                        : "https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=800&q=80"
+                      }
+                      alt={item.title}
+                      fill
+                      className="object-cover"
+                    />
+                  </div>
                   {/* Content */}
                   <div className="flex flex-col justify-center p-6">
                     <h3 className="text-xl font-bold text-[#21313c] mb-3">
@@ -228,11 +288,18 @@ const Admissions = () => {
           </h2>
 
           <div className="flex" style={{ gap: '64px' }}>
-            {/* Image Placeholder */}
+            {/* Image */}
             <div
-              className="bg-[#e8e8e8] shrink-0"
+              className="relative shrink-0 overflow-hidden rounded-lg"
               style={{ width: '580px', height: '580px' }}
-            />
+            >
+              <Image
+                src="https://images.unsplash.com/photo-1541339907198-e08756dedf3f?w=1200&q=80"
+                alt="Campus Visit"
+                fill
+                className="object-cover"
+              />
+            </div>
 
             {/* Content */}
             <div className="flex flex-col justify-center" style={{ maxWidth: '500px' }}>

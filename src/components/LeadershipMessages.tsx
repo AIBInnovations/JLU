@@ -58,17 +58,26 @@ const LeadershipMessages = () => {
                 viewport={{ once: true }}
                 className="grid grid-cols-1 md:grid-cols-[373px_1fr] gap-8 md:gap-12 items-start"
               >
-                {/* Leader Image */}
-                <img
-                  src={leader.image}
-                  alt={leader.name}
-                  className="mx-auto md:mx-0 object-cover object-top"
+                {/* Leader Image with reveal from top-right */}
+                <motion.div
+                  initial={{ clipPath: 'polygon(100% 0%, 100% 0%, 100% 0%, 100% 0%)' }}
+                  whileInView={{ clipPath: 'polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)' }}
+                  transition={{ duration: 1.2, ease: 'easeOut' }}
+                  viewport={{ once: true }}
+                  className="relative mx-auto md:mx-0 rounded-3xl overflow-hidden"
                   style={{
                     width: '373px',
                     height: '373px',
                     maxWidth: '100%',
                   }}
-                />
+                >
+                  <img
+                    src={leader.image}
+                    alt={leader.name}
+                    className="w-full h-full object-cover object-top"
+                  />
+                  <div className="absolute inset-0 bg-black/20 rounded-3xl" />
+                </motion.div>
 
                 {/* Content */}
                 <div className="space-y-6">

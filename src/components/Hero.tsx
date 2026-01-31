@@ -1,7 +1,7 @@
 'use client';
 
 import { useRef, useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion, AnimatePresence, useScroll, useTransform } from 'framer-motion';
 import { gsap } from 'gsap';
 import { useIsMobile } from '../hooks/useIsMobile';
 
@@ -429,11 +429,19 @@ const MenuButton = ({ onClick, buttonRef, isOpen }: MenuButtonProps) => {
 // ============================================
 export const Hero = () => {
   const heroRef = useRef<HTMLDivElement>(null);
+  const sectionRef = useRef<HTMLElement>(null);
   const menuButtonRef = useRef<HTMLButtonElement>(null);
   const exploreButtonRef = useRef<HTMLButtonElement>(null);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isVideoOpen, setIsVideoOpen] = useState(false);
   const isMobile = useIsMobile();
+
+  // Parallax scroll effect
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ['start start', 'end start'],
+  });
+  const y = useTransform(scrollYProgress, [0, 1], ['0%', '20%']);
 
   // Refs for GSAP animation
   const backgroundRef = useRef<HTMLImageElement>(null);
@@ -572,6 +580,7 @@ export const Hero = () => {
     <div className="bg-[#f6f7f0]">
       {/* Cinematic Hero Section */}
       <section
+        ref={sectionRef}
         className="relative w-full overflow-hidden"
         style={{ height: isMobile ? 'calc(100vh - 16px)' : 'calc(100vh - 4px)', padding: isMobile ? '16px' : '24px' }}
       >
@@ -593,20 +602,24 @@ export const Hero = () => {
           />
 
           {/* Layer 1: Background Image (z-index: 1) */}
-          <img
-            ref={backgroundRef}
-            src="/onlybg.png"
-            alt="Background"
-            className="absolute inset-0 w-full h-full object-cover"
-            style={{
-              zIndex: 1,
-              objectPosition: 'center top',
-              clipPath: 'polygon(0% 50%, 100% 50%, 100% 50%, 0% 50%)',
-              willChange: 'transform, clip-path',
-              backfaceVisibility: 'hidden',
-              transform: 'translateZ(0)',
-            }}
-          />
+          <motion.div
+            className="absolute inset-0"
+            style={{ y, zIndex: 1 }}
+          >
+            <img
+              ref={backgroundRef}
+              src="/onlybg.png"
+              alt="Background"
+              className="absolute inset-0 w-full h-full object-cover scale-110"
+              style={{
+                objectPosition: 'center top',
+                clipPath: 'polygon(0% 50%, 100% 50%, 100% 50%, 0% 50%)',
+                willChange: 'transform, clip-path',
+                backfaceVisibility: 'hidden',
+                transform: 'translateZ(0) scale(1.1)',
+              }}
+            />
+          </motion.div>
 
           {/* Layer 2: Text - JAGRAN LAKECITY UNIVERSITY (z-index: 2) */}
           <div
