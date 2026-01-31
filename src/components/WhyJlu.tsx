@@ -131,7 +131,6 @@ export const WhyJlu = () => {
           background: isMobile
             ? 'linear-gradient(to bottom, transparent 0%, transparent 4%, #f6f7f0 4%)'
             : 'linear-gradient(to bottom, transparent 0%, transparent 36%, #f6f7f0 36%)',
-          padding: isMobile ? '0 8px' : '0 clamp(40px, 5vw, 120px)',
           paddingBottom: isMobile ? '40px' : '0',
         }}
       >
@@ -142,6 +141,8 @@ export const WhyJlu = () => {
             gap: isMobile ? '6px' : 'clamp(8px, 1vw, 12px)',
             alignItems: isMobile ? 'flex-start' : 'center',
             background: 'transparent',
+            paddingLeft: isMobile ? '6px' : 'clamp(8px, 1vw, 12px)',
+            paddingRight: isMobile ? '6px' : 'clamp(8px, 1vw, 12px)',
           }}
         >
           {whyJluCards.map((card, index) => (
@@ -149,8 +150,11 @@ export const WhyJlu = () => {
               key={index}
               style={{
                 background: card.bg,
-                width: isMobile ? 'calc((100vw - 34px) / 4)' : 'clamp(280px, 23vw, 520px)',
-                height: isMobile ? '180px' : 'clamp(280px, 23vw, 520px)',
+                width: isMobile ? 'calc((100vw - 30px) / 4)' : undefined,
+                flex: isMobile ? undefined : '1 1 0',
+                height: isMobile ? '180px' : 'auto',
+                aspectRatio: isMobile ? undefined : '1 / 1',
+                maxWidth: isMobile ? undefined : '25%',
                 flexShrink: 0,
                 display: 'flex',
                 flexDirection: 'column',

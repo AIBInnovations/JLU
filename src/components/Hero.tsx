@@ -965,7 +965,7 @@ export const Hero = () => {
 
       {/* Image grid section */}
       <section className="relative px-0 pb-12 md:pb-20 bg-[#f6f7f0] overflow-hidden">
-        <div className="relative mx-auto max-w-[1800px] px-4 sm:px-10 lg:px-16">
+        <div className="relative mx-auto max-w-[1800px]" style={{ paddingLeft: isMobile ? '12px' : '16px', paddingRight: isMobile ? '12px' : '16px' }}>
           <motion.div
             className="flex w-full items-end justify-center"
             style={{ gap: isMobile ? '12px' : '16px' }}

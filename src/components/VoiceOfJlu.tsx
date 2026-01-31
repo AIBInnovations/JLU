@@ -98,7 +98,7 @@ export const VoiceOfJlu = () => {
       {/* Cards Container */}
       {isMobile ? (
         /* Mobile: Arrow navigation cards */
-        <div className="px-4">
+        <div style={{ paddingLeft: '12px', paddingRight: '12px' }}>
           {/* Cards with navigation */}
           <div className="relative overflow-hidden">
             <div
@@ -176,7 +176,7 @@ export const VoiceOfJlu = () => {
         </div>
       ) : (
         /* Desktop: Original layout */
-        <div className="flex justify-between items-center px-6 lg:px-12 xl:px-16 2xl:px-24">
+        <div className="flex justify-center items-center gap-[clamp(6px,0.8vw,10px)]" style={{ paddingLeft: 'clamp(6px, 0.8vw, 10px)', paddingRight: 'clamp(6px, 0.8vw, 10px)' }}>
           {voices.map((voice, index) => (
             <div
               key={index}

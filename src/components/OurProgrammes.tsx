@@ -34,7 +34,8 @@ export const OurProgrammes = () => {
       <div
         className="flex justify-center"
         style={{
-          padding: isMobile ? '0 4px' : '0 23px',
+          paddingLeft: isMobile ? '2px' : '10px',
+          paddingRight: isMobile ? '2px' : '10px',
           gap: isMobile ? '2px' : '10px'
         }}
       >
@@ -43,8 +44,8 @@ export const OurProgrammes = () => {
             key={index}
             className="relative overflow-hidden cursor-pointer group rounded-2xl"
             style={{
-              width: isMobile ? 'calc((100vw - 14px) / 4)' : 'clamp(280px, 24vw, 520px)',
-              height: isMobile ? '180px' : 'clamp(320px, 28vw, 580px)',
+              width: isMobile ? 'calc((100vw - 10px) / 4)' : 'clamp(280px, 24vw, 520px)',
+              height: isMobile ? '220px' : 'clamp(360px, 32vw, 640px)',
             }}
             onClick={() => isMobile && setActiveCard(activeCard === index ? null : index)}
           >
@@ -190,16 +191,16 @@ export const OurProgrammes = () => {
           </div>
         </div>
       ) : (
-        /* Desktop: Original layout */
+        /* Desktop: Grid layout with aligned borders */
         <div className="mt-16 md:mt-24 px-4 lg:px-16 xl:px-20 2xl:px-32">
-          {/* First Row - 2 boxes left aligned */}
+          {/* First Row - 2 boxes */}
           <div>
             <p className="text-xs text-gray-500 mb-2">Lorem ipsum</p>
             <div className="flex">
-              {/* Middlesex */}
+              {/* Middlesex - spans 3 columns */}
               <div
                 className="border border-gray-300 flex items-center justify-center"
-                style={{ width: 'clamp(300px, 25vw, 520px)', height: 'clamp(180px, 15vw, 300px)' }}
+                style={{ flex: '0 0 33.333%', height: 'clamp(180px, 15vw, 300px)' }}
               >
                 <img
                   src="/mid.png"
@@ -207,10 +208,10 @@ export const OurProgrammes = () => {
                   className="max-h-28 object-contain"
                 />
               </div>
-              {/* King's College */}
+              {/* King's College - spans 3 columns */}
               <div
                 className="border border-l-0 border-gray-300 flex items-center justify-center"
-                style={{ width: 'clamp(300px, 25vw, 520px)', height: 'clamp(180px, 15vw, 300px)' }}
+                style={{ flex: '0 0 33.333%', height: 'clamp(180px, 15vw, 300px)' }}
               >
                 <img
                   src="/king.png"
@@ -229,7 +230,7 @@ export const OurProgrammes = () => {
             <div className="flex">
               <div
                 className="border border-gray-300 flex items-center justify-center"
-                style={{ width: 'clamp(280px, 32vw, 680px)', height: 'clamp(160px, 13vw, 260px)' }}
+                style={{ flex: '0 0 33.333%', height: 'clamp(160px, 13vw, 260px)' }}
               >
                 <img
                   src="/nus.png"
@@ -239,7 +240,7 @@ export const OurProgrammes = () => {
               </div>
               <div
                 className="border border-l-0 border-gray-300 flex items-center justify-center"
-                style={{ width: 'clamp(280px, 32vw, 680px)', height: 'clamp(160px, 13vw, 260px)' }}
+                style={{ flex: '0 0 33.333%', height: 'clamp(160px, 13vw, 260px)' }}
               >
                 <img
                   src="/c11.png"
@@ -249,7 +250,7 @@ export const OurProgrammes = () => {
               </div>
               <div
                 className="border border-l-0 border-gray-300 flex items-center justify-center"
-                style={{ width: 'clamp(280px, 32vw, 680px)', height: 'clamp(160px, 13vw, 260px)' }}
+                style={{ flex: '0 0 33.334%', height: 'clamp(160px, 13vw, 260px)' }}
               >
                 <img
                   src="/ficci.png"
@@ -263,7 +264,7 @@ export const OurProgrammes = () => {
             <div className="flex">
               <div
                 className="border border-t-0 border-gray-300 flex items-center justify-center"
-                style={{ width: 'clamp(280px, 32vw, 680px)', height: 'clamp(160px, 13vw, 260px)' }}
+                style={{ flex: '0 0 33.333%', height: 'clamp(160px, 13vw, 260px)' }}
               >
                 <img
                   src="/gt.png"
@@ -273,13 +274,13 @@ export const OurProgrammes = () => {
               </div>
               <div
                 className="border border-t-0 border-l-0 border-gray-300"
-                style={{ width: 'clamp(280px, 32vw, 680px)', height: 'clamp(160px, 13vw, 260px)' }}
+                style={{ flex: '0 0 33.333%', height: 'clamp(160px, 13vw, 260px)' }}
               >
                 {/* Empty box */}
               </div>
               <div
                 className="border border-t-0 border-l-0 border-gray-300"
-                style={{ width: 'clamp(280px, 32vw, 680px)', height: 'clamp(160px, 13vw, 260px)' }}
+                style={{ flex: '0 0 33.334%', height: 'clamp(160px, 13vw, 260px)' }}
               >
                 {/* Empty box */}
               </div>
@@ -289,7 +290,7 @@ export const OurProgrammes = () => {
       )}
 
       {/* Three Image Cards Section */}
-      <div className="mt-8 md:mt-24 px-4 lg:px-16 xl:px-20 2xl:px-32">
+      <div className="mt-8 md:mt-24" style={{ paddingLeft: isMobile ? '16px' : '10px', paddingRight: isMobile ? '16px' : '10px' }}>
         <div className="flex" style={{ gap: isMobile ? '16px' : '10px' }}>
           {/* First card - l */}
           <div
