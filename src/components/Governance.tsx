@@ -14,23 +14,25 @@ const Governance = () => {
       <div className="max-w-7xl mx-auto">
         {/* Governance Section */}
         <div
-          className="mb-20"
+          className="mb-20 px-4 lg:px-16 xl:px-20 2xl:px-32"
           style={{
-            maxWidth: '1200px',
             paddingTop: '80px',
-            paddingLeft: '120px',
-            paddingRight: '40px',
           }}
         >
-          {/* Governance Content */}
+          {/* Two Column Layout */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
-            style={{ maxWidth: '900px' }}
+            style={{
+              display: 'flex',
+              gap: '80px',
+              alignItems: 'flex-start',
+            }}
           >
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '44px' }}>
+            {/* Left Column: Heading and Paragraphs */}
+            <div style={{ flex: '1 1 0', display: 'flex', flexDirection: 'column', gap: '44px' }}>
               <h2
                 className="font-bold text-[#21313c]"
                 style={{
@@ -41,33 +43,6 @@ const Governance = () => {
               >
                 Governance
               </h2>
-
-              {/* Governing Bodies List - Now below the title */}
-              <div
-                style={{
-                  display: 'flex',
-                  flexDirection: 'row',
-                  gap: '60px',
-                  flexWrap: 'wrap',
-                }}
-              >
-                {governanceBodies.map((body, index) => (
-                  <div
-                    key={index}
-                    className="text-[#21313c]"
-                    style={{
-                      fontFamily: 'Inter, sans-serif',
-                      fontWeight: 500,
-                      fontSize: '18px',
-                      lineHeight: '24px',
-                      paddingBottom: '12px',
-                      borderBottom: '2px solid #21313c',
-                    }}
-                  >
-                    {body}
-                  </div>
-                ))}
-              </div>
 
               <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
                 <p
@@ -94,11 +69,39 @@ const Governance = () => {
                 </p>
               </div>
             </div>
+
+            {/* Right Column: Governance Bodies List */}
+            <div
+              style={{
+                flex: '0 0 auto',
+                display: 'flex',
+                flexDirection: 'column',
+                gap: '40px',
+                minWidth: '300px',
+              }}
+            >
+              {governanceBodies.map((body, index) => (
+                <div
+                  key={index}
+                  className="text-[#21313c]"
+                  style={{
+                    fontFamily: 'Inter, sans-serif',
+                    fontWeight: 500,
+                    fontSize: '18px',
+                    lineHeight: '24px',
+                    paddingBottom: '12px',
+                    borderBottom: '1px solid #21313c',
+                  }}
+                >
+                  {body}
+                </div>
+              ))}
+            </div>
           </motion.div>
         </div>
 
         {/* JLU Leadership Section */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center px-4 lg:px-16 xl:px-20 2xl:px-32">
           {/* Image with reveal from top to bottom */}
           <div className="w-full">
             <motion.div
