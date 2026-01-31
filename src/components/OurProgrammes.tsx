@@ -290,8 +290,8 @@ export const OurProgrammes = () => {
       )}
 
       {/* Three Image Cards Section */}
-      <div className="mt-8 md:mt-24" style={{ paddingLeft: isMobile ? '16px' : '10px', paddingRight: isMobile ? '16px' : '10px' }}>
-        <div className="flex" style={{ gap: isMobile ? '16px' : '10px' }}>
+      <div className="mt-8 md:mt-24" style={{ paddingLeft: isMobile ? '4px' : '10px', paddingRight: isMobile ? '4px' : '10px' }}>
+        <div className="flex" style={{ gap: isMobile ? '4px' : '10px' }}>
           {/* First card - l */}
           <div
             className="overflow-hidden flex-1 rounded-t-2xl group cursor-pointer"

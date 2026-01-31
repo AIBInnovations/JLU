@@ -100,7 +100,9 @@ export const WhyJlu = () => {
           alignItems: 'center',
           justifyContent: 'center',
           zIndex: 10,
-          background: '#f6f7f0',
+          background: isMobile
+            ? 'linear-gradient(to bottom, transparent 0%, transparent 50%, #f6f7f0 50%)'
+            : '#f6f7f0',
         }}
       >
         <h1
@@ -121,7 +123,7 @@ export const WhyJlu = () => {
       <div
         style={{
           position: 'absolute',
-          top: isMobile ? '90vh' : '65vh',
+          top: isMobile ? '75vh' : '65vh',
           left: 0,
           width: '100%',
           display: 'flex',
@@ -129,7 +131,7 @@ export const WhyJlu = () => {
           justifyContent: 'center',
           zIndex: 20,
           background: isMobile
-            ? 'linear-gradient(to bottom, transparent 0%, transparent 4%, #f6f7f0 4%)'
+            ? 'linear-gradient(to bottom, transparent 0%, transparent 21%, #f6f7f0 21%)'
             : 'linear-gradient(to bottom, transparent 0%, transparent 36%, #f6f7f0 36%)',
           paddingBottom: isMobile ? '40px' : '0',
         }}
@@ -151,17 +153,18 @@ export const WhyJlu = () => {
               style={{
                 background: card.bg,
                 width: isMobile ? 'calc((100vw - 30px) / 4)' : undefined,
-                flex: isMobile ? undefined : '1 1 0',
+                flexGrow: isMobile ? 0 : 1,
+                flexShrink: 0,
+                flexBasis: isMobile ? 'auto' : 0,
                 height: isMobile ? '180px' : 'auto',
                 aspectRatio: isMobile ? undefined : '1 / 1',
                 maxWidth: isMobile ? undefined : '25%',
-                flexShrink: 0,
                 display: 'flex',
                 flexDirection: 'column',
                 justifyContent: 'space-between',
                 padding: isMobile ? '10px' : 'clamp(20px, 2vw, 24px)',
                 marginTop: isMobile
-                  ? (index === 3 ? '60px' : (index === 0 || index === 2 ? '25px' : '0'))
+                  ? (index === 0 ? '130px' : index === 1 ? '-40px' : index === 2 ? '85px' : '200px')
                   : (index === 3 ? '200px' : (index === 0 || index === 2 ? '80px' : '0')),
                 marginBottom: isMobile ? '0' : (index === 1 ? '80px' : '0'),
                 borderRadius: isMobile ? '12px' : '16px',

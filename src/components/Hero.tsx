@@ -93,14 +93,14 @@ const MenuOverlay = ({ isOpen, onClose, menuButtonRef, heroRef }: MenuOverlayPro
           {/* Mobile: Square-to-fullscreen expanding overlay */}
           {isMobile ? (
             <>
-              {/* Expanding square background - starts exactly from menu button */}
+              {/* Expanding square background - starts behind menu button */}
               <motion.div
                 initial={{
                   width: 24,
                   height: 24,
                   borderRadius: '6px',
-                  left: buttonPos.left + 16,
-                  top: buttonPos.top + 6,
+                  left: buttonPos.left - 2,
+                  top: buttonPos.top - 2,
                 }}
                 animate={{
                   width: '100vw',
@@ -113,8 +113,8 @@ const MenuOverlay = ({ isOpen, onClose, menuButtonRef, heroRef }: MenuOverlayPro
                   width: 24,
                   height: 24,
                   borderRadius: '6px',
-                  left: buttonPos.left + 16,
-                  top: buttonPos.top + 6,
+                  left: buttonPos.left - 2,
+                  top: buttonPos.top - 2,
                 }}
                 transition={{
                   duration: 1,
@@ -122,11 +122,11 @@ const MenuOverlay = ({ isOpen, onClose, menuButtonRef, heroRef }: MenuOverlayPro
                 }}
                 className="fixed bg-white"
                 style={{
-                  zIndex: 58,
+                  zIndex: 40,
                 }}
               />
 
-              {/* Content layer - no close button here, using the menu button */}
+              {/* Content layer with close button */}
               <motion.div
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1, transition: { duration: 0.4, delay: 0.6 } }}
@@ -134,6 +134,21 @@ const MenuOverlay = ({ isOpen, onClose, menuButtonRef, heroRef }: MenuOverlayPro
                 className="fixed inset-0 overflow-y-auto"
                 style={{ zIndex: 59 }}
               >
+                {/* Close button - positioned at same location as hamburger menu */}
+                <motion.button
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ delay: 0.5, duration: 0.3 }}
+                  onClick={onClose}
+                  className="fixed top-6 right-6 h-6 w-6 rounded-md bg-[#03463B] flex items-center justify-center shadow-lg z-100"
+                  aria-label="Close menu"
+                >
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <line x1="5" y1="5" x2="19" y2="19" stroke="white" strokeWidth="2" strokeLinecap="round" />
+                    <line x1="19" y1="5" x2="5" y2="19" stroke="white" strokeWidth="2" strokeLinecap="round" />
+                  </svg>
+                </motion.button>
+
                 {/* Mobile Navigation content - side by side like desktop */}
                 <div className="flex gap-4 px-4 pt-20 pb-8">
                   {/* Main navigation - left side */}
@@ -434,6 +449,7 @@ export const Hero = () => {
   const exploreButtonRef = useRef<HTMLButtonElement>(null);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isVideoOpen, setIsVideoOpen] = useState(false);
+  const [videoButtonPos, setVideoButtonPos] = useState({ left: 0, top: 0, width: 0, height: 0, centerX: 0, centerY: 0 });
   const isMobile = useIsMobile();
 
   // Parallax scroll effect
@@ -494,6 +510,8 @@ export const Hero = () => {
     if (!imagesLoaded) return;
 
     // Set initial states immediately - both images start as a line in the middle
+    // On mobile, building is 65% height at bottom, so adjust its clipPath to match background's visual center
+    const buildingClipStart = isMobile ? '23%' : '50%';
     gsap.set(backgroundRef.current, {
       opacity: 1,
       clipPath: 'polygon(0% 50%, 100% 50%, 100% 50%, 0% 50%)',
@@ -502,13 +520,13 @@ export const Hero = () => {
     });
     gsap.set(buildingRef.current, {
       opacity: 1,
-      clipPath: 'polygon(0% 50%, 100% 50%, 100% 50%, 0% 50%)',
+      clipPath: `polygon(0% ${buildingClipStart}, 100% ${buildingClipStart}, 100% ${buildingClipStart}, 0% ${buildingClipStart})`,
       scale: 1,
       force3D: true,
     });
     gsap.set(textRef.current, {
       opacity: 0,
-      y: 400,
+      y: isMobile ? 200 : 400,
       force3D: true,
     });
     gsap.set(navRef.current, {
@@ -548,10 +566,10 @@ export const Hero = () => {
         .to(textRef.current, {
           opacity: 1,
           y: 0,
-          duration: 1.2,
+          duration: isMobile ? 1.4 : 1.2,
           ease: 'power2.out',
           force3D: true,
-        }, '-=1.2')
+        }, isMobile ? '-=0.8' : '-=1.2')
         // 4. Navigation fades in
         .to(navRef.current, {
           opacity: 1,
@@ -574,7 +592,7 @@ export const Hero = () => {
       clearTimeout(loaderDelay);
       if (tl) tl.kill();
     };
-  }, [imagesLoaded]);
+  }, [imagesLoaded, isMobile]);
 
   return (
     <div className="bg-[#f6f7f0]">
@@ -610,13 +628,13 @@ export const Hero = () => {
               ref={backgroundRef}
               src="/onlybg.png"
               alt="Background"
-              className="absolute inset-0 w-full h-full object-cover scale-110"
+              className={`absolute inset-0 w-full h-full object-cover ${isMobile ? '' : 'scale-110'}`}
               style={{
-                objectPosition: 'center top',
+                objectPosition: isMobile ? 'center center' : 'center top',
                 clipPath: 'polygon(0% 50%, 100% 50%, 100% 50%, 0% 50%)',
                 willChange: 'transform, clip-path',
                 backfaceVisibility: 'hidden',
-                transform: 'translateZ(0) scale(1.1)',
+                transform: isMobile ? 'translateZ(0)' : 'translateZ(0) scale(1.1)',
               }}
             />
           </motion.div>
@@ -627,7 +645,7 @@ export const Hero = () => {
             className="absolute inset-0 flex items-center justify-center"
             style={{
               zIndex: 2,
-              paddingBottom: isMobile ? '30%' : '10%',
+              paddingBottom: isMobile ? '45%' : '10%',
               opacity: 0,
               willChange: 'transform, opacity',
               backfaceVisibility: 'hidden',
@@ -638,19 +656,28 @@ export const Hero = () => {
               className="text-center font-bold uppercase tracking-wider select-none"
               style={{
                 fontFamily: "'Humane', sans-serif",
-                fontSize: isMobile ? 'clamp(2.5rem, 10vw, 4rem)' : 'clamp(15rem, 20vw, 20rem)',
-                lineHeight: 1.1,
-                letterSpacing: isMobile ? '0.05em' : '0.01em',
-                wordSpacing: isMobile ? '0.5em' : '1em',
-                whiteSpace: 'nowrap',
-                background: 'linear-gradient(to bottom, rgba(255,255,255,1) 0%, rgba(255,255,255,1) 10%, rgba(255,255,255,0) 70%)',
+                fontSize: isMobile ? 'clamp(4.5rem, 22vw, 8rem)' : 'clamp(15rem, 20vw, 20rem)',
+                lineHeight: isMobile ? 1.0 : 1.1,
+                letterSpacing: isMobile ? '0.02em' : '0.01em',
+                wordSpacing: isMobile ? '0.2em' : '1em',
+                whiteSpace: isMobile ? 'normal' : 'nowrap',
+                maxWidth: isMobile ? '90vw' : 'none',
+                backgroundImage: isMobile
+                  ? 'linear-gradient(to bottom, rgba(255,255,255,1) 0%, rgba(255,255,255,0.7) 20%, rgba(255,255,255,0) 100%)'
+                  : 'linear-gradient(to bottom, rgba(255,255,255,1) 0%, rgba(255,255,255,1) 10%, rgba(255,255,255,0) 70%)',
                 WebkitBackgroundClip: 'text',
                 backgroundClip: 'text',
                 WebkitTextFillColor: 'transparent',
                 textShadow: 'none',
               }}
             >
-              JAGRAN LAKECITY
+              {isMobile ? (
+                <>
+                  JAGRAN<br />LAKECITY
+                </>
+              ) : (
+                'JAGRAN LAKECITY'
+              )}
             </h1>
           </div>
 
@@ -659,14 +686,19 @@ export const Hero = () => {
             ref={buildingRef}
             src="/jluherot.png"
             alt="JLU Building"
-            className="absolute inset-0"
+            className="absolute"
             style={{
               zIndex: 3,
               width: '100%',
-              height: '100%',
+              height: isMobile ? '65%' : '100%',
+              bottom: 0,
+              left: 0,
+              right: 0,
               objectFit: 'cover',
               objectPosition: 'center bottom',
-              clipPath: 'polygon(0% 50%, 100% 50%, 100% 50%, 0% 50%)',
+              clipPath: isMobile
+                ? 'polygon(0% 23%, 100% 23%, 100% 23%, 0% 23%)'
+                : 'polygon(0% 50%, 100% 50%, 100% 50%, 0% 50%)',
               willChange: 'transform, clip-path',
               backfaceVisibility: 'hidden',
               transform: 'translateZ(0)',
@@ -676,7 +708,32 @@ export const Hero = () => {
           {/* Explore JLU Button (z-index: 120) */}
           <button
             ref={exploreButtonRef}
-            onClick={() => setIsVideoOpen(true)}
+            onClick={() => {
+              if (exploreButtonRef.current && heroRef.current) {
+                const buttonRect = exploreButtonRef.current.getBoundingClientRect();
+                const heroRect = heroRef.current.getBoundingClientRect();
+                if (isMobile) {
+                  setVideoButtonPos({
+                    left: buttonRect.left,
+                    top: buttonRect.top,
+                    width: buttonRect.width,
+                    height: buttonRect.height,
+                    centerX: buttonRect.left + buttonRect.width / 2,
+                    centerY: buttonRect.top + buttonRect.height / 2,
+                  });
+                } else {
+                  setVideoButtonPos({
+                    left: buttonRect.left - heroRect.left,
+                    top: buttonRect.top - heroRect.top,
+                    width: buttonRect.width,
+                    height: buttonRect.height,
+                    centerX: buttonRect.left - heroRect.left + buttonRect.width / 2,
+                    centerY: buttonRect.top - heroRect.top + buttonRect.height / 2,
+                  });
+                }
+              }
+              setIsVideoOpen(true);
+            }}
             className="absolute bottom-8 right-8 sm:bottom-12 sm:right-12 lg:bottom-16 lg:right-16 bg-white text-[#21313c] font-semibold cursor-pointer"
             style={{
               zIndex: 120,
@@ -693,67 +750,36 @@ export const Hero = () => {
 
           {/* Video Expansion Overlay (z-index: 60) */}
           <AnimatePresence>
-            {isVideoOpen && (() => {
-              const getButtonPosition = () => {
-                if (exploreButtonRef.current && heroRef.current) {
-                  const buttonRect = exploreButtonRef.current.getBoundingClientRect();
-                  const heroRect = heroRef.current.getBoundingClientRect();
-
-                  if (isMobile) {
-                    return {
-                      left: buttonRect.left,
-                      top: buttonRect.top,
-                      width: buttonRect.width,
-                      height: buttonRect.height,
-                      centerX: buttonRect.left + buttonRect.width / 2,
-                      centerY: buttonRect.top + buttonRect.height / 2,
-                    };
-                  }
-
-                  return {
-                    left: buttonRect.left - heroRect.left,
-                    top: buttonRect.top - heroRect.top,
-                    width: buttonRect.width,
-                    height: buttonRect.height,
-                    centerX: buttonRect.left - heroRect.left + buttonRect.width / 2,
-                    centerY: buttonRect.top - heroRect.top + buttonRect.height / 2,
-                  };
-                }
-                return { left: 0, top: 0, width: 0, height: 0, centerX: 0, centerY: 0 };
-              };
-
-              const buttonPos = getButtonPosition();
-
-              return (
-                <>
-                  {isMobile ? (
-                    <>
-                      {/* Mobile: Button expands to fullscreen */}
-                      <motion.div
-                        initial={{
-                          width: buttonPos.width,
-                          height: buttonPos.height,
-                          borderRadius: '8px',
-                          left: buttonPos.left,
-                          top: buttonPos.top,
-                        }}
-                        animate={{
-                          width: '100vw',
-                          height: '100vh',
-                          borderRadius: '0px',
-                          left: 0,
-                          top: 0,
-                        }}
-                        exit={{
-                          width: buttonPos.width,
-                          height: buttonPos.height,
-                          borderRadius: '8px',
-                          left: buttonPos.left,
-                          top: buttonPos.top,
-                        }}
+            {isVideoOpen && (
+              <>
+                {isMobile ? (
+                  <>
+                    {/* Mobile: Button expands to fullscreen */}
+                    <motion.div
+                      initial={{
+                        width: videoButtonPos.width,
+                        height: videoButtonPos.height,
+                        borderRadius: '8px',
+                        left: videoButtonPos.left,
+                        top: videoButtonPos.top,
+                      }}
+                      animate={{
+                        width: '100vw',
+                        height: '100vh',
+                        borderRadius: '0px',
+                        left: 0,
+                        top: 0,
+                      }}
+                      exit={{
+                        width: videoButtonPos.width,
+                        height: videoButtonPos.height,
+                        borderRadius: '8px',
+                        left: videoButtonPos.left,
+                        top: videoButtonPos.top,
+                      }}
                         transition={{
-                          duration: 1,
-                          ease: [0.16, 1, 0.3, 1],
+                          duration: 0.8,
+                          ease: [0.4, 0, 0.2, 1],
                         }}
                         className="fixed bg-white"
                         style={{ zIndex: 58 }}
@@ -791,13 +817,13 @@ export const Hero = () => {
                       {/* Desktop: Button expands to full hero size */}
                       <motion.div
                         initial={{
-                          clipPath: `inset(${buttonPos.top}px ${heroRef.current ? heroRef.current.offsetWidth - buttonPos.left - buttonPos.width : 0}px ${heroRef.current ? heroRef.current.offsetHeight - buttonPos.top - buttonPos.height : 0}px ${buttonPos.left}px round 8px)`,
+                          clipPath: `inset(${videoButtonPos.top}px ${heroRef.current ? heroRef.current.offsetWidth - videoButtonPos.left - videoButtonPos.width : 0}px ${heroRef.current ? heroRef.current.offsetHeight - videoButtonPos.top - videoButtonPos.height : 0}px ${videoButtonPos.left}px round 8px)`,
                         }}
                         animate={{
                           clipPath: 'inset(0px 0px 0px 0px round 24px)',
                         }}
                         exit={{
-                          clipPath: `inset(${buttonPos.top}px ${heroRef.current ? heroRef.current.offsetWidth - buttonPos.left - buttonPos.width : 0}px ${heroRef.current ? heroRef.current.offsetHeight - buttonPos.top - buttonPos.height : 0}px ${buttonPos.left}px round 8px)`,
+                          clipPath: `inset(${videoButtonPos.top}px ${heroRef.current ? heroRef.current.offsetWidth - videoButtonPos.left - videoButtonPos.width : 0}px ${heroRef.current ? heroRef.current.offsetHeight - videoButtonPos.top - videoButtonPos.height : 0}px ${videoButtonPos.left}px round 8px)`,
                         }}
                         transition={{
                           duration: 0.8,
@@ -840,8 +866,7 @@ export const Hero = () => {
                     </>
                   )}
                 </>
-              );
-            })()}
+              )}
           </AnimatePresence>
 
           {/* Navigation bar (z-index: 50) */}
@@ -974,9 +999,9 @@ export const Hero = () => {
             viewport={{ once: true, amount: 0.2 }}
           >
             {[
-              { src: '/posthero1.jpg', alt: 'Student portrait', height: 550, mobileHeight: 150 },
-              { src: '/posthero2.jpg', alt: 'Students collaborating', height: 430, mobileHeight: 120 },
-              { src: '/posthero3.jpg', alt: 'Group around laptop', height: 510, mobileHeight: 140 },
+              { src: '/posthero1.jpg', alt: 'Student portrait', height: 550, mobileHeight: 220 },
+              { src: '/posthero2.jpg', alt: 'Students collaborating', height: 430, mobileHeight: 180 },
+              { src: '/posthero3.jpg', alt: 'Group around laptop', height: 510, mobileHeight: 200 },
             ].map((img) => (
               <motion.div
                 key={img.src}

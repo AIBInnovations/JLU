@@ -79,9 +79,10 @@ export const EventsSection = () => {
         <div className="flex flex-col lg:flex-row gap-4 lg:gap-6 items-start mb-6">
           {/* Left Side - Image + Text */}
           <div
-            className="shrink-0 flex flex-col space-y-4 -ml-8 md:-ml-16 lg:-ml-16 xl:-ml-20 2xl:-ml-32"
+            className="shrink-0 flex flex-col space-y-4 lg:-ml-16 xl:-ml-20 2xl:-ml-32"
             style={{
               width: isMobile ? '100%' : 'clamp(450px, 38vw, 900px)',
+              marginLeft: isMobile ? '0' : undefined,
             }}
           >
             {/* Image */}
@@ -111,7 +112,9 @@ export const EventsSection = () => {
             <div
               className="flex gap-4 md:gap-6 transition-transform duration-500"
               style={{
-                transform: `translateX(-${currentIndex * (isMobile ? 100 : 33.33)}%)`,
+                transform: isMobile
+                  ? `translateX(calc(-${currentIndex} * (100vw - 2rem + 1rem)))`
+                  : `translateX(-${currentIndex * 33.33}%)`,
               }}
             >
               {events.map((event, index) => (
@@ -176,11 +179,38 @@ export const EventsSection = () => {
                 </div>
               ))}
             </div>
+
           </div>
         </div>
 
+        {/* Mobile Navigation Arrows - Above gallery */}
+        {isMobile && (
+          <div className="flex justify-center gap-4 mt-6 mb-8">
+            <button
+              onClick={() => setCurrentIndex((prev) => Math.max(0, prev - 1))}
+              disabled={currentIndex === 0}
+              className="w-10 h-10 rounded-full bg-white shadow-lg flex items-center justify-center hover:bg-gray-100 transition-colors border-2 border-gray-200 disabled:opacity-50 disabled:cursor-not-allowed"
+              aria-label="Previous event"
+            >
+              <svg className="w-5 h-5 text-[#21313c]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+              </svg>
+            </button>
+            <button
+              onClick={() => setCurrentIndex((prev) => Math.min(events.length - 1, prev + 1))}
+              disabled={currentIndex >= events.length - 1}
+              className="w-10 h-10 rounded-full bg-white shadow-lg flex items-center justify-center hover:bg-gray-100 transition-colors border-2 border-gray-200 disabled:opacity-50 disabled:cursor-not-allowed"
+              aria-label="Next event"
+            >
+              <svg className="w-5 h-5 text-[#21313c]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+              </svg>
+            </button>
+          </div>
+        )}
+
         {/* Infinite Scroll Gallery */}
-        <div className="mt-32 md:mt-40 overflow-hidden -mx-4 md:-mx-12 lg:-mx-16 xl:-mx-20 2xl:-mx-32">
+        <div className={`${isMobile ? 'mt-8' : 'mt-32 md:mt-40'} overflow-hidden -mx-4 md:-mx-12 lg:-mx-16 xl:-mx-20 2xl:-mx-32`}>
           <div className="flex gap-2 md:gap-4 animate-scroll">
             {/* First set of images */}
             {galleryImages.map((image, index) => (
@@ -188,8 +218,8 @@ export const EventsSection = () => {
                 key={`first-${index}`}
                 className="shrink-0"
                 style={{
-                  width: isMobile ? '100px' : 'clamp(280px, 20vw, 500px)',
-                  height: isMobile ? '120px' : 'clamp(300px, 22vw, 540px)',
+                  width: isMobile ? '140px' : 'clamp(280px, 20vw, 500px)',
+                  height: isMobile ? '170px' : 'clamp(300px, 22vw, 540px)',
                 }}
               >
                 <img
@@ -205,8 +235,8 @@ export const EventsSection = () => {
                 key={`second-${index}`}
                 className="shrink-0"
                 style={{
-                  width: isMobile ? '100px' : 'clamp(280px, 20vw, 500px)',
-                  height: isMobile ? '120px' : 'clamp(300px, 22vw, 540px)',
+                  width: isMobile ? '140px' : 'clamp(280px, 20vw, 500px)',
+                  height: isMobile ? '170px' : 'clamp(300px, 22vw, 540px)',
                 }}
               >
                 <img
@@ -219,8 +249,8 @@ export const EventsSection = () => {
           </div>
         </div>
 
-        {/* Text Content - Positioned Independently */}
-        <div className="absolute text-left" style={{ top: '48%', right: '41%', maxWidth: '250px' }}>
+        {/* Text Content - Positioned Independently - Hidden on Mobile */}
+        <div className="absolute text-left hidden lg:block" style={{ top: '48%', right: '41%', maxWidth: '250px' }}>
           <h3 className="text-2xl md:text-3xl lg:text-4xl font-bold text-[#21313c] mb-3 leading-tight">
             SEE WHAT'S GOING ON
           </h3>
@@ -229,16 +259,16 @@ export const EventsSection = () => {
           </p>
         </div>
 
-        {/* Navigation Arrows - Positioned Independently */}
-        <div className="absolute flex justify-center gap-4" style={{ top: '50%', left: '72%', transform: 'translateX(-50%)' }}>
+        {/* Desktop Navigation Arrows */}
+        <div className="absolute hidden lg:flex justify-center gap-4" style={{ top: '50%', left: '72%', transform: 'translateX(-50%)' }}>
           <button
             onClick={() => setCurrentIndex((prev) => Math.max(0, prev - 1))}
             disabled={currentIndex === 0}
-            className="w-12 h-12 rounded-full bg-white shadow-lg flex items-center justify-center hover:bg-gray-100 transition-colors border-2 border-gray-200 disabled:opacity-50 disabled:cursor-not-allowed"
+            className="w-10 h-10 md:w-12 md:h-12 rounded-full bg-white shadow-lg flex items-center justify-center hover:bg-gray-100 transition-colors border-2 border-gray-200 disabled:opacity-50 disabled:cursor-not-allowed"
             aria-label="Previous event"
           >
             <svg
-              className="w-6 h-6 text-[#21313c]"
+              className="w-5 h-5 md:w-6 md:h-6 text-[#21313c]"
               fill="none"
               stroke="currentColor"
               viewBox="0 0 24 24"
@@ -252,13 +282,13 @@ export const EventsSection = () => {
             </svg>
           </button>
           <button
-            onClick={() => setCurrentIndex((prev) => Math.min(events.length - (isMobile ? 1 : 3), prev + 1))}
-            disabled={currentIndex >= events.length - (isMobile ? 1 : 3)}
-            className="w-12 h-12 rounded-full bg-white shadow-lg flex items-center justify-center hover:bg-gray-100 transition-colors border-2 border-gray-200 disabled:opacity-50 disabled:cursor-not-allowed"
+            onClick={() => setCurrentIndex((prev) => Math.min(events.length - 1, prev + 1))}
+            disabled={currentIndex >= events.length - 1}
+            className="w-10 h-10 md:w-12 md:h-12 rounded-full bg-white shadow-lg flex items-center justify-center hover:bg-gray-100 transition-colors border-2 border-gray-200 disabled:opacity-50 disabled:cursor-not-allowed"
             aria-label="Next event"
           >
             <svg
-              className="w-6 h-6 text-[#21313c]"
+              className="w-5 h-5 md:w-6 md:h-6 text-[#21313c]"
               fill="none"
               stroke="currentColor"
               viewBox="0 0 24 24"

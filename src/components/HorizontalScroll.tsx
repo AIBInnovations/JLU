@@ -1,7 +1,6 @@
 'use client';
 
-import { motion, useInView } from 'framer-motion';
-import { useRef, useState, useEffect } from 'react';
+import { useRef, useEffect } from 'react';
 import { useIsMobile } from '../hooks/useIsMobile';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
@@ -11,10 +10,7 @@ gsap.registerPlugin(ScrollTrigger);
 export const HorizontalScroll = () => {
   const containerRef = useRef<HTMLDivElement>(null);
   const scrollContainerRef = useRef<HTMLDivElement>(null);
-  const isInView = useInView(containerRef, { once: true, margin: '-100px' });
   const isMobile = useIsMobile();
-  const [viewportWidth, setViewportWidth] = useState(typeof window !== 'undefined' ? window.innerWidth : 375);
-  const [animationKey] = useState(0);
 
   const cards = [
     {
@@ -37,16 +33,9 @@ export const HorizontalScroll = () => {
     { width: 1320, height: 500, mobileWidth: 320, mobileHeight: 260, bg: 'bg-gray-200', hasText: false, isTextCard: false, image: '/8th.jpg' },
   ];
 
-  // Get viewport width for calculation
+  // ScrollTrigger horizontal scroll effect - works on both mobile and desktop
   useEffect(() => {
-    const handleResize = () => setViewportWidth(window.innerWidth);
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
-  }, []);
-
-  // ScrollTrigger horizontal scroll effect
-  useEffect(() => {
-    if (!containerRef.current || !scrollContainerRef.current || isMobile) return;
+    if (!containerRef.current || !scrollContainerRef.current) return;
 
     const section = containerRef.current;
     const scrollContainer = scrollContainerRef.current;
@@ -62,8 +51,8 @@ export const HorizontalScroll = () => {
       scrollTrigger: {
         trigger: section,
         start: 'top top',
-        end: () => `+=${scrollDistance + window.innerHeight * 1.5}`,
-        scrub: true,
+        end: () => `+=${scrollDistance + (isMobile ? window.innerHeight * 0.8 : window.innerHeight * 1.5)}`,
+        scrub: isMobile ? 0.5 : true,
         pin: true,
         anticipatePin: 1,
         invalidateOnRefresh: true,
@@ -73,34 +62,17 @@ export const HorizontalScroll = () => {
     return () => {
       scrollTrigger.scrollTrigger?.kill();
     };
-  }, [isMobile, animationKey]);
-
-  // Calculate total content width and animation distance dynamically
-  const gap = isMobile ? 12 : 24;
-  const padding = isMobile ? 16 : 24; // pl-4 = 16px, md:pl-6 = 24px
-  const totalCardsWidth = cards.reduce((sum, card) => sum + (isMobile ? card.mobileWidth : card.width), 0);
-  const totalGapsWidth = (cards.length - 1) * gap;
-  const totalContentWidth = totalCardsWidth + totalGapsWidth + padding;
-
-  // Animation stops when last card is fully visible (right edge of last card aligns with right edge of viewport)
-  // Add extra padding (16px) to ensure the last card has some margin from the edge
-  const animationDistance = isMobile
-    ? -(totalContentWidth - viewportWidth + 16)
-    : -4000;
+  }, [isMobile]);
 
   return (
     <section
       ref={containerRef}
       className="relative bg-[#f6f7f0] overflow-hidden"
-      style={{ height: isMobile ? '50vh' : '100vh' }}
+      style={{ height: '100vh' }}
     >
       <div className="h-full flex items-center">
-        <motion.div
+        <div
           ref={scrollContainerRef}
-          key={animationKey}
-          initial={{ x: 0 }}
-          animate={isMobile && (isInView || animationKey > 0) ? { x: animationDistance } : { x: 0 }}
-          transition={{ duration: isMobile ? 6 : 8, ease: "easeInOut" }}
           className="flex pl-4 md:pl-6"
           style={{ gap: isMobile ? '12px' : '24px' }}
         >
@@ -138,7 +110,7 @@ export const HorizontalScroll = () => {
               ) : null}
             </div>
           ))}
-        </motion.div>
+        </div>
       </div>
     </section>
   );

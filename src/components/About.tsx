@@ -18,10 +18,7 @@ const About = () => {
       <div ref={heroRef} className="relative w-screen m-0 p-0 overflow-hidden">
         {/* Hero Image with reveal animation */}
         <motion.div
-          className="relative w-screen"
-          style={{
-            minHeight: '100vh',
-          }}
+          className="relative w-screen min-h-[100svh] md:min-h-screen"
           initial={{ clipPath: 'inset(100% 0% 0% 0%)' }}
           animate={{ clipPath: 'inset(0% 0% 0% 0%)' }}
           transition={{ duration: 1.8, ease: [0.22, 1, 0.36, 1] }}
@@ -44,18 +41,12 @@ const About = () => {
           initial={{ opacity: 0, y: -30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, delay: 0.5, ease: [0.22, 1, 0.36, 1] }}
-          className="absolute top-0 left-0"
-          style={{
-            paddingLeft: '40px',
-            paddingTop: '120px',
-            maxWidth: '800px',
-          }}
+          className="absolute top-0 left-0 px-4 pt-20 max-w-[90%] sm:px-6 sm:pt-24 sm:max-w-[85%] md:pl-10 md:pt-[120px] md:max-w-[800px] md:pr-0"
         >
           <h2
-            className="text-white font-semibold leading-tight mb-5"
+            className="text-white font-semibold leading-tight mb-3 sm:mb-4 md:mb-5 text-xl sm:text-2xl md:text-[clamp(1.5rem,3vw,2.5rem)]"
             style={{
               fontFamily: 'Inter, sans-serif',
-              fontSize: 'clamp(1.5rem, 3vw, 2.5rem)',
             }}
           >
             WHO WE{' '}
@@ -67,10 +58,9 @@ const About = () => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.8, delay: 0.8 }}
-            className="text-white font-semibold leading-tight"
+            className="text-white font-semibold leading-tight text-base sm:text-lg md:text-[clamp(1.25rem,2.5vw,2rem)]"
             style={{
               fontFamily: 'Inter, sans-serif',
-              fontSize: 'clamp(1.25rem, 2.5vw, 2rem)',
             }}
           >
             A university with a pulse. Jagran Lakecity University is not defined by buildings alone. It is defined by the rhythm of daily life, the exchange of ideas, and the quiet confidence of people who belong here.
@@ -79,20 +69,15 @@ const About = () => {
 
         {/* Large "About Us" Text - Bottom Left */}
         <div
-          className="absolute bottom-0 left-0"
-          style={{
-            paddingLeft: '40px',
-            paddingBottom: '0px',
-          }}
+          className="absolute bottom-0 left-0 pl-3 sm:pl-6 md:pl-10 pb-0"
         >
           <motion.h1
             initial={{ opacity: 0, y: 120 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1.2, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
-            className="font-normal select-none"
+            className="font-normal select-none text-[4rem] sm:text-[6rem] md:text-[clamp(8rem,16vw,16rem)]"
             style={{
               fontFamily: "system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif",
-              fontSize: 'clamp(8rem, 16vw, 16rem)',
               lineHeight: 0.85,
               letterSpacing: '-0.02em',
               background: 'linear-gradient(to bottom, rgba(255,255,255,1) 0%, rgba(255,255,255,0.7) 50%, rgba(255,255,255,0) 85%)',
