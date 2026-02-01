@@ -77,7 +77,7 @@ export const AwardsSection = () => {
       ref={wrapperRef}
       style={{
         position: 'relative',
-        height: isMobile ? '200vh' : '250vh',
+        height: isMobile ? '170vh' : '250vh',
         background: 'transparent',
         overflow: 'hidden',
       }}
@@ -132,178 +132,265 @@ export const AwardsSection = () => {
         </div>
       </div>
 
-      {/* Cards Container - Scrolls over with scattered positioning */}
+      {/* Cards Container - Scrolls over */}
       <div
         style={{
           position: 'absolute',
-          top: isMobile ? '100vh' : '120vh',
+          top: isMobile ? '70vh' : '120vh',
           left: 0,
           width: '100%',
           zIndex: 20,
           background: 'transparent',
         }}
       >
-        {/* Scattered positioning - same layout for mobile and desktop */}
-        <div
-          style={{
-            position: 'relative',
-            width: '100%',
-            aspectRatio: isMobile ? '390/600' : '1920/1558',
-            background: 'transparent',
-          }}
-        >
-          {/* Card 1 - Top Left */}
-          <div
-            style={{
-              position: 'absolute',
-              left: isMobile ? '8%' : '15%',
-              top: isMobile ? '3%' : '5%',
-            }}
-          >
-            <div
-              style={{
-                width: isMobile ? '80px' : 'clamp(166px, 17vw, 400px)',
-                height: isMobile ? '80px' : 'clamp(167px, 17vw, 400px)',
-                overflow: 'hidden',
-                borderRadius: '16px',
-              }}
-            >
-              <img
-                src={awards[0].image}
-                alt={awards[0].title}
-                style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: '16px' }}
-              />
+        {isMobile ? (
+          /* Mobile: Simple 2-column grid layout */
+          <div style={{ padding: '0 20px' }}>
+            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px', marginBottom: '16px' }}>
+              {/* Row 1: Cards 1 & 2 */}
+              {awards.slice(0, 2).map((award, index) => (
+                <div key={index}>
+                  <div
+                    style={{
+                      width: '100%',
+                      aspectRatio: '1 / 1',
+                      overflow: 'hidden',
+                      borderRadius: '12px',
+                    }}
+                  >
+                    <img
+                      src={award.image}
+                      alt={award.title}
+                      style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                    />
+                  </div>
+                  <div style={{ marginTop: '8px' }}>
+                    <p style={{ color: '#21313c', fontSize: '0.75rem', fontWeight: 500 }}>
+                      {award.title}
+                    </p>
+                    <p style={{ color: '#8bc34a', fontSize: '0.7rem' }}>{award.year}</p>
+                  </div>
+                </div>
+              ))}
             </div>
-            <div style={{ marginTop: isMobile ? '4px' : '8px' }}>
-              <p style={{ color: '#21313c', fontSize: isMobile ? '0.45rem' : 'clamp(0.7rem, 0.9vw, 0.875rem)', fontWeight: 500 }}>
-                {awards[0].title}
-              </p>
-              <p style={{ color: '#8bc34a', fontSize: isMobile ? '0.4rem' : 'clamp(0.65rem, 0.8vw, 0.75rem)' }}>{awards[0].year}</p>
-            </div>
-          </div>
 
-          {/* Card 2 - Top Right */}
-          <div
-            style={{
-              position: 'absolute',
-              right: isMobile ? '8%' : '15%',
-              top: isMobile ? '6%' : '8%',
-            }}
-          >
-            <div
-              style={{
-                width: isMobile ? '80px' : 'clamp(166px, 17vw, 400px)',
-                height: isMobile ? '80px' : 'clamp(167px, 17vw, 400px)',
-                overflow: 'hidden',
-                borderRadius: '16px',
-              }}
-            >
-              <img
-                src={awards[1].image}
-                alt={awards[1].title}
-                style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: '16px' }}
-              />
+            {/* Row 2: Card 3 centered */}
+            <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '16px' }} ref={middleCardRef}>
+              <div style={{ width: 'calc(50% - 8px)' }}>
+                <div
+                  style={{
+                    width: '100%',
+                    aspectRatio: '1 / 1',
+                    overflow: 'hidden',
+                    borderRadius: '12px',
+                  }}
+                >
+                  <img
+                    src={awards[2].image}
+                    alt={awards[2].title}
+                    style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                  />
+                </div>
+                <div style={{ marginTop: '8px' }}>
+                  <p style={{ color: '#21313c', fontSize: '0.75rem', fontWeight: 500 }}>
+                    {awards[2].title}
+                  </p>
+                  <p style={{ color: '#8bc34a', fontSize: '0.7rem' }}>{awards[2].year}</p>
+                </div>
+              </div>
             </div>
-            <div style={{ marginTop: isMobile ? '4px' : '8px' }}>
-              <p style={{ color: '#21313c', fontSize: isMobile ? '0.45rem' : 'clamp(0.7rem, 0.9vw, 0.875rem)', fontWeight: 500 }}>
-                {awards[1].title}
-              </p>
-              <p style={{ color: '#8bc34a', fontSize: isMobile ? '0.4rem' : 'clamp(0.65rem, 0.8vw, 0.75rem)' }}>{awards[1].year}</p>
-            </div>
-          </div>
 
-          {/* Card 3 - Middle Center */}
-          <div
-            ref={middleCardRef}
-            style={{
-              position: 'absolute',
-              left: '50%',
-              top: isMobile ? '22%' : '28%',
-              transform: 'translateX(-50%)',
-            }}
-          >
-            <div
-              style={{
-                width: isMobile ? '80px' : 'clamp(166px, 17vw, 400px)',
-                height: isMobile ? '80px' : 'clamp(167px, 17vw, 400px)',
-                overflow: 'hidden',
-                borderRadius: '16px',
-              }}
-            >
-              <img
-                src={awards[2].image}
-                alt={awards[2].title}
-                style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: '16px' }}
-              />
-            </div>
-            <div style={{ marginTop: isMobile ? '4px' : '8px' }}>
-              <p style={{ color: '#21313c', fontSize: isMobile ? '0.45rem' : 'clamp(0.7rem, 0.9vw, 0.875rem)', fontWeight: 500 }}>
-                {awards[2].title}
-              </p>
-              <p style={{ color: '#8bc34a', fontSize: isMobile ? '0.4rem' : 'clamp(0.65rem, 0.8vw, 0.75rem)' }}>{awards[2].year}</p>
+            {/* Row 3: Cards 4 & 5 */}
+            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px' }}>
+              {awards.slice(3, 5).map((award, index) => (
+                <div key={index + 3}>
+                  <div
+                    style={{
+                      width: '100%',
+                      aspectRatio: '1 / 1',
+                      overflow: 'hidden',
+                      borderRadius: '12px',
+                    }}
+                  >
+                    <img
+                      src={award.image}
+                      alt={award.title}
+                      style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                    />
+                  </div>
+                  <div style={{ marginTop: '8px' }}>
+                    <p style={{ color: '#21313c', fontSize: '0.75rem', fontWeight: 500 }}>
+                      {award.title}
+                    </p>
+                    <p style={{ color: '#8bc34a', fontSize: '0.7rem' }}>{award.year}</p>
+                  </div>
+                </div>
+              ))}
             </div>
           </div>
+        ) : (
+          /* Desktop: Scattered positioning layout */
+          <div
+            style={{
+              position: 'relative',
+              width: '100%',
+              aspectRatio: '1920/1558',
+              background: 'transparent',
+            }}
+          >
+            {/* Card 1 - Top Left */}
+            <div
+              style={{
+                position: 'absolute',
+                left: '15%',
+                top: '5%',
+              }}
+            >
+              <div
+                style={{
+                  width: 'clamp(166px, 17vw, 400px)',
+                  height: 'clamp(167px, 17vw, 400px)',
+                  overflow: 'hidden',
+                  borderRadius: '16px',
+                }}
+              >
+                <img
+                  src={awards[0].image}
+                  alt={awards[0].title}
+                  style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: '16px' }}
+                />
+              </div>
+              <div style={{ marginTop: '8px' }}>
+                <p style={{ color: '#21313c', fontSize: 'clamp(0.7rem, 0.9vw, 0.875rem)', fontWeight: 500 }}>
+                  {awards[0].title}
+                </p>
+                <p style={{ color: '#8bc34a', fontSize: 'clamp(0.65rem, 0.8vw, 0.75rem)' }}>{awards[0].year}</p>
+              </div>
+            </div>
 
-          {/* Card 4 - Bottom Left */}
-          <div
-            style={{
-              position: 'absolute',
-              left: isMobile ? '5%' : '12%',
-              top: isMobile ? '42%' : '52%',
-            }}
-          >
+            {/* Card 2 - Top Right */}
             <div
               style={{
-                width: isMobile ? '80px' : 'clamp(166px, 17vw, 400px)',
-                height: isMobile ? '80px' : 'clamp(167px, 17vw, 400px)',
-                overflow: 'hidden',
-                borderRadius: '16px',
+                position: 'absolute',
+                right: '15%',
+                top: '8%',
               }}
             >
-              <img
-                src={awards[3].image}
-                alt={awards[3].title}
-                style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: '16px' }}
-              />
+              <div
+                style={{
+                  width: 'clamp(166px, 17vw, 400px)',
+                  height: 'clamp(167px, 17vw, 400px)',
+                  overflow: 'hidden',
+                  borderRadius: '16px',
+                }}
+              >
+                <img
+                  src={awards[1].image}
+                  alt={awards[1].title}
+                  style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: '16px' }}
+                />
+              </div>
+              <div style={{ marginTop: '8px' }}>
+                <p style={{ color: '#21313c', fontSize: 'clamp(0.7rem, 0.9vw, 0.875rem)', fontWeight: 500 }}>
+                  {awards[1].title}
+                </p>
+                <p style={{ color: '#8bc34a', fontSize: 'clamp(0.65rem, 0.8vw, 0.75rem)' }}>{awards[1].year}</p>
+              </div>
             </div>
-            <div style={{ marginTop: isMobile ? '4px' : '8px' }}>
-              <p style={{ color: '#21313c', fontSize: isMobile ? '0.45rem' : 'clamp(0.7rem, 0.9vw, 0.875rem)', fontWeight: 500 }}>
-                {awards[3].title}
-              </p>
-              <p style={{ color: '#8bc34a', fontSize: isMobile ? '0.4rem' : 'clamp(0.65rem, 0.8vw, 0.75rem)' }}>{awards[3].year}</p>
-            </div>
-          </div>
 
-          {/* Card 5 - Bottom Right */}
-          <div
-            style={{
-              position: 'absolute',
-              right: isMobile ? '10%' : '18%',
-              top: isMobile ? '45%' : '55%',
-            }}
-          >
+            {/* Card 3 - Middle Center */}
             <div
+              ref={middleCardRef}
               style={{
-                width: isMobile ? '80px' : 'clamp(166px, 17vw, 400px)',
-                height: isMobile ? '80px' : 'clamp(167px, 17vw, 400px)',
-                overflow: 'hidden',
-                borderRadius: '16px',
+                position: 'absolute',
+                left: '50%',
+                top: '28%',
+                transform: 'translateX(-50%)',
               }}
             >
-              <img
-                src={awards[4].image}
-                alt={awards[4].title}
-                style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: '16px' }}
-              />
+              <div
+                style={{
+                  width: 'clamp(166px, 17vw, 400px)',
+                  height: 'clamp(167px, 17vw, 400px)',
+                  overflow: 'hidden',
+                  borderRadius: '16px',
+                }}
+              >
+                <img
+                  src={awards[2].image}
+                  alt={awards[2].title}
+                  style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: '16px' }}
+                />
+              </div>
+              <div style={{ marginTop: '8px' }}>
+                <p style={{ color: '#21313c', fontSize: 'clamp(0.7rem, 0.9vw, 0.875rem)', fontWeight: 500 }}>
+                  {awards[2].title}
+                </p>
+                <p style={{ color: '#8bc34a', fontSize: 'clamp(0.65rem, 0.8vw, 0.75rem)' }}>{awards[2].year}</p>
+              </div>
             </div>
-            <div style={{ marginTop: isMobile ? '4px' : '8px' }}>
-              <p style={{ color: '#21313c', fontSize: isMobile ? '0.45rem' : 'clamp(0.7rem, 0.9vw, 0.875rem)', fontWeight: 500 }}>
-                {awards[4].title}
-              </p>
-              <p style={{ color: '#8bc34a', fontSize: isMobile ? '0.4rem' : 'clamp(0.65rem, 0.8vw, 0.75rem)' }}>{awards[4].year}</p>
+
+            {/* Card 4 - Bottom Left */}
+            <div
+              style={{
+                position: 'absolute',
+                left: '12%',
+                top: '52%',
+              }}
+            >
+              <div
+                style={{
+                  width: 'clamp(166px, 17vw, 400px)',
+                  height: 'clamp(167px, 17vw, 400px)',
+                  overflow: 'hidden',
+                  borderRadius: '16px',
+                }}
+              >
+                <img
+                  src={awards[3].image}
+                  alt={awards[3].title}
+                  style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: '16px' }}
+                />
+              </div>
+              <div style={{ marginTop: '8px' }}>
+                <p style={{ color: '#21313c', fontSize: 'clamp(0.7rem, 0.9vw, 0.875rem)', fontWeight: 500 }}>
+                  {awards[3].title}
+                </p>
+                <p style={{ color: '#8bc34a', fontSize: 'clamp(0.65rem, 0.8vw, 0.75rem)' }}>{awards[3].year}</p>
+              </div>
+            </div>
+
+            {/* Card 5 - Bottom Right */}
+            <div
+              style={{
+                position: 'absolute',
+                right: '18%',
+                top: '55%',
+              }}
+            >
+              <div
+                style={{
+                  width: 'clamp(166px, 17vw, 400px)',
+                  height: 'clamp(167px, 17vw, 400px)',
+                  overflow: 'hidden',
+                  borderRadius: '16px',
+                }}
+              >
+                <img
+                  src={awards[4].image}
+                  alt={awards[4].title}
+                  style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: '16px' }}
+                />
+              </div>
+              <div style={{ marginTop: '8px' }}>
+                <p style={{ color: '#21313c', fontSize: 'clamp(0.7rem, 0.9vw, 0.875rem)', fontWeight: 500 }}>
+                  {awards[4].title}
+                </p>
+                <p style={{ color: '#8bc34a', fontSize: 'clamp(0.65rem, 0.8vw, 0.75rem)' }}>{awards[4].year}</p>
+              </div>
             </div>
           </div>
-        </div>
+        )}
       </div>
     </div>
   );

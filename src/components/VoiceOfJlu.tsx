@@ -244,13 +244,14 @@ export const VoiceOfJlu = () => {
         {isMobile ? (
           /* Mobile: 2-column grid */
           <div className="grid grid-cols-2 gap-4">
-            {faculty.slice(0, 4).map((member, index) => (
+            {faculty.map((member, index) => (
               <div key={index}>
                 <div
                   className="overflow-hidden"
                   style={{
                     width: '100%',
                     height: '200px',
+                    borderRadius: '12px',
                   }}
                 >
                   <img

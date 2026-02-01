@@ -7,8 +7,8 @@ const Accreditations = () => {
   const images = ['/l1.jpg', '/l2.jpg', '/l3.jpg', '/l4.jpg', '/l5.jpg', '/l6.jpg', '/l7.jpg', '/l8.jpg'];
 
   return (
-    <section className="bg-[#f6f7f0] py-20" style={{ paddingLeft: '80px', paddingRight: '80px' }}>
-      <div className="max-w-360 mx-auto">
+    <section className="bg-[#f6f7f0] py-20 px-6 md:px-12 lg:px-20">
+      <div className="max-w-7xl mx-auto">
         {/* Heading */}
         <motion.h2
           initial={{ opacity: 0, y: 20 }}

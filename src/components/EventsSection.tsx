@@ -218,8 +218,8 @@ export const EventsSection = () => {
                 key={`first-${index}`}
                 className="shrink-0"
                 style={{
-                  width: isMobile ? '140px' : 'clamp(280px, 20vw, 500px)',
-                  height: isMobile ? '170px' : 'clamp(300px, 22vw, 540px)',
+                  width: isMobile ? '200px' : 'clamp(280px, 20vw, 500px)',
+                  height: isMobile ? '240px' : 'clamp(300px, 22vw, 540px)',
                 }}
               >
                 <img
@@ -235,8 +235,8 @@ export const EventsSection = () => {
                 key={`second-${index}`}
                 className="shrink-0"
                 style={{
-                  width: isMobile ? '140px' : 'clamp(280px, 20vw, 500px)',
-                  height: isMobile ? '170px' : 'clamp(300px, 22vw, 540px)',
+                  width: isMobile ? '200px' : 'clamp(280px, 20vw, 500px)',
+                  height: isMobile ? '240px' : 'clamp(300px, 22vw, 540px)',
                 }}
               >
                 <img

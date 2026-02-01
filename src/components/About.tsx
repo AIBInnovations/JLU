@@ -75,7 +75,7 @@ const About = () => {
             initial={{ opacity: 0, y: 120 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1.2, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
-            className="font-normal select-none text-[4rem] sm:text-[6rem] md:text-[clamp(8rem,16vw,16rem)]"
+            className="font-normal select-none text-[5.5rem] sm:text-[8rem] md:text-[clamp(10rem,20vw,20rem)]"
             style={{
               fontFamily: "system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif",
               lineHeight: 0.85,

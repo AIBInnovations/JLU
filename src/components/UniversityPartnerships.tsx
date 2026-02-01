@@ -33,19 +33,12 @@ const UniversityPartnerships = () => {
             viewport={{ once: true }}
             className="w-full"
           >
-            <div
-              className="relative"
-              style={{
-                width: '580px',
-                height: '400px',
-                maxWidth: '100%',
-              }}
-            >
+            <div className="relative w-full max-w-[580px] h-[280px] md:h-[400px]">
               <Image
                 src="https://jlu.edu.in/wp-content/uploads/2023/07/JLU-Partnership.jpg"
                 alt="University Partnerships"
                 fill
-                className="object-cover"
+                className="object-cover rounded-xl"
               />
             </div>
           </motion.div>
@@ -59,11 +52,9 @@ const UniversityPartnerships = () => {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
-            className="relative flex flex-col items-end text-right overflow-hidden p-8 w-full"
+            className="relative flex flex-col items-end text-right overflow-hidden rounded-xl p-6 md:p-8 w-full h-[320px] md:h-[400px] gap-12 md:gap-20"
             style={{
               maxWidth: '580px',
-              height: '400px',
-              gap: '80px',
             }}
           >
             <Image
@@ -87,11 +78,9 @@ const UniversityPartnerships = () => {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
             viewport={{ once: true }}
-            className="relative flex flex-col items-end text-right overflow-hidden p-8 w-full"
+            className="relative flex flex-col items-end text-right overflow-hidden rounded-xl p-6 md:p-8 w-full h-[320px] md:h-[400px] gap-12 md:gap-20"
             style={{
               maxWidth: '580px',
-              height: '400px',
-              gap: '80px',
             }}
           >
             <Image

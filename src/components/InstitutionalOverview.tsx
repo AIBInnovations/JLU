@@ -2,6 +2,7 @@
 
 import { useRef } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
+import { useIsMobile } from '../hooks/useIsMobile';
 
 const overviewData = [
   {
@@ -20,6 +21,7 @@ const overviewData = [
 
 const ParallaxCard = ({ item, index }: { item: typeof overviewData[0]; index: number }) => {
   const cardRef = useRef<HTMLDivElement>(null);
+  const isMobile = useIsMobile();
   const { scrollYProgress } = useScroll({
     target: cardRef,
     offset: ['start end', 'end start'],
@@ -34,11 +36,11 @@ const ParallaxCard = ({ item, index }: { item: typeof overviewData[0]; index: nu
       whileInView={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.8, delay: index * 0.2 }}
       viewport={{ once: true }}
-      className="relative flex flex-col overflow-hidden"
+      className="relative flex flex-col overflow-hidden rounded-xl"
       style={{
         width: '580px',
         maxWidth: '100%',
-        height: '932px',
+        height: isMobile ? '500px' : '932px',
       }}
     >
       {/* Background Image with Parallax */}
@@ -56,12 +58,9 @@ const ParallaxCard = ({ item, index }: { item: typeof overviewData[0]; index: nu
       <div className="absolute inset-0 bg-black/15" />
       {/* Content */}
       <div
-        className="relative z-10 flex flex-col justify-between h-full"
+        className="relative z-10 flex flex-col justify-between h-full p-6 md:p-8"
         style={{
-          paddingTop: '32px',
-          paddingRight: '32px',
-          paddingBottom: '160px',
-          paddingLeft: '32px',
+          paddingBottom: isMobile ? '80px' : '160px',
         }}
       >
         {/* Title */}

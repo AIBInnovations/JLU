@@ -25,73 +25,30 @@ const Governance = () => {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
-            style={{
-              display: 'flex',
-              gap: '80px',
-              alignItems: 'flex-start',
-            }}
+            className="flex flex-col lg:flex-row gap-8 lg:gap-20 items-start"
           >
             {/* Left Column: Heading and Paragraphs */}
-            <div style={{ flex: '1 1 0', display: 'flex', flexDirection: 'column', gap: '44px' }}>
-              <h2
-                className="font-bold text-[#21313c]"
-                style={{
-                  fontFamily: 'Inter, sans-serif',
-                  fontSize: '40px',
-                  lineHeight: '48px',
-                }}
-              >
+            <div className="flex-1 flex flex-col gap-6 lg:gap-11">
+              <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-[#21313c]">
                 Governance
               </h2>
 
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
-                <p
-                  className="text-[#21313c]"
-                  style={{
-                    fontFamily: 'Inter, sans-serif',
-                    fontWeight: 400,
-                    fontSize: '20px',
-                    lineHeight: '28px',
-                  }}
-                >
+              <div className="flex flex-col gap-4 lg:gap-6">
+                <p className="text-base md:text-lg lg:text-xl leading-relaxed text-[#21313c]">
                   Strong governance ensures that JLU grows with clarity of purpose and integrity of action. The university's academic and administrative leadership work together to uphold standards, inspire innovation and guide long term institutional development.
                 </p>
-                <p
-                  className="text-[#21313c]"
-                  style={{
-                    fontFamily: 'Inter, sans-serif',
-                    fontWeight: 400,
-                    fontSize: '20px',
-                    lineHeight: '28px',
-                  }}
-                >
+                <p className="text-base md:text-lg lg:text-xl leading-relaxed text-[#21313c]">
                   These bodies play a key role in shaping academic direction, institutional policies and strategic growth, ensuring that JLU remains responsive to educational needs and global standards.
                 </p>
               </div>
             </div>
 
             {/* Right Column: Governance Bodies List */}
-            <div
-              style={{
-                flex: '0 0 auto',
-                display: 'flex',
-                flexDirection: 'column',
-                gap: '40px',
-                minWidth: '300px',
-              }}
-            >
+            <div className="flex flex-col gap-6 lg:gap-10 w-full lg:w-auto lg:min-w-[300px]">
               {governanceBodies.map((body, index) => (
                 <div
                   key={index}
-                  className="text-[#21313c]"
-                  style={{
-                    fontFamily: 'Inter, sans-serif',
-                    fontWeight: 500,
-                    fontSize: '18px',
-                    lineHeight: '24px',
-                    paddingBottom: '12px',
-                    borderBottom: '1px solid #21313c',
-                  }}
+                  className="text-[#21313c] text-base md:text-lg font-medium pb-3 border-b border-[#21313c]"
                 >
                   {body}
                 </div>
@@ -109,11 +66,7 @@ const Governance = () => {
               whileInView={{ clipPath: 'polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)' }}
               transition={{ duration: 1.2, ease: 'easeOut' }}
               viewport={{ once: true }}
-              style={{
-                width: '580px',
-                height: '357px',
-                maxWidth: '100%',
-              }}
+              className="w-full max-w-[580px] h-[250px] md:h-[320px] lg:h-[357px] rounded-xl overflow-hidden"
             >
               <img
                 src="/leader.jpg"

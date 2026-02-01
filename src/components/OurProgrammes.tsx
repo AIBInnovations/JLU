@@ -31,56 +31,101 @@ export const OurProgrammes = () => {
       </div>
 
       {/* Programme Cards */}
-      <div
-        className="flex justify-center"
-        style={{
-          paddingLeft: isMobile ? '2px' : '10px',
-          paddingRight: isMobile ? '2px' : '10px',
-          gap: isMobile ? '2px' : '10px'
-        }}
-      >
-        {programmes.map((programme, index) => (
-          <div
-            key={index}
-            className="relative overflow-hidden cursor-pointer group rounded-2xl"
-            style={{
-              width: isMobile ? 'calc((100vw - 10px) / 4)' : 'clamp(280px, 24vw, 520px)',
-              height: isMobile ? '220px' : 'clamp(360px, 32vw, 640px)',
-            }}
-            onClick={() => isMobile && setActiveCard(activeCard === index ? null : index)}
-          >
-            <img
-              src={programme.image}
-              alt={programme.title}
-              className="absolute inset-0 w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
-              style={{
-                transform: isMobile && activeCard === index ? 'scale(1.08)' : 'scale(1)',
-              }}
-            />
-            <div className="absolute inset-0 bg-black/20" />
+      {isMobile ? (
+        /* Mobile: 2x2 Grid Layout */
+        <div className="px-4">
+          <div className="grid grid-cols-2 gap-3">
+            {programmes.map((programme, index) => (
+              <div
+                key={index}
+                className="relative overflow-hidden cursor-pointer rounded-2xl"
+                style={{
+                  height: '240px',
+                }}
+                onClick={() => setActiveCard(activeCard === index ? null : index)}
+              >
+                <img
+                  src={programme.image}
+                  alt={programme.title}
+                  className="absolute inset-0 w-full h-full object-cover transition-transform duration-300"
+                  style={{
+                    transform: activeCard === index ? 'scale(1.08)' : 'scale(1)',
+                  }}
+                />
+                <div className="absolute inset-0 bg-black/20" />
+                <div
+                  className="absolute text-white"
+                  style={{
+                    top: '12px',
+                    left: '12px'
+                  }}
+                >
+                  <h3
+                    className="font-bold leading-tight"
+                    style={{ fontSize: '0.875rem' }}
+                  >
+                    {programme.title}
+                  </h3>
+                  <p
+                    className="font-bold"
+                    style={{ fontSize: '0.75rem' }}
+                  >
+                    {programme.subtitle}
+                  </p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      ) : (
+        /* Desktop: Horizontal Row Layout */
+        <div
+          className="flex justify-center"
+          style={{
+            paddingLeft: '10px',
+            paddingRight: '10px',
+            gap: '10px'
+          }}
+        >
+          {programmes.map((programme, index) => (
             <div
-              className="absolute text-white"
+              key={index}
+              className="relative overflow-hidden cursor-pointer group rounded-2xl"
               style={{
-                top: isMobile ? '8px' : '24px',
-                left: isMobile ? '6px' : '24px'
+                width: 'clamp(280px, 24vw, 520px)',
+                height: 'clamp(360px, 32vw, 640px)',
               }}
             >
-              <h3
-                className="font-bold leading-tight"
-                style={{ fontSize: isMobile ? '0.55rem' : 'clamp(1.5rem, 2vw, 1.875rem)' }}
+              <img
+                src={programme.image}
+                alt={programme.title}
+                className="absolute inset-0 w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+              />
+              <div className="absolute inset-0 bg-black/20" />
+              <div
+                className="absolute text-white"
+                style={{
+                  top: '24px',
+                  left: '24px'
+                }}
               >
-                {programme.title}
-              </h3>
-              <p
-                className="font-bold"
-                style={{ fontSize: isMobile ? '0.55rem' : 'clamp(1.25rem, 1.5vw, 1.5rem)' }}
-              >
-                {programme.subtitle}
-              </p>
+                <h3
+                  className="font-bold leading-tight"
+                  style={{ fontSize: 'clamp(1.5rem, 2vw, 1.875rem)' }}
+                >
+                  {programme.title}
+                </h3>
+                <p
+                  className="font-bold"
+                  style={{ fontSize: 'clamp(1.25rem, 1.5vw, 1.5rem)' }}
+                >
+                  {programme.subtitle}
+                </p>
+              </div>
             </div>
-          </div>
-        ))}
-      </div>
+          ))}
+        </div>
+      )}
 
       {/* View All Courses Button */}
       <div className="flex justify-center mt-4 md:mt-8">

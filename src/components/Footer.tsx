@@ -35,14 +35,19 @@ export const Footer = () => {
         /* Mobile Layout */
         <div className="flex flex-col h-full">
           {/* University Image - Full width at top */}
-          <div className="relative w-full h-40 shrink-0">
+          <motion.div
+            className="relative w-full h-40 shrink-0 overflow-hidden"
+            style={{
+              clipPath: imageClipPath,
+            }}
+          >
             <Image
               src="https://images.unsplash.com/photo-1562774053-701939374585?w=800&q=80"
               alt="Jagran Lakecity University Campus"
               fill
               className="object-cover"
             />
-          </div>
+          </motion.div>
 
           <div className="px-6 pt-4 pb-4 flex flex-col flex-1">
 

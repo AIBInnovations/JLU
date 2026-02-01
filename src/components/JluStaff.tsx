@@ -37,19 +37,12 @@ const JluStaff = () => {
           viewport={{ once: true }}
           className="w-full"
         >
-          <div
-            className="relative mx-auto"
-            style={{
-              width: '1200px',
-              height: '500px',
-              maxWidth: '100%',
-            }}
-          >
+          <div className="relative mx-auto w-full max-w-[1200px] h-[280px] md:h-[400px] lg:h-[500px]">
             <Image
               src="/staff.jpg"
               alt="JLU Staff"
               fill
-              className="object-cover"
+              className="object-cover rounded-xl"
             />
           </div>
         </motion.div>
