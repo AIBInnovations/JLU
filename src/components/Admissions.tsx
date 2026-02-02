@@ -126,10 +126,10 @@ const Admissions = () => {
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.3 }}
-          className="absolute top-0 left-0"
+          className="absolute top-0 left-0 px-5 pt-24 md:px-0 md:pt-0"
           style={{
-            paddingLeft: '40px',
-            paddingTop: '120px',
+            paddingLeft: 'clamp(20px, 5vw, 40px)',
+            paddingTop: 'clamp(100px, 15vw, 120px)',
             maxWidth: '800px',
           }}
         >
@@ -155,7 +155,7 @@ const Admissions = () => {
         <div
           className="absolute bottom-0 left-0"
           style={{
-            paddingLeft: '40px',
+            paddingLeft: 'clamp(8px, 2vw, 40px)',
             paddingBottom: '0px',
           }}
         >
@@ -166,7 +166,7 @@ const Admissions = () => {
             className="font-normal select-none"
             style={{
               fontFamily: "system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif",
-              fontSize: 'clamp(6rem, 14vw, 14rem)',
+              fontSize: 'clamp(5rem, 14vw, 14rem)',
               lineHeight: 0.85,
               letterSpacing: '-0.02em',
               background: 'linear-gradient(to bottom, rgba(255,255,255,1) 0%, rgba(255,255,255,0.7) 50%, rgba(255,255,255,0) 85%)',
@@ -183,13 +183,9 @@ const Admissions = () => {
       {/* Academic Programs - Full Width Scattered Gallery Style */}
       <div className="w-full bg-white">
         <div
-          className="mx-auto relative"
+          className="mx-auto relative px-5 py-16 md:px-10 md:py-20 lg:px-30 lg:py-35"
           style={{
             maxWidth: '1440px',
-            paddingTop: '140px',
-            paddingRight: '120px',
-            paddingBottom: '140px',
-            paddingLeft: '120px',
           }}
         >
           {/* Section Header - Centered */}
@@ -223,7 +219,7 @@ const Admissions = () => {
           </motion.div>
 
           {/* Three Cards with Floating Images */}
-          <div className="grid grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-6 lg:gap-8">
             {academicPaths.map((path, index) => (
               <motion.div
                 key={path.id}
@@ -231,11 +227,10 @@ const Admissions = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: index * 0.15 }}
                 viewport={{ once: true }}
-                className="group cursor-pointer"
-                style={{ marginTop: index === 1 ? '60px' : index === 2 ? '30px' : '0' }}
+                className={`group cursor-pointer ${index === 1 ? 'lg:mt-15' : index === 2 ? 'lg:mt-7.5' : ''}`}
               >
                 {/* Image */}
-                <div className="relative overflow-hidden mb-8" style={{ height: '380px' }}>
+                <div className="relative overflow-hidden mb-6 md:mb-8 h-70 md:h-80 lg:h-95">
                   <motion.div
                     className="absolute inset-0"
                     whileHover={{ scale: 1.05 }}
@@ -288,13 +283,9 @@ const Admissions = () => {
       {/* Beyond Degrees - Horizontal Split Layout */}
       <div className="w-full bg-[#21313c]">
         <div
-          className="mx-auto"
+          className="mx-auto px-5 py-16 md:px-10 md:py-20 lg:px-30 lg:py-35"
           style={{
             maxWidth: '1440px',
-            paddingTop: '140px',
-            paddingRight: '120px',
-            paddingBottom: '140px',
-            paddingLeft: '120px',
           }}
         >
           {/* Section Header */}
@@ -359,23 +350,22 @@ const Admissions = () => {
                 </div>
 
                 {/* Content Half */}
-                <div className="w-1/2 bg-[#2a3f4c] flex flex-col justify-center p-16">
+                <div className="w-1/2 bg-[#2a3f4c] flex flex-col justify-center p-4 md:p-8 lg:p-16">
                   <span
-                    className="text-[#f0c14b] font-medium mb-4"
-                    style={{ fontSize: '14px' }}
+                    className="text-[#f0c14b] font-medium mb-2 md:mb-4 text-xs md:text-sm"
                   >
                     {String(item.id).padStart(2, '0')}
                   </span>
                   <h3
-                    className="text-white font-semibold mb-4"
-                    style={{ fontSize: '32px', lineHeight: 1.2, letterSpacing: '-0.02em' }}
+                    className="text-white font-semibold mb-2 md:mb-4 text-base md:text-xl lg:text-[32px]"
+                    style={{ lineHeight: 1.2, letterSpacing: '-0.02em' }}
                   >
                     {item.title}
                   </h3>
-                  <p className="text-[#999] mb-8" style={{ fontSize: '16px', lineHeight: 1.7 }}>
+                  <p className="text-[#999] mb-4 md:mb-8 text-xs md:text-sm lg:text-base" style={{ lineHeight: 1.7 }}>
                     {item.description}
                   </p>
-                  <span className="inline-flex items-center gap-2 text-white font-medium text-sm">
+                  <span className="inline-flex items-center gap-1 md:gap-2 text-white font-medium text-xs md:text-sm">
                     Learn More
                     <span className="group-hover:translate-x-2 transition-transform">→</span>
                   </span>
@@ -389,13 +379,9 @@ const Admissions = () => {
       {/* Campus Life Section */}
       <div className="w-full bg-[#f6f7f0]">
         <div
-          className="mx-auto"
+          className="mx-auto px-5 py-16 md:px-10 md:py-20 lg:px-30 lg:py-35"
           style={{
             maxWidth: '1440px',
-            paddingTop: '140px',
-            paddingRight: '120px',
-            paddingBottom: '140px',
-            paddingLeft: '120px',
           }}
         >
           {/* Section Header */}
@@ -404,7 +390,7 @@ const Admissions = () => {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
-            className="flex justify-between items-end mb-20"
+            className="flex flex-col md:flex-row md:justify-between md:items-end mb-10 md:mb-16 lg:mb-20 gap-4 md:gap-0"
           >
             <div>
               <span
@@ -441,15 +427,14 @@ const Admissions = () => {
           </motion.div>
 
           {/* Main Content - Image Left, Content Right */}
-          <div className="flex" style={{ gap: '80px' }}>
+          <div className="flex flex-col lg:flex-row gap-8 md:gap-12 lg:gap-20">
             {/* Large Image */}
             <motion.div
               initial={{ opacity: 0, x: -40 }}
               whileInView={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.6 }}
               viewport={{ once: true }}
-              className="relative shrink-0 overflow-hidden group cursor-pointer"
-              style={{ width: '580px', height: '580px' }}
+              className="relative shrink-0 overflow-hidden group cursor-pointer w-full lg:w-145 h-72 md:h-96 lg:h-145"
             >
               <motion.div
                 className="absolute inset-0"
@@ -514,14 +499,13 @@ const Admissions = () => {
               </motion.div>
 
               {/* Two Small Images */}
-              <div className="flex gap-6">
+              <div className="flex flex-col sm:flex-row gap-4 md:gap-6">
                 <motion.div
                   initial={{ opacity: 0, y: 40 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.6, delay: 0.3 }}
                   viewport={{ once: true }}
-                  className="relative overflow-hidden group cursor-pointer flex-1"
-                  style={{ height: '200px' }}
+                  className="relative overflow-hidden group cursor-pointer flex-1 h-40 md:h-48 lg:h-50"
                 >
                   <motion.div
                     className="absolute inset-0"
@@ -548,8 +532,7 @@ const Admissions = () => {
                   whileInView={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.6, delay: 0.4 }}
                   viewport={{ once: true }}
-                  className="relative overflow-hidden group cursor-pointer flex-1"
-                  style={{ height: '200px' }}
+                  className="relative overflow-hidden group cursor-pointer flex-1 h-40 md:h-48 lg:h-50"
                 >
                   <motion.div
                     className="absolute inset-0"
@@ -579,13 +562,9 @@ const Admissions = () => {
       {/* Financial Support - Vertical Accordion Style */}
       <div className="w-full bg-white">
         <div
-          className="mx-auto"
+          className="mx-auto px-5 py-16 md:px-10 md:py-20 lg:px-30 lg:py-35"
           style={{
             maxWidth: '1440px',
-            paddingTop: '140px',
-            paddingRight: '120px',
-            paddingBottom: '140px',
-            paddingLeft: '120px',
           }}
         >
           {/* Section Header */}
@@ -594,7 +573,7 @@ const Admissions = () => {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
-            className="flex justify-between items-end mb-20"
+            className="flex flex-col md:flex-row md:justify-between md:items-end mb-10 md:mb-16 lg:mb-20 gap-4 md:gap-0"
           >
             <div>
               <span
@@ -631,7 +610,7 @@ const Admissions = () => {
           </motion.div>
 
           {/* Four Cards in Row */}
-          <div className="grid grid-cols-4 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
             {financialOptions.map((option, index) => (
               <motion.div
                 key={option.id}
@@ -669,13 +648,9 @@ const Admissions = () => {
       {/* Admission FAQs Section */}
       <div className="w-full bg-[#f6f7f0]">
         <div
-          className="mx-auto"
+          className="mx-auto px-5 py-16 md:px-10 md:py-20 lg:px-30 lg:py-35"
           style={{
             maxWidth: '1440px',
-            paddingTop: '140px',
-            paddingRight: '120px',
-            paddingBottom: '140px',
-            paddingLeft: '120px',
           }}
         >
           {/* Section Header */}
@@ -722,11 +697,11 @@ const Admissions = () => {
                 transition={{ duration: 0.4, delay: index * 0.1 }}
               >
                 <button
-                  className="w-full cursor-pointer py-8 text-left group"
+                  className="w-full cursor-pointer py-5 md:py-6 lg:py-8 text-left group"
                   onClick={() => toggleFaq(faq.id)}
                 >
                   <div className="flex items-center justify-between">
-                    <span className="flex items-center gap-6">
+                    <span className="flex items-center gap-3 md:gap-4 lg:gap-6">
                       <span
                         className={`font-medium transition-colors ${
                           openFaq === faq.id ? 'text-[#f0c14b]' : 'text-[#ccc]'
@@ -736,11 +711,10 @@ const Admissions = () => {
                         {String(index + 1).padStart(2, '0')}
                       </span>
                       <span
-                        className={`font-semibold transition-colors ${
+                        className={`font-semibold transition-colors text-base md:text-lg lg:text-[22px] ${
                           openFaq === faq.id ? 'text-[#f0c14b]' : 'text-[#21313c]'
                         }`}
                         style={{
-                          fontSize: '22px',
                           lineHeight: '1.3',
                         }}
                       >
@@ -748,7 +722,7 @@ const Admissions = () => {
                       </span>
                     </span>
                     <motion.div
-                      className={`w-10 h-10 rounded-full flex items-center justify-center shrink-0 ml-4 transition-colors ${
+                      className={`w-8 h-8 md:w-9 md:h-9 lg:w-10 lg:h-10 rounded-full flex items-center justify-center shrink-0 ml-2 md:ml-3 lg:ml-4 transition-colors ${
                         openFaq === faq.id ? 'bg-[#f0c14b]' : 'bg-[#21313c]'
                       }`}
                       animate={{
@@ -777,9 +751,8 @@ const Admissions = () => {
                         className="overflow-hidden"
                       >
                         <p
-                          className="text-[#666] pt-6 pl-12 leading-relaxed"
+                          className="text-[#666] pt-4 md:pt-5 lg:pt-6 pl-0 md:pl-8 lg:pl-12 leading-relaxed text-sm md:text-base"
                           style={{
-                            fontSize: '16px',
                             lineHeight: '1.8',
                           }}
                         >
@@ -796,35 +769,30 @@ const Admissions = () => {
       </div>
 
       {/* CTA Section */}
-      <div className="w-full" style={{ paddingLeft: '40px', paddingRight: '40px', paddingBottom: '80px' }}>
+      <div className="w-full px-3 pb-8 md:px-6 md:pb-14 lg:px-10 lg:pb-20">
         <div
-          className="mx-auto flex flex-col items-center justify-center bg-[#f0c14b]"
+          className="mx-auto flex flex-col items-center justify-center bg-[#f0c14b] px-4 py-8 md:px-10 md:py-16 lg:px-30 lg:py-30 rounded-xl md:rounded-3xl lg:rounded-4xl"
           style={{
             maxWidth: '1400px',
-            paddingTop: '120px',
-            paddingRight: '120px',
-            paddingBottom: '120px',
-            paddingLeft: '120px',
-            borderRadius: '32px',
           }}
         >
           <motion.div
-            className="text-center mb-12"
+            className="text-center mb-6 md:mb-10 lg:mb-12"
             initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
           >
             <span
-              className="text-[#21313c]/60 uppercase tracking-widest block mb-6"
-              style={{ fontSize: '12px', letterSpacing: '0.2em' }}
+              className="text-[#21313c]/60 uppercase tracking-widest block mb-3 md:mb-5 lg:mb-6 text-[9px] md:text-[11px] lg:text-[12px]"
+              style={{ letterSpacing: '0.2em' }}
             >
               Start Your Journey
             </span>
             <h2
               className="text-[#21313c]"
               style={{
-                fontSize: 'clamp(2.5rem, 5vw, 4rem)',
+                fontSize: 'clamp(1.75rem, 5vw, 4rem)',
                 fontWeight: 600,
                 lineHeight: 1.1,
                 letterSpacing: '-0.03em',
@@ -841,15 +809,14 @@ const Admissions = () => {
           </motion.div>
 
           <motion.div
-            className="flex items-center gap-6"
+            className="flex flex-col sm:flex-row items-center gap-4 md:gap-6 w-full sm:w-auto"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.3 }}
           >
             <motion.button
-              className="px-10 py-4 bg-[#21313c] text-white font-semibold flex items-center gap-3"
-              style={{ borderRadius: '100px' }}
+              className="px-8 md:px-10 py-3 md:py-4 bg-[#21313c] text-white font-semibold flex items-center justify-center gap-3 w-full sm:w-auto rounded-full"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.98 }}
             >
@@ -857,8 +824,7 @@ const Admissions = () => {
               <span>→</span>
             </motion.button>
             <motion.button
-              className="px-10 py-4 bg-transparent border border-[#21313c]/50 text-[#21313c] font-medium"
-              style={{ borderRadius: '100px' }}
+              className="px-8 md:px-10 py-3 md:py-4 bg-transparent border border-[#21313c]/50 text-[#21313c] font-medium w-full sm:w-auto rounded-full text-center"
               whileHover={{ scale: 1.05, borderColor: '#21313c' }}
               whileTap={{ scale: 0.98 }}
             >

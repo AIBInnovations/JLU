@@ -76,18 +76,10 @@ const Campus = () => {
           initial={{ opacity: 0, y: -30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, delay: 0.5, ease: customEase }}
-          className="absolute top-0 left-0"
-          style={{
-            paddingLeft: '40px',
-            paddingTop: '120px',
-            maxWidth: '800px',
-          }}
+          className="absolute top-0 left-0 px-4 pt-28 sm:pt-32 max-w-[90%] sm:px-6 sm:max-w-[85%] md:pl-10 md:pt-[120px] md:max-w-[800px] md:pr-0"
         >
           <motion.h2
-            className="text-white font-semibold leading-tight mb-5"
-            style={{
-              fontSize: 'clamp(1.5rem, 3vw, 2.5rem)',
-            }}
+            className="text-white font-semibold leading-tight mb-3 sm:mb-4 md:mb-5 text-xl sm:text-2xl md:text-[clamp(1.5rem,3vw,2.5rem)]"
           >
             WHERE <span style={{ fontFamily: "'Times New Roman', serif", fontStyle: 'italic', color: '#f0c14b', textShadow: '2px 2px 4px rgba(0,0,0,0.5)' }}>learning</span> LIVES
           </motion.h2>
@@ -95,10 +87,7 @@ const Campus = () => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.8, delay: 0.8 }}
-            className="text-white font-semibold leading-tight"
-            style={{
-              fontSize: 'clamp(1.25rem, 2.5vw, 2rem)',
-            }}
+            className="text-white font-semibold leading-tight text-base sm:text-lg md:text-[clamp(1.25rem,2.5vw,2rem)]"
           >
             Life at our campus goes beyond classrooms and lectures. It is a vibrant ecosystem where academic excellence, creativity, collaboration, and community life come together.
           </motion.p>
@@ -106,20 +95,15 @@ const Campus = () => {
 
         {/* Large "Campus" Text - Bottom Left */}
         <div
-          className="absolute bottom-0 left-0"
-          style={{
-            paddingLeft: '40px',
-            paddingBottom: '0px',
-          }}
+          className="absolute bottom-0 left-0 pl-0 sm:pl-6 md:pl-10 pb-0"
         >
           <motion.h1
             initial={{ opacity: 0, y: 120 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1.2, delay: 0.2, ease: customEase }}
-            className="font-normal select-none"
+            className="font-normal select-none text-[5.5rem] sm:text-[7rem] md:text-[clamp(8rem,16vw,16rem)]"
             style={{
               fontFamily: "system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif",
-              fontSize: 'clamp(8rem, 16vw, 16rem)',
               lineHeight: 0.85,
               letterSpacing: '-0.02em',
               background: 'linear-gradient(to bottom, rgba(255,255,255,1) 0%, rgba(255,255,255,0.7) 50%, rgba(255,255,255,0) 85%)',
@@ -136,13 +120,9 @@ const Campus = () => {
       {/* Campus Infrastructure Section */}
       <div className="w-full bg-white">
         <div
-          className="mx-auto"
+          className="mx-auto px-5 py-12 sm:px-8 sm:py-16 md:px-[120px] md:py-[140px]"
           style={{
             maxWidth: '1440px',
-            paddingTop: '140px',
-            paddingRight: '120px',
-            paddingBottom: '140px',
-            paddingLeft: '120px',
           }}
         >
           {/* Section Header */}
@@ -151,7 +131,7 @@ const Campus = () => {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, ease: customEase }}
             viewport={{ once: true, margin: '-100px' }}
-            className="flex justify-between items-end mb-20"
+            className="flex flex-col md:flex-row md:justify-between md:items-end mb-10 md:mb-20 gap-4 md:gap-8"
           >
             <div>
               <motion.span
@@ -159,15 +139,14 @@ const Campus = () => {
                 whileInView={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.6, delay: 0.2 }}
                 viewport={{ once: true }}
-                className="text-[#999] uppercase tracking-widest block mb-6"
-                style={{ fontSize: '12px', letterSpacing: '0.2em' }}
+                className="text-[#999] uppercase tracking-widest block mb-4 md:mb-6 text-[10px] md:text-xs"
+                style={{ letterSpacing: '0.2em' }}
               >
                 Facilities
               </motion.span>
               <h2
-                className="text-[#21313c]"
+                className="text-[#21313c] text-3xl sm:text-4xl md:text-[clamp(2.5rem,5vw,4rem)]"
                 style={{
-                  fontSize: 'clamp(2.5rem, 5vw, 4rem)',
                   fontWeight: 600,
                   lineHeight: 1.1,
                   letterSpacing: '-0.03em',
@@ -184,25 +163,23 @@ const Campus = () => {
               whileInView={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8, delay: 0.3 }}
               viewport={{ once: true }}
-              className="text-[#666]"
+              className="text-[#666] text-sm md:text-base md:max-w-[400px]"
               style={{
-                fontSize: '16px',
                 lineHeight: 1.7,
-                maxWidth: '400px',
               }}
             >
               Our campus is a masterwork of modern design, featuring state-of-the-art facilities that foster innovation and collaboration.
             </motion.p>
           </motion.div>
 
-          <div className="flex justify-between" style={{ gap: '80px' }}>
+          <div className="flex flex-col md:flex-row md:justify-between gap-8 md:gap-20">
             {/* Left Side - Content */}
             <motion.div
               initial={{ opacity: 0, x: -50 }}
               whileInView={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8, ease: customEase }}
               viewport={{ once: true }}
-              style={{ maxWidth: '480px', paddingTop: '40px' }}
+              className="w-full md:max-w-[480px] pt-0 md:pt-10"
             >
 
               {/* Infrastructure Items */}
@@ -224,20 +201,20 @@ const Campus = () => {
                     whileHover={{ x: activeInfrastructure === item.id ? 0 : 8 }}
                     transition={{ duration: 0.3 }}
                   >
-                    <span className="flex items-center gap-6">
+                    <span className="flex items-center gap-3 md:gap-6">
                       <span
-                        className={`font-medium transition-colors duration-300 ${
+                        className={`font-medium transition-colors duration-300 text-xs md:text-sm ${
                           activeInfrastructure === item.id ? 'text-[#f0c14b]' : 'text-[#ccc]'
                         }`}
-                        style={{ fontSize: '14px', minWidth: '30px' }}
+                        style={{ minWidth: '24px' }}
                       >
                         {String(item.id).padStart(2, '0')}
                       </span>
                       <span
-                        className={`transition-all duration-300 ${
+                        className={`transition-all duration-300 text-sm md:text-lg ${
                           activeInfrastructure === item.id ? 'text-[#21313c]' : 'text-[#666] group-hover:text-[#21313c]'
                         }`}
-                        style={{ fontSize: '18px', fontWeight: activeInfrastructure === item.id ? 600 : 400 }}
+                        style={{ fontWeight: activeInfrastructure === item.id ? 600 : 400 }}
                       >
                         {item.label}
                       </span>
@@ -261,8 +238,7 @@ const Campus = () => {
               whileInView={{ opacity: 1, x: 0, scale: 1 }}
               transition={{ duration: 1, delay: 0.2, ease: customEase }}
               viewport={{ once: true }}
-              className="relative shrink-0 overflow-hidden"
-              style={{ width: '580px', height: '650px' }}
+              className="relative shrink-0 overflow-hidden w-full h-[300px] sm:h-[400px] md:w-[580px] md:h-[650px]"
             >
               <AnimatePresence mode="wait">
                 <motion.div
@@ -288,13 +264,12 @@ const Campus = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.5 }}
                 viewport={{ once: true }}
-                className="absolute bottom-8 left-8 bg-white px-6 py-4"
-                style={{ maxWidth: '280px' }}
+                className="absolute bottom-4 left-4 md:bottom-8 md:left-8 bg-white px-4 py-3 md:px-6 md:py-4 max-w-[200px] md:max-w-[280px]"
               >
-                <span className="text-[#999] uppercase tracking-wider block mb-2" style={{ fontSize: '11px' }}>
+                <span className="text-[#999] uppercase tracking-wider block mb-1 md:mb-2 text-[9px] md:text-[11px]">
                   Featured
                 </span>
-                <span className="text-[#21313c] font-semibold" style={{ fontSize: '16px' }}>
+                <span className="text-[#21313c] font-semibold text-sm md:text-base">
                   {infrastructureItems.find(i => i.id === activeInfrastructure)?.label}
                 </span>
               </motion.div>
@@ -306,13 +281,9 @@ const Campus = () => {
       {/* Academic Infrastructure Section */}
       <div className="w-full bg-[#21313c]">
         <div
-          className="mx-auto"
+          className="mx-auto px-5 py-12 sm:px-8 sm:py-16 md:px-[120px] md:py-[140px]"
           style={{
             maxWidth: '1440px',
-            paddingTop: '140px',
-            paddingRight: '120px',
-            paddingBottom: '140px',
-            paddingLeft: '120px',
           }}
         >
           {/* Section Header */}
@@ -321,22 +292,22 @@ const Campus = () => {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, ease: customEase }}
             viewport={{ once: true }}
-            className="mb-20"
+            className="mb-8 md:mb-20"
           >
             <motion.span
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
               transition={{ duration: 0.6, delay: 0.2 }}
               viewport={{ once: true }}
-              className="text-[#999] uppercase tracking-widest block mb-6"
-              style={{ fontSize: '12px', letterSpacing: '0.2em' }}
+              className="text-[#999] uppercase tracking-widest block mb-4 md:mb-6 text-[10px] md:text-xs"
+              style={{ letterSpacing: '0.2em' }}
             >
               Academic Infrastructure
             </motion.span>
           </motion.div>
 
           {/* Cards Grid */}
-          <div className="grid grid-cols-2 gap-8">
+          <div className="grid grid-cols-2 gap-3 md:gap-8">
             {/* Gurudev Gupta Media Studio Card */}
             <motion.div
               initial={{ opacity: 0, y: 60 }}
@@ -345,7 +316,7 @@ const Campus = () => {
               viewport={{ once: true }}
               className="group cursor-pointer"
             >
-              <div className="relative overflow-hidden mb-8" style={{ height: '480px' }}>
+              <div className="relative overflow-hidden mb-2 md:mb-8 h-[300px] sm:h-[400px] md:h-[480px]">
                 <motion.div
                   className="absolute inset-0"
                   whileHover={{ scale: 1.05 }}
@@ -361,16 +332,16 @@ const Campus = () => {
                 <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent" />
                 {/* Number Badge */}
                 <motion.div
-                  className="absolute top-6 left-6 w-12 h-12 bg-[#f0c14b] flex items-center justify-center"
+                  className="absolute top-2 left-2 sm:top-3 sm:left-3 md:top-6 md:left-6 w-7 h-7 sm:w-9 sm:h-9 md:w-12 md:h-12 bg-[#f0c14b] flex items-center justify-center"
                   style={{ borderRadius: '50%' }}
                   whileHover={{ scale: 1.1, rotate: 10 }}
                   transition={{ duration: 0.3 }}
                 >
-                  <span className="text-[#21313c] font-semibold" style={{ fontSize: '14px' }}>01</span>
+                  <span className="text-[#21313c] font-semibold text-[10px] sm:text-xs md:text-sm">01</span>
                 </motion.div>
                 {/* Bottom Label */}
-                <div className="absolute bottom-0 left-0 right-0 p-8">
-                  <h4 className="text-white font-semibold mb-2" style={{ fontSize: '24px' }}>
+                <div className="absolute bottom-0 left-0 right-0 p-2 sm:p-4 md:p-8">
+                  <h4 className="text-white font-semibold mb-0 md:mb-2 text-[11px] sm:text-base md:text-2xl leading-tight">
                     Gurudev Gupta Media Studio
                   </h4>
                 </div>
@@ -380,8 +351,8 @@ const Campus = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.2 }}
                 viewport={{ once: true }}
-                className="text-[#ccc] mb-6"
-                style={{ fontSize: '16px', lineHeight: 1.7 }}
+                className="text-[#ccc] mb-2 md:mb-6 text-[10px] sm:text-xs md:text-base hidden sm:block"
+                style={{ lineHeight: 1.7 }}
               >
                 A professional studio environment for media production and hands on learning.
               </motion.p>
@@ -393,10 +364,9 @@ const Campus = () => {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.15, ease: customEase }}
               viewport={{ once: true }}
-              className="group cursor-pointer"
-              style={{ marginTop: '80px' }}
+              className="group cursor-pointer mt-8 sm:mt-12 md:mt-20"
             >
-              <div className="relative overflow-hidden mb-8" style={{ height: '480px' }}>
+              <div className="relative overflow-hidden mb-2 md:mb-8 h-[300px] sm:h-[400px] md:h-[480px]">
                 <motion.div
                   className="absolute inset-0"
                   whileHover={{ scale: 1.05 }}
@@ -412,16 +382,16 @@ const Campus = () => {
                 <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent" />
                 {/* Number Badge */}
                 <motion.div
-                  className="absolute top-6 left-6 w-12 h-12 bg-[#f0c14b] flex items-center justify-center"
+                  className="absolute top-2 left-2 sm:top-3 sm:left-3 md:top-6 md:left-6 w-7 h-7 sm:w-9 sm:h-9 md:w-12 md:h-12 bg-[#f0c14b] flex items-center justify-center"
                   style={{ borderRadius: '50%' }}
                   whileHover={{ scale: 1.1, rotate: 10 }}
                   transition={{ duration: 0.3 }}
                 >
-                  <span className="text-[#21313c] font-semibold" style={{ fontSize: '14px' }}>02</span>
+                  <span className="text-[#21313c] font-semibold text-[10px] sm:text-xs md:text-sm">02</span>
                 </motion.div>
                 {/* Bottom Label */}
-                <div className="absolute bottom-0 left-0 right-0 p-8">
-                  <h4 className="text-white font-semibold mb-2" style={{ fontSize: '24px' }}>
+                <div className="absolute bottom-0 left-0 right-0 p-2 sm:p-4 md:p-8">
+                  <h4 className="text-white font-semibold mb-0 md:mb-2 text-[11px] sm:text-base md:text-2xl leading-tight">
                     M S Gill Culinary Studios
                   </h4>
                 </div>
@@ -431,8 +401,8 @@ const Campus = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.2 }}
                 viewport={{ once: true }}
-                className="text-[#ccc] mb-6"
-                style={{ fontSize: '16px', lineHeight: 1.7 }}
+                className="text-[#ccc] mb-2 md:mb-6 text-[10px] sm:text-xs md:text-base hidden sm:block"
+                style={{ lineHeight: 1.7 }}
               >
                 Industry standard kitchens designed for hospitality and culinary training.
               </motion.p>
@@ -446,7 +416,7 @@ const Campus = () => {
               viewport={{ once: true }}
               className="group cursor-pointer"
             >
-              <div className="relative overflow-hidden mb-8" style={{ height: '480px' }}>
+              <div className="relative overflow-hidden mb-2 md:mb-8 h-[300px] sm:h-[400px] md:h-[480px]">
                 <motion.div
                   className="absolute inset-0"
                   whileHover={{ scale: 1.05 }}
@@ -462,16 +432,16 @@ const Campus = () => {
                 <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent" />
                 {/* Number Badge */}
                 <motion.div
-                  className="absolute top-6 left-6 w-12 h-12 bg-[#f0c14b] flex items-center justify-center"
+                  className="absolute top-2 left-2 sm:top-3 sm:left-3 md:top-6 md:left-6 w-7 h-7 sm:w-9 sm:h-9 md:w-12 md:h-12 bg-[#f0c14b] flex items-center justify-center"
                   style={{ borderRadius: '50%' }}
                   whileHover={{ scale: 1.1, rotate: 10 }}
                   transition={{ duration: 0.3 }}
                 >
-                  <span className="text-[#21313c] font-semibold" style={{ fontSize: '14px' }}>03</span>
+                  <span className="text-[#21313c] font-semibold text-[10px] sm:text-xs md:text-sm">03</span>
                 </motion.div>
                 {/* Bottom Label */}
-                <div className="absolute bottom-0 left-0 right-0 p-8">
-                  <h4 className="text-white font-semibold mb-2" style={{ fontSize: '24px' }}>
+                <div className="absolute bottom-0 left-0 right-0 p-2 sm:p-4 md:p-8">
+                  <h4 className="text-white font-semibold mb-0 md:mb-2 text-[11px] sm:text-base md:text-2xl leading-tight">
                     Technology Labs
                   </h4>
                 </div>
@@ -481,8 +451,8 @@ const Campus = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.2 }}
                 viewport={{ once: true }}
-                className="text-[#ccc] mb-6"
-                style={{ fontSize: '16px', lineHeight: 1.7 }}
+                className="text-[#ccc] mb-2 md:mb-6 text-[10px] sm:text-xs md:text-base hidden sm:block"
+                style={{ lineHeight: 1.7 }}
               >
                 Well equipped labs supporting engineering, computing, and applied sciences.
               </motion.p>
@@ -494,10 +464,9 @@ const Campus = () => {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.25, ease: customEase }}
               viewport={{ once: true }}
-              className="group cursor-pointer"
-              style={{ marginTop: '80px' }}
+              className="group cursor-pointer mt-8 sm:mt-12 md:mt-20"
             >
-              <div className="relative overflow-hidden mb-8" style={{ height: '480px' }}>
+              <div className="relative overflow-hidden mb-2 md:mb-8 h-[300px] sm:h-[400px] md:h-[480px]">
                 <motion.div
                   className="absolute inset-0"
                   whileHover={{ scale: 1.05 }}
@@ -513,16 +482,16 @@ const Campus = () => {
                 <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent" />
                 {/* Number Badge */}
                 <motion.div
-                  className="absolute top-6 left-6 w-12 h-12 bg-[#f0c14b] flex items-center justify-center"
+                  className="absolute top-2 left-2 sm:top-3 sm:left-3 md:top-6 md:left-6 w-7 h-7 sm:w-9 sm:h-9 md:w-12 md:h-12 bg-[#f0c14b] flex items-center justify-center"
                   style={{ borderRadius: '50%' }}
                   whileHover={{ scale: 1.1, rotate: 10 }}
                   transition={{ duration: 0.3 }}
                 >
-                  <span className="text-[#21313c] font-semibold" style={{ fontSize: '14px' }}>04</span>
+                  <span className="text-[#21313c] font-semibold text-[10px] sm:text-xs md:text-sm">04</span>
                 </motion.div>
                 {/* Bottom Label */}
-                <div className="absolute bottom-0 left-0 right-0 p-8">
-                  <h4 className="text-white font-semibold mb-2" style={{ fontSize: '24px' }}>
+                <div className="absolute bottom-0 left-0 right-0 p-2 sm:p-4 md:p-8">
+                  <h4 className="text-white font-semibold mb-0 md:mb-2 text-[11px] sm:text-base md:text-2xl leading-tight">
                     Shri Cyril Shroff Moot Court
                   </h4>
                 </div>
@@ -532,8 +501,8 @@ const Campus = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.2 }}
                 viewport={{ once: true }}
-                className="text-[#ccc] mb-6"
-                style={{ fontSize: '16px', lineHeight: 1.7 }}
+                className="text-[#ccc] mb-2 md:mb-6 text-[10px] sm:text-xs md:text-base hidden sm:block"
+                style={{ lineHeight: 1.7 }}
               >
                 A dedicated space for legal practice, debates, and mock trials.
               </motion.p>
@@ -545,14 +514,9 @@ const Campus = () => {
       {/* Sports & Wellness Section */}
       <div className="w-full bg-white">
         <div
-          className="mx-auto"
+          className="mx-auto px-5 py-12 sm:px-8 sm:py-16 md:px-[120px] md:py-[100px]"
           style={{
             maxWidth: '1440px',
-            minHeight: '1160px',
-            paddingTop: '100px',
-            paddingRight: '120px',
-            paddingBottom: '100px',
-            paddingLeft: '120px',
           }}
         >
           {/* Section Header */}
@@ -561,29 +525,24 @@ const Campus = () => {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, ease: customEase }}
             viewport={{ once: true }}
-            className="mb-16"
-            style={{ maxWidth: '1200px' }}
+            className="mb-8 md:mb-16"
           >
             <h2
-              className="text-[#21313c]"
+              className="text-[#21313c] text-3xl sm:text-4xl md:text-5xl mb-4 md:mb-6"
               style={{
                 fontFamily: 'Inter, sans-serif',
                 fontWeight: 700,
-                fontSize: '48px',
                 lineHeight: '100%',
-                marginBottom: '24px',
               }}
             >
               Sports & Wellness
             </h2>
             <p
-              className="text-[#21313c]"
+              className="text-[#21313c] text-xl sm:text-2xl md:text-[40px]"
               style={{
                 fontFamily: 'Inter, sans-serif',
                 fontWeight: 600,
-                fontSize: '40px',
                 lineHeight: '120%',
-                maxWidth: '1200px',
               }}
             >
               Cultivating balance, Fueling excellence
@@ -591,7 +550,7 @@ const Campus = () => {
           </motion.div>
 
           {/* Sports Cards - Bento Grid */}
-          <div className="grid grid-cols-12 gap-6">
+          <div className="grid grid-cols-12 gap-3 md:gap-6">
             {/* Left Card - Sports Facilities (Large) */}
             <motion.div
               initial={{ opacity: 0, y: 60, scale: 0.95 }}
@@ -600,7 +559,7 @@ const Campus = () => {
               viewport={{ once: true }}
               className="col-span-7 group cursor-pointer"
             >
-              <div className="relative overflow-hidden" style={{ height: '580px' }}>
+              <div className="relative overflow-hidden h-[250px] sm:h-[400px] md:h-[580px]">
                 <motion.div
                   className="absolute inset-0"
                   whileHover={{ scale: 1.05 }}
@@ -616,7 +575,7 @@ const Campus = () => {
                 <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
 
                 {/* Content */}
-                <div className="absolute inset-0 flex flex-col justify-between p-10">
+                <div className="absolute inset-0 flex flex-col justify-between p-3 sm:p-5 md:p-10">
                   <div />
                   <div>
                     <motion.h4
@@ -624,8 +583,8 @@ const Campus = () => {
                       whileInView={{ opacity: 1, y: 0 }}
                       transition={{ duration: 0.6, delay: 0.4 }}
                       viewport={{ once: true }}
-                      className="text-white mb-4"
-                      style={{ fontSize: '32px', fontWeight: 600, lineHeight: 1.2 }}
+                      className="text-white mb-1 sm:mb-2 md:mb-4 text-sm sm:text-xl md:text-[32px]"
+                      style={{ fontWeight: 600, lineHeight: 1.2 }}
                     >
                       Sports Facilities
                     </motion.h4>
@@ -634,8 +593,8 @@ const Campus = () => {
                       whileInView={{ opacity: 1, y: 0 }}
                       transition={{ duration: 0.6, delay: 0.5 }}
                       viewport={{ once: true }}
-                      className="text-white/80 mb-6"
-                      style={{ fontSize: '15px', lineHeight: 1.7, maxWidth: '400px' }}
+                      className="text-white/80 mb-2 sm:mb-4 md:mb-6 text-[10px] sm:text-sm md:text-[15px] max-w-[400px] hidden sm:block"
+                      style={{ lineHeight: 1.7 }}
                     >
                       Facilities that encourage physical fitness, teamwork, and competitive spirit.
                     </motion.p>
@@ -645,7 +604,7 @@ const Campus = () => {
             </motion.div>
 
             {/* Right Column */}
-            <div className="col-span-5 flex flex-col gap-6">
+            <div className="col-span-5 flex flex-col gap-3 md:gap-6">
               {/* The Pyramid, University Library Card */}
               <motion.div
                 initial={{ opacity: 0, y: 60 }}
@@ -654,7 +613,7 @@ const Campus = () => {
                 viewport={{ once: true }}
                 className="group cursor-pointer"
               >
-                <div className="relative overflow-hidden" style={{ height: '280px' }}>
+                <div className="relative overflow-hidden h-[118px] sm:h-[190px] md:h-[280px]">
                   <motion.div
                     className="absolute inset-0"
                     whileHover={{ scale: 1.05 }}
@@ -668,11 +627,11 @@ const Campus = () => {
                     />
                   </motion.div>
                   <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent" />
-                  <div className="absolute bottom-0 left-0 right-0 p-8">
-                    <h4 className="text-white font-semibold mb-2" style={{ fontSize: '22px' }}>
+                  <div className="absolute bottom-0 left-0 right-0 p-2 sm:p-4 md:p-8">
+                    <h4 className="text-white font-semibold mb-0.5 sm:mb-1 md:mb-2 text-[10px] sm:text-base md:text-[22px]">
                       The Pyramid, University Library
                     </h4>
-                    <p className="text-white/80" style={{ fontSize: '14px', lineHeight: 1.6 }}>
+                    <p className="text-white/80 text-[8px] sm:text-xs md:text-sm hidden sm:block" style={{ lineHeight: 1.6 }}>
                       A central space for study, research, and reflection.
                     </p>
                   </div>
@@ -687,7 +646,7 @@ const Campus = () => {
                 viewport={{ once: true }}
                 className="group cursor-pointer"
               >
-                <div className="relative overflow-hidden" style={{ height: '280px' }}>
+                <div className="relative overflow-hidden h-[118px] sm:h-[190px] md:h-[280px]">
                   <motion.div
                     className="absolute inset-0"
                     whileHover={{ scale: 1.05 }}
@@ -701,11 +660,11 @@ const Campus = () => {
                     />
                   </motion.div>
                   <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent" />
-                  <div className="absolute bottom-0 left-0 right-0 p-8">
-                    <h4 className="text-white font-semibold mb-2" style={{ fontSize: '22px' }}>
+                  <div className="absolute bottom-0 left-0 right-0 p-2 sm:p-4 md:p-8">
+                    <h4 className="text-white font-semibold mb-0.5 sm:mb-1 md:mb-2 text-[10px] sm:text-base md:text-[22px]">
                       Indoor Multipurpose Hall
                     </h4>
-                    <p className="text-white/80" style={{ fontSize: '14px', lineHeight: 1.6 }}>
+                    <p className="text-white/80 text-[8px] sm:text-xs md:text-sm hidden sm:block" style={{ lineHeight: 1.6 }}>
                       A flexible venue for sports, events, and campus activities.
                     </p>
                   </div>
@@ -717,10 +676,11 @@ const Campus = () => {
       </div>
 
       {/* Campus Gallery Section */}
-      <div className="w-full bg-white" style={{ paddingBottom: '120px' }}>
+      <div className="w-full bg-white pb-12 md:pb-[120px]">
+        {/* Scattered Layout - Works on both mobile and desktop */}
         <div
-          className="relative mx-auto overflow-hidden"
-          style={{ maxWidth: '1440px', height: '1000px' }}
+          className="relative mx-auto overflow-hidden h-[500px] sm:h-[700px] md:h-[1000px]"
+          style={{ maxWidth: '1440px' }}
         >
           {/* Card 1 - Top Left */}
           <motion.div
@@ -728,8 +688,8 @@ const Campus = () => {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, ease: customEase }}
             viewport={{ once: true }}
-            className="absolute overflow-hidden group cursor-pointer"
-            style={{ width: '403px', height: '238px', top: '0px', left: '188px', borderRadius: '16px' }}
+            className="absolute overflow-hidden group cursor-pointer rounded-lg md:rounded-2xl"
+            style={{ width: '28%', height: '24%', top: '0%', left: '13%' }}
           >
             <Image
               src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?w=800&q=80"
@@ -745,8 +705,8 @@ const Campus = () => {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.1, ease: customEase }}
             viewport={{ once: true }}
-            className="absolute overflow-hidden group cursor-pointer"
-            style={{ width: '308px', height: '325px', top: '0px', left: '753px', borderRadius: '16px' }}
+            className="absolute overflow-hidden group cursor-pointer rounded-lg md:rounded-2xl"
+            style={{ width: '21%', height: '32%', top: '0%', left: '52%' }}
           >
             <Image
               src="https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=600&q=80"
@@ -762,8 +722,8 @@ const Campus = () => {
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6, delay: 0.15, ease: customEase }}
             viewport={{ once: true }}
-            className="absolute overflow-hidden group cursor-pointer"
-            style={{ width: '193px', height: '193px', top: '-50px', left: '1284px', borderRadius: '16px' }}
+            className="absolute overflow-hidden group cursor-pointer rounded-lg md:rounded-2xl"
+            style={{ width: '13%', height: '19%', top: '-5%', left: '89%' }}
           >
             <Image
               src="https://images.unsplash.com/photo-1562774053-701939374585?w=400&q=80"
@@ -779,8 +739,8 @@ const Campus = () => {
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6, delay: 0.2, ease: customEase }}
             viewport={{ once: true }}
-            className="absolute overflow-hidden group cursor-pointer"
-            style={{ width: '215px', height: '215px', top: '302px', left: '1154px', borderRadius: '16px' }}
+            className="absolute overflow-hidden group cursor-pointer rounded-lg md:rounded-2xl"
+            style={{ width: '15%', height: '22%', top: '30%', left: '80%' }}
           >
             <Image
               src="https://images.unsplash.com/photo-1532094349884-543bc11b234d?w=400&q=80"
@@ -796,8 +756,8 @@ const Campus = () => {
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6, delay: 0.2, ease: customEase }}
             viewport={{ once: true }}
-            className="absolute overflow-hidden group cursor-pointer"
-            style={{ width: '267px', height: '325px', top: '308px', left: '0px', borderRadius: '16px' }}
+            className="absolute overflow-hidden group cursor-pointer rounded-lg md:rounded-2xl"
+            style={{ width: '19%', height: '32%', top: '31%', left: '0%' }}
           >
             <Image
               src="https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=500&q=80"
@@ -813,8 +773,8 @@ const Campus = () => {
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6, delay: 0.3, ease: customEase }}
             viewport={{ once: true }}
-            className="absolute overflow-hidden group cursor-pointer"
-            style={{ width: '286px', height: '343px', top: '601px', left: '1154px', borderRadius: '16px' }}
+            className="absolute overflow-hidden group cursor-pointer rounded-lg md:rounded-2xl"
+            style={{ width: '20%', height: '34%', top: '60%', left: '80%' }}
           >
             <Image
               src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=600&q=80"
@@ -830,8 +790,8 @@ const Campus = () => {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.35, ease: customEase }}
             viewport={{ once: true }}
-            className="absolute overflow-hidden group cursor-pointer"
-            style={{ width: '399px', height: '210px', top: '790px', left: '627px', borderRadius: '16px' }}
+            className="absolute overflow-hidden group cursor-pointer rounded-lg md:rounded-2xl"
+            style={{ width: '28%', height: '21%', top: '79%', left: '44%' }}
           >
             <Image
               src="https://images.unsplash.com/photo-1523580494863-6f3031224c94?w=800&q=80"
@@ -847,8 +807,8 @@ const Campus = () => {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.4, ease: customEase }}
             viewport={{ once: true }}
-            className="absolute overflow-hidden group cursor-pointer"
-            style={{ width: '214px', height: '325px', top: '675px', left: '319px', borderRadius: '16px' }}
+            className="absolute overflow-hidden group cursor-pointer rounded-lg md:rounded-2xl"
+            style={{ width: '15%', height: '32%', top: '68%', left: '22%' }}
           >
             <Image
               src="https://images.unsplash.com/photo-1481627834876-b7833e8f5570?w=400&q=80"
@@ -864,8 +824,8 @@ const Campus = () => {
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6, delay: 0.4, ease: customEase }}
             viewport={{ once: true }}
-            className="absolute overflow-hidden group cursor-pointer"
-            style={{ width: '212px', height: '175px', top: '750px', left: '-56px', borderRadius: '16px' }}
+            className="absolute overflow-hidden group cursor-pointer rounded-lg md:rounded-2xl"
+            style={{ width: '15%', height: '18%', top: '75%', left: '-4%' }}
           >
             <Image
               src="https://images.unsplash.com/photo-1574629810360-7efbbe195018?w=400&q=80"
@@ -876,15 +836,14 @@ const Campus = () => {
           </motion.div>
 
           {/* Center Content */}
-          <div className="absolute inset-0 flex flex-col items-center justify-center text-center pointer-events-none">
+          <div className="absolute inset-0 flex flex-col items-center justify-center text-center pointer-events-none px-4">
             <motion.h2
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.2, ease: customEase }}
               viewport={{ once: true }}
-              className="text-[#21313c] mb-4"
+              className="text-[#21313c] mb-2 md:mb-4 text-lg sm:text-2xl md:text-[clamp(2rem,4vw,3rem)]"
               style={{
-                fontSize: 'clamp(2rem, 4vw, 3rem)',
                 fontWeight: 600,
                 lineHeight: 1.2,
                 letterSpacing: '-0.02em',
@@ -902,8 +861,8 @@ const Campus = () => {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.3, ease: customEase }}
               viewport={{ once: true }}
-              className="text-[#666] mb-8"
-              style={{ fontSize: '18px', lineHeight: 1.7, maxWidth: '400px' }}
+              className="text-[#666] mb-4 md:mb-8 text-xs sm:text-sm md:text-lg max-w-[250px] sm:max-w-[300px] md:max-w-[400px]"
+              style={{ lineHeight: 1.7 }}
             >
               Experience the vibrant life, learning, and celebrations at JLU campus.
             </motion.p>
@@ -913,7 +872,7 @@ const Campus = () => {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.4, ease: customEase }}
               viewport={{ once: true }}
-              className="pointer-events-auto px-8 py-4 bg-[#21313c] text-white font-medium flex items-center gap-3"
+              className="pointer-events-auto px-5 py-2.5 md:px-8 md:py-4 bg-[#21313c] text-white font-medium flex items-center gap-2 md:gap-3 text-xs md:text-base"
               style={{ borderRadius: '100px' }}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.98 }}

@@ -2,6 +2,9 @@
 
 import { motion } from 'framer-motion';
 
+// Custom easing for smooth animations (same as Events page)
+const customEase: [number, number, number, number] = [0.22, 1, 0.36, 1];
+
 const governanceBodies = [
   'Governing Body',
   'Board of Management',
@@ -10,84 +13,129 @@ const governanceBodies = [
 
 const Governance = () => {
   return (
-    <section className="bg-[#f6f7f0]">
-      <div className="max-w-7xl mx-auto">
+    <section className="w-full bg-white">
+      <div
+        className="mx-auto px-4 py-10 sm:px-6 sm:py-12 md:px-[120px] md:py-[100px]"
+        style={{ maxWidth: '1440px' }}
+      >
         {/* Governance Section */}
-        <div
-          className="mb-20 px-4 lg:px-16 xl:px-20 2xl:px-32"
-          style={{
-            paddingTop: '80px',
-          }}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, ease: customEase }}
+          viewport={{ once: true }}
+          className="flex flex-col md:flex-row md:justify-between md:items-start gap-8 md:gap-20 mb-12 md:mb-20"
         >
-          {/* Two Column Layout */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-            className="flex flex-col lg:flex-row gap-8 lg:gap-20 items-start"
-          >
-            {/* Left Column: Heading and Paragraphs */}
-            <div className="flex-1 flex flex-col gap-6 lg:gap-11">
-              <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-[#21313c]">
+          {/* Left Column: Heading and Governance Bodies */}
+          <div className="flex-1">
+            <span
+              className="text-[#999] uppercase tracking-widest block text-[10px] sm:text-xs mb-3 md:mb-4"
+              style={{ letterSpacing: '0.2em' }}
+            >
+              Structure
+            </span>
+            <h2
+              className="text-[#21313c] text-2xl sm:text-3xl md:text-[clamp(2.5rem,5vw,4rem)] mb-6 md:mb-8"
+              style={{
+                fontWeight: 600,
+                lineHeight: 1,
+                letterSpacing: '-0.02em',
+              }}
+            >
+              <span style={{ fontFamily: "'Times New Roman', serif", fontStyle: 'italic' }}>
                 Governance
-              </h2>
+              </span>
+            </h2>
 
-              <div className="flex flex-col gap-4 lg:gap-6">
-                <p className="text-base md:text-lg lg:text-xl leading-relaxed text-[#21313c]">
+            {/* Two column: Paragraphs + Bodies List side by side */}
+            <div className="flex flex-col md:flex-row gap-8 md:gap-16">
+              {/* Paragraphs */}
+              <div className="flex-1 space-y-4 order-2 md:order-1">
+                <p
+                  className="text-[#666] text-sm md:text-[15px]"
+                  style={{ lineHeight: 1.7 }}
+                >
                   Strong governance ensures that JLU grows with clarity of purpose and integrity of action. The university's academic and administrative leadership work together to uphold standards, inspire innovation and guide long term institutional development.
                 </p>
-                <p className="text-base md:text-lg lg:text-xl leading-relaxed text-[#21313c]">
+                <p
+                  className="text-[#666] text-sm md:text-[15px]"
+                  style={{ lineHeight: 1.7 }}
+                >
                   These bodies play a key role in shaping academic direction, institutional policies and strategic growth, ensuring that JLU remains responsive to educational needs and global standards.
                 </p>
               </div>
-            </div>
 
-            {/* Right Column: Governance Bodies List */}
-            <div className="flex flex-col gap-6 lg:gap-10 w-full lg:w-auto lg:min-w-[300px]">
-              {governanceBodies.map((body, index) => (
-                <div
-                  key={index}
-                  className="text-[#21313c] text-base md:text-lg font-medium pb-3 border-b border-[#21313c]"
-                >
-                  {body}
-                </div>
-              ))}
+              {/* Governance Bodies List */}
+              <div className="w-full md:w-auto md:min-w-[280px] order-1 md:order-2 md:-mt-6">
+                {governanceBodies.map((body, index) => (
+                  <motion.div
+                    key={index}
+                    initial={{ opacity: 0, x: 20 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    transition={{ duration: 0.5, delay: index * 0.1, ease: customEase }}
+                    viewport={{ once: true }}
+                    className="group flex items-center justify-between py-4 border-b border-[#e5e5e5] cursor-pointer hover:bg-[#fafafa] transition-colors -mx-4 px-4 md:mx-0 md:px-0"
+                  >
+                    <span className="text-[#21313c] text-sm md:text-[15px] font-medium">
+                      {body}
+                    </span>
+                    <span className="text-[#21313c] opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all">
+                      →
+                    </span>
+                  </motion.div>
+                ))}
+              </div>
             </div>
-          </motion.div>
-        </div>
+          </div>
+        </motion.div>
 
         {/* JLU Leadership Section */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center px-4 lg:px-16 xl:px-20 2xl:px-32">
-          {/* Image with reveal from top to bottom */}
-          <div className="w-full">
-            <motion.div
-              initial={{ clipPath: 'polygon(0% 0%, 100% 0%, 100% 0%, 0% 0%)' }}
-              whileInView={{ clipPath: 'polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)' }}
-              transition={{ duration: 1.2, ease: 'easeOut' }}
-              viewport={{ once: true }}
-              className="w-full max-w-[580px] h-[250px] md:h-[320px] lg:h-[357px] rounded-xl overflow-hidden"
-            >
-              <img
-                src="/leader.jpg"
-                alt="JLU Leadership"
-                className="object-cover object-top w-full h-full"
-              />
-            </motion.div>
-          </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-16 items-center">
+          {/* Image with reveal */}
+          <motion.div
+            initial={{ clipPath: 'polygon(0% 0%, 100% 0%, 100% 0%, 0% 0%)' }}
+            whileInView={{ clipPath: 'polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)' }}
+            transition={{ duration: 1.2, ease: 'easeOut' }}
+            viewport={{ once: true }}
+            className="relative w-full h-[250px] sm:h-[320px] md:h-[400px] rounded-xl overflow-hidden"
+          >
+            <img
+              src="/leader.jpg"
+              alt="JLU Leadership"
+              className="object-cover object-top w-full h-full"
+            />
+          </motion.div>
 
           {/* Content */}
           <motion.div
-            initial={{ opacity: 0, x: 50 }}
+            initial={{ opacity: 0, x: 30 }}
             whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
+            transition={{ duration: 0.6, delay: 0.2, ease: customEase }}
             viewport={{ once: true }}
-            className="space-y-6"
           >
-            <h2 className="text-3xl md:text-4xl font-bold text-[#21313c]">
-              JLU Leadership
-            </h2>
-            <p className="text-base md:text-lg leading-relaxed text-[#21313c]">
+            <span
+              className="text-[#999] uppercase tracking-widest block text-[10px] sm:text-xs mb-3 md:mb-4"
+              style={{ letterSpacing: '0.2em' }}
+            >
+              Team
+            </span>
+            <h3
+              className="text-[#21313c] text-xl sm:text-2xl md:text-[clamp(1.75rem,3vw,2.5rem)] mb-4 md:mb-6"
+              style={{
+                fontWeight: 600,
+                lineHeight: 1.1,
+                letterSpacing: '-0.02em',
+              }}
+            >
+              JLU{' '}
+              <span style={{ fontFamily: "'Times New Roman', serif", fontStyle: 'italic' }}>
+                Leadership
+              </span>
+            </h3>
+            <p
+              className="text-[#666] text-sm md:text-[15px]"
+              style={{ lineHeight: 1.7 }}
+            >
               Leadership at JLU is inclusive and collaborative. Academic leaders, administrators and faculty work together to create an environment that supports innovation, learning and student growth. The structure reflects a belief in shared responsibility and open dialogue.
             </p>
           </motion.div>

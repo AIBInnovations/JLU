@@ -28,15 +28,15 @@ export const Footer = () => {
   return (
     <footer
       ref={footerRef}
-      className={`relative bg-[#1a3a3a] text-white ${isMobile ? 'overflow-y-auto' : 'overflow-hidden'} h-screen`}
+      className={`relative bg-[#1a3a3a] text-white overflow-hidden ${isMobile ? 'min-h-screen' : 'h-screen'}`}
       style={{ zIndex: 30 }}
     >
       {isMobile ? (
         /* Mobile Layout */
-        <div className="flex flex-col h-full">
+        <div className="flex flex-col min-h-full">
           {/* University Image - Full width at top */}
           <motion.div
-            className="relative w-full h-40 shrink-0 overflow-hidden"
+            className="relative w-full h-52 shrink-0 overflow-hidden"
             style={{
               clipPath: imageClipPath,
             }}
@@ -49,7 +49,7 @@ export const Footer = () => {
             />
           </motion.div>
 
-          <div className="px-6 pt-4 pb-4 flex flex-col flex-1">
+          <div className="px-6 pt-3 pb-0 flex flex-col flex-1">
 
           {/* Header Section */}
           <div className="mb-4">
@@ -104,7 +104,7 @@ export const Footer = () => {
           </div>
 
           {/* Bottom Section */}
-          <div className="flex justify-between items-end mb-2 mt-auto">
+          <div className="flex justify-between items-end mt-auto">
             <div>
               <p className="text-gray-400 text-[10px] mb-1">© 2025 | JLU Bhopal | All Rights Reserved</p>
               <button
@@ -121,16 +121,17 @@ export const Footer = () => {
 
           {/* Large Jagran Lakecity Text */}
           <motion.div
-            className="-mx-6"
+            className="-mx-6 -mb-10 overflow-hidden mt-4"
             style={{ y: jluY }}
           >
             <h2
               className="select-none"
               style={{
                 fontFamily: "'Haettenschweiler', 'Arial Narrow Bold', Impact, sans-serif",
-                fontSize: 'clamp(4rem, 22vw, 8rem)',
-                lineHeight: 0.85,
+                fontSize: 'clamp(5rem, 26vw, 10rem)',
+                lineHeight: 0.8,
                 letterSpacing: '-0.02em',
+                marginBottom: 0,
               }}
             >
               <span

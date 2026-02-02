@@ -123,8 +123,8 @@ const CampusLife = () => {
           transition={{ duration: 1, delay: 0.5, ease: customEase }}
           className="absolute top-0 left-0"
           style={{
-            paddingLeft: '40px',
-            paddingTop: '120px',
+            paddingLeft: 'clamp(20px, 5vw, 40px)',
+            paddingTop: 'clamp(100px, 15vw, 120px)',
             maxWidth: '800px',
           }}
         >
@@ -157,7 +157,7 @@ const CampusLife = () => {
         <div
           className="absolute bottom-0 left-0"
           style={{
-            paddingLeft: '40px',
+            paddingLeft: 'clamp(8px, 2vw, 40px)',
             paddingBottom: '0px',
           }}
         >
@@ -168,7 +168,7 @@ const CampusLife = () => {
             className="font-normal select-none"
             style={{
               fontFamily: "system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif",
-              fontSize: 'clamp(6rem, 14vw, 14rem)',
+              fontSize: 'clamp(5rem, 14vw, 14rem)',
               lineHeight: 0.85,
               letterSpacing: '-0.02em',
               background: 'linear-gradient(to bottom, rgba(255,255,255,1) 0%, rgba(255,255,255,0.7) 50%, rgba(255,255,255,0) 85%)',
@@ -185,19 +185,15 @@ const CampusLife = () => {
       {/* Student Life & Careers Section */}
       <div className="w-full bg-white">
         <div
-          className="mx-auto"
+          className="mx-auto px-5 py-16 md:px-10 md:py-24 lg:px-30 lg:py-45"
           style={{
             maxWidth: '1440px',
-            paddingTop: '180px',
-            paddingRight: '120px',
-            paddingBottom: '180px',
-            paddingLeft: '120px',
           }}
         >
-          <div className="flex" style={{ gap: '80px' }}>
+          <div className="flex flex-col lg:flex-row gap-10 md:gap-16 lg:gap-20">
             {/* Section 01 - Student Life (positioned up) */}
             <motion.div
-              style={{ flex: 1 }}
+              className="flex-1"
               initial={{ opacity: 0, x: -50 }}
               whileInView={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8, ease: customEase }}
@@ -208,11 +204,9 @@ const CampusLife = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.1 }}
                 viewport={{ once: true }}
-                className="text-[#999] uppercase tracking-widest"
+                className="text-[#999] uppercase tracking-widest text-[11px] md:text-[12px] mb-3 md:mb-4"
                 style={{
-                  fontSize: '12px',
                   letterSpacing: '0.2em',
-                  marginBottom: '16px',
                 }}
               >
                 Section 01
@@ -222,13 +216,12 @@ const CampusLife = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.2, ease: customEase }}
                 viewport={{ once: true }}
-                className="text-[#21313c]"
+                className="text-[#21313c] mb-10 md:mb-12 lg:mb-16"
                 style={{
                   fontWeight: 600,
-                  fontSize: 'clamp(2rem, 4vw, 3rem)',
+                  fontSize: 'clamp(1.75rem, 4vw, 3rem)',
                   lineHeight: 1.1,
                   letterSpacing: '-0.03em',
-                  marginBottom: '64px',
                 }}
               >
                 Student{' '}
@@ -238,8 +231,7 @@ const CampusLife = () => {
               </motion.h2>
 
               <motion.div
-                className="flex flex-col"
-                style={{ gap: '56px' }}
+                className="flex flex-col gap-8 md:gap-12 lg:gap-14"
                 variants={staggerContainer}
                 initial="hidden"
                 whileInView="visible"
@@ -252,32 +244,26 @@ const CampusLife = () => {
                     className="group"
                   >
                     <motion.h3
-                      className="text-[#21313c] group-hover:text-[#f0c14b] transition-colors duration-300"
+                      className="text-[#21313c] group-hover:text-[#f0c14b] transition-colors duration-300 text-xl md:text-2xl lg:text-[28px] font-semibold mb-3 md:mb-4 lg:mb-5"
                       style={{
-                        fontWeight: 600,
-                        fontSize: '28px',
                         lineHeight: 1.2,
                         letterSpacing: '-0.02em',
-                        marginBottom: '20px',
                       }}
                     >
                       {item.title}
                     </motion.h3>
                     <p
-                      className="text-[#666]"
+                      className="text-[#666] text-sm md:text-base lg:text-lg mb-3 md:mb-4 lg:mb-5"
                       style={{
                         fontWeight: 400,
-                        fontSize: '18px',
                         lineHeight: 1.7,
-                        marginBottom: '20px',
                       }}
                     >
                       {item.description}
                     </p>
                     <motion.a
                       href="#"
-                      className="inline-flex items-center gap-2 text-[#21313c] font-medium"
-                      style={{ fontSize: '15px' }}
+                      className="inline-flex items-center gap-2 text-[#21313c] font-medium text-sm md:text-[15px]"
                       whileHover={{ x: 5 }}
                       transition={{ duration: 0.3 }}
                     >
@@ -298,8 +284,7 @@ const CampusLife = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.3, ease: customEase }}
                 viewport={{ once: true }}
-                className="relative overflow-hidden group cursor-pointer"
-                style={{ width: '100%', height: '320px', marginTop: '56px' }}
+                className="relative overflow-hidden group cursor-pointer w-full h-48 md:h-64 lg:h-80 mt-8 md:mt-12 lg:mt-14"
               >
                 <motion.div
                   className="absolute inset-0"
@@ -331,6 +316,7 @@ const CampusLife = () => {
               whileInView={{ scaleY: 1 }}
               transition={{ duration: 1, delay: 0.3, ease: customEase }}
               viewport={{ once: true }}
+              className="hidden lg:block"
               style={{
                 width: '1px',
                 backgroundColor: '#e5e5e5',
@@ -341,7 +327,7 @@ const CampusLife = () => {
 
             {/* Section 02 - Careers, Innovation & Experiences (positioned down) */}
             <motion.div
-              style={{ flex: 1, marginTop: '2px' }}
+              className="flex-1 lg:mt-0.5"
               initial={{ opacity: 0, x: 50 }}
               whileInView={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8, delay: 0.2, ease: customEase }}
@@ -353,8 +339,7 @@ const CampusLife = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, ease: customEase }}
                 viewport={{ once: true }}
-                className="relative overflow-hidden group cursor-pointer"
-                style={{ width: '100%', height: '320px', marginBottom: '56px' }}
+                className="relative overflow-hidden group cursor-pointer w-full h-48 md:h-64 lg:h-80 mb-8 md:mb-10 lg:mb-14"
               >
                 <motion.div
                   className="absolute inset-0"
@@ -384,11 +369,9 @@ const CampusLife = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.2 }}
                 viewport={{ once: true }}
-                className="text-[#999] uppercase tracking-widest"
+                className="text-[#999] uppercase tracking-widest text-[11px] md:text-[12px] mb-3 md:mb-4"
                 style={{
-                  fontSize: '12px',
                   letterSpacing: '0.2em',
-                  marginBottom: '16px',
                 }}
               >
                 Section 02
@@ -398,13 +381,12 @@ const CampusLife = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.3, ease: customEase }}
                 viewport={{ once: true }}
-                className="text-[#21313c]"
+                className="text-[#21313c] mb-10 md:mb-12 lg:mb-16"
                 style={{
                   fontWeight: 600,
-                  fontSize: 'clamp(2rem, 4vw, 3rem)',
+                  fontSize: 'clamp(1.75rem, 4vw, 3rem)',
                   lineHeight: 1.1,
                   letterSpacing: '-0.03em',
-                  marginBottom: '64px',
                 }}
               >
                 Careers, innovation &{' '}
@@ -414,8 +396,7 @@ const CampusLife = () => {
               </motion.h2>
 
               <motion.div
-                className="flex flex-col"
-                style={{ gap: '56px' }}
+                className="flex flex-col gap-8 md:gap-12 lg:gap-14"
                 variants={staggerContainer}
                 initial="hidden"
                 whileInView="visible"
@@ -428,32 +409,26 @@ const CampusLife = () => {
                     className="group"
                   >
                     <motion.h3
-                      className="text-[#21313c] group-hover:text-[#f0c14b] transition-colors duration-300"
+                      className="text-[#21313c] group-hover:text-[#f0c14b] transition-colors duration-300 text-xl md:text-2xl lg:text-[28px] font-semibold mb-3 md:mb-4 lg:mb-5"
                       style={{
-                        fontWeight: 600,
-                        fontSize: '28px',
                         lineHeight: 1.2,
                         letterSpacing: '-0.02em',
-                        marginBottom: '20px',
                       }}
                     >
                       {item.title}
                     </motion.h3>
                     <p
-                      className="text-[#666]"
+                      className="text-[#666] text-sm md:text-base lg:text-lg mb-3 md:mb-4 lg:mb-5"
                       style={{
                         fontWeight: 400,
-                        fontSize: '18px',
                         lineHeight: 1.7,
-                        marginBottom: '20px',
                       }}
                     >
                       {item.description}
                     </p>
                     <motion.a
                       href="#"
-                      className="inline-flex items-center gap-2 text-[#21313c] font-medium"
-                      style={{ fontSize: '15px' }}
+                      className="inline-flex items-center gap-2 text-[#21313c] font-medium text-sm md:text-[15px]"
                       whileHover={{ x: 5 }}
                       transition={{ duration: 0.3 }}
                     >
@@ -473,11 +448,11 @@ const CampusLife = () => {
       </div>
 
       {/* Community Section - Full Width with Scroll Zoom */}
-      <div className="w-full bg-white" style={{ paddingTop: '80px', paddingBottom: '80px', paddingLeft: '40px', paddingRight: '40px' }}>
+      <div className="w-full bg-white px-4 py-12 md:px-6 md:py-16 lg:px-10 lg:py-20">
         <div
           ref={communityRef}
-          className="relative overflow-hidden mx-auto"
-          style={{ height: '90vh', maxWidth: '1400px', borderRadius: '32px' }}
+          className="relative overflow-hidden mx-auto h-[70vh] md:h-[80vh] lg:h-[90vh] rounded-2xl md:rounded-3xl lg:rounded-4xl"
+          style={{ maxWidth: '1400px' }}
         >
           {/* Full Width Zooming Image */}
           <motion.div
@@ -506,21 +481,20 @@ const CampusLife = () => {
               y: communityContentY,
             }}
           >
-            <div className="text-center" style={{ maxWidth: '800px', padding: '40px' }}>
+            <div className="text-center max-w-200 px-5 py-6 md:px-8 md:py-8 lg:px-10 lg:py-10">
               <motion.span
-                className="text-white/70 uppercase tracking-widest block mb-6"
-                style={{ fontSize: '12px', letterSpacing: '0.3em' }}
+                className="text-white/70 uppercase tracking-widest block mb-4 md:mb-5 lg:mb-6 text-[10px] md:text-[11px] lg:text-[12px]"
+                style={{ letterSpacing: '0.3em' }}
               >
                 Community
               </motion.span>
               <motion.h2
-                className="text-white"
+                className="text-white mb-4 md:mb-5 lg:mb-6"
                 style={{
                   fontWeight: 600,
-                  fontSize: 'clamp(2.5rem, 5vw, 4rem)',
+                  fontSize: 'clamp(1.5rem, 5vw, 4rem)',
                   lineHeight: 1.1,
                   letterSpacing: '-0.03em',
-                  marginBottom: '24px',
                 }}
               >
                 More than a campus —{' '}
@@ -529,26 +503,16 @@ const CampusLife = () => {
                 </span>
               </motion.h2>
               <motion.p
-                className="text-white/80"
+                className="text-white/80 text-sm md:text-base lg:text-xl mb-6 md:mb-8 lg:mb-10"
                 style={{
                   fontWeight: 400,
-                  fontSize: '20px',
                   lineHeight: 1.8,
-                  marginBottom: '40px',
                 }}
               >
                 Every event, club, and initiative is designed to help students grow not just academically, but personally and professionally.
               </motion.p>
               <motion.button
-                className="inline-flex items-center gap-3 bg-white text-[#21313c] font-medium"
-                style={{
-                  paddingTop: '18px',
-                  paddingRight: '40px',
-                  paddingBottom: '18px',
-                  paddingLeft: '40px',
-                  fontSize: '16px',
-                  borderRadius: '100px',
-                }}
+                className="inline-flex items-center gap-2 md:gap-3 bg-white text-[#21313c] font-medium px-6 py-3 md:px-8 md:py-4 lg:px-10 lg:py-4.5 text-sm md:text-base rounded-full"
                 whileHover={{ scale: 1.05, backgroundColor: '#f0c14b' }}
                 whileTap={{ scale: 0.98 }}
                 transition={{ duration: 0.3 }}

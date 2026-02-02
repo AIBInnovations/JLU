@@ -4,6 +4,9 @@ import { useRef } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { useIsMobile } from '../hooks/useIsMobile';
 
+// Custom easing for smooth animations (same as Events page)
+const customEase: [number, number, number, number] = [0.22, 1, 0.36, 1];
+
 const overviewData = [
   {
     title: 'PROMOTING BODY',
@@ -32,44 +35,38 @@ const ParallaxCard = ({ item, index }: { item: typeof overviewData[0]; index: nu
   return (
     <motion.div
       ref={cardRef}
-      initial={{ opacity: 0, y: 30 }}
+      initial={{ opacity: 0, y: 40 }}
       whileInView={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.8, delay: index * 0.2 }}
+      transition={{ duration: 0.6, delay: index * 0.1, ease: customEase }}
       viewport={{ once: true }}
-      className="relative flex flex-col overflow-hidden rounded-xl"
-      style={{
-        width: '580px',
-        maxWidth: '100%',
-        height: isMobile ? '500px' : '932px',
-      }}
+      className="group relative overflow-hidden cursor-pointer min-h-[400px] sm:min-h-[500px] md:min-h-[650px] rounded-xl md:rounded-none"
     >
       {/* Background Image with Parallax */}
       <motion.img
         src={item.image}
         alt={item.title}
-        className="absolute inset-0 w-full object-cover object-top"
+        className="absolute inset-0 w-full object-cover object-top transition-transform duration-700 group-hover:scale-105"
         style={{
-          y,
+          y: isMobile ? 0 : y,
           height: '120%',
           top: '-10%',
         }}
       />
-      {/* Black overlay */}
-      <div className="absolute inset-0 bg-black/15" />
-      {/* Content */}
-      <div
-        className="relative z-10 flex flex-col justify-between h-full p-6 md:p-8"
-        style={{
-          paddingBottom: isMobile ? '80px' : '160px',
-        }}
-      >
-        {/* Title */}
-        <h3 className="text-lg md:text-xl font-bold text-white tracking-wide">
-          {item.title}
-        </h3>
+      {/* Gradient overlay */}
+      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent" />
 
-        {/* Description */}
-        <p className="text-sm md:text-base leading-relaxed text-white">
+      {/* Content */}
+      <div className="absolute inset-0 flex flex-col justify-end p-5 sm:p-8 md:p-10">
+        <span
+          className="text-white/60 uppercase tracking-widest mb-2 sm:mb-3 md:mb-4 text-[9px] sm:text-[10px] md:text-[11px]"
+          style={{ letterSpacing: '0.2em' }}
+        >
+          {String(index + 1).padStart(2, '0')} — {item.title}
+        </span>
+        <p
+          className="text-white/80 text-xs sm:text-sm md:text-[15px] max-w-[95%] md:max-w-[90%]"
+          style={{ lineHeight: 1.7 }}
+        >
           {item.description}
         </p>
       </div>
@@ -79,21 +76,51 @@ const ParallaxCard = ({ item, index }: { item: typeof overviewData[0]; index: nu
 
 const InstitutionalOverview = () => {
   return (
-    <section className="bg-[#f6f7f0] py-20 px-6 md:px-12 lg:px-24">
-      <div className="max-w-7xl mx-auto">
-        {/* Section Heading */}
-        <motion.h2
-          initial={{ opacity: 0, y: 20 }}
+    <section className="w-full bg-[#f6f7f0]">
+      <div
+        className="mx-auto px-4 py-10 sm:px-6 sm:py-12 md:px-[120px] md:py-[100px]"
+        style={{ maxWidth: '1440px' }}
+      >
+        {/* Section Header */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
+          transition={{ duration: 0.6, ease: customEase }}
           viewport={{ once: true }}
-          className="text-4xl md:text-5xl font-bold text-[#21313c] mb-16"
+          className="flex flex-col md:flex-row md:justify-between md:items-end mb-8 md:mb-16 pb-6 md:pb-10"
+          style={{ borderBottom: '1px solid #e5e5e5' }}
         >
-          Institutional Overview
-        </motion.h2>
+          <div className="mb-6 md:mb-0">
+            <span
+              className="text-[#999] uppercase tracking-widest block text-[10px] sm:text-xs mb-3 md:mb-4"
+              style={{ letterSpacing: '0.2em' }}
+            >
+              Overview
+            </span>
+            <h2
+              className="text-[#21313c] text-2xl sm:text-3xl md:text-[clamp(2.5rem,5vw,4rem)]"
+              style={{
+                fontWeight: 600,
+                lineHeight: 1,
+                letterSpacing: '-0.02em',
+              }}
+            >
+              Institutional{' '}
+              <span style={{ fontFamily: "'Times New Roman', serif", fontStyle: 'italic' }}>
+                Overview
+              </span>
+            </h2>
+          </div>
+          <p
+            className="text-[#666] text-sm md:text-base max-w-full md:max-w-[400px]"
+            style={{ lineHeight: 1.7 }}
+          >
+            Understanding the foundation and scope of Jagran Lakecity University.
+          </p>
+        </motion.div>
 
         {/* Two Column Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-8">
           {overviewData.map((item, index) => (
             <ParallaxCard key={item.title} item={item} index={index} />
           ))}

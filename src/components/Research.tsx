@@ -88,8 +88,8 @@ const Research = () => {
           transition={{ duration: 0.6, delay: 0.3 }}
           className="absolute top-0 left-0"
           style={{
-            paddingLeft: '40px',
-            paddingTop: '120px',
+            paddingLeft: 'clamp(20px, 5vw, 40px)',
+            paddingTop: 'clamp(100px, 15vw, 120px)',
             maxWidth: '800px',
           }}
         >
@@ -115,7 +115,7 @@ const Research = () => {
         <div
           className="absolute bottom-0 left-0"
           style={{
-            paddingLeft: '40px',
+            paddingLeft: 'clamp(8px, 2vw, 40px)',
             paddingBottom: '0px',
           }}
         >
@@ -126,7 +126,7 @@ const Research = () => {
             className="font-normal select-none"
             style={{
               fontFamily: "system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif",
-              fontSize: 'clamp(8rem, 16vw, 16rem)',
+              fontSize: 'clamp(6.1rem, 16vw, 16rem)',
               lineHeight: 0.85,
               letterSpacing: '-0.02em',
               background: 'linear-gradient(to bottom, rgba(255,255,255,1) 0%, rgba(255,255,255,0.7) 50%, rgba(255,255,255,0) 85%)',
@@ -143,38 +143,34 @@ const Research = () => {
       {/* Research Ecosystem Section */}
       <div className="w-full bg-white">
         <div
-          className="mx-auto"
+          className="mx-auto px-5 py-12 md:px-10 md:py-16 lg:px-30 lg:py-20"
           style={{
             maxWidth: '1440px',
-            paddingTop: '80px',
-            paddingRight: '120px',
-            paddingBottom: '80px',
-            paddingLeft: '120px',
           }}
         >
-          <h2 className="text-3xl md:text-4xl font-bold text-[#21313c] mb-16">
+          <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-[#21313c] mb-8 md:mb-12 lg:mb-16">
             Research Ecosystem
           </h2>
 
-          <div className="flex justify-between" style={{ gap: '64px' }}>
+          <div className="flex flex-col lg:flex-row justify-between gap-8 lg:gap-16">
             {/* Left Side - Content */}
-            <div style={{ maxWidth: '580px' }}>
-              <p className="text-[#21313c] leading-relaxed" style={{ fontSize: '20px', lineHeight: '28px' }}>
+            <div className="w-full lg:max-w-145">
+              <p className="text-[#21313c] leading-relaxed text-base md:text-lg lg:text-xl" style={{ lineHeight: '1.6' }}>
                 Research at JLU is shaped by exploration rather than expectation.
               </p>
-              <p className="text-[#21313c] leading-relaxed mt-4" style={{ fontSize: '20px', lineHeight: '28px' }}>
+              <p className="text-[#21313c] leading-relaxed mt-3 md:mt-4 text-base md:text-lg lg:text-xl" style={{ lineHeight: '1.6' }}>
                 It grows from thoughtful questions, careful observation, and a willingness to look beyond the obvious.
               </p>
-              <p className="text-[#21313c] leading-relaxed mt-4" style={{ fontSize: '20px', lineHeight: '28px' }}>
+              <p className="text-[#21313c] leading-relaxed mt-3 md:mt-4 text-base md:text-lg lg:text-xl" style={{ lineHeight: '1.6' }}>
                 Across disciplines, faculty and students engage in work that seeks relevance, depth, and long-term value.
               </p>
-              <p className="text-[#21313c] leading-relaxed mt-4" style={{ fontSize: '20px', lineHeight: '28px' }}>
+              <p className="text-[#21313c] leading-relaxed mt-3 md:mt-4 text-base md:text-lg lg:text-xl" style={{ lineHeight: '1.6' }}>
                 Knowledge here is not only generated, it is examined, refined, and shared.
               </p>
             </div>
 
             {/* Right Side - Research Areas */}
-            <div style={{ width: '580px' }}>
+            <div className="w-full lg:w-145">
               {researchAreas.map((area) => (
                 <button
                   key={area.id}
@@ -197,34 +193,24 @@ const Research = () => {
       {/* Stats Section */}
       <div className="w-full bg-[#e8e8e8]">
         <div
-          className="mx-auto"
+          className="mx-auto px-5 py-10 md:px-10 md:py-12 lg:px-30 lg:py-16"
           style={{
             maxWidth: '1440px',
-            height: '262px',
-            paddingTop: '64px',
-            paddingRight: '120px',
-            paddingBottom: '64px',
-            paddingLeft: '120px',
           }}
         >
-          <div className="flex justify-between h-full">
-            {statsData.map((stat, index) => (
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-4 lg:gap-0">
+            {statsData.map((stat) => (
               <div
                 key={stat.id}
-                className="flex flex-col justify-center"
-                style={{
-                  borderRight: index < 3 ? '1px solid #c4c4c4' : 'none',
-                  paddingRight: index < 3 ? '40px' : '0',
-                  marginRight: index < 3 ? '40px' : '0',
-                }}
+                className="flex flex-col justify-center lg:border-r lg:last:border-r-0 border-[#c4c4c4] lg:pr-10 lg:mr-10 lg:last:pr-0 lg:last:mr-0"
               >
-                <p className="text-4xl md:text-5xl font-bold text-[#21313c] mb-2">
+                <p className="text-2xl md:text-3xl lg:text-5xl font-bold text-[#21313c] mb-1 md:mb-2">
                   {stat.value}
                 </p>
-                <p className="text-sm font-medium text-[#21313c] tracking-wider mb-1">
+                <p className="text-xs md:text-sm font-medium text-[#21313c] tracking-wider mb-1">
                   {stat.label}
                 </p>
-                <p className="text-sm text-[#21313c]">
+                <p className="text-xs md:text-sm text-[#21313c]">
                   {stat.description}
                 </p>
               </div>
@@ -236,42 +222,38 @@ const Research = () => {
       {/* Latest Publication Section */}
       <div className="w-full bg-white">
         <div
-          className="mx-auto"
+          className="mx-auto px-5 py-12 md:px-10 md:py-16 lg:px-30 lg:py-20"
           style={{
             maxWidth: '1440px',
-            paddingTop: '80px',
-            paddingRight: '120px',
-            paddingBottom: '80px',
-            paddingLeft: '120px',
           }}
         >
-          <h2 className="text-3xl md:text-4xl font-bold text-[#21313c] mb-12">
+          <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-[#21313c] mb-8 md:mb-12">
             Latest Publication
           </h2>
 
-          <div className="flex justify-between" style={{ gap: '64px' }}>
+          <div className="flex flex-col-reverse lg:flex-row justify-between gap-8 lg:gap-16">
             {/* Left Side - Journal Info */}
-            <div style={{ maxWidth: '500px', marginTop: '100px' }}>
-              <h3 className="text-2xl md:text-3xl font-bold text-[#21313c] mb-4">
+            <div className="w-full lg:max-w-125 lg:mt-25">
+              <h3 className="text-xl md:text-2xl lg:text-3xl font-bold text-[#21313c] mb-3 md:mb-4">
                 JLU Research Journal
               </h3>
-              <p className="text-base text-[#21313c] leading-relaxed mb-8">
+              <p className="text-sm md:text-base text-[#21313c] leading-relaxed mb-6 md:mb-8">
                 A peer-reviewed platform showcasing original research across disciplines, fostering dialogue between academia and industry.
               </p>
 
               {/* Categories */}
-              <div className="flex flex-col gap-4 mb-8">
+              <div className="flex flex-col gap-3 md:gap-4 mb-6 md:mb-8">
                 {journalCategories.map((category, index) => (
-                  <div key={index} className="flex items-center gap-4">
+                  <div key={index} className="flex items-center gap-3 md:gap-4">
                     <span className="text-[#21313c]">——</span>
-                    <span className={`text-base text-[#21313c] ${index === 0 ? 'font-medium' : ''}`}>
+                    <span className={`text-sm md:text-base text-[#21313c] ${index === 0 ? 'font-medium' : ''}`}>
                       {category}
                     </span>
                   </div>
                 ))}
               </div>
 
-              <a href="#" className="inline-flex items-center gap-3 text-[#21313c] font-medium underline hover:no-underline">
+              <a href="#" className="inline-flex items-center gap-2 md:gap-3 text-sm md:text-base text-[#21313c] font-medium underline hover:no-underline">
                 Access the journal
                 <span>→</span>
               </a>
@@ -279,8 +261,7 @@ const Research = () => {
 
             {/* Right Side - Journal Card */}
             <div
-              className="relative shrink-0 overflow-hidden rounded-lg"
-              style={{ width: '580px', height: '500px' }}
+              className="relative shrink-0 overflow-hidden rounded-lg w-full lg:w-145 h-64 md:h-80 lg:h-125"
             >
               <Image
                 src="https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?w=1200&q=80"
@@ -310,41 +291,35 @@ const Research = () => {
       {/* Faculty Spotlight Section */}
       <div className="w-full bg-white">
         <div
-          className="mx-auto"
+          className="mx-auto px-5 py-12 md:px-10 md:py-16 lg:px-30 lg:py-20"
           style={{
             maxWidth: '1440px',
-            paddingTop: '80px',
-            paddingRight: '120px',
-            paddingBottom: '80px',
-            paddingLeft: '120px',
           }}
         >
           {/* Header */}
-          <div className="flex justify-between items-start mb-16">
+          <div className="flex flex-col md:flex-row justify-between items-start gap-4 md:gap-0 mb-8 md:mb-12 lg:mb-16">
             <div>
-              <h2 className="text-4xl md:text-5xl font-bold text-[#21313c] mb-4">
+              <h2 className="text-2xl md:text-4xl lg:text-5xl font-bold text-[#21313c] mb-2 md:mb-4">
                 Faculty Spotlight
               </h2>
-              <p className="text-xl text-[#21313c]">
+              <p className="text-base md:text-lg lg:text-xl text-[#21313c]">
                 Meet the minds shaping the future through rigorous inquiry.
               </p>
             </div>
-            <a href="#" className="text-base text-[#21313c] font-medium underline hover:no-underline">
+            <a href="#" className="text-sm md:text-base text-[#21313c] font-medium underline hover:no-underline">
               View all Faculty
             </a>
           </div>
 
-          <div className="flex justify-between">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
             {facultySpotlight.map((faculty) => (
               <div
                 key={faculty.id}
                 className="flex flex-col"
-                style={{ width: '380px' }}
               >
                 {/* Image */}
                 <div
-                  className="relative overflow-hidden"
-                  style={{ width: '380px', height: '420px' }}
+                  className="relative overflow-hidden w-full h-72 md:h-80 lg:h-105"
                 >
                   <Image
                     src={faculty.image}
@@ -354,11 +329,11 @@ const Research = () => {
                   />
                 </div>
                 {/* Content */}
-                <div className="mt-6">
-                  <h3 className="text-2xl font-bold text-[#21313c] mb-2">
+                <div className="mt-4 md:mt-6">
+                  <h3 className="text-lg md:text-xl lg:text-2xl font-bold text-[#21313c] mb-1 md:mb-2">
                     {faculty.name}
                   </h3>
-                  <p className="text-base text-[#666666]">
+                  <p className="text-sm md:text-base text-[#666666]">
                     {faculty.title}
                   </p>
                 </div>

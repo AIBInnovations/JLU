@@ -209,7 +209,7 @@ export const WhyJlu = () => {
             marginTop: '60vh',
             width: '100%',
             zIndex: 20,
-            background: 'transparent',
+            background: 'linear-gradient(to bottom, transparent 10%, #f6f7f0 12%)',
             padding: '20px 12px',
           }}
         >
