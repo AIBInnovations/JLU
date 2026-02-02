@@ -186,18 +186,31 @@ export const WhyJlu = () => {
             : '#f6f7f0',
         }}
       >
-        <h1
-          style={{
-            fontSize: shouldUseMobileLayout ? 'clamp(1.5rem, 6vw, 2.5rem)' : 'clamp(3rem, 8vw, 6rem)',
-            fontWeight: 'bold',
-            color: '#000000',
-            letterSpacing: '-0.02em',
-            textAlign: 'center',
-            padding: '0 1rem',
-          }}
-        >
-          The JLU Experience
-        </h1>
+        <div style={{ textAlign: 'center', padding: '0 1rem' }}>
+          <p
+            style={{
+              color: '#999',
+              fontSize: shouldUseMobileLayout ? '0.65rem' : '0.75rem',
+              letterSpacing: '0.2em',
+              textTransform: 'uppercase',
+              marginBottom: shouldUseMobileLayout ? '0.75rem' : '1rem',
+            }}
+          >
+            WHY CHOOSE US
+          </p>
+          <h1
+            style={{
+              fontSize: shouldUseMobileLayout ? 'clamp(1.5rem, 6vw, 2.5rem)' : 'clamp(3rem, 8vw, 6rem)',
+              fontWeight: 600,
+              color: '#000000',
+              letterSpacing: '-0.02em',
+              lineHeight: 1,
+            }}
+          >
+            The JLU{' '}
+            <span style={{ fontFamily: "'Times New Roman', serif", fontStyle: 'italic' }}>Experience</span>
+          </h1>
+        </div>
       </div>
 
       {/* Cards Container */}

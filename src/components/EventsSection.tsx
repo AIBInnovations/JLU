@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import { motion } from 'framer-motion';
 import { useIsMobile } from '../hooks/useIsMobile';
 
 interface Event {
@@ -65,15 +66,31 @@ export const EventsSection = () => {
     <section className="bg-[#f6f7f0] min-h-screen flex items-center py-12 md:py-16 px-4 md:px-12 lg:px-16 xl:px-20 2xl:px-32 relative">
       <div className="max-w-[1800px] mx-auto w-full">
         {/* Header */}
-        <div className="text-center mb-8 md:mb-12">
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-[#21313c] mb-3">
-            Moments worth stepping into
+        <motion.div
+          className="text-center mb-8 md:mb-12"
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+        >
+          <p
+            className="text-xs md:text-sm mb-4"
+            style={{ color: '#999', letterSpacing: '0.2em', textTransform: 'uppercase' }}
+          >
+            CAMPUS LIFE
+          </p>
+          <h2
+            className="text-3xl md:text-4xl lg:text-5xl text-[#21313c] mb-3"
+            style={{ fontWeight: 600, lineHeight: 1 }}
+          >
+            Moments worth{' '}
+            <span style={{ fontFamily: "'Times New Roman', serif", fontStyle: 'italic' }}>stepping into</span>
           </h2>
-          <p className="text-gray-600 text-sm md:text-base max-w-2xl mx-auto leading-relaxed">
+          <p className="text-sm md:text-[15px] max-w-2xl mx-auto" style={{ color: '#666', lineHeight: 1.7 }}>
             From tech fests to cultural nights, experience the vibrant campus life at Jagran Lakecity University.
           </p>
           <div className="mx-auto mt-4" style={{ width: '274px', height: '0px', border: '4px solid #B2FF53' }} />
-        </div>
+        </motion.div>
 
         {/* Main Content - Split Layout */}
         <div className="flex flex-col lg:flex-row gap-4 lg:gap-6 items-start mb-6">
@@ -251,10 +268,14 @@ export const EventsSection = () => {
 
         {/* Text Content - Positioned Independently - Hidden on Mobile */}
         <div className="absolute text-left hidden lg:block" style={{ top: '48%', right: '41%', maxWidth: '250px' }}>
-          <h3 className="text-2xl md:text-3xl lg:text-4xl font-bold text-[#21313c] mb-3 leading-tight">
-            SEE WHAT'S GOING ON
+          <h3
+            className="text-2xl md:text-3xl lg:text-4xl text-[#21313c] mb-3 leading-tight"
+            style={{ fontWeight: 600 }}
+          >
+            SEE WHAT'S{' '}
+            <span style={{ fontFamily: "'Times New Roman', serif", fontStyle: 'italic' }}>GOING ON</span>
           </h3>
-          <p className="text-gray-600 text-xs md:text-sm leading-relaxed">
+          <p className="text-xs md:text-sm" style={{ color: '#666', lineHeight: 1.7 }}>
             Stay updated with the latest events, workshops, seminars, and cultural activities happening at JLU Bhopal.
           </p>
         </div>

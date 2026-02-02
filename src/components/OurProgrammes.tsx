@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import { motion } from 'framer-motion';
 import { useIsMobile } from '../hooks/useIsMobile';
 
 export const OurProgrammes = () => {
@@ -19,16 +20,31 @@ export const OurProgrammes = () => {
   return (
     <section className="bg-[#f6f7f0] py-8 md:py-12">
       {/* Header */}
-      <div className="text-center mb-12 md:mb-16 px-4">
-        <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-[#21313c] mb-4">
-          Learning, Unbounded
+      <motion.div
+        className="text-center mb-12 md:mb-16 px-4"
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+      >
+        <p
+          className="text-xs md:text-sm mb-4"
+          style={{ color: '#999', letterSpacing: '0.2em', textTransform: 'uppercase' }}
+        >
+          ACADEMIC PROGRAMMES
+        </p>
+        <h2
+          className="text-3xl md:text-4xl lg:text-5xl text-[#21313c] mb-4"
+          style={{ fontWeight: 600, lineHeight: 1 }}
+        >
+          Learning,{' '}
+          <span style={{ fontFamily: "'Times New Roman', serif", fontStyle: 'italic' }}>Unbounded</span>
         </h2>
-        <p className="text-gray-600 text-sm md:text-base max-w-2xl mx-auto leading-relaxed">
-          Education here resists confinement.<br />
-          It takes shape in studios and libraries, in late conversations and early ideas, through collaboration as much as quiet contemplation.
+        <p className="text-sm md:text-[15px] max-w-2xl mx-auto" style={{ color: '#666', lineHeight: 1.7 }}>
+          Education here resists confinement. It takes shape in studios and libraries, in late conversations and early ideas, through collaboration as much as quiet contemplation.
         </p>
         <div className="mx-auto mt-6" style={{ width: '274px', height: '0px', border: '4px solid #B2FF53' }} />
-      </div>
+      </motion.div>
 
       {/* Programme Cards */}
       {isMobile ? (
@@ -149,21 +165,31 @@ export const OurProgrammes = () => {
       </div>
 
       {/* Text Section - Hero style layout */}
-      <div className="mt-16 md:mt-24 px-6 md:px-12 lg:px-16 xl:px-20 2xl:px-32">
+      <motion.div
+        className="mt-16 md:mt-24 px-6 md:px-12 lg:px-16 xl:px-20 2xl:px-32"
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+      >
         {/* Big Text - Left aligned */}
         <div className="mb-6">
-          <h3 className="text-xl md:text-2xl lg:text-3xl font-bold text-[#21313c] leading-tight lg:w-1/2">
-            Learning at JLU is not limited to schedules or spaces. It evolves through experience, interaction, and reflection, shaped by people, moments, and curiosity.
+          <h3
+            className="text-xl md:text-2xl lg:text-3xl text-[#21313c] leading-tight lg:w-1/2"
+            style={{ fontWeight: 600 }}
+          >
+            Learning at JLU is not limited to schedules or spaces. It evolves through{' '}
+            <span style={{ fontFamily: "'Times New Roman', serif", fontStyle: 'italic' }}>experience</span>, interaction, and reflection.
           </h3>
         </div>
 
         {/* Small Text - Right aligned */}
         <div className="flex justify-end">
-          <p className="text-gray-600 text-xs md:text-sm leading-relaxed lg:w-1/2">
+          <p className="text-xs md:text-sm lg:w-1/2" style={{ color: '#666', lineHeight: 1.7 }}>
             It remains relevant because it stays connected to the world beyond campus, and personal because it grows with each individual who experiences it.
           </p>
         </div>
-      </div>
+      </motion.div>
 
       {/* Partners Section */}
       {isMobile ? (

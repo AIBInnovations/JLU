@@ -100,34 +100,45 @@ export const AwardsSection = () => {
         }}
       >
         <div ref={textContentRef}>
+          <p
+            style={{
+              color: '#999',
+              fontSize: isMobile ? '0.65rem' : '0.75rem',
+              letterSpacing: '0.2em',
+              textTransform: 'uppercase',
+              textAlign: 'center',
+              marginBottom: isMobile ? '0.75rem' : '1rem',
+            }}
+          >
+            RECOGNITION
+          </p>
           <h2
             style={{
               fontSize: isMobile ? 'clamp(1.5rem, 6vw, 2rem)' : 'clamp(2rem, 5vw, 4rem)',
-              fontWeight: 'bold',
+              fontWeight: 600,
               color: '#21313c',
               textAlign: 'center',
-              lineHeight: 1.1,
+              lineHeight: 1,
               padding: '0 1rem',
             }}
           >
-            AWARDS AND
-            <br />
-            ACHIEVEMENTS
+            Awards & Achievements
           </h2>
           <p
             style={{
-              color: '#6b7280',
+              color: '#666',
               fontSize: isMobile ? '0.75rem' : 'clamp(0.75rem, 1vw, 1rem)',
               textAlign: 'center',
               marginTop: isMobile ? '1rem' : '2rem',
+              marginLeft: 'auto',
+              marginRight: 'auto',
               maxWidth: isMobile ? '18rem' : '28rem',
               padding: '0 1rem',
+              lineHeight: 1.7,
             }}
           >
-            Lorem ipsum dolor sit amet consectetur. Feugiat mi enim
-            <br />
-            lectus convallis scelerisque{' '}
-            <span style={{ color: '#8bc34a' }}>pharetra facilisi amet.</span>
+            Celebrating excellence in education, research, and innovation.{' '}
+            <span style={{ color: '#8bc34a' }}>Recognized globally.</span>
           </p>
         </div>
       </div>

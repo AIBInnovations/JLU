@@ -78,22 +78,36 @@ export const VoiceOfJlu = () => {
   return (
     <section className="bg-[#f6f7f0] pt-32 md:pt-48 pb-16 md:pb-24">
       {/* Header */}
-      <div className="text-center mb-12 md:mb-16 px-4">
-        <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-[#21313c] mb-4">
-          Voices of JLU
-        </h2>
-        <p className="text-gray-600 text-sm md:text-base max-w-md mx-auto leading-relaxed">
-          Distinct individuals.<br />
-          Diverse journeys.<br />
-          One shared ecosystem.
+      <motion.div
+        className="text-center mb-12 md:mb-16 px-4"
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+      >
+        <p
+          className="text-xs md:text-sm mb-4"
+          style={{ color: '#999', letterSpacing: '0.2em', textTransform: 'uppercase' }}
+        >
+          STUDENT TESTIMONIALS
         </p>
-        <p className="text-gray-600 text-sm md:text-base max-w-xl mx-auto mt-4 leading-relaxed">
+        <h2
+          className="text-3xl md:text-4xl lg:text-5xl text-[#21313c] mb-4"
+          style={{ fontWeight: 600, lineHeight: 1 }}
+        >
+          Voices of{' '}
+          <span style={{ fontFamily: "'Times New Roman', serif", fontStyle: 'italic' }}>JLU</span>
+        </h2>
+        <p className="text-sm md:text-[15px] max-w-md mx-auto" style={{ color: '#666', lineHeight: 1.7 }}>
+          Distinct individuals. Diverse journeys. One shared ecosystem.
+        </p>
+        <p className="text-sm md:text-[15px] max-w-xl mx-auto mt-4" style={{ color: '#666', lineHeight: 1.7 }}>
           Every person at JLU contributes to its character. Together, these voices create an environment that feels open, textured, and continually in motion.
         </p>
-        <p className="text-gray-500 text-xs md:text-sm max-w-lg mx-auto mt-3 italic">
+        <p className="text-xs md:text-sm max-w-lg mx-auto mt-3" style={{ color: '#999', fontStyle: 'italic' }}>
           This is the university as it is lived, not just described.
         </p>
-      </div>
+      </motion.div>
 
       {/* Cards Container */}
       {isMobile ? (
@@ -229,13 +243,28 @@ export const VoiceOfJlu = () => {
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6 }}
+          transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
           className="flex justify-between items-start mb-8 md:mb-12 lg:mb-16"
         >
-          <h2 className="text-2xl md:text-5xl lg:text-6xl font-bold text-[#21313c]">
-            OUR FACULTY
-          </h2>
-          <span className="text-2xl md:text-5xl lg:text-6xl font-bold text-[#21313c]">
+          <div>
+            <p
+              className="text-xs md:text-sm mb-2"
+              style={{ color: '#999', letterSpacing: '0.2em', textTransform: 'uppercase' }}
+            >
+              MEET OUR TEAM
+            </p>
+            <h2
+              className="text-2xl md:text-5xl lg:text-6xl text-[#21313c]"
+              style={{ fontWeight: 600, lineHeight: 1 }}
+            >
+              Our{' '}
+              <span style={{ fontFamily: "'Times New Roman', serif", fontStyle: 'italic' }}>Faculty</span>
+            </h2>
+          </div>
+          <span
+            className="text-2xl md:text-5xl lg:text-6xl text-[#21313c]"
+            style={{ fontWeight: 600 }}
+          >
             2025
           </span>
         </motion.div>
