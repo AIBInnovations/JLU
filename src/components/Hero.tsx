@@ -1,7 +1,7 @@
 'use client';
 
 import { useRef, useState, useEffect } from 'react';
-import { motion, AnimatePresence, useScroll, useTransform } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import { gsap } from 'gsap';
 import { useIsMobile } from '../hooks/useIsMobile';
 
@@ -447,17 +447,19 @@ export const Hero = () => {
   const sectionRef = useRef<HTMLElement>(null);
   const menuButtonRef = useRef<HTMLButtonElement>(null);
   const exploreButtonRef = useRef<HTMLButtonElement>(null);
+  const imageGridRef = useRef<HTMLDivElement>(null);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isVideoOpen, setIsVideoOpen] = useState(false);
   const [videoButtonPos, setVideoButtonPos] = useState({ left: 0, top: 0, width: 0, height: 0, centerX: 0, centerY: 0 });
+  const [imagesInView, setImagesInView] = useState(false);
   const isMobile = useIsMobile();
 
-  // Parallax scroll effect
-  const { scrollYProgress } = useScroll({
-    target: sectionRef,
-    offset: ['start start', 'end start'],
-  });
-  const y = useTransform(scrollYProgress, [0, 1], ['0%', '20%']);
+  // Parallax scroll effect - disabled for performance
+  // const { scrollYProgress } = useScroll({
+  //   target: sectionRef,
+  //   offset: ['start start', 'end start'],
+  // });
+  // const y = useTransform(scrollYProgress, [0, 1], ['0%', '20%']);
 
   // Refs for GSAP animation
   const backgroundRef = useRef<HTMLImageElement>(null);
@@ -594,6 +596,27 @@ export const Hero = () => {
     };
   }, [imagesLoaded, isMobile]);
 
+  // Intersection Observer for post-hero images animation
+  useEffect(() => {
+    if (!imageGridRef.current) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setImagesInView(true);
+            observer.disconnect(); // Only trigger once
+          }
+        });
+      },
+      { threshold: 0.2 } // Trigger when 20% of the element is visible
+    );
+
+    observer.observe(imageGridRef.current);
+
+    return () => observer.disconnect();
+  }, []);
+
   return (
     <div className="bg-[#f6f7f0]">
       {/* Cinematic Hero Section */}
@@ -620,9 +643,9 @@ export const Hero = () => {
           />
 
           {/* Layer 1: Background Image (z-index: 1) */}
-          <motion.div
+          <div
             className="absolute inset-0"
-            style={{ y, zIndex: 1 }}
+            style={{ zIndex: 1 }}
           >
             <img
               ref={backgroundRef}
@@ -637,7 +660,7 @@ export const Hero = () => {
                 transform: isMobile ? 'translateZ(0)' : 'translateZ(0) scale(1.1)',
               }}
             />
-          </motion.div>
+          </div>
 
           {/* Layer 2: Text - JAGRAN LAKECITY UNIVERSITY (z-index: 2) */}
           <div
@@ -927,12 +950,7 @@ export const Hero = () => {
       {/* Intro text section */}
       <section className="relative px-4 pb-12 pt-14 sm:px-10 lg:px-16 bg-[#f6f7f0]">
         <div className="mx-auto flex max-w-[1800px] flex-col gap-6">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: '-100px' }}
-            transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-          >
+          <div>
             <h2
               className="max-w-4xl leading-tight text-[#21313c]"
               style={{
@@ -947,13 +965,8 @@ export const Hero = () => {
                 pulse
               </span>
             </h2>
-          </motion.div>
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: '-100px' }}
-            transition={{ duration: 0.6, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
-          >
+          </div>
+          <div>
             <p
               className="max-w-3xl text-[#666]"
               style={{
@@ -965,14 +978,8 @@ export const Hero = () => {
             >
               Jagran Lakecity University is not defined by buildings alone. It is defined by the rhythm of daily life, the exchange of ideas, and the quiet confidence of people who belong here.
             </p>
-          </motion.div>
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: '-100px' }}
-            transition={{ duration: 0.6, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
-            className="flex w-full justify-end"
-          >
+          </div>
+          <div className="flex w-full justify-end">
             <p
               className="max-w-md text-right text-[#999]"
               style={{
@@ -984,58 +991,42 @@ export const Hero = () => {
             >
               Learning unfolds naturally, through dialogue, discovery, and shared moments that extend far beyond formal spaces.
             </p>
-          </motion.div>
+          </div>
         </div>
       </section>
 
       {/* Image grid section */}
       <section className="relative px-0 pb-12 md:pb-20 bg-[#f6f7f0] overflow-hidden">
-        <div className="relative mx-auto max-w-[1800px]" style={{ paddingLeft: isMobile ? '12px' : '16px', paddingRight: isMobile ? '12px' : '16px' }}>
-          <motion.div
+        <div ref={imageGridRef} className="relative mx-auto max-w-[1800px]" style={{ paddingLeft: isMobile ? '12px' : '16px', paddingRight: isMobile ? '12px' : '16px' }}>
+          <div
             className="flex w-full items-end justify-center"
             style={{ gap: isMobile ? '12px' : '16px' }}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.2 }}
           >
             {[
-              { src: '/posthero1.jpg', alt: 'Student portrait', height: 550, mobileHeight: 220 },
-              { src: '/posthero2.jpg', alt: 'Students collaborating', height: 430, mobileHeight: 180 },
-              { src: '/posthero3.jpg', alt: 'Group around laptop', height: 510, mobileHeight: 200 },
+              { src: '/posthero1.jpg', alt: 'Student portrait', height: 550, mobileHeight: 220, delay: '0s' },
+              { src: '/posthero2.jpg', alt: 'Students collaborating', height: 430, mobileHeight: 180, delay: '0.15s' },
+              { src: '/posthero3.jpg', alt: 'Group around laptop', height: 510, mobileHeight: 200, delay: '0.3s' },
             ].map((img) => (
-              <motion.div
+              <div
                 key={img.src}
-                className="flex items-end"
+                className={`flex items-end group ${imagesInView ? 'animate-reveal' : ''}`}
                 style={{
                   flex: '1 1 0',
                   maxWidth: '33.333%',
                   position: 'relative',
-                }}
-                variants={{
-                  hidden: {},
-                  visible: {}
+                  animationDelay: img.delay,
+                  animationFillMode: 'both',
+                  clipPath: imagesInView ? undefined : 'inset(100% 0 0 0)',
                 }}
               >
-                <motion.div
+                <div
+                  className="relative w-full overflow-hidden transition-transform duration-500 hover:scale-[1.02]"
                   style={{
-                    position: 'relative',
-                    width: '100%',
-                    filter: 'none',
+                    borderTopLeftRadius: isMobile ? '12px' : '16px',
+                    borderTopRightRadius: isMobile ? '12px' : '16px',
+                    willChange: 'transform',
+                    transform: 'translateZ(0)',
                   }}
-                  variants={{
-                    hidden: {
-                      clipPath: 'inset(100% 0% 0% 0%)',
-                    },
-                    visible: {
-                      clipPath: 'inset(0% 0% 0% 0%)',
-                      transition: {
-                        duration: isMobile ? 0.8 : 1.2,
-                        ease: [0.22, 1, 0.36, 1],
-                      }
-                    }
-                  }}
-                  whileHover={{ scale: 1.02 }}
-                  transition={{ duration: 0.5 }}
                 >
                   <img
                     src={img.src}
@@ -1043,10 +1034,6 @@ export const Hero = () => {
                     className="block w-full object-cover"
                     style={{
                       height: isMobile ? `${img.mobileHeight}px` : `${img.height}px`,
-                      borderTopLeftRadius: isMobile ? '12px' : '16px',
-                      borderTopRightRadius: isMobile ? '12px' : '16px',
-                      borderBottomLeftRadius: 0,
-                      borderBottomRightRadius: 0,
                       display: 'block',
                     }}
                   />
@@ -1055,17 +1042,26 @@ export const Hero = () => {
                       position: 'absolute',
                       inset: 0,
                       backgroundColor: 'rgba(0, 0, 0, 0.15)',
-                      borderTopLeftRadius: isMobile ? '12px' : '16px',
-                      borderTopRightRadius: isMobile ? '12px' : '16px',
-                      borderBottomLeftRadius: 0,
-                      borderBottomRightRadius: 0,
                     }}
                   />
-                </motion.div>
-              </motion.div>
+                </div>
+              </div>
             ))}
-          </motion.div>
+          </div>
         </div>
+        <style>{`
+          @keyframes reveal {
+            from {
+              clip-path: inset(100% 0 0 0);
+            }
+            to {
+              clip-path: inset(0% 0 0 0);
+            }
+          }
+          .animate-reveal {
+            animation: reveal 1s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+          }
+        `}</style>
       </section>
     </div>
   );

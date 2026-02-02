@@ -67,12 +67,12 @@ export const VoiceOfJlu = () => {
   ];
 
   const faculty = [
-    { image: '/aa.png', name: 'Shri. Abhishek Mohan Gupta', title: 'Pro - Chancellor' },
-    { image: '/bb.png', name: 'Mr. Pankaj Das', title: 'Registrar' },
+    { image: '/aa.png', name: 'Shri. Hari Mohan Gupta', title: 'Chancellor' },
+    { image: '/bb.png', name: 'Shri. Abhishek Mohan Gupta', title: 'Pro-Chancellor' },
     { image: '/cc.png', name: 'Dr. Nilanjan Chattopadhyay', title: 'Vice Chancellor' },
-    { image: '/dd.png', name: 'Shri. Abhishek Mohan Gupta', title: 'Pro - Chancellor' },
-    { image: '/ee.png', name: 'Mr. Pankaj Das', title: 'Registrar' },
-    { image: '/ff.png', name: 'Shri. Abhishek Mohan Gupta', title: 'Pro - Chancellor' },
+    { image: '/dd.png', name: 'Prof. (Dr.) Anoop Swarup', title: 'Founding Vice Chancellor' },
+    { image: '/ee.png', name: 'Dr. Sandeep Shastri', title: 'Former Vice Chancellor' },
+    { image: '/ff.png', name: 'Prof. (Dr.) Vivek Khare', title: 'Dean' },
   ];
 
   return (
