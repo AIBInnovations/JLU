@@ -358,7 +358,39 @@ export const OurProgrammes = () => {
       )}
 
       {/* Three Image Cards Section */}
-      <div className="mt-8 md:mt-24" style={{ paddingLeft: isMobile ? '4px' : '10px', paddingRight: isMobile ? '4px' : '10px' }}>
+      <motion.div
+        className="mt-12 md:mt-24 px-4 md:px-12 lg:px-16 xl:px-20 2xl:px-32"
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+      >
+        <div className="flex flex-col md:flex-row md:justify-between md:items-end mb-6 md:mb-10">
+          <div>
+            <p
+              className="text-xs md:text-sm mb-2"
+              style={{ color: '#999', letterSpacing: '0.2em', textTransform: 'uppercase' }}
+            >
+              CAMPUS LIFE
+            </p>
+            <h3
+              className="text-2xl md:text-3xl lg:text-4xl text-[#21313c]"
+              style={{ fontWeight: 600, lineHeight: 1.1 }}
+            >
+              Beyond the{' '}
+              <span style={{ fontFamily: "'Times New Roman', serif", fontStyle: 'italic' }}>Classroom</span>
+            </h3>
+          </div>
+          <a
+            href="/campus-life"
+            className="mt-4 md:mt-0 inline-flex items-center gap-2 text-sm text-[#21313c] font-medium hover:underline"
+          >
+            Explore Campus Life
+            <span>→</span>
+          </a>
+        </div>
+      </motion.div>
+      <div className="mt-2 md:mt-0" style={{ paddingLeft: isMobile ? '4px' : '10px', paddingRight: isMobile ? '4px' : '10px' }}>
         <div className="flex" style={{ gap: isMobile ? '4px' : '10px' }}>
           {/* First card - l */}
           <div

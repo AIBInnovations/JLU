@@ -37,3 +37,4 @@ export { AlumniSection } from './AlumniSection';
 export { Apply } from './Apply';
 export { ProgramDetail } from './ProgramDetail';
 export { FacultyPage } from './FacultyPage';
+export { WhatsAppButton } from './WhatsAppButton';

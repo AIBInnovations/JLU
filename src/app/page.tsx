@@ -16,6 +16,7 @@ import {
   ChatBot,
   LatestNews,
   AlumniSection,
+  WhatsAppButton,
   // PageLoader, // Deactivated for now
 } from '@/components';
 
@@ -67,6 +68,9 @@ export default function HomePage() {
 
         {/* ChatBot - Left Bottom */}
         <ChatBot />
+
+        {/* WhatsApp Button - Bottom Right */}
+        <WhatsAppButton />
       </div>
     </>
   );
