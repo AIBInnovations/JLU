@@ -77,7 +77,7 @@ export const LatestNews = () => {
             </h2>
           </div>
           <a
-            href="/news"
+            href="/news-events"
             className="inline-flex items-center gap-2 text-[#03463B] font-medium hover:gap-3 transition-all group"
           >
             View All News

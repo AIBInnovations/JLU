@@ -1,8 +1,10 @@
 'use client';
 
 import Image from 'next/image';
+import Link from 'next/link';
 import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion';
 import { useState, useRef } from 'react';
+import { useIsMobile } from '../hooks/useIsMobile';
 
 const academicPaths = [
   {
@@ -40,21 +42,152 @@ const financialOptions = [
     id: 1,
     title: 'Scholarships',
     description: 'Merit and need-based financial aid.',
+    modalContent: {
+      heading: 'Scholarships at JLU',
+      intro: 'JLU offers a wide range of scholarships to support meritorious and deserving students in their academic journey.',
+      sections: [
+        {
+          title: 'Merit-Based Scholarships',
+          points: [
+            'Up to 100% tuition fee waiver for academic toppers',
+            'Based on performance in JLU entrance exam or 12th board results',
+            'Renewable annually based on academic performance',
+          ],
+        },
+        {
+          title: 'Need-Based Scholarships',
+          points: [
+            'Financial assistance for economically weaker sections',
+            'Family income-based eligibility criteria',
+            'Covers tuition, hostel, and other academic expenses',
+          ],
+        },
+        {
+          title: 'Special Category Scholarships',
+          points: [
+            'Sports excellence scholarship',
+            'Cultural and arts scholarship',
+            'Single parent and orphan student support',
+          ],
+        },
+      ],
+      cta: 'Apply for Scholarship',
+    },
   },
   {
     id: 2,
     title: 'Chancellor Freeships',
     description: 'Special support for deserving students.',
+    modalContent: {
+      heading: 'Chancellor Freeships',
+      intro: 'The Chancellor Freeship is a prestigious award given to exceptional students who demonstrate outstanding potential but face financial constraints.',
+      sections: [
+        {
+          title: 'Eligibility Criteria',
+          points: [
+            'Annual family income below ₹3 lakhs',
+            'Minimum 75% in qualifying examination',
+            'Strong recommendation from school principal',
+          ],
+        },
+        {
+          title: 'Benefits',
+          points: [
+            '100% tuition fee waiver for the entire program',
+            'Free hostel accommodation',
+            'Monthly stipend for personal expenses',
+            'Free access to all academic resources and facilities',
+          ],
+        },
+        {
+          title: 'Application Process',
+          points: [
+            'Submit application along with income certificate',
+            'Appear for personal interview with selection committee',
+            'Final selection based on merit-cum-means basis',
+          ],
+        },
+      ],
+      cta: 'Apply for Freeship',
+    },
   },
   {
     id: 3,
     title: 'Education Loans',
     description: 'Partnered banks and easy documentation.',
+    modalContent: {
+      heading: 'Education Loan Assistance',
+      intro: 'JLU has partnered with leading banks and financial institutions to help students secure education loans with minimal hassle.',
+      sections: [
+        {
+          title: 'Partner Banks',
+          points: [
+            'State Bank of India (SBI)',
+            'HDFC Credila',
+            'ICICI Bank',
+            'Punjab National Bank',
+            'Bank of Baroda',
+          ],
+        },
+        {
+          title: 'Loan Features',
+          points: [
+            'Loan amount up to ₹20 lakhs without collateral',
+            'Competitive interest rates starting from 8.5% p.a.',
+            'Moratorium period until course completion + 6 months',
+            'Flexible repayment tenure of up to 15 years',
+          ],
+        },
+        {
+          title: 'Documentation Support',
+          points: [
+            'Dedicated loan assistance cell on campus',
+            'Help with application form filling',
+            'Coordination with bank officials',
+            'Fast-track processing for JLU students',
+          ],
+        },
+      ],
+      cta: 'Get Loan Assistance',
+    },
   },
   {
     id: 4,
     title: 'Refund Policy',
     description: 'Transparent and student-friendly.',
+    modalContent: {
+      heading: 'Fee Refund Policy',
+      intro: 'JLU follows a transparent and student-friendly refund policy in accordance with UGC guidelines.',
+      sections: [
+        {
+          title: 'Refund Timeline',
+          points: [
+            'Before admission: 100% refund (less processing fee)',
+            'Within 15 days of admission: 90% refund',
+            'Within 30 days of admission: 80% refund',
+            'After 30 days: No refund applicable',
+          ],
+        },
+        {
+          title: 'Refund Process',
+          points: [
+            'Submit written application to Admissions Office',
+            'Attach original fee receipts and ID card',
+            'Refund processed within 15 working days',
+            'Amount credited to original payment source',
+          ],
+        },
+        {
+          title: 'Special Cases',
+          points: [
+            'Medical emergencies: Case-by-case consideration',
+            'Visa rejection for international programs: Full refund',
+            'Transfer to another JLU program: Fee adjustment',
+          ],
+        },
+      ],
+      cta: 'Download Full Policy',
+    },
   },
 ];
 
@@ -84,8 +217,524 @@ const faqData = [
 // Custom easing
 const customEase: [number, number, number, number] = [0.22, 1, 0.36, 1];
 
+// Campus Tour Modal Component
+interface CampusTourModalProps {
+  isOpen: boolean;
+  onClose: () => void;
+}
+
+const CampusTourModal = ({ isOpen, onClose }: CampusTourModalProps) => {
+  const isMobile = useIsMobile();
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    phone: '',
+    preferredDate: '',
+    preferredTime: '',
+    numberOfVisitors: '1',
+    message: '',
+  });
+  const [errors, setErrors] = useState<Record<string, string>>({});
+  const [isSubmitted, setIsSubmitted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const timeSlots = [
+    '9:00 AM - 10:00 AM',
+    '10:00 AM - 11:00 AM',
+    '11:00 AM - 12:00 PM',
+    '2:00 PM - 3:00 PM',
+    '3:00 PM - 4:00 PM',
+    '4:00 PM - 5:00 PM',
+  ];
+
+  const validateForm = () => {
+    const newErrors: Record<string, string> = {};
+
+    if (!formData.name.trim()) {
+      newErrors.name = 'Name is required';
+    }
+
+    if (!formData.email.trim()) {
+      newErrors.email = 'Email is required';
+    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
+      newErrors.email = 'Please enter a valid email';
+    }
+
+    if (!formData.phone.trim()) {
+      newErrors.phone = 'Phone number is required';
+    } else if (!/^[0-9]{10}$/.test(formData.phone.replace(/\D/g, ''))) {
+      newErrors.phone = 'Please enter a valid 10-digit phone number';
+    }
+
+    if (!formData.preferredDate) {
+      newErrors.preferredDate = 'Please select a date';
+    }
+
+    if (!formData.preferredTime) {
+      newErrors.preferredTime = 'Please select a time slot';
+    }
+
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+
+    if (!validateForm()) return;
+
+    setIsSubmitting(true);
+
+    // Simulate API call
+    await new Promise(resolve => setTimeout(resolve, 1500));
+
+    setIsSubmitting(false);
+    setIsSubmitted(true);
+
+    // Reset form after showing success
+    setTimeout(() => {
+      setFormData({ name: '', email: '', phone: '', preferredDate: '', preferredTime: '', numberOfVisitors: '1', message: '' });
+      setIsSubmitted(false);
+      onClose();
+    }, 3000);
+  };
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({ ...prev, [name]: value }));
+    if (errors[name]) {
+      setErrors(prev => ({ ...prev, [name]: '' }));
+    }
+  };
+
+  // Get minimum date (tomorrow)
+  const getMinDate = () => {
+    const tomorrow = new Date();
+    tomorrow.setDate(tomorrow.getDate() + 1);
+    return tomorrow.toISOString().split('T')[0];
+  };
+
+  return (
+    <AnimatePresence>
+      {isOpen && (
+        <>
+          {/* Backdrop */}
+          <motion.div
+            className="fixed inset-0 bg-black/50 backdrop-blur-sm z-[9998]"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.4, ease: [0.32, 0.72, 0, 1] }}
+            onClick={onClose}
+          />
+
+          {/* Modal Panel */}
+          <motion.div
+            className="fixed z-[9999] bg-white overflow-hidden shadow-2xl"
+            style={{
+              ...(isMobile
+                ? { inset: 0, borderRadius: 0 }
+                : {
+                    top: 0,
+                    right: 0,
+                    bottom: 0,
+                    width: '480px',
+                    borderTopLeftRadius: '24px',
+                    borderBottomLeftRadius: '24px',
+                  }),
+            }}
+            initial={{ clipPath: 'inset(0 0 0 100%)' }}
+            animate={{ clipPath: 'inset(0 0 0 0)' }}
+            exit={{ clipPath: 'inset(0 0 0 100%)' }}
+            transition={{
+              duration: 0.5,
+              ease: [0.32, 0.72, 0, 1],
+            }}
+          >
+            {/* Header */}
+            <motion.div
+              className="flex items-center justify-between p-6 border-b border-gray-100"
+              initial={{ opacity: 0, x: 40 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.4, delay: 0.2, ease: [0.32, 0.72, 0, 1] }}
+            >
+              <div>
+                <h2 className="text-xl font-semibold text-[#21313c]">Book a Campus Tour</h2>
+                <p className="text-sm text-gray-500 mt-1">Experience JLU in person</p>
+              </div>
+              <button
+                onClick={onClose}
+                className="w-10 h-10 flex items-center justify-center rounded-full hover:bg-gray-100 transition-colors"
+              >
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#21313c" strokeWidth="2">
+                  <line x1="18" y1="6" x2="6" y2="18" strokeLinecap="round"/>
+                  <line x1="6" y1="6" x2="18" y2="18" strokeLinecap="round"/>
+                </svg>
+              </button>
+            </motion.div>
+
+            {/* Form Content */}
+            <motion.div
+              className="p-6 overflow-y-auto"
+              style={{ height: 'calc(100% - 88px)' }}
+              initial={{ opacity: 0, x: 50 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.45, delay: 0.25, ease: [0.32, 0.72, 0, 1] }}
+            >
+              <AnimatePresence mode="wait">
+                {isSubmitted ? (
+                  <motion.div
+                    key="success"
+                    className="flex flex-col items-center justify-center h-full text-center"
+                    initial={{ opacity: 0, scale: 0.9 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    exit={{ opacity: 0, scale: 0.9 }}
+                  >
+                    <motion.div
+                      className="w-20 h-20 bg-[#c3fd7a] rounded-full flex items-center justify-center mb-6"
+                      initial={{ scale: 0 }}
+                      animate={{ scale: 1 }}
+                      transition={{ type: 'spring', delay: 0.2 }}
+                    >
+                      <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#03463B" strokeWidth="3">
+                        <polyline points="20 6 9 17 4 12" strokeLinecap="round" strokeLinejoin="round"/>
+                      </svg>
+                    </motion.div>
+                    <h3 className="text-2xl font-semibold text-[#21313c] mb-2">Tour Booked!</h3>
+                    <p className="text-gray-500">Your campus tour has been scheduled. We'll send you a confirmation email with all the details shortly.</p>
+                  </motion.div>
+                ) : (
+                  <motion.form
+                    key="form"
+                    onSubmit={handleSubmit}
+                    className="space-y-5"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                  >
+                    {/* Name */}
+                    <div>
+                      <label className="block text-sm font-medium text-[#21313c] mb-2">
+                        Full Name <span className="text-red-500">*</span>
+                      </label>
+                      <input
+                        type="text"
+                        name="name"
+                        value={formData.name}
+                        onChange={handleChange}
+                        className={`w-full px-4 py-3 rounded-xl border ${errors.name ? 'border-red-400 bg-red-50' : 'border-gray-200'} focus:outline-none focus:border-[#03463B] focus:ring-2 focus:ring-[#03463B]/10 transition-all`}
+                        placeholder="Enter your full name"
+                      />
+                      {errors.name && (
+                        <p className="text-red-500 text-xs mt-1">{errors.name}</p>
+                      )}
+                    </div>
+
+                    {/* Email */}
+                    <div>
+                      <label className="block text-sm font-medium text-[#21313c] mb-2">
+                        Email Address <span className="text-red-500">*</span>
+                      </label>
+                      <input
+                        type="email"
+                        name="email"
+                        value={formData.email}
+                        onChange={handleChange}
+                        className={`w-full px-4 py-3 rounded-xl border ${errors.email ? 'border-red-400 bg-red-50' : 'border-gray-200'} focus:outline-none focus:border-[#03463B] focus:ring-2 focus:ring-[#03463B]/10 transition-all`}
+                        placeholder="Enter your email"
+                      />
+                      {errors.email && (
+                        <p className="text-red-500 text-xs mt-1">{errors.email}</p>
+                      )}
+                    </div>
+
+                    {/* Phone */}
+                    <div>
+                      <label className="block text-sm font-medium text-[#21313c] mb-2">
+                        Phone Number <span className="text-red-500">*</span>
+                      </label>
+                      <div className="flex">
+                        <span className="inline-flex items-center px-4 rounded-l-xl border border-r-0 border-gray-200 bg-gray-50 text-gray-500 text-sm">
+                          +91
+                        </span>
+                        <input
+                          type="tel"
+                          name="phone"
+                          value={formData.phone}
+                          onChange={handleChange}
+                          className={`flex-1 px-4 py-3 rounded-r-xl border ${errors.phone ? 'border-red-400 bg-red-50' : 'border-gray-200'} focus:outline-none focus:border-[#03463B] focus:ring-2 focus:ring-[#03463B]/10 transition-all`}
+                          placeholder="Enter your phone number"
+                        />
+                      </div>
+                      {errors.phone && (
+                        <p className="text-red-500 text-xs mt-1">{errors.phone}</p>
+                      )}
+                    </div>
+
+                    {/* Preferred Date */}
+                    <div>
+                      <label className="block text-sm font-medium text-[#21313c] mb-2">
+                        Preferred Date <span className="text-red-500">*</span>
+                      </label>
+                      <input
+                        type="date"
+                        name="preferredDate"
+                        value={formData.preferredDate}
+                        onChange={handleChange}
+                        min={getMinDate()}
+                        className={`w-full px-4 py-3 rounded-xl border ${errors.preferredDate ? 'border-red-400 bg-red-50' : 'border-gray-200'} focus:outline-none focus:border-[#03463B] focus:ring-2 focus:ring-[#03463B]/10 transition-all`}
+                      />
+                      {errors.preferredDate && (
+                        <p className="text-red-500 text-xs mt-1">{errors.preferredDate}</p>
+                      )}
+                    </div>
+
+                    {/* Preferred Time */}
+                    <div>
+                      <label className="block text-sm font-medium text-[#21313c] mb-2">
+                        Preferred Time Slot <span className="text-red-500">*</span>
+                      </label>
+                      <select
+                        name="preferredTime"
+                        value={formData.preferredTime}
+                        onChange={handleChange}
+                        className={`w-full px-4 py-3 rounded-xl border ${errors.preferredTime ? 'border-red-400 bg-red-50' : 'border-gray-200'} focus:outline-none focus:border-[#03463B] focus:ring-2 focus:ring-[#03463B]/10 transition-all appearance-none bg-white`}
+                        style={{
+                          backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 24 24' fill='none' stroke='%2321313c' stroke-width='2'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E")`,
+                          backgroundRepeat: 'no-repeat',
+                          backgroundPosition: 'right 12px center',
+                        }}
+                      >
+                        <option value="">Select a time slot</option>
+                        {timeSlots.map(slot => (
+                          <option key={slot} value={slot}>{slot}</option>
+                        ))}
+                      </select>
+                      {errors.preferredTime && (
+                        <p className="text-red-500 text-xs mt-1">{errors.preferredTime}</p>
+                      )}
+                    </div>
+
+                    {/* Number of Visitors */}
+                    <div>
+                      <label className="block text-sm font-medium text-[#21313c] mb-2">
+                        Number of Visitors
+                      </label>
+                      <select
+                        name="numberOfVisitors"
+                        value={formData.numberOfVisitors}
+                        onChange={handleChange}
+                        className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:outline-none focus:border-[#03463B] focus:ring-2 focus:ring-[#03463B]/10 transition-all appearance-none bg-white"
+                        style={{
+                          backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 24 24' fill='none' stroke='%2321313c' stroke-width='2'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E")`,
+                          backgroundRepeat: 'no-repeat',
+                          backgroundPosition: 'right 12px center',
+                        }}
+                      >
+                        {[1, 2, 3, 4, 5].map(num => (
+                          <option key={num} value={num}>{num} {num === 1 ? 'Person' : 'People'}</option>
+                        ))}
+                      </select>
+                    </div>
+
+                    {/* Message */}
+                    <div>
+                      <label className="block text-sm font-medium text-[#21313c] mb-2">
+                        Special Requests <span className="text-gray-400">(Optional)</span>
+                      </label>
+                      <textarea
+                        name="message"
+                        value={formData.message}
+                        onChange={handleChange}
+                        rows={3}
+                        className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:outline-none focus:border-[#03463B] focus:ring-2 focus:ring-[#03463B]/10 transition-all resize-none"
+                        placeholder="Any specific areas you'd like to explore?"
+                      />
+                    </div>
+
+                    {/* Submit Button */}
+                    <motion.button
+                      type="submit"
+                      disabled={isSubmitting}
+                      className="w-full py-4 bg-[#03463B] text-white font-semibold rounded-xl hover:bg-[#025a4a] transition-colors disabled:opacity-70 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+                      whileHover={{ scale: 1.01 }}
+                      whileTap={{ scale: 0.99 }}
+                    >
+                      {isSubmitting ? (
+                        <>
+                          <motion.span
+                            className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full"
+                            animate={{ rotate: 360 }}
+                            transition={{ duration: 1, repeat: Infinity, ease: 'linear' }}
+                          />
+                          Scheduling Tour...
+                        </>
+                      ) : (
+                        <>
+                          Schedule Campus Tour
+                          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                            <line x1="5" y1="12" x2="19" y2="12" strokeLinecap="round"/>
+                            <polyline points="12 5 19 12 12 19" strokeLinecap="round" strokeLinejoin="round"/>
+                          </svg>
+                        </>
+                      )}
+                    </motion.button>
+
+                    {/* Note */}
+                    <p className="text-xs text-gray-400 text-center">
+                      Campus tours are available Monday to Saturday. A confirmation will be sent to your email.
+                    </p>
+                  </motion.form>
+                )}
+              </AnimatePresence>
+            </motion.div>
+          </motion.div>
+        </>
+      )}
+    </AnimatePresence>
+  );
+};
+
+// Financial Info Modal Component
+interface FinancialInfoModalProps {
+  isOpen: boolean;
+  onClose: () => void;
+  data: typeof financialOptions[0] | null;
+}
+
+const FinancialInfoModal = ({ isOpen, onClose, data }: FinancialInfoModalProps) => {
+  const isMobile = useIsMobile();
+
+  if (!data) return null;
+
+  return (
+    <AnimatePresence>
+      {isOpen && (
+        <>
+          {/* Backdrop */}
+          <motion.div
+            className="fixed inset-0 bg-black/50 backdrop-blur-sm z-[9998]"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.4, ease: [0.32, 0.72, 0, 1] }}
+            onClick={onClose}
+          />
+
+          {/* Modal Panel */}
+          <motion.div
+            className="fixed z-[9999] bg-white overflow-hidden shadow-2xl"
+            style={{
+              ...(isMobile
+                ? { inset: 0, borderRadius: 0 }
+                : {
+                    top: 0,
+                    right: 0,
+                    bottom: 0,
+                    width: '520px',
+                    borderTopLeftRadius: '24px',
+                    borderBottomLeftRadius: '24px',
+                  }),
+            }}
+            initial={{ clipPath: 'inset(0 0 0 100%)' }}
+            animate={{ clipPath: 'inset(0 0 0 0)' }}
+            exit={{ clipPath: 'inset(0 0 0 100%)' }}
+            transition={{
+              duration: 0.5,
+              ease: [0.32, 0.72, 0, 1],
+            }}
+          >
+            {/* Header */}
+            <motion.div
+              className="flex items-center justify-between p-6 border-b border-gray-100 bg-[#f6f7f0]"
+              initial={{ opacity: 0, x: 40 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.4, delay: 0.2, ease: [0.32, 0.72, 0, 1] }}
+            >
+              <div>
+                <span className="text-[#f0c14b] font-bold text-3xl block mb-1">
+                  {String(data.id).padStart(2, '0')}
+                </span>
+                <h2 className="text-xl font-semibold text-[#21313c]">{data.modalContent.heading}</h2>
+              </div>
+              <button
+                onClick={onClose}
+                className="w-10 h-10 flex items-center justify-center rounded-full hover:bg-white/80 transition-colors"
+              >
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#21313c" strokeWidth="2">
+                  <line x1="18" y1="6" x2="6" y2="18" strokeLinecap="round"/>
+                  <line x1="6" y1="6" x2="18" y2="18" strokeLinecap="round"/>
+                </svg>
+              </button>
+            </motion.div>
+
+            {/* Content */}
+            <motion.div
+              className="p-6 overflow-y-auto"
+              style={{ height: 'calc(100% - 120px)' }}
+              initial={{ opacity: 0, x: 50 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.45, delay: 0.25, ease: [0.32, 0.72, 0, 1] }}
+            >
+              {/* Intro */}
+              <p className="text-[#666] text-base leading-relaxed mb-8">
+                {data.modalContent.intro}
+              </p>
+
+              {/* Sections */}
+              <div className="space-y-6">
+                {data.modalContent.sections.map((section, index) => (
+                  <motion.div
+                    key={index}
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.4, delay: 0.3 + index * 0.1 }}
+                  >
+                    <h3 className="text-[#21313c] font-semibold text-lg mb-3 flex items-center gap-2">
+                      <span className="w-6 h-6 bg-[#f0c14b] rounded-full flex items-center justify-center text-xs font-bold text-[#21313c]">
+                        {index + 1}
+                      </span>
+                      {section.title}
+                    </h3>
+                    <ul className="space-y-2 pl-8">
+                      {section.points.map((point, pointIndex) => (
+                        <li key={pointIndex} className="text-[#666] text-sm leading-relaxed flex items-start gap-2">
+                          <span className="w-1.5 h-1.5 bg-[#03463B] rounded-full mt-2 shrink-0"></span>
+                          {point}
+                        </li>
+                      ))}
+                    </ul>
+                  </motion.div>
+                ))}
+              </div>
+
+              {/* CTA Button */}
+              <motion.button
+                className="w-full mt-8 py-4 bg-[#21313c] text-white font-semibold rounded-xl hover:bg-[#2a3f4c] transition-colors flex items-center justify-center gap-2"
+                whileHover={{ scale: 1.01 }}
+                whileTap={{ scale: 0.99 }}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.4, delay: 0.5 }}
+              >
+                {data.modalContent.cta}
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                  <line x1="5" y1="12" x2="19" y2="12" strokeLinecap="round"/>
+                  <polyline points="12 5 19 12 12 19" strokeLinecap="round" strokeLinejoin="round"/>
+                </svg>
+              </motion.button>
+            </motion.div>
+          </motion.div>
+        </>
+      )}
+    </AnimatePresence>
+  );
+};
+
 const Admissions = () => {
   const [openFaq, setOpenFaq] = useState<number | null>(1);
+  const [isTourModalOpen, setIsTourModalOpen] = useState(false);
+  const [selectedFinancialOption, setSelectedFinancialOption] = useState<typeof financialOptions[0] | null>(null);
   const heroRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
     target: heroRef,
@@ -503,15 +1152,33 @@ const Admissions = () => {
                 >
                   Our advisors are ready to welcome you. Book a campus visit and explore what makes JLU special.
                 </p>
-                <motion.button
-                  className="px-8 py-4 bg-[#21313c] text-white font-medium flex items-center gap-3"
-                  style={{ borderRadius: '100px' }}
-                  whileHover={{ scale: 1.02 }}
-                  whileTap={{ scale: 0.98 }}
-                >
-                  Book a Campus Visit
-                  <span>→</span>
-                </motion.button>
+                <div className="flex flex-col sm:flex-row gap-4">
+                  <motion.button
+                    onClick={() => setIsTourModalOpen(true)}
+                    className="px-8 py-4 bg-[#21313c] text-white font-medium flex items-center justify-center gap-3"
+                    style={{ borderRadius: '100px' }}
+                    whileHover={{ scale: 1.02 }}
+                    whileTap={{ scale: 0.98 }}
+                  >
+                    Book a Campus Visit
+                    <span>→</span>
+                  </motion.button>
+                  <Link href="/apply">
+                    <motion.button
+                      className="px-8 py-4 bg-[#f0c14b] text-[#21313c] font-medium flex items-center justify-center gap-3 w-full"
+                      style={{ borderRadius: '100px' }}
+                      whileHover={{ scale: 1.02 }}
+                      whileTap={{ scale: 0.98 }}
+                    >
+                      Online Application
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                        <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" strokeLinecap="round" strokeLinejoin="round"/>
+                        <polyline points="15 3 21 3 21 9" strokeLinecap="round" strokeLinejoin="round"/>
+                        <line x1="10" y1="14" x2="21" y2="3" strokeLinecap="round"/>
+                      </svg>
+                    </motion.button>
+                  </Link>
+                </div>
               </motion.div>
 
               {/* Two Small Images */}
@@ -636,6 +1303,7 @@ const Admissions = () => {
                 viewport={{ once: true }}
                 className="group cursor-pointer bg-[#f6f7f0] p-8 hover:bg-[#21313c] transition-colors duration-300"
                 style={{ minHeight: '280px' }}
+                onClick={() => setSelectedFinancialOption(option)}
               >
                 <span
                   className="text-[#f0c14b] font-bold block mb-6"
@@ -655,6 +1323,10 @@ const Admissions = () => {
                 >
                   {option.description}
                 </p>
+                <span className="inline-flex items-center gap-2 text-[#21313c] group-hover:text-white font-medium text-sm mt-4 opacity-0 group-hover:opacity-100 transition-opacity">
+                  Learn More
+                  <span>→</span>
+                </span>
               </motion.div>
             ))}
           </div>
@@ -850,6 +1522,16 @@ const Admissions = () => {
           </motion.div>
         </div>
       </div>
+
+      {/* Campus Tour Modal */}
+      <CampusTourModal isOpen={isTourModalOpen} onClose={() => setIsTourModalOpen(false)} />
+
+      {/* Financial Info Modal */}
+      <FinancialInfoModal
+        isOpen={selectedFinancialOption !== null}
+        onClose={() => setSelectedFinancialOption(null)}
+        data={selectedFinancialOption}
+      />
     </section>
   );
 };

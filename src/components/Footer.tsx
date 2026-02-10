@@ -59,7 +59,7 @@ export const Footer = () => {
               <span className="italic font-serif">Future</span> Together
             </h2>
             <a
-              href="#"
+              href="/apply"
               className="inline-flex items-center gap-2 border border-[#d4e4a0] text-[#d4e4a0] px-4 py-2 text-xs hover:bg-[#d4e4a0] hover:text-[#1a3a3a] transition-colors"
             >
               SEND INQUIRY
@@ -185,7 +185,7 @@ export const Footer = () => {
                 <span className="italic font-serif">Future</span> Together
               </h2>
               <a
-                href="#"
+                href="/apply"
                 className="inline-flex items-center gap-4 border border-[#d4e4a0] text-[#d4e4a0] px-8 py-4 text-sm hover:bg-[#d4e4a0] hover:text-[#1a3a3a] transition-colors shrink-0 rounded-full mt-4"
               >
                 SEND INQUIRY

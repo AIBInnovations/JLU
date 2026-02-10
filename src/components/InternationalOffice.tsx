@@ -134,6 +134,70 @@ const bhopalFeatures = [
   },
 ];
 
+const feeStructure = [
+  {
+    id: 1,
+    program: 'Undergraduate Programs',
+    tuition: '$3,500 - $5,000',
+    duration: 'Per Year',
+    includes: ['Tuition fees', 'Library access', 'Lab facilities', 'Wi-Fi'],
+  },
+  {
+    id: 2,
+    program: 'Postgraduate Programs',
+    tuition: '$4,000 - $6,500',
+    duration: 'Per Year',
+    includes: ['Tuition fees', 'Research facilities', 'Library access', 'Mentorship'],
+  },
+  {
+    id: 3,
+    program: 'Doctoral Programs',
+    tuition: '$3,000 - $4,500',
+    duration: 'Per Year',
+    includes: ['Tuition fees', 'Research grants', 'Publication support', 'Conference travel'],
+  },
+  {
+    id: 4,
+    program: 'Hostel & Living',
+    tuition: '$1,200 - $2,000',
+    duration: 'Per Year',
+    includes: ['Accommodation', 'Meals', 'Utilities', 'Laundry'],
+  },
+];
+
+const faqData = [
+  {
+    id: 1,
+    question: 'What are the English language requirements for international students?',
+    answer: 'International students need to demonstrate English proficiency through IELTS (minimum 6.0), TOEFL (minimum 80 iBT), or equivalent. Some programs may have higher requirements. Students from English-medium schools may be exempt with proper documentation.',
+  },
+  {
+    id: 2,
+    question: 'How do I apply for a student visa to study in India?',
+    answer: 'After receiving your admission offer letter, you can apply for a Student Visa at the Indian Embassy/Consulate in your country. Required documents include passport, admission letter, proof of funds, and completed visa application form. Our International Office provides guidance throughout this process.',
+  },
+  {
+    id: 3,
+    question: 'Is on-campus accommodation available for international students?',
+    answer: 'Yes, we offer dedicated international student hostels with modern amenities including furnished rooms, Wi-Fi, dining facilities, and 24/7 security. On-campus accommodation ensures easy access to academic facilities and integration with the campus community.',
+  },
+  {
+    id: 4,
+    question: 'What scholarships are available for international students?',
+    answer: 'JLU offers merit-based scholarships covering up to 50% of tuition fees for outstanding international students. Additional scholarships are available through ICCR, government schemes, and bilateral agreements between India and partner countries.',
+  },
+  {
+    id: 5,
+    question: 'Can international students work while studying?',
+    answer: 'Student visa holders are permitted to take up internships and part-time work related to their field of study. The university assists with placement opportunities and ensures compliance with visa regulations.',
+  },
+  {
+    id: 6,
+    question: 'What support services are available for international students?',
+    answer: 'Our International Office provides comprehensive support including airport pickup, orientation programs, visa assistance, academic advising, cultural integration activities, and 24/7 emergency support throughout your stay.',
+  },
+];
+
 // Journey Step type
 interface JourneyStep {
   id: number;
@@ -881,6 +945,192 @@ const InternationalOffice = () => {
               </motion.div>
             ))}
           </motion.div>
+        </div>
+      </div>
+
+      {/* Fee Structure Section */}
+      <div className="w-full bg-[#f6f7f0]">
+        <div
+          className="mx-auto px-5 py-16 md:px-10 md:py-20 lg:px-30 lg:py-35"
+          style={{
+            maxWidth: '1440px',
+          }}
+        >
+          <motion.div
+            className="text-center mb-10 md:mb-16"
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, ease: customEase }}
+            viewport={{ once: true }}
+          >
+            <span
+              className="text-[#999] uppercase tracking-widest block mb-4 md:mb-6 text-[11px] md:text-[12px]"
+              style={{ letterSpacing: '0.2em' }}
+            >
+              Investment
+            </span>
+            <h2
+              className="text-[#21313c] mb-4 md:mb-6"
+              style={{
+                fontSize: 'clamp(1.75rem, 4vw, 3.5rem)',
+                fontWeight: 600,
+                lineHeight: 1.1,
+                letterSpacing: '-0.03em',
+              }}
+            >
+              Fee structure{' '}
+              <span style={{ fontFamily: "'Times New Roman', serif", fontStyle: 'italic', fontWeight: 400 }}>
+                for international students
+              </span>
+            </h2>
+            <p
+              className="text-[#666] max-w-2xl mx-auto text-sm md:text-base lg:text-lg"
+              style={{ lineHeight: 1.8 }}
+            >
+              Transparent and competitive pricing designed to make quality education accessible to students worldwide.
+            </p>
+          </motion.div>
+
+          {/* Fee Cards */}
+          <motion.div
+            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6"
+            variants={staggerContainer}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+          >
+            {feeStructure.map((fee) => (
+              <motion.div
+                key={fee.id}
+                variants={staggerItem}
+                className="bg-white p-6 md:p-8 rounded-2xl border border-gray-100 hover:shadow-xl transition-shadow"
+              >
+                <h3 className="text-[#21313c] font-semibold text-lg md:text-xl mb-2">
+                  {fee.program}
+                </h3>
+                <div className="mb-4">
+                  <span className="text-2xl md:text-3xl font-bold text-[#1a3a3a]">{fee.tuition}</span>
+                  <span className="text-[#666] text-sm ml-2">{fee.duration}</span>
+                </div>
+                <ul className="space-y-2">
+                  {fee.includes.map((item, index) => (
+                    <li key={index} className="flex items-center gap-2 text-sm text-[#666]">
+                      <span className="w-4 h-4 rounded-full bg-[#d4e4a0] flex items-center justify-center text-[10px] text-[#21313c]">✓</span>
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+              </motion.div>
+            ))}
+          </motion.div>
+
+          <motion.div
+            className="text-center mt-10 md:mt-12"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.3 }}
+            viewport={{ once: true }}
+          >
+            <p className="text-[#666] text-sm mb-4">
+              * Fees are indicative and may vary by program. Scholarships available for eligible students.
+            </p>
+            <motion.a
+              href="#"
+              className="inline-flex items-center gap-3 text-[#21313c] font-medium group text-sm md:text-[15px]"
+              whileHover={{ x: 5 }}
+            >
+              Download complete fee structure
+              <span className="group-hover:translate-x-2 transition-transform duration-300">→</span>
+            </motion.a>
+          </motion.div>
+        </div>
+      </div>
+
+      {/* International FAQ Section */}
+      <div className="w-full bg-white">
+        <div
+          className="mx-auto px-5 py-16 md:px-10 md:py-20 lg:px-30 lg:py-35"
+          style={{
+            maxWidth: '1440px',
+          }}
+        >
+          <div className="flex flex-col lg:flex-row gap-10 md:gap-12 lg:gap-20">
+            {/* Left Side - Header */}
+            <motion.div
+              className="w-full lg:max-w-100 lg:sticky lg:top-32 lg:self-start"
+              initial={{ opacity: 0, x: -50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8, ease: customEase }}
+              viewport={{ once: true }}
+            >
+              <span
+                className="text-[#999] uppercase tracking-widest block mb-4 md:mb-6 text-[11px] md:text-[12px]"
+                style={{ letterSpacing: '0.2em' }}
+              >
+                Help Center
+              </span>
+              <h2
+                className="text-[#21313c] mb-6 md:mb-8"
+                style={{
+                  fontSize: 'clamp(2rem, 4vw, 3.5rem)',
+                  fontWeight: 600,
+                  lineHeight: 1.1,
+                  letterSpacing: '-0.03em',
+                }}
+              >
+                International{' '}
+                <span style={{ fontFamily: "'Times New Roman', serif", fontStyle: 'italic', fontWeight: 400 }}>
+                  FAQ
+                </span>
+              </h2>
+              <p
+                className="text-[#666] mb-8 text-base md:text-lg"
+                style={{ lineHeight: 1.8 }}
+              >
+                Find answers to common questions about studying at JLU as an international student.
+              </p>
+              <motion.a
+                href="#"
+                className="inline-flex items-center gap-3 px-6 py-3 md:px-8 md:py-4 bg-[#21313c] text-white font-medium text-sm md:text-base rounded-full"
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+              >
+                Contact International Office
+                <span>→</span>
+              </motion.a>
+            </motion.div>
+
+            {/* Right Side - FAQ Accordion */}
+            <motion.div
+              className="flex-1"
+              variants={staggerContainer}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
+            >
+              {faqData.map((faq, index) => (
+                <motion.div
+                  key={faq.id}
+                  variants={staggerItem}
+                  className="border-b border-gray-200 py-6 md:py-8"
+                >
+                  <div className="flex items-start gap-4">
+                    <span className="text-[#f0c14b] font-bold text-xl md:text-2xl">
+                      {String(index + 1).padStart(2, '0')}
+                    </span>
+                    <div>
+                      <h3 className="text-[#21313c] font-semibold text-base md:text-lg mb-3">
+                        {faq.question}
+                      </h3>
+                      <p className="text-[#666] text-sm md:text-[15px]" style={{ lineHeight: 1.8 }}>
+                        {faq.answer}
+                      </p>
+                    </div>
+                  </div>
+                </motion.div>
+              ))}
+            </motion.div>
+          </div>
         </div>
       </div>
 

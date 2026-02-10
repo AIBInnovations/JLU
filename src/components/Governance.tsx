@@ -1,9 +1,70 @@
 'use client';
 
-import { motion } from 'framer-motion';
+import { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { useIsMobile } from '../hooks/useIsMobile';
 
 // Custom easing for smooth animations (same as Events page)
 const customEase: [number, number, number, number] = [0.22, 1, 0.36, 1];
+
+interface GovernanceMember {
+  name: string;
+  designation: string;
+  role: string;
+}
+
+interface GovernanceBodyData {
+  title: string;
+  description: string;
+  members: GovernanceMember[];
+}
+
+const governanceData: Record<string, GovernanceBodyData> = {
+  'Governing Body': {
+    title: 'Governing Body',
+    description: 'The Governing Body is the apex body of the university responsible for overall policy direction, strategic planning, and ensuring the university fulfills its mission and objectives.',
+    members: [
+      { name: 'Shri Ashok Jain', designation: 'Chancellor', role: 'Chairman' },
+      { name: 'Dr. R.K. Sharma', designation: 'Vice Chancellor', role: 'Member Secretary' },
+      { name: 'Prof. S.N. Mishra', designation: 'Pro Vice Chancellor', role: 'Member' },
+      { name: 'Dr. Amit Kumar', designation: 'Registrar', role: 'Member' },
+      { name: 'Shri Rajesh Gupta', designation: 'Industry Representative', role: 'Member' },
+      { name: 'Dr. Priya Singh', designation: 'UGC Nominee', role: 'Member' },
+      { name: 'Prof. M.L. Verma', designation: 'AICTE Nominee', role: 'Member' },
+      { name: 'Shri Vikram Patel', designation: 'State Government Nominee', role: 'Member' },
+    ],
+  },
+  'Board of Management': {
+    title: 'Board of Management',
+    description: 'The Board of Management is the principal executive body responsible for the general superintendence, direction, and control of the affairs of the university.',
+    members: [
+      { name: 'Dr. R.K. Sharma', designation: 'Vice Chancellor', role: 'Chairman' },
+      { name: 'Prof. S.N. Mishra', designation: 'Pro Vice Chancellor', role: 'Member' },
+      { name: 'Dr. Amit Kumar', designation: 'Registrar', role: 'Member Secretary' },
+      { name: 'Dr. Sunita Joshi', designation: 'Dean, Faculty of Engineering', role: 'Member' },
+      { name: 'Dr. Ramesh Pandey', designation: 'Dean, Faculty of Management', role: 'Member' },
+      { name: 'Dr. Kavita Sharma', designation: 'Dean, Faculty of Law', role: 'Member' },
+      { name: 'Shri Anil Mehta', designation: 'Finance Officer', role: 'Member' },
+      { name: 'Dr. Neha Gupta', designation: 'Controller of Examinations', role: 'Member' },
+    ],
+  },
+  'Academic Council': {
+    title: 'Academic Council',
+    description: 'The Academic Council is the principal academic body responsible for maintaining standards of instruction, education, and examination within the university.',
+    members: [
+      { name: 'Dr. R.K. Sharma', designation: 'Vice Chancellor', role: 'Chairman' },
+      { name: 'Prof. S.N. Mishra', designation: 'Pro Vice Chancellor', role: 'Member' },
+      { name: 'Dr. Sunita Joshi', designation: 'Dean, Faculty of Engineering', role: 'Member' },
+      { name: 'Dr. Ramesh Pandey', designation: 'Dean, Faculty of Management', role: 'Member' },
+      { name: 'Dr. Kavita Sharma', designation: 'Dean, Faculty of Law', role: 'Member' },
+      { name: 'Dr. Alok Tripathi', designation: 'Dean, Faculty of Pharmacy', role: 'Member' },
+      { name: 'Dr. Meera Kapoor', designation: 'Dean, Faculty of Journalism', role: 'Member' },
+      { name: 'Dr. Sanjay Rao', designation: 'Dean, Faculty of Science', role: 'Member' },
+      { name: 'Dr. Neha Gupta', designation: 'Controller of Examinations', role: 'Member Secretary' },
+      { name: 'Prof. Vivek Agarwal', designation: 'Head, Computer Science Dept.', role: 'Member' },
+    ],
+  },
+};
 
 const governanceBodies = [
   'Governing Body',
@@ -11,7 +72,139 @@ const governanceBodies = [
   'Academic Council',
 ];
 
+interface GovernanceModalProps {
+  isOpen: boolean;
+  onClose: () => void;
+  data: GovernanceBodyData | null;
+}
+
+const GovernanceModal = ({ isOpen, onClose, data }: GovernanceModalProps) => {
+  const isMobile = useIsMobile();
+
+  if (!data) return null;
+
+  return (
+    <AnimatePresence>
+      {isOpen && (
+        <>
+          {/* Backdrop */}
+          <motion.div
+            className="fixed inset-0 bg-black/50 backdrop-blur-sm z-[9998]"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.4, ease: [0.32, 0.72, 0, 1] }}
+            onClick={onClose}
+          />
+
+          {/* Modal Panel */}
+          <motion.div
+            className="fixed z-[9999] bg-white overflow-hidden shadow-2xl"
+            style={{
+              ...(isMobile
+                ? { inset: 0, borderRadius: 0 }
+                : {
+                    top: 0,
+                    right: 0,
+                    bottom: 0,
+                    width: '520px',
+                    borderTopLeftRadius: '24px',
+                    borderBottomLeftRadius: '24px',
+                  }),
+            }}
+            initial={{ clipPath: 'inset(0 0 0 100%)' }}
+            animate={{ clipPath: 'inset(0 0 0 0)' }}
+            exit={{ clipPath: 'inset(0 0 0 100%)' }}
+            transition={{
+              duration: 0.5,
+              ease: [0.32, 0.72, 0, 1],
+            }}
+          >
+            {/* Header */}
+            <motion.div
+              className="flex items-center justify-between p-6 border-b border-gray-100 bg-[#03463B]"
+              initial={{ opacity: 0, x: 40 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.4, delay: 0.2, ease: [0.32, 0.72, 0, 1] }}
+            >
+              <div>
+                <h2 className="text-xl font-semibold text-white">{data.title}</h2>
+                <p className="text-sm text-white/70 mt-1">University Governance</p>
+              </div>
+              <button
+                onClick={onClose}
+                className="w-10 h-10 flex items-center justify-center rounded-full hover:bg-white/10 transition-colors"
+              >
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2">
+                  <line x1="18" y1="6" x2="6" y2="18" strokeLinecap="round"/>
+                  <line x1="6" y1="6" x2="18" y2="18" strokeLinecap="round"/>
+                </svg>
+              </button>
+            </motion.div>
+
+            {/* Content */}
+            <motion.div
+              className="p-6 overflow-y-auto"
+              style={{ height: 'calc(100% - 88px)' }}
+              initial={{ opacity: 0, x: 50 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.45, delay: 0.25, ease: [0.32, 0.72, 0, 1] }}
+            >
+              {/* Description */}
+              <p className="text-[#666] text-sm md:text-[15px] mb-6" style={{ lineHeight: 1.7 }}>
+                {data.description}
+              </p>
+
+              {/* Members List */}
+              <div className="space-y-1">
+                <h3 className="text-[#21313c] font-semibold text-sm uppercase tracking-wider mb-4">
+                  Members
+                </h3>
+                {data.members.map((member, index) => (
+                  <motion.div
+                    key={index}
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.3, delay: 0.3 + index * 0.05 }}
+                    className="flex items-start gap-4 py-4 border-b border-gray-100 last:border-0"
+                  >
+                    {/* Avatar */}
+                    <div className="w-10 h-10 rounded-full bg-[#03463B]/10 flex items-center justify-center flex-shrink-0">
+                      <span className="text-[#03463B] font-semibold text-sm">
+                        {member.name.split(' ').map(n => n[0]).join('').slice(0, 2)}
+                      </span>
+                    </div>
+                    {/* Info */}
+                    <div className="flex-1 min-w-0">
+                      <h4 className="text-[#21313c] font-medium text-[15px]">{member.name}</h4>
+                      <p className="text-[#666] text-sm">{member.designation}</p>
+                    </div>
+                    {/* Role Badge */}
+                    <span className="px-3 py-1 bg-[#c3fd7a]/30 text-[#03463B] text-xs font-medium rounded-full whitespace-nowrap">
+                      {member.role}
+                    </span>
+                  </motion.div>
+                ))}
+              </div>
+            </motion.div>
+          </motion.div>
+        </>
+      )}
+    </AnimatePresence>
+  );
+};
+
 const Governance = () => {
+  const [selectedBody, setSelectedBody] = useState<string | null>(null);
+
+  const handleOpenModal = (body: string) => {
+    setSelectedBody(body);
+  };
+
+  const handleCloseModal = () => {
+    setSelectedBody(null);
+  };
+
   return (
     <section className="w-full bg-white">
       <div
@@ -74,6 +267,7 @@ const Governance = () => {
                     whileInView={{ opacity: 1, x: 0 }}
                     transition={{ duration: 0.5, delay: index * 0.1, ease: customEase }}
                     viewport={{ once: true }}
+                    onClick={() => handleOpenModal(body)}
                     className="group flex items-center justify-between py-4 border-b border-[#e5e5e5] cursor-pointer hover:bg-[#fafafa] transition-colors -mx-4 px-4 md:mx-0 md:px-0"
                   >
                     <span className="text-[#21313c] text-sm md:text-[15px] font-medium">
@@ -141,6 +335,13 @@ const Governance = () => {
           </motion.div>
         </div>
       </div>
+
+      {/* Governance Modal */}
+      <GovernanceModal
+        isOpen={selectedBody !== null}
+        onClose={handleCloseModal}
+        data={selectedBody ? governanceData[selectedBody] : null}
+      />
     </section>
   );
 };

@@ -56,13 +56,13 @@ const JluStaff = () => {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, ease: customEase }}
           viewport={{ once: true }}
-          className="group relative w-full h-[250px] sm:h-[350px] md:h-[500px] rounded-xl overflow-hidden cursor-pointer"
+          className="relative w-full h-[250px] sm:h-[350px] md:h-[500px] rounded-xl overflow-hidden"
         >
           <Image
-            src="/staff.jpg"
+            src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=1200&q=80"
             alt="JLU Staff"
             fill
-            className="object-cover transition-transform duration-700 group-hover:scale-105"
+            className="object-cover"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
           <div className="absolute bottom-0 left-0 right-0 p-5 sm:p-8 md:p-10">

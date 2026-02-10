@@ -1,28 +1,74 @@
 'use client';
 
 import Image from 'next/image';
-import { motion, useScroll, useTransform } from 'framer-motion';
+import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion';
 import { useState, useRef } from 'react';
 import { useIsMobile } from '../hooks/useIsMobile';
 
-const philosophyCards = [
+interface PhilosophyCardData {
+  id: number;
+  title: string;
+  description: string;
+  image: string;
+  modalContent: {
+    heading: string;
+    intro: string;
+    points: { title: string; description: string }[];
+    conclusion: string;
+  };
+}
+
+const philosophyCards: PhilosophyCardData[] = [
   {
     id: 1,
     title: 'Values-driven learning',
     description: 'Education rooted in ethics, purpose, and responsible leadership.',
     image: 'https://images.unsplash.com/photo-1524178232363-1fb2b075b655?w=800&q=80',
+    modalContent: {
+      heading: 'Values-Driven Learning',
+      intro: 'At JLU, education goes beyond academics. We believe in nurturing individuals who lead with integrity, think with purpose, and act responsibly.',
+      points: [
+        { title: 'Ethical Foundation', description: 'Every program integrates ethical reasoning and moral awareness into the curriculum.' },
+        { title: 'Purpose-Led Education', description: 'Students are encouraged to find meaning in their learning journey and connect it to larger societal goals.' },
+        { title: 'Responsible Leadership', description: 'Leadership training emphasizes accountability, empathy, and sustainable decision-making.' },
+        { title: 'Community Engagement', description: 'Regular outreach programs and social initiatives help students understand their role in society.' },
+      ],
+      conclusion: 'Our graduates leave not just with degrees, but with a strong moral compass to guide their careers.',
+    },
   },
   {
     id: 2,
     title: 'Interdisciplinary structure',
     description: 'Programs designed to connect disciplines, ideas, and real-world application.',
     image: 'https://images.unsplash.com/photo-1427504494785-3a9ca7044f45?w=800&q=80',
+    modalContent: {
+      heading: 'Interdisciplinary Structure',
+      intro: 'Modern challenges require integrated thinking. Our academic structure breaks silos and encourages cross-disciplinary exploration.',
+      points: [
+        { title: 'Connected Curriculum', description: 'Courses are designed to overlap and complement each other across faculties.' },
+        { title: 'Flexible Pathways', description: 'Students can take electives from different schools, creating personalized learning journeys.' },
+        { title: 'Collaborative Projects', description: 'Team projects bring together students from diverse backgrounds to solve complex problems.' },
+        { title: 'Joint Research Initiatives', description: 'Faculty from different disciplines collaborate on research that addresses multifaceted issues.' },
+      ],
+      conclusion: 'This structure prepares students for a world where the best solutions come from connecting diverse perspectives.',
+    },
   },
   {
     id: 3,
     title: 'Industry & research integration',
     description: 'Learning shaped by industry exposure, live projects, and active research.',
     image: 'https://images.unsplash.com/photo-1532094349884-543bc11b234d?w=800&q=80',
+    modalContent: {
+      heading: 'Industry & Research Integration',
+      intro: 'Theory meets practice at JLU. We ensure students are industry-ready through real-world exposure and active research participation.',
+      points: [
+        { title: 'Industry Partnerships', description: 'Collaborations with leading companies provide internships, mentorship, and placement opportunities.' },
+        { title: 'Live Projects', description: 'Students work on actual industry problems, gaining practical experience before graduation.' },
+        { title: 'Research Culture', description: 'Undergraduate and postgraduate students are encouraged to participate in ongoing research projects.' },
+        { title: 'Innovation Labs', description: 'State-of-the-art labs and incubation centers support entrepreneurial and research endeavors.' },
+      ],
+      conclusion: 'Our students graduate with portfolios of real work and research experience that set them apart.',
+    },
   },
 ];
 
@@ -135,9 +181,140 @@ const testimonials = [
   },
 ];
 
+// Philosophy Modal Component
+interface PhilosophyModalProps {
+  isOpen: boolean;
+  onClose: () => void;
+  data: PhilosophyCardData | null;
+}
+
+const PhilosophyModal = ({ isOpen, onClose, data }: PhilosophyModalProps) => {
+  if (!data) return null;
+
+  return (
+    <AnimatePresence>
+      {isOpen && (
+        <>
+          {/* Backdrop with blur */}
+          <motion.div
+            className="fixed inset-0 bg-black/60 backdrop-blur-md z-[9998]"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.3 }}
+            onClick={onClose}
+          />
+
+          {/* Modal Container */}
+          <motion.div
+            className="fixed inset-0 z-[9999] flex items-center justify-center p-4 md:p-8"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+          >
+            {/* Modal Panel */}
+            <motion.div
+              className="relative bg-white w-full max-w-[900px] max-h-[90vh] overflow-hidden rounded-2xl shadow-2xl"
+              initial={{ scale: 0.9, opacity: 0, y: 20 }}
+              animate={{ scale: 1, opacity: 1, y: 0 }}
+              exit={{ scale: 0.9, opacity: 0, y: 20 }}
+              transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
+              onClick={(e) => e.stopPropagation()}
+            >
+              {/* Header with Image */}
+              <div className="relative h-[180px] md:h-[240px] overflow-hidden">
+                <Image
+                  src={data.image}
+                  alt={data.title}
+                  fill
+                  className="object-cover"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent" />
+
+                {/* Close Button */}
+                <button
+                  onClick={onClose}
+                  className="absolute top-4 right-4 w-10 h-10 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center hover:bg-white/30 transition-colors"
+                >
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2">
+                    <line x1="18" y1="6" x2="6" y2="18" strokeLinecap="round"/>
+                    <line x1="6" y1="6" x2="18" y2="18" strokeLinecap="round"/>
+                  </svg>
+                </button>
+
+                {/* Number Badge */}
+                <div className="absolute top-4 left-4 w-10 h-10 bg-white rounded-full flex items-center justify-center">
+                  <span className="text-[#21313c] font-semibold text-sm">0{data.id}</span>
+                </div>
+
+                {/* Title on Image */}
+                <div className="absolute bottom-6 left-6 right-6">
+                  <h2 className="text-white text-2xl md:text-3xl font-semibold">
+                    {data.modalContent.heading}
+                  </h2>
+                </div>
+              </div>
+
+              {/* Content */}
+              <div className="p-6 md:p-8 overflow-y-auto" style={{ maxHeight: 'calc(90vh - 240px)' }}>
+                {/* Intro */}
+                <motion.p
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.2 }}
+                  className="text-[#666] text-base md:text-lg mb-8"
+                  style={{ lineHeight: 1.7 }}
+                >
+                  {data.modalContent.intro}
+                </motion.p>
+
+                {/* Points Grid */}
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+                  {data.modalContent.points.map((point, index) => (
+                    <motion.div
+                      key={index}
+                      initial={{ opacity: 0, y: 15 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: 0.3 + index * 0.1 }}
+                      className="bg-[#f6f7f0] p-5 rounded-xl"
+                    >
+                      <div className="flex items-start gap-3">
+                        <span className="w-6 h-6 bg-[#03463B] text-white rounded-full flex items-center justify-center text-xs font-medium shrink-0 mt-0.5">
+                          {index + 1}
+                        </span>
+                        <div>
+                          <h4 className="text-[#21313c] font-semibold text-base mb-2">{point.title}</h4>
+                          <p className="text-[#666] text-sm" style={{ lineHeight: 1.6 }}>{point.description}</p>
+                        </div>
+                      </div>
+                    </motion.div>
+                  ))}
+                </div>
+
+                {/* Conclusion */}
+                <motion.div
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.7 }}
+                  className="pt-6 border-t border-gray-200"
+                >
+                  <p className="text-[#21313c] text-base md:text-lg font-medium" style={{ lineHeight: 1.7 }}>
+                    {data.modalContent.conclusion}
+                  </p>
+                </motion.div>
+              </div>
+            </motion.div>
+          </motion.div>
+        </>
+      )}
+    </AnimatePresence>
+  );
+};
+
 const Academics = () => {
   const [openFaculty, setOpenFaculty] = useState<number | null>(2);
   const [currentTestimonial, setCurrentTestimonial] = useState(0);
+  const [selectedPhilosophy, setSelectedPhilosophy] = useState<PhilosophyCardData | null>(null);
   const heroRef = useRef<HTMLDivElement>(null);
   const isMobile = useIsMobile();
   const { scrollYProgress } = useScroll({
@@ -291,6 +468,7 @@ const Academics = () => {
                   whileInView={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.7, delay: index * 0.15 }}
                   viewport={{ once: true }}
+                  onClick={() => setSelectedPhilosophy(card)}
                   className="group cursor-pointer"
                 >
                   {/* Image Container */}
@@ -333,6 +511,7 @@ const Academics = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.7, delay: 0.3 }}
                 viewport={{ once: true }}
+                onClick={() => setSelectedPhilosophy(philosophyCards[2])}
                 className="group cursor-pointer w-[calc(50%-8px)]"
               >
                 {/* Image Container */}
@@ -378,6 +557,7 @@ const Academics = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.7, delay: index * 0.15 }}
                 viewport={{ once: true }}
+                onClick={() => setSelectedPhilosophy(card)}
                 className={`group cursor-pointer ${index === 1 ? 'mt-[80px]' : index === 2 ? 'mt-[160px]' : ''}`}
               >
                 {/* Image Container */}
@@ -881,6 +1061,13 @@ const Academics = () => {
           </motion.div>
         </div>
       </div>
+
+      {/* Philosophy Modal */}
+      <PhilosophyModal
+        isOpen={selectedPhilosophy !== null}
+        onClose={() => setSelectedPhilosophy(null)}
+        data={selectedPhilosophy}
+      />
     </section>
   );
 };

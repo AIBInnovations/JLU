@@ -1,13 +1,25 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useEffect } from 'react';
 import Link from 'next/link';
+import { useSearchParams } from 'next/navigation';
 import { useIsMobile } from '../hooks/useIsMobile';
 import { programs, getProgramsByCategory } from '../data/programs';
 
 const ProgramsList = () => {
-  const [activeTab, setActiveTab] = useState<'UG' | 'PG' | 'PhD' | 'Diploma'>('UG');
+  const searchParams = useSearchParams();
+  const tabParam = searchParams.get('tab');
+  const initialTab = (['UG', 'PG', 'PhD', 'Diploma'] as const).includes(tabParam as 'UG' | 'PG' | 'PhD' | 'Diploma')
+    ? (tabParam as 'UG' | 'PG' | 'PhD' | 'Diploma')
+    : 'UG';
+  const [activeTab, setActiveTab] = useState<'UG' | 'PG' | 'PhD' | 'Diploma'>(initialTab);
+
+  useEffect(() => {
+    if (tabParam && (['UG', 'PG', 'PhD', 'Diploma'] as const).includes(tabParam as 'UG' | 'PG' | 'PhD' | 'Diploma')) {
+      setActiveTab(tabParam as 'UG' | 'PG' | 'PhD' | 'Diploma');
+    }
+  }, [tabParam]);
   const [searchQuery, setSearchQuery] = useState('');
   const isMobile = useIsMobile();
 

@@ -74,13 +74,13 @@ const UniversityPartnerships = () => {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, ease: customEase }}
             viewport={{ once: true }}
-            className="group relative overflow-hidden cursor-pointer min-h-[320px] sm:min-h-[400px] md:min-h-[450px] rounded-xl"
+            className="group relative overflow-hidden min-h-[320px] sm:min-h-[400px] md:min-h-[450px] rounded-xl"
           >
             <Image
               src="/ex1.jpg"
               alt="Honorary Doctorates"
               fill
-              className="object-cover transition-transform duration-700 group-hover:scale-105"
+              className="object-cover"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent" />
             <div className="absolute inset-0 flex flex-col justify-end p-5 sm:p-8 md:p-10">
@@ -111,13 +111,13 @@ const UniversityPartnerships = () => {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.1, ease: customEase }}
             viewport={{ once: true }}
-            className="group relative overflow-hidden cursor-pointer min-h-[320px] sm:min-h-[400px] md:min-h-[450px] rounded-xl"
+            className="group relative overflow-hidden min-h-[320px] sm:min-h-[400px] md:min-h-[450px] rounded-xl"
           >
             <Image
               src="/ex.jpg"
               alt="JLU Ignited Mind Awards"
               fill
-              className="object-cover transition-transform duration-700 group-hover:scale-105"
+              className="object-cover"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent" />
             <div className="absolute inset-0 flex flex-col justify-end p-5 sm:p-8 md:p-10">

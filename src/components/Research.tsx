@@ -45,6 +45,93 @@ const facultySpotlight = [
   },
 ];
 
+const patentsData = [
+  {
+    id: 1,
+    title: 'AI-Based Smart Irrigation System for Precision Agriculture',
+    inventors: 'Dr. Rajesh Kumar, Dr. Priya Sharma',
+    patentNo: 'IN202341045678',
+    year: '2023',
+    status: 'Granted',
+    department: 'School of Engineering',
+  },
+  {
+    id: 2,
+    title: 'Biodegradable Polymer Composite from Agricultural Waste',
+    inventors: 'Dr. Amit Verma, Dr. Sneha Patel',
+    patentNo: 'IN202241032456',
+    year: '2022',
+    status: 'Granted',
+    department: 'School of Sciences',
+  },
+  {
+    id: 3,
+    title: 'Novel Drug Delivery System Using Nanotechnology',
+    inventors: 'Dr. Meera Gupta, Dr. Rahul Singh',
+    patentNo: 'IN202441012345',
+    year: '2024',
+    status: 'Published',
+    department: 'School of Pharmacy',
+  },
+  {
+    id: 4,
+    title: 'Blockchain-Based Secure Voting System',
+    inventors: 'Dr. Vikram Joshi, Dr. Neha Agarwal',
+    patentNo: 'IN202341078901',
+    year: '2023',
+    status: 'Granted',
+    department: 'School of Computer Science',
+  },
+];
+
+const fundedProjectsData = [
+  {
+    id: 1,
+    title: 'Development of Sustainable Energy Solutions for Rural India',
+    fundingAgency: 'Department of Science & Technology (DST)',
+    amount: '₹2.5 Crore',
+    duration: '2023-2026',
+    pi: 'Dr. Anil Kumar Sharma',
+    status: 'Ongoing',
+  },
+  {
+    id: 2,
+    title: 'Machine Learning Applications in Healthcare Diagnostics',
+    fundingAgency: 'Indian Council of Medical Research (ICMR)',
+    amount: '₹1.8 Crore',
+    duration: '2022-2025',
+    pi: 'Dr. Sunita Verma',
+    status: 'Ongoing',
+  },
+  {
+    id: 3,
+    title: 'Indigenous Knowledge Systems and Biodiversity Conservation',
+    fundingAgency: 'University Grants Commission (UGC)',
+    amount: '₹85 Lakhs',
+    duration: '2021-2024',
+    pi: 'Dr. Ramesh Chandra',
+    status: 'Completed',
+  },
+  {
+    id: 4,
+    title: 'Smart City Infrastructure Using IoT Technologies',
+    fundingAgency: 'Ministry of Electronics & IT (MeitY)',
+    amount: '₹3.2 Crore',
+    duration: '2024-2027',
+    pi: 'Dr. Priya Mehta',
+    status: 'Ongoing',
+  },
+  {
+    id: 5,
+    title: 'Advanced Materials for Water Purification',
+    fundingAgency: 'Council of Scientific & Industrial Research (CSIR)',
+    amount: '₹1.2 Crore',
+    duration: '2023-2026',
+    pi: 'Dr. Manish Gupta',
+    status: 'Ongoing',
+  },
+];
+
 const Research = () => {
   const [activeArea, setActiveArea] = useState(1);
   const heroRef = useRef<HTMLDivElement>(null);
@@ -339,6 +426,143 @@ const Research = () => {
                 </div>
               </div>
             ))}
+          </div>
+        </div>
+      </div>
+
+      {/* Patents Section */}
+      <div className="w-full bg-[#f6f7f0]">
+        <div
+          className="mx-auto px-5 py-12 md:px-10 md:py-16 lg:px-30 lg:py-20"
+          style={{
+            maxWidth: '1440px',
+          }}
+        >
+          {/* Header */}
+          <div className="flex flex-col md:flex-row justify-between items-start gap-4 md:gap-0 mb-8 md:mb-12">
+            <div>
+              <h2 className="text-2xl md:text-4xl lg:text-5xl font-bold text-[#21313c] mb-2 md:mb-4">
+                Patents
+              </h2>
+              <p className="text-base md:text-lg lg:text-xl text-[#21313c]">
+                Innovation-driven intellectual property protecting groundbreaking research.
+              </p>
+            </div>
+            <div className="flex items-center gap-2 bg-[#21313c] text-white px-4 py-2 rounded-full">
+              <span className="text-2xl md:text-3xl font-bold">142+</span>
+              <span className="text-sm">Patents Filed</span>
+            </div>
+          </div>
+
+          {/* Patents Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {patentsData.map((patent) => (
+              <div
+                key={patent.id}
+                className="bg-white p-6 md:p-8 rounded-lg border border-gray-200 hover:shadow-lg transition-shadow"
+              >
+                <div className="flex justify-between items-start mb-4">
+                  <span className={`px-3 py-1 rounded-full text-xs font-medium ${
+                    patent.status === 'Granted'
+                      ? 'bg-green-100 text-green-800'
+                      : 'bg-yellow-100 text-yellow-800'
+                  }`}>
+                    {patent.status}
+                  </span>
+                  <span className="text-sm text-gray-500">{patent.year}</span>
+                </div>
+                <h3 className="text-lg md:text-xl font-bold text-[#21313c] mb-3">
+                  {patent.title}
+                </h3>
+                <p className="text-sm text-gray-600 mb-2">
+                  <span className="font-medium">Inventors:</span> {patent.inventors}
+                </p>
+                <p className="text-sm text-gray-600 mb-2">
+                  <span className="font-medium">Patent No:</span> {patent.patentNo}
+                </p>
+                <p className="text-sm text-gray-500">
+                  {patent.department}
+                </p>
+              </div>
+            ))}
+          </div>
+
+          <div className="mt-8 text-center">
+            <a href="#" className="inline-flex items-center gap-2 text-[#21313c] font-medium underline hover:no-underline">
+              View all Patents
+              <span>→</span>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      {/* Funded Projects Section */}
+      <div className="w-full bg-white">
+        <div
+          className="mx-auto px-5 py-12 md:px-10 md:py-16 lg:px-30 lg:py-20"
+          style={{
+            maxWidth: '1440px',
+          }}
+        >
+          {/* Header */}
+          <div className="flex flex-col md:flex-row justify-between items-start gap-4 md:gap-0 mb-8 md:mb-12">
+            <div>
+              <h2 className="text-2xl md:text-4xl lg:text-5xl font-bold text-[#21313c] mb-2 md:mb-4">
+                Funded Projects
+              </h2>
+              <p className="text-base md:text-lg lg:text-xl text-[#21313c]">
+                Government and industry-backed research driving innovation and impact.
+              </p>
+            </div>
+            <div className="flex items-center gap-2 bg-[#1a5f4a] text-white px-4 py-2 rounded-full">
+              <span className="text-2xl md:text-3xl font-bold">₹85M+</span>
+              <span className="text-sm">Total Funding</span>
+            </div>
+          </div>
+
+          {/* Projects Table */}
+          <div className="overflow-x-auto">
+            <table className="w-full">
+              <thead>
+                <tr className="border-b-2 border-[#21313c]">
+                  <th className="text-left py-4 px-2 text-sm md:text-base font-bold text-[#21313c]">Project Title</th>
+                  <th className="text-left py-4 px-2 text-sm md:text-base font-bold text-[#21313c] hidden md:table-cell">Funding Agency</th>
+                  <th className="text-left py-4 px-2 text-sm md:text-base font-bold text-[#21313c]">Amount</th>
+                  <th className="text-left py-4 px-2 text-sm md:text-base font-bold text-[#21313c] hidden lg:table-cell">Duration</th>
+                  <th className="text-left py-4 px-2 text-sm md:text-base font-bold text-[#21313c]">Status</th>
+                </tr>
+              </thead>
+              <tbody>
+                {fundedProjectsData.map((project) => (
+                  <tr key={project.id} className="border-b border-gray-200 hover:bg-gray-50 transition-colors">
+                    <td className="py-4 px-2">
+                      <p className="text-sm md:text-base font-medium text-[#21313c]">{project.title}</p>
+                      <p className="text-xs text-gray-500 mt-1">PI: {project.pi}</p>
+                      <p className="text-xs text-gray-500 md:hidden mt-1">{project.fundingAgency}</p>
+                    </td>
+                    <td className="py-4 px-2 text-sm text-gray-600 hidden md:table-cell">{project.fundingAgency}</td>
+                    <td className="py-4 px-2 text-sm md:text-base font-semibold text-[#1a5f4a]">{project.amount}</td>
+                    <td className="py-4 px-2 text-sm text-gray-600 hidden lg:table-cell">{project.duration}</td>
+                    <td className="py-4 px-2">
+                      <span className={`px-3 py-1 rounded-full text-xs font-medium ${
+                        project.status === 'Ongoing'
+                          ? 'bg-blue-100 text-blue-800'
+                          : 'bg-green-100 text-green-800'
+                      }`}>
+                        {project.status}
+                      </span>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+
+          <div className="mt-8 text-center">
+            <a href="#" className="inline-flex items-center gap-2 text-[#21313c] font-medium underline hover:no-underline">
+              View all Funded Projects
+              <span>→</span>
+            </a>
           </div>
         </div>
       </div>

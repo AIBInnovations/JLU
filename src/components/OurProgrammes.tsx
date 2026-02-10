@@ -1,18 +1,16 @@
 'use client';
 
-import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { useIsMobile } from '../hooks/useIsMobile';
 
 export const OurProgrammes = () => {
   const isMobile = useIsMobile();
-  const [activeCard, setActiveCard] = useState<number | null>(null);
 
   const programmes = [
-    { image: '/p1.jpg', title: 'Undergraduate', subtitle: 'Programmes', width: 461, height: 520 },
-    { image: '/p2.jpg', title: 'Postgraduate', subtitle: 'Programmes', width: 461, height: 520 },
-    { image: '/p3.jpg', title: 'Ph.D.', subtitle: 'Programmes', width: 461, height: 520 },
-    { image: '/p4.jpg', title: 'Diplomas &', subtitle: 'Certifications', width: 461, height: 520 },
+    { image: '/p1.jpg', title: 'Undergraduate', subtitle: 'Programmes', width: 461, height: 520, href: '/programs?tab=UG' },
+    { image: '/p2.jpg', title: 'Postgraduate', subtitle: 'Programmes', width: 461, height: 520, href: '/programs?tab=PG' },
+    { image: '/p3.jpg', title: 'Ph.D.', subtitle: 'Programmes', width: 461, height: 520, href: '/programs?tab=PhD' },
+    { image: '/p4.jpg', title: 'Diplomas &', subtitle: 'Certifications', width: 461, height: 520, href: '/programs?tab=Diploma' },
   ];
 
 
@@ -52,21 +50,18 @@ export const OurProgrammes = () => {
         <div className="px-4">
           <div className="grid grid-cols-2 gap-3">
             {programmes.map((programme, index) => (
-              <div
+              <a
                 key={index}
-                className="relative overflow-hidden cursor-pointer rounded-2xl"
+                href={programme.href}
+                className="relative overflow-hidden cursor-pointer rounded-2xl block"
                 style={{
                   height: '240px',
                 }}
-                onClick={() => setActiveCard(activeCard === index ? null : index)}
               >
                 <img
                   src={programme.image}
                   alt={programme.title}
-                  className="absolute inset-0 w-full h-full object-cover transition-transform duration-300"
-                  style={{
-                    transform: activeCard === index ? 'scale(1.08)' : 'scale(1)',
-                  }}
+                  className="absolute inset-0 w-full h-full object-cover transition-transform duration-300 hover:scale-105"
                 />
                 <div className="absolute inset-0 bg-black/20" />
                 <div
@@ -89,7 +84,7 @@ export const OurProgrammes = () => {
                     {programme.subtitle}
                   </p>
                 </div>
-              </div>
+              </a>
             ))}
           </div>
         </div>
@@ -104,9 +99,10 @@ export const OurProgrammes = () => {
           }}
         >
           {programmes.map((programme, index) => (
-            <div
+            <a
               key={index}
-              className="relative overflow-hidden cursor-pointer group rounded-2xl"
+              href={programme.href}
+              className="relative overflow-hidden cursor-pointer group rounded-2xl block"
               style={{
                 width: 'clamp(280px, 24vw, 520px)',
                 height: 'clamp(360px, 32vw, 640px)',
@@ -138,7 +134,7 @@ export const OurProgrammes = () => {
                   {programme.subtitle}
                 </p>
               </div>
-            </div>
+            </a>
           ))}
         </div>
       )}

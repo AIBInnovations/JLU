@@ -9,33 +9,31 @@ import { useIsMobile } from '../hooks/useIsMobile';
 // NAVIGATION DATA
 // ============================================
 const navigationItems = [
-  { label: 'About Us', href: '/about', hasSubmenu: false },
-  { label: 'Programs', href: '/programs', hasSubmenu: false },
-  { label: 'Events', href: '/events', hasSubmenu: false },
-  {
-    label: 'Academics',
-    href: '/academics',
-    hasSubmenu: true,
-    submenu: [
-      { label: 'Student Clubs', href: '/student-clubs' },
-      { label: 'Alumni', href: '/alumni' },
-      { label: 'Faculty of Management', href: '/faculty/management' },
-      { label: 'Faculty of Journalism', href: '/faculty/journalism' },
-      { label: 'Faculty of Humanities & Design', href: '/faculty/humanities' },
-      { label: 'Faculty of Engineering', href: '/faculty/engineering' },
-      { label: 'Faculty of Pharmacy', href: '/faculty/pharmacy' },
-      { label: 'Faculty of Law', href: '/faculty/law' },
-    ]
-  },
-  { label: 'Campus', href: '/campus', hasSubmenu: false },
-  { label: 'Admissions', href: '/admissions', hasSubmenu: false },
-  { label: 'Research', href: '/research', hasSubmenu: false },
-  { label: 'Campus Life', href: '/campus-life', hasSubmenu: false },
-  { label: 'Alumni', href: '/alumni', hasSubmenu: false },
-  { label: 'Podcast', href: '/podcast', hasSubmenu: false },
-  { label: 'Placements', href: '/placement', hasSubmenu: false },
-  { label: 'International Office', href: '/international-office', hasSubmenu: false },
-  { label: 'News & Events', href: '/news-events', hasSubmenu: false },
+  { label: 'About Us', href: '/about', sections: ['Leadership Messages', 'Institutional Overview', 'Governance', 'Accreditations', 'University Partnerships', 'JLU Staff', 'Ranking & Awards'] },
+  { label: 'Programs', href: '/programs', sections: ['52+ Programs Offered', 'Programs List', 'Perspective', 'Intent', 'Depth', 'Relevance'] },
+  { label: 'Events', href: '/events', sections: ['Upcoming Events', 'Past Events', 'Signature Events & Campus Experiences', 'Leadership & Community Impact', "Don't Miss Our Updates"] },
+  { label: 'Academics', href: '/academics', sections: ['Philosophy That Guides Every Step', 'Faculties & Schools', 'How Learning Takes Shape', 'Voices From Within'] },
+  { label: 'Campus', href: '/campus', sections: ['Campus At A Glance', 'Built For Excellence', 'Student Accommodation', 'Dining Facilities', 'Media Studio', 'Technology Labs', 'Moot Court', 'Sports & Wellness', 'Campus Gallery'] },
+  { label: 'Admissions', href: '/admissions', sections: ['Choose Your Academic Path', 'Undergraduate Programs', 'Postgraduate Programs', 'Research Degrees', 'Beyond Degrees', 'Experience The Campus', 'Scholarships & Freeships', 'Admission FAQs'] },
+  { label: 'Research', href: '/research', sections: ['Research Ecosystem', 'Centres of Excellence', 'Faculty Research Areas', 'Interdisciplinary Labs', 'Graduate Research', 'Latest Publication', 'Faculty Spotlight'] },
+  { label: 'Campus Life', href: '/campus-life', sections: ['Student Life', 'Find Your People', 'Lead. Represent. Inspire.', 'Celebrating Student Success', 'Careers & Innovation', 'Where Ideas Become Startups', 'More Than A Campus'] },
+  { label: 'Alumni', href: '/alumni', sections: ['Alumni Services', 'Notable Alumni', 'Success Stories', 'Voices of Alumni', 'Upcoming Events', 'Global Alumni Network'] },
+  { label: 'Podcast', href: '/podcast', sections: ['Featured Episode', 'All Episodes', 'Industry Guests', 'Subscribe to JLU Talks'] },
+  { label: 'Placements', href: '/placement', sections: ['Career Excellence', 'Industry Excellence', 'Career Growth', 'Global Reach', 'Our Success Stories', '500+ Recruiting Partners'] },
+  { label: 'International Office', href: '/international-office', sections: ['Choose Program', 'Submit Application', 'Receive Offer Letter', 'Apply For Visa', 'Arrive On Campus', 'Global Partnerships', 'Visa Guidance'] },
+  { label: 'News & Events', href: '/news-events', sections: ['Past Events', 'Featured News', 'Event Gallery'] },
+];
+
+// Bottom menu items - always shown in right section
+const bottomMenuItems = [
+  { label: 'Student Clubs', href: '/student-clubs' },
+  { label: 'Alumni', href: '/alumni' },
+  { label: 'Faculty of Management', href: '/faculty/management' },
+  { label: 'Faculty of Journalism', href: '/faculty/journalism' },
+  { label: 'Faculty of Humanities & Design', href: '/faculty/humanities' },
+  { label: 'Faculty of Engineering', href: '/faculty/engineering' },
+  { label: 'Faculty of Pharmacy', href: '/faculty/pharmacy' },
+  { label: 'Faculty of Law', href: '/faculty/law' },
 ];
 
 // ============================================
@@ -50,7 +48,11 @@ interface MenuOverlayProps {
 
 const MenuOverlay = ({ isOpen, onClose, menuButtonRef, heroRef }: MenuOverlayProps) => {
   const [activeItem, setActiveItem] = useState<string>('');
+  const [hoveredItem, setHoveredItem] = useState<string | null>(null);
   const isMobile = useIsMobile();
+
+  // Get the currently hovered navigation item
+  const hoveredNavItem = navigationItems.find(item => item.label === hoveredItem);
 
   // Medium circle size for menu - smaller on mobile
   const circleSize = isMobile ? 2000 : 1600;
@@ -174,6 +176,8 @@ const MenuOverlay = ({ isOpen, onClose, menuButtonRef, heroRef }: MenuOverlayPro
                           animate={{ opacity: 1, x: 0 }}
                           transition={{ delay: 0.6 + index * 0.05, duration: 0.5 }}
                           onClick={() => setActiveItem(item.label)}
+                          onMouseEnter={() => setHoveredItem(item.label)}
+                          onMouseLeave={() => setHoveredItem(null)}
                           className={`text-sm font-medium transition-colors cursor-pointer flex items-center gap-1.5 ${
                             activeItem === item.label
                               ? 'text-[#03463B]'
@@ -192,29 +196,53 @@ const MenuOverlay = ({ isOpen, onClose, menuButtonRef, heroRef }: MenuOverlayPro
                   {/* Vertical divider line */}
                   <div className="w-[1px] bg-gray-300 self-stretch my-4" />
 
-                  {/* Submenu - right side */}
-                  <motion.div
-                    initial={{ opacity: 0, x: 15 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ duration: 0.5, delay: 0.65 }}
-                    className="flex flex-col gap-1.5 flex-1 pt-6"
-                  >
-                    {navigationItems
-                      .find((item) => item.label === 'Academics')
-                      ?.submenu?.map((subItem, index) => (
-                        <motion.a
-                          key={subItem.label}
-                          href={subItem.href}
-                          onClick={subItem.href !== '#' ? onClose : undefined}
-                          initial={{ opacity: 0, y: 8 }}
+                  {/* Right side - Hovered item content or bottom menu */}
+                  <div className="flex flex-col gap-1.5 flex-1 pt-6 min-h-[200px]">
+                    <AnimatePresence mode="wait">
+                      {hoveredNavItem ? (
+                        <motion.div
+                          key={hoveredNavItem.label}
+                          initial={{ opacity: 0, y: 10 }}
                           animate={{ opacity: 1, y: 0 }}
-                          transition={{ delay: 0.7 + index * 0.05, duration: 0.4 }}
-                          className="text-xs text-[#03463B]/70 hover:text-[#03463B] transition-colors cursor-pointer"
+                          exit={{ opacity: 0, y: -10 }}
+                          transition={{ duration: 0.2, ease: 'easeOut' }}
+                          className="flex flex-col gap-1.5"
                         >
-                          {subItem.label}
-                        </motion.a>
-                      ))}
-                  </motion.div>
+                          <h3 className="text-sm font-semibold text-[#03463B] mb-1">
+                            {hoveredNavItem.label}
+                          </h3>
+                          {hoveredNavItem.sections.map((section) => (
+                            <span key={section} className="text-xs text-[#03463B]/60">
+                              {section}
+                            </span>
+                          ))}
+                        </motion.div>
+                      ) : (
+                        <motion.div
+                          key="bottom-menu"
+                          initial={{ opacity: 0, y: 10 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          exit={{ opacity: 0, y: -10 }}
+                          transition={{ duration: 0.2, ease: 'easeOut' }}
+                          className="flex flex-col gap-1.5"
+                        >
+                          {bottomMenuItems.map((subItem, index) => (
+                            <motion.a
+                              key={subItem.label}
+                              href={subItem.href}
+                              onClick={onClose}
+                              initial={{ opacity: 0, y: 8 }}
+                              animate={{ opacity: 1, y: 0 }}
+                              transition={{ delay: 0.7 + index * 0.05, duration: 0.4 }}
+                              className="text-xs text-[#03463B]/70 hover:text-[#03463B] transition-colors cursor-pointer"
+                            >
+                              {subItem.label}
+                            </motion.a>
+                          ))}
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
+                  </div>
                 </div>
               </motion.div>
             </>
@@ -338,6 +366,8 @@ const MenuOverlay = ({ isOpen, onClose, menuButtonRef, heroRef }: MenuOverlayPro
                           animate={{ opacity: 1, x: 0 }}
                           transition={{ delay: 0.15 + index * 0.05, duration: 0.4 }}
                           onClick={() => setActiveItem(item.label)}
+                          onMouseEnter={() => setHoveredItem(item.label)}
+                          onMouseLeave={() => setHoveredItem(null)}
                           className={`text-lg font-medium transition-colors cursor-pointer flex items-center gap-2 ${
                             activeItem === item.label
                               ? 'text-[#03463B]'
@@ -356,29 +386,53 @@ const MenuOverlay = ({ isOpen, onClose, menuButtonRef, heroRef }: MenuOverlayPro
                   {/* Vertical divider line */}
                   <div className="w-[1px] bg-gray-300 self-stretch my-8" />
 
-                  {/* Submenu */}
-                  <motion.div
-                    initial={{ opacity: 0, x: 20 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ duration: 0.3 }}
-                    className="flex flex-col gap-2.5 pt-8"
-                  >
-                    {navigationItems
-                      .find((item) => item.label === 'Academics')
-                      ?.submenu?.map((subItem, index) => (
-                        <motion.a
-                          key={subItem.label}
-                          href={subItem.href}
-                          onClick={subItem.href !== '#' ? onClose : undefined}
-                          initial={{ opacity: 0, y: 10 }}
-                          animate={{ opacity: 1, y: 0 }}
-                          transition={{ delay: index * 0.05, duration: 0.3 }}
-                          className="text-sm text-[#03463B]/70 hover:text-[#03463B] transition-colors cursor-pointer"
+                  {/* Right side - Hovered item content or bottom menu */}
+                  <div className="flex flex-col gap-2.5 pt-8 min-w-[250px]">
+                    <AnimatePresence mode="wait">
+                      {hoveredNavItem ? (
+                        <motion.div
+                          key={hoveredNavItem.label}
+                          initial={{ opacity: 0, x: 20 }}
+                          animate={{ opacity: 1, x: 0 }}
+                          exit={{ opacity: 0, x: -20 }}
+                          transition={{ duration: 0.25, ease: [0.4, 0, 0.2, 1] }}
+                          className="flex flex-col gap-2"
                         >
-                          {subItem.label}
-                        </motion.a>
-                      ))}
-                  </motion.div>
+                          <h3 className="text-lg font-semibold text-[#03463B] mb-1">
+                            {hoveredNavItem.label}
+                          </h3>
+                          {hoveredNavItem.sections.map((section) => (
+                            <span key={section} className="text-sm text-[#03463B]/60">
+                              {section}
+                            </span>
+                          ))}
+                        </motion.div>
+                      ) : (
+                        <motion.div
+                          key="bottom-menu"
+                          initial={{ opacity: 0, x: 20 }}
+                          animate={{ opacity: 1, x: 0 }}
+                          exit={{ opacity: 0, x: -20 }}
+                          transition={{ duration: 0.25, ease: [0.4, 0, 0.2, 1] }}
+                          className="flex flex-col gap-2.5"
+                        >
+                          {bottomMenuItems.map((subItem, index) => (
+                            <motion.a
+                              key={subItem.label}
+                              href={subItem.href}
+                              onClick={onClose}
+                              initial={{ opacity: 0, y: 10 }}
+                              animate={{ opacity: 1, y: 0 }}
+                              transition={{ delay: index * 0.05, duration: 0.3 }}
+                              className="text-sm text-[#03463B]/70 hover:text-[#03463B] transition-colors cursor-pointer"
+                            >
+                              {subItem.label}
+                            </motion.a>
+                          ))}
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
+                  </div>
                 </div>
               </motion.div>
             </>
