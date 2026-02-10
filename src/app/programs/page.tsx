@@ -1,5 +1,6 @@
 'use client';
 
+import { Suspense } from 'react';
 import { Header, Programs, Footer } from '@/components';
 
 export default function ProgramsPage() {
@@ -9,7 +10,9 @@ export default function ProgramsPage() {
       <Header />
 
       {/* Programs Hero */}
-      <Programs />
+      <Suspense fallback={<div className="min-h-screen" />}>
+        <Programs />
+      </Suspense>
 
       {/* Footer */}
       <Footer />
