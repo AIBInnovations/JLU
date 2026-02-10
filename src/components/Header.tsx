@@ -15,19 +15,23 @@ const navigationItems = [
     href: '/academics',
     hasSubmenu: true,
     submenu: [
-      'Faculty of Management',
-      'Faculty of Journalism & Social Science',
-      'Faculty of Fashion, Design & Arts',
-      'Faculty of Engineering & Technology',
-      'Faculty of Pharmacy',
-      'Faculty of Law',
-      'IICA - Jagran Centre for Creative Skills',
+      { label: 'Student Clubs', href: '/student-clubs' },
+      { label: 'Alumni', href: '/alumni' },
+      { label: 'Faculty of Management', href: '/faculty/management' },
+      { label: 'Faculty of Journalism', href: '/faculty/journalism' },
+      { label: 'Faculty of Humanities & Design', href: '/faculty/humanities' },
+      { label: 'Faculty of Engineering', href: '/faculty/engineering' },
+      { label: 'Faculty of Pharmacy', href: '/faculty/pharmacy' },
+      { label: 'Faculty of Law', href: '/faculty/law' },
     ]
   },
   { label: 'Campus', href: '/campus', hasSubmenu: false },
   { label: 'Admissions', href: '/admissions', hasSubmenu: false },
   { label: 'Research', href: '/research', hasSubmenu: false },
   { label: 'Campus Life', href: '/campus-life', hasSubmenu: false },
+  { label: 'Alumni', href: '/alumni', hasSubmenu: false },
+  { label: 'Podcast', href: '/podcast', hasSubmenu: false },
+  { label: 'Placements', href: '/placement', hasSubmenu: false },
   { label: 'International Office', href: '/international-office', hasSubmenu: false },
   { label: 'News & Events', href: '/news-events', hasSubmenu: false },
 ];
@@ -172,14 +176,15 @@ const MenuOverlay = ({ isOpen, onClose, menuButtonRef }: MenuOverlayProps) => {
                       .find((item) => item.label === 'Academics')
                       ?.submenu?.map((subItem, index) => (
                         <motion.a
-                          key={subItem}
-                          href="#"
+                          key={subItem.label}
+                          href={subItem.href}
+                          onClick={subItem.href !== '#' ? onClose : undefined}
                           initial={{ opacity: 0, y: 8 }}
                           animate={{ opacity: 1, y: 0 }}
                           transition={{ delay: 0.7 + index * 0.05, duration: 0.4 }}
                           className="text-xs text-[#03463B]/70 hover:text-[#03463B] transition-colors cursor-pointer"
                         >
-                          {subItem}
+                          {subItem.label}
                         </motion.a>
                       ))}
                   </motion.div>
@@ -338,14 +343,15 @@ const MenuOverlay = ({ isOpen, onClose, menuButtonRef }: MenuOverlayProps) => {
                       .find((item) => item.label === 'Academics')
                       ?.submenu?.map((subItem, index) => (
                         <motion.a
-                          key={subItem}
-                          href="#"
+                          key={subItem.label}
+                          href={subItem.href}
+                          onClick={subItem.href !== '#' ? onClose : undefined}
                           initial={{ opacity: 0, y: 10 }}
                           animate={{ opacity: 1, y: 0 }}
                           transition={{ delay: index * 0.05, duration: 0.3 }}
                           className="text-sm text-[#03463B]/70 hover:text-[#03463B] transition-colors cursor-pointer"
                         >
-                          {subItem}
+                          {subItem.label}
                         </motion.a>
                       ))}
                   </motion.div>

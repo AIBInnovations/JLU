@@ -17,6 +17,7 @@ export const PassionSection = () => {
   const videoRefs = useRef<HTMLVideoElement[]>([]);
   const textRef = useRef<HTMLDivElement>(null);
   const [currentText, setCurrentText] = useState(0);
+  const [mounted, setMounted] = useState(false);
   const isMobile = useIsMobile();
 
   // Section data
@@ -26,7 +27,13 @@ export const PassionSection = () => {
     { video: '/p.mp4', text: 'SUCCESS' },
   ];
 
+  // Wait for mount
   useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  useEffect(() => {
+    if (!mounted) return;
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     if (!wrapperRef.current || !containerRef.current) return;
 
@@ -155,7 +162,7 @@ export const PassionSection = () => {
       triggers.forEach((t) => t.kill());
       ScrollTrigger.refresh();
     };
-  }, [isMobile]);
+  }, [mounted, isMobile]);
 
   const addVideoRef = (el: HTMLVideoElement | null, index: number) => {
     if (el) videoRefs.current[index] = el;

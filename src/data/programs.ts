@@ -1,0 +1,1048 @@
+export interface Program {
+  id: string;
+  slug: string;
+  name: string;
+  shortName: string;
+  category: 'UG' | 'PG' | 'PhD' | 'Diploma';
+  duration: string;
+  type: string;
+  degree: string;
+  school: string;
+  description: string;
+  highlights: string[];
+  careerProspects: string[];
+  eligibility: string;
+  image: string;
+}
+
+export const programs: Program[] = [
+  // UG Programs (33)
+  {
+    id: 'btech-ai',
+    slug: 'btech-artificial-intelligence',
+    name: 'B.Tech Artificial Intelligence',
+    shortName: 'B.Tech AI',
+    category: 'UG',
+    duration: '4 Years',
+    type: 'Full Time',
+    degree: 'B.Tech',
+    school: 'School of Engineering & Technology',
+    description: 'A cutting-edge program designed to prepare students for the AI-driven future. Learn machine learning, deep learning, natural language processing, and computer vision from industry experts.',
+    highlights: [
+      'Hands-on projects with real-world AI applications',
+      'Industry partnerships with leading tech companies',
+      'State-of-the-art AI and ML labs',
+      'Capstone projects with industry mentors'
+    ],
+    careerProspects: ['AI Engineer', 'Machine Learning Engineer', 'Data Scientist', 'Research Scientist', 'AI Product Manager'],
+    eligibility: '10+2 with Physics, Chemistry, Mathematics with minimum 60% marks',
+    image: 'https://images.unsplash.com/photo-1677442136019-21780ecad995?w=800&q=80'
+  },
+  {
+    id: 'btech-ds',
+    slug: 'btech-data-science',
+    name: 'B.Tech Data Science',
+    shortName: 'B.Tech DS',
+    category: 'UG',
+    duration: '4 Years',
+    type: 'Full Time',
+    degree: 'B.Tech',
+    school: 'School of Engineering & Technology',
+    description: 'Master the art of extracting insights from data. This program combines statistics, programming, and domain expertise to prepare you for data-driven decision making.',
+    highlights: [
+      'Big data analytics and cloud computing',
+      'Real-world data science projects',
+      'Industry-relevant curriculum',
+      'Internship opportunities with top companies'
+    ],
+    careerProspects: ['Data Scientist', 'Data Analyst', 'Business Intelligence Analyst', 'Data Engineer', 'Analytics Manager'],
+    eligibility: '10+2 with Physics, Chemistry, Mathematics with minimum 60% marks',
+    image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&q=80'
+  },
+  {
+    id: 'btech-cse',
+    slug: 'btech-computer-science-engineering',
+    name: 'B.Tech Computer Science & Engineering',
+    shortName: 'B.Tech CSE',
+    category: 'UG',
+    duration: '4 Years',
+    type: 'Full Time',
+    degree: 'B.Tech',
+    school: 'School of Engineering & Technology',
+    description: 'A comprehensive program covering all aspects of computer science from algorithms and data structures to software engineering and system design.',
+    highlights: [
+      'Industry-aligned curriculum',
+      'Coding bootcamps and hackathons',
+      'Modern programming languages and frameworks',
+      'Strong placement record'
+    ],
+    careerProspects: ['Software Engineer', 'Full Stack Developer', 'System Architect', 'Technical Lead', 'Product Manager'],
+    eligibility: '10+2 with Physics, Chemistry, Mathematics with minimum 60% marks',
+    image: 'https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=800&q=80'
+  },
+  {
+    id: 'bdes-uiux',
+    slug: 'bdes-ui-ux-design',
+    name: 'B.Des UI/UX Design',
+    shortName: 'B.Des UI/UX',
+    category: 'UG',
+    duration: '4 Years',
+    type: 'Full Time',
+    degree: 'B.Des',
+    school: 'School of Design',
+    description: 'Learn to create intuitive and beautiful digital experiences. This program combines design thinking, user research, and visual design to prepare future UX leaders.',
+    highlights: [
+      'Design thinking methodology',
+      'User research and usability testing',
+      'Prototyping with industry-standard tools',
+      'Portfolio development with real projects'
+    ],
+    careerProspects: ['UI Designer', 'UX Designer', 'Product Designer', 'Interaction Designer', 'Design Lead'],
+    eligibility: '10+2 from any stream with minimum 50% marks',
+    image: 'https://images.unsplash.com/photo-1561070791-2526d30994b5?w=800&q=80'
+  },
+  {
+    id: 'bca',
+    slug: 'bachelor-of-computer-application',
+    name: 'Bachelor of Computer Application',
+    shortName: 'BCA',
+    category: 'UG',
+    duration: '3 Years',
+    type: 'Full Time',
+    degree: 'BCA',
+    school: 'School of Computer Applications',
+    description: 'A versatile undergraduate program that provides strong foundation in computer applications, programming, and software development.',
+    highlights: [
+      'Practical programming skills',
+      'Web and mobile app development',
+      'Database management systems',
+      'Industry internship program'
+    ],
+    careerProspects: ['Software Developer', 'Web Developer', 'System Administrator', 'IT Consultant', 'Database Administrator'],
+    eligibility: '10+2 from any stream with minimum 50% marks',
+    image: 'https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=800&q=80'
+  },
+  {
+    id: 'bca-ai',
+    slug: 'bca-artificial-intelligence',
+    name: 'BCA Artificial Intelligence',
+    shortName: 'BCA AI',
+    category: 'UG',
+    duration: '3 Years',
+    type: 'Full Time',
+    degree: 'BCA',
+    school: 'School of Computer Applications',
+    description: 'Specialized BCA program with focus on AI and machine learning applications. Perfect for those who want to enter the AI field without engineering background.',
+    highlights: [
+      'AI fundamentals and applications',
+      'Python programming for AI',
+      'Machine learning projects',
+      'Industry exposure through internships'
+    ],
+    careerProspects: ['AI Developer', 'ML Engineer', 'AI Analyst', 'Chatbot Developer', 'AI Consultant'],
+    eligibility: '10+2 from any stream with minimum 50% marks',
+    image: 'https://images.unsplash.com/photo-1555255707-c07966088b7b?w=800&q=80'
+  },
+  {
+    id: 'bca-ds',
+    slug: 'bca-data-science',
+    name: 'BCA Data Science',
+    shortName: 'BCA DS',
+    category: 'UG',
+    duration: '3 Years',
+    type: 'Full Time',
+    degree: 'BCA',
+    school: 'School of Computer Applications',
+    description: 'BCA program specialized in data science and analytics. Learn to work with data, create visualizations, and derive actionable insights.',
+    highlights: [
+      'Data analysis and visualization',
+      'Statistical methods and tools',
+      'Big data fundamentals',
+      'Hands-on analytics projects'
+    ],
+    careerProspects: ['Data Analyst', 'Business Analyst', 'Analytics Consultant', 'BI Developer', 'Data Engineer'],
+    eligibility: '10+2 from any stream with minimum 50% marks',
+    image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&q=80'
+  },
+  {
+    id: 'ba-llb',
+    slug: 'ba-llb-integrated',
+    name: 'BA LLB (Integrated)',
+    shortName: 'BA LLB',
+    category: 'UG',
+    duration: '5 Years',
+    type: 'Full Time',
+    degree: 'BA LLB',
+    school: 'School of Law',
+    description: 'Integrated law program combining arts and law education. Develop strong legal foundation with critical thinking and analytical skills.',
+    highlights: [
+      'Moot court competitions',
+      'Legal aid clinics',
+      'Internships with law firms',
+      'Guest lectures by eminent jurists'
+    ],
+    careerProspects: ['Advocate', 'Corporate Lawyer', 'Legal Advisor', 'Judge', 'Legal Consultant'],
+    eligibility: '10+2 from any stream with minimum 50% marks',
+    image: 'https://images.unsplash.com/photo-1589829545856-d10d557cf95f?w=800&q=80'
+  },
+  {
+    id: 'bba-llb',
+    slug: 'bba-llb-integrated',
+    name: 'BBA LLB (Integrated)',
+    shortName: 'BBA LLB',
+    category: 'UG',
+    duration: '5 Years',
+    type: 'Full Time',
+    degree: 'BBA LLB',
+    school: 'School of Law',
+    description: 'Integrated program combining business administration with law. Ideal for those aspiring for corporate law and business legal roles.',
+    highlights: [
+      'Business law specialization',
+      'Corporate internships',
+      'Case study methodology',
+      'Industry expert sessions'
+    ],
+    careerProspects: ['Corporate Lawyer', 'Legal Counsel', 'Business Consultant', 'Compliance Officer', 'Entrepreneur'],
+    eligibility: '10+2 from any stream with minimum 50% marks',
+    image: 'https://images.unsplash.com/photo-1507679799987-c73779587ccf?w=800&q=80'
+  },
+  {
+    id: 'bba',
+    slug: 'bachelor-of-business-administration',
+    name: 'Bachelor of Business Administration',
+    shortName: 'BBA',
+    category: 'UG',
+    duration: '3 Years',
+    type: 'Full Time',
+    degree: 'BBA',
+    school: 'School of Management',
+    description: 'Comprehensive business management program that prepares students for leadership roles in corporate and entrepreneurial ventures.',
+    highlights: [
+      'Industry-focused curriculum',
+      'Live projects with companies',
+      'Entrepreneurship incubation',
+      'International exposure programs'
+    ],
+    careerProspects: ['Business Analyst', 'Marketing Manager', 'HR Manager', 'Operations Manager', 'Entrepreneur'],
+    eligibility: '10+2 from any stream with minimum 50% marks',
+    image: 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=800&q=80'
+  },
+  {
+    id: 'bpharma',
+    slug: 'bachelor-of-pharmacy',
+    name: 'Bachelor of Pharmacy',
+    shortName: 'B.Pharma',
+    category: 'UG',
+    duration: '4 Years',
+    type: 'Full Time',
+    degree: 'B.Pharma',
+    school: 'School of Pharmacy',
+    description: 'Professional pharmacy program with strong emphasis on pharmaceutical sciences, drug development, and patient care.',
+    highlights: [
+      'State-of-the-art pharma labs',
+      'Hospital pharmacy training',
+      'Research opportunities',
+      'Industry internships'
+    ],
+    careerProspects: ['Pharmacist', 'Drug Inspector', 'Pharmaceutical Sales', 'Research Scientist', 'Quality Control Analyst'],
+    eligibility: '10+2 with Physics, Chemistry, Biology/Mathematics with minimum 50% marks',
+    image: 'https://images.unsplash.com/photo-1587854692152-cbe660dbde88?w=800&q=80'
+  },
+  {
+    id: 'bsc-sound',
+    slug: 'bsc-sound-design-music-video-production',
+    name: 'B.Sc Sound Design & Music Video Production',
+    shortName: 'B.Sc Sound Design',
+    category: 'UG',
+    duration: '3 Years',
+    type: 'Full Time',
+    degree: 'B.Sc',
+    school: 'School of Media & Communication',
+    description: 'Creative program combining sound engineering, music production, and video production for the entertainment industry.',
+    highlights: [
+      'Professional recording studios',
+      'Industry-standard equipment',
+      'Live production experience',
+      'Collaboration with film projects'
+    ],
+    careerProspects: ['Sound Engineer', 'Music Producer', 'Audio Editor', 'Foley Artist', 'Broadcast Technician'],
+    eligibility: '10+2 from any stream with minimum 50% marks',
+    image: 'https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?w=800&q=80'
+  },
+  {
+    id: 'bsc-content',
+    slug: 'bsc-content-creation-media-production',
+    name: 'B.Sc Content Creation & Media Production',
+    shortName: 'B.Sc Content Creation',
+    category: 'UG',
+    duration: '3 Years',
+    type: 'Full Time',
+    degree: 'B.Sc',
+    school: 'School of Media & Communication',
+    description: 'Modern program for digital content creators covering video production, social media, podcasting, and digital storytelling.',
+    highlights: [
+      'Content strategy development',
+      'Video production and editing',
+      'Social media marketing',
+      'Live streaming and podcasting'
+    ],
+    careerProspects: ['Content Creator', 'Video Producer', 'Social Media Manager', 'Digital Marketing Specialist', 'Influencer Manager'],
+    eligibility: '10+2 from any stream with minimum 50% marks',
+    image: 'https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?w=800&q=80'
+  },
+  {
+    id: 'bsc-animation',
+    slug: 'bsc-animation-game-production',
+    name: 'B.Sc Animation & Game Production',
+    shortName: 'B.Sc Animation',
+    category: 'UG',
+    duration: '3 Years',
+    type: 'Full Time',
+    degree: 'B.Sc',
+    school: 'School of Media & Communication',
+    description: 'Creative program focusing on 2D/3D animation, game design, and interactive media production for entertainment industry.',
+    highlights: [
+      '2D and 3D animation techniques',
+      'Game design and development',
+      'VFX and motion graphics',
+      'Industry-standard software training'
+    ],
+    careerProspects: ['Animator', 'Game Designer', 'VFX Artist', 'Motion Graphics Designer', 'Character Designer'],
+    eligibility: '10+2 from any stream with minimum 50% marks',
+    image: 'https://images.unsplash.com/photo-1616587226960-4a03badbe8bf?w=800&q=80'
+  },
+  {
+    id: 'bjmc',
+    slug: 'bachelor-journalism-mass-communication',
+    name: 'Bachelor of Journalism & Mass Communication',
+    shortName: 'BJMC',
+    category: 'UG',
+    duration: '3 Years',
+    type: 'Full Time',
+    degree: 'BJMC',
+    school: 'School of Media & Communication',
+    description: 'Comprehensive journalism program covering print, broadcast, and digital media with hands-on newsroom experience.',
+    highlights: [
+      'Newsroom simulation labs',
+      'TV and radio production',
+      'Digital journalism training',
+      'Media internship programs'
+    ],
+    careerProspects: ['Journalist', 'News Anchor', 'PR Professional', 'Content Writer', 'Media Planner'],
+    eligibility: '10+2 from any stream with minimum 50% marks',
+    image: 'https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=800&q=80'
+  },
+  {
+    id: 'bsc-hospitality',
+    slug: 'bsc-hospitality-hotel-administration',
+    name: 'B.Sc Hospitality & Hotel Administration',
+    shortName: 'B.Sc HHA',
+    category: 'UG',
+    duration: '3 Years',
+    type: 'Full Time',
+    degree: 'B.Sc',
+    school: 'School of Hospitality',
+    description: 'Professional hospitality program with practical training in hotel operations, food service, and guest relations.',
+    highlights: [
+      'Training kitchen and restaurant',
+      'Hotel internship program',
+      'International exposure',
+      'Industry certifications'
+    ],
+    careerProspects: ['Hotel Manager', 'Restaurant Manager', 'Event Manager', 'Guest Relations Manager', 'Hospitality Consultant'],
+    eligibility: '10+2 from any stream with minimum 50% marks',
+    image: 'https://images.unsplash.com/photo-1566073771259-6a8506099945?w=800&q=80'
+  },
+  {
+    id: 'bsc-culinary',
+    slug: 'bsc-culinary-arts',
+    name: 'B.Sc Culinary Arts',
+    shortName: 'B.Sc Culinary',
+    category: 'UG',
+    duration: '3 Years',
+    type: 'Full Time',
+    degree: 'B.Sc',
+    school: 'School of Hospitality',
+    description: 'Professional culinary program with focus on global cuisines, food science, and kitchen management.',
+    highlights: [
+      'Professional training kitchens',
+      'International cuisine modules',
+      'Food science and nutrition',
+      'Industry chef mentorship'
+    ],
+    careerProspects: ['Executive Chef', 'Sous Chef', 'Pastry Chef', 'Food Stylist', 'Culinary Entrepreneur'],
+    eligibility: '10+2 from any stream with minimum 50% marks',
+    image: 'https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=800&q=80'
+  },
+  {
+    id: 'barch',
+    slug: 'bachelor-of-architecture',
+    name: 'Bachelor of Architecture',
+    shortName: 'B.Arch',
+    category: 'UG',
+    duration: '5 Years',
+    type: 'Full Time',
+    degree: 'B.Arch',
+    school: 'School of Architecture',
+    description: 'Professional architecture program focusing on sustainable design, urban planning, and architectural innovation.',
+    highlights: [
+      'Design studios with expert faculty',
+      'Site visits and study tours',
+      'CAD and BIM training',
+      'Internship with architecture firms'
+    ],
+    careerProspects: ['Architect', 'Urban Planner', 'Interior Designer', 'Landscape Architect', 'Project Manager'],
+    eligibility: '10+2 with Mathematics and minimum 50% marks, NATA qualified',
+    image: 'https://images.unsplash.com/photo-1487958449943-2429e8be8625?w=800&q=80'
+  },
+  {
+    id: 'bdes-fashion',
+    slug: 'bdes-fashion-design',
+    name: 'B.Des Fashion Design',
+    shortName: 'B.Des Fashion',
+    category: 'UG',
+    duration: '4 Years',
+    type: 'Full Time',
+    degree: 'B.Des',
+    school: 'School of Design',
+    description: 'Creative program in fashion design covering concept development, pattern making, and fashion business.',
+    highlights: [
+      'Fashion design studios',
+      'Industry collaborations',
+      'Fashion shows and exhibitions',
+      'Internships with fashion brands'
+    ],
+    careerProspects: ['Fashion Designer', 'Costume Designer', 'Fashion Stylist', 'Textile Designer', 'Fashion Entrepreneur'],
+    eligibility: '10+2 from any stream with minimum 50% marks',
+    image: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&q=80'
+  },
+  {
+    id: 'bdes-interior',
+    slug: 'bdes-interior-design',
+    name: 'B.Des Interior Design',
+    shortName: 'B.Des Interior',
+    category: 'UG',
+    duration: '4 Years',
+    type: 'Full Time',
+    degree: 'B.Des',
+    school: 'School of Design',
+    description: 'Professional interior design program focusing on spatial design, materials, and sustainable design practices.',
+    highlights: [
+      'Design software training',
+      'Material library access',
+      'Live project experience',
+      'Industry mentorship'
+    ],
+    careerProspects: ['Interior Designer', 'Space Planner', 'Furniture Designer', 'Set Designer', 'Design Consultant'],
+    eligibility: '10+2 from any stream with minimum 50% marks',
+    image: 'https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?w=800&q=80'
+  },
+  {
+    id: 'bcom',
+    slug: 'bachelor-of-commerce',
+    name: 'Bachelor of Commerce',
+    shortName: 'B.Com',
+    category: 'UG',
+    duration: '3 Years',
+    type: 'Full Time',
+    degree: 'B.Com',
+    school: 'School of Commerce',
+    description: 'Foundational commerce program covering accounting, finance, taxation, and business economics.',
+    highlights: [
+      'Practical accounting training',
+      'Industry expert sessions',
+      'Tally and SAP certification',
+      'Internship opportunities'
+    ],
+    careerProspects: ['Accountant', 'Financial Analyst', 'Tax Consultant', 'Auditor', 'Banking Professional'],
+    eligibility: '10+2 from any stream with minimum 50% marks',
+    image: 'https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=800&q=80'
+  },
+  {
+    id: 'ba-psychology',
+    slug: 'ba-psychology',
+    name: 'BA Psychology',
+    shortName: 'BA Psychology',
+    category: 'UG',
+    duration: '3 Years',
+    type: 'Full Time',
+    degree: 'BA',
+    school: 'School of Liberal Arts',
+    description: 'Comprehensive psychology program covering human behavior, mental processes, and therapeutic approaches.',
+    highlights: [
+      'Psychology labs and assessments',
+      'Counseling practicum',
+      'Research methodology',
+      'Field visits and case studies'
+    ],
+    careerProspects: ['Counselor', 'HR Professional', 'Research Assistant', 'Social Worker', 'Clinical Psychologist (with further study)'],
+    eligibility: '10+2 from any stream with minimum 50% marks',
+    image: 'https://images.unsplash.com/photo-1573497620053-ea5300f94f21?w=800&q=80'
+  },
+  {
+    id: 'ba-english',
+    slug: 'ba-english',
+    name: 'BA English',
+    shortName: 'BA English',
+    category: 'UG',
+    duration: '3 Years',
+    type: 'Full Time',
+    degree: 'BA',
+    school: 'School of Liberal Arts',
+    description: 'Study of English literature, language, and creative writing with focus on communication skills.',
+    highlights: [
+      'Literary analysis and criticism',
+      'Creative writing workshops',
+      'Public speaking training',
+      'Theatre and drama'
+    ],
+    careerProspects: ['Content Writer', 'Editor', 'Teacher', 'PR Professional', 'Copywriter'],
+    eligibility: '10+2 from any stream with minimum 50% marks',
+    image: 'https://images.unsplash.com/photo-1457369804613-52c61a468e7d?w=800&q=80'
+  },
+  {
+    id: 'bsc-cs',
+    slug: 'bsc-computer-science',
+    name: 'B.Sc Computer Science',
+    shortName: 'B.Sc CS',
+    category: 'UG',
+    duration: '3 Years',
+    type: 'Full Time',
+    degree: 'B.Sc',
+    school: 'School of Sciences',
+    description: 'Science program focusing on computer science fundamentals, programming, and computational theory.',
+    highlights: [
+      'Strong theoretical foundation',
+      'Programming labs',
+      'Research orientation',
+      'Industry projects'
+    ],
+    careerProspects: ['Software Developer', 'System Analyst', 'IT Support', 'Research Assistant', 'Technical Writer'],
+    eligibility: '10+2 with Science stream and minimum 50% marks',
+    image: 'https://images.unsplash.com/photo-1515879218367-8466d910aaa4?w=800&q=80'
+  },
+  {
+    id: 'btech-civil',
+    slug: 'btech-civil-engineering',
+    name: 'B.Tech Civil Engineering',
+    shortName: 'B.Tech Civil',
+    category: 'UG',
+    duration: '4 Years',
+    type: 'Full Time',
+    degree: 'B.Tech',
+    school: 'School of Engineering & Technology',
+    description: 'Engineering program covering structural design, construction management, and sustainable infrastructure.',
+    highlights: [
+      'Structural and geotechnical labs',
+      'CAD and surveying training',
+      'Site visit programs',
+      'Industry internships'
+    ],
+    careerProspects: ['Civil Engineer', 'Structural Engineer', 'Construction Manager', 'Urban Planner', 'Project Manager'],
+    eligibility: '10+2 with Physics, Chemistry, Mathematics with minimum 60% marks',
+    image: 'https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=800&q=80'
+  },
+  {
+    id: 'btech-mech',
+    slug: 'btech-mechanical-engineering',
+    name: 'B.Tech Mechanical Engineering',
+    shortName: 'B.Tech Mech',
+    category: 'UG',
+    duration: '4 Years',
+    type: 'Full Time',
+    degree: 'B.Tech',
+    school: 'School of Engineering & Technology',
+    description: 'Core engineering program covering mechanical systems, manufacturing, and thermal sciences.',
+    highlights: [
+      'Well-equipped workshops',
+      'CAD/CAM training',
+      'Industry visits',
+      'Research projects'
+    ],
+    careerProspects: ['Mechanical Engineer', 'Design Engineer', 'Manufacturing Engineer', 'Quality Engineer', 'Automotive Engineer'],
+    eligibility: '10+2 with Physics, Chemistry, Mathematics with minimum 60% marks',
+    image: 'https://images.unsplash.com/photo-1537462715879-360eeb61a0ad?w=800&q=80'
+  },
+  {
+    id: 'btech-ece',
+    slug: 'btech-electronics-communication',
+    name: 'B.Tech Electronics & Communication',
+    shortName: 'B.Tech ECE',
+    category: 'UG',
+    duration: '4 Years',
+    type: 'Full Time',
+    degree: 'B.Tech',
+    school: 'School of Engineering & Technology',
+    description: 'Engineering program focusing on electronics, communication systems, and embedded technologies.',
+    highlights: [
+      'Electronics and communication labs',
+      'IoT and embedded systems',
+      'Industry collaborations',
+      'Research opportunities'
+    ],
+    careerProspects: ['Electronics Engineer', 'Communication Engineer', 'Embedded Systems Engineer', 'Network Engineer', 'IoT Developer'],
+    eligibility: '10+2 with Physics, Chemistry, Mathematics with minimum 60% marks',
+    image: 'https://images.unsplash.com/photo-1518770660439-4636190af475?w=800&q=80'
+  },
+  {
+    id: 'bsc-biotech',
+    slug: 'bsc-biotechnology',
+    name: 'B.Sc Biotechnology',
+    shortName: 'B.Sc Biotech',
+    category: 'UG',
+    duration: '3 Years',
+    type: 'Full Time',
+    degree: 'B.Sc',
+    school: 'School of Sciences',
+    description: 'Science program combining biology and technology for applications in healthcare, agriculture, and environment.',
+    highlights: [
+      'Modern biotech labs',
+      'Research projects',
+      'Industry internships',
+      'Field visits'
+    ],
+    careerProspects: ['Biotechnologist', 'Research Scientist', 'Lab Technician', 'Quality Analyst', 'Biotech Sales'],
+    eligibility: '10+2 with Biology and minimum 50% marks',
+    image: 'https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?w=800&q=80'
+  },
+  {
+    id: 'bsc-micro',
+    slug: 'bsc-microbiology',
+    name: 'B.Sc Microbiology',
+    shortName: 'B.Sc Micro',
+    category: 'UG',
+    duration: '3 Years',
+    type: 'Full Time',
+    degree: 'B.Sc',
+    school: 'School of Sciences',
+    description: 'Study of microorganisms and their applications in health, industry, and environment.',
+    highlights: [
+      'Microbiology labs',
+      'Research methodology',
+      'Industrial visits',
+      'Hands-on training'
+    ],
+    careerProspects: ['Microbiologist', 'Lab Technician', 'Quality Control', 'Research Assistant', 'Food Scientist'],
+    eligibility: '10+2 with Biology and minimum 50% marks',
+    image: 'https://images.unsplash.com/photo-1576086213369-97a306d36557?w=800&q=80'
+  },
+  {
+    id: 'bpt',
+    slug: 'bachelor-of-physiotherapy',
+    name: 'Bachelor of Physiotherapy',
+    shortName: 'BPT',
+    category: 'UG',
+    duration: '4.5 Years',
+    type: 'Full Time',
+    degree: 'BPT',
+    school: 'School of Allied Health Sciences',
+    description: 'Professional program in physiotherapy covering rehabilitation, musculoskeletal care, and therapeutic exercises.',
+    highlights: [
+      'Clinical training',
+      'Hospital attachments',
+      'Advanced physiotherapy equipment',
+      'Sports rehabilitation'
+    ],
+    careerProspects: ['Physiotherapist', 'Sports Physiotherapist', 'Rehabilitation Specialist', 'Clinic Owner', 'Hospital Physiotherapist'],
+    eligibility: '10+2 with Physics, Chemistry, Biology with minimum 50% marks',
+    image: 'https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=800&q=80'
+  },
+  {
+    id: 'boptom',
+    slug: 'bachelor-of-optometry',
+    name: 'Bachelor of Optometry',
+    shortName: 'B.Optom',
+    category: 'UG',
+    duration: '4 Years',
+    type: 'Full Time',
+    degree: 'B.Optom',
+    school: 'School of Allied Health Sciences',
+    description: 'Professional program in eye care covering vision science, clinical optometry, and optical dispensing.',
+    highlights: [
+      'Clinical training',
+      'Eye hospital attachments',
+      'Modern diagnostic equipment',
+      'Community eye care programs'
+    ],
+    careerProspects: ['Optometrist', 'Vision Scientist', 'Optical Consultant', 'Eye Care Manager', 'Research Optometrist'],
+    eligibility: '10+2 with Physics, Chemistry, Biology with minimum 50% marks',
+    image: 'https://images.unsplash.com/photo-1574258495973-f010dfbb5371?w=800&q=80'
+  },
+
+  // PG Programs (13)
+  {
+    id: 'mca',
+    slug: 'master-of-computer-application',
+    name: 'Master of Computer Application',
+    shortName: 'MCA',
+    category: 'PG',
+    duration: '2 Years',
+    type: 'Full Time',
+    degree: 'MCA',
+    school: 'School of Computer Applications',
+    description: 'Advanced program in computer applications with specializations in AI, cloud computing, and software development.',
+    highlights: [
+      'Industry-focused curriculum',
+      'Research opportunities',
+      'Placement assistance',
+      'Industry certifications'
+    ],
+    careerProspects: ['Software Architect', 'Senior Developer', 'Technical Lead', 'IT Manager', 'Solutions Architect'],
+    eligibility: 'Graduate with Mathematics at 10+2 or graduation level with minimum 50% marks',
+    image: 'https://images.unsplash.com/photo-1504639725590-34d0984388bd?w=800&q=80'
+  },
+  {
+    id: 'mdes-uiux',
+    slug: 'mdes-ui-ux-design',
+    name: 'M.Des UI/UX Design',
+    shortName: 'M.Des UI/UX',
+    category: 'PG',
+    duration: '2 Years',
+    type: 'Full Time',
+    degree: 'M.Des',
+    school: 'School of Design',
+    description: 'Advanced design program focusing on user experience research, interaction design, and design leadership.',
+    highlights: [
+      'Design research methodology',
+      'Advanced prototyping',
+      'Industry projects',
+      'Design leadership training'
+    ],
+    careerProspects: ['Senior UX Designer', 'Design Lead', 'UX Researcher', 'Design Manager', 'Product Designer'],
+    eligibility: 'Graduate in any discipline with minimum 50% marks',
+    image: 'https://images.unsplash.com/photo-1586717791821-3f44a563fa4c?w=800&q=80'
+  },
+  {
+    id: 'ma-psychology',
+    slug: 'ma-psychology',
+    name: 'MA Psychology',
+    shortName: 'MA Psychology',
+    category: 'PG',
+    duration: '2 Years',
+    type: 'Full Time',
+    degree: 'MA',
+    school: 'School of Liberal Arts',
+    description: 'Advanced psychology program with clinical and counseling specializations for professional practice.',
+    highlights: [
+      'Clinical practicum',
+      'Counseling training',
+      'Research dissertation',
+      'Supervised internships'
+    ],
+    careerProspects: ['Clinical Psychologist', 'Counseling Psychologist', 'HR Specialist', 'Researcher', 'Therapist'],
+    eligibility: 'Graduate in Psychology or related field with minimum 50% marks',
+    image: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=800&q=80'
+  },
+  {
+    id: 'llm',
+    slug: 'master-of-laws',
+    name: 'Master of Laws',
+    shortName: 'LLM',
+    category: 'PG',
+    duration: '2 Years',
+    type: 'Full Time',
+    degree: 'LLM',
+    school: 'School of Law',
+    description: 'Advanced law program with specializations in corporate law, constitutional law, and international law.',
+    highlights: [
+      'Research orientation',
+      'Moot court excellence',
+      'Guest lectures by judges',
+      'Legal research publications'
+    ],
+    careerProspects: ['Legal Consultant', 'Corporate Counsel', 'Academician', 'Judiciary', 'Legal Researcher'],
+    eligibility: 'LLB or equivalent with minimum 50% marks',
+    image: 'https://images.unsplash.com/photo-1505664194779-8beaceb93744?w=800&q=80'
+  },
+  {
+    id: 'mba',
+    slug: 'master-of-business-administration',
+    name: 'Master of Business Administration',
+    shortName: 'MBA',
+    category: 'PG',
+    duration: '2 Years',
+    type: 'Full Time',
+    degree: 'MBA',
+    school: 'School of Management',
+    description: 'Comprehensive MBA program with specializations in marketing, finance, HR, and operations.',
+    highlights: [
+      'Industry internships',
+      'Live projects',
+      'Guest lectures by industry leaders',
+      'International immersion programs'
+    ],
+    careerProspects: ['Business Manager', 'Consultant', 'Marketing Manager', 'Finance Manager', 'Entrepreneur'],
+    eligibility: 'Graduate in any discipline with minimum 50% marks',
+    image: 'https://images.unsplash.com/photo-1552664730-d307ca884978?w=800&q=80'
+  },
+  {
+    id: 'mba-finance',
+    slug: 'mba-finance',
+    name: 'MBA Finance',
+    shortName: 'MBA Finance',
+    category: 'PG',
+    duration: '2 Years',
+    type: 'Full Time',
+    degree: 'MBA',
+    school: 'School of Management',
+    description: 'Specialized MBA in finance covering investment management, corporate finance, and financial planning.',
+    highlights: [
+      'Bloomberg terminal access',
+      'CFA preparation',
+      'Finance lab',
+      'Industry mentorship'
+    ],
+    careerProspects: ['Financial Analyst', 'Investment Banker', 'Portfolio Manager', 'CFO', 'Risk Manager'],
+    eligibility: 'Graduate in any discipline with minimum 50% marks',
+    image: 'https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=800&q=80'
+  },
+  {
+    id: 'mba-marketing',
+    slug: 'mba-marketing',
+    name: 'MBA Marketing',
+    shortName: 'MBA Marketing',
+    category: 'PG',
+    duration: '2 Years',
+    type: 'Full Time',
+    degree: 'MBA',
+    school: 'School of Management',
+    description: 'Specialized MBA in marketing covering brand management, digital marketing, and consumer behavior.',
+    highlights: [
+      'Digital marketing certifications',
+      'Brand projects',
+      'Marketing simulations',
+      'Agency internships'
+    ],
+    careerProspects: ['Marketing Manager', 'Brand Manager', 'Digital Marketing Head', 'CMO', 'Marketing Consultant'],
+    eligibility: 'Graduate in any discipline with minimum 50% marks',
+    image: 'https://images.unsplash.com/photo-1533750349088-cd871a92f312?w=800&q=80'
+  },
+  {
+    id: 'mba-hr',
+    slug: 'mba-human-resource',
+    name: 'MBA Human Resource',
+    shortName: 'MBA HR',
+    category: 'PG',
+    duration: '2 Years',
+    type: 'Full Time',
+    degree: 'MBA',
+    school: 'School of Management',
+    description: 'Specialized MBA in HR covering talent management, organizational behavior, and HR analytics.',
+    highlights: [
+      'HR analytics tools',
+      'Industry HR projects',
+      'Psychometric training',
+      'SHRM curriculum alignment'
+    ],
+    careerProspects: ['HR Manager', 'Talent Acquisition Head', 'CHRO', 'HR Business Partner', 'L&D Manager'],
+    eligibility: 'Graduate in any discipline with minimum 50% marks',
+    image: 'https://images.unsplash.com/photo-1521791136064-7986c2920216?w=800&q=80'
+  },
+  {
+    id: 'mpharma',
+    slug: 'master-of-pharmacy',
+    name: 'Master of Pharmacy',
+    shortName: 'M.Pharma',
+    category: 'PG',
+    duration: '2 Years',
+    type: 'Full Time',
+    degree: 'M.Pharma',
+    school: 'School of Pharmacy',
+    description: 'Advanced pharmacy program with specializations in pharmaceutics, pharmacology, and pharmaceutical chemistry.',
+    highlights: [
+      'Research-focused curriculum',
+      'Advanced pharma labs',
+      'Industry collaboration',
+      'Publication opportunities'
+    ],
+    careerProspects: ['Research Scientist', 'Pharma Manager', 'Drug Regulatory Affairs', 'QA Manager', 'Academic Researcher'],
+    eligibility: 'B.Pharma with minimum 55% marks',
+    image: 'https://images.unsplash.com/photo-1585435557343-3b092031a831?w=800&q=80'
+  },
+  {
+    id: 'msc-biotech',
+    slug: 'msc-biotechnology',
+    name: 'M.Sc Biotechnology',
+    shortName: 'M.Sc Biotech',
+    category: 'PG',
+    duration: '2 Years',
+    type: 'Full Time',
+    degree: 'M.Sc',
+    school: 'School of Sciences',
+    description: 'Advanced biotechnology program with focus on molecular biology, genetic engineering, and bioinformatics.',
+    highlights: [
+      'Research-intensive curriculum',
+      'Modern biotech equipment',
+      'Industry internships',
+      'Publication support'
+    ],
+    careerProspects: ['Research Scientist', 'Biotech Analyst', 'Lab Manager', 'Bioinformatics Specialist', 'Academic Researcher'],
+    eligibility: 'B.Sc in Life Sciences with minimum 50% marks',
+    image: 'https://images.unsplash.com/photo-1530026405186-ed1f139313f8?w=800&q=80'
+  },
+  {
+    id: 'msc-cs',
+    slug: 'msc-computer-science',
+    name: 'M.Sc Computer Science',
+    shortName: 'M.Sc CS',
+    category: 'PG',
+    duration: '2 Years',
+    type: 'Full Time',
+    degree: 'M.Sc',
+    school: 'School of Sciences',
+    description: 'Advanced computer science program covering algorithms, AI, and advanced computing concepts.',
+    highlights: [
+      'Research orientation',
+      'Advanced programming',
+      'Thesis option',
+      'Industry projects'
+    ],
+    careerProspects: ['Research Scientist', 'Senior Developer', 'Technical Architect', 'Academic Researcher', 'Data Scientist'],
+    eligibility: 'B.Sc in Computer Science or related field with minimum 50% marks',
+    image: 'https://images.unsplash.com/photo-1550751827-4bd374c3f58b?w=800&q=80'
+  },
+  {
+    id: 'mpt',
+    slug: 'master-of-physiotherapy',
+    name: 'Master of Physiotherapy',
+    shortName: 'MPT',
+    category: 'PG',
+    duration: '2 Years',
+    type: 'Full Time',
+    degree: 'MPT',
+    school: 'School of Allied Health Sciences',
+    description: 'Advanced physiotherapy program with specializations in orthopedics, neurology, and sports physiotherapy.',
+    highlights: [
+      'Clinical specialization',
+      'Advanced rehabilitation techniques',
+      'Research dissertation',
+      'Hospital attachments'
+    ],
+    careerProspects: ['Senior Physiotherapist', 'Specialist Physiotherapist', 'Clinic Director', 'Researcher', 'Academician'],
+    eligibility: 'BPT with minimum 50% marks',
+    image: 'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=800&q=80'
+  },
+  {
+    id: 'ma-journalism',
+    slug: 'ma-journalism-mass-communication',
+    name: 'MA Journalism & Mass Communication',
+    shortName: 'MA JMC',
+    category: 'PG',
+    duration: '2 Years',
+    type: 'Full Time',
+    degree: 'MA',
+    school: 'School of Media & Communication',
+    description: 'Advanced journalism program with focus on investigative journalism, digital media, and media management.',
+    highlights: [
+      'Advanced newsroom training',
+      'Digital journalism focus',
+      'Media research',
+      'Industry internships'
+    ],
+    careerProspects: ['Senior Journalist', 'Editor', 'Media Manager', 'PR Director', 'Documentary Filmmaker'],
+    eligibility: 'Graduate in any discipline with minimum 50% marks',
+    image: 'https://images.unsplash.com/photo-1495020689067-958852a7765e?w=800&q=80'
+  },
+
+  // Diploma Programs (3)
+  {
+    id: 'diploma-events',
+    slug: 'diploma-in-events-management',
+    name: 'Diploma in Events Management',
+    shortName: 'Diploma Events',
+    category: 'Diploma',
+    duration: '1 Year',
+    type: 'Full Time',
+    degree: 'Diploma',
+    school: 'School of Hospitality',
+    description: 'Professional diploma covering event planning, coordination, and management for corporate and social events.',
+    highlights: [
+      'Live event experience',
+      'Industry exposure',
+      'Vendor management training',
+      'Portfolio development'
+    ],
+    careerProspects: ['Event Coordinator', 'Wedding Planner', 'Corporate Event Manager', 'Exhibition Manager', 'Venue Manager'],
+    eligibility: '10+2 from any stream',
+    image: 'https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=800&q=80'
+  },
+  {
+    id: 'diploma-food',
+    slug: 'diploma-in-food-production',
+    name: 'Diploma in Food Production',
+    shortName: 'Diploma Food Prod',
+    category: 'Diploma',
+    duration: '1 Year',
+    type: 'Full Time',
+    degree: 'Diploma',
+    school: 'School of Hospitality',
+    description: 'Practical diploma in food production covering culinary techniques, kitchen operations, and food safety.',
+    highlights: [
+      'Hands-on kitchen training',
+      'Industry placements',
+      'Food safety certification',
+      'Multi-cuisine exposure'
+    ],
+    careerProspects: ['Chef de Partie', 'Kitchen Supervisor', 'Food Production Manager', 'Catering Manager', 'Pastry Chef'],
+    eligibility: '10+2 from any stream',
+    image: 'https://images.unsplash.com/photo-1466637574441-749b8f19452f?w=800&q=80'
+  },
+  {
+    id: 'pgd-culinary',
+    slug: 'pg-diploma-indian-culinary-arts',
+    name: 'PG Diploma in Indian Culinary Arts',
+    shortName: 'PGD Indian Culinary',
+    category: 'Diploma',
+    duration: '1 Year',
+    type: 'Full Time',
+    degree: 'PG Diploma',
+    school: 'School of Hospitality',
+    description: 'Specialized post-graduate diploma focusing on Indian cuisines, regional cooking, and traditional techniques.',
+    highlights: [
+      'Regional cuisine mastery',
+      'Traditional techniques',
+      'Chef mentorship',
+      'Restaurant internship'
+    ],
+    careerProspects: ['Indian Cuisine Chef', 'Executive Chef', 'Culinary Consultant', 'Restaurant Owner', 'Food Blogger'],
+    eligibility: 'Graduate in any discipline',
+    image: 'https://images.unsplash.com/photo-1596797038530-2c107229654b?w=800&q=80'
+  },
+
+  // PhD Programs (1)
+  {
+    id: 'phd',
+    slug: 'phd-full-time-working-professional',
+    name: 'Ph.D. (Full Time / Working Professional)',
+    shortName: 'Ph.D.',
+    category: 'PhD',
+    duration: '3-5 Years',
+    type: 'Full Time / Part Time',
+    degree: 'Ph.D.',
+    school: 'Research & Doctoral Studies',
+    description: 'Doctoral research program across multiple disciplines with flexible options for full-time scholars and working professionals.',
+    highlights: [
+      'Research supervision by experts',
+      'Publication support',
+      'Conference presentations',
+      'Research grants available'
+    ],
+    careerProspects: ['Professor', 'Research Director', 'Industry Researcher', 'Consultant', 'Think Tank Analyst'],
+    eligibility: 'Masters degree in relevant field with minimum 55% marks, entrance test and interview',
+    image: 'https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=800&q=80'
+  }
+];
+
+export const getProgramBySlug = (slug: string): Program | undefined => {
+  return programs.find(p => p.slug === slug);
+};
+
+export const getProgramsByCategory = (category: Program['category']): Program[] => {
+  return programs.filter(p => p.category === category);
+};
+
+export const getRelatedPrograms = (program: Program, limit: number = 3): Program[] => {
+  return programs
+    .filter(p => p.id !== program.id && (p.category === program.category || p.school === program.school))
+    .slice(0, limit);
+};

@@ -145,7 +145,8 @@ export const OurProgrammes = () => {
 
       {/* View All Courses Button */}
       <div className="flex justify-center mt-4 md:mt-8">
-        <button
+        <a
+          href="/programs"
           className="flex items-center bg-[#c3fd7a] text-[#21313c] rounded-full font-semibold hover:bg-[#b3ed6a] transition-colors"
           style={{
             gap: isMobile ? '4px' : '8px',
@@ -161,7 +162,7 @@ export const OurProgrammes = () => {
           >
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
           </svg>
-        </button>
+        </a>
       </div>
 
       {/* Text Section - Hero style layout */}

@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { useIsMobile } from '../hooks/useIsMobile';
@@ -14,7 +14,13 @@ export const AwardsSection = () => {
   const headerRef = useRef<HTMLDivElement>(null);
   const textContentRef = useRef<HTMLDivElement>(null);
   const middleCardRef = useRef<HTMLDivElement>(null);
+  const [mounted, setMounted] = useState(false);
   const isMobile = useIsMobile();
+
+  // Wait for mount
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   const awards = [
     { image: '/aw1.jpg', title: 'QS Diamond Rating badge', year: '2022' },
@@ -25,6 +31,7 @@ export const AwardsSection = () => {
   ];
 
   useEffect(() => {
+    if (!mounted) return;
     if (!wrapperRef.current || !headerRef.current || !textContentRef.current || !middleCardRef.current) return;
 
     const wrapper = wrapperRef.current;
@@ -46,6 +53,7 @@ export const AwardsSection = () => {
       end: 'bottom bottom',
       pin: headerSection,
       pinSpacing: false,
+      anticipatePin: 1,
     });
     triggers.push(headerPin);
 
@@ -57,7 +65,7 @@ export const AwardsSection = () => {
         trigger: middleCard,
         start: 'top 60%',
         end: 'top 40%',
-        scrub: true,
+        scrub: 1,
       },
     });
     if (fadeOutAnimation.scrollTrigger) {
@@ -70,7 +78,7 @@ export const AwardsSection = () => {
       triggers.forEach((trigger) => trigger.kill());
       ScrollTrigger.refresh();
     };
-  }, [isMobile]);
+  }, [mounted, isMobile]);
 
   return (
     <div

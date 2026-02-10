@@ -4,45 +4,142 @@ import Image from 'next/image';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { useState, useRef } from 'react';
 
-const eventsData = [
+interface Event {
+  id: number;
+  date: string;
+  title: string;
+  description: string;
+  venue: string;
+  category: string;
+  image?: string;
+}
+
+const upcomingEvents: Event[] = [
   {
     id: 1,
-    date: '17 September 2025',
-    title: 'Pinning Ceremony',
-    organization: 'Jagran Lakecity University',
-    location: 'Jagran Lakecity University SEH, Bhopal',
-    description: 'Pinning Ceremony Pinning of the new student council members 2025',
-    venue: 'A-block Auditorium',
+    date: '19 August 2025',
+    title: 'Photo Exhibition',
+    description: 'Showcase the art of photography on the occasion of World Photography Day',
+    venue: 'Art Gallery, Shri Gurudev Gupta Media Studios',
+    category: 'Arts & Culture',
+    image: '/e1.jpg',
   },
   {
     id: 2,
-    date: '12 September 2025',
-    title: 'Inter School Debate Competition',
-    organization: 'Jagran Lakecity University',
-    location: 'Jagran Lakecity University SEH, Bhopal',
-    description: 'Inter School Debate Competition MUN & Debating society presents a platform for young orators.',
-    venue: '',
+    date: '17 September 2025',
+    title: 'Pinning Ceremony',
+    description: 'Pinning of the new student council members 2025',
+    venue: 'A-Block Auditorium',
+    category: 'Student Leadership',
+    image: '/e2.jpg',
   },
   {
     id: 3,
+    date: '12 September 2025',
+    title: 'Inter School Debate Competition',
+    description: 'MUN & Debating society presents a platform for young orators',
+    venue: 'Main Campus',
+    category: 'Academic Competition',
+    image: '/e3.jpg',
+  },
+  {
+    id: 4,
     date: '22 July 2025',
     title: 'Ignited Mind Awards 2025',
-    organization: 'Jagran Lakecity University',
-    location: 'Jagran Lakecity University SEH, Bhopal',
-    description: 'A ceremony to recognize and celebrate outstanding achievements',
+    description: 'Ceremony to recognize and celebrate outstanding achievements',
     venue: 'Football Ground',
+    category: 'Awards & Recognition',
+    image: '/e4.jpg',
   },
 ];
 
+const pastEvents: Event[] = [
+  {
+    id: 5,
+    date: '14 January 2025',
+    title: 'Birth Anniversary Celebration',
+    description: "Honoring Late Shri Gurudev Gupta Ji's 106th birth anniversary",
+    venue: 'Shri Gurudev Gupta Media Studios',
+    category: 'Commemoration',
+    image: '/e5.jpg',
+  },
+  {
+    id: 6,
+    date: '13 January 2025',
+    title: 'Official Launch of Alumni Portal',
+    description: 'Gateway to reconnect with the JLU family',
+    venue: 'Jagran Lakecity University SEH',
+    category: 'Launch Event',
+  },
+  {
+    id: 7,
+    date: '1 May 2024',
+    title: '11th Foundation Day & Annual Award Ceremony',
+    description: 'JLU celebrates 11 years of establishment with awards and recognition',
+    venue: 'Main Auditorium',
+    category: 'Anniversary',
+  },
+  {
+    id: 8,
+    date: '15 April 2024',
+    title: 'Lakecity Hack 2024',
+    description: 'Annual hackathon bringing together tech enthusiasts and innovators',
+    venue: 'Faculty of Engineering',
+    category: 'Technology',
+  },
+  {
+    id: 9,
+    date: '10 April 2024',
+    title: 'Data Design & Diversity Masterclass',
+    description: 'Expert-led session on data science and inclusive design practices',
+    venue: 'Conference Hall',
+    category: 'Workshop',
+  },
+  {
+    id: 10,
+    date: '5 April 2024',
+    title: 'Etiquette Edge Communication Workshop',
+    description: 'Professional development workshop on communication skills',
+    venue: 'Faculty of Management',
+    category: 'Workshop',
+  },
+  {
+    id: 11,
+    date: '1 April 2024',
+    title: 'VAISHLASIKI Faculty Development Program',
+    description: 'Comprehensive faculty development initiative for academic excellence',
+    venue: 'Academic Block',
+    category: 'Faculty Development',
+  },
+];
+
+const categories = ['All', 'Arts & Culture', 'Student Leadership', 'Academic Competition', 'Awards & Recognition', 'Workshop', 'Technology'];
+
 const Events = () => {
   const [keyword, setKeyword] = useState('');
-  const [year, setYear] = useState('-Any-');
+  const [selectedCategory, setSelectedCategory] = useState('All');
+  const [selectedYear, setSelectedYear] = useState('All');
   const heroRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
     target: heroRef,
     offset: ['start start', 'end start'],
   });
   const y = useTransform(scrollYProgress, [0, 1], ['0%', '30%']);
+
+  const filteredUpcoming = upcomingEvents.filter(event => {
+    const matchesKeyword = event.title.toLowerCase().includes(keyword.toLowerCase()) ||
+                          event.description.toLowerCase().includes(keyword.toLowerCase());
+    const matchesCategory = selectedCategory === 'All' || event.category === selectedCategory;
+    return matchesKeyword && matchesCategory;
+  });
+
+  const filteredPast = pastEvents.filter(event => {
+    const matchesKeyword = event.title.toLowerCase().includes(keyword.toLowerCase()) ||
+                          event.description.toLowerCase().includes(keyword.toLowerCase());
+    const matchesCategory = selectedCategory === 'All' || event.category === selectedCategory;
+    const matchesYear = selectedYear === 'All' || event.date.includes(selectedYear);
+    return matchesKeyword && matchesCategory && matchesYear;
+  });
 
   return (
     <section className="w-screen m-0 p-0 overflow-x-hidden">
@@ -111,7 +208,92 @@ const Events = () => {
         </div>
       </div>
 
-      {/* Latest Past Events Section */}
+      {/* Upcoming Events Section */}
+      <div className="w-full bg-[#f6f7f0]">
+        <div className="mx-auto px-4 py-10 sm:px-6 sm:py-12 md:px-[120px] md:py-[80px]" style={{ maxWidth: '1440px' }}>
+          {/* Section Header */}
+          <div className="flex flex-col md:flex-row md:justify-between md:items-end mb-8 md:mb-12 pb-6 md:pb-8" style={{ borderBottom: '1px solid #e5e5e5' }}>
+            <div className="mb-6 md:mb-0">
+              <span className="text-[#999] uppercase tracking-widest block text-[10px] sm:text-xs mb-3 md:mb-4" style={{ letterSpacing: '0.2em' }}>
+                What's Coming Up
+              </span>
+              <h2 className="text-[#21313c] text-2xl sm:text-3xl md:text-[clamp(2rem,4vw,3rem)]" style={{ fontWeight: 600, lineHeight: 1, letterSpacing: '-0.02em' }}>
+                Upcoming{' '}
+                <span style={{ fontFamily: "'Times New Roman', serif", fontStyle: 'italic', fontWeight: 400 }}>Events</span>
+              </h2>
+            </div>
+
+            {/* Category Filter */}
+            <div className="flex flex-wrap gap-2">
+              {categories.slice(0, 5).map((cat) => (
+                <button
+                  key={cat}
+                  onClick={() => setSelectedCategory(cat)}
+                  className={`px-4 py-2 rounded-full text-xs font-medium transition-colors ${
+                    selectedCategory === cat
+                      ? 'bg-[#21313c] text-white'
+                      : 'bg-white text-[#21313c] hover:bg-[#e5e5e5]'
+                  }`}
+                >
+                  {cat}
+                </button>
+              ))}
+            </div>
+          </div>
+
+          {/* Upcoming Events Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {filteredUpcoming.map((event, index) => (
+              <motion.div
+                key={event.id}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+                viewport={{ once: true }}
+                className="group bg-white rounded-2xl overflow-hidden cursor-pointer hover:shadow-xl transition-all duration-300"
+              >
+                {/* Image */}
+                <div className="relative h-48 overflow-hidden">
+                  <Image
+                    src={event.image || '/e1.jpg'}
+                    alt={event.title}
+                    fill
+                    className="object-cover group-hover:scale-105 transition-transform duration-500"
+                  />
+                  <div className="absolute top-3 left-3">
+                    <span className="px-3 py-1 bg-[#c3fd7a] text-[#21313c] text-xs font-semibold rounded-full">
+                      {event.category}
+                    </span>
+                  </div>
+                </div>
+
+                {/* Content */}
+                <div className="p-5">
+                  <div className="flex items-center gap-2 text-[#999] text-xs mb-3">
+                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                    </svg>
+                    {event.date}
+                  </div>
+                  <h3 className="text-[#21313c] font-semibold text-lg mb-2 group-hover:text-[#03463B] transition-colors">
+                    {event.title}
+                  </h3>
+                  <p className="text-[#666] text-sm mb-3 line-clamp-2">{event.description}</p>
+                  <div className="flex items-center gap-2 text-[#999] text-xs">
+                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                    </svg>
+                    {event.venue}
+                  </div>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      {/* Past Events Section */}
       <div className="w-full bg-white">
         <div
           className="mx-auto px-4 py-10 sm:px-6 sm:py-12 md:px-[120px] md:py-[100px]"
@@ -136,7 +318,8 @@ const Events = () => {
                   letterSpacing: '-0.02em',
                 }}
               >
-                Latest Past Events
+                Past{' '}
+                <span style={{ fontFamily: "'Times New Roman', serif", fontStyle: 'italic', fontWeight: 400 }}>Events</span>
               </h2>
             </div>
 
@@ -169,15 +352,15 @@ const Events = () => {
                   Year
                 </label>
                 <select
-                  value={year}
-                  onChange={(e) => setYear(e.target.value)}
+                  value={selectedYear}
+                  onChange={(e) => setSelectedYear(e.target.value)}
                   className="w-full sm:w-[100px] md:w-[120px] bg-transparent text-[#21313c] focus:outline-none appearance-none cursor-pointer text-sm md:text-[15px]"
                   style={{
                     borderBottom: '1px solid #21313c',
                     paddingBottom: '8px',
                   }}
                 >
-                  <option value="-Any-">All Years</option>
+                  <option value="All">All Years</option>
                   <option value="2025">2025</option>
                   <option value="2024">2024</option>
                   <option value="2023">2023</option>
@@ -194,7 +377,7 @@ const Events = () => {
 
           {/* Events List */}
           <div className="flex flex-col gap-4 md:gap-0">
-            {eventsData.map((event, index) => (
+            {filteredPast.map((event, index) => (
               <motion.div
                 key={event.id}
                 initial={{ opacity: 0, y: 30 }}
@@ -218,7 +401,7 @@ const Events = () => {
                       <span
                         className="px-2 py-1 bg-white text-[#666] rounded text-[10px] shrink-0"
                       >
-                        {event.venue}
+                        {event.category}
                       </span>
                     )}
                   </div>
@@ -228,7 +411,7 @@ const Events = () => {
                   <div className="flex items-center gap-2 text-[11px] text-[#999]">
                     <span className="font-medium text-[#21313c]">{event.date}</span>
                     <span className="w-1 h-1 rounded-full bg-[#ccc]" />
-                    <span className="truncate">{event.location}</span>
+                    <span className="truncate">{event.venue}</span>
                   </div>
                 </div>
 
@@ -274,14 +457,11 @@ const Events = () => {
                     >
                       {event.title}
                     </h3>
-                    {event.venue && (
-                      <span
-                        className="inline-block px-3 py-1 bg-[#f6f7f0] text-[#666] rounded"
-                        style={{ fontSize: '12px' }}
-                      >
-                        {event.venue}
-                      </span>
-                    )}
+                    <span
+                      className="inline-block px-3 py-1 bg-[#e8f0fe] text-[#3b82f6] rounded text-xs font-medium"
+                    >
+                      {event.category}
+                    </span>
                   </div>
 
                   {/* Description & Location Column */}
@@ -296,7 +476,7 @@ const Events = () => {
                       className="text-[#999]"
                       style={{ fontSize: '13px' }}
                     >
-                      {event.location}
+                      {event.venue}
                     </p>
                   </div>
 
@@ -312,17 +492,6 @@ const Events = () => {
                 </div>
               </motion.div>
             ))}
-          </div>
-
-          {/* View All Events Link */}
-          <div className="flex justify-center mt-8 md:mt-16">
-            <button
-              className="px-6 md:px-8 py-2.5 md:py-3 border border-[#21313c] text-[#21313c] text-xs md:text-sm font-medium hover:bg-[#21313c] hover:text-white transition-colors flex items-center gap-2 md:gap-3"
-              style={{ borderRadius: '100px' }}
-            >
-              View All Past Events
-              <span>→</span>
-            </button>
           </div>
         </div>
       </div>

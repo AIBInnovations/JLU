@@ -1,5 +1,6 @@
 'use client';
 
+import { useState } from 'react';
 import {
   Hero,
   HorizontalScroll,
@@ -10,10 +11,17 @@ import {
   OurProgrammes,
   AwardsSection,
   Footer,
+  FloatingActionButton,
+  EnquiryModal,
+  ChatBot,
+  LatestNews,
+  AlumniSection,
   // PageLoader, // Deactivated for now
 } from '@/components';
 
 export default function HomePage() {
+  const [isEnquiryOpen, setIsEnquiryOpen] = useState(false);
+
   return (
     <>
       {/* <PageLoader /> */}
@@ -39,11 +47,26 @@ export default function HomePage() {
         {/* Our Programmes Section */}
         <OurProgrammes />
 
+        {/* Latest News & Updates */}
+        <LatestNews />
+
+        {/* Alumni Section */}
+        <AlumniSection />
+
         {/* Awards and Achievements */}
         <AwardsSection />
 
         {/* Footer */}
         <Footer />
+
+        {/* Floating Action Button - Right Side */}
+        <FloatingActionButton onEnquireClick={() => setIsEnquiryOpen(true)} />
+
+        {/* Enquiry Modal */}
+        <EnquiryModal isOpen={isEnquiryOpen} onClose={() => setIsEnquiryOpen(false)} />
+
+        {/* ChatBot - Left Bottom */}
+        <ChatBot />
       </div>
     </>
   );

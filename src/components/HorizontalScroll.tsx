@@ -13,8 +13,14 @@ export const HorizontalScroll = () => {
   const row1Ref = useRef<HTMLDivElement>(null);
   const row2Ref = useRef<HTMLDivElement>(null);
   const row3Ref = useRef<HTMLDivElement>(null);
+  const topTextRef = useRef<HTMLDivElement>(null);
+  const bottomTextRef = useRef<HTMLDivElement>(null);
   const isMobile = useIsMobile();
   const [mounted, setMounted] = useState(false);
+
+  // Scrolling text content - repeated for seamless scroll
+  const topTextContent = "VISION • GROWTH • INSPIRE • TRANSFORM • EMPOWER • DISCOVER • INNOVATION • EXCELLENCE • LEADERSHIP • RESEARCH • CREATIVITY • KNOWLEDGE • ";
+  const bottomTextContent = "QS DIAMOND RATED • 232 ACRES CAMPUS • 50+ PROGRAMS • 2500+ STUDENTS • JAGRAN LAKECITY UNIVERSITY • BHOPAL • MADHYA PRADESH • SINCE 2013 • ";
 
   // Prevent hydration mismatch by waiting for client-side mount
   useEffect(() => {
@@ -47,40 +53,65 @@ export const HorizontalScroll = () => {
   const row2Cards = cards.slice(3, 6);
   const row3Cards = cards.slice(6, 8);
 
-  // Desktop: Single row horizontal scroll
+  // Desktop: Single row horizontal scroll with text animations
   useEffect(() => {
-    if (isMobile || !containerRef.current || !scrollContainerRef.current) return;
+    if (!mounted || isMobile || !containerRef.current || !scrollContainerRef.current) return;
 
     const section = containerRef.current;
     const scrollContainer = scrollContainerRef.current;
+    const topText = topTextRef.current;
+    const bottomText = bottomTextRef.current;
 
-    // Calculate scroll distance with extra padding to ensure last card is fully visible
+    // Calculate scroll distance with extra padding - increased for longer scroll
     const scrollDistance = scrollContainer.scrollWidth - window.innerWidth + 50;
+    const extendedScrollMultiplier = 2.5; // Extended scroll length
 
-    // Create horizontal scroll animation
-    const scrollTrigger = gsap.to(scrollContainer, {
-      x: -scrollDistance,
-      ease: 'none',
-      force3D: true,
+    // Create timeline for synchronized animations
+    const tl = gsap.timeline({
       scrollTrigger: {
         trigger: section,
         start: 'top top',
-        end: () => `+=${scrollDistance + window.innerHeight * 1.5}`,
-        scrub: true,
+        end: () => `+=${scrollDistance + window.innerHeight * extendedScrollMultiplier}`,
+        scrub: 1,
         pin: true,
+        pinSpacing: true,
         anticipatePin: 1,
         invalidateOnRefresh: true,
       },
     });
 
+    // Cards move right to left (negative x)
+    tl.to(scrollContainer, {
+      x: -scrollDistance,
+      ease: 'none',
+    }, 0);
+
+    // Top text moves left to right (positive x) - opposite direction
+    if (topText) {
+      tl.fromTo(topText,
+        { x: -window.innerWidth * 3 },
+        { x: window.innerWidth * 0.5, ease: 'none' },
+        0
+      );
+    }
+
+    // Bottom text moves left to right (positive x) - opposite direction, slightly different speed
+    if (bottomText) {
+      tl.fromTo(bottomText,
+        { x: -window.innerWidth * 2.5 },
+        { x: window.innerWidth * 0.8, ease: 'none' },
+        0
+      );
+    }
+
     return () => {
-      scrollTrigger.scrollTrigger?.kill();
+      tl.scrollTrigger?.kill();
     };
-  }, [isMobile]);
+  }, [mounted, isMobile]);
 
   // Mobile: Three rows with horizontal scroll
   useEffect(() => {
-    if (!isMobile || !containerRef.current) return;
+    if (!mounted || !isMobile || !containerRef.current) return;
     if (!row1Ref.current || !row2Ref.current || !row3Ref.current) return;
 
     const section = containerRef.current;
@@ -91,7 +122,6 @@ export const HorizontalScroll = () => {
     animations.push(gsap.to(row1Ref.current, {
       x: -row1ScrollDistance,
       ease: 'none',
-      force3D: true,
       scrollTrigger: {
         trigger: section,
         start: 'top top',
@@ -107,7 +137,6 @@ export const HorizontalScroll = () => {
     animations.push(gsap.to(row2Ref.current, {
       x: -row2ScrollDistance,
       ease: 'none',
-      force3D: true,
       scrollTrigger: {
         trigger: section,
         start: 'top top',
@@ -123,7 +152,6 @@ export const HorizontalScroll = () => {
     animations.push(gsap.to(row3Ref.current, {
       x: -row3ScrollDistance,
       ease: 'none',
-      force3D: true,
       scrollTrigger: {
         trigger: section,
         start: 'top top',
@@ -138,7 +166,7 @@ export const HorizontalScroll = () => {
     return () => {
       animations.forEach(anim => anim.scrollTrigger?.kill());
     };
-  }, [isMobile]);
+  }, [mounted, isMobile]);
 
   const renderCard = (card: typeof cards[0], index: number) => (
     <div
@@ -183,13 +211,39 @@ export const HorizontalScroll = () => {
         className="relative bg-[#f6f7f0] overflow-hidden"
         style={{ height: '100vh' }}
       >
-        <div className="h-full flex items-center">
+        <div className="h-full flex flex-col justify-center relative">
+          {/* Top scrolling text placeholder */}
+          <div className="absolute top-8 left-0 right-0 overflow-hidden pointer-events-none">
+            <div
+              className="whitespace-nowrap text-[#21313c]/10 font-bold uppercase tracking-widest"
+              style={{
+                fontSize: 'clamp(2rem, 5vw, 4rem)',
+                fontFamily: "'Inter', sans-serif",
+              }}
+            >
+              {topTextContent.repeat(8)}
+            </div>
+          </div>
+
           <div
             ref={scrollContainerRef}
             className="flex pl-6"
             style={{ gap: '24px' }}
           >
             {cards.map((card, index) => renderCard(card, index))}
+          </div>
+
+          {/* Bottom scrolling text placeholder */}
+          <div className="absolute bottom-8 left-0 right-0 overflow-hidden pointer-events-none">
+            <div
+              className="whitespace-nowrap text-[#21313c]/10 font-bold uppercase tracking-widest"
+              style={{
+                fontSize: 'clamp(2rem, 5vw, 4rem)',
+                fontFamily: "'Inter', sans-serif",
+              }}
+            >
+              {bottomTextContent.repeat(8)}
+            </div>
           </div>
         </div>
       </section>
@@ -227,14 +281,43 @@ export const HorizontalScroll = () => {
           </div>
         </div>
       ) : (
-        // Desktop: Single row layout
-        <div className="h-full flex items-center">
+        // Desktop: Single row layout with scrolling text
+        <div className="h-full flex flex-col justify-center relative">
+          {/* Top scrolling text */}
+          <div className="absolute top-8 left-0 right-0 overflow-hidden pointer-events-none">
+            <div
+              ref={topTextRef}
+              className="whitespace-nowrap text-[#21313c]/10 font-bold uppercase tracking-widest"
+              style={{
+                fontSize: 'clamp(2rem, 5vw, 4rem)',
+                fontFamily: "'Inter', sans-serif",
+              }}
+            >
+              {topTextContent.repeat(8)}
+            </div>
+          </div>
+
+          {/* Cards container */}
           <div
             ref={scrollContainerRef}
             className="flex pl-6"
             style={{ gap: '24px' }}
           >
             {cards.map((card, index) => renderCard(card, index))}
+          </div>
+
+          {/* Bottom scrolling text */}
+          <div className="absolute bottom-8 left-0 right-0 overflow-hidden pointer-events-none">
+            <div
+              ref={bottomTextRef}
+              className="whitespace-nowrap text-[#21313c]/10 font-bold uppercase tracking-widest"
+              style={{
+                fontSize: 'clamp(2rem, 5vw, 4rem)',
+                fontFamily: "'Inter', sans-serif",
+              }}
+            >
+              {bottomTextContent.repeat(8)}
+            </div>
           </div>
         </div>
       )}

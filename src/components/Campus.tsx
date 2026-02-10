@@ -117,6 +117,86 @@ const Campus = () => {
         </div>
       </div>
 
+      {/* Campus Stats Section - After Hero */}
+      <div className="w-full bg-[#f6f7f0] py-16 md:py-24">
+        <div
+          className="mx-auto px-5 sm:px-8 md:px-[120px]"
+          style={{ maxWidth: '1440px' }}
+        >
+          {/* Section Header */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, ease: customEase }}
+            viewport={{ once: true }}
+            className="text-center mb-12 md:mb-16"
+          >
+            <span
+              className="text-[#999] uppercase tracking-widest block mb-4"
+              style={{ fontSize: '11px', letterSpacing: '0.25em' }}
+            >
+              CAMPUS AT A GLANCE
+            </span>
+            <h2
+              className="text-[#21313c]"
+              style={{
+                fontSize: 'clamp(1.75rem, 4vw, 3rem)',
+                fontWeight: 600,
+                lineHeight: 1.1,
+              }}
+            >
+              World-class{' '}
+              <span style={{ fontFamily: "'Times New Roman', serif", fontStyle: 'italic', fontWeight: 400 }}>
+                infrastructure
+              </span>
+            </h2>
+          </motion.div>
+
+          {/* Stats Grid */}
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8">
+            {[
+              { number: '14', label: 'Academic Blocks' },
+              { number: '231', label: 'Acre Campus Area' },
+              { number: '125+', label: 'Classrooms' },
+              { number: '50+', label: 'Labs' },
+              { number: '28,000', label: 'sq. ft. Library' },
+              { number: '5', label: 'Food Outlets' },
+              { number: '4', label: 'Auditoriums' },
+              { number: '350', label: 'Accommodation Capacity' },
+            ].map((stat, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 40 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: index * 0.08, ease: customEase }}
+                viewport={{ once: true }}
+                className="relative bg-white p-6 md:p-8 group hover:bg-[#21313c] transition-colors duration-500"
+              >
+                {/* Accent line */}
+                <div className="absolute top-0 left-0 w-full h-1 bg-[#f0c14b] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left" />
+
+                <p
+                  className="text-[#21313c] group-hover:text-[#f0c14b] transition-colors duration-500 mb-2"
+                  style={{
+                    fontSize: 'clamp(2rem, 4vw, 3.5rem)',
+                    fontWeight: 700,
+                    lineHeight: 1,
+                  }}
+                >
+                  {stat.number}
+                </p>
+                <p
+                  className="text-[#666] group-hover:text-white/70 transition-colors duration-500 text-sm md:text-base"
+                  style={{ fontWeight: 500 }}
+                >
+                  {stat.label}
+                </p>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </div>
+
       {/* Campus Infrastructure Section */}
       <div className="w-full bg-white">
         <div

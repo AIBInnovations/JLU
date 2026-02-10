@@ -1,0 +1,14 @@
+{
+  "permissions": {
+    "allow": [
+      "WebFetch(domain:jlu.edu.in)",
+      "WebFetch(domain:apply.jlu.edu.in)",
+      "WebFetch(domain:shift5.io)",
+      "WebFetch(domain:nfinitepaper.com)",
+      "WebFetch(domain:www.jlu.edu.in)",
+      "WebFetch(domain:www.shiksha.com)",
+      "Bash(ls:*)",
+      "WebFetch(domain:telhaclarke.com.au)"
+    ]
+  }
+}
