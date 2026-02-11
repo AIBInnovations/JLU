@@ -23,35 +23,39 @@ export const WhyJlu = () => {
   const whyJluCards = [
     {
       bg: '#c3fd7a',
-      title: 'Multiplicity',
+      title: 'Global Network',
       subtitle: '',
-      description: 'Where ideas, cultures, and disciplines converge.',
+      description: 'Connect with universities and institutions across the world.',
       textColor: '#21313c',
-      image: '/j1.jpg'
+      image: '/j1.jpg',
+      href: '/why-jlu/global-network'
     },
     {
       bg: '#4a90a4',
-      title: 'Worldly Outlook',
+      title: 'Industry Intervention',
       subtitle: '',
-      description: 'An education shaped by global exposure and open horizons.',
+      description: 'Real-world exposure through industry collaborations and internships.',
       textColor: '#ffffff',
-      image: '/j2.jpg'
+      image: '/j2.jpg',
+      href: '/why-jlu/industry-intervention'
     },
     {
       bg: '#e85a71',
-      title: 'A Lived Campus',
+      title: 'Interdisciplinary Degrees',
       subtitle: '',
-      description: 'Spaces that invite learning, connection, and pause.',
+      description: 'Blend multiple fields of study for holistic learning.',
       textColor: '#ffffff',
-      image: '/j3.jpg'
+      image: '/j3.jpg',
+      href: '/why-jlu/interdisciplinary-degrees'
     },
     {
       bg: '#f4c950',
-      title: 'Lasting Impressions',
+      title: 'Student Approach',
       subtitle: '',
-      description: 'Experiences that stay, long after you move on.',
+      description: 'Learning centered around student needs and growth.',
       textColor: '#ffffff',
-      image: '/j4.jpg'
+      image: '/j4.jpg',
+      href: '/why-jlu/student-approach'
     }
   ];
 
@@ -88,8 +92,9 @@ export const WhyJlu = () => {
   }, [isMobile, mounted]);
 
   const renderCard = (card: typeof whyJluCards[0], index: number, originalIndex: number) => (
-    <div
+    <a
       key={originalIndex}
+      href={card.href}
       style={{
         background: card.bg,
         width: mounted && isMobile ? 'calc(50% - 6px)' : undefined,
@@ -110,16 +115,30 @@ export const WhyJlu = () => {
           ? (index === 0 ? '40px' : '0') // First card has bottom margin to match second card's top margin
           : (originalIndex === 1 ? '80px' : '0'),
         borderRadius: mounted && isMobile ? '12px' : '16px',
+        textDecoration: 'none',
+        cursor: 'pointer',
+        transition: 'transform 0.3s ease, box-shadow 0.3s ease',
+        overflow: 'hidden',
+      }}
+      onMouseEnter={(e) => {
+        e.currentTarget.style.transform = 'translateY(-4px)';
+        e.currentTarget.style.boxShadow = '0 8px 16px rgba(0,0,0,0.1)';
+      }}
+      onMouseLeave={(e) => {
+        e.currentTarget.style.transform = 'translateY(0)';
+        e.currentTarget.style.boxShadow = 'none';
       }}
     >
       <div>
         <div style={{ display: 'flex', alignItems: 'baseline', gap: '4px', flexWrap: 'wrap' }}>
           <span
             style={{
-              fontSize: mounted && isMobile ? '1rem' : 'clamp(2rem, 4vw, 3rem)',
+              fontSize: mounted && isMobile ? '0.9rem' : 'clamp(1.5rem, 3vw, 2rem)',
               fontWeight: 'bold',
               color: card.textColor,
               lineHeight: 1.2,
+              wordBreak: 'break-word',
+              overflowWrap: 'break-word',
             }}
           >
             {card.title}
@@ -141,16 +160,31 @@ export const WhyJlu = () => {
       <div>
         <p
           style={{
-            fontSize: mounted && isMobile ? '0.65rem' : 'clamp(0.875rem, 1vw, 1rem)',
+            fontSize: mounted && isMobile ? '0.65rem' : 'clamp(0.75rem, 0.9vw, 0.875rem)',
             color: card.textColor,
-            marginBottom: '4px',
-            lineHeight: 1.3,
+            marginBottom: mounted && isMobile ? '6px' : '8px',
+            lineHeight: 1.4,
+            opacity: 0.9,
           }}
         >
           {card.description}
         </p>
+        <div
+          style={{
+            display: 'flex',
+            alignItems: 'center',
+            gap: '4px',
+            fontSize: mounted && isMobile ? '0.7rem' : 'clamp(0.75rem, 0.9vw, 0.875rem)',
+            color: card.textColor,
+            fontWeight: 600,
+            opacity: 0.8,
+          }}
+        >
+          <span>Explore</span>
+          <span style={{ fontSize: mounted && isMobile ? '0.6rem' : '0.75rem' }}>→</span>
+        </div>
       </div>
-    </div>
+    </a>
   );
 
   // Prevent hydration mismatch - render desktop version until mounted
@@ -207,8 +241,8 @@ export const WhyJlu = () => {
               lineHeight: 1,
             }}
           >
-            The JLU{' '}
-            <span style={{ fontFamily: "'Times New Roman', serif", fontStyle: 'italic' }}>Experience</span>
+            Pillars of{' '}
+            <span style={{ fontFamily: "'Times New Roman', serif", fontStyle: 'italic' }}>JLU</span>
           </h1>
         </div>
       </div>

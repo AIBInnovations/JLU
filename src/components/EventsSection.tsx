@@ -121,7 +121,7 @@ export const EventsSection = () => {
                 href="/events"
                 className="absolute bottom-6 left-1/2 transform -translate-x-1/2 bg-[#c3fd7a] text-[#21313c] px-4 py-2 md:px-6 md:py-3 rounded-full text-sm font-semibold hover:bg-[#b3ed6a] transition-colors shadow-lg"
               >
-                View Full Calendar
+                View Events
               </a>
             </div>
 

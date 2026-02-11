@@ -6,507 +6,11 @@ import { gsap } from 'gsap';
 import { useIsMobile } from '../hooks/useIsMobile';
 
 // ============================================
-// NAVIGATION DATA
-// ============================================
-const navigationItems = [
-  { label: 'About Us', href: '/about', sections: ['Leadership Messages', 'Institutional Overview', 'Governance', 'Accreditations', 'University Partnerships', 'JLU Staff', 'Ranking & Awards'] },
-  { label: 'Programs', href: '/programs', sections: ['52+ Programs Offered', 'Programs List', 'Perspective', 'Intent', 'Depth', 'Relevance'] },
-  { label: 'Events', href: '/events', sections: ['Upcoming Events', 'Past Events', 'Signature Events & Campus Experiences', 'Leadership & Community Impact', "Don't Miss Our Updates"] },
-  { label: 'Academics', href: '/academics', sections: ['Philosophy That Guides Every Step', 'Faculties & Schools', 'How Learning Takes Shape', 'Voices From Within'] },
-  { label: 'Campus', href: '/campus', sections: ['Campus At A Glance', 'Built For Excellence', 'Student Accommodation', 'Dining Facilities', 'Media Studio', 'Technology Labs', 'Moot Court', 'Sports & Wellness', 'Campus Gallery'] },
-  { label: 'Admissions', href: '/admissions', sections: ['Choose Your Academic Path', 'Undergraduate Programs', 'Postgraduate Programs', 'Research Degrees', 'Beyond Degrees', 'Experience The Campus', 'Scholarships & Freeships', 'Admission FAQs'] },
-  { label: 'Research', href: '/research', sections: ['Research Ecosystem', 'Centres of Excellence', 'Faculty Research Areas', 'Interdisciplinary Labs', 'Graduate Research', 'Latest Publication', 'Faculty Spotlight'] },
-  { label: 'Campus Life', href: '/campus-life', sections: ['Student Life', 'Find Your People', 'Lead. Represent. Inspire.', 'Celebrating Student Success', 'Careers & Innovation', 'Where Ideas Become Startups', 'More Than A Campus'] },
-  { label: 'Alumni', href: '/alumni', sections: ['Alumni Services', 'Notable Alumni', 'Success Stories', 'Voices of Alumni', 'Upcoming Events', 'Global Alumni Network'] },
-  { label: 'Podcast', href: '/podcast', sections: ['Featured Episode', 'All Episodes', 'Industry Guests', 'Subscribe to JLU Talks'] },
-  { label: 'Placements', href: '/placement', sections: ['Career Excellence', 'Industry Excellence', 'Career Growth', 'Global Reach', 'Our Success Stories', '500+ Recruiting Partners'] },
-  { label: 'International Office', href: '/international-office', sections: ['Choose Program', 'Submit Application', 'Receive Offer Letter', 'Apply For Visa', 'Arrive On Campus', 'Global Partnerships', 'Visa Guidance'] },
-  { label: 'News & Events', href: '/news-events', sections: ['Past Events', 'Featured News', 'Event Gallery'] },
-];
-
-// Bottom menu items - always shown in right section
-const bottomMenuItems = [
-  { label: 'Student Clubs', href: '/student-clubs' },
-  { label: 'Alumni', href: '/alumni' },
-  { label: 'Faculty of Management', href: '/faculty/management' },
-  { label: 'Faculty of Journalism', href: '/faculty/journalism' },
-  { label: 'Faculty of Humanities & Design', href: '/faculty/humanities' },
-  { label: 'Faculty of Engineering', href: '/faculty/engineering' },
-  { label: 'Faculty of Pharmacy', href: '/faculty/pharmacy' },
-  { label: 'Faculty of Law', href: '/faculty/law' },
-];
-
-// ============================================
-// MENU OVERLAY COMPONENT (renders inside hero container)
-// ============================================
-interface MenuOverlayProps {
-  isOpen: boolean;
-  onClose: () => void;
-  menuButtonRef: React.RefObject<HTMLButtonElement | null>;
-  heroRef: React.RefObject<HTMLDivElement | null>;
-}
-
-const MenuOverlay = ({ isOpen, onClose, menuButtonRef, heroRef }: MenuOverlayProps) => {
-  const [activeItem, setActiveItem] = useState<string>('');
-  const [hoveredItem, setHoveredItem] = useState<string | null>(null);
-  const isMobile = useIsMobile();
-
-  // Get the currently hovered navigation item
-  const hoveredNavItem = navigationItems.find(item => item.label === hoveredItem);
-
-  // Medium circle size for menu - smaller on mobile
-  const circleSize = isMobile ? 2000 : 1600;
-
-  // Menu button dimensions (pill shape on desktop, square on mobile)
-  const buttonWidth = isMobile ? 24 : 168;
-  const buttonHeight = isMobile ? 24 : 48;
-
-  // Get the menu button position for the expansion origin
-  // Mobile uses viewport-relative (for fixed positioning), Desktop uses hero-relative (for absolute positioning)
-  const getButtonPosition = () => {
-    if (menuButtonRef.current && heroRef.current) {
-      const buttonRect = menuButtonRef.current.getBoundingClientRect();
-      const heroRect = heroRef.current.getBoundingClientRect();
-
-      if (isMobile) {
-        // For mobile with fixed positioning, use viewport-relative coordinates
-        return {
-          left: buttonRect.left,
-          top: buttonRect.top,
-          centerX: buttonRect.left + buttonRect.width / 2,
-          centerY: buttonRect.top + buttonRect.height / 2,
-        };
-      }
-
-      // For desktop with absolute positioning, use hero-relative coordinates
-      return {
-        left: buttonRect.left - heroRect.left,
-        top: buttonRect.top - heroRect.top,
-        centerX: buttonRect.left - heroRect.left + buttonRect.width / 2,
-        centerY: buttonRect.top - heroRect.top + buttonRect.height / 2,
-      };
-    }
-    // Fallback
-    return { left: 0, top: 0, centerX: 0, centerY: 0 };
-  };
-
-  const buttonPos = getButtonPosition();
-
-  return (
-    <AnimatePresence>
-      {isOpen && (
-        <>
-          {/* Mobile: Square-to-fullscreen expanding overlay */}
-          {isMobile ? (
-            <>
-              {/* Expanding square background - starts behind menu button */}
-              <motion.div
-                initial={{
-                  width: 24,
-                  height: 24,
-                  borderRadius: '6px',
-                  left: buttonPos.left - 2,
-                  top: buttonPos.top - 2,
-                }}
-                animate={{
-                  width: '100vw',
-                  height: '100vh',
-                  borderRadius: '0px',
-                  left: 0,
-                  top: 0,
-                }}
-                exit={{
-                  width: 24,
-                  height: 24,
-                  borderRadius: '6px',
-                  left: buttonPos.left - 2,
-                  top: buttonPos.top - 2,
-                }}
-                transition={{
-                  duration: 1,
-                  ease: [0.16, 1, 0.3, 1],
-                }}
-                className="fixed bg-white"
-                style={{
-                  zIndex: 40,
-                }}
-              />
-
-              {/* Content layer with close button */}
-              <motion.div
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1, transition: { duration: 0.4, delay: 0.6 } }}
-                exit={{ opacity: 0, transition: { duration: 0.2, delay: 0 } }}
-                className="fixed inset-0 overflow-y-auto"
-                style={{ zIndex: 59 }}
-              >
-                {/* Close button - positioned at same location as hamburger menu */}
-                <motion.button
-                  initial={{ opacity: 0, scale: 0.8 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  transition={{ delay: 0.5, duration: 0.3 }}
-                  onClick={onClose}
-                  className="fixed top-6 right-6 h-6 w-6 rounded-md bg-[#03463B] flex items-center justify-center shadow-lg z-100"
-                  aria-label="Close menu"
-                >
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <line x1="5" y1="5" x2="19" y2="19" stroke="white" strokeWidth="2" strokeLinecap="round" />
-                    <line x1="19" y1="5" x2="5" y2="19" stroke="white" strokeWidth="2" strokeLinecap="round" />
-                  </svg>
-                </motion.button>
-
-                {/* Mobile Navigation content - side by side like desktop */}
-                <div className="flex gap-4 px-4 pt-20 pb-8">
-                  {/* Main navigation - left side */}
-                  <div className="flex flex-col flex-1">
-                    <motion.p
-                      initial={{ opacity: 0, y: 10 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ delay: 0.55, duration: 0.5 }}
-                      className="text-[10px] text-gray-500 mb-3"
-                    >
-                      Navigation
-                    </motion.p>
-                    <nav className="flex flex-col gap-1.5">
-                      {navigationItems.map((item, index) => (
-                        <motion.a
-                          key={item.label}
-                          href={item.href}
-                          initial={{ opacity: 0, x: -15 }}
-                          animate={{ opacity: 1, x: 0 }}
-                          transition={{ delay: 0.6 + index * 0.05, duration: 0.5 }}
-                          onClick={() => setActiveItem(item.label)}
-                          onMouseEnter={() => setHoveredItem(item.label)}
-                          onMouseLeave={() => setHoveredItem(null)}
-                          className={`text-sm font-medium transition-colors cursor-pointer flex items-center gap-1.5 ${
-                            activeItem === item.label
-                              ? 'text-[#03463B]'
-                              : 'text-[#03463B]/60 hover:text-[#03463B]'
-                          }`}
-                        >
-                          {activeItem === item.label && (
-                            <span className="w-1.5 h-1.5 rounded-full bg-[#03463B]" />
-                          )}
-                          {item.label}
-                        </motion.a>
-                      ))}
-                    </nav>
-                  </div>
-
-                  {/* Vertical divider line */}
-                  <div className="w-[1px] bg-gray-300 self-stretch my-4" />
-
-                  {/* Right side - Hovered item content or bottom menu */}
-                  <div className="flex flex-col gap-1.5 flex-1 pt-6 min-h-[200px]">
-                    <AnimatePresence mode="wait">
-                      {hoveredNavItem ? (
-                        <motion.div
-                          key={hoveredNavItem.label}
-                          initial={{ opacity: 0, y: 10 }}
-                          animate={{ opacity: 1, y: 0 }}
-                          exit={{ opacity: 0, y: -10 }}
-                          transition={{ duration: 0.2, ease: 'easeOut' }}
-                          className="flex flex-col gap-1.5"
-                        >
-                          <h3 className="text-sm font-semibold text-[#03463B] mb-1">
-                            {hoveredNavItem.label}
-                          </h3>
-                          {hoveredNavItem.sections.map((section) => (
-                            <span key={section} className="text-xs text-[#03463B]/60">
-                              {section}
-                            </span>
-                          ))}
-                        </motion.div>
-                      ) : (
-                        <motion.div
-                          key="bottom-menu"
-                          initial={{ opacity: 0, y: 10 }}
-                          animate={{ opacity: 1, y: 0 }}
-                          exit={{ opacity: 0, y: -10 }}
-                          transition={{ duration: 0.2, ease: 'easeOut' }}
-                          className="flex flex-col gap-1.5"
-                        >
-                          {bottomMenuItems.map((subItem, index) => (
-                            <motion.a
-                              key={subItem.label}
-                              href={subItem.href}
-                              onClick={onClose}
-                              initial={{ opacity: 0, y: 8 }}
-                              animate={{ opacity: 1, y: 0 }}
-                              transition={{ delay: 0.7 + index * 0.05, duration: 0.4 }}
-                              className="text-xs text-[#03463B]/70 hover:text-[#03463B] transition-colors cursor-pointer"
-                            >
-                              {subItem.label}
-                            </motion.a>
-                          ))}
-                        </motion.div>
-                      )}
-                    </AnimatePresence>
-                  </div>
-                </div>
-              </motion.div>
-            </>
-          ) : (
-            <>
-              {/* Desktop: Pill-to-circle expanding background - starts behind menu button */}
-              <motion.div
-                initial={{
-                  width: buttonWidth,
-                  height: buttonHeight,
-                  borderRadius: '6px',
-                  left: buttonPos.left,
-                  top: buttonPos.top,
-                  borderWidth: 0,
-                }}
-                animate={{
-                  width: circleSize,
-                  height: circleSize,
-                  borderRadius: '800px',
-                  left: buttonPos.centerX - circleSize / 2,
-                  top: buttonPos.centerY - circleSize / 2,
-                  borderWidth: 12,
-                }}
-                exit={{
-                  width: buttonWidth,
-                  height: buttonHeight,
-                  borderRadius: '6px',
-                  left: buttonPos.left,
-                  top: buttonPos.top,
-                  borderWidth: 0,
-                }}
-                transition={{
-                  duration: 0.6,
-                  ease: [0.4, 0, 0.2, 1],
-                }}
-                className="absolute bg-white"
-                style={{
-                  zIndex: 100,
-                  borderStyle: 'solid',
-                  borderColor: '#d1d5db',
-                }}
-              />
-
-              {/* Content layer - positioned within circle */}
-              <motion.div
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1, transition: { duration: 0.3, delay: 0.5 } }}
-                exit={{ opacity: 0, transition: { duration: 0.15, delay: 0 } }}
-                className="absolute overflow-hidden flex items-center justify-center"
-                style={{
-                  zIndex: 101,
-                  width: `${circleSize}px`,
-                  height: `${circleSize}px`,
-                  left: `${buttonPos.centerX - circleSize / 2}px`,
-                  top: `${buttonPos.centerY - circleSize / 2}px`,
-                  borderRadius: '50%',
-                }}
-              >
-                {/* Close button - positioned on top of menu button (center of circle) */}
-                <motion.button
-                  initial={{ opacity: 0, scale: 0.8 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  transition={{ delay: 0.1, duration: 0.3 }}
-                  onClick={onClose}
-                  className="absolute flex h-[45px] w-[45px] items-center justify-center rounded-xl hover:opacity-90 transition-all"
-                  style={{
-                    top: '47.6%',
-                    left: '50%',
-                    transform: 'translate(-50%, -50%)',
-                    backgroundColor: '#03463B',
-                  }}
-                  aria-label="Close menu"
-                >
-                  {/* X icon with two crossing lines */}
-                  <svg
-                    width="24"
-                    height="24"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <line
-                      x1="5"
-                      y1="5"
-                      x2="19"
-                      y2="19"
-                      stroke="white"
-                      strokeWidth="1.5"
-                      strokeLinecap="round"
-                    />
-                    <line
-                      x1="19"
-                      y1="5"
-                      x2="5"
-                      y2="19"
-                      stroke="white"
-                      strokeWidth="1.5"
-                      strokeLinecap="round"
-                    />
-                  </svg>
-                </motion.button>
-
-                {/* Navigation content */}
-                <div className="flex gap-16" style={{ marginTop: '500px', marginLeft: '-550px' }}>
-                  {/* Main navigation */}
-                  <div className="flex flex-col">
-                    <motion.p
-                      initial={{ opacity: 0, y: 10 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ delay: 0.1, duration: 0.4 }}
-                      className="text-sm text-gray-500 mb-5"
-                    >
-                      Navigation
-                    </motion.p>
-                    <nav className="flex flex-col gap-2.5">
-                      {navigationItems.map((item, index) => (
-                        <motion.a
-                          key={item.label}
-                          href={item.href}
-                          initial={{ opacity: 0, x: -20 }}
-                          animate={{ opacity: 1, x: 0 }}
-                          transition={{ delay: 0.15 + index * 0.05, duration: 0.4 }}
-                          onClick={() => setActiveItem(item.label)}
-                          onMouseEnter={() => setHoveredItem(item.label)}
-                          onMouseLeave={() => setHoveredItem(null)}
-                          className={`text-lg font-medium transition-colors cursor-pointer flex items-center gap-2 ${
-                            activeItem === item.label
-                              ? 'text-[#03463B]'
-                              : 'text-[#03463B]/60 hover:text-[#03463B]'
-                          }`}
-                        >
-                          {activeItem === item.label && (
-                            <span className="w-2 h-2 rounded-full bg-[#03463B]" />
-                          )}
-                          {item.label}
-                        </motion.a>
-                      ))}
-                    </nav>
-                  </div>
-
-                  {/* Vertical divider line */}
-                  <div className="w-[1px] bg-gray-300 self-stretch my-8" />
-
-                  {/* Right side - Hovered item content or bottom menu */}
-                  <div className="flex flex-col gap-2.5 pt-8 min-w-[250px]">
-                    <AnimatePresence mode="wait">
-                      {hoveredNavItem ? (
-                        <motion.div
-                          key={hoveredNavItem.label}
-                          initial={{ opacity: 0, x: 20 }}
-                          animate={{ opacity: 1, x: 0 }}
-                          exit={{ opacity: 0, x: -20 }}
-                          transition={{ duration: 0.25, ease: [0.4, 0, 0.2, 1] }}
-                          className="flex flex-col gap-2"
-                        >
-                          <h3 className="text-lg font-semibold text-[#03463B] mb-1">
-                            {hoveredNavItem.label}
-                          </h3>
-                          {hoveredNavItem.sections.map((section) => (
-                            <span key={section} className="text-sm text-[#03463B]/60">
-                              {section}
-                            </span>
-                          ))}
-                        </motion.div>
-                      ) : (
-                        <motion.div
-                          key="bottom-menu"
-                          initial={{ opacity: 0, x: 20 }}
-                          animate={{ opacity: 1, x: 0 }}
-                          exit={{ opacity: 0, x: -20 }}
-                          transition={{ duration: 0.25, ease: [0.4, 0, 0.2, 1] }}
-                          className="flex flex-col gap-2.5"
-                        >
-                          {bottomMenuItems.map((subItem, index) => (
-                            <motion.a
-                              key={subItem.label}
-                              href={subItem.href}
-                              onClick={onClose}
-                              initial={{ opacity: 0, y: 10 }}
-                              animate={{ opacity: 1, y: 0 }}
-                              transition={{ delay: index * 0.05, duration: 0.3 }}
-                              className="text-sm text-[#03463B]/70 hover:text-[#03463B] transition-colors cursor-pointer"
-                            >
-                              {subItem.label}
-                            </motion.a>
-                          ))}
-                        </motion.div>
-                      )}
-                    </AnimatePresence>
-                  </div>
-                </div>
-              </motion.div>
-            </>
-          )}
-        </>
-      )}
-    </AnimatePresence>
-  );
-};
-
-// ============================================
-// MENU BUTTON - Toggle button that shows X when open
-// ============================================
-interface MenuButtonProps {
-  onClick: () => void;
-  buttonRef: React.RefObject<HTMLButtonElement | null>;
-  isOpen?: boolean;
-}
-
-const MenuButton = ({ onClick, buttonRef, isOpen }: MenuButtonProps) => {
-  const isMobile = useIsMobile();
-
-  return (
-    <button
-      ref={buttonRef}
-      onClick={onClick}
-      aria-label={isOpen ? "Close menu" : "Open menu"}
-      className={`relative flex items-center justify-center shadow-lg shadow-black/5 transition-all hover:shadow-xl hover:shadow-black/10 ${
-        isMobile ? 'h-6 w-6 rounded-md' : 'h-[48px] w-[168px] rounded-md'
-      } ${isOpen && isMobile ? 'bg-[#03463B]' : 'bg-white'}`}
-      style={{ zIndex: 10000 }}
-    >
-      {/* Desktop: Show Menu text and divider (only when not open) */}
-      {!isMobile && !isOpen && (
-        <>
-          <span className="text-sm font-medium tracking-wide pl-4 mr-auto text-[#0c3b5f]">Menu</span>
-          <div className="h-[48px] w-px bg-gray-300 mx-5" />
-        </>
-      )}
-
-      {/* Mobile: Show X when open, hamburger when closed */}
-      {isMobile ? (
-        isOpen ? (
-          // X icon for close
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <line x1="5" y1="5" x2="19" y2="19" stroke="white" strokeWidth="2" strokeLinecap="round" />
-            <line x1="19" y1="5" x2="5" y2="19" stroke="white" strokeWidth="2" strokeLinecap="round" />
-          </svg>
-        ) : (
-          // Hamburger icon
-          <div className="flex flex-col gap-[4px]">
-            <span className="h-[2px] bg-[#0c3b5f] w-[14px]" />
-            <span className="h-[2px] bg-[#0c3b5f] w-[14px]" />
-          </div>
-        )
-      ) : (
-        // Desktop hamburger (always show)
-        <div className={`flex flex-col gap-[6px] ${!isOpen ? 'pr-5' : ''}`}>
-          <span className="h-[2px] bg-[#0c3b5f] w-[23.5px]" />
-          <span className="h-[2px] bg-[#0c3b5f] w-[23.5px]" />
-        </div>
-      )}
-    </button>
-  );
-};
-
-// ============================================
 // HERO COMPONENT
 // ============================================
 export const Hero = () => {
   const heroRef = useRef<HTMLDivElement>(null);
-  const menuButtonRef = useRef<HTMLButtonElement>(null);
   const exploreButtonRef = useRef<HTMLButtonElement>(null);
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isVideoOpen, setIsVideoOpen] = useState(false);
   const [videoButtonPos, setVideoButtonPos] = useState({ left: 0, top: 0, width: 0, height: 0, centerX: 0, centerY: 0 });
   const [expandingCard, setExpandingCard] = useState<number | null>(null);
@@ -519,10 +23,25 @@ export const Hero = () => {
   const backgroundRef = useRef<HTMLImageElement>(null);
   const buildingRef = useRef<HTMLImageElement>(null);
   const textRef = useRef<HTMLDivElement>(null);
-  const navRef = useRef<HTMLElement>(null);
 
   // Track image loading state
   const [imagesLoaded, setImagesLoaded] = useState(false);
+
+  // Parallax state for background
+  const [parallaxOffset, setParallaxOffset] = useState(0);
+
+  // Parallax effect for background
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollY = window.scrollY;
+      // Parallax speed - adjust this value to control the effect intensity
+      const parallaxSpeed = 0.5;
+      setParallaxOffset(scrollY * parallaxSpeed);
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   // Wait for images to load before starting animation
   useEffect(() => {
@@ -582,10 +101,6 @@ export const Hero = () => {
       opacity: 0,
       y: isMobile ? 200 : 400,
     });
-    gsap.set(navRef.current, {
-      opacity: 0,
-      y: -30,
-    });
     gsap.set(exploreButtonRef.current, {
       opacity: 0,
       y: 30,
@@ -618,20 +133,13 @@ export const Hero = () => {
           duration: isMobile ? 1.4 : 1.2,
           ease: 'power2.out',
         }, isMobile ? '-=0.8' : '-=1.2')
-        // 4. Navigation fades in
-        .to(navRef.current, {
-          opacity: 1,
-          y: 0,
-          duration: 0.8,
-          ease: 'power2.out',
-        }, '-=0.8')
-        // 5. Explore button fades in (same time as nav)
+        // 4. Explore button fades in
         .to(exploreButtonRef.current, {
           opacity: 1,
           y: 0,
           duration: 0.8,
           ease: 'power2.out',
-        }, '-=0.8');
+        }, '-=0.6');
     }, 0); // Start immediately (page loader deactivated)
 
     return () => {
@@ -651,18 +159,10 @@ export const Hero = () => {
           ref={heroRef}
           className="relative w-full h-full overflow-hidden rounded-3xl"
         >
-          {/* Menu Overlay - renders inside hero container */}
-          <MenuOverlay
-            isOpen={isMenuOpen}
-            onClose={() => setIsMenuOpen(false)}
-            menuButtonRef={menuButtonRef}
-            heroRef={heroRef}
-          />
-
           {/* Layer 1: Background Image (z-index: 1) */}
           <div
             className="absolute inset-0"
-            style={{ zIndex: 1 }}
+            style={{ zIndex: 1, overflow: 'hidden' }}
           >
             <img
               ref={backgroundRef}
@@ -672,6 +172,8 @@ export const Hero = () => {
               style={{
                 objectPosition: isMobile ? 'center center' : 'center top',
                 clipPath: 'polygon(0% 50%, 100% 50%, 100% 50%, 0% 50%)',
+                transform: `translateY(${parallaxOffset}px)`,
+                transition: 'transform 0.1s ease-out',
               }}
             />
           </div>
@@ -682,7 +184,7 @@ export const Hero = () => {
             className="absolute inset-0 flex items-center justify-center"
             style={{
               zIndex: 2,
-              paddingBottom: isMobile ? '45%' : '10%',
+              paddingBottom: isMobile ? '65%' : '20%',
               opacity: 0,
             }}
           >
@@ -690,10 +192,10 @@ export const Hero = () => {
               className="text-center font-bold uppercase tracking-wider select-none"
               style={{
                 fontFamily: "'Humane', sans-serif",
-                fontSize: isMobile ? 'clamp(4.5rem, 22vw, 8rem)' : 'clamp(15rem, 20vw, 20rem)',
+                fontSize: isMobile ? 'clamp(5.5rem, 26vw, 10rem)' : 'clamp(18rem, 24vw, 24rem)',
                 lineHeight: isMobile ? 1.0 : 1.1,
                 letterSpacing: isMobile ? '0.02em' : '0.01em',
-                wordSpacing: isMobile ? '0.2em' : '1em',
+                wordSpacing: isMobile ? '0.05em' : '0.3em',
                 whiteSpace: isMobile ? 'normal' : 'nowrap',
                 maxWidth: isMobile ? '90vw' : 'none',
                 backgroundImage: isMobile
@@ -718,7 +220,7 @@ export const Hero = () => {
           {/* Layer 3: Building/Foreground Image (z-index: 3) */}
           <img
             ref={buildingRef}
-            src="/jluherot.png"
+            src="/hero.png"
             alt="JLU Building"
             className="absolute"
             style={{
@@ -767,7 +269,7 @@ export const Hero = () => {
             }}
             className="absolute bottom-8 right-8 sm:bottom-12 sm:right-12 lg:bottom-16 lg:right-16 bg-white text-[#21313c] font-semibold cursor-pointer"
             style={{
-              zIndex: 120,
+              zIndex: 40,
               padding: isMobile ? '12px 24px' : '16px 32px',
               borderRadius: '8px',
               fontSize: isMobile ? '14px' : '16px',
@@ -900,58 +402,99 @@ export const Hero = () => {
               )}
           </AnimatePresence>
 
-          {/* Navigation bar (z-index: 50) */}
-          <nav
-            ref={navRef}
-            className="absolute top-0 left-0 right-0 flex items-center justify-between px-6 pt-6 sm:px-10 lg:px-16"
-            style={{ zIndex: 50, opacity: 0 }}
-          >
-            {/* Search button - hidden when menu is open on mobile */}
-            <button
-              className={`flex items-center justify-center bg-white text-slate-800 shadow-lg shadow-black/5 transition-all hover:shadow-xl hover:shadow-black/10 ${isMobile ? 'h-6 w-6 rounded-md' : 'h-12 w-12 rounded-xl'}`}
-              style={{
-                opacity: isMenuOpen && isMobile ? 0 : 1,
-                visibility: isMenuOpen && isMobile ? 'hidden' : 'visible',
-                pointerEvents: isMenuOpen && isMobile ? 'none' : 'auto',
-              }}
+        </div>
+      </section>
+
+      {/* Awards and Accreditations Banner */}
+      <section className="relative bg-[#f6f7f0] py-6 overflow-hidden">
+        <div className="mx-auto max-w-[1800px] px-4 sm:px-10 lg:px-16">
+          <div className="flex items-center justify-center gap-8 flex-wrap">
+            {/* UGC Approved */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.1 }}
+              className="flex items-center gap-2 px-4 py-2 bg-white rounded-lg shadow-sm border border-gray-200"
             >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                strokeWidth={2}
-                stroke="currentColor"
-                className={isMobile ? 'h-3.5 w-3.5' : 'h-5 w-5'}
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z"
-                />
+              <svg className="w-5 h-5 text-[#03463B]" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M9 2a1 1 0 000 2h2a1 1 0 100-2H9z" />
+                <path fillRule="evenodd" d="M4 5a2 2 0 012-2 3 3 0 003 3h2a3 3 0 003-3 2 2 0 012 2v11a2 2 0 01-2 2H6a2 2 0 01-2-2V5zm9.707 5.707a1 1 0 00-1.414-1.414L9 12.586l-1.293-1.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
               </svg>
-            </button>
+              <span className="text-sm font-semibold text-gray-700">UGC Approved</span>
+            </motion.div>
 
-            {/* Centered logo - hidden when menu is open on mobile */}
-            <div
-              className="absolute left-1/2 -translate-x-1/2"
-              style={{
-                opacity: isMenuOpen && isMobile ? 0 : 1,
-                visibility: isMenuOpen && isMobile ? 'hidden' : 'visible',
-                pointerEvents: isMenuOpen && isMobile ? 'none' : 'auto',
-              }}
+            {/* NAAC Accredited */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.2 }}
+              className="flex items-center gap-2 px-4 py-2 bg-white rounded-lg shadow-sm border border-gray-200"
             >
-              <a href="/">
-                <img
-                  src="/jlulogo.png"
-                  alt="Jagran Lakecity University logo"
-                  className="h-14 w-auto object-contain drop-shadow-lg sm:h-16 cursor-pointer"
-                />
-              </a>
-            </div>
+              <svg className="w-5 h-5 text-[#03463B]" fill="currentColor" viewBox="0 0 20 20">
+                <path fillRule="evenodd" d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+              </svg>
+              <span className="text-sm font-semibold text-gray-700">NAAC B+ Accredited</span>
+            </motion.div>
 
-            {/* Menu Button - toggles menu open/close */}
-            <MenuButton onClick={() => setIsMenuOpen(!isMenuOpen)} buttonRef={menuButtonRef} isOpen={isMenuOpen} />
-          </nav>
+            {/* AICTE Approved */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.3 }}
+              className="flex items-center gap-2 px-4 py-2 bg-white rounded-lg shadow-sm border border-gray-200"
+            >
+              <svg className="w-5 h-5 text-[#03463B]" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M9 2a1 1 0 000 2h2a1 1 0 100-2H9z" />
+                <path fillRule="evenodd" d="M4 5a2 2 0 012-2 3 3 0 003 3h2a3 3 0 003-3 2 2 0 012 2v11a2 2 0 01-2 2H6a2 2 0 01-2-2V5zm9.707 5.707a1 1 0 00-1.414-1.414L9 12.586l-1.293-1.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+              </svg>
+              <span className="text-sm font-semibold text-gray-700">AICTE Approved</span>
+            </motion.div>
+
+            {/* BCI Recognized */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.4 }}
+              className="flex items-center gap-2 px-4 py-2 bg-white rounded-lg shadow-sm border border-gray-200"
+            >
+              <svg className="w-5 h-5 text-[#03463B]" fill="currentColor" viewBox="0 0 20 20">
+                <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+              </svg>
+              <span className="text-sm font-semibold text-gray-700">BCI Recognized</span>
+            </motion.div>
+
+            {/* QS I-Gauge Diamond */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.5 }}
+              className="flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-[#03463B] to-[#025039] rounded-lg shadow-md"
+            >
+              <svg className="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+              </svg>
+              <span className="text-sm font-bold text-white">QS I-Gauge Diamond</span>
+            </motion.div>
+
+            {/* AIU Member */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.6 }}
+              className="flex items-center gap-2 px-4 py-2 bg-white rounded-lg shadow-sm border border-gray-200"
+            >
+              <svg className="w-5 h-5 text-[#03463B]" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M10.394 2.08a1 1 0 00-.788 0l-7 3a1 1 0 000 1.84L5.25 8.051a.999.999 0 01.356-.257l4-1.714a1 1 0 11.788 1.838L7.667 9.088l1.94.831a1 1 0 00.787 0l7-3a1 1 0 000-1.838l-7-3zM3.31 9.397L5 10.12v4.102a8.969 8.969 0 00-1.05-.174 1 1 0 01-.89-.89 11.115 11.115 0 01.25-3.762zM9.3 16.573A9.026 9.026 0 007 14.935v-3.957l1.818.78a3 3 0 002.364 0l5.508-2.361a11.026 11.026 0 01.25 3.762 1 1 0 01-.89.89 8.968 8.968 0 00-5.35 2.524 1 1 0 01-1.4 0zM6 18a1 1 0 001-1v-2.065a8.935 8.935 0 00-2-.712V17a1 1 0 001 1z" />
+              </svg>
+              <span className="text-sm font-semibold text-gray-700">AIU Member</span>
+            </motion.div>
+          </div>
         </div>
       </section>
 
@@ -1011,9 +554,9 @@ export const Hero = () => {
             style={{ gap: isMobile ? '12px' : '16px' }}
           >
             {[
-              { src: '/posthero1.jpg', alt: 'Student portrait', height: 550, mobileHeight: 220, label: 'Apply Now', href: '/apply' },
-              { src: '/posthero2.jpg', alt: 'Students collaborating', height: 430, mobileHeight: 180, label: '360° Tour', href: 'https://panel123.s3.ap-south-1.amazonaws.com/360JLU/index.html' },
-              { src: '/posthero3.jpg', alt: 'Group around laptop', height: 510, mobileHeight: 200, label: 'Student Clubs', href: '/student-clubs' },
+              { src: '/about-us.jpg', alt: 'JLU Campus', height: 550, mobileHeight: 220, label: 'About Us', href: '/about' },
+              { src: '/admissions.jpg', alt: 'Admissions', height: 500, mobileHeight: 200, label: 'Admissions', href: '/admissions' },
+              { src: '/student-clubs.jpg', alt: 'Student Clubs', height: 530, mobileHeight: 210, label: 'Student Clubs', href: '/student-clubs' },
             ].map((img, index) => (
               <div
                 key={img.src}
@@ -1069,36 +612,40 @@ export const Hero = () => {
                   />
                   {/* Dark overlay */}
                   <div
-                    className="transition-all duration-300 group-hover:bg-black/40"
+                    className="absolute inset-0 bg-black/15 group-hover:bg-black/60 transition-all duration-700 ease-in-out"
                     style={{
-                      position: 'absolute',
-                      inset: 0,
-                      backgroundColor: 'rgba(0, 0, 0, 0.15)',
                       borderTopLeftRadius: isMobile ? '12px' : '16px',
                       borderTopRightRadius: isMobile ? '12px' : '16px',
                       borderBottomLeftRadius: 0,
                       borderBottomRightRadius: 0,
                     }}
                   />
-                  {/* Hover button */}
+                  {/* Hover text at bottom - hero style */}
                   <div
-                    className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                    className="absolute bottom-0 left-0 right-0 flex items-end justify-start pl-6 sm:pl-8 opacity-0 group-hover:opacity-100 transition-all duration-500"
                     style={{
                       borderTopLeftRadius: isMobile ? '12px' : '16px',
                       borderTopRightRadius: isMobile ? '12px' : '16px',
                     }}
                   >
-                    <span
-                      className="bg-white text-[#21313c] font-semibold shadow-lg transform scale-90 group-hover:scale-100 transition-transform duration-300"
+                    <h2
+                      className="text-left font-bold uppercase tracking-wider select-none transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500"
                       style={{
-                        padding: isMobile ? '10px 20px' : '14px 28px',
-                        borderRadius: '8px',
-                        fontSize: isMobile ? '12px' : '15px',
-                        fontFamily: 'Inter, sans-serif',
+                        fontFamily: "'Humane', sans-serif",
+                        fontSize: isMobile ? 'clamp(3rem, 12vw, 5rem)' : 'clamp(4.5rem, 8vw, 8rem)',
+                        lineHeight: 1.1,
+                        letterSpacing: isMobile ? '0.02em' : '0.01em',
+                        wordSpacing: isMobile ? '0.05em' : '0.3em',
+                        backgroundImage: isMobile
+                          ? 'linear-gradient(to bottom, rgba(255,255,255,1) 0%, rgba(255,255,255,0.7) 20%, rgba(255,255,255,0) 100%)'
+                          : 'linear-gradient(to bottom, rgba(255,255,255,1) 0%, rgba(255,255,255,1) 10%, rgba(255,255,255,0) 70%)',
+                        WebkitBackgroundClip: 'text',
+                        backgroundClip: 'text',
+                        WebkitTextFillColor: 'transparent',
                       }}
                     >
-                      {img.label}
-                    </span>
+                      {img.label.toUpperCase()}
+                    </h2>
                   </div>
                 </div>
               </div>
@@ -1134,7 +681,7 @@ export const Hero = () => {
                 style={{ zIndex: 9998, overflow: 'hidden' }}
               >
                 <motion.img
-                  src={['/posthero1.jpg', '/posthero2.jpg', '/posthero3.jpg'][expandingCard]}
+                  src={['/about-us.jpg', '/admissions.jpg', '/student-clubs.jpg'][expandingCard]}
                   alt="Expanding"
                   className="w-full h-full object-cover"
                   initial={{ scale: 1 }}
