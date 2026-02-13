@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useIsMobile } from '../hooks/useIsMobile';
 
@@ -62,6 +62,17 @@ export const EnquiryModal = ({ isOpen, onClose }: EnquiryModalProps) => {
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
+
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = 'hidden';
+      document.documentElement.style.overflow = 'hidden';
+    }
+    return () => {
+      document.body.style.overflow = '';
+      document.documentElement.style.overflow = '';
+    };
+  }, [isOpen]);
 
   const validateForm = () => {
     const newErrors: Record<string, string> = {};
@@ -131,11 +142,12 @@ export const EnquiryModal = ({ isOpen, onClose }: EnquiryModalProps) => {
             exit={{ opacity: 0 }}
             transition={{ duration: 0.4, ease: [0.32, 0.72, 0, 1] }}
             onClick={onClose}
+            onWheel={(e) => e.stopPropagation()}
           />
 
-          {/* Modal Panel - reveals from right with clipPath */}
+          {/* Modal Panel - reveals from right */}
           <motion.div
-            className="fixed z-[9999] bg-white overflow-hidden shadow-2xl"
+            className="fixed z-[9999] bg-white flex flex-col shadow-2xl"
             style={{
               ...(isMobile
                 ? { inset: 0, borderRadius: 0 }
@@ -148,9 +160,10 @@ export const EnquiryModal = ({ isOpen, onClose }: EnquiryModalProps) => {
                     borderBottomLeftRadius: '24px',
                   }),
             }}
-            initial={{ clipPath: 'inset(0 0 0 100%)' }}
-            animate={{ clipPath: 'inset(0 0 0 0)' }}
-            exit={{ clipPath: 'inset(0 0 0 100%)' }}
+            onWheel={(e) => e.stopPropagation()}
+            initial={{ x: '100%' }}
+            animate={{ x: 0 }}
+            exit={{ x: '100%' }}
             transition={{
               duration: 0.5,
               ease: [0.32, 0.72, 0, 1],
@@ -158,7 +171,7 @@ export const EnquiryModal = ({ isOpen, onClose }: EnquiryModalProps) => {
           >
             {/* Header */}
             <motion.div
-              className="flex items-center justify-between p-6 border-b border-gray-100"
+              className="flex items-center justify-between p-6 border-b border-gray-100 shrink-0"
               initial={{ opacity: 0, x: 40 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.4, delay: 0.2, ease: [0.32, 0.72, 0, 1] }}
@@ -180,8 +193,8 @@ export const EnquiryModal = ({ isOpen, onClose }: EnquiryModalProps) => {
 
             {/* Form Content */}
             <motion.div
-              className="p-6 overflow-y-auto"
-              style={{ height: 'calc(100% - 88px)' }}
+              className="p-6 overflow-y-auto flex-1 min-h-0"
+              style={{ overscrollBehavior: 'contain' }}
               initial={{ opacity: 0, x: 50 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.45, delay: 0.25, ease: [0.32, 0.72, 0, 1] }}

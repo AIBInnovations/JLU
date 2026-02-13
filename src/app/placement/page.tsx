@@ -5,7 +5,7 @@ import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { useIsMobile } from '../../hooks/useIsMobile';
-import { Header, Footer } from '@/components';
+import { Footer } from '@/components';
 
 // Register GSAP plugins
 gsap.registerPlugin(ScrollTrigger);
@@ -239,9 +239,6 @@ export default function PlacementPage() {
 
   return (
     <div ref={containerRef} className="bg-[#0a0a0a] min-h-screen overflow-x-hidden">
-      {/* Fixed Header */}
-      <Header />
-
       {/* ============================================ */}
       {/* HERO SECTION - About Style with Large Text */}
       {/* ============================================ */}
@@ -457,6 +454,448 @@ export default function PlacementPage() {
 
 
       {/* ============================================ */}
+      {/* PLACEMENT AT A GLANCE - Stats */}
+      {/* ============================================ */}
+      <section className="relative py-20 md:py-32 bg-[#21313c] overflow-hidden">
+        <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-[#f0c14b]/5 rounded-full blur-[120px]" />
+        <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-[#c3fd7a]/5 rounded-full blur-[120px]" />
+
+        <div className="max-w-[1200px] mx-auto px-6 md:px-12 relative z-10">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, ease: customEase }}
+            className="text-center mb-16 md:mb-24"
+          >
+            <span className="text-[#f0c14b] text-xs tracking-[0.3em] uppercase block mb-5">
+              Placement Highlights
+            </span>
+            <h2 className="text-white text-3xl md:text-5xl lg:text-6xl font-semibold" style={{ letterSpacing: '-0.03em', lineHeight: 1.1 }}>
+              Numbers That{' '}
+              <span style={{ fontFamily: "'Times New Roman', serif", fontStyle: 'italic', fontWeight: 400, color: '#f0c14b' }}>
+                Speak
+              </span>
+            </h2>
+          </motion.div>
+
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
+            {[
+              { number: '80%+', label: 'Placement Rate', sublabel: 'Consistently high outcomes' },
+              { number: '500+', label: 'Recruiting Partners', sublabel: 'Top companies trust JLU' },
+              { number: '12 LPA', label: 'Highest Package', sublabel: 'Industry-leading offers' },
+              { number: '200+', label: 'Companies Visit', sublabel: 'Annual campus drives' },
+            ].map((stat, i) => (
+              <motion.div
+                key={stat.label}
+                initial={{ opacity: 0, y: 40 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: i * 0.15, ease: customEase }}
+                className="text-center p-6 md:p-8 rounded-2xl bg-white/5 backdrop-blur-sm border border-white/10"
+              >
+                <span className="text-[#f0c14b] text-3xl md:text-4xl lg:text-5xl font-bold block mb-3" style={{ letterSpacing: '-0.02em' }}>
+                  {stat.number}
+                </span>
+                <span className="text-white text-sm md:text-base font-semibold block mb-1">
+                  {stat.label}
+                </span>
+                <span className="text-white/40 text-xs">
+                  {stat.sublabel}
+                </span>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ============================================ */}
+      {/* CAREER READINESS PILLARS - 4 Cards */}
+      {/* ============================================ */}
+      <section className="py-20 md:py-32 bg-[#f6f7f0] px-4 md:px-12">
+        <div className="max-w-[1400px] mx-auto">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, ease: customEase }}
+            className="mb-12 md:mb-20"
+          >
+            <span className="text-[#999] text-xs tracking-[0.3em] uppercase block mb-4">
+              What Sets Us Apart
+            </span>
+            <h2 className="text-[#21313c] text-3xl md:text-5xl lg:text-6xl font-semibold" style={{ letterSpacing: '-0.03em', lineHeight: 1.1 }}>
+              Career Readiness{' '}
+              <span style={{ fontFamily: "'Times New Roman', serif", fontStyle: 'italic', fontWeight: 400 }}>
+                Pillars
+              </span>
+            </h2>
+          </motion.div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-5">
+            {[
+              {
+                title: 'Industry-Ready Curriculum',
+                description: 'Programs co-designed with industry leaders, ensuring skills align with market demands and emerging technologies.',
+                image: 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=800&q=80',
+                accent: '#c3fd7a',
+                darkText: true,
+              },
+              {
+                title: 'Dedicated Training & Development',
+                description: 'Pre-placement training programs including aptitude, technical skills, and professional communication workshops.',
+                image: 'https://images.unsplash.com/photo-1551434678-e076c223a692?w=800&q=80',
+                accent: '#4a90a4',
+                darkText: false,
+              },
+              {
+                title: 'Mock Interviews & Soft Skills',
+                description: 'Rigorous mock interviews, group discussions, and personality development sessions with industry professionals.',
+                image: 'https://images.unsplash.com/photo-1553877522-43269d4ea984?w=800&q=80',
+                accent: '#e85a71',
+                darkText: false,
+              },
+              {
+                title: 'Global Career Network',
+                description: 'International placement partnerships and alumni network spanning Fortune 500 companies across 15+ countries.',
+                image: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=800&q=80',
+                accent: '#f4c950',
+                darkText: true,
+              },
+            ].map((card, i) => (
+              <motion.div
+                key={card.title}
+                initial={{ opacity: 0, y: 50 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.7, delay: i * 0.12, ease: customEase }}
+                className="group relative overflow-hidden rounded-2xl cursor-pointer"
+                style={{ aspectRatio: '1 / 1.2' }}
+              >
+                <img
+                  src={card.image}
+                  alt={card.title}
+                  loading="lazy"
+                  className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                />
+                <div
+                  className="absolute inset-0 transition-opacity duration-300"
+                  style={{
+                    background: `linear-gradient(to top, ${card.accent}ee 0%, ${card.accent}99 35%, transparent 70%)`,
+                  }}
+                />
+                <div className="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-colors duration-300" />
+                <div className="absolute bottom-0 left-0 right-0 p-5 md:p-6 z-10">
+                  <h3
+                    className={`text-lg md:text-xl font-semibold mb-2 ${card.darkText ? 'text-[#21313c]' : 'text-white'}`}
+                    style={{ lineHeight: 1.2 }}
+                  >
+                    {card.title}
+                  </h3>
+                  <p
+                    className={`text-xs md:text-sm leading-relaxed opacity-0 group-hover:opacity-100 transition-opacity duration-300 ${card.darkText ? 'text-[#21313c]/80' : 'text-white/80'}`}
+                  >
+                    {card.description}
+                  </p>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ============================================ */}
+      {/* PLACEMENT JOURNEY - Process Steps */}
+      {/* ============================================ */}
+      <section className="py-20 md:py-32 bg-white overflow-hidden">
+        <div className="max-w-[1200px] mx-auto px-6 md:px-12">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, ease: customEase }}
+            className="text-center mb-16 md:mb-24"
+          >
+            <span className="text-[#999] text-xs tracking-[0.3em] uppercase block mb-5">
+              Step By Step
+            </span>
+            <h2 className="text-[#21313c] text-3xl md:text-5xl lg:text-6xl font-semibold" style={{ letterSpacing: '-0.03em', lineHeight: 1.1 }}>
+              The JLU Placement{' '}
+              <span style={{ fontFamily: "'Times New Roman', serif", fontStyle: 'italic', fontWeight: 400 }}>
+                Journey
+              </span>
+            </h2>
+          </motion.div>
+
+          <div className="grid grid-cols-1 md:grid-cols-5 gap-8 md:gap-0 relative">
+            {/* Connecting line (desktop only) */}
+            <div className="hidden md:block absolute top-[40px] left-[10%] right-[10%] h-px bg-gradient-to-r from-transparent via-[#f0c14b] to-transparent" />
+
+            {[
+              { step: '01', title: 'Pre-Placement Training', desc: 'Aptitude tests, coding bootcamps & communication workshops' },
+              { step: '02', title: 'Resume Building', desc: 'Professional portfolio & LinkedIn optimization with expert guidance' },
+              { step: '03', title: 'Mock Interviews', desc: 'Industry professionals conduct rigorous mock interview sessions' },
+              { step: '04', title: 'Campus Drives', desc: '200+ companies visit campus for recruitment drives annually' },
+              { step: '05', title: 'Offer & Onboarding', desc: 'Placement cell assists with offer negotiation & smooth transition' },
+            ].map((step, i) => (
+              <motion.div
+                key={step.step}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: i * 0.12, ease: customEase }}
+                className="text-center relative"
+              >
+                <div className="w-20 h-20 rounded-full bg-[#f0c14b] flex items-center justify-center mx-auto mb-5 relative z-10 shadow-lg shadow-[#f0c14b]/20">
+                  <span className="text-[#21313c] text-xl font-bold">{step.step}</span>
+                </div>
+                <h4 className="text-[#21313c] font-semibold text-sm md:text-base mb-2">{step.title}</h4>
+                <p className="text-[#666] text-xs md:text-sm leading-relaxed max-w-[180px] mx-auto">{step.desc}</p>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ============================================ */}
+      {/* TOP RECRUITERS - Marquee */}
+      {/* ============================================ */}
+      <section className="py-16 md:py-24 bg-[#0a0a0a] overflow-hidden">
+        <div className="max-w-[1200px] mx-auto px-6 md:px-12 mb-12 md:mb-16">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, ease: customEase }}
+            className="text-center"
+          >
+            <span className="text-[#f0c14b] text-xs tracking-[0.3em] uppercase block mb-5">
+              Our Recruiting Partners
+            </span>
+            <h2 className="text-white text-3xl md:text-5xl font-semibold" style={{ letterSpacing: '-0.03em', lineHeight: 1.1 }}>
+              Trusted By{' '}
+              <span style={{ fontFamily: "'Times New Roman', serif", fontStyle: 'italic', fontWeight: 400, color: '#f0c14b' }}>
+                Industry Leaders
+              </span>
+            </h2>
+          </motion.div>
+        </div>
+
+        {/* Marquee Row 1 */}
+        <div className="relative mb-4 overflow-hidden">
+          <div className="flex animate-marquee whitespace-nowrap">
+            {['Infosys', 'TCS', 'Wipro', 'Cognizant', 'HCL Tech', 'Tech Mahindra', 'Capgemini', 'Deloitte', 'KPMG', 'Ernst & Young', 'Accenture', 'IBM', 'Infosys', 'TCS', 'Wipro', 'Cognizant', 'HCL Tech', 'Tech Mahindra', 'Capgemini', 'Deloitte', 'KPMG', 'Ernst & Young', 'Accenture', 'IBM'].map((company, i) => (
+              <span
+                key={`row1-${i}`}
+                className="text-white/15 text-4xl md:text-6xl lg:text-7xl font-bold mx-6 md:mx-10 select-none"
+                style={{ fontFamily: "system-ui, sans-serif", letterSpacing: '-0.03em' }}
+              >
+                {company}
+              </span>
+            ))}
+          </div>
+        </div>
+
+        {/* Marquee Row 2 - Reverse */}
+        <div className="relative overflow-hidden">
+          <div className="flex animate-marquee-reverse whitespace-nowrap">
+            {['Amazon', 'Flipkart', 'Zomato', 'Paytm', 'Axis Bank', 'HDFC', 'ICICI', 'Reliance', 'Adani', 'L&T', 'Godrej', 'Jio', 'Amazon', 'Flipkart', 'Zomato', 'Paytm', 'Axis Bank', 'HDFC', 'ICICI', 'Reliance', 'Adani', 'L&T', 'Godrej', 'Jio'].map((company, i) => (
+              <span
+                key={`row2-${i}`}
+                className="text-white/8 text-4xl md:text-6xl lg:text-7xl font-bold mx-6 md:mx-10 select-none"
+                style={{ fontFamily: "system-ui, sans-serif", letterSpacing: '-0.03em' }}
+              >
+                {company}
+              </span>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ============================================ */}
+      {/* WHERE DREAMS TAKE FLIGHT - Bento Grid */}
+      {/* ============================================ */}
+      <section className="py-20 md:py-32 bg-[#f6f7f0]">
+        <div className="max-w-[1400px] mx-auto px-4 md:px-12">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, ease: customEase }}
+            className="flex flex-col md:flex-row md:justify-between md:items-end mb-12 md:mb-20"
+          >
+            <div>
+              <span className="text-[#999] text-xs tracking-[0.3em] uppercase block mb-4">
+                Success Stories
+              </span>
+              <h2 className="text-[#21313c] text-3xl md:text-5xl lg:text-6xl font-semibold" style={{ letterSpacing: '-0.03em', lineHeight: 1.1 }}>
+                Where Dreams{' '}
+                <span style={{ fontFamily: "'Times New Roman', serif", fontStyle: 'italic', fontWeight: 400 }}>
+                  Take Flight
+                </span>
+              </h2>
+            </div>
+            <p className="text-[#666] text-sm md:text-base max-w-[400px] mt-4 md:mt-0" style={{ lineHeight: 1.7 }}>
+              Our graduates are making their mark across industries, from Fortune 500 corporations to innovative startups worldwide.
+            </p>
+          </motion.div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-5">
+            {/* Large card */}
+            <motion.div
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.7, ease: customEase }}
+              className="md:col-span-2 md:row-span-2 group relative overflow-hidden rounded-2xl min-h-[400px] md:min-h-[600px]"
+            >
+              <img
+                src="https://images.unsplash.com/photo-1521737711867-e3b97375f902?w=1200&q=80"
+                alt="Corporate Success"
+                loading="lazy"
+                className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent" />
+              <div className="absolute bottom-0 left-0 right-0 p-6 md:p-10">
+                <span className="text-[#f0c14b] text-xs tracking-[0.2em] uppercase block mb-3">Corporate Excellence</span>
+                <h3 className="text-white text-2xl md:text-3xl lg:text-4xl font-semibold mb-3" style={{ lineHeight: 1.2 }}>
+                  Building Careers That{' '}
+                  <span style={{ fontFamily: "'Times New Roman', serif", fontStyle: 'italic', fontWeight: 400 }}>Matter</span>
+                </h3>
+                <p className="text-white/70 text-sm md:text-base max-w-[500px]" style={{ lineHeight: 1.7 }}>
+                  Our placement cell works tirelessly to connect talented students with leading organizations, resulting in exceptional career outcomes year after year.
+                </p>
+              </div>
+            </motion.div>
+
+            {/* Top right card */}
+            <motion.div
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.7, delay: 0.15, ease: customEase }}
+              className="group relative overflow-hidden rounded-2xl min-h-[280px]"
+            >
+              <img
+                src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=800&q=80"
+                alt="Professional Growth"
+                loading="lazy"
+                className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-[#21313c]/90 to-transparent" />
+              <div className="absolute bottom-0 left-0 right-0 p-5 md:p-6">
+                <span className="text-3xl md:text-4xl font-bold text-[#f0c14b] block mb-1">95%</span>
+                <span className="text-white text-sm font-semibold block">Students Placed Before Graduation</span>
+                <span className="text-white/50 text-xs">2024-25 Batch</span>
+              </div>
+            </motion.div>
+
+            {/* Bottom right card */}
+            <motion.div
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.7, delay: 0.25, ease: customEase }}
+              className="group relative overflow-hidden rounded-2xl min-h-[280px]"
+            >
+              <img
+                src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=800&q=80"
+                alt="Industry Connections"
+                loading="lazy"
+                className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-[#21313c]/90 to-transparent" />
+              <div className="absolute bottom-0 left-0 right-0 p-5 md:p-6">
+                <span className="text-3xl md:text-4xl font-bold text-[#c3fd7a] block mb-1">42+</span>
+                <span className="text-white text-sm font-semibold block">Global Industry Partnerships</span>
+                <span className="text-white/50 text-xs">Across 15+ countries</span>
+              </div>
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
+      {/* ============================================ */}
+      {/* TESTIMONIALS - Student Success Stories */}
+      {/* ============================================ */}
+      <section className="py-20 md:py-32 bg-white">
+        <div className="max-w-[1200px] mx-auto px-6 md:px-12">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, ease: customEase }}
+            className="text-center mb-16 md:mb-24"
+          >
+            <span className="text-[#999] text-xs tracking-[0.3em] uppercase block mb-5">
+              From Our Students
+            </span>
+            <h2 className="text-[#21313c] text-3xl md:text-5xl lg:text-6xl font-semibold" style={{ letterSpacing: '-0.03em', lineHeight: 1.1 }}>
+              Voices of{' '}
+              <span style={{ fontFamily: "'Times New Roman', serif", fontStyle: 'italic', fontWeight: 400 }}>
+                Success
+              </span>
+            </h2>
+          </motion.div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
+            {[
+              {
+                quote: "The placement cell at JLU didn't just find me a job — they helped me build a career. The mock interviews and industry mentorship were game-changers.",
+                name: 'Priya Sharma',
+                role: 'Software Engineer, Infosys',
+                batch: 'B.Tech CSE, Batch 2024',
+                image: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=200&q=80',
+              },
+              {
+                quote: "From resume workshops to final interviews, JLU's structured placement process gave me the confidence and skills to land my dream role at a Big 4 firm.",
+                name: 'Arjun Patel',
+                role: 'Associate Consultant, Deloitte',
+                batch: 'MBA, Batch 2024',
+                image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=200&q=80',
+              },
+              {
+                quote: 'The global exposure through summer programs and industry visits gave me an edge. I received 3 offers and chose my perfect fit in product management.',
+                name: 'Sneha Gupta',
+                role: 'Product Manager, Flipkart',
+                batch: 'BBA, Batch 2023',
+                image: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=200&q=80',
+              },
+            ].map((testimonial, i) => (
+              <motion.div
+                key={testimonial.name}
+                initial={{ opacity: 0, y: 40 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.7, delay: i * 0.15, ease: customEase }}
+                className="bg-[#f6f7f0] rounded-2xl p-6 md:p-8 flex flex-col group hover:shadow-xl transition-shadow duration-300"
+              >
+                <svg className="w-8 h-8 text-[#f0c14b] mb-5 shrink-0" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z" />
+                </svg>
+                <p className="text-[#21313c] text-sm md:text-base flex-1 mb-6" style={{ lineHeight: 1.8 }}>
+                  {testimonial.quote}
+                </p>
+                <div className="flex items-center gap-3">
+                  <img
+                    src={testimonial.image}
+                    alt={testimonial.name}
+                    loading="lazy"
+                    className="w-12 h-12 rounded-full object-cover"
+                  />
+                  <div>
+                    <span className="text-[#21313c] font-semibold text-sm block">{testimonial.name}</span>
+                    <span className="text-[#f0c14b] text-xs font-medium block">{testimonial.role}</span>
+                    <span className="text-[#999] text-xs">{testimonial.batch}</span>
+                  </div>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ============================================ */}
       {/* CTA SECTION - Matching other pages style */}
       {/* ============================================ */}
       <section className="py-10 md:py-14 px-4 sm:px-6 lg:px-12 bg-[#21313c] relative overflow-hidden">
@@ -567,6 +1006,21 @@ export default function PlacementPage() {
 
         ::-webkit-scrollbar-thumb:hover {
           background: #444;
+        }
+
+        @keyframes marquee {
+          0% { transform: translateX(0); }
+          100% { transform: translateX(-50%); }
+        }
+        @keyframes marquee-reverse {
+          0% { transform: translateX(-50%); }
+          100% { transform: translateX(0); }
+        }
+        .animate-marquee {
+          animation: marquee 40s linear infinite;
+        }
+        .animate-marquee-reverse {
+          animation: marquee-reverse 45s linear infinite;
         }
       `}</style>
     </div>

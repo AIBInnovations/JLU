@@ -1,9 +1,11 @@
 'use client';
 
 import Image from 'next/image';
+import Link from 'next/link';
 import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion';
-import { useState, useRef } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { useIsMobile } from '../hooks/useIsMobile';
+import { faculties, School } from '../data/faculties';
 
 interface PhilosophyCardData {
   id: number;
@@ -72,68 +74,6 @@ const philosophyCards: PhilosophyCardData[] = [
   },
 ];
 
-const facultiesData = [
-  {
-    id: 1,
-    name: 'Faculty of Management',
-    description: 'Focused on developing thoughtful leaders, managers, and entrepreneurs who understand both business and people.',
-    schools: [
-      { name: 'Jagran Lakecity Business School', description: 'Builds strong foundations in management through case thinking, industry exposure, and leadership development.' },
-      { name: 'Jagran School of Sports Management', description: 'Prepares students for the business side of sports, combining management principles with the realities of the sports ecosystem.' },
-      { name: 'Jagran School of Hospitality and Aviation Management', description: 'Designed for global service industries, with a focus on professionalism, operational excellence, and customer experience.' },
-    ],
-  },
-  {
-    id: 2,
-    name: 'Faculty of Journalism and Social Science',
-    description: 'Dedicated to understanding society, communication, culture, and responsible storytelling.',
-    schools: [
-      { name: 'Jagran School of Journalism', description: 'Trains journalists to report with integrity, context, and curiosity across media platforms.' },
-      { name: 'Jagran School of Advertising and Public Relations', description: 'Focuses on brand communication, creative strategy, and audience engagement in a rapidly evolving media world.' },
-      { name: 'Jagran School of Events and Entertainment', description: 'Prepares students for the dynamic fields of events, media, and entertainment through practical exposure.' },
-      { name: 'Jagran School of Languages and Social Science', description: 'Encourages cultural awareness, critical thinking, and communication through language and social inquiry.' },
-    ],
-  },
-  {
-    id: 3,
-    name: 'Faculty of Fashion, Design and Arts',
-    description: 'A creative environment where ideas are shaped through design, form, and thoughtful expression.',
-    schools: [
-      { name: 'Jagran School of Design', description: 'Nurtures design thinking and creative problem solving across visual and applied disciplines.' },
-      { name: 'Jagran School of Architecture', description: 'Balances creativity with structure, preparing students to design spaces that respond to people and context.' },
-      { name: 'Jagran School of Fashion', description: 'Explores fashion as culture, creativity, and industry, blending design sensibility with practical insight.' },
-    ],
-  },
-  {
-    id: 4,
-    name: 'Faculty of Engineering and Technology',
-    description: 'Built for problem solvers, innovators, and future focused technologists.',
-    schools: [
-      { name: 'Jagran School of Artificial Intelligence', description: 'Focused on emerging technologies, data driven thinking, and intelligent systems.' },
-      { name: 'Jagran School of Engineering', description: 'Offers strong technical foundations combined with practical learning and industry awareness.' },
-      { name: 'Jagran School of Computer Application', description: 'Prepares students for careers in software, computing, and digital solutions through hands on learning.' },
-    ],
-  },
-  {
-    id: 5,
-    name: 'Faculty of Pharmacy',
-    description: 'Combines scientific learning with responsibility, preparing students for healthcare, research, and pharmaceutical sciences.',
-    schools: [],
-  },
-  {
-    id: 6,
-    name: 'Faculty of Law',
-    description: 'Develops legal professionals with clarity of thought, ethical grounding, and practical understanding of the law.',
-    schools: [],
-  },
-  {
-    id: 7,
-    name: 'IICA, Jagran Centre for Creative Skills',
-    description: 'A skill focused centre bridging education and employability through industry connected, practice based learning.',
-    schools: [],
-  },
-];
-
 const learningMethods = [
   'Dialogue-led sessions',
   'Project-based exploration',
@@ -189,6 +129,17 @@ interface PhilosophyModalProps {
 }
 
 const PhilosophyModal = ({ isOpen, onClose, data }: PhilosophyModalProps) => {
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = 'hidden';
+      document.documentElement.style.overflow = 'hidden';
+    }
+    return () => {
+      document.body.style.overflow = '';
+      document.documentElement.style.overflow = '';
+    };
+  }, [isOpen]);
+
   if (!data) return null;
 
   return (
@@ -203,6 +154,7 @@ const PhilosophyModal = ({ isOpen, onClose, data }: PhilosophyModalProps) => {
             exit={{ opacity: 0 }}
             transition={{ duration: 0.3 }}
             onClick={onClose}
+            onWheel={(e) => e.stopPropagation()}
           />
 
           {/* Modal Container */}
@@ -214,15 +166,16 @@ const PhilosophyModal = ({ isOpen, onClose, data }: PhilosophyModalProps) => {
           >
             {/* Modal Panel */}
             <motion.div
-              className="relative bg-white w-full max-w-[900px] max-h-[90vh] overflow-hidden rounded-2xl shadow-2xl"
+              className="relative bg-white w-full max-w-[900px] max-h-[90vh] flex flex-col rounded-2xl shadow-2xl"
               initial={{ scale: 0.9, opacity: 0, y: 20 }}
               animate={{ scale: 1, opacity: 1, y: 0 }}
               exit={{ scale: 0.9, opacity: 0, y: 20 }}
               transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
               onClick={(e) => e.stopPropagation()}
+              onWheel={(e) => e.stopPropagation()}
             >
               {/* Header with Image */}
-              <div className="relative h-[180px] md:h-[240px] overflow-hidden">
+              <div className="relative h-[180px] md:h-[240px] overflow-hidden shrink-0">
                 <Image
                   src={data.image}
                   alt={data.title}
@@ -256,7 +209,7 @@ const PhilosophyModal = ({ isOpen, onClose, data }: PhilosophyModalProps) => {
               </div>
 
               {/* Content */}
-              <div className="p-6 md:p-8 overflow-y-auto" style={{ maxHeight: 'calc(90vh - 240px)' }}>
+              <div className="p-6 md:p-8 overflow-y-auto flex-1 min-h-0" style={{ overscrollBehavior: 'contain' }}>
                 {/* Intro */}
                 <motion.p
                   initial={{ opacity: 0, y: 10 }}
@@ -312,20 +265,34 @@ const PhilosophyModal = ({ isOpen, onClose, data }: PhilosophyModalProps) => {
 };
 
 const Academics = () => {
-  const [openFaculty, setOpenFaculty] = useState<number | null>(2);
+  const [activeFacultyId, setActiveFacultyId] = useState('management');
+  const [selectedSchool, setSelectedSchool] = useState<School | null>(null);
   const [currentTestimonial, setCurrentTestimonial] = useState(0);
   const [selectedPhilosophy, setSelectedPhilosophy] = useState<PhilosophyCardData | null>(null);
   const heroRef = useRef<HTMLDivElement>(null);
+  const tabsRef = useRef<HTMLDivElement>(null);
   const isMobile = useIsMobile();
+
+  useEffect(() => {
+    if (selectedSchool || selectedPhilosophy) {
+      document.body.style.overflow = 'hidden';
+      document.documentElement.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+      document.documentElement.style.overflow = '';
+    }
+    return () => {
+      document.body.style.overflow = '';
+      document.documentElement.style.overflow = '';
+    };
+  }, [selectedSchool, selectedPhilosophy]);
   const { scrollYProgress } = useScroll({
     target: heroRef,
     offset: ['start start', 'end start'],
   });
   const y = useTransform(scrollYProgress, [0, 1], ['0%', '30%']);
 
-  const toggleFaculty = (id: number) => {
-    setOpenFaculty(openFaculty === id ? null : id);
-  };
+  const activeFaculty = faculties.find(f => f.id === activeFacultyId) || faculties[0];
 
   return (
     <section className="w-screen m-0 p-0 overflow-x-hidden">
@@ -617,13 +584,13 @@ const Academics = () => {
         </div>
       </div>
 
-      {/* Faculties Overview Section - Awwwards Style */}
+      {/* ═══════════════════════════════════════════════════════════ */}
+      {/* FACULTY EXPLORER — Interactive Tabs + School Cards + Modal */}
+      {/* ═══════════════════════════════════════════════════════════ */}
       <div className="w-full bg-[#21313c]">
         <div
           className="mx-auto px-5 py-16 sm:px-8 sm:py-20 md:px-[120px] md:py-[140px]"
-          style={{
-            maxWidth: '1440px',
-          }}
+          style={{ maxWidth: '1440px' }}
         >
           {/* Section Header */}
           <motion.div
@@ -631,7 +598,7 @@ const Academics = () => {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
-            className="flex flex-col md:flex-row md:justify-between md:items-end gap-4 md:gap-8 mb-10 md:mb-20"
+            className="flex flex-col md:flex-row md:justify-between md:items-end gap-4 md:gap-8 mb-10 md:mb-16"
           >
             <div>
               <span
@@ -648,117 +615,199 @@ const Academics = () => {
                   letterSpacing: '-0.03em',
                 }}
               >
-                Faculties & Schools
+                Faculties &{' '}
+                <span style={{ fontFamily: "'Times New Roman', serif", fontStyle: 'italic', fontWeight: 400, color: '#f0c14b' }}>
+                  Schools
+                </span>
               </h2>
             </div>
             <p
               className="text-[#999] text-sm md:text-base max-w-full md:max-w-[400px]"
-              style={{
-                lineHeight: 1.7,
-              }}
+              style={{ lineHeight: 1.7 }}
             >
-              Seven faculties, each housing specialized schools that shape focused paths of learning.
+              Seven faculties, each housing specialized schools that shape focused paths of learning and industry readiness.
             </p>
           </motion.div>
 
-          {/* Faculty Accordion */}
-          <div>
-            {facultiesData.map((faculty, index) => (
-              <motion.div
-                key={faculty.id}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: index * 0.05 }}
-                viewport={{ once: true }}
-                className="border-t border-[#3a4a55]"
-                style={{
-                  borderBottom: index === facultiesData.length - 1 ? '1px solid #3a4a55' : 'none',
-                }}
-              >
-                <button
-                  onClick={() => toggleFaculty(faculty.id)}
-                  className="w-full py-5 md:py-8 flex items-center justify-between text-left group"
+          {/* Faculty Tab Bar — Horizontal Scroll */}
+          <motion.div
+            ref={tabsRef}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.1 }}
+            viewport={{ once: true }}
+            className="mb-10 md:mb-14 -mx-5 px-5 sm:-mx-8 sm:px-8 md:mx-0 md:px-0 overflow-x-auto"
+            style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+          >
+            <div className="flex gap-2 md:gap-3 w-max md:w-auto md:flex-wrap">
+              {faculties.map((faculty, index) => (
+                <motion.button
+                  key={faculty.id}
+                  onClick={() => setActiveFacultyId(faculty.id)}
+                  initial={{ opacity: 0, y: 10 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.3, delay: index * 0.05 }}
+                  viewport={{ once: true }}
+                  className={`px-4 py-2.5 md:px-6 md:py-3 rounded-full text-xs md:text-sm font-medium whitespace-nowrap transition-all duration-300 ${
+                    activeFacultyId === faculty.id
+                      ? 'bg-[#f0c14b] text-[#21313c] shadow-lg shadow-[#f0c14b]/20'
+                      : 'bg-[#2d3f4a] text-white/70 hover:text-white hover:bg-[#3a4f5c]'
+                  }`}
                 >
-                  <div className="flex items-center gap-3 md:gap-8">
-                    <span
-                      className="text-[#666] font-medium text-xs md:text-sm min-w-[24px] md:min-w-[30px]"
-                    >
-                      {String(faculty.id).padStart(2, '0')}
-                    </span>
-                    <div>
-                      <span
-                        className="text-white font-medium group-hover:text-[#f0c14b] transition-colors block text-base sm:text-lg md:text-2xl"
-                      >
-                        {faculty.name}
+                  {faculty.shortName}
+                </motion.button>
+              ))}
+            </div>
+          </motion.div>
+
+          {/* Active Faculty Content */}
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={activeFaculty.id}
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -20 }}
+              transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
+            >
+              {/* Faculty Info Header */}
+              <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between gap-6 lg:gap-12 mb-8 md:mb-12">
+                {/* Left — Name, Dean, Description */}
+                <div className="lg:max-w-[600px]">
+                  <h3
+                    className="text-white text-xl md:text-2xl lg:text-3xl font-semibold mb-3"
+                    style={{ lineHeight: 1.2 }}
+                  >
+                    {activeFaculty.name}
+                  </h3>
+
+                  {(activeFaculty.dean || activeFaculty.head) && (
+                    <div className="inline-flex items-center gap-2 bg-[#f0c14b]/10 border border-[#f0c14b]/30 rounded-full px-4 py-1.5 mb-4">
+                      <svg className="w-3.5 h-3.5 text-[#f0c14b]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                      </svg>
+                      <span className="text-[#f0c14b] text-xs font-medium">
+                        {activeFaculty.dean || activeFaculty.head}
                       </span>
                     </div>
-                  </div>
-                  <motion.span
-                    animate={{ rotate: openFaculty === faculty.id ? 45 : 0 }}
-                    transition={{ duration: 0.3 }}
-                    className="text-white text-2xl md:text-3xl font-light ml-2"
-                  >
-                    +
-                  </motion.span>
-                </button>
+                  )}
 
-                {/* Expanded Content */}
-                <motion.div
-                  initial={false}
-                  animate={{
-                    height: openFaculty === faculty.id ? 'auto' : 0,
-                    opacity: openFaculty === faculty.id ? 1 : 0,
-                  }}
-                  transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
-                  style={{ overflow: 'hidden' }}
-                >
-                  <div
-                    className="pb-6 md:pb-10 pl-7 md:pl-14 ml-0 md:ml-[30px]"
+                  <p
+                    className="text-[#999] text-sm md:text-base"
+                    style={{ lineHeight: 1.7 }}
                   >
-                    {/* Faculty Description */}
-                    <p
-                      className="text-[#999] mb-5 md:mb-8 text-sm md:text-base max-w-full md:max-w-[600px]"
-                      style={{ lineHeight: 1.7 }}
+                    {activeFaculty.description}
+                  </p>
+                </div>
+
+                {/* Right — Stats Grid */}
+                <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-2 gap-3">
+                  {activeFaculty.stats.map((stat, i) => (
+                    <motion.div
+                      key={i}
+                      initial={{ opacity: 0, scale: 0.9 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      transition={{ duration: 0.35, delay: 0.1 + i * 0.07 }}
+                      className="bg-[#2d3f4a] rounded-xl p-3 md:p-4 text-center min-w-[100px]"
                     >
-                      {faculty.description}
-                    </p>
+                      <span className="text-[#f0c14b] text-lg md:text-xl font-bold block mb-0.5">
+                        {stat.value}
+                      </span>
+                      <span className="text-[#999] text-[10px] md:text-xs uppercase tracking-wider">
+                        {stat.label}
+                      </span>
+                    </motion.div>
+                  ))}
+                </div>
+              </div>
 
-                    {/* Schools List */}
-                    {faculty.schools.length > 0 && (
-                      <div className="flex flex-col gap-4 md:gap-6">
-                        {faculty.schools.map((school, schoolIndex) => (
-                          <motion.div
-                            key={schoolIndex}
-                            initial={{ opacity: 0, x: -20 }}
-                            animate={{ opacity: 1, x: 0 }}
-                            transition={{ duration: 0.3, delay: schoolIndex * 0.05 }}
-                            className="group/school cursor-pointer"
-                          >
-                            <div className="flex items-start gap-3 md:gap-4">
-                              <span className="w-1.5 h-1.5 md:w-2 md:h-2 bg-[#f0c14b] rounded-full mt-1.5 md:mt-2 flex-shrink-0" />
-                              <div>
-                                <span
-                                  className="text-white group-hover/school:text-[#f0c14b] transition-colors block mb-1 text-sm md:text-lg font-medium"
-                                >
-                                  {school.name}
-                                </span>
-                                <span
-                                  className="text-[#999] text-xs md:text-sm"
-                                  style={{ lineHeight: 1.6 }}
-                                >
-                                  {school.description}
-                                </span>
-                              </div>
-                            </div>
-                          </motion.div>
-                        ))}
+              {/* School Cards Grid */}
+              <div className={`grid gap-4 md:gap-6 ${
+                activeFaculty.schools.length === 1
+                  ? 'grid-cols-1 max-w-[500px]'
+                  : activeFaculty.schools.length === 2
+                  ? 'grid-cols-1 md:grid-cols-2'
+                  : 'grid-cols-1 md:grid-cols-2 lg:grid-cols-3'
+              }`}>
+                {activeFaculty.schools.map((school, index) => (
+                  <motion.div
+                    key={school.id}
+                    initial={{ opacity: 0, y: 40 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.5, delay: 0.15 + index * 0.1 }}
+                    onClick={() => setSelectedSchool(school)}
+                    className="group cursor-pointer bg-[#2d3f4a] rounded-2xl overflow-hidden hover:bg-[#354b58] transition-all duration-400 hover:shadow-xl hover:shadow-black/20 hover:-translate-y-1"
+                  >
+                    {/* Card Image */}
+                    <div className="relative h-[160px] md:h-[180px] overflow-hidden">
+                      <Image
+                        src={school.image}
+                        alt={school.name}
+                        fill
+                        className="object-cover group-hover:scale-105 transition-transform duration-700"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-[#2d3f4a] via-transparent to-transparent" />
+
+                      {/* Short name badge */}
+                      <div className="absolute top-3 left-3 bg-[#f0c14b] text-[#21313c] text-[10px] font-bold uppercase tracking-wider px-3 py-1 rounded-full">
+                        {school.shortName}
                       </div>
-                    )}
-                  </div>
-                </motion.div>
-              </motion.div>
-            ))}
-          </div>
+
+                      {/* Program count badge */}
+                      <div className="absolute top-3 right-3 bg-white/15 backdrop-blur-sm text-white text-[10px] font-medium px-3 py-1 rounded-full">
+                        {school.programs.length} {school.programs.length === 1 ? 'Program' : 'Programs'}
+                      </div>
+                    </div>
+
+                    {/* Card Content */}
+                    <div className="p-4 md:p-5">
+                      <h4 className="text-white font-semibold text-sm md:text-base mb-2 group-hover:text-[#f0c14b] transition-colors" style={{ lineHeight: 1.3 }}>
+                        {school.name}
+                      </h4>
+                      <p className="text-[#999] text-xs md:text-sm mb-4" style={{ lineHeight: 1.6 }}>
+                        {school.tagline}
+                      </p>
+
+                      {/* Quick program pills */}
+                      <div className="flex flex-wrap gap-1.5 mb-4">
+                        {school.programs.slice(0, 3).map((prog, pi) => (
+                          <span
+                            key={pi}
+                            className="text-[10px] md:text-[11px] text-white/60 bg-white/5 border border-white/10 px-2.5 py-1 rounded-full"
+                          >
+                            {prog.name.length > 25 ? prog.name.substring(0, 25) + '...' : prog.name}
+                          </span>
+                        ))}
+                        {school.programs.length > 3 && (
+                          <span className="text-[10px] md:text-[11px] text-[#f0c14b] bg-[#f0c14b]/10 px-2.5 py-1 rounded-full">
+                            +{school.programs.length - 3} more
+                          </span>
+                        )}
+                      </div>
+
+                      {/* Explore link */}
+                      <Link
+                        href={`/schools/${school.id}`}
+                        onClick={(e) => e.stopPropagation()}
+                        className="flex items-center gap-2 text-[#c3fd7a] text-xs md:text-sm font-medium hover:text-[#d4ff99] transition-colors"
+                      >
+                        <span>Explore School</span>
+                        <motion.svg
+                          className="w-3.5 h-3.5"
+                          fill="none"
+                          stroke="currentColor"
+                          viewBox="0 0 24 24"
+                          animate={{ x: [0, 4, 0] }}
+                          transition={{ duration: 1.5, repeat: Infinity, ease: 'easeInOut' }}
+                        >
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                        </motion.svg>
+                      </Link>
+                    </div>
+                  </motion.div>
+                ))}
+              </div>
+            </motion.div>
+          </AnimatePresence>
         </div>
       </div>
 
@@ -954,7 +1003,7 @@ const Academics = () => {
                         lineHeight: 1,
                       }}
                     >
-                      "
+                      &ldquo;
                     </span>
 
                     {/* Content */}
@@ -1068,6 +1117,169 @@ const Academics = () => {
         onClose={() => setSelectedPhilosophy(null)}
         data={selectedPhilosophy}
       />
+
+      {/* School Detail Side Panel */}
+      <AnimatePresence>
+        {selectedSchool && (
+          <>
+            {/* Backdrop */}
+            <motion.div
+              className="fixed inset-0 bg-black/60 backdrop-blur-sm z-[9998]"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.3 }}
+              onClick={() => setSelectedSchool(null)}
+              onWheel={(e) => e.stopPropagation()}
+            />
+
+            {/* Side Panel */}
+            <motion.div
+              className="fixed top-0 right-0 bottom-0 w-full md:w-[560px] bg-white z-[9999] overflow-y-auto"
+              style={{ overscrollBehavior: 'contain' }}
+              onWheel={(e) => e.stopPropagation()}
+              initial={{ x: '100%' }}
+              animate={{ x: 0 }}
+              exit={{ x: '100%' }}
+              transition={{ duration: 0.5, ease: [0.32, 0.72, 0, 1] }}
+            >
+              {/* Image Header */}
+              <div className="relative h-[200px] md:h-[260px]">
+                <Image
+                  src={selectedSchool.image}
+                  alt={selectedSchool.name}
+                  fill
+                  className="object-cover"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent" />
+
+                {/* Close Button */}
+                <button
+                  onClick={() => setSelectedSchool(null)}
+                  className="absolute top-4 right-4 w-10 h-10 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center hover:bg-white/40 transition-colors"
+                >
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2">
+                    <line x1="18" y1="6" x2="6" y2="18" strokeLinecap="round" />
+                    <line x1="6" y1="6" x2="18" y2="18" strokeLinecap="round" />
+                  </svg>
+                </button>
+
+                {/* Title */}
+                <div className="absolute bottom-5 left-6 right-6">
+                  <span className="text-[#f0c14b] text-[10px] uppercase tracking-widest font-bold block mb-1">
+                    {selectedSchool.shortName}
+                  </span>
+                  <h3 className="text-white text-xl md:text-2xl font-semibold" style={{ lineHeight: 1.2 }}>
+                    {selectedSchool.name}
+                  </h3>
+                </div>
+              </div>
+
+              {/* Content */}
+              <div className="p-6 md:p-8">
+                {/* Head Badge */}
+                {selectedSchool.head && (
+                  <div className="flex items-center gap-2 mb-5 bg-[#f6f7f0] rounded-lg px-4 py-3">
+                    <div className="w-8 h-8 rounded-full bg-[#03463B] flex items-center justify-center shrink-0">
+                      <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                      </svg>
+                    </div>
+                    <div>
+                      <p className="text-[#999] text-[10px] uppercase tracking-wider">Head of School</p>
+                      <p className="text-[#21313c] text-sm font-semibold">{selectedSchool.head}</p>
+                    </div>
+                  </div>
+                )}
+
+                {/* Description */}
+                <p className="text-[#666] text-sm mb-6" style={{ lineHeight: 1.7 }}>
+                  {selectedSchool.description}
+                </p>
+
+                {/* Programs */}
+                <div className="mb-6">
+                  <h4 className="text-[#21313c] font-semibold text-base mb-4 flex items-center gap-2">
+                    <svg className="w-4 h-4 text-[#03463B]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+                    </svg>
+                    Programs Offered
+                  </h4>
+                  <div className="space-y-2">
+                    {selectedSchool.programs.map((program, i) => (
+                      <motion.div
+                        key={i}
+                        initial={{ opacity: 0, x: -10 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ duration: 0.3, delay: 0.1 + i * 0.05 }}
+                        className="flex items-center justify-between p-3 bg-[#f6f7f0] rounded-xl hover:bg-[#eef0e7] transition-colors"
+                      >
+                        <div className="flex-1 min-w-0">
+                          <span className="text-[#21313c] text-sm font-medium block truncate">{program.name}</span>
+                          <span className="text-[#999] text-xs">{program.degree}</span>
+                        </div>
+                        <span className="text-[#03463B] text-xs font-medium bg-[#03463B]/10 px-3 py-1 rounded-full shrink-0 ml-3">
+                          {program.duration}
+                        </span>
+                      </motion.div>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Highlights */}
+                <div className="mb-8">
+                  <h4 className="text-[#21313c] font-semibold text-base mb-4 flex items-center gap-2">
+                    <svg className="w-4 h-4 text-[#f0c14b]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" />
+                    </svg>
+                    Key Highlights
+                  </h4>
+                  <div className="space-y-3">
+                    {selectedSchool.highlights.map((highlight, i) => (
+                      <motion.div
+                        key={i}
+                        initial={{ opacity: 0, x: -10 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ duration: 0.3, delay: 0.2 + i * 0.06 }}
+                        className="flex items-start gap-3"
+                      >
+                        <span className="w-1.5 h-1.5 bg-[#f0c14b] rounded-full mt-2 shrink-0" />
+                        <span className="text-[#666] text-sm" style={{ lineHeight: 1.6 }}>
+                          {highlight}
+                        </span>
+                      </motion.div>
+                    ))}
+                  </div>
+                </div>
+
+                {/* CTA Buttons */}
+                <div className="space-y-3">
+                  <Link
+                    href="/apply"
+                    className="w-full flex items-center justify-center gap-2 px-6 py-4 bg-[#c3fd7a] text-[#21313c] font-semibold rounded-full hover:bg-[#f0c14b] transition-colors"
+                  >
+                    Apply Now
+                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                    </svg>
+                  </Link>
+                  <a
+                    href="/broucher/Fee-Structure2025.pdf"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-full flex items-center justify-center gap-2 px-6 py-4 bg-transparent border border-[#21313c]/20 text-[#21313c] font-medium rounded-full hover:bg-[#f6f7f0] transition-colors"
+                  >
+                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                    </svg>
+                    Download Fee Structure
+                  </a>
+                </div>
+              </div>
+            </motion.div>
+          </>
+        )}
+      </AnimatePresence>
     </section>
   );
 };

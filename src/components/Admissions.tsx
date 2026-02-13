@@ -3,8 +3,13 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion';
-import { useState, useRef } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { useIsMobile } from '../hooks/useIsMobile';
+import { courseFees, searchCourses } from '../data/courseFees';
+import { admissionSteps, requiredDocuments } from '../data/admissionProcedure';
+import { allScholarships, scholarshipApplicationProcess } from '../data/scholarships';
+import { hostelFees, commonFacilities, messFees } from '../data/accommodation';
+import { ugcRefundPolicy, feeCategories, refundProcess, importantConditions } from '../data/refundPolicy';
 
 const academicPaths = [
   {
@@ -29,11 +34,95 @@ const beyondDegrees = [
     id: 1,
     title: 'Centre for Professional Skills',
     description: 'Industry-ready learning beyond classrooms.',
+    modalContent: {
+      heading: 'Centre for Professional Skills',
+      intro: 'The Centre for Professional Skills (CPS) at JLU bridges the gap between academic knowledge and industry demands. Through hands-on training, certifications, and real-world projects, students develop the competencies that top employers actively seek.',
+      sections: [
+        {
+          title: 'Professional Certifications',
+          points: [
+            'Industry-recognized certifications from Google, AWS, Microsoft, and Salesforce',
+            'Domain-specific certifications in Data Analytics, Cloud Computing, and Digital Marketing',
+            'Soft skills certification in Business Communication, Leadership, and Negotiation',
+            'Certification programs co-designed with hiring partners',
+          ],
+        },
+        {
+          title: 'Skill Development Tracks',
+          points: [
+            'Technical Skills: Coding bootcamps, UI/UX design, DevOps fundamentals',
+            'Business Skills: Financial modeling, market research, business strategy',
+            'Communication: Public speaking, corporate presentation, professional writing',
+            'Entrepreneurship: Startup incubation, pitch deck preparation, funding strategies',
+          ],
+        },
+        {
+          title: 'Industry Partnerships',
+          points: [
+            'Collaborative training with 50+ corporate partners',
+            'Live projects and internships embedded into the curriculum',
+            'Guest lectures and masterclasses by industry leaders',
+            'Campus-to-corporate transition workshops',
+          ],
+        },
+        {
+          title: 'Program Outcomes',
+          points: [
+            '90%+ students receive at least one professional certification before graduation',
+            'Dedicated career counseling and placement preparation',
+            'Portfolio-ready projects for every student',
+            'Access to exclusive job fairs and hiring drives',
+          ],
+        },
+      ],
+    },
   },
   {
     id: 2,
     title: 'JLUx – Young Leadership Program',
     description: 'Early leadership exposure for future changemakers.',
+    modalContent: {
+      heading: 'JLUx – Young Leadership Program',
+      intro: 'JLUx is JLU\'s signature early-leadership initiative designed for students in classes 11 and 12. It offers young minds a head start in developing critical thinking, public speaking, and leadership capabilities through immersive campus experiences.',
+      sections: [
+        {
+          title: 'Program Structure',
+          points: [
+            'Weekend and holiday immersive sessions on JLU campus',
+            'Semester-long engagement with structured milestones',
+            'Blend of workshops, simulations, and mentoring circles',
+            'Capstone leadership project presented to a panel of industry experts',
+          ],
+        },
+        {
+          title: 'Leadership Tracks',
+          points: [
+            'Public Policy & Governance: Model UN, debate, and policy drafting',
+            'Innovation & Technology: Design thinking, prototyping, and hackathons',
+            'Social Impact: Community projects, sustainability challenges, and NGO collaboration',
+            'Business & Entrepreneurship: Startup simulations, branding, and market analysis',
+          ],
+        },
+        {
+          title: 'Mentorship & Exposure',
+          points: [
+            'One-on-one mentorship from JLU faculty and alumni leaders',
+            'Interaction with CEOs, policymakers, and thought leaders',
+            'Campus immersion experience — labs, libraries, sports, and cultural events',
+            'Participation in national-level inter-school competitions hosted by JLU',
+          ],
+        },
+        {
+          title: 'Benefits & Recognition',
+          points: [
+            'Certificate of completion recognized during JLU admissions',
+            'Scholarship consideration for top-performing JLUx graduates',
+            'Priority access to JLU entrance tests and personal interviews',
+            'Lifetime membership in the JLUx Alumni Network',
+          ],
+        },
+      ],
+    },
   },
 ];
 
@@ -194,23 +283,123 @@ const financialOptions = [
 const faqData = [
   {
     id: 1,
-    question: 'Who can apply?',
-    answer: 'Eligibility varies by program. Generally, undergraduate applicants need high school completion, while postgraduate applicants need a relevant bachelor\'s degree.',
+    question: 'Who can apply to JLU?',
+    answer: 'Eligibility varies by program. Generally, undergraduate applicants need 10+2 completion from a recognized board, while postgraduate applicants need a relevant bachelor\'s degree with minimum required percentage. Specific program requirements are available on individual course pages.',
   },
   {
     id: 2,
     question: 'What is the application deadline?',
-    answer: 'Application deadlines vary by program and intake. Please check the specific program page for exact dates or contact our admissions office.',
+    answer: 'Application deadlines vary by program and intake. JLU typically has rolling admissions for most programs. However, we recommend applying early to secure your preferred course and hostel accommodation.',
   },
   {
     id: 3,
-    question: 'Are scholarships available?',
-    answer: 'Yes, JLU offers various scholarships based on merit, need, and special categories. Visit our scholarships page for detailed information.',
+    question: 'How do I apply for admission?',
+    answer: 'The application process involves: (1) Email your documents to admissions@jlu.edu.in, (2) Fill the online application form, (3) Validate your email, (4) Pay application fee, (5) Upload required documents, (6) Appear for entrance test/interview if applicable, and (7) Complete fee payment upon selection.',
   },
   {
     id: 4,
-    question: 'Is hostel accommodation guaranteed?',
-    answer: 'Hostel accommodation is available on a first-come, first-served basis. We recommend applying early to secure your spot.',
+    question: 'What is the application fee?',
+    answer: 'The application fee is ₹1,000, which is non-refundable. This covers the cost of processing your application, entrance test (if applicable), and administrative charges.',
+  },
+  {
+    id: 5,
+    question: 'Is there an entrance exam?',
+    answer: 'JLUET (JLU Entrance Test) is conducted for certain programs. Some programs also require a personal interview. The specific requirement depends on the course you\'re applying for. Merit-based admissions are also available for certain programs based on 10+2 or graduation marks.',
+  },
+  {
+    id: 6,
+    question: 'What documents are required for admission?',
+    answer: 'Required documents include: 10th and 12th marksheets, graduation/PG marksheets (for PG/PhD programs), passport-size photograph, Aadhar card, digital signature, category certificate (if applicable), and sports certificates (for sports quota).',
+  },
+  {
+    id: 7,
+    question: 'Are scholarships available?',
+    answer: 'Yes, JLU offers multiple scholarship categories: Merit-based scholarships (up to 100% tuition waiver), Sports scholarships (based on national/state level achievements), and Need-based scholarships (for students from economically weaker sections). Detailed criteria are available in the scholarships section.',
+  },
+  {
+    id: 8,
+    question: 'How do I apply for a sports scholarship?',
+    answer: 'Sports scholarships are awarded based on your achievement level in recognized competitions. Submit your sports certificates during admission. International level participants can receive 100% tuition waiver plus stipend, while state-level participants get 15-50% waiver depending on medal/participation.',
+  },
+  {
+    id: 9,
+    question: 'What is the fee structure?',
+    answer: 'Fee structure varies by program and includes admission charges, caution money (refundable), alumni fund, resource fee, tuition fees, and examination fees. Annual fees range from ₹75,000 to ₹2,50,000 depending on the program. Complete fee details are available in the Courses & Fee Structure section.',
+  },
+  {
+    id: 10,
+    question: 'Can I pay fees in installments?',
+    answer: 'Yes, fee payment in installments is available. Students need to pay seat booking amount first to confirm admission, followed by remaining fee before session commencement. Contact the accounts department for specific installment plans.',
+  },
+  {
+    id: 11,
+    question: 'Is hostel accommodation available?',
+    answer: 'Yes, separate hostel facilities are available for boys and girls with various room options: AC single, AC double, non-AC triple, and non-AC quad rooms. Annual hostel fees range from ₹60,000 to ₹1,20,000 depending on room type, plus ₹10,000 refundable security deposit.',
+  },
+  {
+    id: 12,
+    question: 'Is hostel accommodation mandatory?',
+    answer: 'Hostel accommodation is not mandatory. Students can opt for day scholar status if they have local accommodation arrangements. However, outstation students are encouraged to stay in hostel for better academic and campus life experience.',
+  },
+  {
+    id: 13,
+    question: 'What facilities are available in hostels?',
+    answer: 'Hostels provide 24x7 WiFi, power backup, RO water, mess facility, laundry service, gym, study rooms, medical facility, CCTV surveillance, and biometric security. AC rooms have attached bathrooms, while non-AC rooms have common facilities.',
+  },
+  {
+    id: 14,
+    question: 'What is the mess fee?',
+    answer: 'Annual mess fee is ₹50,000 (₹4,500 per month), which covers breakfast, lunch, evening snacks, and dinner. Both vegetarian and non-vegetarian options are available. Special meals are served during festivals and occasions.',
+  },
+  {
+    id: 15,
+    question: 'What is the refund policy?',
+    answer: 'JLU follows UGC refund guidelines: 100% refund before class commencement (minus ₹1,000 processing fee), 90% within 15 days, 80% within 16-30 days, 50% within 31-45 days, and no refund after 45 days from commencement date.',
+  },
+  {
+    id: 16,
+    question: 'Which fees are non-refundable?',
+    answer: 'Application fee (₹1,000) and admission charges are completely non-refundable. Caution money and hostel security deposit are fully refundable upon course completion or withdrawal (subject to no damage). Other fees follow UGC refund policy.',
+  },
+  {
+    id: 17,
+    question: 'How long does the refund process take?',
+    answer: 'Refund processing takes approximately 30 working days after approval from competent authority. You need to submit a written request with original receipts and obtain No Dues Certificate from all departments.',
+  },
+  {
+    id: 18,
+    question: 'Can I transfer my admission to another program?',
+    answer: 'Yes, internal transfer to another JLU program is possible subject to eligibility and seat availability. Fee adjustment will be made accordingly. Submit your transfer request to the admissions office along with the reason for transfer.',
+  },
+  {
+    id: 19,
+    question: 'Is education loan assistance available?',
+    answer: 'Yes, JLU has partnerships with major banks including SBI, HDFC Credila, ICICI, PNB, and Bank of Baroda. Loans up to ₹20 lakhs available without collateral, with competitive interest rates and flexible repayment options. Our loan assistance cell helps with the entire process.',
+  },
+  {
+    id: 20,
+    question: 'What is the seat booking amount?',
+    answer: 'Seat booking amount varies by program and is adjustable against the total annual fee. This amount must be paid after selection to confirm your seat reservation. It is refundable as per UGC guidelines if you withdraw within the stipulated timeline.',
+  },
+  {
+    id: 21,
+    question: 'Can international students apply?',
+    answer: 'Yes, JLU welcomes international students. Additional requirements include valid passport, student visa, and equivalence certificate for foreign qualifications. International students should contact the international admissions office for specific guidance.',
+  },
+  {
+    id: 22,
+    question: 'Is there a campus tour facility?',
+    answer: 'Yes, campus tours are available Monday to Saturday. You can book a campus tour through our website or contact the admissions office. Virtual tours are also available for outstation and international students.',
+  },
+  {
+    id: 23,
+    question: 'What is the medium of instruction?',
+    answer: 'English is the primary medium of instruction for all programs at JLU. This ensures global standards of education and prepares students for international career opportunities.',
+  },
+  {
+    id: 24,
+    question: 'How can I track my application status?',
+    answer: 'After submitting your application and validating your email, you will receive login credentials for your personal application dashboard. You can track your application status, upload documents, and access all further instructions through this dashboard.',
   },
 ];
 
@@ -225,6 +414,18 @@ interface CampusTourModalProps {
 
 const CampusTourModal = ({ isOpen, onClose }: CampusTourModalProps) => {
   const isMobile = useIsMobile();
+
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = 'hidden';
+      document.documentElement.style.overflow = 'hidden';
+    }
+    return () => {
+      document.body.style.overflow = '';
+      document.documentElement.style.overflow = '';
+    };
+  }, [isOpen]);
+
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -326,11 +527,12 @@ const CampusTourModal = ({ isOpen, onClose }: CampusTourModalProps) => {
             exit={{ opacity: 0 }}
             transition={{ duration: 0.4, ease: [0.32, 0.72, 0, 1] }}
             onClick={onClose}
+            onWheel={(e) => e.stopPropagation()}
           />
 
           {/* Modal Panel */}
           <motion.div
-            className="fixed z-[9999] bg-white overflow-hidden shadow-2xl"
+            className="fixed z-[9999] bg-white shadow-2xl flex flex-col"
             style={{
               ...(isMobile
                 ? { inset: 0, borderRadius: 0 }
@@ -343,17 +545,18 @@ const CampusTourModal = ({ isOpen, onClose }: CampusTourModalProps) => {
                     borderBottomLeftRadius: '24px',
                   }),
             }}
-            initial={{ clipPath: 'inset(0 0 0 100%)' }}
-            animate={{ clipPath: 'inset(0 0 0 0)' }}
-            exit={{ clipPath: 'inset(0 0 0 100%)' }}
+            initial={{ x: '100%' }}
+            animate={{ x: 0 }}
+            exit={{ x: '100%' }}
             transition={{
               duration: 0.5,
               ease: [0.32, 0.72, 0, 1],
             }}
+            onWheel={(e) => e.stopPropagation()}
           >
             {/* Header */}
             <motion.div
-              className="flex items-center justify-between p-6 border-b border-gray-100"
+              className="flex items-center justify-between p-6 border-b border-gray-100 shrink-0"
               initial={{ opacity: 0, x: 40 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.4, delay: 0.2, ease: [0.32, 0.72, 0, 1] }}
@@ -375,8 +578,8 @@ const CampusTourModal = ({ isOpen, onClose }: CampusTourModalProps) => {
 
             {/* Form Content */}
             <motion.div
-              className="p-6 overflow-y-auto"
-              style={{ height: 'calc(100% - 88px)' }}
+              className="p-6 overflow-y-auto flex-1 min-h-0"
+              style={{ overscrollBehavior: 'contain' }}
               initial={{ opacity: 0, x: 50 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.45, delay: 0.25, ease: [0.32, 0.72, 0, 1] }}
@@ -605,6 +808,17 @@ interface FinancialInfoModalProps {
 const FinancialInfoModal = ({ isOpen, onClose, data }: FinancialInfoModalProps) => {
   const isMobile = useIsMobile();
 
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = 'hidden';
+      document.documentElement.style.overflow = 'hidden';
+    }
+    return () => {
+      document.body.style.overflow = '';
+      document.documentElement.style.overflow = '';
+    };
+  }, [isOpen]);
+
   if (!data) return null;
 
   return (
@@ -619,11 +833,12 @@ const FinancialInfoModal = ({ isOpen, onClose, data }: FinancialInfoModalProps) 
             exit={{ opacity: 0 }}
             transition={{ duration: 0.4, ease: [0.32, 0.72, 0, 1] }}
             onClick={onClose}
+            onWheel={(e) => e.stopPropagation()}
           />
 
           {/* Modal Panel */}
           <motion.div
-            className="fixed z-[9999] bg-white overflow-hidden shadow-2xl"
+            className="fixed z-[9999] bg-white shadow-2xl flex flex-col"
             style={{
               ...(isMobile
                 ? { inset: 0, borderRadius: 0 }
@@ -636,17 +851,18 @@ const FinancialInfoModal = ({ isOpen, onClose, data }: FinancialInfoModalProps) 
                     borderBottomLeftRadius: '24px',
                   }),
             }}
-            initial={{ clipPath: 'inset(0 0 0 100%)' }}
-            animate={{ clipPath: 'inset(0 0 0 0)' }}
-            exit={{ clipPath: 'inset(0 0 0 100%)' }}
+            initial={{ x: '100%' }}
+            animate={{ x: 0 }}
+            exit={{ x: '100%' }}
             transition={{
               duration: 0.5,
               ease: [0.32, 0.72, 0, 1],
             }}
+            onWheel={(e) => e.stopPropagation()}
           >
             {/* Header */}
             <motion.div
-              className="flex items-center justify-between p-6 border-b border-gray-100 bg-[#f6f7f0]"
+              className="flex items-center justify-between p-6 border-b border-gray-100 bg-[#f6f7f0] shrink-0"
               initial={{ opacity: 0, x: 40 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.4, delay: 0.2, ease: [0.32, 0.72, 0, 1] }}
@@ -670,8 +886,8 @@ const FinancialInfoModal = ({ isOpen, onClose, data }: FinancialInfoModalProps) 
 
             {/* Content */}
             <motion.div
-              className="p-6 overflow-y-auto"
-              style={{ height: 'calc(100% - 120px)' }}
+              className="p-6 overflow-y-auto flex-1 min-h-0"
+              style={{ overscrollBehavior: 'contain' }}
               initial={{ opacity: 0, x: 50 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.45, delay: 0.25, ease: [0.32, 0.72, 0, 1] }}
@@ -731,11 +947,305 @@ const FinancialInfoModal = ({ isOpen, onClose, data }: FinancialInfoModalProps) 
   );
 };
 
+// Beyond Degree Modal Component
+interface BeyondDegreeModalProps {
+  isOpen: boolean;
+  onClose: () => void;
+  data: typeof beyondDegrees[0] | null;
+}
+
+const BeyondDegreeModal = ({ isOpen, onClose, data }: BeyondDegreeModalProps) => {
+  const isMobile = useIsMobile();
+
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = 'hidden';
+      document.documentElement.style.overflow = 'hidden';
+    }
+    return () => {
+      document.body.style.overflow = '';
+      document.documentElement.style.overflow = '';
+    };
+  }, [isOpen]);
+
+  if (!data) return null;
+
+  const accentColor = data.id === 1 ? '#03463B' : '#f0c14b';
+  const accentBg = data.id === 1 ? '#03463B' : '#f0c14b';
+  const accentText = data.id === 1 ? '#fff' : '#21313c';
+
+  return (
+    <AnimatePresence>
+      {isOpen && (
+        <>
+          {/* Backdrop */}
+          <motion.div
+            className="fixed inset-0 bg-black/50 backdrop-blur-sm z-[9998]"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.4, ease: [0.32, 0.72, 0, 1] }}
+            onClick={onClose}
+            onWheel={(e) => e.stopPropagation()}
+          />
+
+          {/* Modal Panel */}
+          <motion.div
+            className="fixed z-[9999] bg-white shadow-2xl flex flex-col"
+            style={{
+              ...(isMobile
+                ? { inset: 0, borderRadius: 0 }
+                : {
+                    top: 0,
+                    right: 0,
+                    bottom: 0,
+                    width: '560px',
+                    borderTopLeftRadius: '24px',
+                    borderBottomLeftRadius: '24px',
+                  }),
+            }}
+            onWheel={(e) => e.stopPropagation()}
+            initial={{ x: '100%' }}
+            animate={{ x: 0 }}
+            exit={{ x: '100%' }}
+            transition={{
+              duration: 0.5,
+              ease: [0.32, 0.72, 0, 1],
+            }}
+          >
+            {/* Header with accent gradient */}
+            <motion.div
+              className="relative p-6 pb-8 overflow-hidden shrink-0"
+              style={{ background: `linear-gradient(135deg, #21313c 0%, ${data.id === 1 ? '#03463B' : '#2a3f4c'} 100%)` }}
+              initial={{ opacity: 0, x: 40 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.4, delay: 0.2, ease: [0.32, 0.72, 0, 1] }}
+            >
+              {/* Decorative circles */}
+              <div className="absolute -top-10 -right-10 w-32 h-32 rounded-full opacity-10" style={{ background: accentColor }} />
+              <div className="absolute -bottom-6 -left-6 w-20 h-20 rounded-full opacity-10" style={{ background: accentColor }} />
+
+              <div className="relative z-10 flex items-start justify-between">
+                <div>
+                  <span className="text-3xl font-bold block mb-2" style={{ color: accentColor }}>
+                    {String(data.id).padStart(2, '0')}
+                  </span>
+                  <h2 className="text-xl font-semibold text-white">{data.modalContent.heading}</h2>
+                </div>
+                <button
+                  onClick={onClose}
+                  className="w-10 h-10 flex items-center justify-center rounded-full hover:bg-white/20 transition-colors shrink-0"
+                >
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2">
+                    <line x1="18" y1="6" x2="6" y2="18" strokeLinecap="round"/>
+                    <line x1="6" y1="6" x2="18" y2="18" strokeLinecap="round"/>
+                  </svg>
+                </button>
+              </div>
+            </motion.div>
+
+            {/* Content */}
+            <motion.div
+              className="p-6 overflow-y-auto flex-1 min-h-0"
+              style={{ overscrollBehavior: 'contain' }}
+              initial={{ opacity: 0, x: 50 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.45, delay: 0.25, ease: [0.32, 0.72, 0, 1] }}
+            >
+              {/* Intro */}
+              <p className="text-[#666] text-base leading-relaxed mb-8">
+                {data.modalContent.intro}
+              </p>
+
+              {/* Sections */}
+              <div className="space-y-6">
+                {data.modalContent.sections.map((section, index) => (
+                  <motion.div
+                    key={index}
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.4, delay: 0.3 + index * 0.1 }}
+                  >
+                    <h3 className="text-[#21313c] font-semibold text-lg mb-3 flex items-center gap-2">
+                      <span
+                        className="w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold shrink-0"
+                        style={{ backgroundColor: accentBg, color: accentText }}
+                      >
+                        {index + 1}
+                      </span>
+                      {section.title}
+                    </h3>
+                    <ul className="space-y-2 pl-8">
+                      {section.points.map((point, pointIndex) => (
+                        <li key={pointIndex} className="text-[#666] text-sm leading-relaxed flex items-start gap-2">
+                          <span className="w-1.5 h-1.5 rounded-full mt-2 shrink-0" style={{ backgroundColor: accentColor }}></span>
+                          {point}
+                        </li>
+                      ))}
+                    </ul>
+                  </motion.div>
+                ))}
+              </div>
+
+              {/* CTA Button */}
+              <motion.button
+                className="w-full mt-8 py-4 font-semibold rounded-xl transition-colors flex items-center justify-center gap-2"
+                style={{ backgroundColor: accentBg, color: accentText }}
+                whileHover={{ scale: 1.01 }}
+                whileTap={{ scale: 0.99 }}
+              >
+                {data.id === 1 ? 'Explore Certifications' : 'Apply for JLUx'}
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                  <line x1="5" y1="12" x2="19" y2="12" strokeLinecap="round"/>
+                  <polyline points="12 5 19 12 12 19" strokeLinecap="round" strokeLinejoin="round"/>
+                </svg>
+              </motion.button>
+            </motion.div>
+          </motion.div>
+        </>
+      )}
+    </AnimatePresence>
+  );
+};
+
+const admissionTabs = [
+  { id: 'fees', label: 'Courses & Fee Structure' },
+  { id: 'procedure', label: 'Admission Procedure' },
+  { id: 'scholarships', label: 'Scholarships' },
+  { id: 'refund', label: 'Refund Policy' },
+  { id: 'accommodation', label: 'On Campus Accommodation' },
+  { id: 'faqs', label: "Admission FAQ's" },
+];
+
 const Admissions = () => {
   const [openFaq, setOpenFaq] = useState<number | null>(1);
   const [isTourModalOpen, setIsTourModalOpen] = useState(false);
   const [selectedFinancialOption, setSelectedFinancialOption] = useState<typeof financialOptions[0] | null>(null);
+  const [activeTab, setActiveTab] = useState('fees');
+  const [feeSearch, setFeeSearch] = useState('');
+  const [selectedBeyondDegree, setSelectedBeyondDegree] = useState<typeof beyondDegrees[0] | null>(null);
   const heroRef = useRef<HTMLDivElement>(null);
+  const tabContentRef = useRef<HTMLDivElement>(null);
+  const procedureRef = useRef<HTMLDivElement>(null);
+  const progressLineRef = useRef<HTMLDivElement>(null);
+  const trackLineRef = useRef<HTMLDivElement>(null);
+  const stepRefs = useRef<(HTMLDivElement | null)[]>([]);
+
+  const handleTabChange = (tabId: string) => {
+    setActiveTab(tabId);
+    if (tabContentRef.current) {
+      tabContentRef.current.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  };
+
+  // Capture wheel/touchpad events so the tab content scrolls instead of the page
+  useEffect(() => {
+    const el = tabContentRef.current;
+    if (!el) return;
+
+    const onWheel = (e: WheelEvent) => {
+      const { scrollHeight, clientHeight } = el;
+      if (scrollHeight <= clientHeight) return; // nothing to scroll
+
+      // Manually scroll the container and block the page from scrolling
+      e.preventDefault();
+      e.stopPropagation();
+      el.scrollTop += e.deltaY;
+    };
+
+    el.addEventListener('wheel', onWheel, { passive: false });
+    return () => el.removeEventListener('wheel', onWheel);
+  }, [activeTab]);
+
+  // Track scroll progress for the procedure timeline — direct DOM updates for 60fps
+  useEffect(() => {
+    if (activeTab !== 'procedure') return;
+    const scrollEl = tabContentRef.current;
+    const timelineEl = procedureRef.current;
+    const lineEl = progressLineRef.current;
+    if (!scrollEl || !timelineEl || !lineEl) return;
+
+    const trackEl = trackLineRef.current;
+
+    let lineSized = false;
+    let raf = 0;
+    const update = () => {
+      // Size the lines once after layout is ready
+      if (!lineSized) {
+        const firstStep = stepRefs.current[0];
+        const lastStep = stepRefs.current[admissionSteps.length - 1];
+        if (firstStep && lastStep && trackEl) {
+          const lineTop = firstStep.offsetTop + 16;
+          const lineBottom = lastStep.offsetTop + 16;
+          const lineHeight = lineBottom - lineTop;
+          trackEl.style.top = `${lineTop}px`;
+          trackEl.style.height = `${lineHeight}px`;
+          lineEl.style.top = `${lineTop}px`;
+          lineEl.style.height = `${lineHeight}px`;
+          lineSized = true;
+        }
+      }
+      const scrollTop = scrollEl.scrollTop;
+      const viewHeight = scrollEl.clientHeight;
+
+      // Use actual first/last step positions for accurate progress
+      const firstStepEl = stepRefs.current[0];
+      const lastStepEl = stepRefs.current[admissionSteps.length - 1];
+      if (!firstStepEl || !lastStepEl) return;
+
+      const stepsStart = timelineEl.offsetTop + firstStepEl.offsetTop;
+      const stepsEnd = timelineEl.offsetTop + lastStepEl.offsetTop + lastStepEl.offsetHeight;
+
+      const start = stepsStart - viewHeight * 0.15;
+      const end = stepsEnd - viewHeight * 0.75;
+      const progress = Math.min(1, Math.max(0, (scrollTop - start) / (end - start)));
+
+      // Update progress line directly
+      lineEl.style.transform = `scaleY(${progress})`;
+
+      // Update each step marker + content directly
+      const totalSteps = admissionSteps.length;
+      stepRefs.current.forEach((stepEl, i) => {
+        if (!stepEl) return;
+        const threshold = i / totalSteps;
+        const active = progress >= threshold;
+        const marker = stepEl.querySelector<HTMLElement>('[data-marker]');
+        const label = stepEl.querySelector<HTMLElement>('[data-label]');
+        const content = stepEl.querySelector<HTMLElement>('[data-content]');
+
+        if (marker) {
+          marker.style.background = active ? '#f0c14b' : '#e5e7eb';
+          marker.style.transform = active ? 'scale(1)' : 'scale(0.85)';
+          marker.style.boxShadow = active ? '0 0 0 4px rgba(240,193,75,0.2)' : 'none';
+        }
+        if (label) {
+          label.style.color = active ? '#21313c' : '#999';
+        }
+        if (content) {
+          content.style.opacity = active ? '1' : '0.4';
+          content.style.transform = active ? 'translateY(0)' : 'translateY(4px)';
+        }
+        const heading = stepEl.querySelector<HTMLElement>('[data-heading]');
+        if (heading) {
+          heading.style.color = active ? '#21313c' : '#999';
+        }
+      });
+    };
+
+    const onScroll = () => {
+      cancelAnimationFrame(raf);
+      raf = requestAnimationFrame(update);
+    };
+
+    // Initial paint
+    requestAnimationFrame(update);
+    scrollEl.addEventListener('scroll', onScroll, { passive: true });
+    return () => {
+      cancelAnimationFrame(raf);
+      scrollEl.removeEventListener('scroll', onScroll);
+    };
+  }, [activeTab]);
+
   const { scrollYProgress } = useScroll({
     target: heroRef,
     offset: ['start start', 'end start'],
@@ -845,6 +1355,805 @@ const Admissions = () => {
         </div>
       </div>
 
+      {/* ═══════════════════════════════════════════════════════ */}
+      {/* THREE-COLUMN SHOWCASE — Programs / Apply / Fee & Support */}
+      {/* ═══════════════════════════════════════════════════════ */}
+      <div className="w-full bg-white">
+        <div className="mx-auto px-5 py-20 md:px-10 md:py-28 lg:px-30 lg:py-36" style={{ maxWidth: '1440px' }}>
+          {/* Section Header */}
+          <motion.div
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+            className="mb-16 md:mb-20"
+          >
+            <span className="text-[#999] uppercase tracking-widest block mb-5" style={{ fontSize: '12px', letterSpacing: '0.2em' }}>
+              Explore Admissions
+            </span>
+            <h2
+              className="text-[#21313c] mb-6"
+              style={{ fontSize: 'clamp(2.5rem, 5vw, 4rem)', fontWeight: 600, lineHeight: 1.1, letterSpacing: '-0.03em' }}
+            >
+              Your path to{' '}
+              <span style={{ fontFamily: "'Times New Roman', serif", fontStyle: 'italic', fontWeight: 400 }}>
+                JLU
+              </span>
+            </h2>
+            <p className="text-[#666] text-base md:text-lg max-w-2xl" style={{ lineHeight: 1.8 }}>
+              Choose your program, apply with ease, and discover the financial support that makes your education possible.
+            </p>
+          </motion.div>
+
+          {/* Three-Column Grid */}
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 md:gap-8">
+
+            {/* Column 1 — Programs */}
+            <motion.div
+              initial={{ opacity: 0, y: 50 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.7, ease: customEase }}
+              viewport={{ once: true }}
+              className="group relative rounded-3xl overflow-hidden"
+              style={{ background: 'linear-gradient(165deg, #21313c 0%, #03463B 100%)', minHeight: '560px' }}
+            >
+              {/* Decorative element */}
+              <div className="absolute -top-20 -right-20 w-56 h-56 rounded-full opacity-[0.06]" style={{ background: '#f0c14b' }} />
+              <div className="absolute -bottom-16 -left-16 w-44 h-44 rounded-full opacity-[0.06]" style={{ background: '#f0c14b' }} />
+
+              {/* Image header */}
+              <div className="relative h-48 overflow-hidden">
+                <Image
+                  src="/campus/smart-classroom.jpg"
+                  alt="Academic Programs"
+                  fill
+                  className="object-cover group-hover:scale-105 transition-transform duration-700"
+                />
+                <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-[#21313c]" />
+                <div className="absolute top-5 left-6">
+                  <span className="text-[#f0c14b] text-xs uppercase tracking-widest font-medium" style={{ letterSpacing: '0.2em' }}>
+                    Programs
+                  </span>
+                </div>
+              </div>
+
+              <div className="relative z-10 px-7 pb-8 -mt-4">
+                <h3 className="text-white text-2xl md:text-[28px] font-bold mb-8" style={{ letterSpacing: '-0.02em', lineHeight: 1.2 }}>
+                  Academic{' '}
+                  <span style={{ fontFamily: "'Times New Roman', serif", fontStyle: 'italic', fontWeight: 400 }}>
+                    Programs
+                  </span>
+                </h3>
+
+                <div className="space-y-3">
+                  {[
+                    { title: 'Undergraduate Degree', desc: 'B.Tech, BBA, BA, B.Com & more' },
+                    { title: 'Postgraduate Degree', desc: 'MBA, M.Tech, MA, M.Sc & more' },
+                    { title: 'Research Degree', desc: 'Ph.D programs across disciplines' },
+                    { title: 'Centre for Professional Skills', desc: 'Industry-ready certification courses' },
+                    { title: 'JLUx – Young Leadership Program', desc: 'Early leadership for future changemakers' },
+                  ].map((item, i) => (
+                    <motion.div
+                      key={i}
+                      initial={{ opacity: 0, x: -20 }}
+                      whileInView={{ opacity: 1, x: 0 }}
+                      transition={{ duration: 0.5, delay: 0.1 * i, ease: customEase }}
+                      viewport={{ once: true }}
+                      className="flex items-start gap-4 p-4 rounded-xl hover:bg-white/[0.07] transition-colors duration-300 cursor-pointer group/item"
+                    >
+                      <div className="shrink-0 w-8 h-8 rounded-lg bg-[#f0c14b]/15 flex items-center justify-center mt-0.5">
+                        <span className="text-[#f0c14b] text-xs font-bold">{String(i + 1).padStart(2, '0')}</span>
+                      </div>
+                      <div>
+                        <h4 className="text-white font-semibold text-[15px] mb-0.5 group-hover/item:text-[#f0c14b] transition-colors">{item.title}</h4>
+                        <p className="text-white/40 text-xs">{item.desc}</p>
+                      </div>
+                      <span className="ml-auto text-white/20 group-hover/item:text-[#f0c14b] group-hover/item:translate-x-1 transition-all text-sm mt-1">&rarr;</span>
+                    </motion.div>
+                  ))}
+                </div>
+              </div>
+            </motion.div>
+
+            {/* Column 2 — Apply */}
+            <motion.div
+              initial={{ opacity: 0, y: 50 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.7, delay: 0.15, ease: customEase }}
+              viewport={{ once: true }}
+              className="group relative rounded-3xl overflow-hidden border border-[#e5e5e5]"
+              style={{ background: '#fff', minHeight: '560px' }}
+            >
+              {/* Image header */}
+              <div className="relative h-48 overflow-hidden">
+                <Image
+                  src="/campus/gallery-3.jpg"
+                  alt="Apply to JLU"
+                  fill
+                  className="object-cover group-hover:scale-105 transition-transform duration-700"
+                />
+                <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-white" />
+                <div className="absolute top-5 left-6">
+                  <span className="bg-[#f0c14b] text-[#21313c] text-xs uppercase tracking-widest font-bold px-3 py-1.5 rounded-full" style={{ letterSpacing: '0.15em' }}>
+                    Apply
+                  </span>
+                </div>
+              </div>
+
+              <div className="px-7 pb-8 -mt-4 relative z-10">
+                <h3 className="text-[#21313c] text-2xl md:text-[28px] font-bold mb-8" style={{ letterSpacing: '-0.02em', lineHeight: 1.2 }}>
+                  Start Your{' '}
+                  <span style={{ fontFamily: "'Times New Roman', serif", fontStyle: 'italic', fontWeight: 400 }}>
+                    Application
+                  </span>
+                </h3>
+
+                <div className="space-y-3">
+                  {[
+                    { title: 'Book Campus Visit', desc: 'Tour our 50+ acre campus in person', icon: 'M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-4 0h4' },
+                    { title: 'Application Process', desc: '12-step guided process with dashboard', icon: 'M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2' },
+                    { title: "Admission FAQ's", desc: '24 frequently asked questions answered', icon: 'M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01' },
+                    { title: 'Online Application Form', desc: 'Apply in under 15 minutes', icon: 'M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101' },
+                  ].map((item, i) => (
+                    <motion.div
+                      key={i}
+                      initial={{ opacity: 0, x: -20 }}
+                      whileInView={{ opacity: 1, x: 0 }}
+                      transition={{ duration: 0.5, delay: 0.1 * i + 0.15, ease: customEase }}
+                      viewport={{ once: true }}
+                      className="flex items-start gap-4 p-4 rounded-xl hover:bg-[#f6f7f0] transition-colors duration-300 cursor-pointer group/item"
+                      onClick={i === 0 ? () => setIsTourModalOpen(true) : undefined}
+                    >
+                      <div className="shrink-0 w-10 h-10 rounded-xl bg-[#21313c]/5 flex items-center justify-center group-hover/item:bg-[#21313c] transition-colors duration-300">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#21313c" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="group-hover/item:stroke-white transition-colors duration-300">
+                          <path d={item.icon} />
+                        </svg>
+                      </div>
+                      <div>
+                        <h4 className="text-[#21313c] font-semibold text-[15px] mb-0.5">{item.title}</h4>
+                        <p className="text-[#999] text-xs">{item.desc}</p>
+                      </div>
+                    </motion.div>
+                  ))}
+                </div>
+
+                {/* Apply CTA */}
+                <Link href="/apply" className="block mt-8">
+                  <motion.div
+                    className="w-full py-4 bg-[#21313c] text-white font-semibold rounded-xl text-center flex items-center justify-center gap-3 hover:bg-[#2a3f4c] transition-colors cursor-pointer"
+                    whileHover={{ scale: 1.01 }}
+                    whileTap={{ scale: 0.99 }}
+                  >
+                    Apply Now
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                      <path d="M5 12h14M12 5l7 7-7 7" strokeLinecap="round" strokeLinejoin="round"/>
+                    </svg>
+                  </motion.div>
+                </Link>
+              </div>
+            </motion.div>
+
+            {/* Column 3 — Fee & Support */}
+            <motion.div
+              initial={{ opacity: 0, y: 50 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.7, delay: 0.3, ease: customEase }}
+              viewport={{ once: true }}
+              className="group relative rounded-3xl overflow-hidden"
+              style={{ background: '#f0c14b', minHeight: '560px' }}
+            >
+              {/* Image header */}
+              <div className="relative h-48 overflow-hidden">
+                <Image
+                  src="/campus/gallery-11.jpg"
+                  alt="Fee & Support"
+                  fill
+                  className="object-cover group-hover:scale-105 transition-transform duration-700"
+                />
+                <div className="absolute inset-0" style={{ background: 'linear-gradient(to bottom, transparent 30%, #f0c14b 100%)' }} />
+                <div className="absolute top-5 left-6">
+                  <span className="bg-[#21313c] text-white text-xs uppercase tracking-widest font-bold px-3 py-1.5 rounded-full" style={{ letterSpacing: '0.15em' }}>
+                    Fee & Support
+                  </span>
+                </div>
+              </div>
+
+              <div className="px-7 pb-8 -mt-4 relative z-10">
+                <h3 className="text-[#21313c] text-2xl md:text-[28px] font-bold mb-8" style={{ letterSpacing: '-0.02em', lineHeight: 1.2 }}>
+                  Financial{' '}
+                  <span style={{ fontFamily: "'Times New Roman', serif", fontStyle: 'italic', fontWeight: 400 }}>
+                    Support
+                  </span>
+                </h3>
+
+                <div className="space-y-3">
+                  {[
+                    { idx: 0, title: 'Scholarships', desc: 'Merit & need-based up to 100% waiver' },
+                    { idx: 1, title: 'Chancellor Freeships', desc: 'Full support for exceptional students' },
+                    { idx: 2, title: 'Education Loan', desc: 'Partner banks, up to 20L without collateral' },
+                    { idx: 3, title: 'Refund Policy', desc: 'Transparent UGC-compliant guidelines' },
+                  ].map((item, i) => (
+                    <motion.div
+                      key={i}
+                      initial={{ opacity: 0, x: -20 }}
+                      whileInView={{ opacity: 1, x: 0 }}
+                      transition={{ duration: 0.5, delay: 0.1 * i + 0.3, ease: customEase }}
+                      viewport={{ once: true }}
+                      className="flex items-start gap-4 p-4 rounded-xl hover:bg-[#21313c]/[0.07] transition-colors duration-300 cursor-pointer group/item"
+                      onClick={() => setSelectedFinancialOption(financialOptions[item.idx])}
+                    >
+                      <div className="shrink-0 w-10 h-10 rounded-xl bg-[#21313c]/10 flex items-center justify-center">
+                        <span className="text-[#21313c] text-xs font-bold">{String(i + 1).padStart(2, '0')}</span>
+                      </div>
+                      <div className="flex-1">
+                        <h4 className="text-[#21313c] font-semibold text-[15px] mb-0.5">{item.title}</h4>
+                        <p className="text-[#21313c]/50 text-xs">{item.desc}</p>
+                      </div>
+                      <span className="text-[#21313c]/30 group-hover/item:text-[#21313c] group-hover/item:translate-x-1 transition-all text-sm mt-1">&rarr;</span>
+                    </motion.div>
+                  ))}
+                </div>
+
+                {/* Fee Details Link */}
+                <div className="mt-8 pt-6 border-t border-[#21313c]/10">
+                  <div className="flex items-center justify-between">
+                    <div>
+                      <p className="text-[#21313c] font-semibold text-sm">Annual fees from</p>
+                      <p className="text-[#21313c] text-2xl font-bold">₹75,000</p>
+                    </div>
+                    <motion.button
+                      className="px-5 py-2.5 bg-[#21313c] text-white font-medium text-sm rounded-full flex items-center gap-2"
+                      whileHover={{ scale: 1.05 }}
+                      whileTap={{ scale: 0.98 }}
+                      onClick={() => handleTabChange('fees')}
+                    >
+                      View All Fees
+                      <span>&rarr;</span>
+                    </motion.button>
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+
+          </div>
+        </div>
+      </div>
+
+      {/* Admissions Info — Tabbed Section */}
+      <div className="w-full bg-white">
+        <div
+          className="mx-auto px-5 py-16 md:px-10 md:py-20 lg:px-30 lg:py-35"
+          style={{ maxWidth: '1440px' }}
+        >
+          {/* Section Header */}
+          <motion.div
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+            className="mb-12 md:mb-16"
+          >
+            <span
+              className="text-[#999] uppercase tracking-widest block mb-6"
+              style={{ fontSize: '12px', letterSpacing: '0.2em' }}
+            >
+              Everything You Need
+            </span>
+            <h2
+              className="text-[#21313c]"
+              style={{
+                fontSize: 'clamp(2.5rem, 5vw, 4rem)',
+                fontWeight: 600,
+                lineHeight: 1.1,
+                letterSpacing: '-0.03em',
+              }}
+            >
+              Admission{' '}
+              <span style={{ fontFamily: "'Times New Roman', serif", fontStyle: 'italic', fontWeight: 400 }}>
+                Details
+              </span>
+            </h2>
+          </motion.div>
+
+          {/* Tabs + Content Layout */}
+          <div className="flex flex-col lg:flex-row gap-0 min-h-[600px]">
+
+            {/* Left Sidebar — Tab Navigation */}
+            <div className="lg:w-[320px] shrink-0 bg-[#21313c] rounded-t-2xl lg:rounded-l-2xl lg:rounded-tr-none p-6 lg:p-8 flex flex-col">
+              <nav className="flex flex-row lg:flex-col gap-2 overflow-x-auto lg:overflow-x-visible pb-2 lg:pb-0">
+                {admissionTabs.map((tab) => (
+                  <button
+                    key={tab.id}
+                    onClick={() => handleTabChange(tab.id)}
+                    className={`text-left px-5 py-4 rounded-xl font-medium transition-all duration-300 whitespace-nowrap lg:whitespace-normal cursor-pointer ${
+                      activeTab === tab.id
+                        ? 'bg-[#f0c14b] text-[#21313c]'
+                        : 'text-white/70'
+                    }`}
+                    style={{ fontSize: '15px' }}
+                  >
+                    {tab.label}
+                  </button>
+                ))}
+              </nav>
+
+              {/* Download Button */}
+              <div className="hidden lg:block mt-auto pt-8">
+                <button className="w-full flex items-center justify-center gap-2 px-5 py-4 border border-[#f0c14b] text-[#f0c14b] rounded-xl font-medium transition-all duration-300 text-sm cursor-pointer">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" strokeLinecap="round" strokeLinejoin="round"/>
+                    <polyline points="7 10 12 15 17 10" strokeLinecap="round" strokeLinejoin="round"/>
+                    <line x1="12" y1="15" x2="12" y2="3" strokeLinecap="round"/>
+                  </svg>
+                  Download Fee Structure
+                </button>
+              </div>
+            </div>
+
+            {/* Right Content Area */}
+            <div
+              className="flex-1 bg-[#f6f7f0] rounded-b-2xl lg:rounded-r-2xl lg:rounded-bl-none relative overflow-hidden"
+              style={{ height: '720px' }}
+            >
+              <div
+                ref={tabContentRef}
+                className="absolute inset-0 overflow-y-auto overscroll-contain p-6 md:p-8 lg:p-10"
+                style={{
+                  WebkitOverflowScrolling: 'touch',
+                  scrollbarWidth: 'thin',
+                  scrollbarColor: '#c1c1c1 transparent',
+                }}
+              >
+
+                {/* ── Courses & Fee Structure ── */}
+                {activeTab === 'fees' && (
+                  <motion.div
+                    key="fees"
+                    initial={{ opacity: 0, y: 12 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.35 }}
+                  >
+                    <h3
+                      className="text-[#21313c] font-semibold mb-2"
+                      style={{ fontSize: 'clamp(1.5rem, 3vw, 2rem)' }}
+                    >
+                      Courses & Fee Structure
+                    </h3>
+                    <p className="text-[#666] text-sm mb-6">
+                      Complete fee breakdown for all programs. Search by program name, school, or faculty.
+                    </p>
+
+                    {/* Search */}
+                    <div className="mb-6">
+                      <input
+                        type="text"
+                        value={feeSearch}
+                        onChange={(e) => setFeeSearch(e.target.value)}
+                        placeholder="Search programs..."
+                        className="w-full px-5 py-3 bg-white border border-gray-200 rounded-xl text-sm focus:outline-none focus:border-[#03463B] focus:ring-2 focus:ring-[#03463B]/10 transition-all"
+                      />
+                    </div>
+
+                    {/* Fee Table Header Row */}
+                    <div className="hidden md:grid grid-cols-12 gap-2 px-4 py-3 bg-[#21313c] text-white rounded-t-xl text-xs font-semibold">
+                      <div className="col-span-3">Program</div>
+                      <div className="col-span-1 text-center">Duration</div>
+                      <div className="col-span-2">School</div>
+                      <div className="col-span-1 text-right">Admission</div>
+                      <div className="col-span-1 text-right">Caution</div>
+                      <div className="col-span-1 text-right">Resource</div>
+                      <div className="col-span-1 text-right">Tuition</div>
+                      <div className="col-span-1 text-right">Exam</div>
+                      <div className="col-span-1 text-right font-bold">Total/Yr</div>
+                    </div>
+
+                    {/* Fee Table Rows */}
+                    <div className="divide-y divide-gray-200 bg-white rounded-b-xl md:rounded-b-xl rounded-xl md:rounded-t-none overflow-hidden">
+                      {(feeSearch ? searchCourses(feeSearch) : courseFees).map((program) => (
+                        <div key={program.id}>
+                          {/* Desktop Row */}
+                          <div className="hidden md:grid grid-cols-12 gap-2 px-4 py-3 text-xs">
+                            <div className="col-span-3 text-[#21313c] font-medium">{program.name}</div>
+                            <div className="col-span-1 text-[#666] text-center">{program.duration}</div>
+                            <div className="col-span-2 text-[#666] truncate" title={program.school}>{program.school}</div>
+                            <div className="col-span-1 text-[#666] text-right">₹{program.admissionCharges.toLocaleString('en-IN')}</div>
+                            <div className="col-span-1 text-[#666] text-right">₹{program.cautionMoney.toLocaleString('en-IN')}</div>
+                            <div className="col-span-1 text-[#666] text-right">₹{program.resourceFee.toLocaleString('en-IN')}</div>
+                            <div className="col-span-1 text-[#666] text-right">₹{program.tuitionFees.toLocaleString('en-IN')}</div>
+                            <div className="col-span-1 text-[#666] text-right">₹{program.examFees.toLocaleString('en-IN')}</div>
+                            <div className="col-span-1 text-[#21313c] font-bold text-right">₹{program.totalFeesPerYear.toLocaleString('en-IN')}</div>
+                          </div>
+                          {/* Mobile Card */}
+                          <div className="md:hidden p-4">
+                            <div className="flex justify-between items-start mb-2">
+                              <h4 className="text-[#21313c] font-semibold text-sm">{program.name}</h4>
+                              <span className="text-[#21313c] font-bold text-sm">₹{program.totalFeesPerYear.toLocaleString('en-IN')}</span>
+                            </div>
+                            <p className="text-[#666] text-xs">{program.school} · {program.duration}</p>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+
+                    {/* One-time fees note */}
+                    <p className="text-[#999] text-xs mt-4 italic">
+                      * Admission Charges, Caution Money & Alumni Fund are one-time fees. Caution Money is refundable.
+                    </p>
+                  </motion.div>
+                )}
+
+                {/* ── Admission Procedure ── */}
+                {activeTab === 'procedure' && (
+                  <motion.div
+                    key="procedure"
+                    initial={{ opacity: 0, y: 12 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.35 }}
+                  >
+                    <h3
+                      className="text-[#21313c] font-semibold mb-2"
+                      style={{ fontSize: 'clamp(1.5rem, 3vw, 2rem)' }}
+                    >
+                      Admission Procedure
+                    </h3>
+                    <p className="text-[#666] text-sm mb-10">
+                      Follow these steps to complete your admission at JLU.
+                    </p>
+
+                    {/* Scroll-driven Timeline
+                         Layout: circle=32px, line=2px centered in circle
+                         paddingLeft=44px so content clears the circle
+                         circle at left:0, center at 16px
+                         line at left:15px (16px - 1px half-width) */}
+                    <div ref={procedureRef} className="relative" style={{ paddingLeft: '44px' }}>
+                      {/* Background track line — height set dynamically by useEffect */}
+                      <div ref={trackLineRef} className="absolute w-[2px] bg-gray-200 rounded-full" style={{ left: '15px', height: 0 }} />
+                      {/* Filled progress line — height set dynamically by useEffect */}
+                      <div
+                        ref={progressLineRef}
+                        className="absolute w-[2px] bg-[#f0c14b] origin-top rounded-full will-change-transform"
+                        style={{ left: '15px', transform: 'scaleY(0)', height: 0 }}
+                      />
+
+                      {admissionSteps.map((step, index) => (
+                        <div
+                          key={step.id}
+                          ref={(el) => { stepRefs.current[index] = el; }}
+                          className="relative pb-10 last:pb-0"
+                        >
+                          {/* Circle marker — 32px, left edge at container left:0, center at 16px = line center */}
+                          <div
+                            data-marker=""
+                            className="absolute flex items-center justify-center will-change-transform"
+                            style={{
+                              left: '-44px',
+                              top: '0px',
+                              width: '32px',
+                              height: '32px',
+                              borderRadius: '50%',
+                              background: '#e5e7eb',
+                              transform: 'scale(0.85)',
+                              boxShadow: 'none',
+                              transition: 'background 0.35s, transform 0.35s, box-shadow 0.35s',
+                            }}
+                          >
+                            <span
+                              data-label=""
+                              className="font-bold"
+                              style={{
+                                fontSize: '12px',
+                                color: '#999',
+                                transition: 'color 0.35s',
+                              }}
+                            >
+                              {String(step.id).padStart(2, '0')}
+                            </span>
+                          </div>
+
+                          {/* Content */}
+                          <div
+                            data-content=""
+                            className="ml-5"
+                            style={{
+                              opacity: 0.4,
+                              transform: 'translateY(4px)',
+                              transition: 'opacity 0.35s, transform 0.35s',
+                            }}
+                          >
+                            <h4
+                              data-heading=""
+                              className="font-semibold text-base mb-1"
+                              style={{ color: '#999', transition: 'color 0.35s' }}
+                            >
+                              {step.title}
+                            </h4>
+                            <p className="text-[#666] text-sm mb-2">{step.description}</p>
+                            {step.details && (
+                              <ul className="space-y-1">
+                                {step.details.map((detail, i) => (
+                                  <li key={i} className="text-[#666] text-xs flex items-start gap-2">
+                                    <span className="w-1 h-1 bg-[#03463B] rounded-full mt-1.5 shrink-0" />
+                                    {detail}
+                                  </li>
+                                ))}
+                              </ul>
+                            )}
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+
+                    {/* Required Documents */}
+                    <div className="mt-12 bg-white rounded-xl p-6">
+                      <h4 className="text-[#21313c] font-semibold text-lg mb-4">Required Documents</h4>
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                        {requiredDocuments.map((doc) => (
+                          <div key={doc.id} className="flex items-start gap-2 text-sm">
+                            <span className={`w-1.5 h-1.5 rounded-full mt-1.5 shrink-0 ${doc.mandatory ? 'bg-red-500' : 'bg-gray-400'}`} />
+                            <div>
+                              <span className="text-[#21313c] font-medium">{doc.name}</span>
+                              {!doc.mandatory && <span className="text-[#999] text-xs ml-1">(if applicable)</span>}
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  </motion.div>
+                )}
+
+                {/* ── Scholarships ── */}
+                {activeTab === 'scholarships' && (
+                  <motion.div
+                    key="scholarships"
+                    initial={{ opacity: 0, y: 12 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.35 }}
+                  >
+                    <h3
+                      className="text-[#21313c] font-semibold mb-2"
+                      style={{ fontSize: 'clamp(1.5rem, 3vw, 2rem)' }}
+                    >
+                      Scholarships & Awards
+                    </h3>
+                    <p className="text-[#666] text-sm mb-8">
+                      Comprehensive scholarship programs recognizing excellence in academics, sports, and supporting students in need.
+                    </p>
+
+                    {allScholarships.map((category) => (
+                      <div key={category.id} className="mb-10 last:mb-0">
+                        <h4 className="text-[#21313c] font-semibold text-xl mb-2">{category.title}</h4>
+                        <p className="text-[#666] text-sm mb-4">{category.description}</p>
+                        <div className="overflow-x-auto rounded-xl bg-white">
+                          <table className="w-full">
+                            <thead className="bg-[#21313c] text-white">
+                              <tr>
+                                <th className="px-4 py-3 text-left text-xs font-semibold">Level</th>
+                                <th className="px-4 py-3 text-left text-xs font-semibold">Achievement</th>
+                                <th className="px-4 py-3 text-left text-xs font-semibold">Reward</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              {category.scholarships.map((s) => (
+                                <tr key={s.id} className="border-b border-gray-100">
+                                  <td className="px-4 py-3 text-sm text-[#21313c] font-medium">{s.level}</td>
+                                  <td className="px-4 py-3 text-sm text-[#666]">{s.rank}</td>
+                                  <td className="px-4 py-3 text-sm text-[#03463B] font-semibold">{s.reward}</td>
+                                </tr>
+                              ))}
+                            </tbody>
+                          </table>
+                        </div>
+                      </div>
+                    ))}
+
+                    <div className="mt-8 bg-white rounded-xl p-6">
+                      <h4 className="text-[#21313c] font-semibold text-lg mb-4">Application Process</h4>
+                      <ol className="space-y-2">
+                        {scholarshipApplicationProcess.map((step, i) => (
+                          <li key={i} className="text-[#666] text-sm flex items-start gap-3">
+                            <span className="w-6 h-6 bg-[#f0c14b] rounded-full flex items-center justify-center text-[#21313c] font-bold text-xs shrink-0">{i + 1}</span>
+                            {step}
+                          </li>
+                        ))}
+                      </ol>
+                    </div>
+                  </motion.div>
+                )}
+
+                {/* ── Refund Policy ── */}
+                {activeTab === 'refund' && (
+                  <motion.div
+                    key="refund"
+                    initial={{ opacity: 0, y: 12 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.35 }}
+                  >
+                    <h3 className="text-[#21313c] font-semibold mb-2" style={{ fontSize: 'clamp(1.5rem, 3vw, 2rem)' }}>Fee Refund Policy</h3>
+                    <p className="text-[#666] text-sm mb-8">JLU follows UGC guidelines for fee refunds. Complete transparency in all fee-related matters.</p>
+
+                    <div className="overflow-x-auto rounded-xl bg-white mb-8">
+                      <table className="w-full">
+                        <thead className="bg-[#21313c] text-white">
+                          <tr>
+                            <th className="px-4 py-3 text-left text-xs font-semibold">Timeline</th>
+                            <th className="px-4 py-3 text-left text-xs font-semibold">Condition</th>
+                            <th className="px-4 py-3 text-center text-xs font-semibold">Refund</th>
+                            <th className="px-4 py-3 text-center text-xs font-semibold">Deduction</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          {ugcRefundPolicy.map((slab) => (
+                            <tr key={slab.id} className="border-b border-gray-100">
+                              <td className="px-4 py-3 text-sm text-[#21313c] font-medium">{slab.timeline}</td>
+                              <td className="px-4 py-3 text-xs text-[#666]">{slab.condition}</td>
+                              <td className="px-4 py-3 text-sm text-[#03463B] font-bold text-center">{slab.refundPercentage}%</td>
+                              <td className="px-4 py-3 text-sm text-red-600 font-bold text-center">{slab.deductionPercentage}%</td>
+                            </tr>
+                          ))}
+                        </tbody>
+                      </table>
+                    </div>
+
+                    <h4 className="text-[#21313c] font-semibold text-lg mb-4">Refund Process</h4>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-3 mb-8">
+                      {refundProcess.map((p) => (
+                        <div key={p.step} className="flex items-start gap-3 bg-white rounded-xl p-4">
+                          <div className="w-8 h-8 bg-[#f0c14b] rounded-full flex items-center justify-center text-[#21313c] font-bold text-xs shrink-0">{p.step}</div>
+                          <div>
+                            <h5 className="text-[#21313c] font-medium text-sm">{p.title}</h5>
+                            <p className="text-[#666] text-xs mt-0.5">{p.description}</p>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+
+                    <h4 className="text-[#21313c] font-semibold text-lg mb-4">Fee Categories</h4>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-3 mb-8">
+                      {feeCategories.map((cat) => (
+                        <div key={cat.id} className="bg-white rounded-xl p-4">
+                          <div className="flex items-center justify-between mb-1">
+                            <h5 className="text-[#21313c] font-medium text-sm">{cat.category}</h5>
+                            <span className={`text-xs font-semibold px-2 py-0.5 rounded-full ${cat.refundable ? 'bg-green-100 text-green-700' : 'bg-red-100 text-red-700'}`}>
+                              {cat.refundable ? 'Refundable' : 'Non-refundable'}
+                            </span>
+                          </div>
+                          {cat.notes && <p className="text-[#666] text-xs">{cat.notes}</p>}
+                        </div>
+                      ))}
+                    </div>
+
+                    <div className="bg-white rounded-xl p-6">
+                      <h4 className="text-[#21313c] font-semibold text-lg mb-3">Important Conditions</h4>
+                      <ul className="space-y-2">
+                        {importantConditions.slice(0, 8).map((c, i) => (
+                          <li key={i} className="text-[#666] text-xs flex items-start gap-2">
+                            <span className="w-1.5 h-1.5 bg-[#03463B] rounded-full mt-1.5 shrink-0" />
+                            {c}
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  </motion.div>
+                )}
+
+                {/* ── On Campus Accommodation ── */}
+                {activeTab === 'accommodation' && (
+                  <motion.div
+                    key="accommodation"
+                    initial={{ opacity: 0, y: 12 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.35 }}
+                  >
+                    <h3 className="text-[#21313c] font-semibold mb-2" style={{ fontSize: 'clamp(1.5rem, 3vw, 2rem)' }}>On Campus Accommodation</h3>
+                    <p className="text-[#666] text-sm mb-8">Safe, comfortable, and well-equipped hostel facilities for boys and girls.</p>
+
+                    <div className="overflow-x-auto rounded-xl bg-white mb-6">
+                      <table className="w-full">
+                        <thead className="bg-[#21313c] text-white">
+                          <tr>
+                            <th className="px-4 py-3 text-left text-xs font-semibold">Hostel</th>
+                            <th className="px-4 py-3 text-left text-xs font-semibold">Room Type</th>
+                            <th className="px-4 py-3 text-left text-xs font-semibold">Occupancy</th>
+                            <th className="px-4 py-3 text-right text-xs font-semibold">Annual Fee</th>
+                            <th className="px-4 py-3 text-right text-xs font-semibold">Deposit</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          {hostelFees.map((h) => (
+                            <tr key={h.id} className="border-b border-gray-100">
+                              <td className="px-4 py-3 text-sm text-[#21313c] font-medium">{h.hostelType}</td>
+                              <td className="px-4 py-3 text-sm text-[#666]">{h.roomType}</td>
+                              <td className="px-4 py-3 text-sm text-[#666]">{h.occupancy}</td>
+                              <td className="px-4 py-3 text-sm text-[#21313c] font-bold text-right">₹{h.annualFees.toLocaleString('en-IN')}</td>
+                              <td className="px-4 py-3 text-sm text-[#666] text-right">₹{h.securityDeposit.toLocaleString('en-IN')}</td>
+                            </tr>
+                          ))}
+                        </tbody>
+                      </table>
+                    </div>
+
+                    <div className="bg-white rounded-xl p-5 mb-8">
+                      <h4 className="text-[#21313c] font-semibold text-base mb-2">Mess Fees</h4>
+                      <p className="text-[#21313c] font-bold text-lg">
+                        ₹{messFees.annual.toLocaleString('en-IN')}<span className="text-[#666] font-normal text-sm"> /year</span>
+                        <span className="text-[#666] font-normal text-sm ml-2">(₹{messFees.monthly.toLocaleString('en-IN')}/month)</span>
+                      </p>
+                      <p className="text-[#666] text-xs mt-1">{messFees.description}</p>
+                    </div>
+
+                    <h4 className="text-[#21313c] font-semibold text-lg mb-4">Hostel Facilities</h4>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                      {commonFacilities.map((f) => (
+                        <div key={f.id} className="bg-white rounded-xl p-4">
+                          <h5 className="text-[#21313c] font-medium text-sm mb-1">{f.name}</h5>
+                          <p className="text-[#666] text-xs">{f.description}</p>
+                        </div>
+                      ))}
+                    </div>
+                  </motion.div>
+                )}
+
+                {/* ── Admission FAQs ── */}
+                {activeTab === 'faqs' && (
+                  <motion.div
+                    key="faqs"
+                    initial={{ opacity: 0, y: 12 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.35 }}
+                  >
+                    <h3 className="text-[#21313c] font-semibold mb-2" style={{ fontSize: 'clamp(1.5rem, 3vw, 2rem)' }}>Admission FAQ&apos;s</h3>
+                    <p className="text-[#666] text-sm mb-6">Answers to the most commonly asked questions about admissions at JLU.</p>
+
+                    <div className="space-y-0 bg-white rounded-xl overflow-hidden">
+                      {faqData.map((faq, index) => (
+                        <div key={faq.id} className="border-b border-gray-100 last:border-0">
+                          <button
+                            className="w-full text-left px-5 py-4 flex items-center justify-between gap-4 cursor-pointer"
+                            onClick={() => toggleFaq(faq.id)}
+                          >
+                            <span className="flex items-center gap-3">
+                              <span className={`text-xs font-medium ${openFaq === faq.id ? 'text-[#f0c14b]' : 'text-[#ccc]'}`}>
+                                {String(index + 1).padStart(2, '0')}
+                              </span>
+                              <span className={`font-semibold text-sm transition-colors ${openFaq === faq.id ? 'text-[#f0c14b]' : 'text-[#21313c]'}`}>
+                                {faq.question}
+                              </span>
+                            </span>
+                            <motion.div
+                              className={`w-7 h-7 rounded-full flex items-center justify-center shrink-0 transition-colors ${openFaq === faq.id ? 'bg-[#f0c14b]' : 'bg-[#21313c]'}`}
+                              animate={{ rotate: openFaq === faq.id ? 45 : 0 }}
+                              transition={{ duration: 0.3 }}
+                            >
+                              <svg width="10" height="10" viewBox="0 0 14 14" fill="none">
+                                <path d="M7 1V13M1 7H13" stroke={openFaq === faq.id ? '#21313c' : 'white'} strokeWidth="2" strokeLinecap="round" />
+                              </svg>
+                            </motion.div>
+                          </button>
+                          <AnimatePresence>
+                            {openFaq === faq.id && (
+                              <motion.div
+                                initial={{ height: 0, opacity: 0 }}
+                                animate={{ height: 'auto', opacity: 1 }}
+                                exit={{ height: 0, opacity: 0 }}
+                                transition={{ duration: 0.3 }}
+                                className="overflow-hidden"
+                              >
+                                <p className="text-[#666] text-sm px-5 pb-4 pl-14 leading-relaxed">{faq.answer}</p>
+                              </motion.div>
+                            )}
+                          </AnimatePresence>
+                        </div>
+                      ))}
+                    </div>
+                  </motion.div>
+                )}
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
       {/* Academic Programs - Full Width Scattered Gallery Style */}
       <div className="w-full bg-white">
         <div
@@ -886,60 +2195,61 @@ const Admissions = () => {
           {/* Three Cards with Floating Images */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-6 lg:gap-8">
             {academicPaths.map((path, index) => (
-              <motion.div
-                key={path.id}
-                initial={{ opacity: 0, y: 60 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: index * 0.15 }}
-                viewport={{ once: true }}
-                className={`group cursor-pointer ${index === 1 ? 'lg:mt-15' : index === 2 ? 'lg:mt-7.5' : ''}`}
-              >
-                {/* Image */}
-                <div className="relative overflow-hidden mb-6 md:mb-8 h-70 md:h-80 lg:h-95">
-                  <motion.div
-                    className="absolute inset-0"
-                    whileHover={{ scale: 1.05 }}
-                    transition={{ duration: 0.6 }}
-                  >
-                    <Image
-                      src={
-                        index === 0
-                          ? "https://images.unsplash.com/photo-1541339907198-e08756dedf3f?w=800&q=80"
-                          : index === 1
-                          ? "https://images.unsplash.com/photo-1606761568499-6d2451b23c66?w=800&q=80"
-                          : "https://images.unsplash.com/photo-1532094349884-543bc11b234d?w=800&q=80"
-                      }
-                      alt={path.title}
-                      fill
-                      className="object-cover"
-                    />
-                  </motion.div>
-                  {/* Number overlay */}
-                  <div className="absolute top-6 left-6">
-                    <span
-                      className="text-white font-bold"
-                      style={{ fontSize: '72px', lineHeight: 1, opacity: 0.3 }}
-                    >
-                      {String(path.id).padStart(2, '0')}
-                    </span>
-                  </div>
-                </div>
-
-                {/* Content */}
-                <h3
-                  className="text-[#21313c] font-semibold mb-3 group-hover:text-[#f0c14b] transition-colors"
-                  style={{ fontSize: '24px', letterSpacing: '-0.02em' }}
+              <Link key={path.id} href="/programs" className="block">
+                <motion.div
+                  initial={{ opacity: 0, y: 60 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6, delay: index * 0.15 }}
+                  viewport={{ once: true }}
+                  className={`group cursor-pointer ${index === 1 ? 'lg:mt-15' : index === 2 ? 'lg:mt-7.5' : ''}`}
                 >
-                  {path.title}
-                </h3>
-                <p className="text-[#666] mb-4" style={{ fontSize: '15px', lineHeight: 1.7 }}>
-                  {path.description}
-                </p>
-                <span className="inline-flex items-center gap-2 text-[#21313c] font-medium text-sm">
-                  Explore Programs
-                  <span className="group-hover:translate-x-2 transition-transform">→</span>
-                </span>
-              </motion.div>
+                  {/* Image */}
+                  <div className="relative overflow-hidden mb-6 md:mb-8 h-70 md:h-80 lg:h-95">
+                    <motion.div
+                      className="absolute inset-0"
+                      whileHover={{ scale: 1.05 }}
+                      transition={{ duration: 0.6 }}
+                    >
+                      <Image
+                        src={
+                          index === 0
+                            ? "https://images.unsplash.com/photo-1541339907198-e08756dedf3f?w=800&q=80"
+                            : index === 1
+                            ? "https://images.unsplash.com/photo-1606761568499-6d2451b23c66?w=800&q=80"
+                            : "https://images.unsplash.com/photo-1532094349884-543bc11b234d?w=800&q=80"
+                        }
+                        alt={path.title}
+                        fill
+                        className="object-cover"
+                      />
+                    </motion.div>
+                    {/* Number overlay */}
+                    <div className="absolute top-6 left-6">
+                      <span
+                        className="text-white font-bold"
+                        style={{ fontSize: '72px', lineHeight: 1, opacity: 0.3 }}
+                      >
+                        {String(path.id).padStart(2, '0')}
+                      </span>
+                    </div>
+                  </div>
+
+                  {/* Content */}
+                  <h3
+                    className="text-[#21313c] font-semibold mb-3 group-hover:text-[#f0c14b] transition-colors"
+                    style={{ fontSize: '24px', letterSpacing: '-0.02em' }}
+                  >
+                    {path.title}
+                  </h3>
+                  <p className="text-[#666] mb-4" style={{ fontSize: '15px', lineHeight: 1.7 }}>
+                    {path.description}
+                  </p>
+                  <span className="inline-flex items-center gap-2 text-[#21313c] font-medium text-sm">
+                    Explore Programs
+                    <span className="group-hover:translate-x-2 transition-transform">→</span>
+                  </span>
+                </motion.div>
+              </Link>
             ))}
           </div>
         </div>
@@ -994,6 +2304,7 @@ const Admissions = () => {
                 viewport={{ once: true }}
                 className={`flex group cursor-pointer ${index === 1 ? 'flex-row-reverse' : ''}`}
                 style={{ height: '400px' }}
+                onClick={() => setSelectedBeyondDegree(item)}
               >
                 {/* Image Half */}
                 <div className="relative w-1/2 overflow-hidden">
@@ -1333,129 +2644,6 @@ const Admissions = () => {
         </div>
       </div>
 
-      {/* Admission FAQs Section */}
-      <div className="w-full bg-[#f6f7f0]">
-        <div
-          className="mx-auto px-5 py-16 md:px-10 md:py-20 lg:px-30 lg:py-35"
-          style={{
-            maxWidth: '1440px',
-          }}
-        >
-          {/* Section Header */}
-          <motion.div
-            className="text-center mb-20"
-            initial={{ opacity: 0, y: 40 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-          >
-            <span
-              className="text-[#999] uppercase tracking-widest block mb-6"
-              style={{ fontSize: '12px', letterSpacing: '0.2em' }}
-            >
-              Questions & Answers
-            </span>
-            <h2
-              className="text-[#21313c]"
-              style={{
-                fontSize: 'clamp(2.5rem, 5vw, 4rem)',
-                fontWeight: 600,
-                lineHeight: 1.1,
-                letterSpacing: '-0.03em',
-              }}
-            >
-              Admission{' '}
-              <span style={{ fontFamily: "'Times New Roman', serif", fontStyle: 'italic', fontWeight: 400 }}>
-                FAQs
-              </span>
-            </h2>
-          </motion.div>
-
-          <div
-            className="flex flex-col mx-auto"
-            style={{ maxWidth: '1000px', gap: '0' }}
-          >
-            {faqData.map((faq, index) => (
-              <motion.div
-                key={faq.id}
-                className="border-b border-[#d1d1d1]"
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.4, delay: index * 0.1 }}
-              >
-                <button
-                  className="w-full cursor-pointer py-5 md:py-6 lg:py-8 text-left group"
-                  onClick={() => toggleFaq(faq.id)}
-                >
-                  <div className="flex items-center justify-between">
-                    <span className="flex items-center gap-3 md:gap-4 lg:gap-6">
-                      <span
-                        className={`font-medium transition-colors ${
-                          openFaq === faq.id ? 'text-[#f0c14b]' : 'text-[#ccc]'
-                        }`}
-                        style={{ fontSize: '14px', minWidth: '30px' }}
-                      >
-                        {String(index + 1).padStart(2, '0')}
-                      </span>
-                      <span
-                        className={`font-semibold transition-colors text-base md:text-lg lg:text-[22px] ${
-                          openFaq === faq.id ? 'text-[#f0c14b]' : 'text-[#21313c]'
-                        }`}
-                        style={{
-                          lineHeight: '1.3',
-                        }}
-                      >
-                        {faq.question}
-                      </span>
-                    </span>
-                    <motion.div
-                      className={`w-8 h-8 md:w-9 md:h-9 lg:w-10 lg:h-10 rounded-full flex items-center justify-center shrink-0 ml-2 md:ml-3 lg:ml-4 transition-colors ${
-                        openFaq === faq.id ? 'bg-[#f0c14b]' : 'bg-[#21313c]'
-                      }`}
-                      animate={{
-                        rotate: openFaq === faq.id ? 45 : 0,
-                      }}
-                      transition={{ duration: 0.3 }}
-                    >
-                      <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
-                        <path
-                          d="M7 1V13M1 7H13"
-                          stroke={openFaq === faq.id ? '#21313c' : 'white'}
-                          strokeWidth="2"
-                          strokeLinecap="round"
-                        />
-                      </svg>
-                    </motion.div>
-                  </div>
-
-                  <AnimatePresence mode="wait">
-                    {openFaq === faq.id && (
-                      <motion.div
-                        initial={{ height: 0, opacity: 0 }}
-                        animate={{ height: 'auto', opacity: 1 }}
-                        exit={{ height: 0, opacity: 0 }}
-                        transition={{ duration: 0.4, ease: customEase }}
-                        className="overflow-hidden"
-                      >
-                        <p
-                          className="text-[#666] pt-4 md:pt-5 lg:pt-6 pl-0 md:pl-8 lg:pl-12 leading-relaxed text-sm md:text-base"
-                          style={{
-                            lineHeight: '1.8',
-                          }}
-                        >
-                          {faq.answer}
-                        </p>
-                      </motion.div>
-                    )}
-                  </AnimatePresence>
-                </button>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </div>
-
       {/* CTA Section */}
       <div className="w-full px-3 pb-8 md:px-6 md:pb-14 lg:px-10 lg:pb-20">
         <div
@@ -1531,6 +2719,13 @@ const Admissions = () => {
         isOpen={selectedFinancialOption !== null}
         onClose={() => setSelectedFinancialOption(null)}
         data={selectedFinancialOption}
+      />
+
+      {/* Beyond Degree Modal */}
+      <BeyondDegreeModal
+        isOpen={selectedBeyondDegree !== null}
+        onClose={() => setSelectedBeyondDegree(null)}
+        data={selectedBeyondDegree}
       />
     </section>
   );

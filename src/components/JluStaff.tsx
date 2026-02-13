@@ -2,6 +2,7 @@
 
 import Image from 'next/image';
 import { motion } from 'framer-motion';
+import Link from 'next/link';
 
 // Custom easing for smooth animations (same as Events page)
 const customEase: [number, number, number, number] = [0.22, 1, 0.36, 1];
@@ -46,34 +47,44 @@ const JluStaff = () => {
             className="text-[#666] text-sm md:text-base max-w-full md:max-w-[400px]"
             style={{ lineHeight: 1.7 }}
           >
-            Behind every classroom, event and initiative is a dedicated team that supports the university's everyday functioning.
+            Behind every classroom, event and initiative is a dedicated team that supports the university&apos;s everyday functioning.
           </p>
         </motion.div>
 
-        {/* Staff Image */}
-        <motion.div
-          initial={{ opacity: 0, y: 40 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, ease: customEase }}
-          viewport={{ once: true }}
-          className="relative w-full h-[250px] sm:h-[350px] md:h-[500px] rounded-xl overflow-hidden"
-        >
-          <Image
-            src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=1200&q=80"
-            alt="JLU Staff"
-            fill
-            className="object-cover"
-          />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
-          <div className="absolute bottom-0 left-0 right-0 p-5 sm:p-8 md:p-10">
-            <p
-              className="text-white/90 text-xs sm:text-sm md:text-[15px] max-w-[600px]"
-              style={{ lineHeight: 1.7 }}
-            >
-              JLU's staff form the backbone of the institution, contributing with commitment, care and professionalism.
-            </p>
-          </div>
-        </motion.div>
+        {/* Staff Image - Single Card */}
+        <Link href="/faculties" className="block group">
+          <motion.div
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, ease: customEase }}
+            viewport={{ once: true }}
+            className="relative w-full h-[250px] sm:h-[350px] md:h-[500px] rounded-xl overflow-hidden"
+          >
+            <Image
+              src="https://jlu.edu.in/wp-content/uploads/2024/05/faculty-members.webp"
+              alt="JLU Faculty & Staff"
+              fill
+              className="object-cover transition-transform duration-700 group-hover:scale-105"
+            />
+            {/* Default overlay */}
+            <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent transition-opacity duration-300 group-hover:opacity-0" />
+            {/* Hover overlay with View button */}
+            <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-all duration-300 flex items-center justify-center">
+              <span className="bg-white text-[#21313c] px-6 py-3 rounded-lg text-sm md:text-base font-semibold tracking-wide translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
+                View Faculty
+              </span>
+            </div>
+            {/* Bottom text */}
+            <div className="absolute bottom-0 left-0 right-0 p-5 sm:p-8 md:p-10 transition-opacity duration-300 group-hover:opacity-0">
+              <p
+                className="text-white/90 text-xs sm:text-sm md:text-[15px] max-w-[600px]"
+                style={{ lineHeight: 1.7 }}
+              >
+                JLU&apos;s staff form the backbone of the institution, contributing with commitment, care and professionalism.
+              </p>
+            </div>
+          </motion.div>
+        </Link>
       </div>
     </section>
   );

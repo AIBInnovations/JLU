@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { useIsMobile } from '../hooks/useIsMobile';
+import { PageEventsSection } from './PageEventsSection';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -875,6 +876,9 @@ export const FacultyPage = ({
           </div>
         </section>
       )}
+
+      {/* Events Section */}
+      <PageEventsSection />
 
       {/* CTA Section */}
       <section className="py-20 md:py-32 px-6 md:px-16 xl:px-24 bg-[#f6f7f0]">

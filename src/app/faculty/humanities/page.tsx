@@ -1,7 +1,7 @@
 import { Metadata } from 'next';
-import { Header } from '@/components/Header';
 import { FacultyPage } from '@/components/FacultyPage';
 import { Footer } from '@/components/Footer';
+import { CtaBanner } from '@/components/CtaBanner';
 
 export const metadata: Metadata = {
   title: 'Faculty of Humanities, Art & Design | Jagran Lakecity University',
@@ -62,8 +62,8 @@ const humanitiesData = {
 export default function HumanitiesFacultyPage() {
   return (
     <main className="relative">
-      <Header />
       <FacultyPage {...humanitiesData} />
+      <CtaBanner />
       <Footer />
     </main>
   );

@@ -33,6 +33,15 @@ const leadershipData = [
       'Our approach to education is rooted in real world relevance, critical thinking and human values. Every student is encouraged to think independently, work collaboratively and emerge not only career ready, but life ready.',
     ],
   },
+  {
+    title: "REGISTRAR'S MESSAGE",
+    name: 'Mr. Pankaj Das',
+    image: '/registrar.jpg',
+    messages: [
+      'The Office of the Registrar serves as the administrative backbone of Jagran Lakecity University, ensuring that academic processes, governance frameworks and institutional standards operate with efficiency and integrity.',
+      'Our commitment is to provide seamless support to students, faculty and stakeholders alike, upholding the values of transparency, accountability and excellence that define JLU.',
+    ],
+  },
 ];
 
 const LeadershipMessages = () => {

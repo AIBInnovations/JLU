@@ -7,7 +7,7 @@ import { motion } from 'framer-motion';
 const customEase: [number, number, number, number] = [0.22, 1, 0.36, 1];
 
 const Accreditations = () => {
-  const images = ['/l1.jpg', '/l2.jpg', '/l3.jpg', '/l4.jpg', '/l5.jpg', '/l6.jpg', '/l7.jpg', '/l8.jpg'];
+  const images = ['/Untitled design/1.png', '/Untitled design/2.png', '/Untitled design/3.png', '/Untitled design/4.png', '/Untitled design/5.png', '/Untitled design/6.png', '/Untitled design/7.png', '/Untitled design/8.png'];
 
   return (
     <section className="w-full bg-[#f6f7f0]">

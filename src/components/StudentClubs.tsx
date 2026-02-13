@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { useIsMobile } from '../hooks/useIsMobile';
+import { motion, AnimatePresence, useScroll, useTransform } from 'framer-motion';
 
 // Register GSAP plugin
 gsap.registerPlugin(ScrollTrigger);
@@ -97,16 +98,41 @@ const clubs: Club[] = [
 
 export const StudentClubs = () => {
   const containerRef = useRef<HTMLDivElement>(null);
+  const heroRef = useRef<HTMLDivElement>(null);
   const stackingWrapperRef = useRef<HTMLDivElement>(null);
   const stackingSectionRef = useRef<HTMLDivElement>(null);
   const panelsRef = useRef<(HTMLElement | null)[]>([]);
   const [activeClub, setActiveClub] = useState(0);
   const [mounted, setMounted] = useState(false);
+  const [registrationClub, setRegistrationClub] = useState<Club | null>(null);
+  const [formSubmitted, setFormSubmitted] = useState(false);
   const isMobile = useIsMobile();
+  const { scrollYProgress: heroScrollProgress } = useScroll({
+    target: heroRef,
+    offset: ['start start', 'end start'],
+  });
+  const heroY = useTransform(heroScrollProgress, [0, 1], ['0%', '30%']);
+  const heroOpacity = useTransform(heroScrollProgress, [0, 0.5], [1, 0]);
 
   useEffect(() => {
     setMounted(true);
   }, []);
+
+  // Lock body scroll when modal is open; reset submitted state on close
+  useEffect(() => {
+    if (registrationClub) {
+      document.body.style.overflow = 'hidden';
+      document.documentElement.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+      document.documentElement.style.overflow = '';
+      setFormSubmitted(false);
+    }
+    return () => {
+      document.body.style.overflow = '';
+      document.documentElement.style.overflow = '';
+    };
+  }, [registrationClub]);
 
   // Card stacking effect - panels slide up and overlap previous ones
   useEffect(() => {
@@ -187,40 +213,70 @@ export const StudentClubs = () => {
     };
   }, [mounted, isMobile]);
 
-  if (!mounted) {
-    return <div className="min-h-screen bg-[#f6f7f0]" />;
-  }
-
   return (
     <div ref={containerRef} className="relative bg-[#f6f7f0]">
-      {/* Mobile Layout */}
-      {isMobile ? (
-        <div className="min-h-screen">
-          {/* Mobile Hero */}
-          <section className="min-h-[70vh] flex flex-col justify-center px-6 py-20 bg-[#f6f7f0]">
-            <p
-              className="text-xs mb-4"
-              style={{ color: '#999', letterSpacing: '0.2em', textTransform: 'uppercase' }}
+      {/* Hero Section — About-style fullscreen image */}
+      <section className="w-screen m-0 p-0 overflow-x-hidden">
+        <div ref={heroRef} className="relative w-screen m-0 p-0 overflow-hidden">
+          <motion.div
+            className="relative w-screen min-h-[100svh] md:min-h-screen"
+            initial={{ clipPath: 'inset(100% 0% 0% 0%)' }}
+            animate={{ clipPath: 'inset(0% 0% 0% 0%)' }}
+            transition={{ duration: 2, ease: [0.22, 1, 0.36, 1] }}
+          >
+            <motion.div className="absolute inset-0" style={{ y: heroY }}>
+              <img
+                src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=1600&q=80"
+                alt="Student Clubs at JLU"
+                className="w-full h-full object-cover scale-110"
+              />
+            </motion.div>
+            <motion.div className="absolute inset-0 bg-black/30" style={{ opacity: heroOpacity }} />
+          </motion.div>
+
+          {/* Top Left Text */}
+          <motion.div
+            initial={{ opacity: 0, y: -30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1, delay: 0.5, ease: [0.22, 1, 0.36, 1] }}
+            className="absolute top-0 left-0 px-4 pt-28 sm:pt-32 max-w-[90%] sm:px-6 sm:max-w-[85%] md:pl-10 md:pt-[120px] md:max-w-[800px] md:pr-0"
+          >
+            <motion.p
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.8, delay: 0.8 }}
+              className="text-white font-semibold leading-tight text-base sm:text-lg md:text-[clamp(1.25rem,2.5vw,2rem)]"
             >
-              CAMPUS LIFE
-            </p>
-            <h1
-              className="text-[#21313c] mb-6"
+              Discover your passions, build connections, and develop essential skills with our vibrant student clubs.
+            </motion.p>
+          </motion.div>
+
+          {/* Large "Student Clubs" Text — Bottom Left */}
+          <div className="absolute bottom-0 left-0 pl-3 sm:pl-6 md:pl-10 pb-0">
+            <motion.h1
+              initial={{ opacity: 0, y: 100 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 1.2, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
+              className="font-normal select-none text-[4rem] sm:text-[6rem] md:text-[clamp(8rem,14vw,14rem)]"
               style={{
-                fontSize: 'clamp(2rem, 10vw, 3rem)',
-                fontWeight: 600,
-                lineHeight: 1,
+                fontFamily: "system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif",
+                lineHeight: 0.85,
                 letterSpacing: '-0.02em',
+                background: 'linear-gradient(to bottom, rgba(255,255,255,1) 0%, rgba(255,255,255,0.7) 50%, rgba(255,255,255,0) 85%)',
+                WebkitBackgroundClip: 'text',
+                backgroundClip: 'text',
+                WebkitTextFillColor: 'transparent',
               }}
             >
-              Student{' '}
-              <span style={{ fontFamily: "'Times New Roman', serif", fontStyle: 'italic' }}>Clubs</span>
-            </h1>
-            <p style={{ color: '#666', fontSize: '0.875rem', lineHeight: 1.7, maxWidth: '320px' }}>
-              Discover your passions, build connections, and develop essential skills with our vibrant student clubs.
-            </p>
-            <div className="mt-6" style={{ width: '120px', height: '0px', border: '3px solid #8bc34a' }} />
-          </section>
+              Student Clubs
+            </motion.h1>
+          </div>
+        </div>
+      </section>
+
+      {/* Mobile Layout */}
+      {isMobile ? (
+        <div>
 
           {/* Mobile Club List */}
           <section className="px-6 py-12 bg-[#21313c]">
@@ -264,18 +320,19 @@ export const StudentClubs = () => {
                   <h3 style={{ color: '#ffffff', fontSize: '1.5rem', fontWeight: 600, marginTop: '4px' }}>
                     {club.name}
                   </h3>
+                  <button
+                    onClick={() => setRegistrationClub(club)}
+                    className="mt-3 px-5 py-2.5 rounded-full text-xs uppercase tracking-wider transition-colors"
+                    style={{ backgroundColor: '#8bc34a', color: '#21313c', fontWeight: 600 }}
+                  >
+                    Register Now
+                  </button>
                 </div>
               </div>
               <div className="px-6 py-8">
-                <p style={{ color: '#666', fontSize: '0.875rem', lineHeight: 1.7, marginBottom: '24px' }}>
+                <p style={{ color: '#666', fontSize: '0.875rem', lineHeight: 1.7 }}>
                   {club.description}
                 </p>
-                <button
-                  className="px-6 py-3 rounded-full text-xs uppercase tracking-wider transition-colors"
-                  style={{ backgroundColor: '#21313c', color: '#ffffff' }}
-                >
-                  Register Now
-                </button>
               </div>
             </section>
           ))}
@@ -283,40 +340,6 @@ export const StudentClubs = () => {
       ) : (
         /* Desktop Layout */
         <div ref={containerRef}>
-          {/* Hero Section - Full Width */}
-          <section className="min-h-screen flex items-center justify-center bg-[#f6f7f0] relative">
-            <div className="text-center px-8">
-              <p
-                className="text-xs mb-6"
-                style={{ color: '#999', letterSpacing: '0.2em', textTransform: 'uppercase' }}
-              >
-                CAMPUS LIFE
-              </p>
-              <h1
-                className="text-[#21313c] mb-8"
-                style={{
-                  fontSize: 'clamp(3rem, 8vw, 6rem)',
-                  fontWeight: 600,
-                  lineHeight: 1,
-                  letterSpacing: '-0.02em',
-                }}
-              >
-                Student{' '}
-                <span style={{ fontFamily: "'Times New Roman', serif", fontStyle: 'italic' }}>Clubs</span>
-              </h1>
-              <p style={{ color: '#666', fontSize: '1.125rem', lineHeight: 1.7, maxWidth: '500px', margin: '0 auto' }}>
-                Discover your passions, build connections, and develop essential skills with our vibrant student clubs.
-              </p>
-              <div className="mt-8 mx-auto" style={{ width: '120px', height: '4px', backgroundColor: '#8bc34a' }} />
-
-              {/* Scroll indicator */}
-              <div className="absolute bottom-12 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2">
-                <span style={{ color: '#999', fontSize: '0.75rem', letterSpacing: '0.1em' }}>SCROLL</span>
-                <div className="w-[1px] h-12 bg-[#999] animate-pulse" />
-              </div>
-            </div>
-          </section>
-
           {/* Stacking Panels Section - Wrapper for scroll distance */}
           <div ref={stackingWrapperRef}>
             {/* This container gets pinned (both panels + sidebar together) */}
@@ -372,11 +395,9 @@ export const StudentClubs = () => {
                       >
                         {club.name}
                       </h2>
-                      <p style={{ color: '#666', fontSize: '1rem', lineHeight: 1.7, maxWidth: '500px', marginBottom: '24px' }}>
-                        {club.description}
-                      </p>
                       <button
-                        className="self-start group flex items-center gap-3 text-sm uppercase tracking-wider hover:gap-5 transition-all"
+                        onClick={() => setRegistrationClub(club)}
+                        className="self-start group flex items-center gap-3 text-sm uppercase tracking-wider hover:gap-5 transition-all mb-5"
                         style={{ color: '#21313c', fontWeight: 600 }}
                       >
                         Register for this club
@@ -384,6 +405,9 @@ export const StudentClubs = () => {
                           <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
                         </svg>
                       </button>
+                      <p style={{ color: '#666', fontSize: '1rem', lineHeight: 1.7, maxWidth: '500px' }}>
+                        {club.description}
+                      </p>
                     </div>
                   </section>
                 ))}
@@ -435,16 +459,16 @@ export const StudentClubs = () => {
           </div>
 
           {/* Final CTA - After all stacking */}
-          <section className="py-24 flex items-center justify-center px-16 xl:px-24 bg-[#21313c]">
+          <section className="py-24 flex items-center justify-center px-16 xl:px-24 bg-[#f0c14b]">
             <div className="text-center">
               <p
                 className="mb-4"
-                style={{ color: 'rgba(255,255,255,0.5)', fontSize: '0.75rem', letterSpacing: '0.2em', textTransform: 'uppercase' }}
+                style={{ color: 'rgba(33,49,60,0.5)', fontSize: '0.75rem', letterSpacing: '0.2em', textTransform: 'uppercase' }}
               >
                 READY TO JOIN?
               </p>
               <h2
-                className="text-white mb-8"
+                className="text-[#21313c] mb-8"
                 style={{
                   fontSize: 'clamp(2rem, 5vw, 4rem)',
                   fontWeight: 600,
@@ -456,7 +480,7 @@ export const StudentClubs = () => {
               </h2>
               <button
                 className="px-10 py-4 rounded-full font-semibold hover:scale-105 transition-transform"
-                style={{ backgroundColor: '#8bc34a', color: '#21313c' }}
+                style={{ backgroundColor: '#21313c', color: '#ffffff' }}
               >
                 Explore All Clubs
               </button>
@@ -464,6 +488,208 @@ export const StudentClubs = () => {
           </section>
         </div>
       )}
+      {/* Registration Modal */}
+      <AnimatePresence>
+        {registrationClub && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.3 }}
+            className="fixed inset-0 z-[9999] flex items-center justify-center p-4"
+            style={{ backgroundColor: 'rgba(0,0,0,0.6)', backdropFilter: 'blur(8px)' }}
+            onClick={() => setRegistrationClub(null)}
+            onWheel={(e) => e.stopPropagation()}
+          >
+            <motion.div
+              initial={{ scale: 0.9, opacity: 0, y: 30 }}
+              animate={{ scale: 1, opacity: 1, y: 0 }}
+              exit={{ scale: 0.9, opacity: 0, y: 30 }}
+              transition={{ type: 'spring', damping: 25, stiffness: 300 }}
+              className="relative w-full max-w-lg bg-white rounded-2xl overflow-hidden shadow-2xl"
+              onClick={(e) => e.stopPropagation()}
+              style={{ maxHeight: '90vh' }}
+            >
+              {/* Modal Header with club image */}
+              <div className="relative h-40 overflow-hidden">
+                <img
+                  src={registrationClub.image}
+                  alt={registrationClub.name}
+                  className="w-full h-full object-cover"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#21313c] to-[#21313c]/40" />
+                <div className="absolute bottom-4 left-6 right-6">
+                  <p style={{ color: '#8bc34a', fontFamily: 'monospace', fontSize: '0.75rem', marginBottom: '4px' }}>
+                    {String(registrationClub.id).padStart(2, '0')} — REGISTRATION
+                  </p>
+                  <h3 style={{ color: '#fff', fontSize: '1.5rem', fontWeight: 600 }}>
+                    {registrationClub.name}
+                  </h3>
+                </div>
+                {/* Close button */}
+                <button
+                  onClick={() => setRegistrationClub(null)}
+                  className="absolute top-4 right-4 w-8 h-8 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center hover:bg-white/40 transition-colors"
+                >
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+                    <path d="M18 6L6 18M6 6l12 12" stroke="#fff" strokeWidth="2" strokeLinecap="round"/>
+                  </svg>
+                </button>
+              </div>
+
+              {/* Form / Success State */}
+              <div
+                className="p-6 overflow-y-auto"
+                style={{ maxHeight: 'calc(90vh - 10rem)' }}
+              >
+                {formSubmitted ? (
+                  <motion.div
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.4 }}
+                    className="flex flex-col items-center justify-center text-center py-8"
+                  >
+                    <div className="w-16 h-16 rounded-full bg-[#8bc34a]/15 flex items-center justify-center mb-5">
+                      <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#8bc34a" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                        <polyline points="20 6 9 17 4 12" />
+                      </svg>
+                    </div>
+                    <h4 className="text-[#21313c] text-xl font-semibold mb-2">
+                      Thank You!
+                    </h4>
+                    <p className="text-[#666] text-sm mb-1" style={{ lineHeight: 1.7 }}>
+                      Your registration for <span className="font-semibold text-[#21313c]">{registrationClub.name}</span> has been received.
+                    </p>
+                    <p className="text-[#999] text-xs mb-6">
+                      Our club coordinators will get back to you shortly.
+                    </p>
+                    <button
+                      onClick={() => setRegistrationClub(null)}
+                      className="px-8 py-3 rounded-full text-sm font-semibold uppercase tracking-wider transition-all hover:scale-[1.02] active:scale-[0.98]"
+                      style={{ backgroundColor: '#8bc34a', color: '#21313c' }}
+                    >
+                      Close
+                    </button>
+                  </motion.div>
+                ) : (
+                  <form
+                    className="space-y-4"
+                    onSubmit={(e) => {
+                      e.preventDefault();
+                      const formData = new FormData(e.currentTarget);
+                      const data = Object.fromEntries(formData.entries());
+                      console.log('Registration submitted:', { club: registrationClub.name, ...data });
+                      setFormSubmitted(true);
+                    }}
+                  >
+                    <div>
+                      <label className="block text-xs uppercase tracking-wider mb-1.5" style={{ color: '#999' }}>
+                        Full Name <span className="text-red-400">*</span>
+                      </label>
+                      <input
+                        name="fullName"
+                        required
+                        type="text"
+                        placeholder="Enter your full name"
+                        className="w-full px-4 py-3 rounded-lg border border-gray-200 text-sm outline-none transition-all focus:border-[#8bc34a] focus:ring-2 focus:ring-[#8bc34a]/20"
+                        style={{ color: '#21313c' }}
+                      />
+                    </div>
+
+                    <div>
+                      <label className="block text-xs uppercase tracking-wider mb-1.5" style={{ color: '#999' }}>
+                        Email Address <span className="text-red-400">*</span>
+                      </label>
+                      <input
+                        name="email"
+                        required
+                        type="email"
+                        placeholder="your.email@example.com"
+                        className="w-full px-4 py-3 rounded-lg border border-gray-200 text-sm outline-none transition-all focus:border-[#8bc34a] focus:ring-2 focus:ring-[#8bc34a]/20"
+                        style={{ color: '#21313c' }}
+                      />
+                    </div>
+
+                    <div className="grid grid-cols-2 gap-4">
+                      <div>
+                        <label className="block text-xs uppercase tracking-wider mb-1.5" style={{ color: '#999' }}>
+                          Phone Number <span className="text-red-400">*</span>
+                        </label>
+                        <input
+                          name="phone"
+                          required
+                          type="tel"
+                          placeholder="+91 XXXXX XXXXX"
+                          className="w-full px-4 py-3 rounded-lg border border-gray-200 text-sm outline-none transition-all focus:border-[#8bc34a] focus:ring-2 focus:ring-[#8bc34a]/20"
+                          style={{ color: '#21313c' }}
+                        />
+                      </div>
+                      <div>
+                        <label className="block text-xs uppercase tracking-wider mb-1.5" style={{ color: '#999' }}>
+                          Year of Study <span className="text-red-400">*</span>
+                        </label>
+                        <select
+                          name="year"
+                          required
+                          className="w-full px-4 py-3 rounded-lg border border-gray-200 text-sm outline-none transition-all focus:border-[#8bc34a] focus:ring-2 focus:ring-[#8bc34a]/20 bg-white"
+                          style={{ color: '#21313c' }}
+                          defaultValue=""
+                        >
+                          <option value="" disabled>Select year</option>
+                          <option value="1st Year">1st Year</option>
+                          <option value="2nd Year">2nd Year</option>
+                          <option value="3rd Year">3rd Year</option>
+                          <option value="4th Year">4th Year</option>
+                          <option value="5th Year">5th Year</option>
+                        </select>
+                      </div>
+                    </div>
+
+                    <div>
+                      <label className="block text-xs uppercase tracking-wider mb-1.5" style={{ color: '#999' }}>
+                        Course / Programme <span className="text-red-400">*</span>
+                      </label>
+                      <input
+                        name="course"
+                        required
+                        type="text"
+                        placeholder="e.g. B.Tech CSE, BBA, B.Com"
+                        className="w-full px-4 py-3 rounded-lg border border-gray-200 text-sm outline-none transition-all focus:border-[#8bc34a] focus:ring-2 focus:ring-[#8bc34a]/20"
+                        style={{ color: '#21313c' }}
+                      />
+                    </div>
+
+                    <div>
+                      <label className="block text-xs uppercase tracking-wider mb-1.5" style={{ color: '#999' }}>
+                        Why do you want to join {registrationClub.name}?
+                      </label>
+                      <textarea
+                        name="reason"
+                        rows={3}
+                        placeholder="Tell us briefly why you're interested..."
+                        className="w-full px-4 py-3 rounded-lg border border-gray-200 text-sm outline-none transition-all focus:border-[#8bc34a] focus:ring-2 focus:ring-[#8bc34a]/20 resize-none"
+                        style={{ color: '#21313c' }}
+                      />
+                    </div>
+
+                    <button
+                      type="submit"
+                      className="w-full py-3.5 rounded-full text-sm font-semibold uppercase tracking-wider transition-all hover:scale-[1.02] active:scale-[0.98]"
+                      style={{ backgroundColor: '#8bc34a', color: '#21313c' }}
+                    >
+                      Submit Registration
+                    </button>
+
+                    <p className="text-center text-xs" style={{ color: '#999' }}>
+                      By registering, you agree to be contacted by the club coordinators.
+                    </p>
+                  </form>
+                )}
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 };

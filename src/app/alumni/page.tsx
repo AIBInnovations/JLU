@@ -5,7 +5,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { useIsMobile } from '../../hooks/useIsMobile';
-import { Header, Footer } from '@/components';
+import { Footer } from '@/components';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -24,32 +24,32 @@ const services = [
   {
     title: 'Alumni Directory',
     description: 'Connect with fellow graduates across the globe. Search by batch, program, location, or industry.',
-    image: '/posthero1.jpg',
+    image: '/jlu-alumni-directory.jpg',
   },
   {
     title: 'Career Connect',
     description: 'Access exclusive job postings, internships, and career opportunities from our network of 500+ recruiting partners.',
-    image: '/posthero2.jpg',
+    image: '/jlu-career-connect.jpg',
   },
   {
     title: 'Mentorship Program',
     description: 'Give back or get guidance. Our mentorship platform connects experienced alumni with current students.',
-    image: '/posthero3.jpg',
+    image: '/jlu-mentorship.jpg',
   },
   {
     title: 'Business Network',
     description: 'Showcase your business, find partners, and unlock entrepreneurial opportunities within the JLU alumni ecosystem.',
-    image: '/j1.jpg',
+    image: '/jlu-business-network.jpg',
   },
   {
     title: 'Alumni Chapters',
     description: 'Join regional chapters across India and worldwide. Attend local meetups and community gatherings.',
-    image: '/j2.jpg',
+    image: '/jlu-alumni-chapters.jpg',
   },
   {
     title: 'Events & Reunions',
     description: 'Never miss a reunion, homecoming, or alumni event. Register for upcoming gatherings.',
-    image: '/j3.jpg',
+    image: '/jlu-events-reunions.jpg',
   },
 ];
 
@@ -58,7 +58,7 @@ const notableAlumni = [
     id: '1',
     name: 'Aparna Jha',
     batch: '2018',
-    image: '/posthero1.jpg',
+    image: '/jlu-placement1.jpeg',
     designation: 'Software Developer',
     company: 'Amazon',
     achievement: 'Led development of AWS cloud services used by millions',
@@ -67,7 +67,7 @@ const notableAlumni = [
     id: '2',
     name: 'Aman Solanki',
     batch: '2019',
-    image: '/posthero2.jpg',
+    image: '/jlu-placement2.jpeg',
     designation: 'Business Analyst',
     company: 'Deloitte',
     achievement: 'Youngest consultant to lead Fortune 500 transformation project',
@@ -76,7 +76,7 @@ const notableAlumni = [
     id: '3',
     name: 'Soumya Shabani',
     batch: '2020',
-    image: '/posthero3.jpg',
+    image: '/jlu-placement3.jpeg',
     designation: 'Associate Director',
     company: 'HDFC Bank',
     achievement: 'Pioneered digital banking initiatives across 5 states',
@@ -85,7 +85,7 @@ const notableAlumni = [
     id: '4',
     name: 'Derick Vineet Nathaniel',
     batch: '2017',
-    image: '/posthero1.jpg',
+    image: '/jlu-insta1.jpg',
     designation: 'Senior Consultant',
     company: 'Infosys',
     achievement: 'Architect of enterprise solutions for global clients',
@@ -94,7 +94,7 @@ const notableAlumni = [
     id: '5',
     name: 'Kedar Ghimire',
     batch: '2021',
-    image: '/posthero2.jpg',
+    image: '/jlu-insta2.jpg',
     designation: 'Media Professional',
     company: 'NDTV',
     achievement: 'Award-winning journalist covering national affairs',
@@ -103,7 +103,7 @@ const notableAlumni = [
     id: '6',
     name: 'Priya Sharma',
     batch: '2016',
-    image: '/posthero3.jpg',
+    image: '/jlu-insta3.jpg',
     designation: 'Founder & CEO',
     company: 'TechStartup Inc.',
     achievement: 'Built a $10M startup from JLU incubation center',
@@ -140,21 +140,21 @@ const testimonials = [
     name: "Rajesh Kumar",
     batch: "2014",
     role: "VP Engineering, Microsoft",
-    image: "/posthero1.jpg"
+    image: "/jlu-testimonial1.webp"
   },
   {
     quote: "From campus to corporate, the JLU family has always been there. The mentorship program helped me navigate my early career challenges with confidence.",
     name: "Sneha Patel",
     batch: "2017",
     role: "Product Manager, Google",
-    image: "/posthero2.jpg"
+    image: "/jlu-testimonial2.webp"
   },
   {
     quote: "The business connect platform helped me find co-founders for my startup. Today, we're a team of 50, all thanks to the JLU alumni ecosystem.",
     name: "Vikram Singh",
     batch: "2016",
     role: "Founder, InnovateTech",
-    image: "/posthero3.jpg"
+    image: "/jlu-testimonial3.webp"
   },
 ];
 
@@ -324,9 +324,6 @@ export default function AlumniPage() {
 
   return (
     <div className="bg-[#f6f7f0] min-h-screen overflow-x-hidden" style={{ transform: 'translateZ(0)' }}>
-      {/* Fixed Header */}
-      <Header />
-
       {/* Hero Section with Full Image and Scroll Animation */}
       <section
         ref={heroRef}

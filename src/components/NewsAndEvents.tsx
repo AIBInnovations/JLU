@@ -193,6 +193,223 @@ const NewsAndEvents = () => {
         </div>
       </div>
 
+      {/* JLU in News Section */}
+      <div className="w-full bg-white">
+        <div
+          className="mx-auto px-5 py-16 md:px-10 md:py-20 lg:px-30 lg:py-35"
+          style={{
+            maxWidth: '1440px',
+          }}
+        >
+          <motion.div
+            className="flex flex-col md:flex-row md:items-end justify-between gap-4 md:gap-0 mb-10 md:mb-16"
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, ease: customEase }}
+            viewport={{ once: true }}
+          >
+            <div>
+              <span
+                className="text-[#999] uppercase tracking-widest block mb-4 md:mb-6 text-[11px] md:text-[12px]"
+                style={{ letterSpacing: '0.2em' }}
+              >
+                Media Coverage
+              </span>
+              <h2
+                className="text-[#21313c]"
+                style={{
+                  fontSize: 'clamp(2rem, 4vw, 3.5rem)',
+                  fontWeight: 600,
+                  lineHeight: 1.1,
+                  letterSpacing: '-0.03em',
+                }}
+              >
+                JLU in the{' '}
+                <span style={{ fontFamily: "'Times New Roman', serif", fontStyle: 'italic', fontWeight: 400 }}>
+                  news
+                </span>
+              </h2>
+            </div>
+            <motion.a
+              href="#"
+              className="inline-flex items-center gap-3 text-[#21313c] font-medium group text-sm md:text-[15px]"
+              whileHover={{ x: 5 }}
+            >
+              View all coverage
+              <span className="group-hover:translate-x-2 transition-transform duration-300">→</span>
+            </motion.a>
+          </motion.div>
+
+          {/* Featured News Card + Grid */}
+          <div className="flex flex-col lg:flex-row gap-6 md:gap-8">
+            {/* Featured Story - Large Card */}
+            <motion.div
+              className="relative overflow-hidden group cursor-pointer w-full lg:w-1/2 h-80 md:h-125 rounded-2xl"
+              initial={{ opacity: 0, x: -40 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8, ease: customEase }}
+              viewport={{ once: true }}
+            >
+              <motion.div
+                className="absolute inset-0"
+                whileHover={{ scale: 1.05 }}
+                transition={{ duration: 0.8, ease: customEase }}
+              >
+                <Image
+                  src="https://images.unsplash.com/photo-1523580494863-6f3031224c94?w=1200&q=80"
+                  alt="JLU 11th Foundation Day"
+                  fill
+                  className="object-cover"
+                />
+              </motion.div>
+              <div className="absolute inset-0 bg-linear-to-t from-black/80 via-black/30 to-transparent" />
+              <div className="absolute top-4 left-4 md:top-6 md:left-6 flex items-center gap-2">
+                <span className="bg-[#f0c14b] text-[#21313c] px-3 py-1 text-[10px] md:text-xs font-bold uppercase tracking-wider">
+                  Featured
+                </span>
+                <span className="bg-white/20 backdrop-blur-sm text-white px-3 py-1 text-[10px] md:text-xs font-medium">
+                  Hindustan Times
+                </span>
+              </div>
+              <div className="absolute bottom-4 left-4 right-4 md:bottom-8 md:left-8 md:right-8">
+                <p className="text-white/60 text-xs md:text-sm mb-2">January 2026</p>
+                <h3 className="text-white font-bold text-lg md:text-2xl lg:text-3xl leading-tight mb-3">
+                  JLU Celebrates 11th Foundation Day with Global Academic Leaders
+                </h3>
+                <p className="text-white/70 text-sm md:text-base hidden md:block" style={{ lineHeight: 1.7 }}>
+                  Jagran Lakecity University marked its 11th Foundation Day with distinguished guests from across the globe, reaffirming its commitment to academic excellence and innovation.
+                </p>
+              </div>
+            </motion.div>
+
+            {/* News Grid - Right Side */}
+            <motion.div
+              className="flex-1 flex flex-col gap-4 md:gap-5"
+              variants={staggerContainer}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
+            >
+              {/* News Item 1 */}
+              <motion.a
+                href="#"
+                variants={staggerItem}
+                className="flex gap-4 md:gap-6 p-4 md:p-5 bg-[#f6f7f0] rounded-xl group cursor-pointer hover:bg-[#eef0e4] transition-colors"
+              >
+                <div className="relative shrink-0 overflow-hidden w-20 h-20 md:w-28 md:h-28 rounded-lg">
+                  <Image
+                    src="https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=400&q=80"
+                    alt="AUAP Conference"
+                    fill
+                    className="object-cover group-hover:scale-105 transition-transform duration-500"
+                  />
+                </div>
+                <div className="flex-1 min-w-0">
+                  <div className="flex items-center gap-2 mb-1.5 md:mb-2">
+                    <span className="text-[#999] text-[10px] md:text-xs font-medium">Times of India</span>
+                    <span className="text-[#999] text-[10px]">|</span>
+                    <span className="text-[#999] text-[10px] md:text-xs">Dec 2025</span>
+                  </div>
+                  <h4 className="text-[#21313c] font-semibold text-sm md:text-base leading-snug group-hover:text-[#f0c14b] transition-colors line-clamp-2">
+                    JLU Hosts AUAP International Conference on Higher Education
+                  </h4>
+                  <p className="text-[#666] text-xs md:text-sm mt-1.5 hidden md:block line-clamp-2" style={{ lineHeight: 1.6 }}>
+                    University leaders from 15 countries gathered at JLU for the Association of Universities of Asia and the Pacific conference.
+                  </p>
+                </div>
+              </motion.a>
+
+              {/* News Item 2 */}
+              <motion.a
+                href="#"
+                variants={staggerItem}
+                className="flex gap-4 md:gap-6 p-4 md:p-5 bg-[#f6f7f0] rounded-xl group cursor-pointer hover:bg-[#eef0e4] transition-colors"
+              >
+                <div className="relative shrink-0 overflow-hidden w-20 h-20 md:w-28 md:h-28 rounded-lg">
+                  <Image
+                    src="https://images.unsplash.com/photo-1524995997946-a3eb161ffa5f?w=400&q=80"
+                    alt="JLU Rankings"
+                    fill
+                    className="object-cover group-hover:scale-105 transition-transform duration-500"
+                  />
+                </div>
+                <div className="flex-1 min-w-0">
+                  <div className="flex items-center gap-2 mb-1.5 md:mb-2">
+                    <span className="text-[#999] text-[10px] md:text-xs font-medium">India Today</span>
+                    <span className="text-[#999] text-[10px]">|</span>
+                    <span className="text-[#999] text-[10px] md:text-xs">Nov 2025</span>
+                  </div>
+                  <h4 className="text-[#21313c] font-semibold text-sm md:text-base leading-snug group-hover:text-[#f0c14b] transition-colors line-clamp-2">
+                    JLU Ranked Among Top Private Universities in Central India
+                  </h4>
+                  <p className="text-[#666] text-xs md:text-sm mt-1.5 hidden md:block line-clamp-2" style={{ lineHeight: 1.6 }}>
+                    Jagran Lakecity University secures a top position in the India Today-MDRA Best Universities Survey for 2025.
+                  </p>
+                </div>
+              </motion.a>
+
+              {/* News Item 3 */}
+              <motion.a
+                href="#"
+                variants={staggerItem}
+                className="flex gap-4 md:gap-6 p-4 md:p-5 bg-[#f6f7f0] rounded-xl group cursor-pointer hover:bg-[#eef0e4] transition-colors"
+              >
+                <div className="relative shrink-0 overflow-hidden w-20 h-20 md:w-28 md:h-28 rounded-lg">
+                  <Image
+                    src="https://images.unsplash.com/photo-1532094349884-543bc11b234d?w=400&q=80"
+                    alt="Research Innovation"
+                    fill
+                    className="object-cover group-hover:scale-105 transition-transform duration-500"
+                  />
+                </div>
+                <div className="flex-1 min-w-0">
+                  <div className="flex items-center gap-2 mb-1.5 md:mb-2">
+                    <span className="text-[#999] text-[10px] md:text-xs font-medium">The Pioneer</span>
+                    <span className="text-[#999] text-[10px]">|</span>
+                    <span className="text-[#999] text-[10px] md:text-xs">Oct 2025</span>
+                  </div>
+                  <h4 className="text-[#21313c] font-semibold text-sm md:text-base leading-snug group-hover:text-[#f0c14b] transition-colors line-clamp-2">
+                    JLU Faculty Receives National Award for Innovation in Pharmaceutical Research
+                  </h4>
+                  <p className="text-[#666] text-xs md:text-sm mt-1.5 hidden md:block line-clamp-2" style={{ lineHeight: 1.6 }}>
+                    Dr. Vandana Rathore honoured for her pioneering work in novel drug delivery systems.
+                  </p>
+                </div>
+              </motion.a>
+
+              {/* News Item 4 */}
+              <motion.a
+                href="#"
+                variants={staggerItem}
+                className="flex gap-4 md:gap-6 p-4 md:p-5 bg-[#f6f7f0] rounded-xl group cursor-pointer hover:bg-[#eef0e4] transition-colors"
+              >
+                <div className="relative shrink-0 overflow-hidden w-20 h-20 md:w-28 md:h-28 rounded-lg">
+                  <Image
+                    src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=400&q=80"
+                    alt="Convocation"
+                    fill
+                    className="object-cover group-hover:scale-105 transition-transform duration-500"
+                  />
+                </div>
+                <div className="flex-1 min-w-0">
+                  <div className="flex items-center gap-2 mb-1.5 md:mb-2">
+                    <span className="text-[#999] text-[10px] md:text-xs font-medium">Dainik Bhaskar</span>
+                    <span className="text-[#999] text-[10px]">|</span>
+                    <span className="text-[#999] text-[10px] md:text-xs">Sep 2025</span>
+                  </div>
+                  <h4 className="text-[#21313c] font-semibold text-sm md:text-base leading-snug group-hover:text-[#f0c14b] transition-colors line-clamp-2">
+                    10th Convocation Ceremony: 2,500 Students Awarded Degrees
+                  </h4>
+                  <p className="text-[#666] text-xs md:text-sm mt-1.5 hidden md:block line-clamp-2" style={{ lineHeight: 1.6 }}>
+                    The grand ceremony saw dignitaries, gold medalists, and proud families celebrating academic achievements.
+                  </p>
+                </div>
+              </motion.a>
+            </motion.div>
+          </div>
+        </div>
+      </div>
+
       {/* What's happening on campus Section */}
       <div className="w-full bg-[#f6f7f0]">
         <div

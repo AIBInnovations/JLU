@@ -18,6 +18,71 @@ const statsData = [
   { id: 4, value: 'Global', label: 'OUTCOMES', description: 'Policy, industry & social impact' },
 ];
 
+const publicationsData = [
+  {
+    id: 1,
+    title: 'Formulation and Evaluation of Sustained Release Matrix Tablets Using Natural Polymers',
+    authors: 'Dr. Vandana Rathore, Dr. Meera Gupta',
+    journal: 'International Journal of Pharmaceutical Sciences',
+    year: '2024',
+    citations: 38,
+    category: 'Pharmacy',
+    doi: '10.1016/j.ijps.2024.0142',
+  },
+  {
+    id: 2,
+    title: 'Deep Learning Approaches for Real-Time Object Detection in Autonomous Systems',
+    authors: 'Dr. Priyanka Nema, Dr. Vikram Joshi',
+    journal: 'IEEE Transactions on Neural Networks',
+    year: '2024',
+    citations: 24,
+    category: 'Computer Science',
+    doi: '10.1109/TNN.2024.3287654',
+  },
+  {
+    id: 3,
+    title: 'Blockchain-Enabled Supply Chain Management: A Systematic Review',
+    authors: 'Dr. Sachin Rastogi, Sweta Gupta',
+    journal: 'Journal of Business Research',
+    year: '2023',
+    citations: 52,
+    category: 'Management',
+    doi: '10.1016/j.jbusres.2023.1087',
+  },
+  {
+    id: 4,
+    title: 'CRISPR-Based Gene Editing for Crop Improvement in Central Indian Soils',
+    authors: 'Dr. Deepak Saxena, Dr. Ramesh Chandra',
+    journal: 'Nature Biotechnology Letters',
+    year: '2024',
+    citations: 19,
+    category: 'Biotechnology',
+    doi: '10.1038/nbt.2024.0056',
+  },
+  {
+    id: 5,
+    title: 'Impact of Industrial Effluents on Groundwater Quality in Madhya Pradesh',
+    authors: 'Dr. Ankita Sharma, Dr. Anil Kumar Sharma',
+    journal: 'Environmental Science & Technology',
+    year: '2023',
+    citations: 31,
+    category: 'Environmental Science',
+    doi: '10.1021/es.2023.5431',
+  },
+  {
+    id: 6,
+    title: 'Media Framing of Climate Change in Indian Print Journalism: A Discourse Analysis',
+    authors: 'Dr. Ritu Sharma, Prof. Anand Mishra',
+    journal: 'Asian Journal of Communication',
+    year: '2024',
+    citations: 15,
+    category: 'Journalism',
+    doi: '10.1080/ajc.2024.2298',
+  },
+];
+
+const publicationFilters = ['All', 'Computer Science', 'Pharmacy', 'Management', 'Biotechnology', 'Environmental Science', 'Journalism'];
+
 const journalCategories = [
   'Centres of Excellence',
   'Faculty Research Areas',
@@ -134,6 +199,7 @@ const fundedProjectsData = [
 
 const Research = () => {
   const [activeArea, setActiveArea] = useState(1);
+  const [activeFilter, setActiveFilter] = useState('All');
   const heroRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
     target: heroRef,
@@ -302,6 +368,115 @@ const Research = () => {
                 </p>
               </div>
             ))}
+          </div>
+        </div>
+      </div>
+
+      {/* Publications Section */}
+      <div className="w-full bg-[#f6f7f0]">
+        <div
+          className="mx-auto px-5 py-12 md:px-10 md:py-16 lg:px-30 lg:py-20"
+          style={{
+            maxWidth: '1440px',
+          }}
+        >
+          {/* Header */}
+          <div className="flex flex-col md:flex-row justify-between items-start gap-4 md:gap-0 mb-8 md:mb-12">
+            <div>
+              <h2 className="text-2xl md:text-4xl lg:text-5xl font-bold text-[#21313c] mb-2 md:mb-4">
+                Publications
+              </h2>
+              <p className="text-base md:text-lg lg:text-xl text-[#21313c]">
+                Peer-reviewed research advancing knowledge across disciplines.
+              </p>
+            </div>
+            <div className="flex items-center gap-2 bg-[#03463B] text-white px-4 py-2 rounded-full">
+              <span className="text-2xl md:text-3xl font-bold">2.4k+</span>
+              <span className="text-sm">Published Papers</span>
+            </div>
+          </div>
+
+          {/* Filters */}
+          <div className="flex flex-wrap gap-2 md:gap-3 mb-8 md:mb-12">
+            {publicationFilters.map((filter) => (
+              <button
+                key={filter}
+                onClick={() => setActiveFilter(filter)}
+                className={`px-4 py-2 md:px-5 md:py-2.5 rounded-full text-xs md:text-sm font-medium transition-all ${
+                  activeFilter === filter
+                    ? 'bg-[#21313c] text-white'
+                    : 'bg-white text-[#21313c] border border-gray-200 hover:border-[#21313c]'
+                }`}
+              >
+                {filter}
+              </button>
+            ))}
+          </div>
+
+          {/* Publications Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-6">
+            {publicationsData
+              .filter(pub => activeFilter === 'All' || pub.category === activeFilter)
+              .map((pub) => (
+              <div
+                key={pub.id}
+                className="bg-white p-5 md:p-7 rounded-xl border border-gray-100 hover:shadow-lg transition-shadow group"
+              >
+                {/* Category Tag */}
+                <div className="flex items-center justify-between mb-4">
+                  <span className="px-3 py-1 bg-[#e8f5e9] text-[#03463B] text-[10px] md:text-xs font-medium rounded-full">
+                    {pub.category}
+                  </span>
+                  <span className="text-xs text-gray-400">{pub.year}</span>
+                </div>
+
+                {/* Title */}
+                <h3 className="text-[#21313c] font-semibold text-sm md:text-base leading-snug mb-3 group-hover:text-[#03463B] transition-colors line-clamp-3">
+                  {pub.title}
+                </h3>
+
+                {/* Authors */}
+                <p className="text-xs md:text-sm text-gray-500 mb-3">
+                  {pub.authors}
+                </p>
+
+                {/* Journal */}
+                <p className="text-xs text-gray-400 italic mb-4">
+                  {pub.journal}
+                </p>
+
+                {/* Footer */}
+                <div className="flex items-center justify-between pt-4 border-t border-gray-100">
+                  <div className="flex items-center gap-1.5">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#999" strokeWidth="2">
+                      <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20" strokeLinecap="round" strokeLinejoin="round"/>
+                      <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z" strokeLinecap="round" strokeLinejoin="round"/>
+                    </svg>
+                    <span className="text-xs text-gray-500">{pub.citations} citations</span>
+                  </div>
+                  <a
+                    href={`https://doi.org/${pub.doi}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-xs text-[#03463B] font-medium hover:underline flex items-center gap-1"
+                  >
+                    DOI
+                    <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                      <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" strokeLinecap="round" strokeLinejoin="round"/>
+                      <polyline points="15 3 21 3 21 9" strokeLinecap="round" strokeLinejoin="round"/>
+                      <line x1="10" y1="14" x2="21" y2="3" strokeLinecap="round"/>
+                    </svg>
+                  </a>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          <div className="mt-8 md:mt-12 text-center">
+            <a href="#" className="inline-flex items-center gap-2 text-[#21313c] font-medium underline hover:no-underline">
+              Browse all publications
+              <span>→</span>
+            </a>
           </div>
         </div>
       </div>

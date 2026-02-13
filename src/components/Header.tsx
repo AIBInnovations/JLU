@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useIsMobile } from '../hooks/useIsMobile';
+import Image from 'next/image';
 
 // Navigation item types
 interface NavigationColumn {
@@ -204,7 +205,7 @@ const MenuOverlay = ({ isOpen, onClose, menuButtonRef }: MenuOverlayProps) => {
   // Get the currently hovered navigation item
   const hoveredNavItem = navigationItems.find(item => item.label === hoveredItem);
 
-  const circleSize = isMobile ? 2000 : 1600;
+  const circleSize = isMobile ? 2000 : 1500;
   const buttonWidth = isMobile ? 24 : 168;
   const buttonHeight = isMobile ? 24 : 48;
 
@@ -271,7 +272,7 @@ const MenuOverlay = ({ isOpen, onClose, menuButtonRef }: MenuOverlayProps) => {
                 animate={{ opacity: 1, transition: { duration: 0.4, delay: 0.6 } }}
                 exit={{ opacity: 0, transition: { duration: 0.2, delay: 0 } }}
                 className="fixed inset-0 overflow-y-auto"
-                style={{ zIndex: 59 }}
+                style={{ zIndex: 59, overscrollBehavior: 'contain' }}
               >
                 {/* Mobile Navigation content - side by side like desktop */}
                 <div className="flex gap-4 px-4 pt-20 pb-8">
@@ -315,7 +316,7 @@ const MenuOverlay = ({ isOpen, onClose, menuButtonRef }: MenuOverlayProps) => {
                   </div>
 
                   {/* Vertical divider line */}
-                  <div className="w-[1px] bg-gray-300 self-stretch my-4" />
+                  <div className="w-[1px] bg-gray-300 h-[300px] my-4" />
 
                   {/* Right side - Hovered item content or featured buttons and bottom menu */}
                   <div className="flex flex-col gap-1.5 flex-1 pt-6 min-h-[200px]">
@@ -535,9 +536,9 @@ const MenuOverlay = ({ isOpen, onClose, menuButtonRef }: MenuOverlayProps) => {
                 </motion.button>
 
                 {/* Navigation content */}
-                <div className="flex gap-6" style={{ marginTop: '500px', marginLeft: '-400px' }}>
+                <div className="flex gap-6" style={{ marginTop: '480px', marginLeft: '-350px' }}>
                   {/* Main navigation */}
-                  <div className="flex flex-col" style={{ marginLeft: '-60px' }}>
+                  <div className="flex flex-col" style={{ marginLeft: '-120px' }}>
                     <motion.p
                       initial={{ opacity: 0, y: 10 }}
                       animate={{ opacity: 1, y: 0 }}
@@ -576,10 +577,10 @@ const MenuOverlay = ({ isOpen, onClose, menuButtonRef }: MenuOverlayProps) => {
                   </div>
 
                   {/* Vertical divider line */}
-                  <div className="w-[1px] bg-gray-300 self-stretch my-8" />
+                  <div className="w-[1px] bg-gray-300 h-[400px] my-8" />
 
                   {/* Right side - Hovered item content or featured buttons and bottom menu */}
-                  <div className="flex flex-col gap-2.5 pt-8 w-[520px]" style={{ marginLeft: '-40px' }}>
+                  <div className="flex flex-col gap-2.5 pt-8 w-[520px]" style={{ marginLeft: '0px' }}>
                     <AnimatePresence mode="wait">
                       {hoveredNavItem ? (
                         <motion.div
@@ -655,22 +656,22 @@ const MenuOverlay = ({ isOpen, onClose, menuButtonRef }: MenuOverlayProps) => {
                           </div>
 
                           {/* Featured Action Buttons (at bottom) */}
-                          <div className="flex flex-col gap-3 border-t pt-4">
+                          <div className="flex flex-col gap-2 border-t pt-4 mt-3">
                             <motion.p
                               initial={{ opacity: 0, y: 5 }}
                               animate={{ opacity: 1, y: 0 }}
                               transition={{ delay: 0.4, duration: 0.3 }}
-                              className="text-xs text-gray-500 uppercase tracking-wider mb-1"
+                              className="text-[10px] text-gray-500 uppercase tracking-wider mb-0.5"
                             >
                               Quick Actions
                             </motion.p>
-                            <div className="flex gap-3">
-                              <Link href="/apply" onClick={onClose} className="flex-1">
+                            <div className="flex gap-2">
+                              <Link href="/apply" onClick={onClose}>
                                 <motion.div
                                   initial={{ opacity: 0, y: 10 }}
                                   animate={{ opacity: 1, y: 0 }}
                                   transition={{ delay: 0.45, duration: 0.3 }}
-                                  className="bg-[#03463B] text-white font-semibold py-3 px-4 rounded-lg hover:bg-[#025039] transition-all shadow-md hover:shadow-lg text-center text-sm cursor-pointer"
+                                  className="bg-[#03463B] text-white font-normal py-2 px-4 rounded-md hover:bg-[#025039] transition-all shadow-sm hover:shadow-md text-center text-xs cursor-pointer whitespace-nowrap"
                                 >
                                   Apply Now
                                 </motion.div>
@@ -683,7 +684,7 @@ const MenuOverlay = ({ isOpen, onClose, menuButtonRef }: MenuOverlayProps) => {
                                 initial={{ opacity: 0, y: 10 }}
                                 animate={{ opacity: 1, y: 0 }}
                                 transition={{ delay: 0.5, duration: 0.3 }}
-                                className="flex-1 border-2 border-[#03463B] text-[#03463B] font-semibold py-3 px-4 rounded-lg hover:bg-[#03463B] hover:text-white transition-all text-center text-sm"
+                                className="border border-[#03463B] text-[#03463B] font-normal py-2 px-4 rounded-md hover:bg-[#03463B] hover:text-white transition-all text-center text-xs whitespace-nowrap"
                               >
                                 360° Tour
                               </motion.a>
@@ -695,29 +696,23 @@ const MenuOverlay = ({ isOpen, onClose, menuButtonRef }: MenuOverlayProps) => {
                   </div>
                 </div>
 
-                {/* JLU Large Text at Bottom */}
+                {/* Menu Image at Bottom */}
                 <motion.div
-                  initial={{ opacity: 0, y: 50 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.3, duration: 0.8 }}
-                  className="absolute bottom-0 left-0 pl-140 pb-4 pointer-events-none"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ delay: 0.4, duration: 0.5 }}
+                  className="absolute pointer-events-none"
+                  style={{ bottom: '50px', left: '100px' }}
                 >
-                  <h1
-                    className="font-normal select-none"
-                    style={{
-                      fontFamily: "system-ui, -apple-system, sans-serif",
-                      fontSize: 'clamp(8rem, 15vw, 18rem)',
-                      lineHeight: 0.85,
-                      letterSpacing: '-0.02em',
-                      background: 'linear-gradient(to bottom, rgba(3, 70, 59, 1) 0%, rgba(3, 70, 59, 0.8) 60%, rgba(3, 70, 59, 0) 95%)',
-                      WebkitBackgroundClip: 'text',
-                      backgroundClip: 'text',
-                      WebkitTextFillColor: 'transparent',
-                    }}
-                  >
-                    JLU
-                  </h1>
+                  <Image
+                    src="/menuu.png"
+                    alt="Menu decoration"
+                    width={1200}
+                    height={1200}
+                    className="object-contain opacity-30"
+                  />
                 </motion.div>
+
               </motion.div>
             </>
           )}
@@ -751,7 +746,7 @@ const MenuButton = ({ onClick, buttonRef, isOpen }: MenuButtonProps) => {
       {!isMobile && !isOpen && (
         <>
           <span className="text-sm font-medium tracking-wide pl-4 mr-auto text-[#0c3b5f]">Menu</span>
-          <div className="h-[48px] w-px bg-gray-300 mx-5" />
+          <div className="h-[32px] w-px bg-gray-300 mx-5" />
         </>
       )}
 
@@ -792,6 +787,17 @@ export const Header = () => {
 
   // Check if we're on the homepage
   const isHomepage = pathname === '/';
+
+  useEffect(() => {
+    if (isMenuOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [isMenuOpen]);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -858,7 +864,7 @@ export const Header = () => {
               src="/jlulogo.png"
               alt="Jagran Lakecity University logo"
               className={`w-auto object-contain drop-shadow-lg cursor-pointer ${
-                isMobile ? 'h-16' : 'h-20 sm:h-24'
+                isMobile ? 'h-14' : 'h-16 sm:h-20'
               }`}
             />
           </Link>

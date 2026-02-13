@@ -13,6 +13,7 @@ export interface Program {
   careerProspects: string[];
   eligibility: string;
   image: string;
+  feeId?: string;
 }
 
 export const programs: Program[] = [
@@ -36,7 +37,8 @@ export const programs: Program[] = [
     ],
     careerProspects: ['AI Engineer', 'Machine Learning Engineer', 'Data Scientist', 'Research Scientist', 'AI Product Manager'],
     eligibility: '10+2 with Physics, Chemistry, Mathematics with minimum 60% marks',
-    image: 'https://images.unsplash.com/photo-1677442136019-21780ecad995?w=800&q=80'
+    image: 'https://images.unsplash.com/photo-1677442136019-21780ecad995?w=800&q=80',
+    feeId: 'btech-ai-ds',
   },
   {
     id: 'btech-ds',
@@ -57,7 +59,8 @@ export const programs: Program[] = [
     ],
     careerProspects: ['Data Scientist', 'Data Analyst', 'Business Intelligence Analyst', 'Data Engineer', 'Analytics Manager'],
     eligibility: '10+2 with Physics, Chemistry, Mathematics with minimum 60% marks',
-    image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&q=80'
+    image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&q=80',
+    feeId: 'btech-ai-ds',
   },
   {
     id: 'btech-cse',
@@ -78,7 +81,8 @@ export const programs: Program[] = [
     ],
     careerProspects: ['Software Engineer', 'Full Stack Developer', 'System Architect', 'Technical Lead', 'Product Manager'],
     eligibility: '10+2 with Physics, Chemistry, Mathematics with minimum 60% marks',
-    image: 'https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=800&q=80'
+    image: 'https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=800&q=80',
+    feeId: 'btech-cse',
   },
   {
     id: 'bdes-uiux',
@@ -99,7 +103,8 @@ export const programs: Program[] = [
     ],
     careerProspects: ['UI Designer', 'UX Designer', 'Product Designer', 'Interaction Designer', 'Design Lead'],
     eligibility: '10+2 from any stream with minimum 50% marks',
-    image: 'https://images.unsplash.com/photo-1561070791-2526d30994b5?w=800&q=80'
+    image: 'https://images.unsplash.com/photo-1561070791-2526d30994b5?w=800&q=80',
+    feeId: 'bdes-ux',
   },
   {
     id: 'bca',
@@ -120,7 +125,8 @@ export const programs: Program[] = [
     ],
     careerProspects: ['Software Developer', 'Web Developer', 'System Administrator', 'IT Consultant', 'Database Administrator'],
     eligibility: '10+2 from any stream with minimum 50% marks',
-    image: 'https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=800&q=80'
+    image: 'https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=800&q=80',
+    feeId: 'bca',
   },
   {
     id: 'bca-ai',
@@ -141,7 +147,8 @@ export const programs: Program[] = [
     ],
     careerProspects: ['AI Developer', 'ML Engineer', 'AI Analyst', 'Chatbot Developer', 'AI Consultant'],
     eligibility: '10+2 from any stream with minimum 50% marks',
-    image: 'https://images.unsplash.com/photo-1555255707-c07966088b7b?w=800&q=80'
+    image: 'https://images.unsplash.com/photo-1555255707-c07966088b7b?w=800&q=80',
+    feeId: 'bca-specializations',
   },
   {
     id: 'bca-ds',
@@ -162,7 +169,8 @@ export const programs: Program[] = [
     ],
     careerProspects: ['Data Analyst', 'Business Analyst', 'Analytics Consultant', 'BI Developer', 'Data Engineer'],
     eligibility: '10+2 from any stream with minimum 50% marks',
-    image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&q=80'
+    image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&q=80',
+    feeId: 'bca-specializations',
   },
   {
     id: 'ba-llb',
@@ -183,7 +191,8 @@ export const programs: Program[] = [
     ],
     careerProspects: ['Advocate', 'Corporate Lawyer', 'Legal Advisor', 'Judge', 'Legal Consultant'],
     eligibility: '10+2 from any stream with minimum 50% marks',
-    image: 'https://images.unsplash.com/photo-1589829545856-d10d557cf95f?w=800&q=80'
+    image: 'https://images.unsplash.com/photo-1589829545856-d10d557cf95f?w=800&q=80',
+    feeId: 'ballb',
   },
   {
     id: 'bba-llb',
@@ -204,7 +213,8 @@ export const programs: Program[] = [
     ],
     careerProspects: ['Corporate Lawyer', 'Legal Counsel', 'Business Consultant', 'Compliance Officer', 'Entrepreneur'],
     eligibility: '10+2 from any stream with minimum 50% marks',
-    image: 'https://images.unsplash.com/photo-1507679799987-c73779587ccf?w=800&q=80'
+    image: 'https://images.unsplash.com/photo-1507679799987-c73779587ccf?w=800&q=80',
+    feeId: 'bballb',
   },
   {
     id: 'bba',
@@ -225,7 +235,8 @@ export const programs: Program[] = [
     ],
     careerProspects: ['Business Analyst', 'Marketing Manager', 'HR Manager', 'Operations Manager', 'Entrepreneur'],
     eligibility: '10+2 from any stream with minimum 50% marks',
-    image: 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=800&q=80'
+    image: 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=800&q=80',
+    feeId: 'bba',
   },
   {
     id: 'bpharma',
@@ -246,7 +257,8 @@ export const programs: Program[] = [
     ],
     careerProspects: ['Pharmacist', 'Drug Inspector', 'Pharmaceutical Sales', 'Research Scientist', 'Quality Control Analyst'],
     eligibility: '10+2 with Physics, Chemistry, Biology/Mathematics with minimum 50% marks',
-    image: 'https://images.unsplash.com/photo-1587854692152-cbe660dbde88?w=800&q=80'
+    image: 'https://images.unsplash.com/photo-1587854692152-cbe660dbde88?w=800&q=80',
+    feeId: 'bpharma',
   },
   {
     id: 'bsc-sound',
@@ -267,7 +279,8 @@ export const programs: Program[] = [
     ],
     careerProspects: ['Sound Engineer', 'Music Producer', 'Audio Editor', 'Foley Artist', 'Broadcast Technician'],
     eligibility: '10+2 from any stream with minimum 50% marks',
-    image: 'https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?w=800&q=80'
+    image: 'https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?w=800&q=80',
+    feeId: 'ba-journalism',
   },
   {
     id: 'bsc-content',
@@ -288,7 +301,8 @@ export const programs: Program[] = [
     ],
     careerProspects: ['Content Creator', 'Video Producer', 'Social Media Manager', 'Digital Marketing Specialist', 'Influencer Manager'],
     eligibility: '10+2 from any stream with minimum 50% marks',
-    image: 'https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?w=800&q=80'
+    image: 'https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?w=800&q=80',
+    feeId: 'ba-journalism',
   },
   {
     id: 'bsc-animation',
@@ -309,7 +323,8 @@ export const programs: Program[] = [
     ],
     careerProspects: ['Animator', 'Game Designer', 'VFX Artist', 'Motion Graphics Designer', 'Character Designer'],
     eligibility: '10+2 from any stream with minimum 50% marks',
-    image: 'https://images.unsplash.com/photo-1616587226960-4a03badbe8bf?w=800&q=80'
+    image: 'https://images.unsplash.com/photo-1616587226960-4a03badbe8bf?w=800&q=80',
+    feeId: 'bdes-animation',
   },
   {
     id: 'bjmc',
@@ -330,7 +345,8 @@ export const programs: Program[] = [
     ],
     careerProspects: ['Journalist', 'News Anchor', 'PR Professional', 'Content Writer', 'Media Planner'],
     eligibility: '10+2 from any stream with minimum 50% marks',
-    image: 'https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=800&q=80'
+    image: 'https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=800&q=80',
+    feeId: 'ba-journalism',
   },
   {
     id: 'bsc-hospitality',
@@ -351,7 +367,8 @@ export const programs: Program[] = [
     ],
     careerProspects: ['Hotel Manager', 'Restaurant Manager', 'Event Manager', 'Guest Relations Manager', 'Hospitality Consultant'],
     eligibility: '10+2 from any stream with minimum 50% marks',
-    image: 'https://images.unsplash.com/photo-1566073771259-6a8506099945?w=800&q=80'
+    image: 'https://images.unsplash.com/photo-1566073771259-6a8506099945?w=800&q=80',
+    feeId: 'bsc-hospitality',
   },
   {
     id: 'bsc-culinary',
@@ -372,7 +389,8 @@ export const programs: Program[] = [
     ],
     careerProspects: ['Executive Chef', 'Sous Chef', 'Pastry Chef', 'Food Stylist', 'Culinary Entrepreneur'],
     eligibility: '10+2 from any stream with minimum 50% marks',
-    image: 'https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=800&q=80'
+    image: 'https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=800&q=80',
+    feeId: 'bsc-hospitality',
   },
   {
     id: 'barch',
@@ -393,7 +411,8 @@ export const programs: Program[] = [
     ],
     careerProspects: ['Architect', 'Urban Planner', 'Interior Designer', 'Landscape Architect', 'Project Manager'],
     eligibility: '10+2 with Mathematics and minimum 50% marks, NATA qualified',
-    image: 'https://images.unsplash.com/photo-1487958449943-2429e8be8625?w=800&q=80'
+    image: 'https://images.unsplash.com/photo-1487958449943-2429e8be8625?w=800&q=80',
+    feeId: 'barch',
   },
   {
     id: 'bdes-fashion',
@@ -414,7 +433,8 @@ export const programs: Program[] = [
     ],
     careerProspects: ['Fashion Designer', 'Costume Designer', 'Fashion Stylist', 'Textile Designer', 'Fashion Entrepreneur'],
     eligibility: '10+2 from any stream with minimum 50% marks',
-    image: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&q=80'
+    image: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&q=80',
+    feeId: 'bdes-fashion',
   },
   {
     id: 'bdes-interior',
@@ -435,7 +455,8 @@ export const programs: Program[] = [
     ],
     careerProspects: ['Interior Designer', 'Space Planner', 'Furniture Designer', 'Set Designer', 'Design Consultant'],
     eligibility: '10+2 from any stream with minimum 50% marks',
-    image: 'https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?w=800&q=80'
+    image: 'https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?w=800&q=80',
+    feeId: 'bdes-interior',
   },
   {
     id: 'bcom',
@@ -456,7 +477,8 @@ export const programs: Program[] = [
     ],
     careerProspects: ['Accountant', 'Financial Analyst', 'Tax Consultant', 'Auditor', 'Banking Professional'],
     eligibility: '10+2 from any stream with minimum 50% marks',
-    image: 'https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=800&q=80'
+    image: 'https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=800&q=80',
+    feeId: 'bcom-hons',
   },
   {
     id: 'ba-psychology',
@@ -477,7 +499,8 @@ export const programs: Program[] = [
     ],
     careerProspects: ['Counselor', 'HR Professional', 'Research Assistant', 'Social Worker', 'Clinical Psychologist (with further study)'],
     eligibility: '10+2 from any stream with minimum 50% marks',
-    image: 'https://images.unsplash.com/photo-1573497620053-ea5300f94f21?w=800&q=80'
+    image: 'https://images.unsplash.com/photo-1573497620053-ea5300f94f21?w=800&q=80',
+    feeId: 'ba-psychology',
   },
   {
     id: 'ba-english',
@@ -498,7 +521,8 @@ export const programs: Program[] = [
     ],
     careerProspects: ['Content Writer', 'Editor', 'Teacher', 'PR Professional', 'Copywriter'],
     eligibility: '10+2 from any stream with minimum 50% marks',
-    image: 'https://images.unsplash.com/photo-1457369804613-52c61a468e7d?w=800&q=80'
+    image: 'https://images.unsplash.com/photo-1457369804613-52c61a468e7d?w=800&q=80',
+    feeId: 'ba-english',
   },
   {
     id: 'bsc-cs',
@@ -519,7 +543,8 @@ export const programs: Program[] = [
     ],
     careerProspects: ['Software Developer', 'System Analyst', 'IT Support', 'Research Assistant', 'Technical Writer'],
     eligibility: '10+2 with Science stream and minimum 50% marks',
-    image: 'https://images.unsplash.com/photo-1515879218367-8466d910aaa4?w=800&q=80'
+    image: 'https://images.unsplash.com/photo-1515879218367-8466d910aaa4?w=800&q=80',
+    feeId: 'bca',
   },
   {
     id: 'btech-civil',
@@ -540,7 +565,8 @@ export const programs: Program[] = [
     ],
     careerProspects: ['Civil Engineer', 'Structural Engineer', 'Construction Manager', 'Urban Planner', 'Project Manager'],
     eligibility: '10+2 with Physics, Chemistry, Mathematics with minimum 60% marks',
-    image: 'https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=800&q=80'
+    image: 'https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=800&q=80',
+    feeId: 'btech-ece-robotics',
   },
   {
     id: 'btech-mech',
@@ -561,7 +587,8 @@ export const programs: Program[] = [
     ],
     careerProspects: ['Mechanical Engineer', 'Design Engineer', 'Manufacturing Engineer', 'Quality Engineer', 'Automotive Engineer'],
     eligibility: '10+2 with Physics, Chemistry, Mathematics with minimum 60% marks',
-    image: 'https://images.unsplash.com/photo-1537462715879-360eeb61a0ad?w=800&q=80'
+    image: 'https://images.unsplash.com/photo-1537462715879-360eeb61a0ad?w=800&q=80',
+    feeId: 'btech-ece-robotics',
   },
   {
     id: 'btech-ece',
@@ -582,7 +609,8 @@ export const programs: Program[] = [
     ],
     careerProspects: ['Electronics Engineer', 'Communication Engineer', 'Embedded Systems Engineer', 'Network Engineer', 'IoT Developer'],
     eligibility: '10+2 with Physics, Chemistry, Mathematics with minimum 60% marks',
-    image: 'https://images.unsplash.com/photo-1518770660439-4636190af475?w=800&q=80'
+    image: 'https://images.unsplash.com/photo-1518770660439-4636190af475?w=800&q=80',
+    feeId: 'btech-ece-robotics',
   },
   {
     id: 'bsc-biotech',
@@ -689,7 +717,8 @@ export const programs: Program[] = [
     ],
     careerProspects: ['Software Architect', 'Senior Developer', 'Technical Lead', 'IT Manager', 'Solutions Architect'],
     eligibility: 'Graduate with Mathematics at 10+2 or graduation level with minimum 50% marks',
-    image: 'https://images.unsplash.com/photo-1504639725590-34d0984388bd?w=800&q=80'
+    image: 'https://images.unsplash.com/photo-1504639725590-34d0984388bd?w=800&q=80',
+    feeId: 'mca',
   },
   {
     id: 'mdes-uiux',
@@ -710,7 +739,8 @@ export const programs: Program[] = [
     ],
     careerProspects: ['Senior UX Designer', 'Design Lead', 'UX Researcher', 'Design Manager', 'Product Designer'],
     eligibility: 'Graduate in any discipline with minimum 50% marks',
-    image: 'https://images.unsplash.com/photo-1586717791821-3f44a563fa4c?w=800&q=80'
+    image: 'https://images.unsplash.com/photo-1586717791821-3f44a563fa4c?w=800&q=80',
+    feeId: 'mdes-ux',
   },
   {
     id: 'ma-psychology',
@@ -731,7 +761,8 @@ export const programs: Program[] = [
     ],
     careerProspects: ['Clinical Psychologist', 'Counseling Psychologist', 'HR Specialist', 'Researcher', 'Therapist'],
     eligibility: 'Graduate in Psychology or related field with minimum 50% marks',
-    image: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=800&q=80'
+    image: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=800&q=80',
+    feeId: 'ma-psychology',
   },
   {
     id: 'llm',
@@ -752,7 +783,8 @@ export const programs: Program[] = [
     ],
     careerProspects: ['Legal Consultant', 'Corporate Counsel', 'Academician', 'Judiciary', 'Legal Researcher'],
     eligibility: 'LLB or equivalent with minimum 50% marks',
-    image: 'https://images.unsplash.com/photo-1505664194779-8beaceb93744?w=800&q=80'
+    image: 'https://images.unsplash.com/photo-1505664194779-8beaceb93744?w=800&q=80',
+    feeId: 'llm-corporate',
   },
   {
     id: 'mba',
@@ -773,7 +805,8 @@ export const programs: Program[] = [
     ],
     careerProspects: ['Business Manager', 'Consultant', 'Marketing Manager', 'Finance Manager', 'Entrepreneur'],
     eligibility: 'Graduate in any discipline with minimum 50% marks',
-    image: 'https://images.unsplash.com/photo-1552664730-d307ca884978?w=800&q=80'
+    image: 'https://images.unsplash.com/photo-1552664730-d307ca884978?w=800&q=80',
+    feeId: 'mba',
   },
   {
     id: 'mba-finance',
@@ -794,7 +827,8 @@ export const programs: Program[] = [
     ],
     careerProspects: ['Financial Analyst', 'Investment Banker', 'Portfolio Manager', 'CFO', 'Risk Manager'],
     eligibility: 'Graduate in any discipline with minimum 50% marks',
-    image: 'https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=800&q=80'
+    image: 'https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=800&q=80',
+    feeId: 'mba',
   },
   {
     id: 'mba-marketing',
@@ -815,7 +849,8 @@ export const programs: Program[] = [
     ],
     careerProspects: ['Marketing Manager', 'Brand Manager', 'Digital Marketing Head', 'CMO', 'Marketing Consultant'],
     eligibility: 'Graduate in any discipline with minimum 50% marks',
-    image: 'https://images.unsplash.com/photo-1533750349088-cd871a92f312?w=800&q=80'
+    image: 'https://images.unsplash.com/photo-1533750349088-cd871a92f312?w=800&q=80',
+    feeId: 'mba',
   },
   {
     id: 'mba-hr',
@@ -836,7 +871,8 @@ export const programs: Program[] = [
     ],
     careerProspects: ['HR Manager', 'Talent Acquisition Head', 'CHRO', 'HR Business Partner', 'L&D Manager'],
     eligibility: 'Graduate in any discipline with minimum 50% marks',
-    image: 'https://images.unsplash.com/photo-1521791136064-7986c2920216?w=800&q=80'
+    image: 'https://images.unsplash.com/photo-1521791136064-7986c2920216?w=800&q=80',
+    feeId: 'mba',
   },
   {
     id: 'mpharma',
@@ -941,7 +977,8 @@ export const programs: Program[] = [
     ],
     careerProspects: ['Senior Journalist', 'Editor', 'Media Manager', 'PR Director', 'Documentary Filmmaker'],
     eligibility: 'Graduate in any discipline with minimum 50% marks',
-    image: 'https://images.unsplash.com/photo-1495020689067-958852a7765e?w=800&q=80'
+    image: 'https://images.unsplash.com/photo-1495020689067-958852a7765e?w=800&q=80',
+    feeId: 'ma-journalism',
   },
 
   // Diploma Programs (3)
@@ -964,7 +1001,8 @@ export const programs: Program[] = [
     ],
     careerProspects: ['Event Coordinator', 'Wedding Planner', 'Corporate Event Manager', 'Exhibition Manager', 'Venue Manager'],
     eligibility: '10+2 from any stream',
-    image: 'https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=800&q=80'
+    image: 'https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=800&q=80',
+    feeId: 'diploma-events',
   },
   {
     id: 'diploma-food',
@@ -985,7 +1023,8 @@ export const programs: Program[] = [
     ],
     careerProspects: ['Chef de Partie', 'Kitchen Supervisor', 'Food Production Manager', 'Catering Manager', 'Pastry Chef'],
     eligibility: '10+2 from any stream',
-    image: 'https://images.unsplash.com/photo-1466637574441-749b8f19452f?w=800&q=80'
+    image: 'https://images.unsplash.com/photo-1466637574441-749b8f19452f?w=800&q=80',
+    feeId: 'diploma-food-production',
   },
   {
     id: 'pgd-culinary',
@@ -1006,7 +1045,8 @@ export const programs: Program[] = [
     ],
     careerProspects: ['Indian Cuisine Chef', 'Executive Chef', 'Culinary Consultant', 'Restaurant Owner', 'Food Blogger'],
     eligibility: 'Graduate in any discipline',
-    image: 'https://images.unsplash.com/photo-1596797038530-2c107229654b?w=800&q=80'
+    image: 'https://images.unsplash.com/photo-1596797038530-2c107229654b?w=800&q=80',
+    feeId: 'pgd-culinary',
   },
 
   // PhD Programs (1)
@@ -1029,7 +1069,8 @@ export const programs: Program[] = [
     ],
     careerProspects: ['Professor', 'Research Director', 'Industry Researcher', 'Consultant', 'Think Tank Analyst'],
     eligibility: 'Masters degree in relevant field with minimum 55% marks, entrance test and interview',
-    image: 'https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=800&q=80'
+    image: 'https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=800&q=80',
+    feeId: 'phd-fulltime',
   }
 ];
 

@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useIsMobile } from '../hooks/useIsMobile';
 
@@ -13,6 +13,17 @@ export const AntiRaggingBanner = () => {
     contact: '',
   });
   const [isSubmitted, setIsSubmitted] = useState(false);
+
+  useEffect(() => {
+    if (isReportModalOpen) {
+      document.body.style.overflow = 'hidden';
+      document.documentElement.style.overflow = 'hidden';
+    }
+    return () => {
+      document.body.style.overflow = '';
+      document.documentElement.style.overflow = '';
+    };
+  }, [isReportModalOpen]);
 
   const handleSubmitReport = (e: React.FormEvent) => {
     e.preventDefault();
@@ -99,10 +110,11 @@ export const AntiRaggingBanner = () => {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               onClick={() => setIsReportModalOpen(false)}
+              onWheel={(e) => e.stopPropagation()}
             />
             <div className="fixed inset-0 z-[9999] flex items-center justify-center p-4 pointer-events-none">
               <motion.div
-                className="bg-white rounded-2xl overflow-hidden shadow-2xl pointer-events-auto"
+                className="bg-white rounded-2xl flex flex-col shadow-2xl pointer-events-auto"
                 style={{
                   width: isMobile ? '100%' : '480px',
                   maxWidth: '100%',
@@ -111,9 +123,10 @@ export const AntiRaggingBanner = () => {
                 initial={{ opacity: 0, scale: 0.95, y: 20 }}
                 animate={{ opacity: 1, scale: 1, y: 0 }}
                 exit={{ opacity: 0, scale: 0.95, y: 20 }}
+                onWheel={(e) => e.stopPropagation()}
               >
               {/* Header */}
-              <div className="bg-[#f0c14b] p-5 flex items-center justify-between">
+              <div className="bg-[#f0c14b] p-5 flex items-center justify-between shrink-0">
                 <div className="flex items-center gap-3">
                   <div className="w-10 h-10 bg-[#20323d] rounded-xl flex items-center justify-center">
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#f4c950" strokeWidth="2">
@@ -138,7 +151,7 @@ export const AntiRaggingBanner = () => {
               </div>
 
               {/* Content */}
-              <div className="p-6 overflow-y-auto" style={{ maxHeight: 'calc(90vh - 100px)' }}>
+              <div className="p-6 overflow-y-auto flex-1 min-h-0" style={{ overscrollBehavior: 'contain' }}>
                 <AnimatePresence mode="wait">
                   {isSubmitted ? (
                     <motion.div

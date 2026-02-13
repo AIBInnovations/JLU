@@ -1046,8 +1046,160 @@ const InternationalOffice = () => {
         </div>
       </div>
 
-      {/* International FAQ Section */}
+      {/* Application Form Section */}
       <div className="w-full bg-white">
+        <div
+          className="mx-auto px-5 py-16 md:px-10 md:py-20 lg:px-30 lg:py-35"
+          style={{
+            maxWidth: '1440px',
+          }}
+        >
+          <div className="flex flex-col lg:flex-row gap-10 md:gap-12 lg:gap-20">
+            {/* Left Side - Image */}
+            <motion.div
+              initial={{ opacity: 0, x: -60, scale: 0.95 }}
+              whileInView={{ opacity: 1, x: 0, scale: 1 }}
+              transition={{ duration: 1, ease: customEase }}
+              viewport={{ once: true }}
+              className="relative shrink-0 overflow-hidden group cursor-pointer w-full h-72 md:h-96 lg:w-145 lg:h-130 rounded-2xl"
+            >
+              <motion.div
+                className="absolute inset-0"
+                whileHover={{ scale: 1.05 }}
+                transition={{ duration: 0.8, ease: customEase }}
+              >
+                <Image
+                  src="https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=1200&q=80"
+                  alt="Student filling application"
+                  fill
+                  className="object-cover"
+                />
+              </motion.div>
+              <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
+              <div className="absolute bottom-6 left-6 right-6 md:bottom-8 md:left-8 md:right-8">
+                <span className="bg-[#f0c14b] text-[#21313c] px-4 py-1.5 text-xs font-semibold uppercase tracking-wider">
+                  Admissions Open 2026
+                </span>
+              </div>
+            </motion.div>
+
+            {/* Right Side - Content */}
+            <motion.div
+              className="flex-1 flex flex-col justify-center"
+              initial={{ opacity: 0, x: 60 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8, delay: 0.2, ease: customEase }}
+              viewport={{ once: true }}
+            >
+              <span
+                className="text-[#999] uppercase tracking-widest block mb-4 md:mb-6 text-[11px] md:text-[12px]"
+                style={{ letterSpacing: '0.2em' }}
+              >
+                Apply Now
+              </span>
+              <h2
+                className="text-[#21313c] mb-4 md:mb-6"
+                style={{
+                  fontSize: 'clamp(1.75rem, 4vw, 3rem)',
+                  fontWeight: 600,
+                  lineHeight: 1.1,
+                  letterSpacing: '-0.03em',
+                }}
+              >
+                International{' '}
+                <span style={{ fontFamily: "'Times New Roman', serif", fontStyle: 'italic', fontWeight: 400 }}>
+                  application form
+                </span>
+              </h2>
+              <p
+                className="text-[#666] mb-8 md:mb-10 text-base md:text-lg"
+                style={{ lineHeight: 1.8 }}
+              >
+                Begin your journey at JLU. Apply online through our international admissions portal or download the application form.
+              </p>
+
+              {/* Required Documents */}
+              <div className="mb-8 md:mb-10">
+                <h4 className="text-[#21313c] font-semibold text-sm md:text-base mb-4 uppercase tracking-wider" style={{ letterSpacing: '0.1em' }}>
+                  Required Documents
+                </h4>
+                <motion.div
+                  className="grid grid-cols-1 sm:grid-cols-2 gap-3"
+                  variants={staggerContainer}
+                  initial="hidden"
+                  whileInView="visible"
+                  viewport={{ once: true }}
+                >
+                  {[
+                    'Valid passport copy',
+                    'Academic transcripts',
+                    'English proficiency certificate',
+                    'Statement of purpose',
+                    'Two reference letters',
+                    'Passport-size photographs',
+                  ].map((doc, index) => (
+                    <motion.div
+                      key={index}
+                      variants={staggerItem}
+                      className="flex items-center gap-2.5"
+                    >
+                      <span className="w-5 h-5 rounded-full bg-[#d4e4a0] flex items-center justify-center shrink-0 text-[10px] text-[#21313c]">
+                        ✓
+                      </span>
+                      <span className="text-sm md:text-[15px] text-[#666]">{doc}</span>
+                    </motion.div>
+                  ))}
+                </motion.div>
+              </div>
+
+              {/* Action Buttons */}
+              <div className="flex flex-col sm:flex-row gap-3 md:gap-4">
+                <motion.a
+                  href="https://apply.jlu.edu.in"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center justify-center gap-2 md:gap-3 px-6 py-3 md:px-8 md:py-4 bg-[#21313c] text-white font-medium text-sm md:text-base rounded-full"
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
+                >
+                  Apply Online
+                  <span>→</span>
+                </motion.a>
+                <motion.a
+                  href="#"
+                  className="inline-flex items-center justify-center gap-2 md:gap-3 px-6 py-3 md:px-8 md:py-4 border-2 border-[#21313c] text-[#21313c] font-medium text-sm md:text-base rounded-full hover:bg-[#21313c] hover:text-white transition-colors"
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
+                >
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+                    <polyline points="7 10 12 15 17 10" />
+                    <line x1="12" y1="15" x2="12" y2="3" />
+                  </svg>
+                  Download Form (PDF)
+                </motion.a>
+              </div>
+
+              {/* Contact Info */}
+              <div className="mt-8 pt-6 border-t border-gray-100">
+                <p className="text-sm text-[#999]">
+                  Need help? Contact International Admissions at{' '}
+                  <a href="mailto:international@jlu.edu.in" className="text-[#21313c] font-medium hover:text-[#f0c14b] transition-colors">
+                    international@jlu.edu.in
+                  </a>{' '}
+                  or call{' '}
+                  <a href="tel:+917554000000" className="text-[#21313c] font-medium hover:text-[#f0c14b] transition-colors">
+                    +91 755 400 0000
+                  </a>
+                </p>
+              </div>
+            </motion.div>
+          </div>
+        </div>
+      </div>
+
+      {/* International FAQ Section */}
+      <div className="w-full bg-[#f6f7f0]">
         <div
           className="mx-auto px-5 py-16 md:px-10 md:py-20 lg:px-30 lg:py-35"
           style={{

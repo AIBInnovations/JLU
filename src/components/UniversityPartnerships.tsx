@@ -14,7 +14,7 @@ const UniversityPartnerships = () => {
         style={{ maxWidth: '1440px' }}
       >
         {/* University Partnerships Section */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-16 items-center mb-10 md:mb-20">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-16 items-center">
           {/* Left - Content */}
           <motion.div
             initial={{ opacity: 0, x: -30 }}
@@ -63,83 +63,6 @@ const UniversityPartnerships = () => {
               fill
               className="object-cover"
             />
-          </motion.div>
-        </div>
-
-        {/* Honorary Doctorates and JLU Ignited Mind Awards */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-8">
-          {/* Honorary Doctorates */}
-          <motion.div
-            initial={{ opacity: 0, y: 40 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, ease: customEase }}
-            viewport={{ once: true }}
-            className="group relative overflow-hidden min-h-[320px] sm:min-h-[400px] md:min-h-[450px] rounded-xl"
-          >
-            <Image
-              src="/ex1.jpg"
-              alt="Honorary Doctorates"
-              fill
-              className="object-cover"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent" />
-            <div className="absolute inset-0 flex flex-col justify-end p-5 sm:p-8 md:p-10">
-              <span
-                className="text-white/60 uppercase tracking-widest mb-2 sm:mb-3 md:mb-4 text-[9px] sm:text-[10px] md:text-[11px]"
-                style={{ letterSpacing: '0.2em' }}
-              >
-                01 — Recognition
-              </span>
-              <h3
-                className="text-white mb-2 sm:mb-3 md:mb-4 text-lg sm:text-xl md:text-[28px]"
-                style={{ fontWeight: 600, lineHeight: 1.2 }}
-              >
-                Honorary Doctorates
-              </h3>
-              <p
-                className="text-white/80 text-xs sm:text-sm md:text-[15px] max-w-[95%] md:max-w-[90%]"
-                style={{ lineHeight: 1.7 }}
-              >
-                Jagran Lakecity University has conferred honorary doctorates upon distinguished individuals who have made exceptional contributions to their fields and to society.
-              </p>
-            </div>
-          </motion.div>
-
-          {/* JLU Ignited Mind Awards */}
-          <motion.div
-            initial={{ opacity: 0, y: 40 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.1, ease: customEase }}
-            viewport={{ once: true }}
-            className="group relative overflow-hidden min-h-[320px] sm:min-h-[400px] md:min-h-[450px] rounded-xl"
-          >
-            <Image
-              src="/ex.jpg"
-              alt="JLU Ignited Mind Awards"
-              fill
-              className="object-cover"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent" />
-            <div className="absolute inset-0 flex flex-col justify-end p-5 sm:p-8 md:p-10">
-              <span
-                className="text-white/60 uppercase tracking-widest mb-2 sm:mb-3 md:mb-4 text-[9px] sm:text-[10px] md:text-[11px]"
-                style={{ letterSpacing: '0.2em' }}
-              >
-                02 — Awards
-              </span>
-              <h3
-                className="text-white mb-2 sm:mb-3 md:mb-4 text-lg sm:text-xl md:text-[28px]"
-                style={{ fontWeight: 600, lineHeight: 1.2 }}
-              >
-                JLU Ignited Mind Awards
-              </h3>
-              <p
-                className="text-white/80 text-xs sm:text-sm md:text-[15px] max-w-[95%] md:max-w-[90%]"
-                style={{ lineHeight: 1.7 }}
-              >
-                The Ignited Mind Awards recognise individuals who embody innovation, leadership and positive change. They celebrate voices that inspire and contribute meaningfully to society.
-              </p>
-            </div>
           </motion.div>
         </div>
       </div>

@@ -25,36 +25,36 @@ export const WhyJlu = () => {
       bg: '#c3fd7a',
       title: 'Global Network',
       subtitle: '',
-      description: 'Connect with universities and institutions across the world.',
+      description: '45+ international collaborations across 14 countries with universities like Cambridge, UCL, RMIT & more.',
       textColor: '#21313c',
-      image: '/j1.jpg',
+      image: '/glob.jpg',
       href: '/why-jlu/global-network'
     },
     {
       bg: '#4a90a4',
       title: 'Industry Intervention',
       subtitle: '',
-      description: 'Real-world exposure through industry collaborations and internships.',
+      description: '42+ industry tie-ups with EY, KPMG, Deloitte, Amazon & TCS powering real-world placements.',
       textColor: '#ffffff',
-      image: '/j2.jpg',
+      image: '/ex1.jpg',
       href: '/why-jlu/industry-intervention'
     },
     {
       bg: '#e85a71',
       title: 'Interdisciplinary Degrees',
       subtitle: '',
-      description: 'Blend multiple fields of study for holistic learning.',
+      description: '50+ programs across 6 faculties blending law, tech, design, media & management.',
       textColor: '#ffffff',
-      image: '/j3.jpg',
+      image: '/ev3.jpg',
       href: '/why-jlu/interdisciplinary-degrees'
     },
     {
       bg: '#f4c950',
       title: 'Student Approach',
       subtitle: '',
-      description: 'Learning centered around student needs and growth.',
-      textColor: '#ffffff',
-      image: '/j4.jpg',
+      description: 'Experiential learning with 1-on-1 mentoring, 45+ labs & hands-on projects from day one.',
+      textColor: '#21313c',
+      image: '/comm.jpg',
       href: '/why-jlu/student-approach'
     }
   ];
@@ -96,23 +96,23 @@ export const WhyJlu = () => {
       key={originalIndex}
       href={card.href}
       style={{
-        background: card.bg,
+        position: 'relative',
         width: mounted && isMobile ? 'calc(50% - 6px)' : undefined,
         flexGrow: mounted && isMobile ? 0 : 1,
         flexShrink: 0,
         flexBasis: mounted && isMobile ? 'auto' : 0,
-        height: mounted && isMobile ? '200px' : 'auto',
+        height: mounted && isMobile ? '220px' : 'auto',
         aspectRatio: mounted && isMobile ? undefined : '1 / 1',
         maxWidth: mounted && isMobile ? undefined : '25%',
         display: 'flex',
         flexDirection: 'column',
-        justifyContent: 'space-between',
-        padding: mounted && isMobile ? '12px' : 'clamp(20px, 2vw, 24px)',
+        justifyContent: 'flex-end',
+        padding: mounted && isMobile ? '14px' : 'clamp(20px, 2vw, 24px)',
         marginTop: mounted && isMobile
-          ? (index === 1 ? '40px' : '0') // Second card in each row is pushed down
+          ? (index === 1 ? '40px' : '0')
           : (originalIndex === 3 ? '200px' : (originalIndex === 0 || originalIndex === 2 ? '80px' : '0')),
         marginBottom: mounted && isMobile
-          ? (index === 0 ? '40px' : '0') // First card has bottom margin to match second card's top margin
+          ? (index === 0 ? '40px' : '0')
           : (originalIndex === 1 ? '80px' : '0'),
         borderRadius: mounted && isMobile ? '12px' : '16px',
         textDecoration: 'none',
@@ -122,49 +122,67 @@ export const WhyJlu = () => {
       }}
       onMouseEnter={(e) => {
         e.currentTarget.style.transform = 'translateY(-4px)';
-        e.currentTarget.style.boxShadow = '0 8px 16px rgba(0,0,0,0.1)';
+        e.currentTarget.style.boxShadow = '0 12px 24px rgba(0,0,0,0.2)';
+        const overlay = e.currentTarget.querySelector('.card-overlay') as HTMLElement;
+        if (overlay) overlay.style.background = 'linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.4) 50%, rgba(0,0,0,0.15) 100%)';
       }}
       onMouseLeave={(e) => {
         e.currentTarget.style.transform = 'translateY(0)';
         e.currentTarget.style.boxShadow = 'none';
+        const overlay = e.currentTarget.querySelector('.card-overlay') as HTMLElement;
+        if (overlay) overlay.style.background = 'linear-gradient(to top, rgba(0,0,0,0.75) 0%, rgba(0,0,0,0.3) 50%, rgba(0,0,0,0.05) 100%)';
       }}
     >
-      <div>
-        <div style={{ display: 'flex', alignItems: 'baseline', gap: '4px', flexWrap: 'wrap' }}>
-          <span
-            style={{
-              fontSize: mounted && isMobile ? '0.9rem' : 'clamp(1.5rem, 3vw, 2rem)',
-              fontWeight: 'bold',
-              color: card.textColor,
-              lineHeight: 1.2,
-              wordBreak: 'break-word',
-              overflowWrap: 'break-word',
-            }}
-          >
-            {card.title}
-          </span>
-          {card.subtitle && (
-            <span
-              style={{
-                fontSize: mounted && isMobile ? '0.6rem' : 'clamp(1rem, 1.5vw, 1.25rem)',
-                fontWeight: 600,
-                color: card.textColor,
-              }}
-            >
-              {card.subtitle}
-            </span>
-          )}
-        </div>
-      </div>
+      {/* Full background image */}
+      <img
+        src={card.image}
+        alt={card.title}
+        style={{
+          position: 'absolute',
+          top: 0,
+          left: 0,
+          width: '100%',
+          height: '100%',
+          objectFit: 'cover',
+        }}
+        loading="lazy"
+      />
 
-      <div>
+      {/* Black gradient overlay */}
+      <div
+        className="card-overlay"
+        style={{
+          position: 'absolute',
+          top: 0,
+          left: 0,
+          width: '100%',
+          height: '100%',
+          background: 'linear-gradient(to top, rgba(0,0,0,0.75) 0%, rgba(0,0,0,0.3) 50%, rgba(0,0,0,0.05) 100%)',
+          transition: 'background 0.3s ease',
+        }}
+      />
+
+      {/* Text content over overlay */}
+      <div style={{ position: 'relative', zIndex: 2 }}>
+        <span
+          style={{
+            fontSize: mounted && isMobile ? '1rem' : 'clamp(1.5rem, 3vw, 2rem)',
+            fontWeight: 'bold',
+            color: '#ffffff',
+            lineHeight: 1.2,
+            display: 'block',
+            marginBottom: mounted && isMobile ? '6px' : '10px',
+          }}
+        >
+          {card.title}
+        </span>
         <p
           style={{
-            fontSize: mounted && isMobile ? '0.65rem' : 'clamp(0.75rem, 0.9vw, 0.875rem)',
-            color: card.textColor,
+            fontSize: mounted && isMobile ? '0.6rem' : 'clamp(0.7rem, 0.85vw, 0.8rem)',
+            color: '#ffffff',
             marginBottom: mounted && isMobile ? '6px' : '8px',
             lineHeight: 1.4,
-            opacity: 0.9,
+            opacity: 0.85,
           }}
         >
           {card.description}
@@ -174,8 +192,8 @@ export const WhyJlu = () => {
             display: 'flex',
             alignItems: 'center',
             gap: '4px',
-            fontSize: mounted && isMobile ? '0.7rem' : 'clamp(0.75rem, 0.9vw, 0.875rem)',
-            color: card.textColor,
+            fontSize: mounted && isMobile ? '0.65rem' : 'clamp(0.7rem, 0.85vw, 0.8rem)',
+            color: '#ffffff',
             fontWeight: 600,
             opacity: 0.8,
           }}

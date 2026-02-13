@@ -5,20 +5,20 @@ import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { useIsMobile } from '../../../hooks/useIsMobile';
-import { Header, Footer } from '@/components';
+import { Footer } from '@/components';
 
 gsap.registerPlugin(ScrollTrigger);
 
 const customEase: [number, number, number, number] = [0.22, 1, 0.36, 1];
 
 const galleryImages = [
-  { id: 1, src: 'https://images.unsplash.com/photo-1523050854058-8df90110c9f1?w=800&auto=format&fit=crop', position: 'top-[10%] left-[5%]', size: 'w-[140px] h-[200px] md:w-[180px] md:h-[260px]', opacity: 0.7 },
-  { id: 2, src: 'https://images.unsplash.com/photo-1523240795612-9a054b0db644?w=800&auto=format&fit=crop', position: 'top-[5%] left-[22%]', size: 'w-[100px] h-[140px] md:w-[130px] md:h-[170px]', opacity: 0.5 },
-  { id: 3, src: 'https://images.unsplash.com/photo-1524178232363-1fb2b075b655?w=800&auto=format&fit=crop', position: '', size: 'w-[200px] h-[280px] md:w-[260px] md:h-[360px]', isCenter: true, opacity: 1 },
-  { id: 4, src: 'https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=800&auto=format&fit=crop', position: 'top-[8%] right-[18%]', size: 'w-[120px] h-[170px] md:w-[160px] md:h-[220px]', opacity: 0.6 },
-  { id: 5, src: 'https://images.unsplash.com/photo-1523050854058-8df90110c9f1?w=800&auto=format&fit=crop', position: 'top-[12%] right-[3%]', size: 'w-[90px] h-[130px] md:w-[120px] md:h-[160px]', opacity: 0.4 },
-  { id: 6, src: 'https://images.unsplash.com/photo-1523240795612-9a054b0db644?w=800&auto=format&fit=crop', position: 'bottom-[12%] left-[8%]', size: 'w-[110px] h-[160px] md:w-[150px] md:h-[200px]', opacity: 0.5 },
-  { id: 7, src: 'https://images.unsplash.com/photo-1524178232363-1fb2b075b655?w=800&auto=format&fit=crop', position: 'bottom-[10%] right-[5%]', size: 'w-[130px] h-[180px] md:w-[170px] md:h-[230px]', opacity: 0.6 },
+  { id: 1, src: '/ex1.jpg', position: 'top-[10%] left-[5%]', size: 'w-[140px] h-[200px] md:w-[180px] md:h-[260px]', opacity: 0.7 },
+  { id: 2, src: '/ev2.jpg', position: 'top-[5%] left-[22%]', size: 'w-[100px] h-[140px] md:w-[130px] md:h-[170px]', opacity: 0.5 },
+  { id: 3, src: '/ex.jpg', position: '', size: 'w-[200px] h-[280px] md:w-[260px] md:h-[360px]', isCenter: true, opacity: 1 },
+  { id: 4, src: '/comm.jpg', position: 'top-[8%] right-[18%]', size: 'w-[120px] h-[170px] md:w-[160px] md:h-[220px]', opacity: 0.6 },
+  { id: 5, src: '/ev3.jpg', position: 'top-[12%] right-[3%]', size: 'w-[90px] h-[130px] md:w-[120px] md:h-[160px]', opacity: 0.4 },
+  { id: 6, src: '/pro1.jpg', position: 'bottom-[12%] left-[8%]', size: 'w-[110px] h-[160px] md:w-[150px] md:h-[200px]', opacity: 0.5 },
+  { id: 7, src: '/aw1.jpg', position: 'bottom-[10%] right-[5%]', size: 'w-[130px] h-[180px] md:w-[170px] md:h-[230px]', opacity: 0.6 },
 ];
 
 export default function IndustryInterventionPage() {
@@ -89,7 +89,7 @@ export default function IndustryInterventionPage() {
             scrollTrigger: {
               trigger: gallerySectionRef.current,
               start: 'top top',
-              end: '+=280%',
+              end: '+=400%',
               pin: true,
               scrub: 1,
               anticipatePin: 1,
@@ -118,7 +118,14 @@ export default function IndustryInterventionPage() {
             zoomTl.fromTo(horizontalTextTrack, { xPercent: 0 }, { xPercent: -72, duration: 0.5, ease: 'none' }, 0.45);
           }
 
-          zoomTl.fromTo('.vision-description', { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.15, ease: 'power2.out' }, 0.55);
+          zoomTl.fromTo('.scroll-desc-1', { opacity: 0, y: 40 }, { opacity: 1, y: 0, duration: 0.05, ease: 'power2.out' }, 0.47);
+          zoomTl.to('.scroll-desc-1', { opacity: 0, y: -20, duration: 0.04, ease: 'power2.in' }, 0.57);
+          zoomTl.fromTo('.scroll-desc-2', { opacity: 0, y: 40 }, { opacity: 1, y: 0, duration: 0.05, ease: 'power2.out' }, 0.59);
+          zoomTl.to('.scroll-desc-2', { opacity: 0, y: -20, duration: 0.04, ease: 'power2.in' }, 0.69);
+          zoomTl.fromTo('.scroll-desc-3', { opacity: 0, y: 40 }, { opacity: 1, y: 0, duration: 0.05, ease: 'power2.out' }, 0.71);
+          zoomTl.to('.scroll-desc-3', { opacity: 0, y: -20, duration: 0.04, ease: 'power2.in' }, 0.81);
+          zoomTl.fromTo('.scroll-desc-4', { opacity: 0, y: 40 }, { opacity: 1, y: 0, duration: 0.05, ease: 'power2.out' }, 0.83);
+
           zoomTl.to(centerImageInner, { yPercent: -10, scale: 1.3, duration: 0.35, ease: 'none' }, 0.65);
         }
       }
@@ -133,7 +140,6 @@ export default function IndustryInterventionPage() {
 
   return (
     <div ref={containerRef} className="bg-[#0a0a0a] min-h-screen overflow-x-hidden">
-      <Header />
 
       {/* Hero Section */}
       <div ref={heroRef} className="relative w-screen m-0 p-0 overflow-hidden">
@@ -145,8 +151,8 @@ export default function IndustryInterventionPage() {
         >
           <motion.div className="absolute inset-0" style={{ y: heroY }}>
             <img
-              src="https://images.unsplash.com/photo-1552664730-d307ca884978?w=1920&auto=format&fit=crop"
-              alt="Industry Intervention"
+              src="/ex1.jpg"
+              alt="JLU Industry Partnerships - 42+ Corporate Tie-ups"
               className="w-full h-full object-cover scale-110"
             />
           </motion.div>
@@ -171,7 +177,7 @@ export default function IndustryInterventionPage() {
             transition={{ duration: 0.8, delay: 0.8 }}
             className="text-white font-semibold leading-tight text-base sm:text-lg md:text-[clamp(1.25rem,2.5vw,2rem)]"
           >
-            Real-world exposure through strategic industry collaborations, internships, and live projects that bridge the gap between academia and professional success.
+            42+ industry partnerships with EY, KPMG, Deloitte, Amazon, TCS, and Infosys. Students gain real-world exposure through Six Sigma certifications, live projects, and a dedicated Career Development Centre driving 80%+ placement rates.
           </motion.p>
         </motion.div>
 
@@ -219,40 +225,49 @@ export default function IndustryInterventionPage() {
                 }}
               >
                 <div ref={img.isCenter ? centerImageInnerRef : undefined} className="w-full h-full">
-                  <img src={img.src} alt={`Gallery ${img.id}`} className="w-full h-full object-cover" />
+                  <img src={img.src} alt={`JLU Industry ${img.id}`} className="w-full h-full object-cover" />
                 </div>
 
                 {img.isCenter && (
                   <div ref={textOverlayRef} className="absolute inset-0 flex flex-col justify-center opacity-0">
                     <div className="black-overlay absolute inset-0 bg-black/50 opacity-0" />
-                    <div className="absolute top-[38%] left-8 md:left-12 z-10">
-                      <span className="text-white/80 text-sm md:text-base font-light">01</span>
-                    </div>
-                    <div className="absolute top-[40%] left-16 md:left-24 right-8 md:right-12 flex items-center z-10">
-                      <div className="w-full h-px bg-gradient-to-r from-[#4a90a4] via-white/40 to-transparent" />
-                    </div>
-                    <div className="absolute top-[38%] right-8 md:right-12 z-10">
-                      <span className="text-white/60 text-xs md:text-sm tracking-[0.2em] uppercase">WHY JLU</span>
+                    <div className="absolute top-[40%] left-8 md:left-12 right-8 md:right-12 flex items-center z-10">
+                      <div className="w-full h-px bg-white" />
                     </div>
                     <div className="absolute top-[15%] left-0 right-0 overflow-hidden z-10">
                       <div className="horizontal-text-track flex items-center whitespace-nowrap" style={{ width: 'max-content' }}>
                         <span className="text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-light text-white mx-12 md:mx-20">
-                          500+ Industry Partners
+                          42+ Industry Partners
                         </span>
                         <span className="text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-light text-white/80 mx-12 md:mx-20">
-                          Live Projects
+                          80%+ Placements
                         </span>
                         <span className="text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-light text-white/60 mx-12 md:mx-20">
-                          Real Impact
+                          ₹24 LPA Highest Package
                         </span>
                         <span className="text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-light text-white mx-12 md:mx-20">
-                          500+ Industry Partners
+                          EY Six Sigma Certified
                         </span>
                       </div>
                     </div>
-                    <div className="vision-description absolute bottom-[18%] right-8 md:right-12 max-w-md z-10 opacity-0">
-                      <p className="text-white/70 text-sm md:text-base leading-relaxed text-right">
-                        Our industry partnerships provide students with hands-on experience through internships, live projects, and mentorship programs that bridge the gap between academic learning and professional excellence in the real world.
+                    <div className="scroll-desc-1 absolute bottom-[10%] left-8 md:left-12 max-w-xl z-10 opacity-0">
+                      <p className="text-white text-base md:text-lg lg:text-xl leading-relaxed">
+                        Partnered with <span className="text-[#f4c950] font-semibold">EY, KPMG, Deloitte, Amazon, TCS, and Infosys</span> — JLU integrates real industry exposure into every program through live projects, guest lectures, and professional certifications.
+                      </p>
+                    </div>
+                    <div className="scroll-desc-2 absolute bottom-[10%] left-8 md:left-12 max-w-xl z-10 opacity-0">
+                      <p className="text-white text-base md:text-lg lg:text-xl leading-relaxed">
+                        JLU&apos;s Career Development Centre drives an <span className="text-[#f4c950] font-semibold">80%+ placement rate</span> through dedicated training, mock interviews, and direct recruitment drives with 200+ companies visiting campus every year.
+                      </p>
+                    </div>
+                    <div className="scroll-desc-3 absolute bottom-[10%] left-8 md:left-12 max-w-xl z-10 opacity-0">
+                      <p className="text-white text-base md:text-lg lg:text-xl leading-relaxed">
+                        Top recruiters offer packages up to <span className="text-[#f4c950] font-semibold">₹24 LPA</span>, with average packages growing year-over-year as JLU graduates prove their industry readiness across engineering, management, and law sectors.
+                      </p>
+                    </div>
+                    <div className="scroll-desc-4 absolute bottom-[10%] left-8 md:left-12 max-w-xl z-10 opacity-0">
+                      <p className="text-white text-base md:text-lg lg:text-xl leading-relaxed">
+                        MBA students graduate with <span className="text-[#f4c950] font-semibold">EY Six Sigma Green Belt certification</span> — a globally recognized quality management credential. CIMA recognized JLU as &apos;Most Innovative University&apos; for this industry-integrated approach.
                       </p>
                     </div>
                   </div>
@@ -269,49 +284,97 @@ export default function IndustryInterventionPage() {
           <div className="grid grid-cols-2 gap-4">
             {galleryImages.slice(0, 4).map((img) => (
               <div key={img.id} className="aspect-3/4 rounded-lg overflow-hidden">
-                <img src={img.src} alt={`Gallery ${img.id}`} className="w-full h-full object-cover" />
+                <img src={img.src} alt={`JLU Industry ${img.id}`} className="w-full h-full object-cover" />
               </div>
             ))}
           </div>
           <div className="mt-8 text-center">
             <h2 className="text-2xl font-light text-gray-900 mb-2">Industry Collaborations</h2>
-            <p className="text-gray-600 text-sm">500+ partners providing real-world experience</p>
+            <p className="text-gray-600 text-sm">42+ industry partners driving 80%+ placement rate</p>
           </div>
         </section>
       )}
 
-      {/* CTA Section */}
-      <section className="py-10 md:py-14 px-4 sm:px-6 lg:px-12 bg-[#21313c] relative overflow-hidden">
-        <div className="max-w-[900px] mx-auto relative z-10">
-          <div className="text-center">
-            <span className="text-[#4a90a4] text-xs tracking-[0.2em] uppercase block mb-3">
-              Get Started
-            </span>
-            <h2 className="text-2xl md:text-3xl font-semibold text-white mb-3">
-              Start Your{' '}
-              <span style={{ fontFamily: "'Times New Roman', serif", fontStyle: 'italic', fontWeight: 400, color: '#4a90a4' }}>
-                Industry Journey?
+      {/* Full-VH Feature Section */}
+      <section className="relative min-h-screen w-full flex items-center bg-[#f6f7f0]">
+        <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-12 py-20 md:py-0 w-full">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-16 items-center">
+            {/* Left - Images */}
+            <div className="relative order-2 md:order-1">
+              <div className="rounded-2xl overflow-hidden aspect-[4/5]">
+                <img src="/ex.jpg" alt="JLU Industry Partnership Event" className="w-full h-full object-cover" loading="lazy" />
+              </div>
+              <div className="absolute -bottom-6 -right-6 w-48 h-48 md:w-56 md:h-56 rounded-2xl overflow-hidden shadow-2xl border-4 border-[#f6f7f0]">
+                <img src="/aw1.jpg" alt="JLU Awards and Recognition" className="w-full h-full object-cover" loading="lazy" />
+              </div>
+            </div>
+            {/* Right - Content */}
+            <div className="order-1 md:order-2">
+              <span className="text-xs tracking-[0.2em] uppercase text-gray-400 block mb-4">
+                CAREER DEVELOPMENT CENTRE
               </span>
-            </h2>
-            <p className="text-white/70 text-base max-w-xl mx-auto mb-6">
-              Partner with leading companies and gain real-world experience through our comprehensive industry intervention programs.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-3 justify-center">
-              <a
-                href="/apply"
-                className="bg-[#4a90a4] text-white px-6 py-2.5 rounded-lg font-semibold text-sm hover:bg-[#3a7a8a] transition-all"
-              >
-                Apply Now
-              </a>
-              <a
-                href="/admissions"
-                className="border-2 border-white text-white px-6 py-2.5 rounded-lg font-semibold text-sm hover:bg-white hover:text-[#21313c] transition-all"
-              >
-                Learn More
+              <h2 className="text-3xl md:text-4xl lg:text-5xl text-[#21313c] mb-6" style={{ fontWeight: 600, lineHeight: 1.1 }}>
+                From Classroom to{' '}
+                <span style={{ fontFamily: "'Times New Roman', serif", fontStyle: 'italic' }}>Boardroom</span>
+              </h2>
+              <p className="text-gray-600 text-base md:text-lg leading-relaxed mb-8">
+                JLU&apos;s dedicated Career Development Centre bridges academia and industry through live projects, Six Sigma certifications from EY, and direct recruitment drives with Fortune 500 companies. MBA students graduate EY Six Sigma certified, while CIMA recognized JLU as &apos;Most Innovative University&apos; for industry-integrated education.
+              </p>
+              <div className="grid grid-cols-2 gap-6 mb-8">
+                <div className="border-l-2 border-[#f4c950] pl-4">
+                  <p className="text-2xl md:text-3xl font-bold text-[#03463B]">80%+</p>
+                  <p className="text-gray-500 text-sm mt-1">Placement Rate</p>
+                </div>
+                <div className="border-l-2 border-[#f4c950] pl-4">
+                  <p className="text-2xl md:text-3xl font-bold text-[#03463B]">₹24 LPA</p>
+                  <p className="text-gray-500 text-sm mt-1">Highest Package</p>
+                </div>
+                <div className="border-l-2 border-[#f4c950] pl-4">
+                  <p className="text-2xl md:text-3xl font-bold text-[#03463B]">42+</p>
+                  <p className="text-gray-500 text-sm mt-1">Industry Partners</p>
+                </div>
+                <div className="border-l-2 border-[#f4c950] pl-4">
+                  <p className="text-2xl md:text-3xl font-bold text-[#03463B]">200+</p>
+                  <p className="text-gray-500 text-sm mt-1">Recruiters Visit</p>
+                </div>
+              </div>
+              <a href="/apply" className="inline-flex items-center gap-2 bg-[#21313c] text-white px-6 py-3 rounded-lg font-semibold text-sm hover:bg-[#1a2630] transition-all">
+                Start Your Career
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M5 12h14M12 5l7 7-7 7" /></svg>
               </a>
             </div>
           </div>
         </div>
+      </section>
+
+      {/* CTA Section */}
+      <section className="relative overflow-hidden" style={{ background: '#f4c950' }}>
+        <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-12 py-14 md:py-20">
+          <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-8">
+            <div className="max-w-xl">
+              <p className="text-xs mb-3" style={{ color: '#21313c', letterSpacing: '0.2em', textTransform: 'uppercase', opacity: 0.6 }}>
+                ADMISSIONS OPEN 2025-26
+              </p>
+              <h2 className="text-2xl md:text-3xl lg:text-4xl text-[#21313c] mb-4" style={{ fontWeight: 700, lineHeight: 1.15 }}>
+                Launch Your Industry{' '}
+                <span style={{ fontFamily: "'Times New Roman', serif", fontStyle: 'italic', fontWeight: 400 }}>Career</span>
+              </h2>
+              <p className="text-[#21313c]/70 text-sm md:text-base leading-relaxed">
+                Partner with EY, KPMG, Amazon, Deloitte and 40+ top companies. 80%+ placement rate with packages up to ₹24 LPA at Central India&apos;s only QS Diamond-rated university.
+              </p>
+            </div>
+            <div className="flex flex-col sm:flex-row gap-3">
+              <a href="/apply" className="bg-[#21313c] text-white px-8 py-3.5 rounded-lg font-semibold text-sm hover:bg-[#1a2630] transition-all text-center">
+                Apply Now
+              </a>
+              <a href="/admissions" className="border-2 border-[#21313c] text-[#21313c] px-8 py-3.5 rounded-lg font-semibold text-sm hover:bg-[#21313c] hover:text-white transition-all text-center">
+                Download Brochure
+              </a>
+            </div>
+          </div>
+        </div>
+        <div className="absolute -right-20 -top-20 w-64 h-64 rounded-full opacity-10" style={{ background: '#21313c' }} />
+        <div className="absolute -left-10 -bottom-10 w-40 h-40 rounded-full opacity-10" style={{ background: '#21313c' }} />
       </section>
 
       <Footer />

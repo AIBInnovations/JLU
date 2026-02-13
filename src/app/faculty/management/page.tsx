@@ -1,7 +1,7 @@
 import { Metadata } from 'next';
-import { Header } from '@/components/Header';
 import { FacultyPage } from '@/components/FacultyPage';
 import { Footer } from '@/components/Footer';
+import { CtaBanner } from '@/components/CtaBanner';
 
 export const metadata: Metadata = {
   title: 'Faculty of Management | Jagran Lakecity University',
@@ -61,8 +61,8 @@ const managementData = {
 export default function ManagementFacultyPage() {
   return (
     <main className="relative">
-      <Header />
       <FacultyPage {...managementData} />
+      <CtaBanner />
       <Footer />
     </main>
   );

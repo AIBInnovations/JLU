@@ -15,7 +15,7 @@ const newsItems: NewsItem[] = [
     id: '1',
     title: 'JLU Achieves QS I-GAUGE Diamond Rating - First in Madhya Pradesh',
     excerpt: 'Jagran Lakecity University becomes the first and only university in MP & Chhattisgarh to receive the prestigious QS Diamond rating, ranking among top 25 universities in India.',
-    image: '/posthero1.jpg',
+    image: '/aw1.jpg',
     date: 'Dec 15, 2024',
     category: 'Achievement',
     link: '#',
@@ -24,7 +24,7 @@ const newsItems: NewsItem[] = [
     id: '2',
     title: '7th International Festival of Media Concludes Successfully',
     excerpt: 'The Faculty of Journalism and Creative Studies hosted the 7th edition of JLU International Festival of Media on March 9-10, 2024, bringing together media professionals from across the globe.',
-    image: '/posthero2.jpg',
+    image: '/ev1.jpg',
     date: 'Mar 10, 2024',
     category: 'Event',
     link: '#',
@@ -33,7 +33,7 @@ const newsItems: NewsItem[] = [
     id: '3',
     title: 'Placement Season 2024: Highest Package of ₹24 LPA',
     excerpt: 'JLU students receive offers from top recruiters including Amazon, Infosys, TCS, Deloitte, and HDFC Bank with 80%+ placement rate and average package of ₹5 LPA.',
-    image: '/posthero3.jpg',
+    image: '/ev2.jpg',
     date: 'Feb 20, 2024',
     category: 'Placements',
     link: '#',
@@ -42,7 +42,7 @@ const newsItems: NewsItem[] = [
     id: '4',
     title: 'JLU Celebrates 11th Foundation Day with Grand Ceremony',
     excerpt: 'The university marked its Eleventh Foundation Day on May 1, 2024 with a vibrant cultural extravaganza and annual awards ceremony at the Chandanpura campus.',
-    image: '/posthero1.jpg',
+    image: '/event1.jpg',
     date: 'May 1, 2024',
     category: 'Event',
     link: '#',
@@ -78,10 +78,10 @@ export const LatestNews = () => {
           </div>
           <a
             href="/news-events"
-            className="inline-flex items-center gap-2 text-[#03463B] font-medium hover:gap-3 transition-all group"
+            className="inline-flex items-center gap-2 text-[#03463B] font-medium"
           >
             View All News
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="group-hover:translate-x-1 transition-transform">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
               <line x1="5" y1="12" x2="19" y2="12" strokeLinecap="round"/>
               <polyline points="12 5 19 12 12 19" strokeLinecap="round" strokeLinejoin="round"/>
             </svg>
@@ -93,7 +93,7 @@ export const LatestNews = () => {
           {newsItems.map((item, index) => (
             <article
               key={item.id}
-              className="group cursor-pointer bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 border border-gray-100 hover:-translate-y-1"
+              className="cursor-pointer bg-white rounded-2xl overflow-hidden shadow-sm border border-gray-100"
               style={{ marginTop: index % 2 === 1 ? '48px' : '0' }}
             >
               <a href={item.link} className="block">
@@ -102,14 +102,13 @@ export const LatestNews = () => {
                   <img
                     src={item.image}
                     alt={item.title}
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                    className="w-full h-full object-cover"
+                    loading="lazy"
                   />
-                  {/* Overlay on hover */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
 
                   {/* Category Badge */}
                   <span
-                    className="absolute top-4 left-4 px-3 py-1.5 text-xs font-semibold rounded-lg backdrop-blur-sm"
+                    className="absolute top-4 left-4 px-3 py-1.5 text-xs font-semibold rounded-lg"
                     style={{
                       backgroundColor: `${categoryColors[item.category]}e6` || '#c3fd7ae6',
                       color: item.category === 'Event' || item.category === 'Infrastructure' ? '#fff' : '#21313c',
@@ -117,14 +116,6 @@ export const LatestNews = () => {
                   >
                     {item.category}
                   </span>
-
-                  {/* Read More Arrow - Shows on hover */}
-                  <div className="absolute bottom-4 right-4 w-10 h-10 bg-white rounded-xl flex items-center justify-center opacity-0 group-hover:opacity-100 transform translate-y-2 group-hover:translate-y-0 transition-all duration-300 shadow-lg">
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#21313c" strokeWidth="2">
-                      <path d="M7 17L17 7" strokeLinecap="round" strokeLinejoin="round"/>
-                      <path d="M7 7h10v10" strokeLinecap="round" strokeLinejoin="round"/>
-                    </svg>
-                  </div>
                 </div>
 
                 {/* Content */}
@@ -139,7 +130,7 @@ export const LatestNews = () => {
                     <span className="text-xs text-gray-400">{item.date}</span>
                   </div>
                   <h3
-                    className="text-base font-semibold text-[#21313c] mb-2 group-hover:text-[#03463B] transition-colors line-clamp-2 leading-snug"
+                    className="text-base font-semibold text-[#21313c] mb-2 line-clamp-2 leading-snug"
                     style={{ fontFamily: 'Inter, sans-serif' }}
                   >
                     {item.title}

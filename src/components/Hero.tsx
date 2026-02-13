@@ -27,16 +27,22 @@ export const Hero = () => {
   // Track image loading state
   const [imagesLoaded, setImagesLoaded] = useState(false);
 
-  // Parallax state for background
+  // Parallax state for background and building
   const [parallaxOffset, setParallaxOffset] = useState(0);
+  const [buildingParallaxOffset, setBuildingParallaxOffset] = useState(0);
 
-  // Parallax effect for background
+  // Parallax effect for background and building
   useEffect(() => {
     const handleScroll = () => {
       const scrollY = window.scrollY;
       // Parallax speed - adjust this value to control the effect intensity
-      const parallaxSpeed = 0.5;
-      setParallaxOffset(scrollY * parallaxSpeed);
+      const backgroundSpeed = 0.5;
+      const buildingSpeed = -0.15; // Subtle negative speed to move up when scrolling down
+      const maxParallax = -50; // Maximum upward movement (stop earlier)
+
+      setParallaxOffset(scrollY * backgroundSpeed);
+      // Limit the building parallax to stop at maxParallax
+      setBuildingParallaxOffset(Math.max(scrollY * buildingSpeed, maxParallax));
     };
 
     window.addEventListener('scroll', handleScroll, { passive: true });
@@ -84,17 +90,16 @@ export const Hero = () => {
   useEffect(() => {
     if (!imagesLoaded) return;
 
-    // Set initial states immediately - both images start as a line in the middle
-    // On mobile, building is 65% height at bottom, so adjust its clipPath to match background's visual center
-    const buildingClipStart = isMobile ? '23%' : '50%';
+    // Set initial states immediately
+    // Background starts as a line in the middle
     gsap.set(backgroundRef.current, {
       opacity: 1,
       clipPath: 'polygon(0% 50%, 100% 50%, 100% 50%, 0% 50%)',
       scale: 1,
     });
+    // Building starts with 30% visible at top
     gsap.set(buildingRef.current, {
-      opacity: 1,
-      clipPath: `polygon(0% ${buildingClipStart}, 100% ${buildingClipStart}, 100% ${buildingClipStart}, 0% ${buildingClipStart})`,
+      y: isMobile ? '50%' : '50%',
       scale: 1,
     });
     gsap.set(textRef.current, {
@@ -114,26 +119,33 @@ export const Hero = () => {
 
       // Animation sequence
       tl
-        // 1. Both images reveal from middle to top and bottom
-        .to([backgroundRef.current, buildingRef.current], {
+        // 1. Background reveals from middle to top and bottom
+        .to(backgroundRef.current, {
           clipPath: 'polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)',
           duration: 1.5,
           ease: 'power2.inOut',
         })
-        // 2. Subtle zoom effect on both images (reduced for performance)
-        .to([backgroundRef.current, buildingRef.current], {
+        // 2. Subtle zoom effect on background
+        .to(backgroundRef.current, {
           scale: 1.02,
           duration: 0.6,
           ease: 'power2.out',
         }, '-=0.3')
-        // 3. Text slides up and fades in (behind building)
+        // 3. Building fades in and slides up from 80% position to final position
+        .to(buildingRef.current, {
+          opacity: 1,
+          y: 0,
+          duration: 1.2,
+          ease: 'power2.out',
+        }, '-=0.4')
+        // 4. Text slides up and fades in (after building appears)
         .to(textRef.current, {
           opacity: 1,
           y: 0,
           duration: isMobile ? 1.4 : 1.2,
           ease: 'power2.out',
-        }, isMobile ? '-=0.8' : '-=1.2')
-        // 4. Explore button fades in
+        }, '-=0.2')
+        // 5. Explore button fades in
         .to(exploreButtonRef.current, {
           opacity: 1,
           y: 0,
@@ -227,14 +239,15 @@ export const Hero = () => {
               zIndex: 3,
               width: '100%',
               height: isMobile ? '65%' : '100%',
-              bottom: 0,
+              bottom: isMobile ? '-30px' : '-50px',
               left: 0,
               right: 0,
               objectFit: 'cover',
               objectPosition: 'center bottom',
-              clipPath: isMobile
-                ? 'polygon(0% 23%, 100% 23%, 100% 23%, 0% 23%)'
-                : 'polygon(0% 50%, 100% 50%, 100% 50%, 0% 50%)',
+              clipPath: 'polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)',
+              opacity: 0,
+              transform: `translateY(${buildingParallaxOffset}px)`,
+              transition: 'transform 0.1s ease-out',
             }}
           />
 

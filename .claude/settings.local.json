@@ -8,7 +8,19 @@
       "WebFetch(domain:www.jlu.edu.in)",
       "WebFetch(domain:www.shiksha.com)",
       "Bash(ls:*)",
-      "WebFetch(domain:telhaclarke.com.au)"
+      "WebFetch(domain:telhaclarke.com.au)",
+      "Bash(npx next build:*)",
+      "WebFetch(domain:new.jlu.edu.in)",
+      "Bash(python3:*)",
+      "Bash(npm install:*)",
+      "Bash(./node_modules/.bin/tsc:*)",
+      "Bash(npx next lint --file src/components/PartnersOrb.tsx)",
+      "WebFetch(domain:collegedunia.com)",
+      "WebFetch(domain:theprint.in)",
+      "WebFetch(domain:photography.jlu.edu.in)",
+      "WebFetch(domain:activities.jlu.edu.in)",
+      "WebFetch(domain:lakecityvoice.jlu.edu.in)",
+      "WebFetch(domain:auapgc2024.jlu.edu.in)"
     ]
   }
 }
