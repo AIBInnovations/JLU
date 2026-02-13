@@ -18,16 +18,15 @@ const customEase: [number, number, number, number] = [0.22, 1, 0.36, 1];
 // ============================================
 
 
-// Gallery images for the multi-image showcase - spread out positions with opacity variations
+// Gallery images for the multi-image showcase - placement-themed images
 const galleryImages = [
-  { id: 1, src: '/posthero1.jpg', position: 'top-[10%] left-[5%]', size: 'w-[140px] h-[200px] md:w-[180px] md:h-[260px]', opacity: 0.7 },
-  { id: 2, src: '/posthero2.jpg', position: 'top-[5%] left-[22%]', size: 'w-[100px] h-[140px] md:w-[130px] md:h-[170px]', opacity: 0.5 },
-  { id: 3, src: '/posthero3.jpg', position: '', size: 'w-[200px] h-[280px] md:w-[260px] md:h-[360px]', isCenter: true, opacity: 1 },
-  { id: 4, src: '/posthero1.jpg', position: 'top-[8%] right-[18%]', size: 'w-[120px] h-[170px] md:w-[160px] md:h-[220px]', opacity: 0.6 },
-  { id: 5, src: '/posthero2.jpg', position: 'top-[12%] right-[3%]', size: 'w-[90px] h-[130px] md:w-[120px] md:h-[160px]', opacity: 0.4 },
-  { id: 6, src: '/posthero3.jpg', position: 'bottom-[12%] left-[8%]', size: 'w-[110px] h-[160px] md:w-[150px] md:h-[200px]', opacity: 0.5 },
-  { id: 7, src: '/posthero1.jpg', position: 'bottom-[10%] right-[5%]', size: 'w-[130px] h-[180px] md:w-[170px] md:h-[230px]', opacity: 0.6 },
-  { id: 8, src: '/posthero2.jpg', position: 'bottom-[20%] right-[22%]', size: 'w-[100px] h-[140px] md:w-[130px] md:h-[170px]', opacity: 0.4 },
+  { id: 1, src: 'https://images.unsplash.com/photo-1521737711867-e3b97375f902?w=600&q=80', position: 'top-[10%] left-[5%]', size: 'w-[140px] h-[200px] md:w-[180px] md:h-[260px]', opacity: 0.7 },
+  { id: 2, src: 'https://images.unsplash.com/photo-1556761175-b413da4baf72?w=400&q=80', position: 'top-[5%] left-[22%]', size: 'w-[100px] h-[140px] md:w-[130px] md:h-[170px]', opacity: 0.5 },
+  { id: 3, src: 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=800&q=80', position: '', size: 'w-[200px] h-[280px] md:w-[260px] md:h-[360px]', isCenter: true, opacity: 1 },
+  { id: 4, src: 'https://images.unsplash.com/photo-1551434678-e076c223a692?w=600&q=80', position: 'top-[8%] right-[18%]', size: 'w-[120px] h-[170px] md:w-[160px] md:h-[220px]', opacity: 0.6 },
+  { id: 5, src: 'https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=400&q=80', position: 'top-[12%] right-[3%]', size: 'w-[90px] h-[130px] md:w-[120px] md:h-[160px]', opacity: 0.4 },
+  { id: 6, src: 'https://images.unsplash.com/photo-1553877522-43269d4ea984?w=600&q=80', position: 'bottom-[12%] left-[8%]', size: 'w-[110px] h-[160px] md:w-[150px] md:h-[200px]', opacity: 0.5 },
+  { id: 7, src: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=600&q=80', position: 'bottom-[10%] right-[5%]', size: 'w-[130px] h-[180px] md:w-[170px] md:h-[230px]', opacity: 0.6 },
 ];
 
 
@@ -133,7 +132,7 @@ export default function PlacementPage() {
             scrollTrigger: {
               trigger: gallerySectionRef.current,
               start: 'top top',
-              end: '+=280%',
+              end: '+=400%',
               pin: true,
               scrub: 1,
               anticipatePin: 1,
@@ -195,7 +194,7 @@ export default function PlacementPage() {
             0.4
           );
 
-          // Horizontal scroll - move titles from right to left (end at Career Growth visible)
+          // Horizontal scroll - move titles from right to left
           if (horizontalTextTrack) {
             zoomTl.fromTo(
               horizontalTextTrack,
@@ -205,12 +204,48 @@ export default function PlacementPage() {
             );
           }
 
-          // Fade in the description text on the right
+          // Fade in/out multiple description texts sequentially
           zoomTl.fromTo(
-            '.vision-description',
-            { opacity: 0, y: 30 },
-            { opacity: 1, y: 0, duration: 0.15, ease: 'power2.out' },
-            0.55
+            '.scroll-desc-1',
+            { opacity: 0, y: 40 },
+            { opacity: 1, y: 0, duration: 0.05, ease: 'power2.out' },
+            0.47
+          );
+          zoomTl.to(
+            '.scroll-desc-1',
+            { opacity: 0, y: -20, duration: 0.04, ease: 'power2.in' },
+            0.57
+          );
+
+          zoomTl.fromTo(
+            '.scroll-desc-2',
+            { opacity: 0, y: 40 },
+            { opacity: 1, y: 0, duration: 0.05, ease: 'power2.out' },
+            0.59
+          );
+          zoomTl.to(
+            '.scroll-desc-2',
+            { opacity: 0, y: -20, duration: 0.04, ease: 'power2.in' },
+            0.69
+          );
+
+          zoomTl.fromTo(
+            '.scroll-desc-3',
+            { opacity: 0, y: 40 },
+            { opacity: 1, y: 0, duration: 0.05, ease: 'power2.out' },
+            0.71
+          );
+          zoomTl.to(
+            '.scroll-desc-3',
+            { opacity: 0, y: -20, duration: 0.04, ease: 'power2.in' },
+            0.81
+          );
+
+          zoomTl.fromTo(
+            '.scroll-desc-4',
+            { opacity: 0, y: 40 },
+            { opacity: 1, y: 0, duration: 0.05, ease: 'power2.out' },
+            0.83
           );
 
           // Parallax effect - inner image moves UP on scroll (from +10% to -10%)
@@ -394,28 +429,42 @@ export default function PlacementPage() {
                         }}
                       >
                         <span className="text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-light text-white mx-12 md:mx-20" style={{ fontFamily: "system-ui, -apple-system, sans-serif", letterSpacing: '-0.02em' }}>
-                          Industry Excellence
+                          80%+ Placement Rate
                         </span>
                         <span className="text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-light text-white/80 mx-12 md:mx-20" style={{ fontFamily: "system-ui, -apple-system, sans-serif", letterSpacing: '-0.02em' }}>
-                          Career Growth
+                          500+ Recruiters
                         </span>
                         <span className="text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-light text-white/60 mx-12 md:mx-20" style={{ fontFamily: "system-ui, -apple-system, sans-serif", letterSpacing: '-0.02em' }}>
-                          Global Reach
+                          Career Excellence
                         </span>
-                        {/* Repeat for seamless scroll */}
                         <span className="text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-light text-white mx-12 md:mx-20" style={{ fontFamily: "system-ui, -apple-system, sans-serif", letterSpacing: '-0.02em' }}>
-                          Industry Excellence
-                        </span>
-                        <span className="text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-light text-white/80 mx-12 md:mx-20" style={{ fontFamily: "system-ui, -apple-system, sans-serif", letterSpacing: '-0.02em' }}>
-                          Career Growth
+                          Global Opportunities
                         </span>
                       </div>
                     </div>
 
-                    {/* Description text - bottom right */}
-                    <div className="vision-description absolute bottom-[18%] right-8 md:right-12 max-w-md z-10 opacity-0">
-                      <p className="text-white/70 text-sm md:text-base leading-relaxed text-right">
-                        Our placement excellence is established through strategic industry partnerships and comprehensive training programs, which considers student skills, market demands, and career aspirations. We combine these elements to create exceptional placement outcomes that shape futures.
+                    {/* Multiple changing description texts */}
+                    <div className="scroll-desc-1 absolute bottom-[10%] left-8 md:left-12 max-w-xl z-10 opacity-0">
+                      <p className="text-white text-base md:text-lg lg:text-xl leading-relaxed">
+                        JLU maintains a <span className="text-[#f0c14b] font-semibold">consistent 80%+ placement rate</span> year after year, with dedicated pre-placement training, industry mentorship, and comprehensive career development programs ensuring student success.
+                      </p>
+                    </div>
+
+                    <div className="scroll-desc-2 absolute bottom-[10%] left-8 md:left-12 max-w-xl z-10 opacity-0">
+                      <p className="text-white text-base md:text-lg lg:text-xl leading-relaxed">
+                        Over <span className="text-[#f0c14b] font-semibold">500+ top-tier companies including Infosys, TCS, Deloitte, Amazon, and HDFC Bank</span> actively recruit from JLU, conducting 200+ campus drives annually across diverse sectors.
+                      </p>
+                    </div>
+
+                    <div className="scroll-desc-3 absolute bottom-[10%] left-8 md:left-12 max-w-xl z-10 opacity-0">
+                      <p className="text-white text-base md:text-lg lg:text-xl leading-relaxed">
+                        Our placement cell offers <span className="text-[#f0c14b] font-semibold">rigorous pre-placement training including aptitude tests, coding bootcamps, mock interviews, and soft skills development</span> — preparing students for every stage of the recruitment process.
+                      </p>
+                    </div>
+
+                    <div className="scroll-desc-4 absolute bottom-[10%] left-8 md:left-12 max-w-xl z-10 opacity-0">
+                      <p className="text-white text-base md:text-lg lg:text-xl leading-relaxed">
+                        With <span className="text-[#f0c14b] font-semibold">highest packages reaching 12 LPA and strong alumni networks in 15+ countries</span>, JLU graduates secure positions in Fortune 500 companies, innovative startups, and global corporations worldwide.
                       </p>
                     </div>
                   </div>

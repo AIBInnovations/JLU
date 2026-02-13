@@ -121,7 +121,7 @@ const HonoraryDoctorates = () => {
                 style={{ objectPosition: person.objectPosition }}
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/30 to-transparent" />
-              <div className="absolute bottom-0 left-0 right-0 p-4 sm:p-5 md:p-6">
+              <div className="absolute bottom-0 left-0 right-0 p-4 sm:p-5 md:p-6 flex flex-col justify-end min-h-[160px] sm:min-h-[170px] md:min-h-[180px]">
                 <span
                   className="text-[#f4c950] text-[9px] sm:text-[10px] uppercase tracking-widest block mb-2"
                   style={{ letterSpacing: '0.15em' }}
@@ -134,7 +134,7 @@ const HonoraryDoctorates = () => {
                 >
                   {person.name}
                 </h3>
-                <p className="text-white/70 text-[11px] sm:text-xs leading-relaxed mb-1">
+                <p className="text-white/70 text-[11px] sm:text-xs leading-relaxed mb-1 line-clamp-2">
                   {person.designation}
                 </p>
                 <p className="text-white/50 text-[10px] sm:text-[11px]">

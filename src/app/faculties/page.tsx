@@ -248,13 +248,12 @@ export default function FacultiesPage() {
                 >
                   <div className="space-y-6">
                     <h2
-                      className="faculty-title font-bold break-words uppercase tracking-wider select-none"
+                      className="faculty-title font-bold break-words uppercase select-none"
                       style={{
-                        fontFamily: "'Humane', sans-serif",
-                        fontSize: 'clamp(3rem, 5vw, 5rem)',
-                        lineHeight: 1.1,
-                        letterSpacing: '0.02em',
-                        wordSpacing: '0.1em',
+                        fontFamily: "system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif",
+                        fontSize: 'clamp(1.75rem, 3.5vw, 3rem)',
+                        lineHeight: 1.15,
+                        letterSpacing: '0.05em',
                         backgroundImage: 'linear-gradient(to bottom, rgba(33, 49, 60, 1) 0%, rgba(33, 49, 60, 1) 60%, rgba(33, 49, 60, 0.3) 100%)',
                         WebkitBackgroundClip: 'text',
                         backgroundClip: 'text',

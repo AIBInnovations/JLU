@@ -6,34 +6,54 @@ export default function AboutPage() {
   return (
     <div className="bg-[#f6f7f0] min-h-screen m-0 p-0">
       {/* About Content */}
-      <About />
+      <div id="introduction">
+        <About />
+      </div>
 
       {/* Leadership Messages */}
-      <LeadershipMessages />
+      <div id="leadership">
+        <LeadershipMessages />
+      </div>
 
       {/* Institutional Overview */}
-      <InstitutionalOverview />
+      <div id="history">
+        <InstitutionalOverview />
+      </div>
 
       {/* Governance */}
-      <Governance />
+      <div id="governance">
+        <Governance />
+      </div>
 
       {/* Accreditations & Memberships */}
-      <Accreditations />
+      <div id="accreditations">
+        <Accreditations />
+      </div>
 
       {/* University Partnerships */}
-      <UniversityPartnerships />
+      <div id="partnerships">
+        <UniversityPartnerships />
+      </div>
 
       {/* Honorary Doctorates */}
-      <HonoraryDoctorates />
+      <div id="honorary-doctorates">
+        <HonoraryDoctorates />
+      </div>
 
       {/* JLU Ignited Mind Awards */}
-      <IgnitedMindAwards />
+      <div id="awards">
+        <IgnitedMindAwards />
+      </div>
 
       {/* JLU Staff */}
-      <JluStaff />
+      <div id="staff">
+        <JluStaff />
+      </div>
 
       {/* Ranking and Awards */}
-      <RankingAndAwards />
+      <div id="rankings">
+        <RankingAndAwards />
+      </div>
 
       {/* CTA Banner */}
       <CtaBanner />

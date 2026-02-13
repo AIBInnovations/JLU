@@ -27,7 +27,7 @@ const chatResponses: ChatResponse[] = [
   },
   {
     keywords: ['course', 'program', 'degree', 'btech', 'mba', 'bba', 'law', 'pharmacy'],
-    response: 'JLU offers 85+ programs across 8 faculties:\n\n🎓 Engineering: B.Tech, M.Tech (CSE, ME, CE, ECE)\n💼 Management: BBA, MBA, PGDM\n⚖️ Law: BA LLB, BBA LLB, LLB, LLM\n💊 Pharmacy: B.Pharm, M.Pharm, D.Pharm\n🎨 Design: B.Des, M.Des (Fashion, Interior)\n📰 Journalism: BA, MA (Mass Communication)\n🔬 Science: B.Sc, M.Sc, Ph.D\n\nWhich program interests you?',
+    response: 'JLU offers 85+ programs across 8 faculties:\n\n• Engineering: B.Tech, M.Tech (CSE, ME, CE, ECE)\n• Management: BBA, MBA, PGDM\n• Law: BA LLB, BBA LLB, LLB, LLM\n• Pharmacy: B.Pharm, M.Pharm, D.Pharm\n• Design: B.Des, M.Des (Fashion, Interior)\n• Journalism: BA, MA (Mass Communication)\n• Science: B.Sc, M.Sc, Ph.D\n\nWhich program interests you?',
   },
   {
     keywords: ['fee', 'fees', 'cost', 'tuition', 'expense', 'price'],
@@ -35,43 +35,43 @@ const chatResponses: ChatResponse[] = [
   },
   {
     keywords: ['scholarship', 'financial aid', 'discount', 'merit'],
-    response: 'JLU Scholarship Programs:\n\n🏆 Academic Excellence - Up to 100% fee waiver for high scorers\n🏅 Elite Athlete Scholarship - 100% for national/state sports achievers\n🎓 Chancellor Freeship - For 15 meritorious students\n👩 Women Empowerment - Special waivers for female students\n🎖️ Defence Ward Concession\n👨‍👩‍👧 Sibling Discount\n⏰ Early Bird Discount\n\nContact: 0755-6611100 for eligibility details.',
+    response: 'JLU Scholarship Programs:\n\n• Academic Excellence - Up to 100% fee waiver for high scorers\n• Elite Athlete Scholarship - 100% for national/state sports achievers\n• Chancellor Freeship - For 15 meritorious students\n• Women Empowerment - Special waivers for female students\n• Defence Ward Concession\n• Sibling Discount\n• Early Bird Discount\n\nContact: 0755-6611100 for eligibility details.',
   },
   {
     keywords: ['hostel', 'accommodation', 'stay', 'residence', 'living'],
-    response: 'JLU Hostel Facilities:\n\n🏠 Separate hostels for boys & girls\n❄️ AC & Non-AC rooms available\n🔒 24/7 security with CCTV\n📶 High-speed Wi-Fi\n🍽️ Hygienic mess with multi-cuisine\n🎮 Recreation rooms\n🏥 Medical facility on campus\n\nHostel Fees: ₹60,000 - ₹1,20,000/year\n\nLocation: Mugaliyachap Campus, Bhopal',
+    response: 'JLU Hostel Facilities:\n\n• Separate hostels for boys & girls\n• AC & Non-AC rooms available\n• 24/7 security with CCTV\n• High-speed Wi-Fi\n• Hygienic mess with multi-cuisine\n• Recreation rooms\n• Medical facility on campus\n\nHostel Fees: ₹60,000 - ₹1,20,000/year\n\nLocation: Mugaliyachap Campus, Bhopal',
   },
   {
     keywords: ['placement', 'job', 'career', 'recruitment', 'company', 'package'],
-    response: 'JLU Placement Highlights 2024:\n\n💰 Highest Package: ₹24 LPA\n📊 Average Package: ₹5 LPA\n📈 Placement Rate: 80%+\n\n🏢 Top Recruiters:\nAmazon, Infosys, TCS, Wipro, Deloitte, Accenture, HDFC Bank, ICICI Bank, Axis Bank, Capgemini, Persistent, JIO, NDTV, Berger, Whirlpool\n\nOur Career Development Cell provides training & placement assistance.',
+    response: 'JLU Placement Highlights 2024:\n\n• Highest Package: ₹24 LPA\n• Average Package: ₹5 LPA\n• Placement Rate: 80%+\n\nTop Recruiters:\nAmazon, Infosys, TCS, Wipro, Deloitte, Accenture, HDFC Bank, ICICI Bank, Axis Bank, Capgemini, Persistent, JIO, NDTV, Berger, Whirlpool\n\nOur Career Development Cell provides training & placement assistance.',
   },
   {
     keywords: ['campus', 'facility', 'infrastructure', 'library', 'lab'],
-    response: 'JLU Campus Features:\n\n📍 232-acre main campus + 40-acre Chandanpura hub\n📚 Pyramid-shaped library (28,000 sq.ft) with 42,000+ books\n🔬 50+ specialized laboratories\n🎭 2000+ capacity auditorium\n🏟️ Sports complex (indoor & outdoor)\n☕ Cafeteria & food court\n🏥 Medical center\n💡 Innovation & Incubation Center\n🎨 Media Center & Design Studios',
+    response: 'JLU Campus Features:\n\n• 232-acre main campus + 40-acre Chandanpura hub\n• Pyramid-shaped library (28,000 sq.ft) with 42,000+ books\n• 50+ specialized laboratories\n• 2000+ capacity auditorium\n• Sports complex (indoor & outdoor)\n• Cafeteria & food court\n• Medical center\n• Innovation & Incubation Center\n• Media Center & Design Studios',
   },
   {
     keywords: ['contact', 'phone', 'email', 'address', 'location', 'reach'],
-    response: 'Contact JLU Bhopal:\n\n📍 Main Campus: Mugaliyachap, Near Ratibad, Bhopal - 462044\n📍 City Hub: Near Kaliasoth Barrage, Chandanpura, Bhopal – 462007\n\n📞 Phone: 0755-6611100, 6611140\n📱 Mobile: +91-7471110103\n📧 Email: info@jlu.edu.in\n🌐 Website: www.jlu.edu.in\n\n⏰ Office Hours: Mon-Sat, 9 AM - 5 PM',
+    response: 'Contact JLU Bhopal:\n\nMain Campus: Mugaliyachap, Near Ratibad, Bhopal - 462044\nCity Hub: Near Kaliasoth Barrage, Chandanpura, Bhopal – 462007\n\nPhone: 0755-6611100, 6611140\nMobile: +91-7471110103\nEmail: info@jlu.edu.in\nWebsite: www.jlu.edu.in\n\nOffice Hours: Mon-Sat, 9 AM - 5 PM',
   },
   {
     keywords: ['ragging', 'anti-ragging', 'complaint', 'harassment'],
-    response: 'JLU Anti-Ragging Policy:\n\n🚨 ZERO TOLERANCE for ragging!\n\n📞 National Helpline: 1800-180-5522 (24/7)\n📧 Email: antiragging@jlu.edu.in\n\n✅ Anonymous reporting available\n✅ Confidential handling\n✅ UGC compliant\n✅ Strict action against offenders\n\nReport immediately - Your safety is our priority!',
+    response: 'JLU Anti-Ragging Policy:\n\nZERO TOLERANCE for ragging!\n\nNational Helpline: 1800-180-5522 (24/7)\nEmail: antiragging@jlu.edu.in\n\n• Anonymous reporting available\n• Confidential handling\n• UGC compliant\n• Strict action against offenders\n\nReport immediately - Your safety is our priority!',
   },
   {
     keywords: ['event', 'fest', 'cultural', 'technical', 'activity'],
-    response: 'JLU Annual Events:\n\n🎭 Foundation Day Celebration (May 1st)\n📰 International Festival of Media (March)\n🎪 Lakecity Fest - Cultural extravaganza\n💻 Technovate - Technical fest\n🏆 Sports Week\n📖 Literary Festival\n🎓 Convocation Ceremony\n\nRecent: 11th Foundation Day (May 2024), 7th Media Festival (March 2024)\n\nFollow @jlubhopal on Instagram!',
+    response: 'JLU Annual Events:\n\n• Foundation Day Celebration (May 1st)\n• International Festival of Media (March)\n• Lakecity Fest - Cultural extravaganza\n• Technovate - Technical fest\n• Sports Week\n• Literary Festival\n• Convocation Ceremony\n\nRecent: 11th Foundation Day (May 2024), 7th Media Festival (March 2024)\n\nFollow @jlubhopal on Instagram!',
   },
   {
     keywords: ['ranking', 'naac', 'accreditation', 'rating', 'recognition'],
-    response: 'JLU Rankings & Recognition:\n\n⭐ NAAC A+ Accredited\n💎 QS I-GAUGE Diamond Rating (First in MP!)\n🏆 NIRF Rank: 151-200 (2024)\n📰 India Today Rank: #49 Private University\n🥇 University of the Year - MP Govt (2015-2019)\n\nApprovals: UGC, AICTE, BCI, PCI\nMemberships: CII, AIMA, AIU',
+    response: 'JLU Rankings & Recognition:\n\n• NAAC A+ Accredited\n• QS I-GAUGE Diamond Rating (First in MP!)\n• NIRF Rank: 151-200 (2024)\n• India Today Rank: #49 Private University\n• University of the Year - MP Govt (2015-2019)\n\nApprovals: UGC, AICTE, BCI, PCI\nMemberships: CII, AIMA, AIU',
   },
   {
     keywords: ['time', 'timing', 'schedule', 'hours', 'when'],
-    response: 'JLU Timings:\n\n🏫 Classes: 9:00 AM - 5:00 PM (Mon-Sat)\n📚 Library: 8:00 AM - 10:00 PM\n🏢 Admin Office: 9:00 AM - 5:00 PM\n🎓 Admission Office: 9 AM - 5 PM (Open Sundays during admission season)\n\nCampus is closed on national holidays.',
+    response: 'JLU Timings:\n\n• Classes: 9:00 AM - 5:00 PM (Mon-Sat)\n• Library: 8:00 AM - 10:00 PM\n• Admin Office: 9:00 AM - 5:00 PM\n• Admission Office: 9 AM - 5 PM (Open Sundays during admission season)\n\nCampus is closed on national holidays.',
   },
   {
     keywords: ['bye', 'goodbye', 'thanks', 'thank you', 'thank'],
-    response: 'Thank you for choosing JLU! 🎓\n\nFor more info:\n📞 0755-6611100\n📧 info@jlu.edu.in\n🌐 www.jlu.edu.in\n\nVisit our campus for a tour!\nHave a great day! 😊',
+    response: 'Thank you for choosing JLU!\n\nFor more info:\nPhone: 0755-6611100\nEmail: info@jlu.edu.in\nWebsite: www.jlu.edu.in\n\nVisit our campus for a tour!\nHave a great day!',
   },
 ];
 

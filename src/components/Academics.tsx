@@ -385,6 +385,188 @@ const Academics = () => {
         </div>
       </div>
 
+      {/* ═══════════════════════════════════════════════════════════ */}
+      {/* PROGRAMS SHOWCASE — Visual category cards linking to /programs */}
+      {/* ═══════════════════════════════════════════════════════════ */}
+      <div id="undergraduate-programs" />
+      <div id="postgraduate-programs" />
+      <div id="doctoral-programs" />
+      <div className="w-full bg-white">
+        <div
+          className="mx-auto px-5 py-16 sm:px-8 sm:py-20 md:px-[120px] md:py-[100px]"
+          style={{ maxWidth: '1440px' }}
+        >
+          {/* Section Header */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+            className="flex flex-col md:flex-row md:justify-between md:items-end gap-4 md:gap-8 mb-10 md:mb-16"
+          >
+            <div>
+              <span
+                className="text-[#999] uppercase tracking-widest block mb-4 text-[10px] md:text-xs"
+                style={{ letterSpacing: '0.2em' }}
+              >
+                What We Offer
+              </span>
+              <h2
+                className="text-[#21313c] text-2xl sm:text-3xl md:text-[clamp(2.5rem,5vw,4rem)]"
+                style={{
+                  fontWeight: 600,
+                  lineHeight: 1.1,
+                  letterSpacing: '-0.03em',
+                }}
+              >
+                Explore Our{' '}
+                <span style={{ fontFamily: "'Times New Roman', serif", fontStyle: 'italic', fontWeight: 400 }}>
+                  Programs
+                </span>
+              </h2>
+            </div>
+            <p
+              className="text-[#666] text-sm md:text-base max-w-full md:max-w-[380px]"
+              style={{ lineHeight: 1.7 }}
+            >
+              51+ programs across 7 faculties, designed to shape future-ready professionals with industry-relevant skills.
+            </p>
+          </motion.div>
+
+          {/* Program Category Cards */}
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 md:gap-5 mb-8 md:mb-12">
+            {[
+              {
+                label: 'Undergraduate',
+                tag: 'UG',
+                count: '34',
+                image: 'https://images.unsplash.com/photo-1523240795612-9a054b0db644?w=800&q=80',
+                color: '#c3fd7a',
+              },
+              {
+                label: 'Postgraduate',
+                tag: 'PG',
+                count: '13',
+                image: 'https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=800&q=80',
+                color: '#f0c14b',
+              },
+              {
+                label: 'Doctoral',
+                tag: 'PhD',
+                count: '1',
+                image: 'https://images.unsplash.com/photo-1532094349884-543bc11b234d?w=800&q=80',
+                color: '#8bc34a',
+              },
+              {
+                label: 'Diploma',
+                tag: 'Diploma',
+                count: '3',
+                image: 'https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=800&q=80',
+                color: '#e85a71',
+              },
+            ].map((cat, i) => (
+              <motion.div
+                key={cat.tag}
+                initial={{ opacity: 0, y: 40 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: i * 0.1 }}
+                viewport={{ once: true }}
+              >
+                <Link
+                  href="/programs"
+                  className="group relative block overflow-hidden rounded-2xl"
+                  style={{ aspectRatio: isMobile ? '1 / 1.1' : '1 / 1.25' }}
+                >
+                  <Image
+                    src={cat.image}
+                    alt={cat.label}
+                    fill
+                    className="object-cover transition-transform duration-700 group-hover:scale-110"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-black/10 group-hover:from-black/90 transition-colors duration-300" />
+
+                  {/* Tag */}
+                  <div className="absolute top-3 left-3 md:top-4 md:left-4">
+                    <span
+                      className="text-[10px] md:text-xs font-bold uppercase tracking-wider px-3 py-1 rounded-full"
+                      style={{ backgroundColor: cat.color, color: '#21313c' }}
+                    >
+                      {cat.tag}
+                    </span>
+                  </div>
+
+                  {/* Content */}
+                  <div className="absolute bottom-0 left-0 right-0 p-4 md:p-6">
+                    <span
+                      className="text-3xl md:text-5xl font-bold block mb-1"
+                      style={{ color: cat.color, letterSpacing: '-0.03em', lineHeight: 1 }}
+                    >
+                      {cat.count}
+                    </span>
+                    <span className="text-white/50 text-[10px] md:text-xs uppercase tracking-wider block mb-2">
+                      Programs
+                    </span>
+                    <h3 className="text-white text-sm md:text-lg font-semibold" style={{ lineHeight: 1.2 }}>
+                      {cat.label}
+                    </h3>
+
+                    {/* Arrow */}
+                    <div className="mt-3 flex items-center gap-2 text-white/0 group-hover:text-white/70 transition-all duration-300 translate-y-2 group-hover:translate-y-0">
+                      <span className="text-xs font-medium">Explore</span>
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                        <path d="M5 12h14M12 5l7 7-7 7" />
+                      </svg>
+                    </div>
+                  </div>
+                </Link>
+              </motion.div>
+            ))}
+          </div>
+
+          {/* Featured Programs Strip */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.3 }}
+            viewport={{ once: true }}
+            className="border-t border-[#e5e5e5] pt-8 md:pt-10"
+          >
+            <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
+              {/* Featured pills */}
+              <div className="flex flex-wrap gap-2">
+                {[
+                  'B.Tech CSE — AI & ML',
+                  'MBA',
+                  'BA LLB',
+                  'B.Des UI/UX',
+                  'B.Pharm',
+                  'BBA Sports Mgmt',
+                ].map((prog) => (
+                  <Link
+                    key={prog}
+                    href="/programs"
+                    className="text-[#666] text-xs md:text-sm bg-[#f6f7f0] border border-[#e5e5e5] hover:border-[#21313c]/40 hover:text-[#21313c] px-4 py-2 rounded-full transition-all duration-300"
+                  >
+                    {prog}
+                  </Link>
+                ))}
+              </div>
+
+              {/* View All CTA */}
+              <Link
+                href="/programs"
+                className="inline-flex items-center gap-3 bg-[#21313c] text-white px-6 py-3 md:px-8 md:py-4 rounded-full font-semibold text-sm hover:scale-105 transition-transform shrink-0 self-start md:self-auto"
+              >
+                View All Programs
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M5 12h14M12 5l7 7-7 7" />
+                </svg>
+              </Link>
+            </div>
+          </motion.div>
+        </div>
+      </div>
+
       {/* Philosophy Section - Awwwards Style */}
       <div className="w-full bg-white">
         <div
@@ -587,6 +769,13 @@ const Academics = () => {
       {/* ═══════════════════════════════════════════════════════════ */}
       {/* FACULTY EXPLORER — Interactive Tabs + School Cards + Modal */}
       {/* ═══════════════════════════════════════════════════════════ */}
+      <div id="school-of-engineering" />
+      <div id="school-of-business" />
+      <div id="school-of-law" />
+      <div id="school-of-liberal-arts" />
+      <div id="school-of-architecture" />
+      <div id="school-of-pharmacy" />
+      <div id="school-of-journalism" />
       <div className="w-full bg-[#21313c]">
         <div
           className="mx-auto px-5 py-16 sm:px-8 sm:py-20 md:px-[120px] md:py-[140px]"
@@ -735,7 +924,7 @@ const Academics = () => {
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.5, delay: 0.15 + index * 0.1 }}
                     onClick={() => setSelectedSchool(school)}
-                    className="group cursor-pointer bg-[#2d3f4a] rounded-2xl overflow-hidden hover:bg-[#354b58] transition-all duration-400 hover:shadow-xl hover:shadow-black/20 hover:-translate-y-1"
+                    className="group cursor-pointer bg-[#2d3f4a] rounded-2xl overflow-hidden hover:bg-[#354b58] transition-all duration-400 hover:shadow-xl hover:shadow-black/20 hover:-translate-y-1 flex flex-col"
                   >
                     {/* Card Image */}
                     <div className="relative h-[160px] md:h-[180px] overflow-hidden">
@@ -759,7 +948,7 @@ const Academics = () => {
                     </div>
 
                     {/* Card Content */}
-                    <div className="p-4 md:p-5">
+                    <div className="p-4 md:p-5 flex flex-col flex-1">
                       <h4 className="text-white font-semibold text-sm md:text-base mb-2 group-hover:text-[#f0c14b] transition-colors" style={{ lineHeight: 1.3 }}>
                         {school.name}
                       </h4>
@@ -788,7 +977,7 @@ const Academics = () => {
                       <Link
                         href={`/schools/${school.id}`}
                         onClick={(e) => e.stopPropagation()}
-                        className="flex items-center gap-2 text-[#c3fd7a] text-xs md:text-sm font-medium hover:text-[#d4ff99] transition-colors"
+                        className="flex items-center gap-2 text-[#c3fd7a] text-xs md:text-sm font-medium hover:text-[#d4ff99] transition-colors mt-auto"
                       >
                         <span>Explore School</span>
                         <motion.svg
@@ -812,7 +1001,7 @@ const Academics = () => {
       </div>
 
       {/* Teaching Methodology Section */}
-      <div className="w-full bg-[#f6f7f0]">
+      <div id="online-programs" className="w-full bg-[#f6f7f0]">
         <div
           className="mx-auto px-5 py-16 sm:px-8 sm:py-20 md:px-[120px] md:py-[140px]"
           style={{
@@ -909,7 +1098,7 @@ const Academics = () => {
       </div>
 
       {/* Student & Faculty Voices Section - Awwwards Style */}
-      <div className="w-full bg-white">
+      <div id="executive-education" className="w-full bg-white">
         <div
           className="mx-auto px-5 py-16 sm:px-8 sm:py-20 md:px-[120px] md:py-[140px]"
           style={{

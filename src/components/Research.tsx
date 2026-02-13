@@ -294,7 +294,7 @@ const Research = () => {
       </div>
 
       {/* Research Ecosystem Section */}
-      <div className="w-full bg-white">
+      <div id="research-centers" className="w-full bg-white">
         <div
           className="mx-auto px-5 py-12 md:px-10 md:py-16 lg:px-30 lg:py-20"
           style={{
@@ -344,7 +344,7 @@ const Research = () => {
       </div>
 
       {/* Stats Section */}
-      <div className="w-full bg-[#e8e8e8]">
+      <div id="research-areas" className="w-full bg-[#e8e8e8]">
         <div
           className="mx-auto px-5 py-10 md:px-10 md:py-12 lg:px-30 lg:py-16"
           style={{
@@ -373,7 +373,7 @@ const Research = () => {
       </div>
 
       {/* Publications Section */}
-      <div className="w-full bg-[#f6f7f0]">
+      <div id="publications" className="w-full bg-[#f6f7f0]">
         <div
           className="mx-auto px-5 py-12 md:px-10 md:py-16 lg:px-30 lg:py-20"
           style={{
@@ -482,7 +482,7 @@ const Research = () => {
       </div>
 
       {/* Latest Publication Section */}
-      <div className="w-full bg-white">
+      <div id="research-projects" className="w-full bg-white">
         <div
           className="mx-auto px-5 py-12 md:px-10 md:py-16 lg:px-30 lg:py-20"
           style={{
@@ -551,7 +551,7 @@ const Research = () => {
       </div>
 
       {/* Faculty Spotlight Section */}
-      <div className="w-full bg-white">
+      <div id="innovation-labs" className="w-full bg-white">
         <div
           className="mx-auto px-5 py-12 md:px-10 md:py-16 lg:px-30 lg:py-20"
           style={{
@@ -606,7 +606,7 @@ const Research = () => {
       </div>
 
       {/* Patents Section */}
-      <div className="w-full bg-[#f6f7f0]">
+      <div id="collaborations" className="w-full bg-[#f6f7f0]">
         <div
           className="mx-auto px-5 py-12 md:px-10 md:py-16 lg:px-30 lg:py-20"
           style={{
@@ -672,7 +672,7 @@ const Research = () => {
       </div>
 
       {/* Funded Projects Section */}
-      <div className="w-full bg-white">
+      <div id="research-funding" className="w-full bg-white">
         <div
           className="mx-auto px-5 py-12 md:px-10 md:py-16 lg:px-30 lg:py-20"
           style={{

@@ -464,7 +464,7 @@ const CampusLife = () => {
       {/* ═══════════════════════════════════════════════════════ */}
       {/* 1. STUDENT COUNCIL — Image + Text Split with Parallax */}
       {/* ═══════════════════════════════════════════════════════ */}
-      <div className="w-full bg-white">
+      <div id="student-council" className="w-full bg-white">
         <div className="mx-auto px-5 sm:px-8 md:px-[120px] py-20 md:py-32" style={{ maxWidth: '1440px' }}>
           {/* Top: Image banner with parallax + heading overlay */}
           <div ref={councilImgRef} className="relative w-full h-[300px] md:h-[420px] rounded-2xl overflow-hidden mb-16">
@@ -586,7 +586,7 @@ const CampusLife = () => {
       {/* ═══════════════════════════════════════════════════════ */}
       {/* 2. STUDENT CLUBS — Image Card + List Selector */}
       {/* ═══════════════════════════════════════════════════════ */}
-      <div className="w-full" style={{ backgroundColor: '#f6f7f0' }}>
+      <div id="student-clubs" className="w-full" style={{ backgroundColor: '#f6f7f0' }}>
         <div className="mx-auto px-5 sm:px-8 md:px-[120px] py-20 md:py-32" style={{ maxWidth: '1440px' }}>
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -710,7 +710,7 @@ const CampusLife = () => {
       {/* ═══════════════════════════════════════════════════════ */}
       {/* 3. STUDENT ACHIEVEMENTS — Image + Accordion Split */}
       {/* ═══════════════════════════════════════════════════════ */}
-      <div className="w-full bg-white">
+      <div id="cultural-activities" className="w-full bg-white">
         <div className="mx-auto px-5 sm:px-8 md:px-[120px] py-20 md:py-32" style={{ maxWidth: '1440px' }}>
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -971,7 +971,7 @@ const CampusLife = () => {
       {/* 4. CORPORATE RELATIONS — Full-width Parallax Banner + Dark Section */}
       {/* ═══════════════════════════════════════════════════════ */}
       {/* Parallax image break */}
-      <div ref={corpBannerRef} className="relative w-full h-[40vh] md:h-[50vh] overflow-hidden">
+      <div id="sports-and-recreation" ref={corpBannerRef} className="relative w-full h-[40vh] md:h-[50vh] overflow-hidden">
         <motion.div className="absolute inset-0" style={{ y: corpBannerY }}>
           <Image
             src="/campus/gallery-8.jpg"
@@ -1005,7 +1005,7 @@ const CampusLife = () => {
         </div>
       </div>
 
-      <div className="w-full" style={{ backgroundColor: '#21313c' }}>
+      <div id="events-and-festivals" className="w-full" style={{ backgroundColor: '#21313c' }}>
         <div className="mx-auto px-5 sm:px-8 md:px-[120px] py-20 md:py-28" style={{ maxWidth: '1440px' }}>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
@@ -1122,7 +1122,7 @@ const CampusLife = () => {
       {/* ═══════════════════════════════════════════════════════ */}
       {/* 5. IgnitoX — INCUBATION HUB with Image */}
       {/* ═══════════════════════════════════════════════════════ */}
-      <div className="w-full bg-white">
+      <div id="community-service" className="w-full bg-white">
         <div className="mx-auto px-5 sm:px-8 md:px-[120px] py-20 md:py-32" style={{ maxWidth: '1440px' }}>
           <div className="flex flex-col lg:flex-row gap-12 lg:gap-20">
             {/* Left - Content */}
@@ -1228,7 +1228,7 @@ const CampusLife = () => {
       {/* 6. IGNITING MINDS — Image Banner + Speaker Cards */}
       {/* ═══════════════════════════════════════════════════════ */}
       {/* Full-width parallax image header */}
-      <div ref={ignitingRef} className="relative w-full h-[50vh] md:h-[60vh] overflow-hidden">
+      <div id="health-and-wellness" ref={ignitingRef} className="relative w-full h-[50vh] md:h-[60vh] overflow-hidden">
         <motion.div className="absolute inset-0" style={{ y: ignitingY }}>
           <Image
             src="/campus/gallery-10.jpg"

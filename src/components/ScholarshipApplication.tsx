@@ -1,0 +1,754 @@
+'use client';
+
+import { useState, useRef } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+
+interface ScholarshipFormData {
+  name: string;
+  email: string;
+  phone: string;
+  dob: string;
+  programLevel: string;
+  course: string;
+  previousQualification: string;
+  admissionYear: string;
+  scholarshipType: string;
+  // Merit fields
+  academicPercentage: string;
+  // Sports fields
+  sportName: string;
+  achievementLevel: string;
+  medalType: string;
+  // Need-based / Freeship fields
+  familyIncome: string;
+  statementOfNeed: string;
+  consent: boolean;
+}
+
+const programOptions: Record<string, string[]> = {
+  UG: [
+    'B.Tech CSE', 'B.Tech CSE (AI & ML)', 'B.Tech CSE (Data Science)', 'B.Tech ECE', 'B.Tech Mechanical', 'B.Tech Civil',
+    'BBA', 'BBA (Sports Management)', 'B.Com', 'BMS',
+    'BA LLB', 'BBA LLB', 'LLB',
+    'BA Journalism', 'BA Mass Communication', 'B.Sc Film Making',
+    'B.Pharma', 'D.Pharma',
+    'BCA', 'B.Sc Computer Science', 'B.Sc Data Science',
+    'BA English', 'B.Des', 'BFA',
+    'BHM', 'BBA Hospitality',
+  ],
+  PG: [
+    'MBA', 'MBA (Business Analytics)', 'MBA (Sports Management)', 'MBA (Hospitality)',
+    'M.Tech CSE', 'M.Tech ECE', 'MCA', 'M.Sc Computer Science',
+    'MA Journalism', 'MA Mass Communication',
+    'LLM', 'M.Com', 'MA English', 'M.Des',
+    'M.Pharma',
+  ],
+  PhD: [
+    'Ph.D. Engineering', 'Ph.D. Management', 'Ph.D. Science', 'Ph.D. Law', 'Ph.D. Arts & Humanities',
+  ],
+};
+
+const customEase: [number, number, number, number] = [0.22, 1, 0.36, 1];
+
+const ScholarshipApplication = () => {
+  const formRef = useRef<HTMLFormElement>(null);
+  const [currentStep, setCurrentStep] = useState(1);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isSubmitted, setIsSubmitted] = useState(false);
+  const [errors, setErrors] = useState<Record<string, string>>({});
+  const [formData, setFormData] = useState<ScholarshipFormData>({
+    name: '',
+    email: '',
+    phone: '',
+    dob: '',
+    programLevel: '',
+    course: '',
+    previousQualification: '',
+    admissionYear: '',
+    scholarshipType: '',
+    academicPercentage: '',
+    sportName: '',
+    achievementLevel: '',
+    medalType: '',
+    familyIncome: '',
+    statementOfNeed: '',
+    consent: false,
+  });
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
+    const { name, value, type } = e.target;
+    const checked = (e.target as HTMLInputElement).checked;
+    setFormData(prev => ({
+      ...prev,
+      [name]: type === 'checkbox' ? checked : value,
+      ...(name === 'programLevel' ? { course: '' } : {}),
+      ...(name === 'scholarshipType' ? { academicPercentage: '', sportName: '', achievementLevel: '', medalType: '', familyIncome: '', statementOfNeed: '' } : {}),
+    }));
+    if (errors[name]) {
+      setErrors(prev => ({ ...prev, [name]: '' }));
+    }
+  };
+
+  const validateStep = (step: number): boolean => {
+    const newErrors: Record<string, string> = {};
+
+    if (step === 1) {
+      if (!formData.name.trim()) newErrors.name = 'Name is required';
+      if (!formData.email.trim()) newErrors.email = 'Email is required';
+      else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) newErrors.email = 'Enter a valid email';
+      if (!formData.phone.trim()) newErrors.phone = 'Phone number is required';
+      else if (!/^[0-9]{10}$/.test(formData.phone.replace(/\D/g, ''))) newErrors.phone = 'Enter a valid 10-digit number';
+      if (!formData.dob) newErrors.dob = 'Date of birth is required';
+    }
+
+    if (step === 2) {
+      if (!formData.programLevel) newErrors.programLevel = 'Select a program level';
+      if (!formData.course) newErrors.course = 'Select a course';
+      if (!formData.previousQualification.trim()) newErrors.previousQualification = 'Previous qualification is required';
+      if (!formData.admissionYear) newErrors.admissionYear = 'Select admission year';
+    }
+
+    if (step === 3) {
+      if (!formData.scholarshipType) newErrors.scholarshipType = 'Select a scholarship type';
+      if (formData.scholarshipType === 'merit' && !formData.academicPercentage.trim()) newErrors.academicPercentage = 'Enter your percentage/CGPA';
+      if (formData.scholarshipType === 'sports') {
+        if (!formData.sportName.trim()) newErrors.sportName = 'Enter sport name';
+        if (!formData.achievementLevel) newErrors.achievementLevel = 'Select achievement level';
+        if (!formData.medalType) newErrors.medalType = 'Select medal type';
+      }
+      if (formData.scholarshipType === 'need-based' && !formData.familyIncome) newErrors.familyIncome = 'Select family income range';
+      if (formData.scholarshipType === 'chancellor') {
+        if (!formData.familyIncome) newErrors.familyIncome = 'Select family income range';
+        if (!formData.statementOfNeed.trim()) newErrors.statementOfNeed = 'Provide a brief statement';
+      }
+      if (!formData.consent) newErrors.consent = 'You must agree to the terms';
+    }
+
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  };
+
+  const handleNext = () => {
+    if (validateStep(currentStep)) {
+      setCurrentStep(prev => Math.min(prev + 1, 3));
+    }
+  };
+
+  const handlePrev = () => {
+    setCurrentStep(prev => Math.max(prev - 1, 1));
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!validateStep(3)) return;
+
+    setIsSubmitting(true);
+    await new Promise(resolve => setTimeout(resolve, 2000));
+    setIsSubmitting(false);
+    setIsSubmitted(true);
+  };
+
+  const availableCourses = formData.programLevel ? programOptions[formData.programLevel] || [] : [];
+
+  const inputClasses = "w-full px-5 py-4 bg-white border-2 border-gray-200 rounded-xl text-[#21313c] placeholder-gray-400 focus:border-[#c3fd7a] focus:outline-none transition-colors text-base";
+  const labelClasses = "block text-[#21313c] font-medium mb-2 text-sm";
+  const selectClasses = "w-full px-5 py-4 bg-white border-2 border-gray-200 rounded-xl text-[#21313c] focus:border-[#c3fd7a] focus:outline-none transition-colors text-base appearance-none cursor-pointer";
+  const errorClasses = "text-red-500 text-xs mt-1";
+
+  const stepLabels = ['Personal Info', 'Academics', 'Scholarship'];
+
+  return (
+    <section className="min-h-screen bg-[#f6f7f0]">
+      {/* Hero Section */}
+      <div className="relative overflow-hidden">
+        <div className="absolute inset-0 z-0">
+          <img
+            src="/campus/gallery-11.jpg"
+            alt="JLU Scholarship"
+            className="w-full h-full object-cover"
+          />
+          <div className="absolute inset-0 bg-black/60" />
+        </div>
+
+        {/* Hero Content */}
+        <div className="relative z-10 pt-24 pb-12">
+          <div className="max-w-7xl mx-auto px-5 md:px-10 lg:px-20 w-full">
+            <motion.div
+              className="text-center"
+              initial={{ opacity: 0, y: 40 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, ease: customEase }}
+            >
+              <span
+                className="text-white/70 uppercase tracking-widest block mb-4"
+                style={{ fontSize: '12px', letterSpacing: '0.2em' }}
+              >
+                Financial Support
+              </span>
+              <h1
+                className="text-white mb-4"
+                style={{
+                  fontSize: 'clamp(2.5rem, 5vw, 4rem)',
+                  fontWeight: 600,
+                  lineHeight: 1.1,
+                  letterSpacing: '-0.03em',
+                }}
+              >
+                Apply for{' '}
+                <span style={{ fontFamily: "'Times New Roman', serif", fontStyle: 'italic', fontWeight: 400 }}>
+                  Scholarship
+                </span>
+              </h1>
+              <p
+                className="text-white/80 mx-auto"
+                style={{ fontSize: '16px', lineHeight: 1.7, maxWidth: '600px' }}
+              >
+                JLU offers merit-based, sports, and need-based scholarships with tuition waivers up to 100%.
+                Fill in your details and our scholarship committee will evaluate your application.
+              </p>
+            </motion.div>
+          </div>
+        </div>
+
+        {/* Form Section */}
+        <div className="relative z-10 pb-20">
+          <div className="max-w-2xl mx-auto px-5 md:px-10">
+            <motion.div
+              initial={{ opacity: 0, y: 40 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.3, ease: customEase }}
+            >
+              <div className="bg-white rounded-3xl p-6 md:p-10 shadow-xl">
+                {!isSubmitted ? (
+                  <>
+                    {/* Progress Steps */}
+                    <div className="flex items-center justify-center gap-3 mb-10">
+                      {[1, 2, 3].map((step) => (
+                        <div key={step} className="flex items-center">
+                          <div className="flex flex-col items-center">
+                            <motion.div
+                              className={`w-10 h-10 rounded-full flex items-center justify-center font-semibold text-sm transition-colors ${
+                                currentStep >= step
+                                  ? 'bg-[#c3fd7a] text-[#21313c]'
+                                  : 'bg-gray-200 text-gray-500'
+                              }`}
+                              animate={{ scale: currentStep === step ? 1.1 : 1 }}
+                              transition={{ duration: 0.3 }}
+                            >
+                              {currentStep > step ? (
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3">
+                                  <path d="M20 6L9 17l-5-5" strokeLinecap="round" strokeLinejoin="round" />
+                                </svg>
+                              ) : (
+                                step
+                              )}
+                            </motion.div>
+                            <span className={`text-[10px] mt-1.5 font-medium ${currentStep >= step ? 'text-[#21313c]' : 'text-gray-400'}`}>
+                              {stepLabels[step - 1]}
+                            </span>
+                          </div>
+                          {step < 3 && (
+                            <div
+                              className={`w-10 h-1 mx-2 rounded-full transition-colors ${
+                                currentStep > step ? 'bg-[#c3fd7a]' : 'bg-gray-200'
+                              }`}
+                            />
+                          )}
+                        </div>
+                      ))}
+                    </div>
+
+                    <form ref={formRef} onSubmit={handleSubmit}>
+                      <AnimatePresence mode="wait">
+                        {/* Step 1: Personal Information */}
+                        {currentStep === 1 && (
+                          <motion.div
+                            key="step1"
+                            initial={{ opacity: 0, x: 20 }}
+                            animate={{ opacity: 1, x: 0 }}
+                            exit={{ opacity: 0, x: -20 }}
+                            transition={{ duration: 0.4, ease: customEase }}
+                            className="space-y-5"
+                          >
+                            <div>
+                              <label className={labelClasses}>Full Name *</label>
+                              <input
+                                type="text"
+                                name="name"
+                                value={formData.name}
+                                onChange={handleInputChange}
+                                placeholder="Enter your full name"
+                                className={inputClasses}
+                              />
+                              {errors.name && <p className={errorClasses}>{errors.name}</p>}
+                            </div>
+                            <div>
+                              <label className={labelClasses}>Email Address *</label>
+                              <input
+                                type="email"
+                                name="email"
+                                value={formData.email}
+                                onChange={handleInputChange}
+                                placeholder="Enter your email address"
+                                className={inputClasses}
+                              />
+                              {errors.email && <p className={errorClasses}>{errors.email}</p>}
+                            </div>
+                            <div>
+                              <label className={labelClasses}>Mobile Number *</label>
+                              <div className="flex gap-3">
+                                <div className="flex items-center px-4 bg-gray-100 border-2 border-gray-200 rounded-xl text-[#21313c] font-medium">
+                                  +91
+                                </div>
+                                <input
+                                  type="tel"
+                                  name="phone"
+                                  value={formData.phone}
+                                  onChange={handleInputChange}
+                                  placeholder="Enter your mobile number"
+                                  className={`${inputClasses} flex-1`}
+                                  maxLength={10}
+                                />
+                              </div>
+                              {errors.phone && <p className={errorClasses}>{errors.phone}</p>}
+                            </div>
+                            <div>
+                              <label className={labelClasses}>Date of Birth *</label>
+                              <input
+                                type="date"
+                                name="dob"
+                                value={formData.dob}
+                                onChange={handleInputChange}
+                                className={inputClasses}
+                              />
+                              {errors.dob && <p className={errorClasses}>{errors.dob}</p>}
+                            </div>
+                          </motion.div>
+                        )}
+
+                        {/* Step 2: Academic Details */}
+                        {currentStep === 2 && (
+                          <motion.div
+                            key="step2"
+                            initial={{ opacity: 0, x: 20 }}
+                            animate={{ opacity: 1, x: 0 }}
+                            exit={{ opacity: 0, x: -20 }}
+                            transition={{ duration: 0.4, ease: customEase }}
+                            className="space-y-5"
+                          >
+                            <div>
+                              <label className={labelClasses}>Program Level *</label>
+                              <div className="relative">
+                                <select
+                                  name="programLevel"
+                                  value={formData.programLevel}
+                                  onChange={handleInputChange}
+                                  className={selectClasses}
+                                >
+                                  <option value="">Select program level</option>
+                                  <option value="UG">Undergraduate (UG)</option>
+                                  <option value="PG">Postgraduate (PG)</option>
+                                  <option value="PhD">Doctoral (PhD)</option>
+                                </select>
+                                <svg className="absolute right-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400 pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                                </svg>
+                              </div>
+                              {errors.programLevel && <p className={errorClasses}>{errors.programLevel}</p>}
+                            </div>
+                            <div>
+                              <label className={labelClasses}>Course Applied For *</label>
+                              <div className="relative">
+                                <select
+                                  name="course"
+                                  value={formData.course}
+                                  onChange={handleInputChange}
+                                  className={selectClasses}
+                                  disabled={!formData.programLevel}
+                                >
+                                  <option value="">
+                                    {formData.programLevel ? 'Select a course' : 'Select program level first'}
+                                  </option>
+                                  {availableCourses.map((c) => (
+                                    <option key={c} value={c}>{c}</option>
+                                  ))}
+                                </select>
+                                <svg className="absolute right-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400 pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                                </svg>
+                              </div>
+                              {errors.course && <p className={errorClasses}>{errors.course}</p>}
+                            </div>
+                            <div>
+                              <label className={labelClasses}>Previous Qualification *</label>
+                              <input
+                                type="text"
+                                name="previousQualification"
+                                value={formData.previousQualification}
+                                onChange={handleInputChange}
+                                placeholder="e.g. 12th — 92%, B.Tech — 8.5 CGPA"
+                                className={inputClasses}
+                              />
+                              {errors.previousQualification && <p className={errorClasses}>{errors.previousQualification}</p>}
+                            </div>
+                            <div>
+                              <label className={labelClasses}>Year of Admission *</label>
+                              <div className="relative">
+                                <select
+                                  name="admissionYear"
+                                  value={formData.admissionYear}
+                                  onChange={handleInputChange}
+                                  className={selectClasses}
+                                >
+                                  <option value="">Select year</option>
+                                  <option value="2025-26">2025–26</option>
+                                  <option value="2026-27">2026–27</option>
+                                </select>
+                                <svg className="absolute right-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400 pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                                </svg>
+                              </div>
+                              {errors.admissionYear && <p className={errorClasses}>{errors.admissionYear}</p>}
+                            </div>
+                          </motion.div>
+                        )}
+
+                        {/* Step 3: Scholarship Details */}
+                        {currentStep === 3 && (
+                          <motion.div
+                            key="step3"
+                            initial={{ opacity: 0, x: 20 }}
+                            animate={{ opacity: 1, x: 0 }}
+                            exit={{ opacity: 0, x: -20 }}
+                            transition={{ duration: 0.4, ease: customEase }}
+                            className="space-y-5"
+                          >
+                            <div>
+                              <label className={labelClasses}>Scholarship Type *</label>
+                              <div className="relative">
+                                <select
+                                  name="scholarshipType"
+                                  value={formData.scholarshipType}
+                                  onChange={handleInputChange}
+                                  className={selectClasses}
+                                >
+                                  <option value="">Select scholarship type</option>
+                                  <option value="merit">Merit-Based Scholarship</option>
+                                  <option value="sports">Sports Scholarship</option>
+                                  <option value="need-based">Need-Based Scholarship</option>
+                                  <option value="chancellor">Chancellor Freeship</option>
+                                </select>
+                                <svg className="absolute right-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400 pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                                </svg>
+                              </div>
+                              {errors.scholarshipType && <p className={errorClasses}>{errors.scholarshipType}</p>}
+                            </div>
+
+                            {/* Conditional: Merit */}
+                            {formData.scholarshipType === 'merit' && (
+                              <motion.div
+                                initial={{ opacity: 0, height: 0 }}
+                                animate={{ opacity: 1, height: 'auto' }}
+                                className="space-y-5"
+                              >
+                                <div className="p-4 bg-[#f6f7f0] rounded-xl border border-[#e5e5e5]">
+                                  <p className="text-xs text-[#666] mb-1">Eligibility: 90%+ in 12th (UG) or 80%+ in graduation (PG)</p>
+                                  <p className="text-xs text-[#21313c] font-medium">Up to 100% tuition fee waiver based on percentage</p>
+                                </div>
+                                <div>
+                                  <label className={labelClasses}>Academic Percentage / CGPA *</label>
+                                  <input
+                                    type="text"
+                                    name="academicPercentage"
+                                    value={formData.academicPercentage}
+                                    onChange={handleInputChange}
+                                    placeholder="e.g. 95% or 9.2 CGPA"
+                                    className={inputClasses}
+                                  />
+                                  {errors.academicPercentage && <p className={errorClasses}>{errors.academicPercentage}</p>}
+                                </div>
+                              </motion.div>
+                            )}
+
+                            {/* Conditional: Sports */}
+                            {formData.scholarshipType === 'sports' && (
+                              <motion.div
+                                initial={{ opacity: 0, height: 0 }}
+                                animate={{ opacity: 1, height: 'auto' }}
+                                className="space-y-5"
+                              >
+                                <div className="p-4 bg-[#f6f7f0] rounded-xl border border-[#e5e5e5]">
+                                  <p className="text-xs text-[#666] mb-1">For state, national & international level sportspersons</p>
+                                  <p className="text-xs text-[#21313c] font-medium">Up to 100% tuition + stipend for international medalists</p>
+                                </div>
+                                <div>
+                                  <label className={labelClasses}>Sport Name *</label>
+                                  <input
+                                    type="text"
+                                    name="sportName"
+                                    value={formData.sportName}
+                                    onChange={handleInputChange}
+                                    placeholder="e.g. Athletics, Cricket, Swimming"
+                                    className={inputClasses}
+                                  />
+                                  {errors.sportName && <p className={errorClasses}>{errors.sportName}</p>}
+                                </div>
+                                <div>
+                                  <label className={labelClasses}>Achievement Level *</label>
+                                  <div className="relative">
+                                    <select
+                                      name="achievementLevel"
+                                      value={formData.achievementLevel}
+                                      onChange={handleInputChange}
+                                      className={selectClasses}
+                                    >
+                                      <option value="">Select level</option>
+                                      <option value="international">International</option>
+                                      <option value="national">National</option>
+                                      <option value="state">State</option>
+                                    </select>
+                                    <svg className="absolute right-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400 pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                                    </svg>
+                                  </div>
+                                  {errors.achievementLevel && <p className={errorClasses}>{errors.achievementLevel}</p>}
+                                </div>
+                                <div>
+                                  <label className={labelClasses}>Medal / Achievement *</label>
+                                  <div className="relative">
+                                    <select
+                                      name="medalType"
+                                      value={formData.medalType}
+                                      onChange={handleInputChange}
+                                      className={selectClasses}
+                                    >
+                                      <option value="">Select medal type</option>
+                                      <option value="gold">Gold Medal</option>
+                                      <option value="silver">Silver Medal</option>
+                                      <option value="bronze">Bronze Medal</option>
+                                      <option value="participation">Participation</option>
+                                    </select>
+                                    <svg className="absolute right-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400 pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                                    </svg>
+                                  </div>
+                                  {errors.medalType && <p className={errorClasses}>{errors.medalType}</p>}
+                                </div>
+                              </motion.div>
+                            )}
+
+                            {/* Conditional: Need-Based */}
+                            {formData.scholarshipType === 'need-based' && (
+                              <motion.div
+                                initial={{ opacity: 0, height: 0 }}
+                                animate={{ opacity: 1, height: 'auto' }}
+                                className="space-y-5"
+                              >
+                                <div className="p-4 bg-[#f6f7f0] rounded-xl border border-[#e5e5e5]">
+                                  <p className="text-xs text-[#666] mb-1">For students from economically weaker sections</p>
+                                  <p className="text-xs text-[#21313c] font-medium">Up to 75% tuition waiver + annual support</p>
+                                </div>
+                                <div>
+                                  <label className={labelClasses}>Annual Family Income *</label>
+                                  <div className="relative">
+                                    <select
+                                      name="familyIncome"
+                                      value={formData.familyIncome}
+                                      onChange={handleInputChange}
+                                      className={selectClasses}
+                                    >
+                                      <option value="">Select income range</option>
+                                      <option value="below-1L">Below ₹1,00,000</option>
+                                      <option value="1L-2L">₹1,00,000 – ₹2,00,000</option>
+                                      <option value="2L-3L">₹2,00,000 – ₹3,00,000</option>
+                                    </select>
+                                    <svg className="absolute right-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400 pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                                    </svg>
+                                  </div>
+                                  {errors.familyIncome && <p className={errorClasses}>{errors.familyIncome}</p>}
+                                </div>
+                              </motion.div>
+                            )}
+
+                            {/* Conditional: Chancellor Freeship */}
+                            {formData.scholarshipType === 'chancellor' && (
+                              <motion.div
+                                initial={{ opacity: 0, height: 0 }}
+                                animate={{ opacity: 1, height: 'auto' }}
+                                className="space-y-5"
+                              >
+                                <div className="p-4 bg-[#f0c14b]/15 rounded-xl border border-[#f0c14b]/30">
+                                  <p className="text-xs text-[#666] mb-1">For exceptional students facing financial constraints</p>
+                                  <p className="text-xs text-[#21313c] font-medium">100% tuition waiver + free hostel + monthly stipend</p>
+                                </div>
+                                <div>
+                                  <label className={labelClasses}>Annual Family Income *</label>
+                                  <div className="relative">
+                                    <select
+                                      name="familyIncome"
+                                      value={formData.familyIncome}
+                                      onChange={handleInputChange}
+                                      className={selectClasses}
+                                    >
+                                      <option value="">Select income range</option>
+                                      <option value="below-1L">Below ₹1,00,000</option>
+                                      <option value="1L-2L">₹1,00,000 – ₹2,00,000</option>
+                                      <option value="2L-3L">₹2,00,000 – ₹3,00,000</option>
+                                    </select>
+                                    <svg className="absolute right-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400 pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                                    </svg>
+                                  </div>
+                                  {errors.familyIncome && <p className={errorClasses}>{errors.familyIncome}</p>}
+                                </div>
+                                <div>
+                                  <label className={labelClasses}>Statement of Need *</label>
+                                  <textarea
+                                    name="statementOfNeed"
+                                    value={formData.statementOfNeed}
+                                    onChange={handleInputChange}
+                                    rows={3}
+                                    placeholder="Briefly describe your financial situation and why you need this freeship"
+                                    className={`${inputClasses} resize-none`}
+                                  />
+                                  {errors.statementOfNeed && <p className={errorClasses}>{errors.statementOfNeed}</p>}
+                                </div>
+                              </motion.div>
+                            )}
+
+                            {/* Document Note */}
+                            {formData.scholarshipType && (
+                              <motion.div
+                                initial={{ opacity: 0 }}
+                                animate={{ opacity: 1 }}
+                                className="p-4 bg-gray-50 rounded-xl border border-gray-200"
+                              >
+                                <div className="flex gap-3">
+                                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#666" strokeWidth="1.5" className="shrink-0 mt-0.5">
+                                    <path d="M13 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V9z" strokeLinecap="round" strokeLinejoin="round" />
+                                    <polyline points="13 2 13 9 20 9" strokeLinecap="round" strokeLinejoin="round" />
+                                  </svg>
+                                  <div>
+                                    <p className="text-[#21313c] text-sm font-medium mb-1">Supporting Documents</p>
+                                    <p className="text-[#666] text-xs leading-relaxed">
+                                      After submitting this form, email your supporting certificates and documents to{' '}
+                                      <span className="font-medium text-[#21313c]">scholarships@jlu.edu.in</span> with your application reference number.
+                                    </p>
+                                  </div>
+                                </div>
+                              </motion.div>
+                            )}
+
+                            {/* Consent */}
+                            <label className="flex items-start gap-3 cursor-pointer group">
+                              <input
+                                type="checkbox"
+                                name="consent"
+                                checked={formData.consent}
+                                onChange={handleInputChange}
+                                className="mt-1 w-5 h-5 rounded border-gray-300 text-[#c3fd7a] focus:ring-[#c3fd7a] cursor-pointer accent-[#21313c]"
+                              />
+                              <span className="text-[#666] text-sm leading-relaxed">
+                                I certify that the information provided is accurate. I understand that false information may lead to cancellation of the scholarship. *
+                              </span>
+                            </label>
+                            {errors.consent && <p className={errorClasses}>{errors.consent}</p>}
+                          </motion.div>
+                        )}
+                      </AnimatePresence>
+
+                      {/* Navigation Buttons */}
+                      <div className="flex gap-4 mt-8">
+                        {currentStep > 1 && (
+                          <motion.button
+                            type="button"
+                            onClick={handlePrev}
+                            className="flex-1 py-4 border-2 border-gray-200 text-[#21313c] font-semibold rounded-xl hover:border-gray-300 transition-colors cursor-pointer"
+                            whileHover={{ scale: 1.01 }}
+                            whileTap={{ scale: 0.99 }}
+                          >
+                            Back
+                          </motion.button>
+                        )}
+                        {currentStep < 3 ? (
+                          <motion.button
+                            type="button"
+                            onClick={handleNext}
+                            className="flex-1 py-4 bg-[#21313c] text-white font-semibold rounded-xl hover:bg-[#2a3f4c] transition-colors flex items-center justify-center gap-2 cursor-pointer"
+                            whileHover={{ scale: 1.01 }}
+                            whileTap={{ scale: 0.99 }}
+                          >
+                            Continue
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                              <path d="M5 12h14M12 5l7 7-7 7" strokeLinecap="round" strokeLinejoin="round" />
+                            </svg>
+                          </motion.button>
+                        ) : (
+                          <motion.button
+                            type="submit"
+                            disabled={isSubmitting}
+                            className="flex-1 py-4 bg-[#c3fd7a] text-[#21313c] font-semibold rounded-xl hover:bg-[#b3ed6a] transition-colors flex items-center justify-center gap-2 disabled:opacity-70 disabled:cursor-not-allowed cursor-pointer"
+                            whileHover={{ scale: 1.01 }}
+                            whileTap={{ scale: 0.99 }}
+                          >
+                            {isSubmitting ? (
+                              <>
+                                <motion.span
+                                  className="w-5 h-5 border-2 border-[#21313c]/30 border-t-[#21313c] rounded-full"
+                                  animate={{ rotate: 360 }}
+                                  transition={{ duration: 1, repeat: Infinity, ease: 'linear' }}
+                                />
+                                Submitting...
+                              </>
+                            ) : (
+                              <>
+                                Submit Application
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                                  <path d="M5 12h14M12 5l7 7-7 7" strokeLinecap="round" strokeLinejoin="round" />
+                                </svg>
+                              </>
+                            )}
+                          </motion.button>
+                        )}
+                      </div>
+                    </form>
+                  </>
+                ) : (
+                  /* Success State */
+                  <motion.div
+                    className="flex flex-col items-center justify-center py-16 text-center"
+                    initial={{ opacity: 0, scale: 0.9 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                  >
+                    <motion.div
+                      className="w-20 h-20 bg-[#c3fd7a] rounded-full flex items-center justify-center mb-6"
+                      initial={{ scale: 0 }}
+                      animate={{ scale: 1 }}
+                      transition={{ type: 'spring', delay: 0.2 }}
+                    >
+                      <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#03463B" strokeWidth="3">
+                        <polyline points="20 6 9 17 4 12" strokeLinecap="round" strokeLinejoin="round" />
+                      </svg>
+                    </motion.div>
+                    <h3 className="text-2xl font-semibold text-[#21313c] mb-2">Application Submitted!</h3>
+                    <p className="text-gray-500 max-w-sm mb-2">
+                      Your scholarship application has been received. Our scholarship committee will review your application and reach out to you via email.
+                    </p>
+                    <p className="text-[#21313c] text-sm font-medium">
+                      Don&apos;t forget to email your supporting documents to scholarships@jlu.edu.in
+                    </p>
+                  </motion.div>
+                )}
+              </div>
+            </motion.div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+};
+
+export { ScholarshipApplication };
+export default ScholarshipApplication;

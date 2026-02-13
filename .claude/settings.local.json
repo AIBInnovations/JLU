@@ -20,7 +20,8 @@
       "WebFetch(domain:photography.jlu.edu.in)",
       "WebFetch(domain:activities.jlu.edu.in)",
       "WebFetch(domain:lakecityvoice.jlu.edu.in)",
-      "WebFetch(domain:auapgc2024.jlu.edu.in)"
+      "WebFetch(domain:auapgc2024.jlu.edu.in)",
+      "Bash(xargs cat:*)"
     ]
   }
 }

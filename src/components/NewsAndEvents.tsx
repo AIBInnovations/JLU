@@ -1,7 +1,7 @@
 'use client';
 
 import Image from 'next/image';
-import { motion, useScroll, useTransform } from 'framer-motion';
+import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion';
 import { useState, useRef, useEffect } from 'react';
 
 // Custom easing for smooth animations
@@ -79,6 +79,7 @@ const pastEventsData = [
 const NewsAndEvents = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [galleryScale, setGalleryScale] = useState(1);
+  const [archiveEvent, setArchiveEvent] = useState<typeof pastEventsData[number] | null>(null);
   const cardsPerView = 3;
   const maxSlide = Math.max(0, pastEventsData.length - cardsPerView);
   const heroRef = useRef<HTMLDivElement>(null);
@@ -194,7 +195,8 @@ const NewsAndEvents = () => {
       </div>
 
       {/* JLU in News Section */}
-      <div className="w-full bg-white">
+      <div id="latest-news" />
+      <div id="media-coverage" className="w-full bg-white">
         <div
           className="mx-auto px-5 py-16 md:px-10 md:py-20 lg:px-30 lg:py-35"
           style={{
@@ -241,7 +243,7 @@ const NewsAndEvents = () => {
           </motion.div>
 
           {/* Featured News Card + Grid */}
-          <div className="flex flex-col lg:flex-row gap-6 md:gap-8">
+          <div className="flex flex-col lg:flex-row lg:items-center gap-6 md:gap-8">
             {/* Featured Story - Large Card */}
             <motion.div
               className="relative overflow-hidden group cursor-pointer w-full lg:w-1/2 h-80 md:h-125 rounded-2xl"
@@ -411,7 +413,7 @@ const NewsAndEvents = () => {
       </div>
 
       {/* What's happening on campus Section */}
-      <div className="w-full bg-[#f6f7f0]">
+      <div id="events-calendar" className="w-full bg-[#f6f7f0]">
         <div
           className="mx-auto px-5 py-16 md:px-10 md:py-20 lg:px-30 lg:py-35"
           style={{
@@ -623,7 +625,7 @@ const NewsAndEvents = () => {
       </div>
 
       {/* Highlights from past events Section */}
-      <div className="w-full bg-white">
+      <div id="press-releases" className="w-full bg-white">
         <div
           className="mx-auto px-5 py-16 md:px-10 md:py-20 lg:px-30 lg:py-35"
           style={{
@@ -726,17 +728,17 @@ const NewsAndEvents = () => {
                     </div>
                   </motion.div>
                   {/* Card Content */}
-                  <div className="mt-4 md:mt-6">
-                    <p className="text-[#666] mb-3 md:mb-4 text-sm md:text-base" style={{ lineHeight: 1.7 }}>
+                  <div className="mt-4 md:mt-6 flex flex-col h-22.5 md:h-25">
+                    <p className="text-[#666] text-sm md:text-base flex-1" style={{ lineHeight: 1.7 }}>
                       {event.description}
                     </p>
-                    <motion.a
-                      href="#"
-                      className="inline-flex items-center gap-2 text-[#21313c] font-medium group-hover:text-[#f0c14b] transition-colors text-sm md:text-base"
+                    <motion.button
+                      onClick={() => setArchiveEvent(event)}
+                      className="inline-flex items-center gap-2 text-[#21313c] font-medium group-hover:text-[#f0c14b] transition-colors text-sm md:text-base mt-auto pt-2"
                       whileHover={{ x: 3 }}
                     >
                       View Archive <span>→</span>
-                    </motion.a>
+                    </motion.button>
                   </div>
                 </motion.div>
               ))}
@@ -746,7 +748,7 @@ const NewsAndEvents = () => {
       </div>
 
       {/* Campus in moments Section */}
-      <div className="w-full bg-white pb-12 md:pb-[120px]">
+      <div id="photo-gallery" className="w-full bg-white pb-12 md:pb-[120px]">
         {/* Mobile: Percentage-based layout (matches Campus.tsx) */}
         <div
           className="relative mx-auto overflow-hidden h-[500px] sm:h-[700px] md:hidden"
@@ -1225,7 +1227,7 @@ const NewsAndEvents = () => {
       </div>
 
       {/* Media resources Section */}
-      <div className="w-full bg-[#f6f7f0]">
+      <div id="announcements" className="w-full bg-[#f6f7f0]">
         <div
           className="mx-auto flex flex-col lg:flex-row justify-between gap-10 md:gap-12 lg:gap-16 px-5 py-16 md:px-10 md:py-20 lg:px-30 lg:py-35"
           style={{
@@ -1373,24 +1375,106 @@ const NewsAndEvents = () => {
             For urgent media requests, interview coordination, or campus filming permissions, please contact our office directly.
           </p>
           <div className="flex flex-col gap-3 md:gap-4">
-            <motion.button
-              className="w-full py-3 md:py-4 bg-[#f0c14b] text-[#21313c] font-semibold rounded-full hover:bg-[#e5b63e] transition-colors text-sm md:text-base"
+            <motion.a
+              href="https://jlu.edu.in/wp-content/uploads/2024/05/JLU-Media-Kit.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-full py-3 md:py-4 bg-[#f0c14b] text-[#21313c] font-semibold rounded-full hover:bg-[#e5b63e] transition-colors text-sm md:text-base text-center block no-underline"
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
             >
               Download Media Kit
-            </motion.button>
-            <motion.button
-              className="w-full py-3 md:py-4 bg-transparent border-2 border-white text-white font-semibold rounded-full hover:bg-white hover:text-[#21313c] transition-colors text-sm md:text-base"
+            </motion.a>
+            <motion.a
+              href="https://wa.me/917314041400?text=Hello!%20I%20would%20like%20to%20contact%20the%20Communications%20team%20at%20JLU."
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-full py-3 md:py-4 bg-transparent border-2 border-white text-white font-semibold rounded-full hover:bg-white hover:text-[#21313c] transition-colors text-sm md:text-base text-center block no-underline"
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
             >
               Contact Communications
-            </motion.button>
+            </motion.a>
           </div>
         </motion.div>
         </div>
       </div>
+      {/* Archive Modal */}
+      <AnimatePresence>
+        {archiveEvent && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.3 }}
+            className="fixed inset-0 z-50 flex items-center justify-center p-4"
+            onClick={() => setArchiveEvent(null)}
+          >
+            <div className="absolute inset-0 bg-black/60 backdrop-blur-sm" />
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95, y: 20 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.95, y: 20 }}
+              transition={{ duration: 0.3, ease: customEase }}
+              className="relative bg-white rounded-2xl overflow-hidden max-w-2xl w-full max-h-[90vh] overflow-y-auto"
+              onClick={(e) => e.stopPropagation()}
+            >
+              {/* Modal Image */}
+              <div className="relative w-full h-64 md:h-80">
+                <Image
+                  src={pastEventsImages[pastEventsData.indexOf(archiveEvent)]}
+                  alt={archiveEvent.title}
+                  fill
+                  className="object-cover"
+                />
+                <div className="absolute inset-0 bg-linear-to-t from-black/70 via-black/20 to-transparent" />
+                <span className="absolute top-4 left-4 bg-[#f0c14b] px-3 py-1.5 text-xs font-bold text-[#21313c] rounded">
+                  {archiveEvent.year}
+                </span>
+                <button
+                  onClick={() => setArchiveEvent(null)}
+                  className="absolute top-4 right-4 w-10 h-10 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center text-white hover:bg-white/40 transition-colors"
+                >
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
+                    <line x1="5" y1="5" x2="19" y2="19" />
+                    <line x1="19" y1="5" x2="5" y2="19" />
+                  </svg>
+                </button>
+                <div className="absolute bottom-6 left-6 right-6">
+                  <h3 className="text-white text-2xl md:text-3xl font-bold">{archiveEvent.title}</h3>
+                </div>
+              </div>
+              {/* Modal Content */}
+              <div className="p-6 md:p-8">
+                <p className="text-[#666] text-base leading-relaxed mb-6">
+                  {archiveEvent.description}
+                </p>
+                <div className="border-t border-gray-100 pt-6">
+                  <h4 className="text-[#21313c] font-semibold text-sm uppercase tracking-wider mb-4">Event Highlights</h4>
+                  <div className="grid grid-cols-2 gap-4">
+                    <div className="bg-[#f6f7f0] rounded-xl p-4">
+                      <p className="text-[#21313c] font-bold text-lg">500+</p>
+                      <p className="text-[#666] text-xs">Attendees</p>
+                    </div>
+                    <div className="bg-[#f6f7f0] rounded-xl p-4">
+                      <p className="text-[#21313c] font-bold text-lg">20+</p>
+                      <p className="text-[#666] text-xs">Speakers & Guests</p>
+                    </div>
+                    <div className="bg-[#f6f7f0] rounded-xl p-4">
+                      <p className="text-[#21313c] font-bold text-lg">3 Days</p>
+                      <p className="text-[#666] text-xs">Event Duration</p>
+                    </div>
+                    <div className="bg-[#f6f7f0] rounded-xl p-4">
+                      <p className="text-[#21313c] font-bold text-lg">50+</p>
+                      <p className="text-[#666] text-xs">Media Mentions</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </section>
   );
 };

@@ -3,7 +3,7 @@
 import { useRef, useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Link from 'next/link';
-import { usePathname } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
 import { useIsMobile } from '../hooks/useIsMobile';
 import Image from 'next/image';
 
@@ -13,11 +13,16 @@ interface NavigationColumn {
   items: string[];
 }
 
+interface SectionItem {
+  label: string;
+  slug: string;
+}
+
 interface NavigationItem {
   label: string;
   href: string;
   type: 'dropdown' | 'megamenu';
-  sections?: string[];
+  sections?: (string | SectionItem)[];
   columns?: NavigationColumn[];
 }
 
@@ -27,13 +32,13 @@ const navigationItems: NavigationItem[] = [
     href: '/about',
     type: 'dropdown',
     sections: [
-      'Introduction',
-      'History & Heritage',
-      'Leadership',
-      'Mission & Vision',
-      'Accreditations',
-      'Rankings & Awards',
-      'Campus Tour'
+      { label: 'Introduction', slug: 'introduction' },
+      { label: 'History & Heritage', slug: 'history' },
+      { label: 'Leadership', slug: 'leadership' },
+      { label: 'Governance', slug: 'governance' },
+      { label: 'Accreditations', slug: 'accreditations' },
+      { label: 'Rankings & Awards', slug: 'rankings' },
+      { label: 'Honorary Doctorates', slug: 'honorary-doctorates' },
     ]
   },
   {
@@ -192,8 +197,28 @@ interface MenuOverlayProps {
 
 const MenuOverlay = ({ isOpen, onClose, menuButtonRef }: MenuOverlayProps) => {
   const pathname = usePathname();
+  const router = useRouter();
   const isMobile = useIsMobile();
   const [hoveredItem, setHoveredItem] = useState<string | null>(null);
+
+  const handleSectionClick = (href: string, slug: string) => {
+    onClose();
+    const targetPath = href;
+    const scrollToEl = () => {
+      const el = document.getElementById(slug);
+      if (el) {
+        el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    };
+    if (pathname === targetPath) {
+      // Already on the page — just scroll
+      scrollToEl();
+    } else {
+      // Navigate first, then scroll after page renders
+      router.push(`${targetPath}#${slug}`);
+      setTimeout(scrollToEl, 600);
+    }
+  };
 
   const isActive = (href: string) => {
     if (href === '/') {
@@ -204,6 +229,12 @@ const MenuOverlay = ({ isOpen, onClose, menuButtonRef }: MenuOverlayProps) => {
 
   // Get the currently hovered navigation item
   const hoveredNavItem = navigationItems.find(item => item.label === hoveredItem);
+
+  // Get the currently active navigation item (based on current page)
+  const activeNavItem = navigationItems.find(item => isActive(item.href));
+
+  // Show hovered item's sub-content, or fall back to active page's sub-content
+  const displayNavItem = hoveredNavItem || activeNavItem;
 
   const circleSize = isMobile ? 2000 : 1500;
   const buttonWidth = isMobile ? 24 : 168;
@@ -321,9 +352,9 @@ const MenuOverlay = ({ isOpen, onClose, menuButtonRef }: MenuOverlayProps) => {
                   {/* Right side - Hovered item content or featured buttons and bottom menu */}
                   <div className="flex flex-col gap-1.5 flex-1 pt-6 min-h-[200px]">
                     <AnimatePresence mode="wait">
-                      {hoveredNavItem ? (
+                      {displayNavItem ? (
                         <motion.div
-                          key={hoveredNavItem.label}
+                          key={displayNavItem.label}
                           initial={{ opacity: 0, y: 10 }}
                           animate={{ opacity: 1, y: 0 }}
                           exit={{ opacity: 0, y: -10 }}
@@ -331,31 +362,62 @@ const MenuOverlay = ({ isOpen, onClose, menuButtonRef }: MenuOverlayProps) => {
                           className="flex flex-col gap-1.5"
                         >
                           <h3 className="text-sm font-semibold text-[#03463B] mb-1">
-                            {hoveredNavItem.label}
+                            {displayNavItem.label}
                           </h3>
-                          {hoveredNavItem.type === 'megamenu' && hoveredNavItem.columns ? (
-                            // Mega menu layout - show columns
+                          {displayNavItem.type === 'megamenu' && displayNavItem.columns ? (
                             <div className="flex flex-col gap-3">
-                              {hoveredNavItem.columns.map((column) => (
+                              {displayNavItem.columns.map((column) => (
                                 <div key={column.title}>
                                   <p className="text-xs font-semibold text-[#03463B] mb-1.5">
                                     {column.title}
                                   </p>
-                                  {column.items.map((item) => (
-                                    <span key={item} className="text-xs text-[#03463B]/60 hover:text-[#03463B] cursor-pointer transition-colors block mb-1">
-                                      {item}
-                                    </span>
-                                  ))}
+                                  {column.items.map((item) => {
+                                    const slug = item.toLowerCase().replace(/\s+/g, '-').replace(/[&]/g, 'and');
+                                    const specialLinks: Record<string, string> = {
+                                      'certificate-courses': '/certifications',
+                                    };
+                                    const specialHref = specialLinks[slug];
+                                    if (specialHref) {
+                                      return (
+                                        <Link
+                                          key={item}
+                                          href={specialHref}
+                                          onClick={onClose}
+                                          className="text-xs text-[#03463B]/60 hover:text-[#03463B] cursor-pointer transition-colors block mb-1"
+                                        >
+                                          {item}
+                                        </Link>
+                                      );
+                                    }
+                                    return (
+                                      <button
+                                        key={item}
+                                        onClick={() => handleSectionClick(displayNavItem.href, slug)}
+                                        className="text-xs text-[#03463B]/60 hover:text-[#03463B] cursor-pointer transition-colors block mb-1 text-left"
+                                      >
+                                        {item}
+                                      </button>
+                                    );
+                                  })}
                                 </div>
                               ))}
                             </div>
-                          ) : hoveredNavItem.sections ? (
-                            // Dropdown layout - show sections
-                            hoveredNavItem.sections.map((section) => (
-                              <span key={section} className="text-xs text-[#03463B]/60 hover:text-[#03463B] cursor-pointer transition-colors">
-                                {section}
-                              </span>
-                            ))
+                          ) : displayNavItem.sections ? (
+                            displayNavItem.sections.map((section) => {
+                              const label = typeof section === 'string' ? section : section.label;
+                              const slug = typeof section === 'string'
+                                ? section.toLowerCase().replace(/\s+/g, '-').replace(/[&]/g, 'and')
+                                : section.slug;
+                              return (
+                                <button
+                                  key={label}
+                                  onClick={() => handleSectionClick(displayNavItem.href, slug)}
+                                  className="text-xs text-[#03463B]/60 hover:text-[#03463B] cursor-pointer transition-colors block text-left"
+                                >
+                                  {label}
+                                </button>
+                              );
+                            })
                           ) : null}
                         </motion.div>
                       ) : (
@@ -582,9 +644,9 @@ const MenuOverlay = ({ isOpen, onClose, menuButtonRef }: MenuOverlayProps) => {
                   {/* Right side - Hovered item content or featured buttons and bottom menu */}
                   <div className="flex flex-col gap-2.5 pt-8 w-[520px]" style={{ marginLeft: '0px' }}>
                     <AnimatePresence mode="wait">
-                      {hoveredNavItem ? (
+                      {displayNavItem ? (
                         <motion.div
-                          key={hoveredNavItem.label}
+                          key={displayNavItem.label}
                           initial={{ opacity: 0, x: 20 }}
                           animate={{ opacity: 1, x: 0 }}
                           exit={{ opacity: 0, x: -20 }}
@@ -592,31 +654,62 @@ const MenuOverlay = ({ isOpen, onClose, menuButtonRef }: MenuOverlayProps) => {
                           className="flex flex-col gap-2"
                         >
                           <h3 className="text-lg font-semibold text-[#03463B] mb-1">
-                            {hoveredNavItem.label}
+                            {displayNavItem.label}
                           </h3>
-                          {hoveredNavItem.type === 'megamenu' && hoveredNavItem.columns ? (
-                            // Mega menu layout - show columns side by side
+                          {displayNavItem.type === 'megamenu' && displayNavItem.columns ? (
                             <div className="flex gap-8">
-                              {hoveredNavItem.columns.map((column) => (
+                              {displayNavItem.columns.map((column) => (
                                 <div key={column.title} className="flex flex-col gap-2">
                                   <p className="text-sm font-semibold text-[#03463B] mb-1">
                                     {column.title}
                                   </p>
-                                  {column.items.map((item) => (
-                                    <span key={item} className="text-sm text-[#03463B]/60 hover:text-[#03463B] cursor-pointer transition-colors">
-                                      {item}
-                                    </span>
-                                  ))}
+                                  {column.items.map((item) => {
+                                    const slug = item.toLowerCase().replace(/\s+/g, '-').replace(/[&]/g, 'and');
+                                    const specialLinks: Record<string, string> = {
+                                      'certificate-courses': '/certifications',
+                                    };
+                                    const specialHref = specialLinks[slug];
+                                    if (specialHref) {
+                                      return (
+                                        <Link
+                                          key={item}
+                                          href={specialHref}
+                                          onClick={onClose}
+                                          className="text-sm text-[#03463B]/60 hover:text-[#03463B] cursor-pointer transition-colors"
+                                        >
+                                          {item}
+                                        </Link>
+                                      );
+                                    }
+                                    return (
+                                      <button
+                                        key={item}
+                                        onClick={() => handleSectionClick(displayNavItem.href, slug)}
+                                        className="text-sm text-[#03463B]/60 hover:text-[#03463B] cursor-pointer transition-colors block text-left"
+                                      >
+                                        {item}
+                                      </button>
+                                    );
+                                  })}
                                 </div>
                               ))}
                             </div>
-                          ) : hoveredNavItem.sections ? (
-                            // Dropdown layout - show sections
-                            hoveredNavItem.sections.map((section) => (
-                              <span key={section} className="text-sm text-[#03463B]/60 hover:text-[#03463B] cursor-pointer transition-colors">
-                                {section}
-                              </span>
-                            ))
+                          ) : displayNavItem.sections ? (
+                            displayNavItem.sections.map((section) => {
+                              const label = typeof section === 'string' ? section : section.label;
+                              const slug = typeof section === 'string'
+                                ? section.toLowerCase().replace(/\s+/g, '-').replace(/[&]/g, 'and')
+                                : section.slug;
+                              return (
+                                <button
+                                  key={label}
+                                  onClick={() => handleSectionClick(displayNavItem.href, slug)}
+                                  className="text-sm text-[#03463B]/60 hover:text-[#03463B] cursor-pointer transition-colors block text-left"
+                                >
+                                  {label}
+                                </button>
+                              );
+                            })
                           ) : null}
                         </motion.div>
                       ) : (
@@ -787,6 +880,11 @@ export const Header = () => {
 
   // Check if we're on the homepage
   const isHomepage = pathname === '/';
+
+  // Close menu on route change
+  useEffect(() => {
+    setIsMenuOpen(false);
+  }, [pathname]);
 
   useEffect(() => {
     if (isMenuOpen) {

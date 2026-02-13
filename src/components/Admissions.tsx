@@ -161,6 +161,7 @@ const financialOptions = [
         },
       ],
       cta: 'Apply for Scholarship',
+      ctaHref: '/scholarship',
     },
   },
   {
@@ -198,6 +199,7 @@ const financialOptions = [
         },
       ],
       cta: 'Apply for Freeship',
+      ctaHref: '/freeship',
     },
   },
   {
@@ -238,6 +240,7 @@ const financialOptions = [
         },
       ],
       cta: 'Get Loan Assistance',
+      ctaHref: '/loan-assistance',
     },
   },
   {
@@ -276,6 +279,8 @@ const financialOptions = [
         },
       ],
       cta: 'Download Full Policy',
+      ctaHref: '/broucher/Fee-Structure2025.pdf',
+      isDownload: true,
     },
   },
 ];
@@ -925,20 +930,44 @@ const FinancialInfoModal = ({ isOpen, onClose, data }: FinancialInfoModalProps) 
               </div>
 
               {/* CTA Button */}
-              <motion.button
-                className="w-full mt-8 py-4 bg-[#21313c] text-white font-semibold rounded-xl hover:bg-[#2a3f4c] transition-colors flex items-center justify-center gap-2"
-                whileHover={{ scale: 1.01 }}
-                whileTap={{ scale: 0.99 }}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.4, delay: 0.5 }}
-              >
-                {data.modalContent.cta}
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                  <line x1="5" y1="12" x2="19" y2="12" strokeLinecap="round"/>
-                  <polyline points="12 5 19 12 12 19" strokeLinecap="round" strokeLinejoin="round"/>
-                </svg>
-              </motion.button>
+              {data.modalContent.isDownload ? (
+                <motion.a
+                  href={data.modalContent.ctaHref}
+                  download
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-full mt-8 py-4 bg-[#21313c] text-white font-semibold rounded-xl hover:bg-[#2a3f4c] transition-colors flex items-center justify-center gap-2 cursor-pointer"
+                  whileHover={{ scale: 1.01 }}
+                  whileTap={{ scale: 0.99 }}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.4, delay: 0.5 }}
+                >
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" strokeLinecap="round" strokeLinejoin="round"/>
+                    <polyline points="7 10 12 15 17 10" strokeLinecap="round" strokeLinejoin="round"/>
+                    <line x1="12" y1="15" x2="12" y2="3" strokeLinecap="round"/>
+                  </svg>
+                  {data.modalContent.cta}
+                </motion.a>
+              ) : (
+                <Link href={data.modalContent.ctaHref || '#'}>
+                  <motion.div
+                    className="w-full mt-8 py-4 bg-[#21313c] text-white font-semibold rounded-xl hover:bg-[#2a3f4c] transition-colors flex items-center justify-center gap-2 cursor-pointer"
+                    whileHover={{ scale: 1.01 }}
+                    whileTap={{ scale: 0.99 }}
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.4, delay: 0.5 }}
+                  >
+                    {data.modalContent.cta}
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                      <line x1="5" y1="12" x2="19" y2="12" strokeLinecap="round"/>
+                      <polyline points="12 5 19 12 12 19" strokeLinecap="round" strokeLinejoin="round"/>
+                    </svg>
+                  </motion.div>
+                </Link>
+              )}
             </motion.div>
           </motion.div>
         </>
@@ -1088,8 +1117,9 @@ const BeyondDegreeModal = ({ isOpen, onClose, data }: BeyondDegreeModalProps) =>
               </div>
 
               {/* CTA Button */}
-              <motion.button
-                className="w-full mt-8 py-4 font-semibold rounded-xl transition-colors flex items-center justify-center gap-2"
+              <motion.a
+                href={data.id === 1 ? '/certifications' : '/jlux'}
+                className="w-full mt-8 py-4 font-semibold rounded-xl transition-colors flex items-center justify-center gap-2 no-underline"
                 style={{ backgroundColor: accentBg, color: accentText }}
                 whileHover={{ scale: 1.01 }}
                 whileTap={{ scale: 0.99 }}
@@ -1099,7 +1129,7 @@ const BeyondDegreeModal = ({ isOpen, onClose, data }: BeyondDegreeModalProps) =>
                   <line x1="5" y1="12" x2="19" y2="12" strokeLinecap="round"/>
                   <polyline points="12 5 19 12 12 19" strokeLinecap="round" strokeLinejoin="round"/>
                 </svg>
-              </motion.button>
+              </motion.a>
             </motion.div>
           </motion.div>
         </>
@@ -1126,6 +1156,7 @@ const Admissions = () => {
   const [selectedBeyondDegree, setSelectedBeyondDegree] = useState<typeof beyondDegrees[0] | null>(null);
   const heroRef = useRef<HTMLDivElement>(null);
   const tabContentRef = useRef<HTMLDivElement>(null);
+  const tabSectionRef = useRef<HTMLDivElement>(null);
   const procedureRef = useRef<HTMLDivElement>(null);
   const progressLineRef = useRef<HTMLDivElement>(null);
   const trackLineRef = useRef<HTMLDivElement>(null);
@@ -1135,6 +1166,10 @@ const Admissions = () => {
     setActiveTab(tabId);
     if (tabContentRef.current) {
       tabContentRef.current.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+    // Scroll the page to the tabbed section so it's visible
+    if (tabSectionRef.current) {
+      tabSectionRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
   };
 
@@ -1358,6 +1393,9 @@ const Admissions = () => {
       {/* ═══════════════════════════════════════════════════════ */}
       {/* THREE-COLUMN SHOWCASE — Programs / Apply / Fee & Support */}
       {/* ═══════════════════════════════════════════════════════ */}
+      <div id="ug-application-process" />
+      <div id="eligibility-criteria" />
+      <div id="entrance-exams" />
       <div className="w-full bg-white">
         <div className="mx-auto px-5 py-20 md:px-10 md:py-28 lg:px-30 lg:py-36" style={{ maxWidth: '1440px' }}>
           {/* Section Header */}
@@ -1427,30 +1465,47 @@ const Admissions = () => {
 
                 <div className="space-y-3">
                   {[
-                    { title: 'Undergraduate Degree', desc: 'B.Tech, BBA, BA, B.Com & more' },
-                    { title: 'Postgraduate Degree', desc: 'MBA, M.Tech, MA, M.Sc & more' },
-                    { title: 'Research Degree', desc: 'Ph.D programs across disciplines' },
-                    { title: 'Centre for Professional Skills', desc: 'Industry-ready certification courses' },
-                    { title: 'JLUx – Young Leadership Program', desc: 'Early leadership for future changemakers' },
-                  ].map((item, i) => (
-                    <motion.div
-                      key={i}
-                      initial={{ opacity: 0, x: -20 }}
-                      whileInView={{ opacity: 1, x: 0 }}
-                      transition={{ duration: 0.5, delay: 0.1 * i, ease: customEase }}
-                      viewport={{ once: true }}
-                      className="flex items-start gap-4 p-4 rounded-xl hover:bg-white/[0.07] transition-colors duration-300 cursor-pointer group/item"
-                    >
-                      <div className="shrink-0 w-8 h-8 rounded-lg bg-[#f0c14b]/15 flex items-center justify-center mt-0.5">
-                        <span className="text-[#f0c14b] text-xs font-bold">{String(i + 1).padStart(2, '0')}</span>
-                      </div>
-                      <div>
-                        <h4 className="text-white font-semibold text-[15px] mb-0.5 group-hover/item:text-[#f0c14b] transition-colors">{item.title}</h4>
-                        <p className="text-white/40 text-xs">{item.desc}</p>
-                      </div>
-                      <span className="ml-auto text-white/20 group-hover/item:text-[#f0c14b] group-hover/item:translate-x-1 transition-all text-sm mt-1">&rarr;</span>
-                    </motion.div>
-                  ))}
+                    { title: 'Undergraduate Degree', desc: 'B.Tech, BBA, BA, B.Com & more', href: '/programs?tab=UG' },
+                    { title: 'Postgraduate Degree', desc: 'MBA, M.Tech, MA, M.Sc & more', href: '/programs?tab=PG' },
+                    { title: 'Research Degree', desc: 'Ph.D programs across disciplines', href: '/programs?tab=PhD' },
+                    { title: 'Centre for Professional Skills', desc: 'Industry-ready certification courses', beyondIdx: 0 },
+                    { title: 'JLUx – Young Leadership Program', desc: 'Early leadership for future changemakers', beyondIdx: 1 },
+                  ].map((item, i) => {
+                    const inner = (
+                      <>
+                        <div className="shrink-0 w-8 h-8 rounded-lg bg-[#f0c14b]/15 flex items-center justify-center mt-0.5">
+                          <span className="text-[#f0c14b] text-xs font-bold">{String(i + 1).padStart(2, '0')}</span>
+                        </div>
+                        <div>
+                          <h4 className="text-white font-semibold text-[15px] mb-0.5 group-hover/item:text-[#f0c14b] transition-colors">{item.title}</h4>
+                          <p className="text-white/40 text-xs">{item.desc}</p>
+                        </div>
+                        <span className="ml-auto text-white/20 group-hover/item:text-[#f0c14b] group-hover/item:translate-x-1 transition-all text-sm mt-1">&rarr;</span>
+                      </>
+                    );
+                    return (
+                      <motion.div
+                        key={i}
+                        initial={{ opacity: 0, x: -20 }}
+                        whileInView={{ opacity: 1, x: 0 }}
+                        transition={{ duration: 0.5, delay: 0.1 * i, ease: customEase }}
+                        viewport={{ once: true }}
+                      >
+                        {'href' in item && item.href ? (
+                          <Link href={item.href} className="flex items-start gap-4 p-4 rounded-xl hover:bg-white/[0.07] transition-colors duration-300 cursor-pointer group/item">
+                            {inner}
+                          </Link>
+                        ) : (
+                          <div
+                            className="flex items-start gap-4 p-4 rounded-xl hover:bg-white/[0.07] transition-colors duration-300 cursor-pointer group/item"
+                            onClick={() => 'beyondIdx' in item && item.beyondIdx !== undefined && setSelectedBeyondDegree(beyondDegrees[item.beyondIdx])}
+                          >
+                            {inner}
+                          </div>
+                        )}
+                      </motion.div>
+                    );
+                  })}
                 </div>
               </div>
             </motion.div>
@@ -1461,7 +1516,7 @@ const Admissions = () => {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, delay: 0.15, ease: customEase }}
               viewport={{ once: true }}
-              className="group relative rounded-3xl overflow-hidden border border-[#e5e5e5]"
+              className="group relative rounded-3xl overflow-hidden border border-[#e5e5e5] flex flex-col"
               style={{ background: '#fff', minHeight: '560px' }}
             >
               {/* Image header */}
@@ -1480,7 +1535,7 @@ const Admissions = () => {
                 </div>
               </div>
 
-              <div className="px-7 pb-8 -mt-4 relative z-10">
+              <div className="px-7 pb-8 -mt-4 relative z-10 flex flex-col flex-1">
                 <h3 className="text-[#21313c] text-2xl md:text-[28px] font-bold mb-8" style={{ letterSpacing: '-0.02em', lineHeight: 1.2 }}>
                   Start Your{' '}
                   <span style={{ fontFamily: "'Times New Roman', serif", fontStyle: 'italic', fontWeight: 400 }}>
@@ -1517,8 +1572,8 @@ const Admissions = () => {
                   ))}
                 </div>
 
-                {/* Apply CTA */}
-                <Link href="/apply" className="block mt-8">
+                {/* Apply CTA — pushed to bottom */}
+                <Link href="/apply" className="block mt-auto pt-8">
                   <motion.div
                     className="w-full py-4 bg-[#21313c] text-white font-semibold rounded-xl text-center flex items-center justify-center gap-3 hover:bg-[#2a3f4c] transition-colors cursor-pointer"
                     whileHover={{ scale: 1.01 }}
@@ -1620,7 +1675,10 @@ const Admissions = () => {
       </div>
 
       {/* Admissions Info — Tabbed Section */}
-      <div className="w-full bg-white">
+      <div id="important-dates" />
+      <div id="pg-application-process" />
+      <div id="eligibility-requirements" />
+      <div ref={tabSectionRef} className="w-full bg-white">
         <div
           className="mx-auto px-5 py-16 md:px-10 md:py-20 lg:px-30 lg:py-35"
           style={{ maxWidth: '1440px' }}
@@ -2155,6 +2213,8 @@ const Admissions = () => {
       </div>
 
       {/* Academic Programs - Full Width Scattered Gallery Style */}
+      <div id="ug-programs" />
+      <div id="pg-programs" />
       <div className="w-full bg-white">
         <div
           className="mx-auto relative px-5 py-16 md:px-10 md:py-20 lg:px-30 lg:py-35"
@@ -2256,6 +2316,8 @@ const Admissions = () => {
       </div>
 
       {/* Beyond Degrees - Horizontal Split Layout */}
+      <div id="selection-process" />
+      <div id="research-admissions" />
       <div className="w-full bg-[#21313c]">
         <div
           className="mx-auto px-5 py-16 md:px-10 md:py-20 lg:px-30 lg:py-35"
@@ -2554,6 +2616,9 @@ const Admissions = () => {
       </div>
 
       {/* Financial Support - Vertical Accordion Style */}
+      <div id="scholarships" />
+      <div id="financial-aid" />
+      <div id="fee-structure" />
       <div className="w-full bg-white">
         <div
           className="mx-auto px-5 py-16 md:px-10 md:py-20 lg:px-30 lg:py-35"
@@ -2645,6 +2710,8 @@ const Admissions = () => {
       </div>
 
       {/* CTA Section */}
+      <div id="admission-faqs" />
+      <div id="contact-admissions" />
       <div className="w-full px-3 pb-8 md:px-6 md:pb-14 lg:px-10 lg:pb-20">
         <div
           className="mx-auto flex flex-col items-center justify-center bg-[#f0c14b] px-4 py-8 md:px-10 md:py-16 lg:px-30 lg:py-30 rounded-xl md:rounded-3xl lg:rounded-4xl"
@@ -2700,13 +2767,14 @@ const Admissions = () => {
               Apply Now
               <span>→</span>
             </motion.a>
-            <motion.button
+            <motion.a
+              href="/talk-to-advisor"
               className="px-8 md:px-10 py-3 md:py-4 bg-transparent border border-[#21313c]/50 text-[#21313c] font-medium w-full sm:w-auto rounded-full text-center"
               whileHover={{ scale: 1.05, borderColor: '#21313c' }}
               whileTap={{ scale: 0.98 }}
             >
               Talk to an Admissions Advisor
-            </motion.button>
+            </motion.a>
           </motion.div>
         </div>
       </div>

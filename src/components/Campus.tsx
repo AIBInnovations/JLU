@@ -561,9 +561,9 @@ const FacilityModal = ({ isOpen, onClose, data }: FacilityModalProps) => {
                       transition={{ delay: 0.35 + index * 0.05 }}
                       className="flex items-start gap-3"
                     >
-                      <span className="w-5 h-5 bg-[#03463B] text-white rounded-full flex items-center justify-center text-xs font-medium shrink-0 mt-0.5">
-                        ✓
-                      </span>
+                      <svg className="w-5 h-5 bg-[#03463B] text-white rounded-full p-1 shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
+                      </svg>
                       <span className="text-[#444] text-sm" style={{ lineHeight: 1.5 }}>{feature}</span>
                     </motion.div>
                   ))}
@@ -678,7 +678,7 @@ const Campus = () => {
       </div>
 
       {/* ===== CAMPUS STATS SECTION ===== */}
-      <div className="w-full bg-[#f6f7f0] py-16 md:py-24">
+      <div id="infrastructure" className="w-full bg-[#f6f7f0] py-16 md:py-24">
         <div className="mx-auto px-5 sm:px-8 md:px-[120px]" style={{ maxWidth: '1440px' }}>
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -731,7 +731,7 @@ const Campus = () => {
       </div>
 
       {/* ===== TECHNOLOGY-BASED CLASSROOMS SECTION ===== */}
-      <div className="w-full bg-white">
+      <div id="laboratories" className="w-full bg-white">
         <div className="mx-auto px-5 py-12 sm:px-8 sm:py-16 md:px-[120px] md:py-[140px]" style={{ maxWidth: '1440px' }}>
           <div className="grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-16 items-start">
             {/* Left - Large Image with floating overlay */}
@@ -836,7 +836,7 @@ const Campus = () => {
       </div>
 
       {/* ===== HEALTHCARE & WELLNESS SECTION ===== */}
-      <div className="w-full bg-[#21313c]">
+      <div id="medical-center" className="w-full bg-[#21313c]">
         <div className="mx-auto px-5 py-12 sm:px-8 sm:py-16 md:px-[120px] md:py-[140px]" style={{ maxWidth: '1440px' }}>
           {/* Section Header */}
           <motion.div
@@ -977,7 +977,9 @@ const Campus = () => {
       </div>
 
       {/* ===== CAMPUS INFRASTRUCTURE (Hostel & Dining) SECTION ===== */}
-      <div className="w-full bg-white">
+      <div id="student-accommodation" />
+      <div id="dining-services" />
+      <div id="facilities" className="w-full bg-white">
         <div
           className="mx-auto px-5 py-12 sm:px-8 sm:py-16 md:px-[120px] md:py-[140px]"
           style={{ maxWidth: '1440px' }}
@@ -1412,7 +1414,7 @@ const Campus = () => {
       </div>
 
       {/* ===== SPORTS & LEISURE SECTION ===== */}
-      <div className="w-full bg-[#f6f7f0]">
+      <div id="sports-complex" className="w-full bg-[#f6f7f0]">
         <div
           className="mx-auto px-5 py-12 sm:px-8 sm:py-16 md:px-[120px] md:py-[140px]"
           style={{ maxWidth: '1440px' }}
@@ -1630,7 +1632,7 @@ const Campus = () => {
       </div>
 
       {/* ===== THE PYRAMID - UNIVERSITY LIBRARY SECTION ===== */}
-      <div className="w-full bg-white">
+      <div id="library" className="w-full bg-white">
         <div
           className="mx-auto px-5 py-12 sm:px-8 sm:py-16 md:px-[120px] md:py-[120px]"
           style={{ maxWidth: '1440px' }}

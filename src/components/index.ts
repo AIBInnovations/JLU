@@ -46,3 +46,7 @@ export { IgnitedMindAwards } from './IgnitedMindAwards';
 export { GlobalWidgets } from './GlobalWidgets';
 export { SchoolPage } from './SchoolPage';
 export { PageEventsSection } from './PageEventsSection';
+export { ScholarshipApplication } from './ScholarshipApplication';
+export { FreeshipApplication } from './FreeshipApplication';
+export { LoanAssistance } from './LoanAssistance';
+export { AdvisorForm } from './AdvisorForm';
