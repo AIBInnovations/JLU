@@ -1721,18 +1721,18 @@ const Admissions = () => {
           <div className={`flex flex-col lg:flex-row gap-0 ${isMobile ? 'min-h-0' : 'min-h-[600px]'}`}>
 
             {/* Left Sidebar — Tab Navigation */}
-            <div className={`lg:w-[320px] shrink-0 bg-[#21313c] rounded-t-2xl lg:rounded-l-2xl lg:rounded-tr-none flex flex-col ${isMobile ? '' : 'p-6 lg:p-8'}`} style={isMobile ? { padding: '12px' } : undefined}>
-              <nav className="flex flex-row lg:flex-col gap-2 overflow-x-auto lg:overflow-x-visible pb-2 lg:pb-0">
+            <div className={`lg:w-[320px] shrink-0 bg-[#21313c] rounded-t-2xl lg:rounded-l-2xl lg:rounded-tr-none flex flex-col ${isMobile ? '' : 'p-6 lg:p-8'}`} style={isMobile ? { padding: '10px 12px' } : undefined}>
+              <nav className="flex flex-row lg:flex-col gap-1.5 lg:gap-2 overflow-x-auto lg:overflow-x-visible pb-1 lg:pb-0 scrollbar-hide" style={isMobile ? { scrollSnapType: 'x mandatory' } : undefined}>
                 {admissionTabs.map((tab) => (
                   <button
                     key={tab.id}
                     onClick={() => handleTabChange(tab.id)}
-                    className={`text-left rounded-xl font-medium transition-all duration-300 whitespace-nowrap lg:whitespace-normal cursor-pointer ${
+                    className={`text-left rounded-lg lg:rounded-xl font-medium transition-all duration-300 whitespace-nowrap lg:whitespace-normal cursor-pointer shrink-0 ${
                       activeTab === tab.id
                         ? 'bg-[#f0c14b] text-[#21313c]'
                         : 'text-white/70'
                     }`}
-                    style={{ fontSize: isMobile ? '12px' : '15px', padding: isMobile ? '8px 12px' : '16px 20px' }}
+                    style={{ fontSize: isMobile ? '11px' : '15px', padding: isMobile ? '7px 10px' : '16px 20px', scrollSnapAlign: isMobile ? 'start' : undefined }}
                   >
                     {tab.label}
                   </button>
@@ -1754,7 +1754,7 @@ const Admissions = () => {
 
             {/* Right Content Area */}
             <div
-              className="flex-1 bg-[#f6f7f0] rounded-b-2xl lg:rounded-r-2xl lg:rounded-bl-none relative overflow-hidden"
+              className="bg-[#f6f7f0] rounded-b-2xl lg:rounded-r-2xl lg:rounded-bl-none relative overflow-hidden shrink-0 lg:flex-1"
               style={{ height: isMobile ? '500px' : '720px' }}
             >
               <div

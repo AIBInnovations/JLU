@@ -333,7 +333,7 @@ const Academics = () => {
           <h2
             className="text-white font-semibold leading-tight mb-5"
             style={{
-              fontSize: 'clamp(1.5rem, 3vw, 2.5rem)',
+              fontSize: 'clamp(1.5rem, 3vw, 1.75rem)',
             }}
           >
             LEARNING SHAPED BY <span style={{ fontFamily: "'Times New Roman', serif", fontStyle: 'italic', color: '#f0c14b', textShadow: '2px 2px 4px rgba(0,0,0,0.5)' }}>curiosity</span>, <span style={{ fontFamily: "'Times New Roman', serif", fontStyle: 'italic', color: '#f0c14b', textShadow: '2px 2px 4px rgba(0,0,0,0.5)' }}>practice</span>, and <span style={{ fontFamily: "'Times New Roman', serif", fontStyle: 'italic', color: '#f0c14b', textShadow: '2px 2px 4px rgba(0,0,0,0.5)' }}>people</span>
@@ -341,7 +341,7 @@ const Academics = () => {
           <p
             className="text-white font-semibold leading-tight"
             style={{
-              fontSize: 'clamp(1.25rem, 2.5vw, 2rem)',
+              fontSize: 'clamp(1.1rem, 2.5vw, 1.25rem)',
             }}
           >
             <span className="hidden md:inline">Academics at JLU are designed to help students build<br />
@@ -366,7 +366,7 @@ const Academics = () => {
           <p
             className="text-white font-semibold leading-tight"
             style={{
-              fontSize: 'clamp(1rem, 2vw, 1.3rem)',
+              fontSize: 'clamp(0.875rem, 2vw, 1rem)',
             }}
           >
             <span className="hidden md:inline">Students engage with ideas inside classrooms and test them beyond,<br />
