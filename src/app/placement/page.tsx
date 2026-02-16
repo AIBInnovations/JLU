@@ -4,7 +4,6 @@ import { useRef, useEffect, useState } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { motion, useScroll, useTransform } from 'framer-motion';
-import { useIsMobile } from '../../hooks/useIsMobile';
 import { Footer } from '@/components';
 
 // Register GSAP plugins
@@ -20,13 +19,13 @@ const customEase: [number, number, number, number] = [0.22, 1, 0.36, 1];
 
 // Gallery images for the multi-image showcase - placement-themed images
 const galleryImages = [
-  { id: 1, src: 'https://images.unsplash.com/photo-1521737711867-e3b97375f902?w=600&q=80', position: 'top-[10%] left-[5%]', size: 'w-[140px] h-[200px] md:w-[180px] md:h-[260px]', opacity: 0.7 },
-  { id: 2, src: 'https://images.unsplash.com/photo-1556761175-b413da4baf72?w=400&q=80', position: 'top-[5%] left-[22%]', size: 'w-[100px] h-[140px] md:w-[130px] md:h-[170px]', opacity: 0.5 },
-  { id: 3, src: 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=800&q=80', position: '', size: 'w-[200px] h-[280px] md:w-[260px] md:h-[360px]', isCenter: true, opacity: 1 },
-  { id: 4, src: 'https://images.unsplash.com/photo-1551434678-e076c223a692?w=600&q=80', position: 'top-[8%] right-[18%]', size: 'w-[120px] h-[170px] md:w-[160px] md:h-[220px]', opacity: 0.6 },
-  { id: 5, src: 'https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=400&q=80', position: 'top-[12%] right-[3%]', size: 'w-[90px] h-[130px] md:w-[120px] md:h-[160px]', opacity: 0.4 },
-  { id: 6, src: 'https://images.unsplash.com/photo-1553877522-43269d4ea984?w=600&q=80', position: 'bottom-[12%] left-[8%]', size: 'w-[110px] h-[160px] md:w-[150px] md:h-[200px]', opacity: 0.5 },
-  { id: 7, src: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=600&q=80', position: 'bottom-[10%] right-[5%]', size: 'w-[130px] h-[180px] md:w-[170px] md:h-[230px]', opacity: 0.6 },
+  { id: 1, src: 'https://images.unsplash.com/photo-1521737711867-e3b97375f902?w=600&q=80', position: 'top-[5%] left-[2%]', size: 'w-[85px] h-[115px] md:w-[180px] md:h-[260px]', opacity: 0.7 },
+  { id: 2, src: 'https://images.unsplash.com/photo-1556761175-b413da4baf72?w=400&q=80', position: 'top-[2%] left-[30%]', size: 'w-[65px] h-[85px] md:w-[130px] md:h-[170px]', opacity: 0.5 },
+  { id: 3, src: 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=800&q=80', position: '', size: 'w-[140px] h-[190px] md:w-[260px] md:h-[360px]', isCenter: true, opacity: 1 },
+  { id: 4, src: 'https://images.unsplash.com/photo-1551434678-e076c223a692?w=600&q=80', position: 'top-[3%] right-[2%]', size: 'w-[75px] h-[100px] md:w-[160px] md:h-[220px]', opacity: 0.6 },
+  { id: 5, src: 'https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=400&q=80', position: 'top-[22%] right-[1%]', size: 'w-[55px] h-[75px] md:w-[120px] md:h-[160px]', opacity: 0.4 },
+  { id: 6, src: 'https://images.unsplash.com/photo-1553877522-43269d4ea984?w=600&q=80', position: 'bottom-[8%] left-[2%]', size: 'w-[70px] h-[95px] md:w-[150px] md:h-[200px]', opacity: 0.5 },
+  { id: 7, src: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=600&q=80', position: 'bottom-[5%] right-[2%]', size: 'w-[80px] h-[105px] md:w-[170px] md:h-[230px]', opacity: 0.6 },
 ];
 
 
@@ -34,8 +33,8 @@ const galleryImages = [
 // MAIN PLACEMENT PAGE COMPONENT
 // ============================================
 export default function PlacementPage() {
-  const isMobile = useIsMobile();
   const [mounted, setMounted] = useState(false);
+  const [activeTestimonial, setActiveTestimonial] = useState(0);
 
   // Refs for GSAP animations
   const containerRef = useRef<HTMLDivElement>(null);
@@ -53,6 +52,9 @@ export default function PlacementPage() {
   const centerImageRef = useRef<HTMLDivElement>(null);
   const centerImageInnerRef = useRef<HTMLDivElement>(null);
   const textOverlayRef = useRef<HTMLDivElement>(null);
+  const journeyLineRef = useRef<HTMLDivElement>(null);
+  const journeySectionRef = useRef<HTMLDivElement>(null);
+  const journeyScrollRef = useRef<HTMLDivElement>(null);
 
 
   useEffect(() => {
@@ -70,11 +72,12 @@ export default function PlacementPage() {
       // ----------------------------------------
       // 2. GALLERY SHOWCASE - Images rise from bottom, then pin and zoom to FULL SCREEN
       // ----------------------------------------
-      if (gallerySectionRef.current && galleryContainerRef.current && !isMobile) {
+      if (gallerySectionRef.current && galleryContainerRef.current) {
         const centerImage = centerImageRef.current;
         const centerImageInner = centerImageInnerRef.current;
         const textOverlay = textOverlayRef.current;
         const horizontalTextTrack = document.querySelector('.horizontal-text-track');
+        const isMobileScreen = window.innerWidth < 768;
         const sideImages = gsap.utils.toArray<HTMLElement>('.gallery-image:not(.center-image)');
 
         // PHASE 1: Side images rise from bottom as section enters viewport (SLOW)
@@ -199,7 +202,7 @@ export default function PlacementPage() {
             zoomTl.fromTo(
               horizontalTextTrack,
               { xPercent: 0 },
-              { xPercent: -72, duration: 0.5, ease: 'none' },
+              { xPercent: isMobileScreen ? -73 : -73, duration: 0.5, ease: 'none' },
               0.45
             );
           }
@@ -262,10 +265,36 @@ export default function PlacementPage() {
         }
       }
 
+      // ----------------------------------------
+      // PLACEMENT JOURNEY - Line follows horizontal scroll
+      // ----------------------------------------
+      const scrollContainer = journeyScrollRef.current;
+      const line = journeyLineRef.current;
+      if (scrollContainer && line && window.innerWidth < 768) {
+        const onScroll = () => {
+          const { scrollLeft, scrollWidth, clientWidth } = scrollContainer;
+          const maxScroll = scrollWidth - clientWidth;
+          const progress = maxScroll > 0 ? scrollLeft / maxScroll : 0;
+          // Map from 0% to full scrollWidth so line reaches step 05
+          const lineWidth = 5 + progress * (scrollWidth - 10);
+          line.style.width = `${lineWidth}px`;
+        };
+        scrollContainer.addEventListener('scroll', onScroll, { passive: true });
+        // Cleanup handled by context revert won't cover this, so store for manual cleanup
+        (scrollContainer as any).__journeyCleanup = () => scrollContainer.removeEventListener('scroll', onScroll);
+      }
+
     }, containerRef);
 
-    return () => ctx.revert();
-  }, [mounted, isMobile]);
+    return () => {
+      ctx.revert();
+      const sc = journeyScrollRef.current;
+      if (sc && (sc as any).__journeyCleanup) {
+        (sc as any).__journeyCleanup();
+        delete (sc as any).__journeyCleanup;
+      }
+    };
+  }, [mounted]);
 
 
   if (!mounted) {
@@ -277,7 +306,7 @@ export default function PlacementPage() {
       {/* ============================================ */}
       {/* HERO SECTION - About Style with Large Text */}
       {/* ============================================ */}
-      <div ref={heroRef} className="relative w-screen m-0 p-0 overflow-hidden">
+      <div ref={heroRef} className="relative w-screen h-svh md:h-auto m-0 p-0 overflow-hidden">
         {/* Hero Image with reveal animation */}
         <motion.div
           className="relative w-screen min-h-[100svh] md:min-h-screen"
@@ -322,12 +351,12 @@ export default function PlacementPage() {
         </motion.div>
 
         {/* Large "Placements" Text - Bottom Left */}
-        <div className="absolute bottom-0 left-0 pl-3 sm:pl-6 md:pl-10 pb-0">
+        <div className="absolute bottom-0 left-0 right-0 pl-3 sm:pl-6 md:pl-10 pb-0 overflow-hidden">
           <motion.h1
             initial={{ opacity: 0, y: 100 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1.2, delay: 0.2, ease: customEase }}
-            className="font-normal select-none text-[4.5rem] sm:text-[6rem] md:text-[clamp(7rem,14vw,14rem)]"
+            className="font-normal select-none text-[5.2rem] sm:text-[8rem] md:text-[clamp(7rem,14vw,14rem)]"
             style={{
               fontFamily: "system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif",
               lineHeight: 0.85,
@@ -346,7 +375,6 @@ export default function PlacementPage() {
       {/* ============================================ */}
       {/* GALLERY SHOWCASE - Multi-image Rise, Pin, Zoom to Full Screen */}
       {/* ============================================ */}
-      {!isMobile && (
         <section
           ref={gallerySectionRef}
           className="relative h-screen w-full bg-[#f5f5f5] overflow-hidden"
@@ -368,23 +396,16 @@ export default function PlacementPage() {
                 style={{
                   borderRadius: img.isCenter ? '12px' : '6px',
                   opacity: 0,
-                  willChange: 'transform, opacity',
-                  transform: 'translateZ(0)',
-                  backfaceVisibility: 'hidden',
                   ...(img.isCenter && {
                     left: '50%',
                     top: '50%',
-                    transform: 'translate(-50%, -50%) translateZ(0)',
+                    transform: 'translate(-50%, -50%)',
                   }),
                 }}
               >
                 <div
                   ref={img.isCenter ? centerImageInnerRef : undefined}
                   className="w-full h-full"
-                  style={{
-                    willChange: 'transform',
-                    transform: 'translateZ(0)',
-                  }}
                 >
                   <img
                     src={img.src}
@@ -398,46 +419,31 @@ export default function PlacementPage() {
                   <div
                     ref={textOverlayRef}
                     className="absolute inset-0 flex flex-col justify-center opacity-0"
-                    style={{ willChange: 'opacity' }}
                   >
                     {/* Black overlay that fades in */}
                     <div className="black-overlay absolute inset-0 bg-black/50 opacity-0" />
 
-                    {/* Number on the left */}
-                    <div className="absolute top-[38%] left-8 md:left-12 z-10">
-                      <span className="text-white/80 text-sm md:text-base font-light">03</span>
-                    </div>
-
                     {/* Horizontal white line */}
-                    <div className="absolute top-[40%] left-16 md:left-24 right-8 md:right-12 flex items-center z-10">
-                      <div className="w-full h-px bg-gradient-to-r from-[#efc04b] via-white/40 to-transparent" />
-                    </div>
-
-                    {/* VISION label on the right */}
-                    <div className="absolute top-[38%] right-8 md:right-12 z-10">
-                      <span className="text-white/60 text-xs md:text-sm tracking-[0.2em] uppercase">PLACEMENTS</span>
+                    <div className="absolute top-[25%] md:top-[40%] left-8 md:left-12 right-8 md:right-12 flex items-center z-10">
+                      <div className="w-full h-px bg-white" />
                     </div>
 
                     {/* Horizontal Scrolling Titles - Top area */}
-                    <div className="absolute top-[15%] left-0 right-0 overflow-hidden z-10">
+                    <div className="absolute top-[20%] md:top-[15%] left-0 right-0 overflow-hidden z-10">
                       <div
                         className="horizontal-text-track flex items-center whitespace-nowrap"
-                        style={{
-                          width: 'max-content',
-                          willChange: 'transform',
-                          transform: 'translateZ(0)',
-                        }}
+                        style={{ width: 'max-content' }}
                       >
-                        <span className="text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-light text-white mx-12 md:mx-20" style={{ fontFamily: "system-ui, -apple-system, sans-serif", letterSpacing: '-0.02em' }}>
+                        <span className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-light text-white mx-4 sm:mx-10 md:mx-20">
                           80%+ Placement Rate
                         </span>
-                        <span className="text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-light text-white/80 mx-12 md:mx-20" style={{ fontFamily: "system-ui, -apple-system, sans-serif", letterSpacing: '-0.02em' }}>
+                        <span className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-light text-white/80 mx-4 sm:mx-10 md:mx-20">
                           500+ Recruiters
                         </span>
-                        <span className="text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-light text-white/60 mx-12 md:mx-20" style={{ fontFamily: "system-ui, -apple-system, sans-serif", letterSpacing: '-0.02em' }}>
+                        <span className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-light text-white/60 mx-4 sm:mx-10 md:mx-20">
                           Career Excellence
                         </span>
-                        <span className="text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-light text-white mx-12 md:mx-20" style={{ fontFamily: "system-ui, -apple-system, sans-serif", letterSpacing: '-0.02em' }}>
+                        <span className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-light text-white mx-4 sm:mx-10 md:mx-20">
                           Global Opportunities
                         </span>
                       </div>
@@ -445,25 +451,25 @@ export default function PlacementPage() {
 
                     {/* Multiple changing description texts */}
                     <div className="scroll-desc-1 absolute bottom-[10%] left-8 md:left-12 max-w-xl z-10 opacity-0">
-                      <p className="text-white text-base md:text-lg lg:text-xl leading-relaxed">
+                      <p className="text-white text-lg lg:text-xl leading-relaxed">
                         JLU maintains a <span className="text-[#f0c14b] font-semibold">consistent 80%+ placement rate</span> year after year, with dedicated pre-placement training, industry mentorship, and comprehensive career development programs ensuring student success.
                       </p>
                     </div>
 
                     <div className="scroll-desc-2 absolute bottom-[10%] left-8 md:left-12 max-w-xl z-10 opacity-0">
-                      <p className="text-white text-base md:text-lg lg:text-xl leading-relaxed">
+                      <p className="text-white text-lg lg:text-xl leading-relaxed">
                         Over <span className="text-[#f0c14b] font-semibold">500+ top-tier companies including Infosys, TCS, Deloitte, Amazon, and HDFC Bank</span> actively recruit from JLU, conducting 200+ campus drives annually across diverse sectors.
                       </p>
                     </div>
 
                     <div className="scroll-desc-3 absolute bottom-[10%] left-8 md:left-12 max-w-xl z-10 opacity-0">
-                      <p className="text-white text-base md:text-lg lg:text-xl leading-relaxed">
+                      <p className="text-white text-lg lg:text-xl leading-relaxed">
                         Our placement cell offers <span className="text-[#f0c14b] font-semibold">rigorous pre-placement training including aptitude tests, coding bootcamps, mock interviews, and soft skills development</span> — preparing students for every stage of the recruitment process.
                       </p>
                     </div>
 
                     <div className="scroll-desc-4 absolute bottom-[10%] left-8 md:left-12 max-w-xl z-10 opacity-0">
-                      <p className="text-white text-base md:text-lg lg:text-xl leading-relaxed">
+                      <p className="text-white text-lg lg:text-xl leading-relaxed">
                         With <span className="text-[#f0c14b] font-semibold">highest packages reaching 12 LPA and strong alumni networks in 15+ countries</span>, JLU graduates secure positions in Fortune 500 companies, innovative startups, and global corporations worldwide.
                       </p>
                     </div>
@@ -474,48 +480,20 @@ export default function PlacementPage() {
 
           </div>
         </section>
-      )}
-
-      {/* Mobile Gallery - Simpler version */}
-      {isMobile && (
-        <section className="relative py-16 px-6 bg-white">
-          <div className="grid grid-cols-2 gap-4">
-            {galleryImages.slice(0, 4).map((img) => (
-              <div
-                key={img.id}
-                className="aspect-3/4 rounded-lg overflow-hidden"
-              >
-                <img
-                  src={img.src}
-                  alt={`Gallery ${img.id}`}
-                  className="w-full h-full object-cover"
-                />
-              </div>
-            ))}
-          </div>
-          <div className="mt-8 text-center">
-            <h2 className="text-2xl font-light text-gray-900 mb-2">Our Success Stories</h2>
-            <p className="text-gray-600 text-sm">500+ recruiting partners trust JLU talent</p>
-          </div>
-        </section>
-      )}
 
 
 
       {/* ============================================ */}
       {/* PLACEMENT AT A GLANCE - Stats */}
       {/* ============================================ */}
-      <section className="relative py-20 md:py-32 bg-[#21313c] overflow-hidden">
-        <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-[#f0c14b]/5 rounded-full blur-[120px]" />
-        <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-[#c3fd7a]/5 rounded-full blur-[120px]" />
-
-        <div className="max-w-[1200px] mx-auto px-6 md:px-12 relative z-10">
+      <section className="py-16 md:py-24 bg-[#21313c]">
+        <div className="max-w-[1200px] mx-auto px-6 md:px-12">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8, ease: customEase }}
-            className="text-center mb-16 md:mb-24"
+            className="text-center mb-10 md:mb-16"
           >
             <span className="text-[#f0c14b] text-xs tracking-[0.3em] uppercase block mb-5">
               Placement Highlights
@@ -528,33 +506,34 @@ export default function PlacementPage() {
             </h2>
           </motion.div>
 
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, delay: 0.2, ease: customEase }}
+            className="flex justify-between items-center"
+          >
             {[
-              { number: '80%+', label: 'Placement Rate', sublabel: 'Consistently high outcomes' },
-              { number: '500+', label: 'Recruiting Partners', sublabel: 'Top companies trust JLU' },
-              { number: '12 LPA', label: 'Highest Package', sublabel: 'Industry-leading offers' },
-              { number: '200+', label: 'Companies Visit', sublabel: 'Annual campus drives' },
-            ].map((stat, i) => (
-              <motion.div
-                key={stat.label}
-                initial={{ opacity: 0, y: 40 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: i * 0.15, ease: customEase }}
-                className="text-center p-6 md:p-8 rounded-2xl bg-white/5 backdrop-blur-sm border border-white/10"
-              >
-                <span className="text-[#f0c14b] text-3xl md:text-4xl lg:text-5xl font-bold block mb-3" style={{ letterSpacing: '-0.02em' }}>
-                  {stat.number}
-                </span>
-                <span className="text-white text-sm md:text-base font-semibold block mb-1">
-                  {stat.label}
-                </span>
-                <span className="text-white/40 text-xs">
-                  {stat.sublabel}
-                </span>
-              </motion.div>
+              { number: '80%+', label: 'Placement Rate' },
+              { number: '500+', label: 'Recruiters' },
+              { number: '12 LPA', label: 'Highest Package' },
+              { number: '200+', label: 'Companies' },
+            ].map((stat, i, arr) => (
+              <div key={stat.label} className="flex items-center">
+                <div className="text-center px-2 md:px-8">
+                  <span className="text-[#f0c14b] text-xl sm:text-2xl md:text-4xl lg:text-5xl font-bold block mb-1" style={{ letterSpacing: '-0.02em' }}>
+                    {stat.number}
+                  </span>
+                  <span className="text-white/60 text-[10px] sm:text-xs md:text-sm">
+                    {stat.label}
+                  </span>
+                </div>
+                {i < arr.length - 1 && (
+                  <div className="w-px h-8 md:h-12 bg-white/15" />
+                )}
+              </div>
             ))}
-          </div>
+          </motion.div>
         </div>
       </section>
 
@@ -581,7 +560,96 @@ export default function PlacementPage() {
             </h2>
           </motion.div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-5">
+          {/* Mobile: 2x2 staggered grid like WhyJlu */}
+          <div className="md:hidden">
+            {/* Row 1 */}
+            <div className="flex flex-row gap-3">
+              {[
+                {
+                  title: 'Industry-Ready Curriculum',
+                  description: 'Programs co-designed with industry leaders, ensuring skills align with market demands.',
+                  image: 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=800&q=80',
+                },
+                {
+                  title: 'Dedicated Training & Development',
+                  description: 'Pre-placement training including aptitude, technical skills & communication workshops.',
+                  image: 'https://images.unsplash.com/photo-1551434678-e076c223a692?w=800&q=80',
+                },
+              ].map((card, i) => (
+                <motion.div
+                  key={card.title}
+                  initial={{ opacity: 0, y: 40 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.7, delay: i * 0.12, ease: customEase }}
+                  className="relative overflow-hidden rounded-xl cursor-pointer active:-translate-y-1 active:shadow-[0_12px_24px_rgba(0,0,0,0.2)]"
+                  style={{
+                    width: 'calc(50% - 6px)',
+                    height: '260px',
+                    marginTop: i === 1 ? '24px' : '0',
+                    marginBottom: i === 0 ? '24px' : '0',
+                    transition: 'transform 0.3s ease, box-shadow 0.3s ease',
+                  }}
+                >
+                  <img src={card.image} alt={card.title} loading="lazy" className="absolute inset-0 w-full h-full object-cover" />
+                  <div className="card-overlay absolute inset-0" style={{ background: 'linear-gradient(to top, rgba(0,0,0,0.75) 0%, rgba(0,0,0,0.3) 50%, rgba(0,0,0,0.05) 100%)', transition: 'background 0.3s ease' }} />
+                  <div className="absolute bottom-0 left-0 right-0 p-3.5 z-10">
+                    <h3 className="text-white text-base font-bold mb-1.5" style={{ lineHeight: 1.2 }}>{card.title}</h3>
+                    <p className="text-white/85 text-[0.7rem] leading-relaxed mb-1.5">{card.description}</p>
+                    <div className="flex items-center gap-1 text-white/80 text-xs font-semibold">
+                      <span>Explore</span>
+                      <span className="text-xs">→</span>
+                    </div>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+            {/* Row 2 */}
+            <div className="flex flex-row gap-3 mt-3">
+              {[
+                {
+                  title: 'Mock Interviews & Soft Skills',
+                  description: 'Rigorous mock interviews, group discussions & personality development sessions.',
+                  image: 'https://images.unsplash.com/photo-1553877522-43269d4ea984?w=800&q=80',
+                },
+                {
+                  title: 'Global Career Network',
+                  description: 'International placement partnerships & alumni network spanning Fortune 500 companies.',
+                  image: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=800&q=80',
+                },
+              ].map((card, i) => (
+                <motion.div
+                  key={card.title}
+                  initial={{ opacity: 0, y: 40 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.7, delay: i * 0.12 + 0.2, ease: customEase }}
+                  className="relative overflow-hidden rounded-xl cursor-pointer active:-translate-y-1 active:shadow-[0_12px_24px_rgba(0,0,0,0.2)]"
+                  style={{
+                    width: 'calc(50% - 6px)',
+                    height: '260px',
+                    marginTop: i === 1 ? '24px' : '0',
+                    marginBottom: i === 0 ? '24px' : '0',
+                    transition: 'transform 0.3s ease, box-shadow 0.3s ease',
+                  }}
+                >
+                  <img src={card.image} alt={card.title} loading="lazy" className="absolute inset-0 w-full h-full object-cover" />
+                  <div className="card-overlay absolute inset-0" style={{ background: 'linear-gradient(to top, rgba(0,0,0,0.75) 0%, rgba(0,0,0,0.3) 50%, rgba(0,0,0,0.05) 100%)', transition: 'background 0.3s ease' }} />
+                  <div className="absolute bottom-0 left-0 right-0 p-3.5 z-10">
+                    <h3 className="text-white text-base font-bold mb-1.5" style={{ lineHeight: 1.2 }}>{card.title}</h3>
+                    <p className="text-white/85 text-[0.7rem] leading-relaxed mb-1.5">{card.description}</p>
+                    <div className="flex items-center gap-1 text-white/80 text-xs font-semibold">
+                      <span>Explore</span>
+                      <span className="text-xs">→</span>
+                    </div>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+
+          {/* Desktop: Original 4-column grid (unchanged) */}
+          <div className="hidden md:grid grid-cols-4 gap-5">
             {[
               {
                 title: 'Industry-Ready Curriculum',
@@ -634,15 +702,15 @@ export default function PlacementPage() {
                   }}
                 />
                 <div className="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-colors duration-300" />
-                <div className="absolute bottom-0 left-0 right-0 p-5 md:p-6 z-10">
+                <div className="absolute bottom-0 left-0 right-0 p-6 z-10">
                   <h3
-                    className={`text-lg md:text-xl font-semibold mb-2 ${card.darkText ? 'text-[#21313c]' : 'text-white'}`}
+                    className={`text-xl font-semibold mb-2 ${card.darkText ? 'text-[#21313c]' : 'text-white'}`}
                     style={{ lineHeight: 1.2 }}
                   >
                     {card.title}
                   </h3>
                   <p
-                    className={`text-xs md:text-sm leading-relaxed opacity-0 group-hover:opacity-100 transition-opacity duration-300 ${card.darkText ? 'text-[#21313c]/80' : 'text-white/80'}`}
+                    className={`text-sm leading-relaxed opacity-0 group-hover:opacity-100 transition-opacity duration-300 ${card.darkText ? 'text-[#21313c]/80' : 'text-white/80'}`}
                   >
                     {card.description}
                   </p>
@@ -656,7 +724,7 @@ export default function PlacementPage() {
       {/* ============================================ */}
       {/* PLACEMENT JOURNEY - Process Steps */}
       {/* ============================================ */}
-      <section className="py-20 md:py-32 bg-white overflow-hidden">
+      <section ref={journeySectionRef} className="py-20 md:py-32 bg-white overflow-visible md:overflow-hidden">
         <div className="max-w-[1200px] mx-auto px-6 md:px-12">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -676,9 +744,12 @@ export default function PlacementPage() {
             </h2>
           </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-5 gap-8 md:gap-0 relative">
+          <div ref={journeyScrollRef} className="flex flex-row overflow-x-auto md:overflow-visible gap-4 md:gap-0 pb-4 md:pb-0 md:grid md:grid-cols-5 relative scrollbar-hide" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
             {/* Connecting line (desktop only) */}
             <div className="hidden md:block absolute top-[40px] left-[10%] right-[10%] h-px bg-gradient-to-r from-transparent via-[#f0c14b] to-transparent" />
+
+            {/* Connecting line (mobile) - animated on scroll */}
+            <div ref={journeyLineRef} className="md:hidden absolute top-[24px] left-[5%] h-px bg-[#f0c14b] z-0" style={{ width: '0%' }} />
 
             {[
               { step: '01', title: 'Pre-Placement Training', desc: 'Aptitude tests, coding bootcamps & communication workshops' },
@@ -693,15 +764,21 @@ export default function PlacementPage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: i * 0.12, ease: customEase }}
-                className="text-center relative"
+                className="text-center relative flex-shrink-0 w-[110px] md:w-auto"
               >
-                <div className="w-20 h-20 rounded-full bg-[#f0c14b] flex items-center justify-center mx-auto mb-5 relative z-10 shadow-lg shadow-[#f0c14b]/20">
-                  <span className="text-[#21313c] text-xl font-bold">{step.step}</span>
+                <div className="w-12 h-12 md:w-20 md:h-20 rounded-full bg-[#f0c14b] flex items-center justify-center mx-auto mb-3 md:mb-5 relative z-10 shadow-lg shadow-[#f0c14b]/20">
+                  <span className="text-[#21313c] text-sm md:text-xl font-bold">{step.step}</span>
                 </div>
-                <h4 className="text-[#21313c] font-semibold text-sm md:text-base mb-2">{step.title}</h4>
-                <p className="text-[#666] text-xs md:text-sm leading-relaxed max-w-[180px] mx-auto">{step.desc}</p>
+                <h4 className="text-[#21313c] font-semibold text-[0.65rem] md:text-base mb-1 md:mb-2 leading-tight">{step.title}</h4>
+                <p className="text-[#666] text-[0.6rem] md:text-sm leading-relaxed max-w-[110px] md:max-w-[180px] mx-auto">{step.desc}</p>
               </motion.div>
             ))}
+          </div>
+
+          {/* Swipe hint - mobile only */}
+          <div className="md:hidden flex justify-center items-center gap-2 mt-4 text-[#999] text-[0.65rem] animate-pulse">
+            <span>Swipe left</span>
+            <span>→</span>
           </div>
         </div>
       </section>
@@ -789,14 +866,14 @@ export default function PlacementPage() {
             </p>
           </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-5">
+          <div className="grid grid-cols-3 gap-3 md:gap-5">
             {/* Large card */}
             <motion.div
               initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.7, ease: customEase }}
-              className="md:col-span-2 md:row-span-2 group relative overflow-hidden rounded-2xl min-h-[400px] md:min-h-[600px]"
+              className="col-span-2 row-span-2 group relative overflow-hidden rounded-2xl min-h-[280px] md:min-h-[600px]"
             >
               <img
                 src="https://images.unsplash.com/photo-1521737711867-e3b97375f902?w=1200&q=80"
@@ -805,13 +882,13 @@ export default function PlacementPage() {
                 className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent" />
-              <div className="absolute bottom-0 left-0 right-0 p-6 md:p-10">
-                <span className="text-[#f0c14b] text-xs tracking-[0.2em] uppercase block mb-3">Corporate Excellence</span>
-                <h3 className="text-white text-2xl md:text-3xl lg:text-4xl font-semibold mb-3" style={{ lineHeight: 1.2 }}>
+              <div className="absolute bottom-0 left-0 right-0 p-3 md:p-10">
+                <span className="text-[#f0c14b] text-[0.55rem] md:text-xs tracking-[0.2em] uppercase block mb-1 md:mb-3">Corporate Excellence</span>
+                <h3 className="text-white text-sm md:text-3xl lg:text-4xl font-semibold mb-1 md:mb-3" style={{ lineHeight: 1.2 }}>
                   Building Careers That{' '}
                   <span style={{ fontFamily: "'Times New Roman', serif", fontStyle: 'italic', fontWeight: 400 }}>Matter</span>
                 </h3>
-                <p className="text-white/70 text-sm md:text-base max-w-[500px]" style={{ lineHeight: 1.7 }}>
+                <p className="text-white/70 text-[0.6rem] md:text-base max-w-[500px] hidden md:block" style={{ lineHeight: 1.7 }}>
                   Our placement cell works tirelessly to connect talented students with leading organizations, resulting in exceptional career outcomes year after year.
                 </p>
               </div>
@@ -823,7 +900,7 @@ export default function PlacementPage() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.7, delay: 0.15, ease: customEase }}
-              className="group relative overflow-hidden rounded-2xl min-h-[280px]"
+              className="group relative overflow-hidden rounded-2xl min-h-[180px] md:min-h-[280px]"
             >
               <img
                 src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=800&q=80"
@@ -832,10 +909,10 @@ export default function PlacementPage() {
                 className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-[#21313c]/90 to-transparent" />
-              <div className="absolute bottom-0 left-0 right-0 p-5 md:p-6">
-                <span className="text-3xl md:text-4xl font-bold text-[#f0c14b] block mb-1">95%</span>
-                <span className="text-white text-sm font-semibold block">Students Placed Before Graduation</span>
-                <span className="text-white/50 text-xs">2024-25 Batch</span>
+              <div className="absolute bottom-0 left-0 right-0 p-2.5 md:p-6">
+                <span className="text-xl md:text-4xl font-bold text-[#f0c14b] block mb-0.5 md:mb-1">95%</span>
+                <span className="text-white text-[0.6rem] md:text-sm font-semibold block leading-tight">Students Placed Before Graduation</span>
+                <span className="text-white/50 text-[0.5rem] md:text-xs">2024-25 Batch</span>
               </div>
             </motion.div>
 
@@ -845,7 +922,7 @@ export default function PlacementPage() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.7, delay: 0.25, ease: customEase }}
-              className="group relative overflow-hidden rounded-2xl min-h-[280px]"
+              className="group relative overflow-hidden rounded-2xl min-h-[180px] md:min-h-[280px]"
             >
               <img
                 src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=800&q=80"
@@ -854,10 +931,10 @@ export default function PlacementPage() {
                 className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-[#21313c]/90 to-transparent" />
-              <div className="absolute bottom-0 left-0 right-0 p-5 md:p-6">
-                <span className="text-3xl md:text-4xl font-bold text-[#c3fd7a] block mb-1">42+</span>
-                <span className="text-white text-sm font-semibold block">Global Industry Partnerships</span>
-                <span className="text-white/50 text-xs">Across 15+ countries</span>
+              <div className="absolute bottom-0 left-0 right-0 p-2.5 md:p-6">
+                <span className="text-xl md:text-4xl font-bold text-[#c3fd7a] block mb-0.5 md:mb-1">42+</span>
+                <span className="text-white text-[0.6rem] md:text-sm font-semibold block leading-tight">Global Industry Partnerships</span>
+                <span className="text-white/50 text-[0.5rem] md:text-xs">Across 15+ countries</span>
               </div>
             </motion.div>
           </div>
@@ -887,8 +964,8 @@ export default function PlacementPage() {
             </h2>
           </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
-            {[
+          {(() => {
+            const testimonials = [
               {
                 quote: "The placement cell at JLU didn't just find me a job — they helped me build a career. The mock interviews and industry mentorship were game-changers.",
                 name: 'Priya Sharma',
@@ -910,15 +987,10 @@ export default function PlacementPage() {
                 batch: 'BBA, Batch 2023',
                 image: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=200&q=80',
               },
-            ].map((testimonial, i) => (
-              <motion.div
-                key={testimonial.name}
-                initial={{ opacity: 0, y: 40 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.7, delay: i * 0.15, ease: customEase }}
-                className="bg-[#f6f7f0] rounded-2xl p-6 md:p-8 flex flex-col group hover:shadow-xl transition-shadow duration-300"
-              >
+            ];
+
+            const renderCard = (testimonial: typeof testimonials[0]) => (
+              <div className="bg-[#f6f7f0] rounded-2xl p-6 md:p-8 flex flex-col group hover:shadow-xl transition-shadow duration-300">
                 <svg className="w-8 h-8 text-[#f0c14b] mb-5 shrink-0" viewBox="0 0 24 24" fill="currentColor">
                   <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z" />
                 </svg>
@@ -926,35 +998,91 @@ export default function PlacementPage() {
                   {testimonial.quote}
                 </p>
                 <div className="flex items-center gap-3">
-                  <img
-                    src={testimonial.image}
-                    alt={testimonial.name}
-                    loading="lazy"
-                    className="w-12 h-12 rounded-full object-cover"
-                  />
+                  <img src={testimonial.image} alt={testimonial.name} loading="lazy" className="w-12 h-12 rounded-full object-cover" />
                   <div>
                     <span className="text-[#21313c] font-semibold text-sm block">{testimonial.name}</span>
                     <span className="text-[#f0c14b] text-xs font-medium block">{testimonial.role}</span>
                     <span className="text-[#999] text-xs">{testimonial.batch}</span>
                   </div>
                 </div>
-              </motion.div>
-            ))}
-          </div>
+              </div>
+            );
+
+            return (
+              <>
+                {/* Mobile: Single card carousel with arrows */}
+                <div className="md:hidden">
+                  <motion.div
+                    key={activeTestimonial}
+                    initial={{ opacity: 0, x: 30 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    exit={{ opacity: 0, x: -30 }}
+                    transition={{ duration: 0.3, ease: customEase }}
+                  >
+                    {renderCard(testimonials[activeTestimonial])}
+                  </motion.div>
+
+                  <div className="flex items-center justify-center gap-6 mt-6">
+                    <button
+                      onClick={() => setActiveTestimonial((prev) => (prev === 0 ? testimonials.length - 1 : prev - 1))}
+                      className="w-10 h-10 rounded-full border border-[#21313c]/20 flex items-center justify-center text-[#21313c] active:bg-[#21313c] active:text-white transition-colors"
+                    >
+                      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                      </svg>
+                    </button>
+
+                    <div className="flex gap-2">
+                      {testimonials.map((_, idx) => (
+                        <div
+                          key={idx}
+                          className={`w-2 h-2 rounded-full transition-colors duration-300 ${idx === activeTestimonial ? 'bg-[#f0c14b]' : 'bg-[#21313c]/15'}`}
+                        />
+                      ))}
+                    </div>
+
+                    <button
+                      onClick={() => setActiveTestimonial((prev) => (prev === testimonials.length - 1 ? 0 : prev + 1))}
+                      className="w-10 h-10 rounded-full border border-[#21313c]/20 flex items-center justify-center text-[#21313c] active:bg-[#21313c] active:text-white transition-colors"
+                    >
+                      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                      </svg>
+                    </button>
+                  </div>
+                </div>
+
+                {/* Desktop: 3-column grid (unchanged) */}
+                <div className="hidden md:grid grid-cols-3 gap-8">
+                  {testimonials.map((testimonial, i) => (
+                    <motion.div
+                      key={testimonial.name}
+                      initial={{ opacity: 0, y: 40 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.7, delay: i * 0.15, ease: customEase }}
+                    >
+                      {renderCard(testimonial)}
+                    </motion.div>
+                  ))}
+                </div>
+              </>
+            );
+          })()}
         </div>
       </section>
 
       {/* ============================================ */}
       {/* CTA SECTION - Matching other pages style */}
       {/* ============================================ */}
-      <section className="py-10 md:py-14 px-4 sm:px-6 lg:px-12 bg-[#21313c] relative overflow-hidden">
+      <section className="py-6 md:py-14 px-3 sm:px-6 lg:px-12 bg-[#21313c] relative overflow-hidden">
         <div className="max-w-[900px] mx-auto relative z-10">
           <div className="text-center">
-            <span className="text-[#efc04b] text-xs tracking-[0.2em] uppercase block mb-3">
+            <span className="text-[#efc04b] text-[0.6rem] md:text-xs tracking-[0.2em] uppercase block mb-2 md:mb-3">
               Get Started
             </span>
             <h2
-              className="text-2xl md:text-3xl font-semibold text-white mb-3"
+              className="text-lg md:text-3xl font-semibold text-white mb-2 md:mb-3"
               style={{ fontFamily: 'Inter, sans-serif', letterSpacing: '-0.02em' }}
             >
               Ready to Hire{' '}
@@ -962,23 +1090,23 @@ export default function PlacementPage() {
                 JLU Talent?
               </span>
             </h2>
-            <p className="text-white/70 text-base max-w-xl mx-auto mb-6">
+            <p className="text-white/70 text-xs md:text-base max-w-xl mx-auto mb-4 md:mb-6">
               Partner with us for campus recruitment and access to highly skilled, industry-ready graduates who are prepared to make an immediate impact.
             </p>
 
-            <div className="flex flex-col sm:flex-row gap-3 justify-center mb-8">
+            <div className="flex flex-row gap-2 md:gap-3 justify-center mb-5 md:mb-8">
               <a
                 href="mailto:placements@jlu.edu.in"
-                className="bg-[#efc04b] text-[#21313c] px-6 py-2.5 rounded-lg font-semibold text-sm hover:bg-[#d4a93d] transition-all shadow-lg inline-flex items-center justify-center gap-2"
+                className="bg-[#efc04b] text-[#21313c] px-3 md:px-6 py-2 md:py-2.5 rounded-lg font-semibold text-[0.65rem] md:text-sm hover:bg-[#d4a93d] transition-all shadow-lg inline-flex items-center justify-center gap-1.5 md:gap-2"
               >
                 Contact Placement Cell
-                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg className="w-3 h-3 md:w-4 md:h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
                 </svg>
               </a>
               <a
                 href="/broucher/placement-brochure.pdf"
-                className="border-2 border-white text-white px-6 py-2.5 rounded-lg font-semibold text-sm hover:bg-white hover:text-[#21313c] transition-all inline-flex items-center justify-center gap-2"
+                className="border md:border-2 border-white text-white px-3 md:px-6 py-2 md:py-2.5 rounded-lg font-semibold text-[0.65rem] md:text-sm hover:bg-white hover:text-[#21313c] transition-all inline-flex items-center justify-center gap-1.5 md:gap-2"
               >
                 Download Brochure
               </a>
@@ -986,34 +1114,34 @@ export default function PlacementPage() {
           </div>
 
           {/* Contact Info */}
-          <div className="grid sm:grid-cols-3 gap-6 text-center">
+          <div className="grid grid-cols-3 gap-3 md:gap-6 text-center">
             <div>
-              <div className="w-10 h-10 rounded-full bg-[#efc04b] flex items-center justify-center mx-auto mb-2">
-                <svg className="w-4 h-4 text-[#21313c]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <div className="w-8 h-8 md:w-10 md:h-10 rounded-full bg-[#efc04b] flex items-center justify-center mx-auto mb-1.5 md:mb-2">
+                <svg className="w-3.5 h-3.5 md:w-4 md:h-4 text-[#21313c]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                 </svg>
               </div>
-              <p className="text-white/60 text-xs mb-0.5">Email</p>
-              <p className="text-white font-medium text-sm">placements@jlu.edu.in</p>
+              <p className="text-white/60 text-[0.5rem] md:text-xs mb-0.5">Email</p>
+              <p className="text-white font-medium text-[0.6rem] md:text-sm">placements@jlu.edu.in</p>
             </div>
             <div>
-              <div className="w-10 h-10 rounded-full bg-[#efc04b] flex items-center justify-center mx-auto mb-2">
-                <svg className="w-4 h-4 text-[#21313c]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <div className="w-8 h-8 md:w-10 md:h-10 rounded-full bg-[#efc04b] flex items-center justify-center mx-auto mb-1.5 md:mb-2">
+                <svg className="w-3.5 h-3.5 md:w-4 md:h-4 text-[#21313c]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
                 </svg>
               </div>
-              <p className="text-white/60 text-xs mb-0.5">Phone</p>
-              <p className="text-white font-medium text-sm">0755-6611152</p>
+              <p className="text-white/60 text-[0.5rem] md:text-xs mb-0.5">Phone</p>
+              <p className="text-white font-medium text-[0.6rem] md:text-sm">0755-6611152</p>
             </div>
             <div>
-              <div className="w-10 h-10 rounded-full bg-[#efc04b] flex items-center justify-center mx-auto mb-2">
-                <svg className="w-4 h-4 text-[#21313c]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <div className="w-8 h-8 md:w-10 md:h-10 rounded-full bg-[#efc04b] flex items-center justify-center mx-auto mb-1.5 md:mb-2">
+                <svg className="w-3.5 h-3.5 md:w-4 md:h-4 text-[#21313c]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
                 </svg>
               </div>
-              <p className="text-white/60 text-xs mb-0.5">Location</p>
-              <p className="text-white font-medium text-sm">JLU Campus, Bhopal</p>
+              <p className="text-white/60 text-[0.5rem] md:text-xs mb-0.5">Location</p>
+              <p className="text-white font-medium text-[0.6rem] md:text-sm">JLU Campus, Bhopal</p>
             </div>
           </div>
         </div>

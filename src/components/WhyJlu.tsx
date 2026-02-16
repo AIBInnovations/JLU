@@ -101,7 +101,7 @@ export const WhyJlu = () => {
         flexGrow: mounted && isMobile ? 0 : 1,
         flexShrink: 0,
         flexBasis: mounted && isMobile ? 'auto' : 0,
-        height: mounted && isMobile ? '220px' : 'auto',
+        height: mounted && isMobile ? '260px' : 'auto',
         aspectRatio: mounted && isMobile ? undefined : '1 / 1',
         maxWidth: mounted && isMobile ? undefined : '25%',
         display: 'flex',
@@ -109,10 +109,10 @@ export const WhyJlu = () => {
         justifyContent: 'flex-end',
         padding: mounted && isMobile ? '14px' : 'clamp(20px, 2vw, 24px)',
         marginTop: mounted && isMobile
-          ? (index === 1 ? '40px' : '0')
+          ? (index === 1 ? '24px' : '0')
           : (originalIndex === 3 ? '200px' : (originalIndex === 0 || originalIndex === 2 ? '80px' : '0')),
         marginBottom: mounted && isMobile
-          ? (index === 0 ? '40px' : '0')
+          ? (index === 0 ? '24px' : '0')
           : (originalIndex === 1 ? '80px' : '0'),
         borderRadius: mounted && isMobile ? '12px' : '16px',
         textDecoration: 'none',
@@ -178,7 +178,7 @@ export const WhyJlu = () => {
         </span>
         <p
           style={{
-            fontSize: mounted && isMobile ? '0.6rem' : 'clamp(0.7rem, 0.85vw, 0.8rem)',
+            fontSize: mounted && isMobile ? '0.7rem' : 'clamp(0.7rem, 0.85vw, 0.8rem)',
             color: '#ffffff',
             marginBottom: mounted && isMobile ? '6px' : '8px',
             lineHeight: 1.4,
@@ -192,14 +192,14 @@ export const WhyJlu = () => {
             display: 'flex',
             alignItems: 'center',
             gap: '4px',
-            fontSize: mounted && isMobile ? '0.65rem' : 'clamp(0.7rem, 0.85vw, 0.8rem)',
+            fontSize: mounted && isMobile ? '0.75rem' : 'clamp(0.7rem, 0.85vw, 0.8rem)',
             color: '#ffffff',
             fontWeight: 600,
             opacity: 0.8,
           }}
         >
           <span>Explore</span>
-          <span style={{ fontSize: mounted && isMobile ? '0.6rem' : '0.75rem' }}>→</span>
+          <span style={{ fontSize: mounted && isMobile ? '0.75rem' : '0.75rem' }}>→</span>
         </div>
       </div>
     </a>

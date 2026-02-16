@@ -15,6 +15,7 @@ export const Hero = () => {
   const [videoButtonPos, setVideoButtonPos] = useState({ left: 0, top: 0, width: 0, height: 0, centerX: 0, centerY: 0 });
   const [expandingCard, setExpandingCard] = useState<number | null>(null);
   const [cardRect, setCardRect] = useState({ left: 0, top: 0, width: 0, height: 0 });
+  const [viewportSize, setViewportSize] = useState({ width: 0, height: 0 });
   const cardRefs = useRef<(HTMLDivElement | null)[]>([]);
   const isMobile = useIsMobile();
 
@@ -36,8 +37,8 @@ export const Hero = () => {
     const handleScroll = () => {
       const scrollY = window.scrollY;
       // Parallax speed - adjust this value to control the effect intensity
-      const backgroundSpeed = 0.5;
-      const buildingSpeed = -0.15; // Subtle negative speed to move up when scrolling down
+      const backgroundSpeed = isMobile ? 0.3 : 0.5;
+      const buildingSpeed = isMobile ? 0 : -0.15; // Disabled on mobile to prevent bottom cutoff
       const maxParallax = -50; // Maximum upward movement (stop earlier)
 
       setParallaxOffset(scrollY * backgroundSpeed);
@@ -47,7 +48,7 @@ export const Hero = () => {
 
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+  }, [isMobile]);
 
   // Wait for images to load before starting animation
   useEffect(() => {
@@ -196,7 +197,7 @@ export const Hero = () => {
             className="absolute inset-0 flex items-center justify-center"
             style={{
               zIndex: 2,
-              paddingBottom: isMobile ? '65%' : '20%',
+              paddingBottom: isMobile ? '50%' : '20%',
               opacity: 0,
             }}
           >
@@ -204,7 +205,7 @@ export const Hero = () => {
               className="text-center font-bold uppercase tracking-wider select-none"
               style={{
                 fontFamily: "'Humane', sans-serif",
-                fontSize: isMobile ? 'clamp(5.5rem, 26vw, 10rem)' : 'clamp(18rem, 24vw, 24rem)',
+                fontSize: isMobile ? 'clamp(7rem, 30vw, 12rem)' : 'clamp(18rem, 24vw, 24rem)',
                 lineHeight: isMobile ? 1.0 : 1.1,
                 letterSpacing: isMobile ? '0.02em' : '0.01em',
                 wordSpacing: isMobile ? '0.05em' : '0.3em',
@@ -251,7 +252,7 @@ export const Hero = () => {
             }}
           />
 
-          {/* Explore JLU Button (z-index: 120) */}
+          {/* Explore JLU Button (z-index: 40) */}
           <button
             ref={exploreButtonRef}
             onClick={() => {
@@ -294,7 +295,7 @@ export const Hero = () => {
             Explore JLU
           </button>
 
-          {/* Video Expansion Overlay (z-index: 60) */}
+          {/* Video Expansion Overlay */}
           <AnimatePresence>
             {isVideoOpen && (
               <>
@@ -323,118 +324,118 @@ export const Hero = () => {
                         left: videoButtonPos.left,
                         top: videoButtonPos.top,
                       }}
-                        transition={{
-                          duration: 0.8,
-                          ease: [0.4, 0, 0.2, 1],
-                        }}
-                        className="fixed bg-white"
-                        style={{ zIndex: 58 }}
-                      />
+                      transition={{
+                        duration: 0.8,
+                        ease: [0.4, 0, 0.2, 1],
+                      }}
+                      className="fixed bg-white"
+                      style={{ zIndex: 58 }}
+                    />
 
-                      {/* Mobile Video Content */}
-                      <motion.div
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1, transition: { duration: 0.4, delay: 0.6 } }}
-                        exit={{ opacity: 0, transition: { duration: 0.2, delay: 0 } }}
-                        className="fixed inset-0"
-                        style={{ zIndex: 59 }}
+                    {/* Mobile Video Content */}
+                    <motion.div
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1, transition: { duration: 0.4, delay: 0.6 } }}
+                      exit={{ opacity: 0, transition: { duration: 0.2, delay: 0 } }}
+                      className="fixed inset-0"
+                      style={{ zIndex: 59 }}
+                    >
+                      <button
+                        onClick={() => setIsVideoOpen(false)}
+                        className="absolute top-4 right-4 w-10 h-10 flex items-center justify-center bg-white rounded-full hover:bg-gray-100 transition-colors shadow-lg z-10"
+                        aria-label="Close video"
                       >
-                        <button
-                          onClick={() => setIsVideoOpen(false)}
-                          className="absolute top-4 right-4 w-10 h-10 flex items-center justify-center bg-white rounded-full hover:bg-gray-100 transition-colors shadow-lg z-10"
-                          aria-label="Close video"
-                        >
-                          <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
-                            <line x1="6" y1="6" x2="18" y2="18" stroke="#21313c" strokeWidth="2" strokeLinecap="round" />
-                            <line x1="18" y1="6" x2="6" y2="18" stroke="#21313c" strokeWidth="2" strokeLinecap="round" />
-                          </svg>
-                        </button>
-                        <video
-                          className="w-full h-full object-cover"
-                          src="/video.mp4"
-                          autoPlay
-                          playsInline
-                          onEnded={() => setIsVideoOpen(false)}
-                        />
-                      </motion.div>
-                    </>
-                  ) : (
-                    <>
-                      {/* Desktop: Button expands to full hero size */}
-                      <motion.div
-                        initial={{
-                          clipPath: `inset(${videoButtonPos.top}px ${heroRef.current ? heroRef.current.offsetWidth - videoButtonPos.left - videoButtonPos.width : 0}px ${heroRef.current ? heroRef.current.offsetHeight - videoButtonPos.top - videoButtonPos.height : 0}px ${videoButtonPos.left}px round 8px)`,
-                        }}
-                        animate={{
-                          clipPath: 'inset(0px 0px 0px 0px round 24px)',
-                        }}
-                        exit={{
-                          clipPath: `inset(${videoButtonPos.top}px ${heroRef.current ? heroRef.current.offsetWidth - videoButtonPos.left - videoButtonPos.width : 0}px ${heroRef.current ? heroRef.current.offsetHeight - videoButtonPos.top - videoButtonPos.height : 0}px ${videoButtonPos.left}px round 8px)`,
-                        }}
-                        transition={{
-                          duration: 0.8,
-                          ease: [0.4, 0, 0.2, 1],
-                        }}
-                        className="absolute inset-0 bg-white"
-                        style={{ zIndex: 100 }}
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                          <line x1="6" y1="6" x2="18" y2="18" stroke="#21313c" strokeWidth="2" strokeLinecap="round" />
+                          <line x1="18" y1="6" x2="6" y2="18" stroke="#21313c" strokeWidth="2" strokeLinecap="round" />
+                        </svg>
+                      </button>
+                      <video
+                        className="w-full h-full object-cover"
+                        src="/video.mp4"
+                        autoPlay
+                        playsInline
+                        onEnded={() => setIsVideoOpen(false)}
                       />
+                    </motion.div>
+                  </>
+                ) : (
+                  <>
+                    {/* Desktop: Button expands to full hero size */}
+                    <motion.div
+                      initial={{
+                        clipPath: `inset(${videoButtonPos.top}px ${heroRef.current ? heroRef.current.offsetWidth - videoButtonPos.left - videoButtonPos.width : 0}px ${heroRef.current ? heroRef.current.offsetHeight - videoButtonPos.top - videoButtonPos.height : 0}px ${videoButtonPos.left}px round 8px)`,
+                      }}
+                      animate={{
+                        clipPath: 'inset(0px 0px 0px 0px round 24px)',
+                      }}
+                      exit={{
+                        clipPath: `inset(${videoButtonPos.top}px ${heroRef.current ? heroRef.current.offsetWidth - videoButtonPos.left - videoButtonPos.width : 0}px ${heroRef.current ? heroRef.current.offsetHeight - videoButtonPos.top - videoButtonPos.height : 0}px ${videoButtonPos.left}px round 8px)`,
+                      }}
+                      transition={{
+                        duration: 0.8,
+                        ease: [0.4, 0, 0.2, 1],
+                      }}
+                      className="absolute inset-0 bg-white"
+                      style={{ zIndex: 100 }}
+                    />
 
-                      {/* Desktop Video Content */}
-                      <motion.div
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1, transition: { duration: 0.4, delay: 0.5 } }}
-                        exit={{ opacity: 0, transition: { duration: 0.2, delay: 0 } }}
-                        className="absolute inset-0 overflow-hidden"
-                        style={{
-                          zIndex: 101,
-                          borderRadius: '24px',
-                        }}
+                    {/* Desktop Video Content */}
+                    <motion.div
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1, transition: { duration: 0.4, delay: 0.5 } }}
+                      exit={{ opacity: 0, transition: { duration: 0.2, delay: 0 } }}
+                      className="absolute inset-0 overflow-hidden"
+                      style={{
+                        zIndex: 101,
+                        borderRadius: '24px',
+                      }}
+                    >
+                      <button
+                        onClick={() => setIsVideoOpen(false)}
+                        className="absolute top-8 right-8 w-12 h-12 flex items-center justify-center bg-white rounded-full hover:bg-gray-100 transition-colors shadow-lg"
+                        style={{ zIndex: 102 }}
+                        aria-label="Close video"
                       >
-                        <button
-                          onClick={() => setIsVideoOpen(false)}
-                          className="absolute top-8 right-8 w-12 h-12 flex items-center justify-center bg-white rounded-full hover:bg-gray-100 transition-colors shadow-lg"
-                          style={{ zIndex: 102 }}
-                          aria-label="Close video"
-                        >
-                          <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
-                            <line x1="6" y1="6" x2="18" y2="18" stroke="#21313c" strokeWidth="2" strokeLinecap="round" />
-                            <line x1="18" y1="6" x2="6" y2="18" stroke="#21313c" strokeWidth="2" strokeLinecap="round" />
-                          </svg>
-                        </button>
-                        <video
-                          className="w-full h-full object-cover"
-                          src="/video.mp4"
-                          autoPlay
-                          playsInline
-                          onEnded={() => setIsVideoOpen(false)}
-                        />
-                      </motion.div>
-                    </>
-                  )}
-                </>
-              )}
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                          <line x1="6" y1="6" x2="18" y2="18" stroke="#21313c" strokeWidth="2" strokeLinecap="round" />
+                          <line x1="18" y1="6" x2="6" y2="18" stroke="#21313c" strokeWidth="2" strokeLinecap="round" />
+                        </svg>
+                      </button>
+                      <video
+                        className="w-full h-full object-cover"
+                        src="/video.mp4"
+                        autoPlay
+                        playsInline
+                        onEnded={() => setIsVideoOpen(false)}
+                      />
+                    </motion.div>
+                  </>
+                )}
+              </>
+            )}
           </AnimatePresence>
 
         </div>
       </section>
 
       {/* Awards and Accreditations Banner */}
-      <section className="relative bg-[#f6f7f0] py-6 overflow-hidden">
+      <section className="relative bg-[#f6f7f0] py-4 sm:py-6 overflow-hidden">
         <div className="mx-auto max-w-[1800px] px-4 sm:px-10 lg:px-16">
-          <div className="flex items-center justify-center gap-8 flex-wrap">
+          <div className={`flex items-center ${isMobile ? 'gap-1.5 overflow-x-auto pb-2 -mx-4 px-4 scrollbar-hide' : 'justify-center gap-8 flex-wrap'}`} style={isMobile ? { WebkitOverflowScrolling: 'touch', scrollbarWidth: 'none', msOverflowStyle: 'none' } : undefined}>
             {/* UGC Approved */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: 0.1 }}
-              className="flex items-center gap-2 px-4 py-2 bg-white rounded-lg shadow-sm border border-gray-200"
+              className={`flex items-center bg-white rounded-lg shadow-sm border border-gray-200 ${isMobile ? 'flex-shrink-0 gap-1 px-2.5 py-1.5' : 'gap-2 px-4 py-2'}`}
             >
-              <svg className="w-5 h-5 text-[#03463B]" fill="currentColor" viewBox="0 0 20 20">
+              <svg className={`${isMobile ? 'w-3.5 h-3.5' : 'w-5 h-5'} text-[#03463B]`} fill="currentColor" viewBox="0 0 20 20">
                 <path d="M9 2a1 1 0 000 2h2a1 1 0 100-2H9z" />
                 <path fillRule="evenodd" d="M4 5a2 2 0 012-2 3 3 0 003 3h2a3 3 0 003-3 2 2 0 012 2v11a2 2 0 01-2 2H6a2 2 0 01-2-2V5zm9.707 5.707a1 1 0 00-1.414-1.414L9 12.586l-1.293-1.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
               </svg>
-              <span className="text-sm font-semibold text-gray-700">UGC Approved</span>
+              <span className={`font-semibold text-gray-700 ${isMobile ? 'text-[10px] whitespace-nowrap' : 'text-sm'}`}>UGC Approved</span>
             </motion.div>
 
             {/* NAAC Accredited */}
@@ -443,12 +444,12 @@ export const Hero = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: 0.2 }}
-              className="flex items-center gap-2 px-4 py-2 bg-white rounded-lg shadow-sm border border-gray-200"
+              className={`flex items-center bg-white rounded-lg shadow-sm border border-gray-200 ${isMobile ? 'shrink-0 gap-1 px-2.5 py-1.5' : 'gap-2 px-4 py-2'}`}
             >
-              <svg className="w-5 h-5 text-[#03463B]" fill="currentColor" viewBox="0 0 20 20">
+              <svg className={`${isMobile ? 'w-3.5 h-3.5' : 'w-5 h-5'} text-[#03463B]`} fill="currentColor" viewBox="0 0 20 20">
                 <path fillRule="evenodd" d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
               </svg>
-              <span className="text-sm font-semibold text-gray-700">NAAC B+ Accredited</span>
+              <span className={`font-semibold text-gray-700 ${isMobile ? 'text-[10px] whitespace-nowrap' : 'text-sm'}`}>NAAC B+ Accredited</span>
             </motion.div>
 
             {/* AICTE Approved */}
@@ -457,13 +458,13 @@ export const Hero = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: 0.3 }}
-              className="flex items-center gap-2 px-4 py-2 bg-white rounded-lg shadow-sm border border-gray-200"
+              className={`flex items-center bg-white rounded-lg shadow-sm border border-gray-200 ${isMobile ? 'shrink-0 gap-1 px-2.5 py-1.5' : 'gap-2 px-4 py-2'}`}
             >
-              <svg className="w-5 h-5 text-[#03463B]" fill="currentColor" viewBox="0 0 20 20">
+              <svg className={`${isMobile ? 'w-3.5 h-3.5' : 'w-5 h-5'} text-[#03463B]`} fill="currentColor" viewBox="0 0 20 20">
                 <path d="M9 2a1 1 0 000 2h2a1 1 0 100-2H9z" />
                 <path fillRule="evenodd" d="M4 5a2 2 0 012-2 3 3 0 003 3h2a3 3 0 003-3 2 2 0 012 2v11a2 2 0 01-2 2H6a2 2 0 01-2-2V5zm9.707 5.707a1 1 0 00-1.414-1.414L9 12.586l-1.293-1.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
               </svg>
-              <span className="text-sm font-semibold text-gray-700">AICTE Approved</span>
+              <span className={`font-semibold text-gray-700 ${isMobile ? 'text-[10px] whitespace-nowrap' : 'text-sm'}`}>AICTE Approved</span>
             </motion.div>
 
             {/* BCI Recognized */}
@@ -472,12 +473,12 @@ export const Hero = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: 0.4 }}
-              className="flex items-center gap-2 px-4 py-2 bg-white rounded-lg shadow-sm border border-gray-200"
+              className={`flex items-center bg-white rounded-lg shadow-sm border border-gray-200 ${isMobile ? 'shrink-0 gap-1 px-2.5 py-1.5' : 'gap-2 px-4 py-2'}`}
             >
-              <svg className="w-5 h-5 text-[#03463B]" fill="currentColor" viewBox="0 0 20 20">
+              <svg className={`${isMobile ? 'w-3.5 h-3.5' : 'w-5 h-5'} text-[#03463B]`} fill="currentColor" viewBox="0 0 20 20">
                 <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
               </svg>
-              <span className="text-sm font-semibold text-gray-700">BCI Recognized</span>
+              <span className={`font-semibold text-gray-700 ${isMobile ? 'text-[10px] whitespace-nowrap' : 'text-sm'}`}>BCI Recognized</span>
             </motion.div>
 
             {/* QS I-Gauge Diamond */}
@@ -486,12 +487,12 @@ export const Hero = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: 0.5 }}
-              className="flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-[#03463B] to-[#025039] rounded-lg shadow-md"
+              className={`flex items-center bg-gradient-to-r from-[#03463B] to-[#025039] rounded-lg shadow-md ${isMobile ? 'shrink-0 gap-1 px-2.5 py-1.5' : 'gap-2 px-4 py-2'}`}
             >
-              <svg className="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 20 20">
+              <svg className={`${isMobile ? 'w-3.5 h-3.5' : 'w-5 h-5'} text-white`} fill="currentColor" viewBox="0 0 20 20">
                 <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
               </svg>
-              <span className="text-sm font-bold text-white">QS I-Gauge Diamond</span>
+              <span className={`font-bold text-white ${isMobile ? 'text-[10px] whitespace-nowrap' : 'text-sm'}`}>QS I-Gauge Diamond</span>
             </motion.div>
 
             {/* AIU Member */}
@@ -500,26 +501,26 @@ export const Hero = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: 0.6 }}
-              className="flex items-center gap-2 px-4 py-2 bg-white rounded-lg shadow-sm border border-gray-200"
+              className={`flex items-center bg-white rounded-lg shadow-sm border border-gray-200 ${isMobile ? 'shrink-0 gap-1 px-2.5 py-1.5' : 'gap-2 px-4 py-2'}`}
             >
-              <svg className="w-5 h-5 text-[#03463B]" fill="currentColor" viewBox="0 0 20 20">
+              <svg className={`${isMobile ? 'w-3.5 h-3.5' : 'w-5 h-5'} text-[#03463B]`} fill="currentColor" viewBox="0 0 20 20">
                 <path d="M10.394 2.08a1 1 0 00-.788 0l-7 3a1 1 0 000 1.84L5.25 8.051a.999.999 0 01.356-.257l4-1.714a1 1 0 11.788 1.838L7.667 9.088l1.94.831a1 1 0 00.787 0l7-3a1 1 0 000-1.838l-7-3zM3.31 9.397L5 10.12v4.102a8.969 8.969 0 00-1.05-.174 1 1 0 01-.89-.89 11.115 11.115 0 01.25-3.762zM9.3 16.573A9.026 9.026 0 007 14.935v-3.957l1.818.78a3 3 0 002.364 0l5.508-2.361a11.026 11.026 0 01.25 3.762 1 1 0 01-.89.89 8.968 8.968 0 00-5.35 2.524 1 1 0 01-1.4 0zM6 18a1 1 0 001-1v-2.065a8.935 8.935 0 00-2-.712V17a1 1 0 001 1z" />
               </svg>
-              <span className="text-sm font-semibold text-gray-700">AIU Member</span>
+              <span className={`font-semibold text-gray-700 ${isMobile ? 'text-[10px] whitespace-nowrap' : 'text-sm'}`}>AIU Member</span>
             </motion.div>
           </div>
         </div>
       </section>
 
       {/* Intro text section */}
-      <section className="relative px-4 pb-12 pt-14 sm:px-10 lg:px-16 bg-[#f6f7f0]">
-        <div className="mx-auto flex max-w-[1800px] flex-col gap-6">
+      <section className="relative px-4 pb-8 pt-10 sm:pb-12 sm:pt-14 sm:px-10 lg:px-16 bg-[#f6f7f0]">
+        <div className="mx-auto flex max-w-[1800px] flex-col gap-4 sm:gap-6">
           <div>
             <h2
               className="max-w-4xl leading-tight text-[#21313c]"
               style={{
                 fontFamily: 'Inter, sans-serif',
-                fontSize: 'clamp(2rem, 4vw, 3.5rem)',
+                fontSize: isMobile ? 'clamp(1.5rem, 7vw, 2rem)' : 'clamp(2rem, 4vw, 3.5rem)',
                 fontWeight: 600,
                 letterSpacing: '-0.03em',
               }}
@@ -535,7 +536,7 @@ export const Hero = () => {
               className="max-w-3xl text-[#666]"
               style={{
                 fontFamily: 'Inter, sans-serif',
-                fontSize: '18px',
+                fontSize: isMobile ? '15px' : '18px',
                 lineHeight: 1.7,
                 fontWeight: 400,
               }}
@@ -543,12 +544,12 @@ export const Hero = () => {
               Jagran Lakecity University is not defined by buildings alone. It is defined by the rhythm of daily life, the exchange of ideas, and the quiet confidence of people who belong here.
             </p>
           </div>
-          <div className="flex w-full justify-end">
+          <div className={`flex w-full ${isMobile ? 'justify-start' : 'justify-end'}`}>
             <p
-              className="max-w-md text-right text-[#999]"
+              className={`max-w-md text-[#999] ${isMobile ? 'text-left' : 'text-right'}`}
               style={{
                 fontFamily: 'Inter, sans-serif',
-                fontSize: '14px',
+                fontSize: isMobile ? '13px' : '14px',
                 lineHeight: 1.6,
                 fontWeight: 400,
               }}
@@ -567,9 +568,9 @@ export const Hero = () => {
             style={{ gap: isMobile ? '12px' : '16px' }}
           >
             {[
-              { src: '/about-us.jpg', alt: 'JLU Campus', height: 550, mobileHeight: 220, label: 'About Us', href: '/about' },
-              { src: '/admissions.jpg', alt: 'Admissions', height: 500, mobileHeight: 200, label: 'Admissions', href: '/admissions' },
-              { src: '/student-clubs.jpg', alt: 'Student Clubs', height: 530, mobileHeight: 210, label: 'Student Clubs', href: '/student-clubs' },
+              { src: '/about-us.jpg', alt: 'JLU Campus', height: 550, mobileHeight: 280, label: 'About Us', href: '/about' },
+              { src: '/admissions.jpg', alt: 'Admissions', height: 500, mobileHeight: 260, label: 'Admissions', href: '/admissions' },
+              { src: '/student-clubs.jpg', alt: 'Student Clubs', height: 530, mobileHeight: 270, label: 'Student Clubs', href: '/student-clubs' },
             ].map((img, index) => (
               <div
                 key={img.src}
@@ -589,6 +590,10 @@ export const Hero = () => {
                       top: rect.top,
                       width: rect.width,
                       height: rect.height,
+                    });
+                    setViewportSize({
+                      width: window.innerWidth,
+                      height: window.innerHeight,
                     });
                     setExpandingCard(index);
                     // Navigate after full animation completes
@@ -625,7 +630,7 @@ export const Hero = () => {
                   />
                   {/* Dark overlay */}
                   <div
-                    className="absolute inset-0 bg-black/15 group-hover:bg-black/60 transition-all duration-700 ease-in-out"
+                    className={`absolute inset-0 ${isMobile ? 'bg-black/30' : 'bg-black/15 group-hover:bg-black/60'} transition-all duration-700 ease-in-out`}
                     style={{
                       borderTopLeftRadius: isMobile ? '12px' : '16px',
                       borderTopRightRadius: isMobile ? '12px' : '16px',
@@ -633,24 +638,32 @@ export const Hero = () => {
                       borderBottomRightRadius: 0,
                     }}
                   />
-                  {/* Hover text at bottom - hero style */}
+                  {/* Hover text at bottom - hero style (always visible on mobile) */}
                   <div
-                    className="absolute bottom-0 left-0 right-0 flex items-end justify-start pl-6 sm:pl-8 opacity-0 group-hover:opacity-100 transition-all duration-500"
-                    style={{
-                      borderTopLeftRadius: isMobile ? '12px' : '16px',
-                      borderTopRightRadius: isMobile ? '12px' : '16px',
+                    className={`absolute ${isMobile ? '' : 'bottom-0 left-0 right-0 flex items-end justify-start pl-6 sm:pl-8 opacity-0 group-hover:opacity-100'} transition-all duration-500`}
+                    style={isMobile ? {
+                      bottom: 0,
+                      right: 0,
+                      top: 0,
+                    } : {
+                      borderTopLeftRadius: '16px',
+                      borderTopRightRadius: '16px',
                     }}
                   >
                     <h2
-                      className="text-left font-bold uppercase tracking-wider select-none transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500"
+                      className={`font-bold uppercase tracking-wider select-none ${isMobile ? '' : 'transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500'}`}
                       style={{
                         fontFamily: "'Humane', sans-serif",
-                        fontSize: isMobile ? 'clamp(3rem, 12vw, 5rem)' : 'clamp(4.5rem, 8vw, 8rem)',
-                        lineHeight: 1.1,
-                        letterSpacing: isMobile ? '0.02em' : '0.01em',
-                        wordSpacing: isMobile ? '0.05em' : '0.3em',
+                        fontSize: isMobile ? 'clamp(3.5rem, 14vw, 5.5rem)' : 'clamp(4.5rem, 8vw, 8rem)',
+                        lineHeight: 1.0,
+                        letterSpacing: isMobile ? '0' : '0.01em',
+                        ...(isMobile ? {
+                          writingMode: 'vertical-rl' as const,
+                          textAlign: 'end' as const,
+                          height: '100%',
+                        } : {}),
                         backgroundImage: isMobile
-                          ? 'linear-gradient(to bottom, rgba(255,255,255,1) 0%, rgba(255,255,255,0.7) 20%, rgba(255,255,255,0) 100%)'
+                          ? 'linear-gradient(to right, rgba(255,255,255,1) 0%, rgba(255,255,255,0.7) 40%, rgba(255,255,255,0) 100%)'
                           : 'linear-gradient(to bottom, rgba(255,255,255,1) 0%, rgba(255,255,255,1) 10%, rgba(255,255,255,0) 70%)',
                         WebkitBackgroundClip: 'text',
                         backgroundClip: 'text',
@@ -683,12 +696,12 @@ export const Hero = () => {
                 animate={{
                   left: 0,
                   top: 0,
-                  width: '100vw',
-                  height: '100vh',
+                  width: isMobile ? viewportSize.width : '100vw',
+                  height: isMobile ? viewportSize.height : '100vh',
                   borderRadius: 0,
                 }}
                 transition={{
-                  duration: 0.7,
+                  duration: isMobile ? 0.5 : 0.7,
                   ease: [0.32, 0.72, 0, 1],
                 }}
                 style={{ zIndex: 9998, overflow: 'hidden' }}
@@ -718,12 +731,18 @@ export const Hero = () => {
                 initial={{ y: '100%' }}
                 animate={{ y: '0%' }}
                 transition={{
-                  duration: 0.6,
+                  duration: isMobile ? 0.4 : 0.6,
                   ease: [0.32, 0.72, 0, 1],
-                  delay: 0.5,
+                  delay: isMobile ? 0.35 : 0.5,
                 }}
-                className="fixed inset-0 bg-[#f6f7f0]"
-                style={{ zIndex: 9999 }}
+                className="fixed bg-[#f6f7f0]"
+                style={{
+                  zIndex: 9999,
+                  top: 0,
+                  left: 0,
+                  width: isMobile ? viewportSize.width : '100vw',
+                  height: isMobile ? viewportSize.height : '100vh',
+                }}
               />
             </>
           )}

@@ -295,12 +295,12 @@ const Academics = () => {
   const activeFaculty = faculties.find(f => f.id === activeFacultyId) || faculties[0];
 
   return (
-    <section className="w-screen m-0 p-0 overflow-x-hidden">
+    <section className="w-full m-0 p-0 overflow-x-hidden">
       {/* Hero Section with Image */}
-      <div ref={heroRef} className="relative w-screen m-0 p-0 overflow-hidden">
+      <div ref={heroRef} className="relative w-full m-0 p-0 overflow-hidden">
         {/* Hero Image with reveal animation */}
         <motion.div
-          className="relative w-screen min-h-[100svh] md:min-h-screen"
+          className="relative w-full min-h-[100svh] md:min-h-screen"
           initial={{ clipPath: 'inset(100% 0% 0% 0%)' }}
           animate={{ clipPath: 'inset(0% 0% 0% 0%)' }}
           transition={{ duration: 2, ease: [0.22, 1, 0.36, 1] }}
@@ -315,7 +315,7 @@ const Academics = () => {
             />
           </motion.div>
           {/* Black Overlay */}
-          <div className="absolute inset-0 bg-black/30" />
+          <div className="absolute inset-0 bg-black/40 md:bg-black/30" />
         </motion.div>
 
         {/* Paragraph at Top Left */}
@@ -323,15 +323,26 @@ const Academics = () => {
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.3 }}
-          className="absolute top-0 left-0 px-4 pt-28 sm:pt-32 max-w-[90%] sm:px-6 sm:max-w-[85%] md:pl-10 md:pt-[120px] md:max-w-[700px] md:pr-0"
+          className="absolute top-0 left-0 px-5 md:px-0"
+          style={{
+            paddingLeft: 'clamp(20px, 5vw, 40px)',
+            paddingTop: 'clamp(100px, 15vw, 120px)',
+            maxWidth: '800px',
+          }}
         >
           <h2
-            className="text-white font-semibold leading-tight mb-3 sm:mb-4 md:mb-5 text-lg sm:text-xl md:text-[clamp(1.5rem,3vw,2.5rem)]"
+            className="text-white font-semibold leading-tight mb-5"
+            style={{
+              fontSize: 'clamp(1.5rem, 3vw, 2.5rem)',
+            }}
           >
             LEARNING SHAPED BY <span style={{ fontFamily: "'Times New Roman', serif", fontStyle: 'italic', color: '#f0c14b', textShadow: '2px 2px 4px rgba(0,0,0,0.5)' }}>curiosity</span>, <span style={{ fontFamily: "'Times New Roman', serif", fontStyle: 'italic', color: '#f0c14b', textShadow: '2px 2px 4px rgba(0,0,0,0.5)' }}>practice</span>, and <span style={{ fontFamily: "'Times New Roman', serif", fontStyle: 'italic', color: '#f0c14b', textShadow: '2px 2px 4px rgba(0,0,0,0.5)' }}>people</span>
           </h2>
           <p
-            className="text-white font-semibold leading-relaxed text-sm sm:text-base md:text-[clamp(1rem,1.8vw,1.4rem)]"
+            className="text-white font-semibold leading-tight"
+            style={{
+              fontSize: 'clamp(1.25rem, 2.5vw, 2rem)',
+            }}
           >
             <span className="hidden md:inline">Academics at JLU are designed to help students build<br />
             clarity of thought, depth of understanding, and confidence<br />
@@ -346,30 +357,34 @@ const Academics = () => {
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.5 }}
-          className="absolute right-0 bottom-[30%] sm:bottom-[32%] md:bottom-[35%] px-4 sm:px-6 md:px-0"
+          className="absolute right-0 bottom-[28%] sm:bottom-[32%] md:bottom-[35%] max-w-[80%] md:max-w-none"
           style={{
             textAlign: 'right',
+            paddingRight: 'clamp(20px, 5vw, 40px)',
           }}
         >
           <p
-            className="text-white font-semibold leading-relaxed text-xs sm:text-sm md:text-[clamp(1rem,1.6vw,1.3rem)]"
+            className="text-white font-semibold leading-tight"
+            style={{
+              fontSize: 'clamp(1rem, 2vw, 1.3rem)',
+            }}
           >
             <span className="hidden md:inline">Students engage with ideas inside classrooms and test them beyond,<br />
             through studios, labs, fieldwork, industry interaction, and collaborative projects.<br />
             Education here is structured, but never rigid, focused, yet open to exploration.</span>
-            <span className="md:hidden">Students engage with ideas inside classrooms<br />and test them beyond, through studios, labs,<br />fieldwork, and collaborative projects.</span>
+            <span className="md:hidden">Students engage with ideas inside classrooms and test them beyond, through studios, labs, fieldwork, and collaborative projects.</span>
           </p>
         </motion.div>
 
         {/* Large "Academics" Text - Bottom Left */}
         <div
-          className="absolute bottom-0 left-0 pl-0 sm:pl-6 md:pl-10 pb-0"
+          className="absolute bottom-0 left-0 pl-1 sm:pl-6 md:pl-10 pb-0"
         >
           <motion.h1
             initial={{ opacity: 0, y: 100 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.1 }}
-            className="font-normal select-none text-[5.5rem] sm:text-[7rem] md:text-[clamp(8rem,16vw,16rem)]"
+            className="font-normal select-none text-[4.5rem] sm:text-[7rem] md:text-[clamp(8rem,16vw,16rem)]"
             style={{
               fontFamily: "system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif",
               lineHeight: 0.85,
@@ -529,11 +544,11 @@ const Academics = () => {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.3 }}
             viewport={{ once: true }}
-            className="border-t border-[#e5e5e5] pt-8 md:pt-10"
+            className="border-t border-[#e5e5e5] pt-6 md:pt-10"
           >
-            <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
+            <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between md:gap-6">
               {/* Featured pills */}
-              <div className="flex flex-wrap gap-2">
+              <div className="flex flex-wrap gap-1.5 md:gap-2">
                 {[
                   'B.Tech CSE — AI & ML',
                   'MBA',
@@ -545,7 +560,7 @@ const Academics = () => {
                   <Link
                     key={prog}
                     href="/programs"
-                    className="text-[#666] text-xs md:text-sm bg-[#f6f7f0] border border-[#e5e5e5] hover:border-[#21313c]/40 hover:text-[#21313c] px-4 py-2 rounded-full transition-all duration-300"
+                    className="text-[#666] text-[11px] md:text-sm bg-[#f6f7f0] border border-[#e5e5e5] hover:border-[#21313c]/40 hover:text-[#21313c] px-3 py-1.5 md:px-4 md:py-2 rounded-full transition-all duration-300"
                   >
                     {prog}
                   </Link>
@@ -555,10 +570,10 @@ const Academics = () => {
               {/* View All CTA */}
               <Link
                 href="/programs"
-                className="inline-flex items-center gap-3 bg-[#21313c] text-white px-6 py-3 md:px-8 md:py-4 rounded-full font-semibold text-sm hover:scale-105 transition-transform shrink-0 self-start md:self-auto"
+                className="inline-flex items-center justify-center gap-2 md:gap-3 bg-[#21313c] text-white px-5 py-2.5 md:px-8 md:py-4 rounded-full font-semibold text-xs md:text-sm hover:scale-105 transition-transform shrink-0 self-start md:self-auto"
               >
                 View All Programs
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="md:w-4 md:h-4">
                   <path d="M5 12h14M12 5l7 7-7 7" />
                 </svg>
               </Link>
@@ -605,35 +620,36 @@ const Academics = () => {
             </h2>
           </motion.div>
 
-          {/* Philosophy Cards - Desktop: 3 columns staggered, Mobile: 2+1 layout */}
+          {/* Philosophy Cards - Desktop: 3 columns staggered, Mobile: vertical scroll */}
           {/* Mobile Layout */}
           <div className="md:hidden">
-            {/* Row 1: Cards 1 & 2 */}
-            <div className="grid grid-cols-2 gap-4 mb-4">
-              {philosophyCards.slice(0, 2).map((card, index) => (
+            <div className="flex gap-3 overflow-x-auto pb-4 -mx-5 px-5 snap-x snap-mandatory" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none', WebkitOverflowScrolling: 'touch' }}>
+              {philosophyCards.map((card, index) => (
                 <motion.div
                   key={card.id}
-                  initial={{ opacity: 0, y: 60 }}
+                  initial={{ opacity: 0, y: 40 }}
                   whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.7, delay: index * 0.15 }}
+                  transition={{ duration: 0.6, delay: index * 0.1 }}
                   viewport={{ once: true }}
                   onClick={() => setSelectedPhilosophy(card)}
-                  className="group cursor-pointer"
+                  className="group cursor-pointer snap-start shrink-0"
+                  style={{ width: '72%' }}
                 >
                   {/* Image Container */}
-                  <div className="relative overflow-hidden mb-3 h-[180px] sm:h-[220px] rounded-lg">
+                  <div className="relative overflow-hidden mb-3 h-[200px] sm:h-[240px] rounded-xl">
                     <Image
                       src={card.image}
                       alt={card.title}
                       fill
                       className="object-cover"
                     />
+                    <div className="absolute inset-0 bg-black/10" />
                     {/* Number Badge */}
                     <div
-                      className="absolute top-3 left-3 w-7 h-7 sm:w-8 sm:h-8 bg-white flex items-center justify-center"
+                      className="absolute top-3 left-3 w-8 h-8 bg-white flex items-center justify-center"
                       style={{ borderRadius: '50%' }}
                     >
-                      <span className="text-[#21313c] font-semibold text-[9px] sm:text-[10px]">
+                      <span className="text-[#21313c] font-semibold text-[10px]">
                         0{card.id}
                       </span>
                     </div>
@@ -641,7 +657,7 @@ const Academics = () => {
                   {/* Content */}
                   <div>
                     <h3
-                      className="text-[#21313c] mb-1 text-xs sm:text-sm"
+                      className="text-[#21313c] mb-1 text-sm"
                       style={{
                         fontWeight: 600,
                         lineHeight: 1.3,
@@ -649,51 +665,12 @@ const Academics = () => {
                     >
                       {card.title}
                     </h3>
+                    <p className="text-[#999] text-xs" style={{ lineHeight: 1.5 }}>
+                      {card.description}
+                    </p>
                   </div>
                 </motion.div>
               ))}
-            </div>
-            {/* Row 2: Card 3 centered */}
-            <div className="flex justify-center">
-              <motion.div
-                initial={{ opacity: 0, y: 60 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.7, delay: 0.3 }}
-                viewport={{ once: true }}
-                onClick={() => setSelectedPhilosophy(philosophyCards[2])}
-                className="group cursor-pointer w-[calc(50%-8px)]"
-              >
-                {/* Image Container */}
-                <div className="relative overflow-hidden mb-3 h-[180px] sm:h-[220px] rounded-lg">
-                  <Image
-                    src={philosophyCards[2].image}
-                    alt={philosophyCards[2].title}
-                    fill
-                    className="object-cover"
-                  />
-                  {/* Number Badge */}
-                  <div
-                    className="absolute top-3 left-3 w-7 h-7 sm:w-8 sm:h-8 bg-white flex items-center justify-center"
-                    style={{ borderRadius: '50%' }}
-                  >
-                    <span className="text-[#21313c] font-semibold text-[9px] sm:text-[10px]">
-                      0{philosophyCards[2].id}
-                    </span>
-                  </div>
-                </div>
-                {/* Content */}
-                <div>
-                  <h3
-                    className="text-[#21313c] mb-1 text-xs sm:text-sm"
-                    style={{
-                      fontWeight: 600,
-                      lineHeight: 1.3,
-                    }}
-                  >
-                    {philosophyCards[2].title}
-                  </h3>
-                </div>
-              </motion.div>
             </div>
           </div>
 
@@ -889,19 +866,19 @@ const Academics = () => {
                 </div>
 
                 {/* Right — Stats Grid */}
-                <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-2 gap-3">
+                <div className="grid grid-cols-2 gap-2 md:grid-cols-4 md:gap-3 lg:grid-cols-2">
                   {activeFaculty.stats.map((stat, i) => (
                     <motion.div
                       key={i}
                       initial={{ opacity: 0, scale: 0.9 }}
                       animate={{ opacity: 1, scale: 1 }}
                       transition={{ duration: 0.35, delay: 0.1 + i * 0.07 }}
-                      className="bg-[#2d3f4a] rounded-xl p-3 md:p-4 text-center min-w-[100px]"
+                      className="bg-[#2d3f4a] rounded-xl p-2.5 md:p-4 text-center"
                     >
-                      <span className="text-[#f0c14b] text-lg md:text-xl font-bold block mb-0.5">
+                      <span className="text-[#f0c14b] text-base md:text-xl font-bold block mb-0.5">
                         {stat.value}
                       </span>
-                      <span className="text-[#999] text-[10px] md:text-xs uppercase tracking-wider">
+                      <span className="text-[#999] text-[9px] md:text-xs uppercase tracking-wider">
                         {stat.label}
                       </span>
                     </motion.div>
@@ -910,12 +887,12 @@ const Academics = () => {
               </div>
 
               {/* School Cards Grid */}
-              <div className={`grid gap-4 md:gap-6 ${
+              <div className={`grid gap-3 md:gap-6 ${
                 activeFaculty.schools.length === 1
                   ? 'grid-cols-1 max-w-[500px]'
                   : activeFaculty.schools.length === 2
-                  ? 'grid-cols-1 md:grid-cols-2'
-                  : 'grid-cols-1 md:grid-cols-2 lg:grid-cols-3'
+                  ? 'grid-cols-1 sm:grid-cols-2'
+                  : 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-3'
               }`}>
                 {activeFaculty.schools.map((school, index) => (
                   <motion.div
@@ -927,7 +904,7 @@ const Academics = () => {
                     className="group cursor-pointer bg-[#2d3f4a] rounded-2xl overflow-hidden hover:bg-[#354b58] transition-all duration-400 hover:shadow-xl hover:shadow-black/20 hover:-translate-y-1 flex flex-col"
                   >
                     {/* Card Image */}
-                    <div className="relative h-[160px] md:h-[180px] overflow-hidden">
+                    <div className="relative h-35 sm:h-40 md:h-45 overflow-hidden">
                       <Image
                         src={school.image}
                         alt={school.name}
@@ -1041,7 +1018,7 @@ const Academics = () => {
               </div>
 
               {/* Image below text */}
-              <div className="relative w-full overflow-hidden mt-6 md:mt-10 h-[200px] sm:h-[240px] md:h-[280px]">
+              <div className="relative w-full overflow-hidden mt-6 md:mt-10 h-45 sm:h-60 md:h-70 rounded-xl md:rounded-none">
                 <Image
                   src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?w=800&q=80"
                   alt="Students learning and collaborating at JLU"
@@ -1178,7 +1155,7 @@ const Academics = () => {
                   }}
                 >
                   <div
-                    className="relative p-6 sm:p-8 md:p-12 h-full transition-colors duration-500 min-h-[320px] md:min-h-[400px]"
+                    className="relative p-5 sm:p-8 md:p-12 h-full transition-colors duration-500 min-h-70 sm:min-h-80 md:min-h-100 rounded-2xl md:rounded-none"
                     style={{
                       backgroundColor: index % 2 === 0 ? '#f6f7f0' : '#21313c',
                     }}
@@ -1269,7 +1246,7 @@ const Academics = () => {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.3 }}
             viewport={{ once: true }}
-            className="mt-12 md:mt-20 pt-10 md:pt-16 border-t border-[#e5e5e5] grid grid-cols-4 gap-2 md:gap-4"
+            className="mt-10 md:mt-20 pt-8 md:pt-16 border-t border-[#e5e5e5] grid grid-cols-2 sm:grid-cols-4 gap-4 md:gap-4"
           >
             {[
               { value: '200+', label: 'Faculty' },
@@ -1279,7 +1256,7 @@ const Academics = () => {
             ].map((stat, index) => (
               <div key={index} className="text-center">
                 <span
-                  className="text-[#21313c] block mb-1 md:mb-2 text-xl sm:text-2xl md:text-5xl"
+                  className="text-[#21313c] block mb-1 md:mb-2 text-2xl sm:text-3xl md:text-5xl"
                   style={{
                     fontWeight: 700,
                     lineHeight: 1,
@@ -1289,7 +1266,7 @@ const Academics = () => {
                   {stat.value}
                 </span>
                 <span
-                  className="text-[#666] uppercase tracking-wider text-[7px] sm:text-[9px] md:text-xs"
+                  className="text-[#666] uppercase tracking-wider text-[10px] sm:text-[11px] md:text-xs"
                   style={{ letterSpacing: '0.05em' }}
                 >
                   {stat.label}

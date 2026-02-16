@@ -157,7 +157,7 @@ export const FloatingActionButton = ({ onEnquireClick }: FloatingActionButtonPro
   return (
     <motion.div
       ref={containerRef}
-      className="fixed z-[9000] right-0"
+      className={`fixed right-0 ${isMobile ? 'z-[45]' : 'z-[9000]'}`}
       style={{
         top: '50%',
       }}

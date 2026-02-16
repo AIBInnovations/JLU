@@ -208,15 +208,12 @@ const Research = () => {
   const y = useTransform(scrollYProgress, [0, 1], ['0%', '30%']);
 
   return (
-    <section className="w-screen m-0 p-0 overflow-x-hidden">
+    <section className="w-full m-0 p-0 overflow-x-hidden">
       {/* Hero Section with Image */}
-      <div ref={heroRef} className="relative w-screen m-0 p-0 overflow-hidden">
+      <div ref={heroRef} className="relative w-full m-0 p-0 overflow-hidden">
         {/* Hero Image with reveal animation */}
         <motion.div
-          className="relative w-screen"
-          style={{
-            minHeight: '100vh',
-          }}
+          className="relative w-full min-h-svh"
           initial={{ clipPath: 'inset(100% 0% 0% 0%)' }}
           animate={{ clipPath: 'inset(0% 0% 0% 0%)' }}
           transition={{ duration: 2, ease: [0.22, 1, 0.36, 1] }}
@@ -239,11 +236,10 @@ const Research = () => {
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.3 }}
-          className="absolute top-0 left-0"
+          className="absolute top-0 left-0 max-w-[90%] sm:max-w-200"
           style={{
-            paddingLeft: 'clamp(20px, 5vw, 40px)',
-            paddingTop: 'clamp(100px, 15vw, 120px)',
-            maxWidth: '800px',
+            paddingLeft: 'clamp(16px, 5vw, 40px)',
+            paddingTop: 'clamp(90px, 15vw, 120px)',
           }}
         >
           <h2
@@ -279,7 +275,7 @@ const Research = () => {
             className="font-normal select-none"
             style={{
               fontFamily: "system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif",
-              fontSize: 'clamp(6.1rem, 16vw, 16rem)',
+              fontSize: 'clamp(6rem, 22vw, 24rem)',
               lineHeight: 0.85,
               letterSpacing: '-0.02em',
               background: 'linear-gradient(to bottom, rgba(255,255,255,1) 0%, rgba(255,255,255,0.7) 50%, rgba(255,255,255,0) 85%)',
@@ -351,19 +347,19 @@ const Research = () => {
             maxWidth: '1440px',
           }}
         >
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-4 lg:gap-0">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 md:gap-4 lg:gap-0">
             {statsData.map((stat) => (
               <div
                 key={stat.id}
                 className="flex flex-col justify-center lg:border-r lg:last:border-r-0 border-[#c4c4c4] lg:pr-10 lg:mr-10 lg:last:pr-0 lg:last:mr-0"
               >
-                <p className="text-2xl md:text-3xl lg:text-5xl font-bold text-[#21313c] mb-1 md:mb-2">
+                <p className="text-xl sm:text-2xl md:text-3xl lg:text-5xl font-bold text-[#21313c] mb-1 md:mb-2">
                   {stat.value}
                 </p>
-                <p className="text-xs md:text-sm font-medium text-[#21313c] tracking-wider mb-1">
+                <p className="text-[10px] sm:text-xs md:text-sm font-medium text-[#21313c] tracking-wider mb-1">
                   {stat.label}
                 </p>
-                <p className="text-xs md:text-sm text-[#21313c]">
+                <p className="text-[10px] sm:text-xs md:text-sm text-[#21313c] hidden sm:block">
                   {stat.description}
                 </p>
               </div>
@@ -390,19 +386,19 @@ const Research = () => {
                 Peer-reviewed research advancing knowledge across disciplines.
               </p>
             </div>
-            <div className="flex items-center gap-2 bg-[#03463B] text-white px-4 py-2 rounded-full">
-              <span className="text-2xl md:text-3xl font-bold">2.4k+</span>
-              <span className="text-sm">Published Papers</span>
+            <div className="flex items-center gap-2 bg-[#03463B] text-white px-3 sm:px-4 py-1.5 sm:py-2 rounded-full">
+              <span className="text-xl sm:text-2xl md:text-3xl font-bold">2.4k+</span>
+              <span className="text-xs sm:text-sm">Published Papers</span>
             </div>
           </div>
 
           {/* Filters */}
-          <div className="flex flex-wrap gap-2 md:gap-3 mb-8 md:mb-12">
+          <div className="flex gap-2 md:gap-3 mb-8 md:mb-12 overflow-x-auto pb-2 sm:pb-0 sm:flex-wrap scrollbar-hide">
             {publicationFilters.map((filter) => (
               <button
                 key={filter}
                 onClick={() => setActiveFilter(filter)}
-                className={`px-4 py-2 md:px-5 md:py-2.5 rounded-full text-xs md:text-sm font-medium transition-all ${
+                className={`px-3 py-1.5 sm:px-4 sm:py-2 md:px-5 md:py-2.5 rounded-full text-[11px] sm:text-xs md:text-sm font-medium transition-all whitespace-nowrap shrink-0 sm:shrink ${
                   activeFilter === filter
                     ? 'bg-[#21313c] text-white'
                     : 'bg-white text-[#21313c] border border-gray-200 hover:border-[#21313c]'
@@ -414,7 +410,7 @@ const Research = () => {
           </div>
 
           {/* Publications Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5 md:gap-6">
             {publicationsData
               .filter(pub => activeFilter === 'All' || pub.category === activeFilter)
               .map((pub) => (
@@ -523,7 +519,7 @@ const Research = () => {
 
             {/* Right Side - Journal Card */}
             <div
-              className="relative shrink-0 overflow-hidden rounded-lg w-full lg:w-145 h-64 md:h-80 lg:h-125"
+              className="relative shrink-0 overflow-hidden rounded-lg w-full lg:w-145 h-52 sm:h-64 md:h-80 lg:h-125"
             >
               <Image
                 src="https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?w=1200&q=80"
@@ -533,17 +529,9 @@ const Research = () => {
               />
               <div className="absolute inset-0 bg-black/40" />
               {/* Publication Badge */}
-              <div
-                className="absolute bottom-0 left-0 right-0 bg-white/90 flex flex-col items-center justify-center"
-                style={{
-                  height: '116px',
-                  gap: '8px',
-                  paddingTop: '20px',
-                  paddingBottom: '20px',
-                }}
-              >
-                <p className="text-xl font-bold text-[#21313c]">Academic Insights</p>
-                <p className="text-sm text-[#21313c]">Vol. 12, No. 2, Spring 2026</p>
+              <div className="absolute bottom-0 left-0 right-0 bg-white/90 flex flex-col items-center justify-center py-4 sm:py-5 gap-1 sm:gap-2">
+                <p className="text-base sm:text-xl font-bold text-[#21313c]">Academic Insights</p>
+                <p className="text-xs sm:text-sm text-[#21313c]">Vol. 12, No. 2, Spring 2026</p>
               </div>
             </div>
           </div>
@@ -573,7 +561,7 @@ const Research = () => {
             </a>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6 md:gap-8">
             {facultySpotlight.map((faculty) => (
               <div
                 key={faculty.id}
@@ -581,7 +569,7 @@ const Research = () => {
               >
                 {/* Image */}
                 <div
-                  className="relative overflow-hidden w-full h-72 md:h-80 lg:h-105"
+                  className="relative overflow-hidden w-full h-60 sm:h-72 md:h-80 lg:h-105"
                 >
                   <Image
                     src={faculty.image}
@@ -623,18 +611,18 @@ const Research = () => {
                 Innovation-driven intellectual property protecting groundbreaking research.
               </p>
             </div>
-            <div className="flex items-center gap-2 bg-[#21313c] text-white px-4 py-2 rounded-full">
-              <span className="text-2xl md:text-3xl font-bold">142+</span>
-              <span className="text-sm">Patents Filed</span>
+            <div className="flex items-center gap-2 bg-[#21313c] text-white px-3 sm:px-4 py-1.5 sm:py-2 rounded-full">
+              <span className="text-xl sm:text-2xl md:text-3xl font-bold">142+</span>
+              <span className="text-xs sm:text-sm">Patents Filed</span>
             </div>
           </div>
 
           {/* Patents Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
             {patentsData.map((patent) => (
               <div
                 key={patent.id}
-                className="bg-white p-6 md:p-8 rounded-lg border border-gray-200 hover:shadow-lg transition-shadow"
+                className="bg-white p-5 sm:p-6 md:p-8 rounded-lg border border-gray-200 hover:shadow-lg transition-shadow"
               >
                 <div className="flex justify-between items-start mb-4">
                   <span className={`px-3 py-1 rounded-full text-xs font-medium ${
@@ -689,9 +677,9 @@ const Research = () => {
                 Government and industry-backed research driving innovation and impact.
               </p>
             </div>
-            <div className="flex items-center gap-2 bg-[#1a5f4a] text-white px-4 py-2 rounded-full">
-              <span className="text-2xl md:text-3xl font-bold">₹85M+</span>
-              <span className="text-sm">Total Funding</span>
+            <div className="flex items-center gap-2 bg-[#1a5f4a] text-white px-3 sm:px-4 py-1.5 sm:py-2 rounded-full">
+              <span className="text-xl sm:text-2xl md:text-3xl font-bold">₹85M+</span>
+              <span className="text-xs sm:text-sm">Total Funding</span>
             </div>
           </div>
 
@@ -700,25 +688,25 @@ const Research = () => {
             <table className="w-full">
               <thead>
                 <tr className="border-b-2 border-[#21313c]">
-                  <th className="text-left py-4 px-2 text-sm md:text-base font-bold text-[#21313c]">Project Title</th>
-                  <th className="text-left py-4 px-2 text-sm md:text-base font-bold text-[#21313c] hidden md:table-cell">Funding Agency</th>
-                  <th className="text-left py-4 px-2 text-sm md:text-base font-bold text-[#21313c]">Amount</th>
-                  <th className="text-left py-4 px-2 text-sm md:text-base font-bold text-[#21313c] hidden lg:table-cell">Duration</th>
-                  <th className="text-left py-4 px-2 text-sm md:text-base font-bold text-[#21313c]">Status</th>
+                  <th className="text-left py-3 sm:py-4 px-1 sm:px-2 text-xs sm:text-sm md:text-base font-bold text-[#21313c]">Project Title</th>
+                  <th className="text-left py-3 sm:py-4 px-1 sm:px-2 text-xs sm:text-sm md:text-base font-bold text-[#21313c] hidden md:table-cell">Funding Agency</th>
+                  <th className="text-left py-3 sm:py-4 px-1 sm:px-2 text-xs sm:text-sm md:text-base font-bold text-[#21313c]">Amount</th>
+                  <th className="text-left py-3 sm:py-4 px-1 sm:px-2 text-xs sm:text-sm md:text-base font-bold text-[#21313c] hidden lg:table-cell">Duration</th>
+                  <th className="text-left py-3 sm:py-4 px-1 sm:px-2 text-xs sm:text-sm md:text-base font-bold text-[#21313c]">Status</th>
                 </tr>
               </thead>
               <tbody>
                 {fundedProjectsData.map((project) => (
                   <tr key={project.id} className="border-b border-gray-200 hover:bg-gray-50 transition-colors">
-                    <td className="py-4 px-2">
-                      <p className="text-sm md:text-base font-medium text-[#21313c]">{project.title}</p>
-                      <p className="text-xs text-gray-500 mt-1">PI: {project.pi}</p>
-                      <p className="text-xs text-gray-500 md:hidden mt-1">{project.fundingAgency}</p>
+                    <td className="py-3 sm:py-4 px-1 sm:px-2">
+                      <p className="text-xs sm:text-sm md:text-base font-medium text-[#21313c]">{project.title}</p>
+                      <p className="text-[10px] sm:text-xs text-gray-500 mt-1">PI: {project.pi}</p>
+                      <p className="text-[10px] sm:text-xs text-gray-500 md:hidden mt-1">{project.fundingAgency}</p>
                     </td>
-                    <td className="py-4 px-2 text-sm text-gray-600 hidden md:table-cell">{project.fundingAgency}</td>
-                    <td className="py-4 px-2 text-sm md:text-base font-semibold text-[#1a5f4a]">{project.amount}</td>
-                    <td className="py-4 px-2 text-sm text-gray-600 hidden lg:table-cell">{project.duration}</td>
-                    <td className="py-4 px-2">
+                    <td className="py-3 sm:py-4 px-1 sm:px-2 text-sm text-gray-600 hidden md:table-cell">{project.fundingAgency}</td>
+                    <td className="py-3 sm:py-4 px-1 sm:px-2 text-xs sm:text-sm md:text-base font-semibold text-[#1a5f4a]">{project.amount}</td>
+                    <td className="py-3 sm:py-4 px-1 sm:px-2 text-sm text-gray-600 hidden lg:table-cell">{project.duration}</td>
+                    <td className="py-3 sm:py-4 px-1 sm:px-2">
                       <span className={`px-3 py-1 rounded-full text-xs font-medium ${
                         project.status === 'Ongoing'
                           ? 'bg-blue-100 text-blue-800'

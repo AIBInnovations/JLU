@@ -3,6 +3,7 @@
 import Image from 'next/image';
 import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion';
 import { useState, useRef, useEffect } from 'react';
+import { useIsMobile } from '../hooks/useIsMobile';
 
 interface Event {
   id: number;
@@ -116,15 +117,17 @@ const pastEvents: Event[] = [
 const categories = ['All', 'Arts & Culture', 'Student Leadership', 'Academic Competition', 'Awards & Recognition', 'Workshop', 'Technology'];
 
 const Events = () => {
+  const isMobile = useIsMobile();
   const [keyword, setKeyword] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('All');
   const [selectedYear, setSelectedYear] = useState('All');
   const [showAllPastEvents, setShowAllPastEvents] = useState(false);
   const [activeModal, setActiveModal] = useState<'signature' | 'leadership' | null>(null);
+  const [selectedPastEvent, setSelectedPastEvent] = useState<Event | null>(null);
   const heroRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    if (activeModal) {
+    if (activeModal || selectedPastEvent) {
       document.body.style.overflow = 'hidden';
       document.documentElement.style.overflow = 'hidden';
     } else {
@@ -135,7 +138,7 @@ const Events = () => {
       document.body.style.overflow = '';
       document.documentElement.style.overflow = '';
     };
-  }, [activeModal]);
+  }, [activeModal, selectedPastEvent]);
   const { scrollYProgress } = useScroll({
     target: heroRef,
     offset: ['start start', 'end start'],
@@ -189,12 +192,12 @@ const Events = () => {
           className="absolute top-0 left-0 px-4 pt-28 sm:pt-32 max-w-[90%] sm:px-6 sm:max-w-[85%] md:pl-10 md:pt-[120px] md:max-w-[800px] md:pr-0"
         >
           <h2
-            className="text-white font-semibold leading-tight mb-3 sm:mb-4 md:mb-5 text-xl sm:text-2xl md:text-[clamp(1.5rem,3vw,2.5rem)]"
+            className="text-white font-semibold leading-tight mb-3 sm:mb-4 md:mb-5 text-2xl sm:text-3xl md:text-[clamp(1.5rem,3vw,2.5rem)]"
           >
             ALWAYS IN <span style={{ fontFamily: "'Times New Roman', serif", fontStyle: 'italic', color: '#f0c14b', textShadow: '2px 2px 4px rgba(0,0,0,0.5)' }}>Motion</span>
           </h2>
           <p
-            className="text-white font-semibold leading-tight text-base sm:text-lg md:text-[clamp(1.25rem,2.5vw,2rem)]"
+            className="text-white font-semibold leading-tight text-xl sm:text-2xl md:text-[clamp(1.25rem,2.5vw,2rem)]"
           >
             Something is always unfolding. Conversations, gatherings, ideas, celebrations. Small moments and larger milestones. All part of the everyday rhythm.
           </p>
@@ -208,7 +211,7 @@ const Events = () => {
             initial={{ opacity: 0, y: 100 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.1 }}
-            className="font-normal select-none text-[5.5rem] sm:text-[7rem] md:text-[clamp(8rem,16vw,16rem)]"
+            className="font-normal select-none text-[7rem] sm:text-[9rem] md:text-[clamp(8rem,16vw,16rem)]"
             style={{
               fontFamily: "system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif",
               lineHeight: 0.85,
@@ -228,24 +231,24 @@ const Events = () => {
       <div className="w-full bg-[#f6f7f0]">
         <div className="mx-auto px-4 py-10 sm:px-6 sm:py-12 md:px-[120px] md:py-[80px]" style={{ maxWidth: '1440px' }}>
           {/* Section Header */}
-          <div className="flex flex-col md:flex-row md:justify-between md:items-end mb-8 md:mb-12 pb-6 md:pb-8" style={{ borderBottom: '1px solid #e5e5e5' }}>
-            <div className="mb-6 md:mb-0">
-              <span className="text-[#999] uppercase tracking-widest block text-[10px] sm:text-xs mb-3 md:mb-4" style={{ letterSpacing: '0.2em' }}>
+          <div className="flex flex-row justify-between items-end mb-4 md:mb-12 pb-3 md:pb-8" style={{ borderBottom: '1px solid #e5e5e5' }}>
+            <div>
+              <span className="text-[#999] uppercase tracking-widest block text-[8px] md:text-xs mb-2 md:mb-4" style={{ letterSpacing: '0.2em' }}>
                 What's Coming Up
               </span>
-              <h2 className="text-[#21313c] text-2xl sm:text-3xl md:text-[clamp(2rem,4vw,3rem)]" style={{ fontWeight: 600, lineHeight: 1, letterSpacing: '-0.02em' }}>
+              <h2 className="text-[#21313c] text-sm md:text-[clamp(2rem,4vw,3rem)]" style={{ fontWeight: 600, lineHeight: 1, letterSpacing: '-0.02em' }}>
                 Upcoming{' '}
                 <span style={{ fontFamily: "'Times New Roman', serif", fontStyle: 'italic', fontWeight: 400 }}>Events</span>
               </h2>
             </div>
 
             {/* Category Filter */}
-            <div className="flex flex-wrap gap-2">
+            <div className="flex flex-wrap gap-1 md:gap-2">
               {categories.slice(0, 5).map((cat) => (
                 <button
                   key={cat}
                   onClick={() => setSelectedCategory(cat)}
-                  className={`px-4 py-2 rounded-full text-xs font-medium transition-colors ${
+                  className={`px-2 md:px-4 py-1 md:py-2 rounded-full text-[8px] md:text-xs font-medium transition-colors ${
                     selectedCategory === cat
                       ? 'bg-[#21313c] text-white'
                       : 'bg-white text-[#21313c] hover:bg-[#e5e5e5]'
@@ -258,7 +261,7 @@ const Events = () => {
           </div>
 
           {/* Upcoming Events Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 md:gap-6">
             {filteredUpcoming.map((event, index) => (
               <motion.div
                 key={event.id}
@@ -266,41 +269,41 @@ const Events = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
                 viewport={{ once: true }}
-                className="group bg-white rounded-2xl overflow-hidden cursor-pointer hover:shadow-xl transition-all duration-300"
+                className="group bg-white rounded-xl md:rounded-2xl overflow-hidden cursor-pointer hover:shadow-xl transition-all duration-300"
               >
                 {/* Image */}
-                <div className="relative h-48 overflow-hidden">
+                <div className="relative h-24 md:h-48 overflow-hidden">
                   <Image
                     src={event.image || '/e1.jpg'}
                     alt={event.title}
                     fill
                     className="object-cover group-hover:scale-105 transition-transform duration-500"
                   />
-                  <div className="absolute top-3 left-3">
-                    <span className="px-3 py-1 bg-[#c3fd7a] text-[#21313c] text-xs font-semibold rounded-full">
+                  <div className="absolute top-1.5 left-1.5 md:top-3 md:left-3">
+                    <span className="px-1.5 py-0.5 md:px-3 md:py-1 bg-[#c3fd7a] text-[#21313c] text-[8px] md:text-xs font-semibold rounded-full">
                       {event.category}
                     </span>
                   </div>
                 </div>
 
                 {/* Content */}
-                <div className="p-5">
-                  <div className="flex items-center gap-2 text-[#999] text-xs mb-3">
-                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <div className="p-2.5 md:p-5">
+                  <div className="flex items-center gap-1 md:gap-2 text-[#999] text-[8px] md:text-xs mb-1.5 md:mb-3">
+                    <svg className="w-2.5 h-2.5 md:w-4 md:h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
                     </svg>
                     {event.date}
                   </div>
-                  <h3 className="text-[#21313c] font-semibold text-lg mb-2 group-hover:text-[#03463B] transition-colors">
+                  <h3 className="text-[#21313c] font-semibold text-[11px] md:text-lg mb-1 md:mb-2 group-hover:text-[#03463B] transition-colors leading-tight">
                     {event.title}
                   </h3>
-                  <p className="text-[#666] text-sm mb-3 line-clamp-2">{event.description}</p>
-                  <div className="flex items-center gap-2 text-[#999] text-xs">
-                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <p className="text-[#666] text-[9px] md:text-sm mb-1.5 md:mb-3 line-clamp-2 leading-snug">{event.description}</p>
+                  <div className="flex items-center gap-1 md:gap-2 text-[#999] text-[8px] md:text-xs">
+                    <svg className="w-2.5 h-2.5 md:w-4 md:h-4 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
                     </svg>
-                    {event.venue}
+                    <span className="truncate">{event.venue}</span>
                   </div>
                 </div>
               </motion.div>
@@ -318,16 +321,16 @@ const Events = () => {
           }}
         >
           {/* Section Header */}
-          <div className="flex flex-col md:flex-row md:justify-between md:items-end mb-8 md:mb-16 pb-6 md:pb-10" style={{ borderBottom: '1px solid #e5e5e5' }}>
-            <div className="mb-6 md:mb-0">
+          <div className="flex flex-row justify-between items-end mb-8 md:mb-16 pb-4 md:pb-10" style={{ borderBottom: '1px solid #e5e5e5' }}>
+            <div>
               <span
-                className="text-[#999] uppercase tracking-widest block text-[10px] sm:text-xs mb-3 md:mb-4"
+                className="text-[#999] uppercase tracking-widest block text-[8px] md:text-xs mb-2 md:mb-4"
                 style={{ letterSpacing: '0.2em' }}
               >
                 Archive
               </span>
               <h2
-                className="text-[#21313c] text-2xl sm:text-3xl md:text-[clamp(2.5rem,5vw,4rem)]"
+                className="text-[#21313c] text-sm md:text-[clamp(2.5rem,5vw,4rem)]"
                 style={{
                   fontWeight: 600,
                   lineHeight: 1,
@@ -340,29 +343,29 @@ const Events = () => {
             </div>
 
             {/* Filters */}
-            <div className="flex flex-col sm:flex-row items-stretch sm:items-end gap-4 sm:gap-6 md:gap-8">
-              <div className="flex-1 sm:flex-initial" style={{ minWidth: 'auto' }}>
+            <div className="flex flex-row items-end gap-2 md:gap-8">
+              <div style={{ minWidth: 'auto' }}>
                 <label
-                  className="block text-[#999] uppercase tracking-wider text-[9px] sm:text-[10px] mb-2"
+                  className="block text-[#999] uppercase tracking-wider text-[7px] md:text-[10px] mb-1 md:mb-2"
                   style={{ letterSpacing: '0.15em' }}
                 >
                   Keyword
                 </label>
                 <input
                   type="text"
-                  placeholder="Search events..."
+                  placeholder="Search..."
                   value={keyword}
                   onChange={(e) => setKeyword(e.target.value)}
-                  className="w-full sm:w-[180px] md:w-[200px] bg-transparent text-[#21313c] placeholder-[#999] focus:outline-none text-sm md:text-[15px]"
+                  className="w-[80px] md:w-[200px] bg-transparent text-[#21313c] placeholder-[#999] focus:outline-none text-[10px] md:text-[15px]"
                   style={{
                     borderBottom: '1px solid #21313c',
-                    paddingBottom: '8px',
+                    paddingBottom: '4px',
                   }}
                 />
               </div>
-              <div className="w-1/2 sm:w-auto" style={{ minWidth: 'auto' }}>
+              <div style={{ minWidth: 'auto' }}>
                 <label
-                  className="block text-[#999] uppercase tracking-wider text-[9px] sm:text-[10px] mb-2"
+                  className="block text-[#999] uppercase tracking-wider text-[7px] md:text-[10px] mb-1 md:mb-2"
                   style={{ letterSpacing: '0.15em' }}
                 >
                   Year
@@ -370,10 +373,10 @@ const Events = () => {
                 <select
                   value={selectedYear}
                   onChange={(e) => setSelectedYear(e.target.value)}
-                  className="w-full sm:w-[100px] md:w-[120px] bg-transparent text-[#21313c] focus:outline-none appearance-none cursor-pointer text-sm md:text-[15px]"
+                  className="w-[60px] md:w-[120px] bg-transparent text-[#21313c] focus:outline-none appearance-none cursor-pointer text-[10px] md:text-[15px]"
                   style={{
                     borderBottom: '1px solid #21313c',
-                    paddingBottom: '8px',
+                    paddingBottom: '4px',
                   }}
                 >
                   <option value="All">All Years</option>
@@ -383,7 +386,7 @@ const Events = () => {
                 </select>
               </div>
               <button
-                className="px-5 sm:px-6 py-2 sm:py-2.5 bg-[#21313c] text-white text-xs sm:text-sm font-medium hover:bg-[#333] transition-colors"
+                className="px-3 md:px-6 py-1.5 md:py-2.5 bg-[#21313c] text-white text-[8px] md:text-sm font-medium hover:bg-[#333] transition-colors whitespace-nowrap"
                 style={{ borderRadius: '100px' }}
               >
                 Apply Filter
@@ -392,7 +395,7 @@ const Events = () => {
           </div>
 
           {/* Events List — first 3 always visible */}
-          <div className="flex flex-col gap-4 md:gap-0">
+          <div className="flex flex-col">
             {filteredPast.slice(0, 3).map((event, index) => (
               <motion.div
                 key={event.id}
@@ -400,42 +403,27 @@ const Events = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
                 viewport={{ once: true }}
-                className="group cursor-pointer bg-[#f9f9f9] md:bg-transparent rounded-xl md:rounded-none p-4 md:p-0"
+                className="group cursor-pointer"
+                onClick={() => setSelectedPastEvent(event)}
               >
-                {/* Mobile: Card Layout */}
-                <div className="md:hidden">
-                  <div className="flex items-start justify-between gap-3 mb-3">
-                    <h3 className="text-[#21313c] font-semibold text-base leading-tight">{event.title}</h3>
-                    {event.venue && (
-                      <span className="px-2 py-1 bg-white text-[#666] rounded text-[10px] shrink-0">{event.category}</span>
-                    )}
-                  </div>
-                  <p className="text-[#666] text-xs mb-3 leading-relaxed">{event.description}</p>
-                  <div className="flex items-center gap-2 text-[11px] text-[#999]">
-                    <span className="font-medium text-[#21313c]">{event.date}</span>
-                    <span className="w-1 h-1 rounded-full bg-[#ccc]" />
-                    <span className="truncate">{event.venue}</span>
-                  </div>
-                </div>
-                {/* Desktop: Grid Layout */}
                 <div
-                  className="hidden md:grid items-start py-10 group-hover:bg-[#fafafa] transition-colors"
-                  style={{ gridTemplateColumns: '140px 1fr 1fr 40px', gap: '40px', marginLeft: '-24px', marginRight: '-24px', paddingLeft: '24px', paddingRight: '24px', borderBottom: '1px solid #e5e5e5' }}
+                  className="grid items-start py-4 md:py-10 group-hover:bg-[#fafafa] transition-colors"
+                  style={{ gridTemplateColumns: isMobile ? '60px 1fr 1fr 20px' : '140px 1fr 1fr 40px', gap: isMobile ? '8px' : '40px', marginLeft: isMobile ? '-8px' : '-24px', marginRight: isMobile ? '-8px' : '-24px', paddingLeft: isMobile ? '8px' : '24px', paddingRight: isMobile ? '8px' : '24px', borderBottom: '1px solid #e5e5e5' }}
                 >
                   <div>
-                    <span className="text-[#21313c] font-semibold block" style={{ fontSize: '13px', lineHeight: 1.4 }}>{event.date.split(' ')[0]}</span>
-                    <span className="text-[#21313c] block" style={{ fontSize: '13px' }}>{event.date.split(' ').slice(1).join(' ')}</span>
+                    <span className="text-[#21313c] font-semibold block" style={{ fontSize: isMobile ? '9px' : '13px', lineHeight: 1.4 }}>{event.date.split(' ')[0]}</span>
+                    <span className="text-[#21313c] block" style={{ fontSize: isMobile ? '8px' : '13px' }}>{event.date.split(' ').slice(1).join(' ')}</span>
                   </div>
                   <div>
-                    <h3 className="text-[#21313c] group-hover:text-[#666] transition-colors" style={{ fontSize: '24px', fontWeight: 600, lineHeight: 1.2, marginBottom: '12px' }}>{event.title}</h3>
-                    <span className="inline-block px-3 py-1 bg-[#e8f0fe] text-[#3b82f6] rounded text-xs font-medium">{event.category}</span>
+                    <h3 className="text-[#21313c] group-hover:text-[#666] transition-colors" style={{ fontSize: isMobile ? '11px' : '24px', fontWeight: 600, lineHeight: 1.2, marginBottom: isMobile ? '4px' : '12px' }}>{event.title}</h3>
+                    <span className="inline-block px-1.5 md:px-3 py-0.5 md:py-1 bg-[#e8f0fe] text-[#3b82f6] rounded text-[7px] md:text-xs font-medium">{event.category}</span>
                   </div>
                   <div>
-                    <p className="text-[#666] mb-3" style={{ fontSize: '15px', lineHeight: 1.6 }}>{event.description}</p>
-                    <p className="text-[#999]" style={{ fontSize: '13px' }}>{event.venue}</p>
+                    <p className="text-[#666] mb-1 md:mb-3 line-clamp-2" style={{ fontSize: isMobile ? '9px' : '15px', lineHeight: 1.6 }}>{event.description}</p>
+                    <p className="text-[#999] truncate" style={{ fontSize: isMobile ? '8px' : '13px' }}>{event.venue}</p>
                   </div>
                   <div className="flex items-center justify-end h-full">
-                    <span className="text-[#21313c] opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all" style={{ fontSize: '20px' }}>→</span>
+                    <span className="text-[#21313c] md:opacity-0 md:group-hover:opacity-100 group-hover:translate-x-1 transition-all" style={{ fontSize: isMobile ? '12px' : '20px' }}>→</span>
                   </div>
                 </div>
               </motion.div>
@@ -454,7 +442,7 @@ const Events = () => {
                 transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
                 style={{ overflow: 'hidden' }}
               >
-                <div className="flex flex-col gap-4 md:gap-0">
+                <div className="flex flex-col">
                   {filteredPast.slice(3).map((event, index) => (
                     <motion.div
                       key={event.id}
@@ -462,42 +450,27 @@ const Events = () => {
                       whileInView={{ opacity: 1, y: 0 }}
                       transition={{ duration: 0.5, delay: index * 0.1 }}
                       viewport={{ once: true }}
-                      className="group cursor-pointer bg-[#f9f9f9] md:bg-transparent rounded-xl md:rounded-none p-4 md:p-0"
+                      className="group cursor-pointer"
+                      onClick={() => setSelectedPastEvent(event)}
                     >
-                      {/* Mobile: Card Layout */}
-                      <div className="md:hidden">
-                        <div className="flex items-start justify-between gap-3 mb-3">
-                          <h3 className="text-[#21313c] font-semibold text-base leading-tight">{event.title}</h3>
-                          {event.venue && (
-                            <span className="px-2 py-1 bg-white text-[#666] rounded text-[10px] shrink-0">{event.category}</span>
-                          )}
-                        </div>
-                        <p className="text-[#666] text-xs mb-3 leading-relaxed">{event.description}</p>
-                        <div className="flex items-center gap-2 text-[11px] text-[#999]">
-                          <span className="font-medium text-[#21313c]">{event.date}</span>
-                          <span className="w-1 h-1 rounded-full bg-[#ccc]" />
-                          <span className="truncate">{event.venue}</span>
-                        </div>
-                      </div>
-                      {/* Desktop: Grid Layout */}
                       <div
-                        className="hidden md:grid items-start py-10 group-hover:bg-[#fafafa] transition-colors"
-                        style={{ gridTemplateColumns: '140px 1fr 1fr 40px', gap: '40px', marginLeft: '-24px', marginRight: '-24px', paddingLeft: '24px', paddingRight: '24px', borderBottom: '1px solid #e5e5e5' }}
+                        className="grid items-start py-4 md:py-10 group-hover:bg-[#fafafa] transition-colors"
+                        style={{ gridTemplateColumns: isMobile ? '60px 1fr 1fr 20px' : '140px 1fr 1fr 40px', gap: isMobile ? '8px' : '40px', marginLeft: isMobile ? '-8px' : '-24px', marginRight: isMobile ? '-8px' : '-24px', paddingLeft: isMobile ? '8px' : '24px', paddingRight: isMobile ? '8px' : '24px', borderBottom: '1px solid #e5e5e5' }}
                       >
                         <div>
-                          <span className="text-[#21313c] font-semibold block" style={{ fontSize: '13px', lineHeight: 1.4 }}>{event.date.split(' ')[0]}</span>
-                          <span className="text-[#21313c] block" style={{ fontSize: '13px' }}>{event.date.split(' ').slice(1).join(' ')}</span>
+                          <span className="text-[#21313c] font-semibold block" style={{ fontSize: isMobile ? '9px' : '13px', lineHeight: 1.4 }}>{event.date.split(' ')[0]}</span>
+                          <span className="text-[#21313c] block" style={{ fontSize: isMobile ? '8px' : '13px' }}>{event.date.split(' ').slice(1).join(' ')}</span>
                         </div>
                         <div>
-                          <h3 className="text-[#21313c] group-hover:text-[#666] transition-colors" style={{ fontSize: '24px', fontWeight: 600, lineHeight: 1.2, marginBottom: '12px' }}>{event.title}</h3>
-                          <span className="inline-block px-3 py-1 bg-[#e8f0fe] text-[#3b82f6] rounded text-xs font-medium">{event.category}</span>
+                          <h3 className="text-[#21313c] group-hover:text-[#666] transition-colors" style={{ fontSize: isMobile ? '11px' : '24px', fontWeight: 600, lineHeight: 1.2, marginBottom: isMobile ? '4px' : '12px' }}>{event.title}</h3>
+                          <span className="inline-block px-1.5 md:px-3 py-0.5 md:py-1 bg-[#e8f0fe] text-[#3b82f6] rounded text-[7px] md:text-xs font-medium">{event.category}</span>
                         </div>
                         <div>
-                          <p className="text-[#666] mb-3" style={{ fontSize: '15px', lineHeight: 1.6 }}>{event.description}</p>
-                          <p className="text-[#999]" style={{ fontSize: '13px' }}>{event.venue}</p>
+                          <p className="text-[#666] mb-1 md:mb-3 line-clamp-2" style={{ fontSize: isMobile ? '9px' : '15px', lineHeight: 1.6 }}>{event.description}</p>
+                          <p className="text-[#999] truncate" style={{ fontSize: isMobile ? '8px' : '13px' }}>{event.venue}</p>
                         </div>
                         <div className="flex items-center justify-end h-full">
-                          <span className="text-[#21313c] opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all" style={{ fontSize: '20px' }}>→</span>
+                          <span className="text-[#21313c] md:opacity-0 md:group-hover:opacity-100 group-hover:translate-x-1 transition-all" style={{ fontSize: isMobile ? '12px' : '20px' }}>→</span>
                         </div>
                       </div>
                     </motion.div>
@@ -506,10 +479,10 @@ const Events = () => {
               </motion.div>
 
               {/* View More / View Less button */}
-              <div className="flex justify-center mt-8 md:mt-12">
+              <div className="flex justify-center mt-6 md:mt-12">
                 <button
                   onClick={() => setShowAllPastEvents(!showAllPastEvents)}
-                  className="flex items-center gap-2 px-6 py-3 bg-[#21313c] text-white text-sm font-medium hover:bg-[#333] transition-colors cursor-pointer"
+                  className="flex items-center gap-1.5 md:gap-2 px-4 md:px-6 py-2 md:py-3 bg-[#21313c] text-white text-[10px] md:text-sm font-medium hover:bg-[#333] transition-colors cursor-pointer"
                   style={{ borderRadius: '100px' }}
                 >
                   {showAllPastEvents ? 'View Less' : `View More (${filteredPast.length - 3})`}
@@ -537,16 +510,16 @@ const Events = () => {
           }}
         >
           {/* Section Header */}
-          <div className="flex flex-col md:flex-row md:justify-between md:items-end mb-8 md:mb-16">
-            <div className="max-w-full md:max-w-[500px] mb-4 md:mb-0">
+          <div className="flex flex-row justify-between items-end mb-4 md:mb-16">
+            <div className="max-w-[55%] md:max-w-[500px]">
               <span
-                className="text-[#999] uppercase tracking-widest block text-[10px] sm:text-xs mb-3 md:mb-4"
+                className="text-[#999] uppercase tracking-widest block text-[8px] md:text-xs mb-2 md:mb-4"
                 style={{ letterSpacing: '0.2em' }}
               >
                 Experience
               </span>
               <h2
-                className="text-[#21313c] text-xl sm:text-2xl md:text-[clamp(2rem,4vw,3rem)]"
+                className="text-[#21313c] text-sm md:text-[clamp(2rem,4vw,3rem)]"
                 style={{
                   fontWeight: 600,
                   lineHeight: 1.1,
@@ -557,14 +530,14 @@ const Events = () => {
               </h2>
             </div>
             <p
-              className="text-[#666] text-sm md:text-base max-w-full md:max-w-[400px]"
+              className="text-[#666] text-[9px] md:text-base max-w-[40%] md:max-w-[400px]"
               style={{ lineHeight: 1.7 }}
             >
               Where learning meets experience. Each event is designed to inspire, connect, and transform.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-8">
+          <div className="grid grid-cols-2 gap-3 md:gap-8">
             {/* Card 1 - Signature Events */}
             <motion.div
               initial={{ opacity: 0, y: 40 }}
@@ -572,7 +545,7 @@ const Events = () => {
               transition={{ duration: 0.6 }}
               viewport={{ once: true }}
               onClick={() => setActiveModal('signature')}
-              className="group relative overflow-hidden cursor-pointer min-h-[320px] sm:min-h-[400px] md:min-h-[520px] rounded-xl md:rounded-none"
+              className="group relative overflow-hidden cursor-pointer min-h-[200px] md:min-h-[520px] rounded-xl md:rounded-none"
             >
               <Image
                 src="https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=1200&q=80"
@@ -581,28 +554,28 @@ const Events = () => {
                 className="object-cover transition-transform duration-700 group-hover:scale-105"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent" />
-              <div className="absolute inset-0 flex flex-col justify-end p-5 sm:p-8 md:p-10">
+              <div className="absolute inset-0 flex flex-col justify-end p-3 md:p-10">
                 <span
-                  className="text-white/60 uppercase tracking-widest mb-2 sm:mb-3 md:mb-4 text-[9px] sm:text-[10px] md:text-[11px]"
+                  className="text-white/60 uppercase tracking-widest mb-1 md:mb-4 text-[7px] md:text-[11px]"
                   style={{ letterSpacing: '0.2em' }}
                 >
                   01 — Signature
                 </span>
                 <h3
-                  className="text-white mb-2 sm:mb-3 md:mb-4 text-lg sm:text-xl md:text-[28px]"
+                  className="text-white mb-1 md:mb-4 text-[11px] md:text-[28px]"
                   style={{ fontWeight: 600, lineHeight: 1.2 }}
                 >
                   Signature Events & Campus Experiences
                 </h3>
                 <p
-                  className="text-white/80 mb-4 md:mb-6 text-xs sm:text-sm md:text-[15px] max-w-[95%] md:max-w-[90%]"
+                  className="text-white/80 mb-2 md:mb-6 text-[8px] md:text-[15px] max-w-[95%] md:max-w-[90%] hidden md:block"
                   style={{ lineHeight: 1.7 }}
                 >
                   From academic conclaves and award ceremonies to cultural showcases and student-led festivals — experiences that define our vibrant atmosphere.
                 </p>
-                <div className="flex items-center gap-2 md:gap-3 text-white">
-                  <span className="text-xs sm:text-sm md:text-[14px] font-medium">Explore Events</span>
-                  <span className="group-hover:translate-x-2 transition-transform">→</span>
+                <div className="flex items-center gap-1 md:gap-3 text-white">
+                  <span className="text-[8px] md:text-[14px] font-medium">Explore Events</span>
+                  <span className="group-hover:translate-x-2 transition-transform text-[10px] md:text-base">→</span>
                 </div>
               </div>
             </motion.div>
@@ -614,7 +587,7 @@ const Events = () => {
               transition={{ duration: 0.6, delay: 0.1 }}
               viewport={{ once: true }}
               onClick={() => setActiveModal('leadership')}
-              className="group relative overflow-hidden cursor-pointer min-h-[320px] sm:min-h-[400px] md:min-h-[520px] rounded-xl md:rounded-none"
+              className="group relative overflow-hidden cursor-pointer min-h-[200px] md:min-h-[520px] rounded-xl md:rounded-none"
             >
               <Image
                 src="https://images.unsplash.com/photo-1517486808906-6ca8b3f04846?w=1200&q=80"
@@ -623,28 +596,28 @@ const Events = () => {
                 className="object-cover transition-transform duration-700 group-hover:scale-105"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent" />
-              <div className="absolute inset-0 flex flex-col justify-end p-5 sm:p-8 md:p-10">
+              <div className="absolute inset-0 flex flex-col justify-end p-3 md:p-10">
                 <span
-                  className="text-white/60 uppercase tracking-widest mb-2 sm:mb-3 md:mb-4 text-[9px] sm:text-[10px] md:text-[11px]"
+                  className="text-white/60 uppercase tracking-widest mb-1 md:mb-4 text-[7px] md:text-[11px]"
                   style={{ letterSpacing: '0.2em' }}
                 >
                   02 — Leadership
                 </span>
                 <h3
-                  className="text-white mb-2 sm:mb-3 md:mb-4 text-lg sm:text-xl md:text-[28px]"
+                  className="text-white mb-1 md:mb-4 text-[11px] md:text-[28px]"
                   style={{ fontWeight: 600, lineHeight: 1.2 }}
                 >
                   Learning, Leadership & Community Impact
                 </h3>
                 <p
-                  className="text-white/80 mb-4 md:mb-6 text-xs sm:text-sm md:text-[15px] max-w-[95%] md:max-w-[90%]"
+                  className="text-white/80 mb-2 md:mb-6 text-[8px] md:text-[15px] max-w-[95%] md:max-w-[90%] hidden md:block"
                   style={{ lineHeight: 1.7 }}
                 >
                   Platforms for learning and leadership development. Students gain exposure to real-world conversations and collaborative problem-solving.
                 </p>
-                <div className="flex items-center gap-2 md:gap-3 text-white">
-                  <span className="text-xs sm:text-sm md:text-[14px] font-medium">Explore Events</span>
-                  <span className="group-hover:translate-x-2 transition-transform">→</span>
+                <div className="flex items-center gap-1 md:gap-3 text-white">
+                  <span className="text-[8px] md:text-[14px] font-medium">Explore Events</span>
+                  <span className="group-hover:translate-x-2 transition-transform text-[10px] md:text-base">→</span>
                 </div>
               </div>
             </motion.div>
@@ -653,28 +626,28 @@ const Events = () => {
       </div>
 
       {/* Don't Miss Our Updates Section */}
-      <div className="w-full bg-[#f6f7f0] px-4 sm:px-6 md:px-10 pb-10 md:pb-20">
+      <div className="w-full bg-[#f6f7f0] px-3 md:px-10 pb-6 md:pb-20">
         <div
-          className="mx-auto flex flex-col items-center justify-center bg-[#f0c14b] px-4 py-5 sm:px-10 sm:py-10 md:px-20 md:py-20 rounded-xl md:rounded-[32px]"
+          className="mx-auto flex flex-col items-center justify-center bg-[#f0c14b] px-4 py-6 md:px-20 md:py-20 rounded-xl md:rounded-[32px]"
           style={{
             maxWidth: '1400px',
           }}
         >
           <motion.div
-            className="text-center mb-3 sm:mb-8 md:mb-12"
+            className="text-center mb-3 md:mb-12"
             initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
           >
             <span
-              className="text-[#21313c]/60 uppercase tracking-widest block mb-2 sm:mb-4 md:mb-6 text-[9px] sm:text-[11px] md:text-xs"
+              className="text-[#21313c]/60 uppercase tracking-widest block mb-1.5 md:mb-6 text-[8px] md:text-xs"
               style={{ letterSpacing: '0.2em' }}
             >
               Stay Connected
             </span>
             <h2
-              className="text-[#21313c] text-xl sm:text-3xl md:text-[clamp(2.5rem,5vw,4rem)]"
+              className="text-[#21313c] text-base md:text-[clamp(2.5rem,5vw,4rem)]"
               style={{
                 fontWeight: 600,
                 lineHeight: 1.1,
@@ -692,7 +665,7 @@ const Events = () => {
           </motion.div>
 
           <motion.p
-            className="text-[#21313c]/80 text-center mb-4 sm:mb-8 md:mb-10 text-xs md:text-base max-w-[95%] md:max-w-[500px]"
+            className="text-[#21313c]/80 text-center mb-3 md:mb-10 text-[9px] md:text-base max-w-[85%] md:max-w-[500px]"
             style={{ lineHeight: 1.6 }}
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -703,7 +676,7 @@ const Events = () => {
           </motion.p>
 
           <motion.div
-            className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2 sm:gap-4 w-full sm:w-auto"
+            className="flex flex-row items-center gap-2 md:gap-4 w-full md:w-auto"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -712,14 +685,14 @@ const Events = () => {
             <input
               type="email"
               placeholder="Enter your email"
-              className="bg-white text-[#21313c] placeholder-[#999] focus:outline-none transition-colors w-full sm:w-auto sm:min-w-[250px] md:min-w-[300px] px-4 py-2.5 sm:px-5 sm:py-3.5 md:px-6 md:py-4 text-xs md:text-[15px]"
+              className="bg-white text-[#21313c] placeholder-[#999] focus:outline-none transition-colors flex-1 md:flex-none md:min-w-[300px] px-3 py-2 md:px-6 md:py-4 text-[10px] md:text-[15px]"
               style={{
                 border: 'none',
                 borderRadius: '100px',
               }}
             />
             <motion.button
-              className="bg-[#21313c] text-white font-semibold flex items-center justify-center gap-2 md:gap-3 px-5 py-2.5 sm:px-7 sm:py-3.5 md:px-8 md:py-4 text-xs sm:text-sm md:text-[14px]"
+              className="bg-[#21313c] text-white font-semibold flex items-center justify-center gap-1 md:gap-3 px-4 py-2 md:px-8 md:py-4 text-[9px] md:text-[14px] whitespace-nowrap"
               style={{
                 borderRadius: '100px',
               }}
@@ -732,6 +705,111 @@ const Events = () => {
           </motion.div>
         </div>
       </div>
+      {/* Past Event Detail Modal */}
+      <AnimatePresence>
+        {selectedPastEvent && (
+          <motion.div
+            className="fixed inset-0 z-[9999] flex items-center justify-center"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.3 }}
+            onClick={() => setSelectedPastEvent(null)}
+          >
+            {/* Backdrop */}
+            <div className="absolute inset-0 bg-black/60 backdrop-blur-sm" />
+
+            {/* Modal Panel */}
+            <motion.div
+              className="relative w-[95vw] max-w-[640px] bg-white rounded-2xl flex flex-col overflow-hidden"
+              initial={{ opacity: 0, scale: 0.95, y: 30 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.95, y: 30 }}
+              transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
+              onClick={(e) => e.stopPropagation()}
+            >
+              {/* Header with image or gradient */}
+              <div className="relative h-[180px] sm:h-[220px] shrink-0 overflow-hidden">
+                {selectedPastEvent.image ? (
+                  <Image
+                    src={selectedPastEvent.image}
+                    alt={selectedPastEvent.title}
+                    fill
+                    className="object-cover"
+                  />
+                ) : (
+                  <div className="absolute inset-0 bg-gradient-to-br from-[#03463B] to-[#025039]" />
+                )}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent" />
+
+                {/* Close Button */}
+                <button
+                  onClick={() => setSelectedPastEvent(null)}
+                  className="absolute top-4 right-4 w-10 h-10 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center text-white hover:bg-white/40 transition-colors cursor-pointer"
+                >
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <line x1="18" y1="6" x2="6" y2="18" />
+                    <line x1="6" y1="6" x2="18" y2="18" />
+                  </svg>
+                </button>
+
+                {/* Category badge */}
+                <div className="absolute top-4 left-4">
+                  <span className="px-3 py-1 bg-[#c3fd7a] text-[#21313c] text-xs font-semibold rounded-full">
+                    {selectedPastEvent.category}
+                  </span>
+                </div>
+
+                {/* Title on image */}
+                <div className="absolute bottom-0 left-0 p-5 sm:p-8">
+                  <h2 className="text-white text-xl sm:text-2xl md:text-[28px] font-semibold" style={{ lineHeight: 1.2 }}>
+                    {selectedPastEvent.title}
+                  </h2>
+                </div>
+              </div>
+
+              {/* Content */}
+              <div className="p-5 sm:p-8">
+                {/* Date and venue */}
+                <div className="flex flex-col gap-3 mb-6">
+                  <div className="flex items-center gap-3 text-[#21313c]">
+                    <div className="w-9 h-9 bg-[#f6f7f0] rounded-lg flex items-center justify-center shrink-0">
+                      <svg className="w-4 h-4 text-[#03463B]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                      </svg>
+                    </div>
+                    <div>
+                      <p className="text-xs text-[#999] uppercase tracking-wider">Date</p>
+                      <p className="text-sm font-semibold">{selectedPastEvent.date}</p>
+                    </div>
+                  </div>
+                  <div className="flex items-center gap-3 text-[#21313c]">
+                    <div className="w-9 h-9 bg-[#f6f7f0] rounded-lg flex items-center justify-center shrink-0">
+                      <svg className="w-4 h-4 text-[#03463B]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                      </svg>
+                    </div>
+                    <div>
+                      <p className="text-xs text-[#999] uppercase tracking-wider">Venue</p>
+                      <p className="text-sm font-semibold">{selectedPastEvent.venue}</p>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Divider */}
+                <div className="w-full h-px bg-[#e5e5e5] mb-6" />
+
+                {/* Description */}
+                <p className="text-[#666] text-sm md:text-base" style={{ lineHeight: 1.8 }}>
+                  {selectedPastEvent.description}
+                </p>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
       {/* Event Category Modals */}
       <AnimatePresence>
         {activeModal && (

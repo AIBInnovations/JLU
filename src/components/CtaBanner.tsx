@@ -3,7 +3,7 @@
 export const CtaBanner = () => {
   return (
     <section className="relative overflow-hidden" style={{ background: '#f4c950' }}>
-      <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-12 py-14 md:py-20">
+      <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-12 py-10 md:py-20">
         <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-8">
           {/* Left - Text */}
           <div className="max-w-xl">

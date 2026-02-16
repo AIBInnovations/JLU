@@ -145,9 +145,9 @@ export const OurProgrammes = () => {
           href="/programs"
           className="flex items-center bg-[#c3fd7a] text-[#21313c] rounded-full font-semibold hover:bg-[#b3ed6a] transition-colors"
           style={{
-            gap: isMobile ? '4px' : '8px',
-            padding: isMobile ? '4px 10px' : '12px 24px',
-            fontSize: isMobile ? '0.5rem' : '0.875rem'
+            gap: isMobile ? '6px' : '8px',
+            padding: isMobile ? '8px 18px' : '12px 24px',
+            fontSize: isMobile ? '0.75rem' : '0.875rem'
           }}
         >
           View All Courses
@@ -227,7 +227,7 @@ export const OurProgrammes = () => {
           <div
             className="overflow-hidden flex-1 rounded-t-2xl group cursor-pointer"
             style={{
-              height: isMobile ? '180px' : 'clamp(500px, 40vw, 850px)',
+              height: isMobile ? '200px' : 'clamp(500px, 40vw, 850px)',
               marginTop: isMobile ? '8px' : 'clamp(0px, 1.4vw, 30px)',
             }}
           >
@@ -242,8 +242,8 @@ export const OurProgrammes = () => {
           <div
             className="overflow-hidden flex-1 rounded-t-2xl group cursor-pointer"
             style={{
-              height: isMobile ? '160px' : 'clamp(450px, 36vw, 780px)',
-              marginTop: isMobile ? '28px' : 'clamp(0px, 5.5vw, 120px)',
+              height: isMobile ? '180px' : 'clamp(450px, 36vw, 780px)',
+              marginTop: isMobile ? '20px' : 'clamp(0px, 5.5vw, 120px)',
             }}
           >
             <img
@@ -257,7 +257,7 @@ export const OurProgrammes = () => {
           <div
             className="overflow-hidden flex-1 rounded-t-2xl group cursor-pointer"
             style={{
-              height: isMobile ? '188px' : 'clamp(520px, 42vw, 900px)',
+              height: isMobile ? '210px' : 'clamp(520px, 42vw, 900px)',
             }}
           >
             <img

@@ -170,10 +170,10 @@ export const ChatBot = () => {
         onClick={() => setIsOpen(!isOpen)}
         className="fixed z-[9000] bg-[#03463B] text-white shadow-xl hover:shadow-2xl transition-shadow flex items-center justify-center"
         style={{
-          left: isMobile ? '12px' : '24px',
-          bottom: isMobile ? '12px' : '24px',
-          width: isMobile ? '52px' : '60px',
-          height: isMobile ? '52px' : '60px',
+          left: '24px',
+          bottom: '24px',
+          width: isMobile ? '52px' : '56px',
+          height: isMobile ? '52px' : '56px',
           borderRadius: '50%',
         }}
         whileHover={{ scale: 1.05 }}

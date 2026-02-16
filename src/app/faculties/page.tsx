@@ -78,6 +78,7 @@ export default function FacultiesPage() {
       if (!section) return;
 
       const wipeOverlay = section.querySelector('.faculty-wipe-overlay');
+      const textWipe = section.querySelector('.faculty-text-wipe');
       const title = section.querySelector('.faculty-title');
       const description = section.querySelector('.faculty-description');
       const link = section.querySelector('.faculty-link');
@@ -107,11 +108,36 @@ export default function FacultiesPage() {
         );
       }
 
-      // Text elements reveal from bottom
+      // Text box wipe reveal - opposite direction to image
+      if (textWipe) {
+        gsap.set(textWipe, {
+          transformOrigin: isLeft ? 'left center' : 'right center',
+        });
+
+        gsap.fromTo(
+          textWipe,
+          {
+            scaleX: 1,
+          },
+          {
+            scaleX: 0,
+            duration: 1.4,
+            ease: 'power3.out',
+            scrollTrigger: {
+              trigger: section,
+              start: 'top 75%',
+              toggleActions: 'play none none reverse',
+            },
+            delay: 0.3,
+          }
+        );
+      }
+
+      // Text elements reveal from bottom (staggered after wipe)
       gsap.fromTo(
         [title, description, link],
         {
-          y: 40,
+          y: 30,
           opacity: 0,
         },
         {
@@ -122,9 +148,10 @@ export default function FacultiesPage() {
           ease: 'power3.out',
           scrollTrigger: {
             trigger: section,
-            start: 'top 70%',
+            start: 'top 75%',
             toggleActions: 'play none none reverse',
           },
+          delay: 0.7,
         }
       );
     });
@@ -137,7 +164,7 @@ export default function FacultiesPage() {
   return (
     <div className="bg-[#f6f7f0] min-h-screen">
       {/* Hero Section */}
-      <div ref={heroRef} className="relative w-screen m-0 p-0 overflow-hidden">
+      <div ref={heroRef} className="relative w-screen h-svh md:h-auto m-0 p-0 overflow-hidden">
         {/* Hero Image with reveal animation */}
         <motion.div
           className="relative w-screen min-h-[100svh] md:min-h-screen"
@@ -185,13 +212,13 @@ export default function FacultiesPage() {
 
         {/* Large "Faculties" Text - Bottom Left */}
         <div
-          className="absolute bottom-0 left-0 pl-3 sm:pl-6 md:pl-10 pb-0"
+          className="absolute bottom-0 left-0 right-0 pl-3 sm:pl-6 md:pl-10 pb-0 overflow-hidden"
         >
           <motion.h1
             initial={{ opacity: 0, y: 100 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1.2, delay: 0.2, ease: customEase }}
-            className="font-normal select-none text-[5.5rem] sm:text-[7rem] md:text-[clamp(8rem,16vw,16rem)]"
+            className="font-normal select-none text-[6.5rem] sm:text-[8rem] md:text-[clamp(8rem,16vw,16rem)]"
             style={{
               fontFamily: "system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif",
               lineHeight: 0.85,
@@ -213,14 +240,14 @@ export default function FacultiesPage() {
           <section
             key={faculty.name}
             ref={(el) => { sectionsRef.current[index] = el; }}
-            className="relative py-20 px-4 sm:px-10 lg:px-16 overflow-hidden"
+            className="relative py-8 md:py-20 px-3 sm:px-10 lg:px-16 overflow-hidden"
           >
             <div className="mx-auto max-w-[1400px]">
               <div className={`relative flex items-center ${faculty.side === 'right' ? 'justify-end' : 'justify-start'}`}>
                 {/* Image */}
                 <div
-                  className={`faculty-image relative w-full md:w-[50%] h-[650px] ${
-                    faculty.side === 'left' ? 'md:mr-[-10%] rounded-r-2xl' : 'md:ml-[-10%] rounded-l-2xl'
+                  className={`faculty-image relative w-full md:w-[50%] h-[320px] md:h-[650px] ${
+                    faculty.side === 'left' ? 'md:mr-[-10%] rounded-r-xl md:rounded-r-2xl' : 'md:ml-[-10%] rounded-l-xl md:rounded-l-2xl'
                   }`}
                   style={{ overflow: 'hidden' }}
                 >
@@ -243,15 +270,23 @@ export default function FacultiesPage() {
                 <a
                   href={faculty.href}
                   className={`faculty-text-box absolute ${
-                    faculty.side === 'left' ? 'right-0 md:right-[5%]' : 'left-0 md:left-[5%]'
-                  } w-[90%] md:w-[50%] bg-white p-8 md:p-10 rounded-2xl transition-all duration-300 group cursor-pointer z-10`}
+                    faculty.side === 'left' ? '-right-2 md:right-[5%]' : '-left-2 md:left-[5%]'
+                  } w-[85%] md:w-[50%] bg-white p-4 md:p-10 rounded-xl md:rounded-2xl transition-all duration-300 group cursor-pointer z-10 shadow-none overflow-hidden`}
                 >
-                  <div className="space-y-6">
+                  {/* Wipe overlay for text box - opposite direction to image */}
+                  <div
+                    className="faculty-text-wipe absolute inset-0 bg-white"
+                    style={{
+                      transformOrigin: faculty.side === 'left' ? 'left center' : 'right center',
+                      zIndex: 2
+                    }}
+                  />
+                  <div className="space-y-2 md:space-y-6">
                     <h2
                       className="faculty-title font-bold break-words uppercase select-none"
                       style={{
                         fontFamily: "system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif",
-                        fontSize: 'clamp(1.75rem, 3.5vw, 3rem)',
+                        fontSize: 'clamp(1rem, 3.5vw, 3rem)',
                         lineHeight: 1.15,
                         letterSpacing: '0.05em',
                         backgroundImage: 'linear-gradient(to bottom, rgba(33, 49, 60, 1) 0%, rgba(33, 49, 60, 1) 60%, rgba(33, 49, 60, 0.3) 100%)',
@@ -262,12 +297,12 @@ export default function FacultiesPage() {
                     >
                       {faculty.name}
                     </h2>
-                    <p className="faculty-description text-gray-700 leading-relaxed text-base md:text-lg opacity-90">
+                    <p className="faculty-description text-gray-700 leading-relaxed text-[0.7rem] md:text-lg opacity-90 line-clamp-3 md:line-clamp-none">
                       {faculty.description}
                     </p>
-                    <div className="faculty-link flex items-center gap-2 text-[#21313c] font-semibold group-hover:gap-4 transition-all duration-300 opacity-80">
+                    <div className="faculty-link flex items-center gap-2 text-[#21313c] font-semibold group-hover:gap-4 transition-all duration-300 opacity-80 text-xs md:text-base">
                       <span>Explore Faculty</span>
-                      <span className="text-xl">→</span>
+                      <span className="text-sm md:text-xl">→</span>
                     </div>
                   </div>
                 </a>
@@ -278,48 +313,48 @@ export default function FacultiesPage() {
       </div>
 
       {/* Statistics Section */}
-      <section className="relative py-20 px-4 sm:px-10 lg:px-16 bg-[#f6f7f0] overflow-hidden">
+      <section className="relative py-10 md:py-20 px-4 sm:px-10 lg:px-16 bg-[#f6f7f0] overflow-hidden">
         <div className="mx-auto max-w-[1200px]">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-8">
             <div className="text-center">
-              <div className="text-4xl sm:text-5xl font-bold text-[#21313c] mb-2">50+</div>
-              <p className="text-gray-600">Programs Offered</p>
+              <div className="text-2xl md:text-5xl font-bold text-[#21313c] mb-1 md:mb-2">50+</div>
+              <p className="text-gray-600 text-xs md:text-base">Programs Offered</p>
             </div>
             <div className="text-center">
-              <div className="text-4xl sm:text-5xl font-bold text-[#21313c] mb-2">500+</div>
-              <p className="text-gray-600">Expert Faculty</p>
+              <div className="text-2xl md:text-5xl font-bold text-[#21313c] mb-1 md:mb-2">500+</div>
+              <p className="text-gray-600 text-xs md:text-base">Expert Faculty</p>
             </div>
             <div className="text-center">
-              <div className="text-4xl sm:text-5xl font-bold text-[#21313c] mb-2">15k+</div>
-              <p className="text-gray-600">Students</p>
+              <div className="text-2xl md:text-5xl font-bold text-[#21313c] mb-1 md:mb-2">15k+</div>
+              <p className="text-gray-600 text-xs md:text-base">Students</p>
             </div>
             <div className="text-center">
-              <div className="text-4xl sm:text-5xl font-bold text-[#21313c] mb-2">100%</div>
-              <p className="text-gray-600">Placement Support</p>
+              <div className="text-2xl md:text-5xl font-bold text-[#21313c] mb-1 md:mb-2">100%</div>
+              <p className="text-gray-600 text-xs md:text-base">Placement Support</p>
             </div>
           </div>
         </div>
       </section>
 
       {/* CTA Section */}
-      <section className="relative py-16 px-4 sm:px-10 lg:px-16 bg-[#21313c] overflow-hidden">
+      <section className="relative py-8 md:py-16 px-4 sm:px-10 lg:px-16 bg-[#21313c] overflow-hidden">
         <div className="mx-auto max-w-[1200px] text-center">
-          <h2 className="text-3xl sm:text-4xl font-bold text-white mb-6 break-words">
+          <h2 className="text-lg md:text-4xl font-bold text-white mb-3 md:mb-6 break-words">
             Ready to Begin Your Journey?
           </h2>
-          <p className="text-lg text-white/90 mb-8 max-w-2xl mx-auto">
+          <p className="text-xs md:text-lg text-white/90 mb-4 md:mb-8 max-w-2xl mx-auto">
             Choose your faculty and take the first step towards a successful career with JLU.
           </p>
-          <div className="flex gap-4 justify-center flex-wrap">
+          <div className="flex gap-3 md:gap-4 justify-center">
             <a
               href="/apply"
-              className="bg-[#c3fd7a] text-[#21313c] font-semibold py-3 px-8 rounded-lg hover:bg-[#b0e86a] transition-all shadow-md hover:shadow-lg"
+              className="bg-[#c3fd7a] text-[#21313c] font-semibold py-2 px-5 md:py-3 md:px-8 rounded-lg hover:bg-[#b0e86a] transition-all shadow-md hover:shadow-lg text-xs md:text-base"
             >
               Apply Now
             </a>
             <a
               href="/admissions"
-              className="border-2 border-white text-white font-semibold py-3 px-8 rounded-lg hover:bg-white hover:text-[#21313c] transition-all"
+              className="border-2 border-white text-white font-semibold py-2 px-5 md:py-3 md:px-8 rounded-lg hover:bg-white hover:text-[#21313c] transition-all text-xs md:text-base"
             >
               Learn More
             </a>

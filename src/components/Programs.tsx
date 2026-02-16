@@ -45,12 +45,12 @@ const Programs = () => {
           className="absolute top-0 left-0 px-4 pt-28 sm:pt-32 max-w-[90%] sm:px-6 sm:max-w-[85%] md:pl-10 md:pt-[120px] md:max-w-[600px] md:pr-0"
         >
           <h2
-            className="text-white font-semibold leading-tight mb-3 sm:mb-4 md:mb-5 text-xl sm:text-2xl md:text-[clamp(1.5rem,3vw,2.5rem)]"
+            className="text-white font-semibold leading-tight mb-3 sm:mb-4 md:mb-5 text-2xl sm:text-3xl md:text-[clamp(1.5rem,3vw,2.5rem)]"
           >
             PATHS SHAPED BY <span style={{ fontFamily: "'Times New Roman', serif", fontStyle: 'italic', color: '#f0c14b', textShadow: '2px 2px 4px rgba(0,0,0,0.5)' }}>curiosity</span>
           </h2>
           <p
-            className="text-white font-semibold leading-tight text-base sm:text-lg md:text-[clamp(1.25rem,2.5vw,2rem)]"
+            className="text-white font-semibold leading-tight text-xl sm:text-2xl md:text-[clamp(1.25rem,2.5vw,2rem)]"
           >
             At JLU, programs are not defined only by subjects. They are defined by intent, direction, and the kind of future a learner wants to shape.
           </p>

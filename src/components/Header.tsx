@@ -200,6 +200,7 @@ const MenuOverlay = ({ isOpen, onClose, menuButtonRef }: MenuOverlayProps) => {
   const router = useRouter();
   const isMobile = useIsMobile();
   const [hoveredItem, setHoveredItem] = useState<string | null>(null);
+  const [expandedMobileItem, setExpandedMobileItem] = useState<string | null>(null);
 
   const handleSectionClick = (href: string, slug: string) => {
     onClose();
@@ -305,197 +306,206 @@ const MenuOverlay = ({ isOpen, onClose, menuButtonRef }: MenuOverlayProps) => {
                 className="fixed inset-0 overflow-y-auto"
                 style={{ zIndex: 59, overscrollBehavior: 'contain' }}
               >
-                {/* Mobile Navigation content - side by side like desktop */}
-                <div className="flex gap-4 px-4 pt-20 pb-8">
-                  {/* Main navigation - left side */}
-                  <div className="flex flex-col flex-1">
+                {/* Mobile Navigation content - full-width stacked layout */}
+                <div className="flex flex-col px-6 pt-20 pb-48">
+                  {/* Main navigation */}
+                  <div>
                     <motion.p
                       initial={{ opacity: 0, y: 10 }}
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ delay: 0.55, duration: 0.5 }}
-                      className="text-[10px] text-gray-500 mb-3"
+                      className="text-xs text-gray-400 uppercase tracking-widest mb-5"
                     >
                       Navigation
                     </motion.p>
-                    <nav className="flex flex-col gap-1.5">
+                    <nav className="flex flex-col">
                       {navigationItems.map((item, index) => (
                         <motion.div
                           key={item.label}
                           initial={{ opacity: 0, x: -15 }}
                           animate={{ opacity: 1, x: 0 }}
                           transition={{ delay: 0.6 + index * 0.05, duration: 0.5 }}
-                          onHoverStart={() => setHoveredItem(item.label)}
-                          onHoverEnd={() => setHoveredItem(null)}
                         >
-                          <Link
-                            href={item.href}
-                            onClick={onClose}
-                            className={`text-sm font-medium transition-colors cursor-pointer flex items-center gap-1.5 ${
+                          <button
+                            onClick={() => setExpandedMobileItem(expandedMobileItem === item.label ? null : item.label)}
+                            className={`w-full text-left py-3.5 border-b border-gray-100 flex items-center justify-between ${
                               isActive(item.href)
                                 ? 'text-[#03463B]'
-                                : 'text-[#03463B]/60 hover:text-[#03463B]'
+                                : 'text-[#03463B]/70'
                             }`}
                           >
-                            {isActive(item.href) && (
-                              <span className="w-1.5 h-1.5 rounded-full bg-[#03463B]" />
+                            <span className="text-lg font-medium flex items-center gap-2.5">
+                              {isActive(item.href) && (
+                                <span className="w-2 h-2 rounded-full bg-[#03463B]" />
+                              )}
+                              {item.label}
+                            </span>
+                            <svg
+                              className={`w-4 h-4 text-[#03463B]/40 transition-transform duration-300 ${expandedMobileItem === item.label ? 'rotate-180' : ''}`}
+                              fill="none"
+                              stroke="currentColor"
+                              viewBox="0 0 24 24"
+                            >
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                            </svg>
+                          </button>
+
+                          {/* Expandable sub-content */}
+                          <AnimatePresence>
+                            {expandedMobileItem === item.label && (
+                              <motion.div
+                                initial={{ height: 0, opacity: 0 }}
+                                animate={{ height: 'auto', opacity: 1 }}
+                                exit={{ height: 0, opacity: 0 }}
+                                transition={{ duration: 0.3, ease: [0.4, 0, 0.2, 1] }}
+                                className="overflow-hidden"
+                              >
+                                <div className="py-3 pl-4 flex flex-col gap-1">
+                                  {/* Link to main page */}
+                                  <Link
+                                    href={item.href}
+                                    onClick={onClose}
+                                    className="text-sm font-medium text-[#03463B] mb-2 inline-flex items-center gap-1"
+                                  >
+                                    View All
+                                    <span className="text-xs">→</span>
+                                  </Link>
+
+                                  {item.type === 'megamenu' && item.columns ? (
+                                    item.columns.map((column) => (
+                                      <div key={column.title} className="mb-3">
+                                        <p className="text-xs font-semibold text-[#03463B] uppercase tracking-wider mb-2">
+                                          {column.title}
+                                        </p>
+                                        {column.items.map((subItem) => {
+                                          const slug = subItem.toLowerCase().replace(/\s+/g, '-').replace(/[&]/g, 'and');
+                                          const specialLinks: Record<string, string> = {
+                                            'certificate-courses': '/certifications',
+                                          };
+                                          const specialHref = specialLinks[slug];
+                                          if (specialHref) {
+                                            return (
+                                              <Link
+                                                key={subItem}
+                                                href={specialHref}
+                                                onClick={onClose}
+                                                className="text-sm text-[#03463B]/60 block py-1.5"
+                                              >
+                                                {subItem}
+                                              </Link>
+                                            );
+                                          }
+                                          return (
+                                            <button
+                                              key={subItem}
+                                              onClick={() => handleSectionClick(item.href, slug)}
+                                              className="text-sm text-[#03463B]/60 block py-1.5 text-left"
+                                            >
+                                              {subItem}
+                                            </button>
+                                          );
+                                        })}
+                                      </div>
+                                    ))
+                                  ) : item.sections ? (
+                                    item.sections.map((section) => {
+                                      const label = typeof section === 'string' ? section : section.label;
+                                      const slug = typeof section === 'string'
+                                        ? section.toLowerCase().replace(/\s+/g, '-').replace(/[&]/g, 'and')
+                                        : section.slug;
+                                      return (
+                                        <button
+                                          key={label}
+                                          onClick={() => handleSectionClick(item.href, slug)}
+                                          className="text-sm text-[#03463B]/60 block py-1.5 text-left"
+                                        >
+                                          {label}
+                                        </button>
+                                      );
+                                    })
+                                  ) : null}
+                                </div>
+                              </motion.div>
                             )}
-                            {item.label}
-                          </Link>
+                          </AnimatePresence>
                         </motion.div>
                       ))}
                     </nav>
                   </div>
 
-                  {/* Vertical divider line */}
-                  <div className="w-[1px] bg-gray-300 h-[300px] my-4" />
-
-                  {/* Right side - Hovered item content or featured buttons and bottom menu */}
-                  <div className="flex flex-col gap-1.5 flex-1 pt-6 min-h-[200px]">
-                    <AnimatePresence mode="wait">
-                      {displayNavItem ? (
-                        <motion.div
-                          key={displayNavItem.label}
-                          initial={{ opacity: 0, y: 10 }}
+                  {/* Bottom section */}
+                  <div className="mt-8 pt-6 border-t border-gray-200">
+                    {/* Explore More */}
+                    <motion.p
+                      initial={{ opacity: 0, y: 5 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: 0.65, duration: 0.3 }}
+                      className="text-xs text-gray-400 uppercase tracking-widest mb-3"
+                    >
+                      Explore More
+                    </motion.p>
+                    <div className="flex gap-3 mb-6 overflow-x-auto">
+                      {bottomMenuItems.map((subItem, index) => (
+                        <motion.a
+                          key={subItem.label}
+                          href={subItem.href}
+                          onClick={onClose}
+                          initial={{ opacity: 0, y: 6 }}
                           animate={{ opacity: 1, y: 0 }}
-                          exit={{ opacity: 0, y: -10 }}
-                          transition={{ duration: 0.2, ease: 'easeOut' }}
-                          className="flex flex-col gap-1.5"
+                          transition={{ delay: 0.7 + index * 0.04, duration: 0.3 }}
+                          className="text-xs text-[#03463B]/70 transition-colors whitespace-nowrap shrink-0"
                         >
-                          <h3 className="text-sm font-semibold text-[#03463B] mb-1">
-                            {displayNavItem.label}
-                          </h3>
-                          {displayNavItem.type === 'megamenu' && displayNavItem.columns ? (
-                            <div className="flex flex-col gap-3">
-                              {displayNavItem.columns.map((column) => (
-                                <div key={column.title}>
-                                  <p className="text-xs font-semibold text-[#03463B] mb-1.5">
-                                    {column.title}
-                                  </p>
-                                  {column.items.map((item) => {
-                                    const slug = item.toLowerCase().replace(/\s+/g, '-').replace(/[&]/g, 'and');
-                                    const specialLinks: Record<string, string> = {
-                                      'certificate-courses': '/certifications',
-                                    };
-                                    const specialHref = specialLinks[slug];
-                                    if (specialHref) {
-                                      return (
-                                        <Link
-                                          key={item}
-                                          href={specialHref}
-                                          onClick={onClose}
-                                          className="text-xs text-[#03463B]/60 hover:text-[#03463B] cursor-pointer transition-colors block mb-1"
-                                        >
-                                          {item}
-                                        </Link>
-                                      );
-                                    }
-                                    return (
-                                      <button
-                                        key={item}
-                                        onClick={() => handleSectionClick(displayNavItem.href, slug)}
-                                        className="text-xs text-[#03463B]/60 hover:text-[#03463B] cursor-pointer transition-colors block mb-1 text-left"
-                                      >
-                                        {item}
-                                      </button>
-                                    );
-                                  })}
-                                </div>
-                              ))}
-                            </div>
-                          ) : displayNavItem.sections ? (
-                            displayNavItem.sections.map((section) => {
-                              const label = typeof section === 'string' ? section : section.label;
-                              const slug = typeof section === 'string'
-                                ? section.toLowerCase().replace(/\s+/g, '-').replace(/[&]/g, 'and')
-                                : section.slug;
-                              return (
-                                <button
-                                  key={label}
-                                  onClick={() => handleSectionClick(displayNavItem.href, slug)}
-                                  className="text-xs text-[#03463B]/60 hover:text-[#03463B] cursor-pointer transition-colors block text-left"
-                                >
-                                  {label}
-                                </button>
-                              );
-                            })
-                          ) : null}
-                        </motion.div>
-                      ) : (
-                        <motion.div
-                          key="featured-content"
-                          initial={{ opacity: 0, y: 10 }}
-                          animate={{ opacity: 1, y: 0 }}
-                          exit={{ opacity: 0, y: -10 }}
-                          transition={{ duration: 0.2, ease: 'easeOut' }}
-                          className="flex flex-col gap-3"
-                        >
-                          {/* Bottom Menu - Mobile */}
-                          <div className="mb-3">
-                            <motion.p
-                              initial={{ opacity: 0, y: 5 }}
-                              animate={{ opacity: 1, y: 0 }}
-                              transition={{ delay: 0.65, duration: 0.3 }}
-                              className="text-[9px] text-gray-500 uppercase tracking-wider mb-2"
-                            >
-                              Explore More
-                            </motion.p>
-                            <div className="flex flex-col gap-1.5">
-                              {bottomMenuItems.map((subItem, index) => (
-                                <motion.a
-                                  key={subItem.label}
-                                  href={subItem.href}
-                                  onClick={onClose}
-                                  initial={{ opacity: 0, y: 6 }}
-                                  animate={{ opacity: 1, y: 0 }}
-                                  transition={{ delay: 0.7 + index * 0.04, duration: 0.3 }}
-                                  className="text-xs text-[#03463B]/70 hover:text-[#03463B] transition-colors cursor-pointer"
-                                >
-                                  {subItem.label}
-                                </motion.a>
-                              ))}
-                            </div>
-                          </div>
+                          {subItem.label}
+                        </motion.a>
+                      ))}
+                    </div>
 
-                          {/* Featured Action Buttons - Mobile (at bottom) */}
-                          <div className="flex flex-col gap-2 border-t pt-3">
-                            <motion.p
-                              initial={{ opacity: 0, y: 5 }}
-                              animate={{ opacity: 1, y: 0 }}
-                              transition={{ delay: 0.9, duration: 0.3 }}
-                              className="text-[9px] text-gray-500 uppercase tracking-wider mb-1"
-                            >
-                              Quick Actions
-                            </motion.p>
-                            <div className="flex gap-2">
-                              <Link href="/apply" onClick={onClose} className="flex-1">
-                                <motion.div
-                                  initial={{ opacity: 0, y: 8 }}
-                                  animate={{ opacity: 1, y: 0 }}
-                                  transition={{ delay: 0.95, duration: 0.3 }}
-                                  className="bg-[#03463B] text-white font-semibold py-2 px-3 rounded-md hover:bg-[#025039] transition-all text-xs text-center cursor-pointer"
-                                >
-                                  Apply Now
-                                </motion.div>
-                              </Link>
-                              <motion.a
-                                href="https://panel123.s3.ap-south-1.amazonaws.com/360JLU/index.html"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                onClick={onClose}
-                                initial={{ opacity: 0, y: 8 }}
-                                animate={{ opacity: 1, y: 0 }}
-                                transition={{ delay: 1.0, duration: 0.3 }}
-                                className="flex-1 border-2 border-[#03463B] text-[#03463B] font-semibold py-2 px-3 rounded-md hover:bg-[#03463B] hover:text-white transition-all text-xs text-center"
-                              >
-                                360° Tour
-                              </motion.a>
-                            </div>
-                          </div>
+                    {/* Quick Actions */}
+                    <div className="grid grid-cols-2 gap-3">
+                      <Link href="/apply" onClick={onClose}>
+                        <motion.div
+                          initial={{ opacity: 0, y: 8 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          transition={{ delay: 0.95, duration: 0.3 }}
+                          className="bg-[#03463B] text-white font-semibold py-3 px-4 rounded-lg text-sm text-center cursor-pointer"
+                        >
+                          Apply Now
                         </motion.div>
-                      )}
-                    </AnimatePresence>
+                      </Link>
+                      <motion.a
+                        href="https://panel123.s3.ap-south-1.amazonaws.com/360JLU/index.html"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        onClick={onClose}
+                        initial={{ opacity: 0, y: 8 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ delay: 1.0, duration: 0.3 }}
+                        className="border-2 border-[#03463B] text-[#03463B] font-semibold py-3 px-4 rounded-lg text-sm text-center"
+                      >
+                        360° Tour
+                      </motion.a>
+                    </div>
                   </div>
+
                 </div>
+
+                {/* Decorative image fixed at bottom */}
+                <motion.div
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ delay: 1.0, duration: 0.5 }}
+                  className="fixed bottom-0 left-1/2 -translate-x-1/2 pointer-events-none overflow-visible"
+                  style={{ zIndex: 59 }}
+                >
+                  <Image
+                    src="/menuu.png"
+                    alt="Menu decoration"
+                    width={1800}
+                    height={900}
+                    className="object-contain opacity-30"
+                    style={{ width: '150vw', maxWidth: 'none' }}
+                  />
+                </motion.div>
               </motion.div>
             </>
           ) : (

@@ -70,16 +70,16 @@ export const PartnersSection = () => {
 
       {isMobile ? (
         /* Mobile */
-        <div className="px-1">
+        <div className="px-3">
           {/* Animated Text - Mobile */}
-          <div ref={textRef} className="px-4 mb-6">
+          <div ref={textRef} className="px-1 mb-6">
             <h3
               className="text-[#21313c]"
               style={{
                 fontFamily: 'Inter, Arial Black, sans-serif',
                 fontWeight: 900,
-                fontSize: '20px',
-                lineHeight: '1.2',
+                fontSize: '18px',
+                lineHeight: '1.3',
                 letterSpacing: '-0.02em',
               }}
             >
@@ -100,65 +100,65 @@ export const PartnersSection = () => {
 
           {/* First Row - 2 boxes */}
           <div>
-            <p style={{ fontSize: '0.4rem' }} className="text-gray-500 mb-1">Academic Partners</p>
+            <p className="text-[10px] text-gray-500 mb-1.5 tracking-wide uppercase">Academic Partners</p>
             <div className="flex">
               <div
                 className="border border-gray-300 flex items-center justify-center"
-                style={{ width: 'calc(50vw - 4px)', height: '70px' }}
+                style={{ width: 'calc(50vw - 6px)', height: '80px' }}
               >
-                <img src="/mid.png" alt="Middlesex University" style={{ maxHeight: '35px' }} className="object-contain" />
+                <img src="/mid.png" alt="Middlesex University" style={{ maxHeight: '40px' }} className="object-contain" />
               </div>
               <div
                 className="border border-l-0 border-gray-300 flex items-center justify-center"
-                style={{ width: 'calc(50vw - 4px)', height: '70px' }}
+                style={{ width: 'calc(50vw - 6px)', height: '80px' }}
               >
-                <img src="/king.png" alt="King's College London" style={{ maxHeight: '35px' }} className="object-contain" />
+                <img src="/king.png" alt="King's College London" style={{ maxHeight: '40px' }} className="object-contain" />
               </div>
             </div>
           </div>
 
           {/* Second + Third Row - 3 boxes each */}
-          <div className="mt-2">
-            <p style={{ fontSize: '0.4rem' }} className="text-gray-500 mb-1">Industry & Institutional Partners</p>
+          <div className="mt-3">
+            <p className="text-[10px] text-gray-500 mb-1.5 tracking-wide uppercase">Industry & Institutional Partners</p>
             <div className="flex">
               <div
                 className="border border-gray-300 flex items-center justify-center"
-                style={{ width: 'calc(33.33vw - 2.67px)', height: '60px' }}
+                style={{ width: 'calc(33.33vw - 4px)', height: '70px' }}
               >
-                <img src="/nus.png" alt="NUS" style={{ maxHeight: '30px' }} className="object-contain" />
+                <img src="/nus.png" alt="NUS" style={{ maxHeight: '32px' }} className="object-contain" />
               </div>
               <div
                 className="border border-l-0 border-gray-300 flex items-center justify-center"
-                style={{ width: 'calc(33.33vw - 2.67px)', height: '60px' }}
+                style={{ width: 'calc(33.33vw - 4px)', height: '70px' }}
               >
-                <img src="/c11.png" alt="CII" style={{ maxHeight: '30px' }} className="object-contain" />
+                <img src="/c11.png" alt="CII" style={{ maxHeight: '32px' }} className="object-contain" />
               </div>
               <div
                 className="border border-l-0 border-gray-300 flex items-center justify-center"
-                style={{ width: 'calc(33.33vw - 2.67px)', height: '60px' }}
+                style={{ width: 'calc(33.33vw - 4px)', height: '70px' }}
               >
-                <img src="/ficci.png" alt="FICCI" style={{ maxHeight: '30px' }} className="object-contain" />
+                <img src="/ficci.png" alt="FICCI" style={{ maxHeight: '32px' }} className="object-contain" />
               </div>
             </div>
 
             <div className="flex">
               <div
                 className="border border-t-0 border-gray-300 flex items-center justify-center"
-                style={{ width: 'calc(33.33vw - 2.67px)', height: '60px' }}
+                style={{ width: 'calc(33.33vw - 4px)', height: '70px' }}
               >
-                <img src="/gt.png" alt="Grant Thornton" style={{ maxHeight: '22px' }} className="object-contain" />
+                <img src="/gt.png" alt="Grant Thornton" style={{ maxHeight: '26px' }} className="object-contain" />
               </div>
               <div
                 className="border border-t-0 border-l-0 border-gray-300 flex items-center justify-center"
-                style={{ width: 'calc(33.33vw - 2.67px)', height: '60px' }}
+                style={{ width: 'calc(33.33vw - 4px)', height: '70px' }}
               >
-                <button onClick={() => setOrbOpen(true)} className="text-[#03463B] font-semibold" style={{ fontSize: '0.5rem' }}>
+                <button onClick={() => setOrbOpen(true)} className="text-[#03463B] font-semibold text-xs">
                   See More →
                 </button>
               </div>
               <div
                 className="border border-t-0 border-l-0 border-gray-300 flex items-center justify-center"
-                style={{ width: 'calc(33.33vw - 2.67px)', height: '60px' }}
+                style={{ width: 'calc(33.33vw - 4px)', height: '70px' }}
               >
                 <img src="/era.png" alt="ERA" className="object-cover w-full h-full" />
               </div>

@@ -1,5 +1,7 @@
 'use client';
 
+import { useIsMobile } from '../hooks/useIsMobile';
+
 interface NewsItem {
   id: string;
   title: string;
@@ -7,7 +9,6 @@ interface NewsItem {
   image: string;
   date: string;
   category: string;
-  link: string;
 }
 
 const newsItems: NewsItem[] = [
@@ -18,7 +19,6 @@ const newsItems: NewsItem[] = [
     image: '/aw1.jpg',
     date: 'Dec 15, 2024',
     category: 'Achievement',
-    link: '#',
   },
   {
     id: '2',
@@ -27,7 +27,6 @@ const newsItems: NewsItem[] = [
     image: '/ev1.jpg',
     date: 'Mar 10, 2024',
     category: 'Event',
-    link: '#',
   },
   {
     id: '3',
@@ -36,7 +35,6 @@ const newsItems: NewsItem[] = [
     image: '/ev2.jpg',
     date: 'Feb 20, 2024',
     category: 'Placements',
-    link: '#',
   },
   {
     id: '4',
@@ -45,7 +43,6 @@ const newsItems: NewsItem[] = [
     image: '/event1.jpg',
     date: 'May 1, 2024',
     category: 'Event',
-    link: '#',
   },
 ];
 
@@ -57,11 +54,13 @@ const categoryColors: Record<string, string> = {
 };
 
 export const LatestNews = () => {
+  const isMobile = useIsMobile();
+
   return (
-    <section className="relative py-16 md:py-24 bg-[#f6f7f0]">
+    <section className="relative py-12 md:py-24 bg-[#f6f7f0]">
       <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-12">
         {/* Section Header */}
-        <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-12">
+        <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-4 md:gap-6 mb-8 md:mb-12">
           <div>
             <span className="text-sm font-medium text-[#03463B] tracking-wider uppercase mb-2 block">
               Stay Updated
@@ -89,37 +88,37 @@ export const LatestNews = () => {
         </div>
 
         {/* News Grid - Staggered Layout */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 items-start">
+        <div className={`grid gap-3 md:gap-6 items-start ${isMobile ? 'grid-cols-2' : 'md:grid-cols-2 lg:grid-cols-4'}`}>
           {newsItems.map((item, index) => (
             <article
               key={item.id}
-              className="cursor-pointer bg-white rounded-2xl overflow-hidden shadow-sm border border-gray-100"
-              style={{ marginTop: index % 2 === 1 ? '48px' : '0' }}
+              className={`bg-white overflow-hidden shadow-sm border border-gray-100 ${isMobile ? 'rounded-xl' : 'rounded-2xl'}`}
+              style={{ marginTop: isMobile ? '0' : (index % 2 === 1 ? '48px' : '0') }}
             >
-              <a href={item.link} className="block">
-                {/* Image */}
-                <div className="relative overflow-hidden" style={{ aspectRatio: '4/3' }}>
-                  <img
-                    src={item.image}
-                    alt={item.title}
-                    className="w-full h-full object-cover"
-                    loading="lazy"
-                  />
+              {/* Image */}
+              <div className="relative overflow-hidden" style={{ aspectRatio: isMobile ? '3/2' : '4/3' }}>
+                <img
+                  src={item.image}
+                  alt={item.title}
+                  className="w-full h-full object-cover"
+                  loading="lazy"
+                />
 
-                  {/* Category Badge */}
-                  <span
-                    className="absolute top-4 left-4 px-3 py-1.5 text-xs font-semibold rounded-lg"
-                    style={{
-                      backgroundColor: `${categoryColors[item.category]}e6` || '#c3fd7ae6',
-                      color: item.category === 'Event' || item.category === 'Infrastructure' ? '#fff' : '#21313c',
-                    }}
-                  >
-                    {item.category}
-                  </span>
-                </div>
+                {/* Category Badge */}
+                <span
+                  className={`absolute font-semibold rounded-md ${isMobile ? 'top-2 left-2 px-1.5 py-0.5 text-[10px]' : 'top-4 left-4 px-3 py-1.5 text-xs rounded-lg'}`}
+                  style={{
+                    backgroundColor: `${categoryColors[item.category]}e6` || '#c3fd7ae6',
+                    color: item.category === 'Event' || item.category === 'Infrastructure' ? '#fff' : '#21313c',
+                  }}
+                >
+                  {item.category}
+                </span>
+              </div>
 
-                {/* Content */}
-                <div className="p-5">
+              {/* Content */}
+              <div className={isMobile ? 'p-2.5' : 'p-5'}>
+                {!isMobile && (
                   <div className="flex items-center gap-2 mb-3">
                     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#999" strokeWidth="1.5">
                       <rect x="3" y="4" width="18" height="18" rx="2" ry="2" strokeLinecap="round" strokeLinejoin="round"/>
@@ -129,15 +128,19 @@ export const LatestNews = () => {
                     </svg>
                     <span className="text-xs text-gray-400">{item.date}</span>
                   </div>
-                  <h3
-                    className="text-base font-semibold text-[#21313c] mb-2 line-clamp-2 leading-snug"
-                    style={{ fontFamily: 'Inter, sans-serif' }}
-                  >
-                    {item.title}
-                  </h3>
+                )}
+                <h3
+                  className={`font-semibold text-[#21313c] line-clamp-2 leading-snug ${isMobile ? 'text-xs mb-1' : 'text-base mb-2'}`}
+                  style={{ fontFamily: 'Inter, sans-serif' }}
+                >
+                  {item.title}
+                </h3>
+                {isMobile ? (
+                  <span className="text-[10px] text-gray-400">{item.date}</span>
+                ) : (
                   <p className="text-sm text-gray-500 line-clamp-2 leading-relaxed">{item.excerpt}</p>
-                </div>
-              </a>
+                )}
+              </div>
             </article>
           ))}
         </div>

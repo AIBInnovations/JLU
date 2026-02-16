@@ -326,19 +326,19 @@ export const FacultyPage = ({
         </div>
 
         {/* Hero Content */}
-        <div className="relative z-10 h-full flex flex-col justify-end pb-20 px-6 md:px-16 xl:px-24">
+        <div className="relative z-10 h-full flex flex-col justify-end pb-20 px-4 md:px-16 xl:px-24">
           <p
-            className="text-xs md:text-sm mb-4"
+            className="text-[0.65rem] md:text-sm mb-2 md:mb-4"
             style={{ color: accentColor, letterSpacing: '0.2em', textTransform: 'uppercase' }}
           >
             FACULTY
           </p>
           <h1
-            className="text-white mb-6"
+            className="text-white mb-4 md:mb-6"
             style={{
-              fontSize: isMobile ? 'clamp(2rem, 8vw, 3rem)' : 'clamp(3rem, 6vw, 5rem)',
+              fontSize: isMobile ? 'clamp(2.5rem, 10vw, 3.5rem)' : 'clamp(3rem, 6vw, 5rem)',
               fontWeight: 600,
-              lineHeight: 1.1,
+              lineHeight: 1.05,
               letterSpacing: '-0.02em',
               maxWidth: '800px',
             }}
@@ -346,11 +346,11 @@ export const FacultyPage = ({
             {name}
           </h1>
           <p
-            className="text-white/80 mb-8"
+            className="text-white/80 mb-6 md:mb-8"
             style={{
-              fontSize: isMobile ? '1rem' : '1.25rem',
+              fontSize: isMobile ? '0.85rem' : '1.25rem',
               maxWidth: '600px',
-              lineHeight: 1.7,
+              lineHeight: 1.6,
             }}
           >
             {tagline}
@@ -374,12 +374,12 @@ export const FacultyPage = ({
       </section>
 
       {/* About Section */}
-      <section className="py-20 md:py-32 px-6 md:px-16 xl:px-24">
+      <section className="py-12 md:py-32 px-4 md:px-16 xl:px-24">
         <div className="max-w-7xl mx-auto">
-          <div className="grid md:grid-cols-2 gap-12 md:gap-20 items-center">
+          <div className="grid md:grid-cols-2 gap-8 md:gap-20 items-center">
             <div ref={aboutTextRef} className="flex flex-col justify-center text-center">
               <h2
-                className="text-[#21313c] mb-6"
+                className="text-[#21313c] mb-4 md:mb-6"
                 style={{
                   fontSize: isMobile ? 'clamp(1.5rem, 6vw, 2rem)' : 'clamp(2rem, 4vw, 3rem)',
                   fontWeight: 600,
@@ -396,7 +396,7 @@ export const FacultyPage = ({
                 style={{
                   fontFamily: 'Inter, Arial Black, sans-serif',
                   fontWeight: 900,
-                  fontSize: isMobile ? '22px' : '32px',
+                  fontSize: isMobile ? '16px' : '32px',
                   lineHeight: '1.3',
                   letterSpacing: '-0.02em',
                   color: '#21313c',
@@ -422,40 +422,45 @@ export const FacultyPage = ({
                 </span>
               </div>
             </div>
-            <div className="flex flex-col gap-4" style={{ marginLeft: isMobile ? '0' : '100px' }}>
-              {/* Card 1 - Moot Court Excellence */}
-              <div
-                className="p-6 rounded-xl bg-[#21313c]"
-                style={{
-                  width: isMobile ? '100%' : '320px',
-                }}
-              >
-                <h3 className="font-bold text-white text-lg mb-2">Moot Court Excellence</h3>
-                <p className="text-white/70 text-base leading-relaxed">Well-appointed Moot Court for practice-based education with regular national and international moot court competitions.</p>
-              </div>
-
-              {/* Card 2 - International Standards (shifted right) */}
-              <div
-                className="p-6 rounded-xl bg-white shadow-lg"
-                style={{
-                  width: isMobile ? '100%' : '320px',
-                  marginLeft: isMobile ? '0' : '150px',
-                }}
-              >
-                <h3 className="font-bold text-[#21313c] text-lg mb-2">International Standards</h3>
-                <p className="text-[#21313c]/70 text-base leading-relaxed">Programs mapped to European Teaching and Learning standards via EU&apos;s Erasmus+ funded Tuning India project.</p>
-              </div>
-
-              {/* Card 3 - Global Network */}
-              <div
-                className="p-6 rounded-xl bg-[#21313c]"
-                style={{
-                  width: isMobile ? '100%' : '320px',
-                }}
-              >
-                <h3 className="font-bold text-white text-lg mb-2">Global Network</h3>
-                <p className="text-white/70 text-base leading-relaxed">Partnerships with IALS, European Law Institute, and World Bank&apos;s Global Forum on Law, Justice and Development.</p>
-              </div>
+            <div className="flex flex-col gap-3 md:gap-4" style={{ marginLeft: isMobile ? '0' : '100px' }}>
+              {isMobile ? (
+                <>
+                  {/* Mobile: Left-Right-Center layout */}
+                  <div className="flex justify-between gap-3">
+                    {/* Card 1 - Left */}
+                    <div className="p-3 rounded-xl bg-[#21313c] flex-1">
+                      <h3 className="font-bold text-white text-xs mb-1">Moot Court Excellence</h3>
+                      <p className="text-white/70 text-[10px] leading-relaxed">Well-appointed Moot Court for practice-based education with regular competitions.</p>
+                    </div>
+                    {/* Card 2 - Right */}
+                    <div className="p-3 rounded-xl bg-white shadow-lg flex-1 mt-6">
+                      <h3 className="font-bold text-[#21313c] text-xs mb-1">International Standards</h3>
+                      <p className="text-[#21313c]/70 text-[10px] leading-relaxed">Programs mapped to European Teaching and Learning standards.</p>
+                    </div>
+                  </div>
+                  {/* Card 3 - Center bottom */}
+                  <div className="p-3 rounded-xl bg-[#21313c] mx-auto" style={{ width: '70%' }}>
+                    <h3 className="font-bold text-white text-xs mb-1">Global Network</h3>
+                    <p className="text-white/70 text-[10px] leading-relaxed">Partnerships with IALS, European Law Institute, and World Bank&apos;s Global Forum.</p>
+                  </div>
+                </>
+              ) : (
+                <>
+                  {/* Desktop: Original staggered layout */}
+                  <div className="p-6 rounded-xl bg-[#21313c]" style={{ width: '320px' }}>
+                    <h3 className="font-bold text-white text-lg mb-2">Moot Court Excellence</h3>
+                    <p className="text-white/70 text-base leading-relaxed">Well-appointed Moot Court for practice-based education with regular national and international moot court competitions.</p>
+                  </div>
+                  <div className="p-6 rounded-xl bg-white shadow-lg" style={{ width: '320px', marginLeft: '150px' }}>
+                    <h3 className="font-bold text-[#21313c] text-lg mb-2">International Standards</h3>
+                    <p className="text-[#21313c]/70 text-base leading-relaxed">Programs mapped to European Teaching and Learning standards via EU&apos;s Erasmus+ funded Tuning India project.</p>
+                  </div>
+                  <div className="p-6 rounded-xl bg-[#21313c]" style={{ width: '320px' }}>
+                    <h3 className="font-bold text-white text-lg mb-2">Global Network</h3>
+                    <p className="text-white/70 text-base leading-relaxed">Partnerships with IALS, European Law Institute, and World Bank&apos;s Global Forum on Law, Justice and Development.</p>
+                  </div>
+                </>
+              )}
             </div>
           </div>
         </div>
@@ -464,21 +469,21 @@ export const FacultyPage = ({
       {/* Our Faculty Section */}
       <section
         ref={facultySectionRef}
-        className="px-6 md:px-16 xl:px-24 bg-[#f0f0ec] overflow-hidden relative"
+        className="px-3 md:px-16 xl:px-24 bg-[#f0f0ec] overflow-hidden relative"
         style={{ height: '100vh' }}
       >
         <div className="max-w-[1440px] mx-auto w-full h-full flex items-center">
-          <div ref={facultyCardsRef} className="flex items-center justify-between w-full gap-8 lg:gap-12" style={{ willChange: 'transform' }}>
+          <div ref={facultyCardsRef} className="flex items-center justify-between w-full gap-3 md:gap-8 lg:gap-12" style={{ willChange: 'transform' }}>
             {/* Left Side - 3 Faculty Cards */}
-            <div className="flex flex-col gap-4">
+            <div className="flex flex-col gap-2 md:gap-4">
               {facultyMembers.slice(0, 3).map((member, index) => (
                 <div
                   key={index}
-                  className="overflow-hidden rounded-xl"
+                  className="overflow-hidden rounded-lg md:rounded-xl"
                   style={{
-                    width: isMobile ? '120px' : '200px',
-                    height: isMobile ? '150px' : '260px',
-                    marginLeft: index === 1 ? (isMobile ? '30px' : '50px') : '0',
+                    width: isMobile ? '100px' : '200px',
+                    height: isMobile ? '130px' : '260px',
+                    marginLeft: index === 1 ? (isMobile ? '15px' : '50px') : '0',
                   }}
                 >
                   <div
@@ -491,9 +496,9 @@ export const FacultyPage = ({
                         className="w-full h-full object-cover"
                       />
                       <div className="absolute inset-0 bg-[#21313c]/20 group-hover:bg-[#21313c]/40 transition-colors" />
-                      <div className="absolute bottom-0 left-0 right-0 p-3 text-white">
-                        <h3 className="font-semibold text-sm">{member.name}</h3>
-                        <p className="text-xs text-white/80">{member.designation}</p>
+                      <div className="absolute bottom-0 left-0 right-0 p-1.5 md:p-3 text-white">
+                        <h3 className="font-semibold text-[0.6rem] md:text-sm leading-tight">{member.name}</h3>
+                        <p className="text-[0.5rem] md:text-xs text-white/80 leading-tight">{member.designation}</p>
                       </div>
                     </div>
                   </div>
@@ -505,14 +510,14 @@ export const FacultyPage = ({
             <div className="relative flex-1 max-w-[520px]">
               <div
                 ref={facultyTextRef}
-                className="text-center px-4"
+                className="text-center px-1 md:px-4"
               >
                 <h2
                   className="text-[#21313c]"
                   style={{
                     fontFamily: 'Inter, Arial Black, sans-serif',
                     fontWeight: 900,
-                    fontSize: isMobile ? '24px' : '38px',
+                    fontSize: isMobile ? '20px' : '38px',
                     lineHeight: '1.2',
                     letterSpacing: '-0.02em',
                   }}
@@ -539,46 +544,19 @@ export const FacultyPage = ({
                     <span className="inline-block">tomorrow&apos;s leaders.</span>
                   </span>
                 </h2>
-                <a
-                  href="/faculty-members"
-                  className="faculty-text-line inline-flex items-center gap-3 mt-10 group overflow-hidden"
-                  style={{
-                    fontSize: '14px',
-                    fontWeight: 600,
-                    color: '#21313c',
-                    letterSpacing: '0.05em',
-                  }}
-                >
-                  <span className="inline-block">View All Faculty</span>
-                  <svg
-                    width="24"
-                    height="24"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    className="group-hover:translate-x-2 transition-transform"
-                  >
-                    <path
-                      d="M7 17L17 7M17 7H7M17 7V17"
-                      stroke="#21313c"
-                      strokeWidth="2"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    />
-                  </svg>
-                </a>
               </div>
             </div>
 
             {/* Right Side - 3 Faculty Cards */}
-            <div className="flex flex-col gap-4 items-end">
+            <div className="flex flex-col gap-2 md:gap-4 items-end">
               {facultyMembers.slice(3, 6).map((member, index) => (
                 <div
                   key={index + 3}
-                  className="overflow-hidden rounded-xl"
+                  className="overflow-hidden rounded-lg md:rounded-xl"
                   style={{
-                    width: isMobile ? '120px' : '200px',
-                    height: isMobile ? '150px' : '260px',
-                    marginRight: index === 1 ? (isMobile ? '30px' : '50px') : '0',
+                    width: isMobile ? '100px' : '200px',
+                    height: isMobile ? '130px' : '260px',
+                    marginRight: index === 1 ? (isMobile ? '15px' : '50px') : '0',
                   }}
                 >
                   <div
@@ -591,9 +569,9 @@ export const FacultyPage = ({
                         className="w-full h-full object-cover"
                       />
                       <div className="absolute inset-0 bg-[#21313c]/20 group-hover:bg-[#21313c]/40 transition-colors" />
-                      <div className="absolute bottom-0 left-0 right-0 p-3 text-white">
-                        <h3 className="font-semibold text-sm">{member.name}</h3>
-                        <p className="text-xs text-white/80">{member.designation}</p>
+                      <div className="absolute bottom-0 left-0 right-0 p-1.5 md:p-3 text-white">
+                        <h3 className="font-semibold text-[0.6rem] md:text-sm leading-tight">{member.name}</h3>
+                        <p className="text-[0.5rem] md:text-xs text-white/80 leading-tight">{member.designation}</p>
                       </div>
                     </div>
                   </div>
@@ -753,7 +731,7 @@ export const FacultyPage = ({
                 style={{
                   fontFamily: 'Inter, Arial Black, sans-serif',
                   fontWeight: 900,
-                  fontSize: isMobile ? '24px' : '38px',
+                  fontSize: isMobile ? '16px' : '38px',
                   lineHeight: '1.2',
                   letterSpacing: '-0.02em',
                 }}
@@ -881,18 +859,18 @@ export const FacultyPage = ({
       <PageEventsSection />
 
       {/* CTA Section */}
-      <section className="py-20 md:py-32 px-6 md:px-16 xl:px-24 bg-[#f6f7f0]">
+      <section className="py-10 md:py-32 px-4 md:px-16 xl:px-24 bg-[#f6f7f0]">
         <div className="max-w-4xl mx-auto text-center">
           <p
-            className="text-xs mb-4"
+            className="text-[0.6rem] md:text-xs mb-2 md:mb-4"
             style={{ color: '#999', letterSpacing: '0.2em', textTransform: 'uppercase' }}
           >
             START YOUR JOURNEY
           </p>
           <h2
-            className="text-[#21313c] mb-8"
+            className="text-[#21313c] mb-4 md:mb-8"
             style={{
-              fontSize: isMobile ? 'clamp(1.5rem, 6vw, 2.5rem)' : 'clamp(2rem, 5vw, 4rem)',
+              fontSize: isMobile ? 'clamp(1.3rem, 6vw, 2rem)' : 'clamp(2rem, 5vw, 4rem)',
               fontWeight: 600,
               lineHeight: 1.2,
               letterSpacing: '-0.02em',
@@ -901,20 +879,20 @@ export const FacultyPage = ({
             Ready to Shape Your{' '}
             <span style={{ fontFamily: "'Times New Roman', serif", fontStyle: 'italic' }}>Future?</span>
           </h2>
-          <p style={{ color: '#666', fontSize: '1.125rem', lineHeight: 1.7, marginBottom: '2rem' }}>
+          <p style={{ color: '#666', fontSize: isMobile ? '0.8rem' : '1.125rem', lineHeight: 1.7, marginBottom: isMobile ? '1.25rem' : '2rem' }}>
             Take the first step towards an extraordinary education. Apply now and become part of our
             vibrant academic community.
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+          <div className="flex flex-row gap-3 md:gap-4 justify-center">
             <a
               href="/apply"
-              className="px-8 py-4 rounded-full font-semibold hover:scale-105 transition-transform bg-[#21313c] text-white"
+              className="px-5 md:px-8 py-2.5 md:py-4 rounded-full font-semibold hover:scale-105 transition-transform bg-[#21313c] text-white text-xs md:text-base"
             >
               Apply Now
             </a>
             <a
               href="/contact"
-              className="px-8 py-4 rounded-full font-semibold border-2 hover:bg-[#21313c] hover:text-white transition-colors"
+              className="px-5 md:px-8 py-2.5 md:py-4 rounded-full font-semibold border md:border-2 hover:bg-[#21313c] hover:text-white transition-colors text-xs md:text-base"
               style={{ borderColor: '#21313c', color: '#21313c' }}
             >
               Contact Us

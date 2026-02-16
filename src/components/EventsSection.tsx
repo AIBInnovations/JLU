@@ -63,7 +63,7 @@ export const EventsSection = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
 
   return (
-    <section className="bg-[#f6f7f0] min-h-screen flex items-center py-12 md:py-16 px-4 md:px-12 lg:px-16 xl:px-20 2xl:px-32 relative">
+    <section className={`bg-[#f6f7f0] flex items-center py-10 md:py-16 px-4 md:px-12 lg:px-16 xl:px-20 2xl:px-32 relative ${isMobile ? '' : 'min-h-screen'}`}>
       <div className="max-w-[1800px] mx-auto w-full">
         {/* Header */}
         <motion.div
@@ -106,7 +106,7 @@ export const EventsSection = () => {
             <div
               className="relative overflow-hidden shadow-2xl"
               style={{
-                height: isMobile ? '400px' : 'clamp(550px, 42vw, 950px)',
+                height: isMobile ? '300px' : 'clamp(550px, 42vw, 950px)',
               }}
             >
               <img
@@ -119,7 +119,7 @@ export const EventsSection = () => {
               {/* Button positioned inside image */}
               <a
                 href="/events"
-                className="absolute bottom-6 left-1/2 transform -translate-x-1/2 bg-[#c3fd7a] text-[#21313c] px-4 py-2 md:px-6 md:py-3 rounded-full text-sm font-semibold hover:bg-[#b3ed6a] transition-colors shadow-lg"
+                className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-[#c3fd7a] text-[#21313c] px-4 py-2 md:px-6 md:py-3 rounded-full text-sm font-semibold hover:bg-[#b3ed6a] transition-colors shadow-lg flex items-center justify-center leading-none"
               >
                 View Events
               </a>

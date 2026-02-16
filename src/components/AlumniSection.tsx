@@ -206,7 +206,7 @@ export const AlumniSection = () => {
     <section
       ref={sectionRef}
       className="relative bg-[#f6f7f0] overflow-hidden"
-      style={{ height: '100vh', minHeight: isMobile ? '800px' : '700px' }}
+      style={{ height: isMobile ? 'auto' : '100vh', minHeight: isMobile ? 'auto' : '700px' }}
     >
       {/* Background Pattern */}
       <div className="absolute inset-0 opacity-[0.02]">
@@ -219,16 +219,16 @@ export const AlumniSection = () => {
         />
       </div>
 
-      <div className="relative h-full max-w-[1440px] mx-auto px-6 md:px-16 xl:px-24 flex items-center">
+      <div className={`relative max-w-[1440px] mx-auto px-4 md:px-16 xl:px-24 ${isMobile ? 'py-12' : 'h-full flex items-center'}`}>
         {/* Main Layout Container */}
-        <div className="w-full flex items-center justify-between gap-8">
+        <div className={`w-full ${isMobile ? 'flex flex-col gap-8' : 'flex items-center justify-between gap-8'}`}>
           {/* Left Side - Text Content */}
           <div
             ref={textRef}
-            className={`${isMobile ? 'w-full text-center' : 'w-[45%]'}`}
+            className={`${isMobile ? 'w-full text-left' : 'w-[45%]'}`}
           >
             {/* Section Title */}
-            <div className={`mb-8 ${isMobile ? 'text-center' : ''}`}>
+            <div className="mb-6 md:mb-8">
               <h2
                 className="text-3xl md:text-4xl lg:text-5xl font-semibold text-[#21313c]"
                 style={{ fontFamily: 'Inter, sans-serif', letterSpacing: '-0.02em' }}
@@ -245,7 +245,7 @@ export const AlumniSection = () => {
               style={{
                 fontFamily: 'Inter, Arial Black, sans-serif',
                 fontWeight: 900,
-                fontSize: isMobile ? '24px' : '38px',
+                fontSize: isMobile ? '18px' : '38px',
                 lineHeight: '1.2',
                 letterSpacing: '-0.02em',
               }}
@@ -270,66 +270,117 @@ export const AlumniSection = () => {
               </span>
             </h3>
 
-            {/* Navigation & CTA */}
-            <div className={`mt-10 flex items-center gap-6 ${isMobile ? 'justify-center' : ''}`}>
-              {/* Navigation Buttons */}
-              <div className="flex items-center gap-3">
+            {isMobile && (
+              <p
+                className="text-[#21313c] text-right ml-auto mt-4"
+                style={{
+                  fontFamily: 'Inter, Arial Black, sans-serif',
+                  fontWeight: 900,
+                  fontSize: '18px',
+                  lineHeight: '1.2',
+                  letterSpacing: '-0.02em',
+                  width: '70%',
+                }}
+              >
+                <span className="alumni-text-line block overflow-hidden">
+                  <span className="inline-block">From classrooms to</span>
+                </span>
+                <span className="alumni-text-line block overflow-hidden">
+                  <span className="inline-block">boardrooms — JLU</span>
+                </span>
+                <span className="alumni-text-line block overflow-hidden">
+                  <span className="inline-block">graduates are shaping</span>
+                </span>
+                <span className="alumni-text-line block overflow-hidden">
+                  <span className="inline-block">the future.</span>
+                </span>
+              </p>
+            )}
+
+            {/* Mobile Navigation Arrows - centered */}
+            {isMobile && (
+              <div className="flex justify-center gap-3 mt-5">
                 <button
                   onClick={() => navigateCards('prev')}
                   disabled={isAnimating}
-                  className="w-12 h-12 md:w-14 md:h-14 rounded-full bg-[#21313c] text-white flex items-center justify-center shadow-xl hover:bg-[#2a3f4c] transition-all duration-300 hover:scale-110 disabled:opacity-50"
+                  className="w-9 h-9 rounded-full bg-[#21313c] text-white flex items-center justify-center shadow-lg disabled:opacity-50"
                 >
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                     <polyline points="15 18 9 12 15 6" strokeLinecap="round" strokeLinejoin="round" />
                   </svg>
                 </button>
-                <div className="flex items-center gap-1.5">
-                  {Array.from({ length: totalPairs }).map((_, index) => (
-                    <button
-                      key={index}
-                      onClick={() => {
-                        if (!isAnimating && index !== currentPair) {
-                          setIsAnimating(true);
-                          gsap.killTweensOf([topCardRef.current, bottomCardRef.current]);
-                          const tl = gsap.timeline({
-                            onComplete: () => {
-                              setCurrentPair(index);
-                              setIsAnimating(false);
-                            },
-                          });
-                          tl.to(topCardRef.current, {
-                            yPercent: -100,
-                            duration: 0.4,
-                            ease: 'power2.inOut',
-                            force3D: true,
-                          }, 0);
-                          tl.to(bottomCardRef.current, {
-                            yPercent: 100,
-                            duration: 0.4,
-                            ease: 'power2.inOut',
-                            force3D: true,
-                          }, 0);
-                        }
-                      }}
-                      className={`h-2 rounded-full transition-all duration-300 ${
-                        currentPair === index ? 'w-8 bg-[#21313c]' : 'w-2 bg-[#21313c]/20 hover:bg-[#21313c]/40'
-                      }`}
-                    />
-                  ))}
-                </div>
                 <button
                   onClick={() => navigateCards('next')}
                   disabled={isAnimating}
-                  className="w-12 h-12 md:w-14 md:h-14 rounded-full bg-[#21313c] text-white flex items-center justify-center shadow-xl hover:bg-[#2a3f4c] transition-all duration-300 hover:scale-110 disabled:opacity-50"
+                  className="w-9 h-9 rounded-full bg-[#21313c] text-white flex items-center justify-center shadow-lg disabled:opacity-50"
                 >
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                     <polyline points="9 18 15 12 9 6" strokeLinecap="round" strokeLinejoin="round" />
                   </svg>
                 </button>
               </div>
+            )}
 
-              {/* CTA Link */}
-              {!isMobile && (
+            {/* Navigation & CTA */}
+            {isMobile ? null : (
+              /* Desktop: arrows + dots + CTA */
+              <div className="mt-10 flex items-center gap-6">
+                <div className="flex items-center gap-3">
+                  <button
+                    onClick={() => navigateCards('prev')}
+                    disabled={isAnimating}
+                    className="w-14 h-14 rounded-full bg-[#21313c] text-white flex items-center justify-center shadow-xl hover:bg-[#2a3f4c] transition-all duration-300 hover:scale-110 disabled:opacity-50"
+                  >
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                      <polyline points="15 18 9 12 15 6" strokeLinecap="round" strokeLinejoin="round" />
+                    </svg>
+                  </button>
+                  <div className="flex items-center gap-1.5">
+                    {Array.from({ length: totalPairs }).map((_, index) => (
+                      <button
+                        key={index}
+                        onClick={() => {
+                          if (!isAnimating && index !== currentPair) {
+                            setIsAnimating(true);
+                            gsap.killTweensOf([topCardRef.current, bottomCardRef.current]);
+                            const tl = gsap.timeline({
+                              onComplete: () => {
+                                setCurrentPair(index);
+                                setIsAnimating(false);
+                              },
+                            });
+                            tl.to(topCardRef.current, {
+                              yPercent: -100,
+                              duration: 0.4,
+                              ease: 'power2.inOut',
+                              force3D: true,
+                            }, 0);
+                            tl.to(bottomCardRef.current, {
+                              yPercent: 100,
+                              duration: 0.4,
+                              ease: 'power2.inOut',
+                              force3D: true,
+                            }, 0);
+                          }
+                        }}
+                        className={`h-2 rounded-full transition-all duration-300 ${
+                          currentPair === index ? 'w-8 bg-[#21313c]' : 'w-2 bg-[#21313c]/20 hover:bg-[#21313c]/40'
+                        }`}
+                      />
+                    ))}
+                  </div>
+                  <button
+                    onClick={() => navigateCards('next')}
+                    disabled={isAnimating}
+                    className="w-14 h-14 rounded-full bg-[#21313c] text-white flex items-center justify-center shadow-xl hover:bg-[#2a3f4c] transition-all duration-300 hover:scale-110 disabled:opacity-50"
+                  >
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                      <polyline points="9 18 15 12 9 6" strokeLinecap="round" strokeLinejoin="round" />
+                    </svg>
+                  </button>
+                </div>
+
+                {/* CTA Link */}
                 <a
                   href="/alumni"
                   className="inline-flex items-center gap-3 group"
@@ -357,8 +408,8 @@ export const AlumniSection = () => {
                     />
                   </svg>
                 </a>
-              )}
-            </div>
+              </div>
+            )}
           </div>
 
           {/* Right Side - Cards in diagonal arrangement */}
@@ -434,40 +485,54 @@ export const AlumniSection = () => {
             </div>
           )}
 
-          {/* Mobile Cards - Stacked */}
+          {/* Mobile Cards - Flow layout */}
           {isMobile && (
-            <div className="absolute bottom-20 left-0 right-0 px-6">
-              <div className="flex gap-4 justify-center">
+            <div className="w-full overflow-hidden">
+              <div className="flex gap-3 justify-center">
                 <div
                   ref={topCardRef}
-                  className="bg-white rounded-xl overflow-hidden shadow-xl relative"
-                  style={{ width: '160px', height: '200px', willChange: 'transform, opacity' }}
+                  className="bg-white rounded-2xl overflow-hidden shadow-xl relative"
+                  style={{ width: 'calc(50% - 6px)', height: '240px', willChange: 'transform, opacity' }}
                 >
                   <img
                     src={topAlumni.image}
                     alt={topAlumni.name}
                     className="w-full h-full object-cover"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#21313c] via-transparent to-transparent" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#21313c] via-[#21313c]/20 to-transparent" />
+                  <span
+                    className="absolute top-3 right-3 px-2 py-0.5 bg-[#f0c14b] text-[#21313c] font-semibold rounded-full"
+                    style={{ fontSize: '10px' }}
+                  >
+                    Batch {topAlumni.batch}
+                  </span>
                   <div className="absolute bottom-0 left-0 right-0 p-3">
                     <h4 className="text-white font-semibold text-sm">{topAlumni.name}</h4>
-                    <p className="text-[#f0c14b] text-xs">{topAlumni.company}</p>
+                    <p className="text-white/80 text-xs">{topAlumni.designation}</p>
+                    <p className="text-[#f0c14b] text-xs font-medium">{topAlumni.company}</p>
                   </div>
                 </div>
                 <div
                   ref={bottomCardRef}
-                  className="bg-white rounded-xl overflow-hidden shadow-xl relative"
-                  style={{ width: '160px', height: '200px', willChange: 'transform, opacity' }}
+                  className="bg-white rounded-2xl overflow-hidden shadow-xl relative"
+                  style={{ width: 'calc(50% - 6px)', height: '240px', willChange: 'transform, opacity' }}
                 >
                   <img
                     src={bottomAlumni.image}
                     alt={bottomAlumni.name}
                     className="w-full h-full object-cover"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#21313c] via-transparent to-transparent" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#21313c] via-[#21313c]/20 to-transparent" />
+                  <span
+                    className="absolute top-3 right-3 px-2 py-0.5 bg-[#f0c14b] text-[#21313c] font-semibold rounded-full"
+                    style={{ fontSize: '10px' }}
+                  >
+                    Batch {bottomAlumni.batch}
+                  </span>
                   <div className="absolute bottom-0 left-0 right-0 p-3">
                     <h4 className="text-white font-semibold text-sm">{bottomAlumni.name}</h4>
-                    <p className="text-[#f0c14b] text-xs">{bottomAlumni.company}</p>
+                    <p className="text-white/80 text-xs">{bottomAlumni.designation}</p>
+                    <p className="text-[#f0c14b] text-xs font-medium">{bottomAlumni.company}</p>
                   </div>
                 </div>
               </div>

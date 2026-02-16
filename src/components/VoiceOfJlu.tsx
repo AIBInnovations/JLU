@@ -76,7 +76,7 @@ export const VoiceOfJlu = () => {
   ];
 
   return (
-    <section className="bg-[#f6f7f0] pt-32 md:pt-48 pb-16 md:pb-24">
+    <section className="bg-[#f6f7f0] pt-16 md:pt-48 pb-12 md:pb-24">
       {/* Header */}
       <motion.div
         className="text-center mb-12 md:mb-16 px-4"
@@ -116,9 +116,9 @@ export const VoiceOfJlu = () => {
           {/* Cards with navigation */}
           <div className="relative overflow-hidden">
             <div
-              className="flex gap-3 transition-transform duration-300"
+              className="flex gap-2 transition-transform duration-300"
               style={{
-                transform: `translateX(-${mobileIndex * 83}px)`,
+                transform: `translateX(-${mobileIndex * 72}px)`,
               }}
             >
               {voices.map((voice, index) => (
@@ -126,9 +126,9 @@ export const VoiceOfJlu = () => {
                   key={index}
                   className="relative cursor-pointer transition-all duration-300 overflow-hidden flex-shrink-0"
                   style={{
-                    width: index === activeCard ? '200px' : '80px',
-                    height: '320px',
-                    borderRadius: index === activeCard ? '40px' : '50px',
+                    width: index === activeCard ? '220px' : '65px',
+                    height: '340px',
+                    borderRadius: index === activeCard ? '32px' : '40px',
                   }}
                   onClick={() => setActiveCard(index === activeCard ? null : index)}
                 >
@@ -238,7 +238,7 @@ export const VoiceOfJlu = () => {
       )}
 
       {/* Our Faculty Section */}
-      <div ref={facultyRef} className="mt-16 md:mt-24 lg:mt-32 px-4 md:px-12 lg:px-16 xl:px-20 2xl:px-32">
+      <div ref={facultyRef} className="mt-12 md:mt-24 lg:mt-32 px-4 md:px-12 lg:px-16 xl:px-20 2xl:px-32">
         {/* Faculty Header */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}

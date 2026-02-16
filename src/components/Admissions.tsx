@@ -1154,6 +1154,7 @@ const Admissions = () => {
   const [activeTab, setActiveTab] = useState('fees');
   const [feeSearch, setFeeSearch] = useState('');
   const [selectedBeyondDegree, setSelectedBeyondDegree] = useState<typeof beyondDegrees[0] | null>(null);
+  const isMobile = useIsMobile();
   const heroRef = useRef<HTMLDivElement>(null);
   const tabContentRef = useRef<HTMLDivElement>(null);
   const tabSectionRef = useRef<HTMLDivElement>(null);
@@ -1433,14 +1434,14 @@ const Admissions = () => {
               transition={{ duration: 0.7, ease: customEase }}
               viewport={{ once: true }}
               className="group relative rounded-3xl overflow-hidden"
-              style={{ background: 'linear-gradient(165deg, #21313c 0%, #03463B 100%)', minHeight: '560px' }}
+              style={{ background: 'linear-gradient(165deg, #21313c 0%, #03463B 100%)', minHeight: isMobile ? '420px' : '560px' }}
             >
               {/* Decorative element */}
               <div className="absolute -top-20 -right-20 w-56 h-56 rounded-full opacity-[0.06]" style={{ background: '#f0c14b' }} />
               <div className="absolute -bottom-16 -left-16 w-44 h-44 rounded-full opacity-[0.06]" style={{ background: '#f0c14b' }} />
 
               {/* Image header */}
-              <div className="relative h-48 overflow-hidden">
+              <div className="relative overflow-hidden" style={{ height: isMobile ? '160px' : '192px' }}>
                 <Image
                   src="/campus/smart-classroom.jpg"
                   alt="Academic Programs"
@@ -1455,7 +1456,7 @@ const Admissions = () => {
                 </div>
               </div>
 
-              <div className="relative z-10 px-7 pb-8 -mt-4">
+              <div className="relative z-10 -mt-4" style={{ padding: isMobile ? '0 16px 20px' : '0 28px 32px' }}>
                 <h3 className="text-white text-2xl md:text-[28px] font-bold mb-8" style={{ letterSpacing: '-0.02em', lineHeight: 1.2 }}>
                   Academic{' '}
                   <span style={{ fontFamily: "'Times New Roman', serif", fontStyle: 'italic', fontWeight: 400 }}>
@@ -1492,12 +1493,13 @@ const Admissions = () => {
                         viewport={{ once: true }}
                       >
                         {'href' in item && item.href ? (
-                          <Link href={item.href} className="flex items-start gap-4 p-4 rounded-xl hover:bg-white/[0.07] transition-colors duration-300 cursor-pointer group/item">
+                          <Link href={item.href} className="flex items-start gap-4 rounded-xl hover:bg-white/[0.07] transition-colors duration-300 cursor-pointer group/item" style={{ padding: isMobile ? '10px' : '16px' }}>
                             {inner}
                           </Link>
                         ) : (
                           <div
-                            className="flex items-start gap-4 p-4 rounded-xl hover:bg-white/[0.07] transition-colors duration-300 cursor-pointer group/item"
+                            className="flex items-start gap-4 rounded-xl hover:bg-white/[0.07] transition-colors duration-300 cursor-pointer group/item"
+                            style={{ padding: isMobile ? '10px' : '16px' }}
                             onClick={() => 'beyondIdx' in item && item.beyondIdx !== undefined && setSelectedBeyondDegree(beyondDegrees[item.beyondIdx])}
                           >
                             {inner}
@@ -1517,10 +1519,10 @@ const Admissions = () => {
               transition={{ duration: 0.7, delay: 0.15, ease: customEase }}
               viewport={{ once: true }}
               className="group relative rounded-3xl overflow-hidden border border-[#e5e5e5] flex flex-col"
-              style={{ background: '#fff', minHeight: '560px' }}
+              style={{ background: '#fff', minHeight: isMobile ? '420px' : '560px' }}
             >
               {/* Image header */}
-              <div className="relative h-48 overflow-hidden">
+              <div className="relative overflow-hidden" style={{ height: isMobile ? '160px' : '192px' }}>
                 <Image
                   src="/campus/gallery-3.jpg"
                   alt="Apply to JLU"
@@ -1535,7 +1537,7 @@ const Admissions = () => {
                 </div>
               </div>
 
-              <div className="px-7 pb-8 -mt-4 relative z-10 flex flex-col flex-1">
+              <div className="relative z-10 flex flex-col flex-1 -mt-4" style={{ padding: isMobile ? '0 16px 20px' : '0 28px 32px' }}>
                 <h3 className="text-[#21313c] text-2xl md:text-[28px] font-bold mb-8" style={{ letterSpacing: '-0.02em', lineHeight: 1.2 }}>
                   Start Your{' '}
                   <span style={{ fontFamily: "'Times New Roman', serif", fontStyle: 'italic', fontWeight: 400 }}>
@@ -1556,7 +1558,8 @@ const Admissions = () => {
                       whileInView={{ opacity: 1, x: 0 }}
                       transition={{ duration: 0.5, delay: 0.1 * i + 0.15, ease: customEase }}
                       viewport={{ once: true }}
-                      className="flex items-start gap-4 p-4 rounded-xl hover:bg-[#f6f7f0] transition-colors duration-300 cursor-pointer group/item"
+                      className="flex items-start gap-4 rounded-xl hover:bg-[#f6f7f0] transition-colors duration-300 cursor-pointer group/item"
+                      style={{ padding: isMobile ? '10px' : '16px' }}
                       onClick={i === 0 ? () => setIsTourModalOpen(true) : undefined}
                     >
                       <div className="shrink-0 w-10 h-10 rounded-xl bg-[#21313c]/5 flex items-center justify-center group-hover/item:bg-[#21313c] transition-colors duration-300">
@@ -1595,10 +1598,10 @@ const Admissions = () => {
               transition={{ duration: 0.7, delay: 0.3, ease: customEase }}
               viewport={{ once: true }}
               className="group relative rounded-3xl overflow-hidden"
-              style={{ background: '#f0c14b', minHeight: '560px' }}
+              style={{ background: '#f0c14b', minHeight: isMobile ? '420px' : '560px' }}
             >
               {/* Image header */}
-              <div className="relative h-48 overflow-hidden">
+              <div className="relative overflow-hidden" style={{ height: isMobile ? '160px' : '192px' }}>
                 <Image
                   src="/campus/gallery-11.jpg"
                   alt="Fee & Support"
@@ -1613,7 +1616,7 @@ const Admissions = () => {
                 </div>
               </div>
 
-              <div className="px-7 pb-8 -mt-4 relative z-10">
+              <div className="relative z-10 -mt-4" style={{ padding: isMobile ? '0 16px 20px' : '0 28px 32px' }}>
                 <h3 className="text-[#21313c] text-2xl md:text-[28px] font-bold mb-8" style={{ letterSpacing: '-0.02em', lineHeight: 1.2 }}>
                   Financial{' '}
                   <span style={{ fontFamily: "'Times New Roman', serif", fontStyle: 'italic', fontWeight: 400 }}>
@@ -1634,7 +1637,8 @@ const Admissions = () => {
                       whileInView={{ opacity: 1, x: 0 }}
                       transition={{ duration: 0.5, delay: 0.1 * i + 0.3, ease: customEase }}
                       viewport={{ once: true }}
-                      className="flex items-start gap-4 p-4 rounded-xl hover:bg-[#21313c]/[0.07] transition-colors duration-300 cursor-pointer group/item"
+                      className="flex items-start gap-4 rounded-xl hover:bg-[#21313c]/[0.07] transition-colors duration-300 cursor-pointer group/item"
+                      style={{ padding: isMobile ? '10px' : '16px' }}
                       onClick={() => setSelectedFinancialOption(financialOptions[item.idx])}
                     >
                       <div className="shrink-0 w-10 h-10 rounded-xl bg-[#21313c]/10 flex items-center justify-center">
@@ -1714,21 +1718,21 @@ const Admissions = () => {
           </motion.div>
 
           {/* Tabs + Content Layout */}
-          <div className="flex flex-col lg:flex-row gap-0 min-h-[600px]">
+          <div className={`flex flex-col lg:flex-row gap-0 ${isMobile ? 'min-h-0' : 'min-h-[600px]'}`}>
 
             {/* Left Sidebar — Tab Navigation */}
-            <div className="lg:w-[320px] shrink-0 bg-[#21313c] rounded-t-2xl lg:rounded-l-2xl lg:rounded-tr-none p-6 lg:p-8 flex flex-col">
+            <div className={`lg:w-[320px] shrink-0 bg-[#21313c] rounded-t-2xl lg:rounded-l-2xl lg:rounded-tr-none flex flex-col ${isMobile ? '' : 'p-6 lg:p-8'}`} style={isMobile ? { padding: '12px' } : undefined}>
               <nav className="flex flex-row lg:flex-col gap-2 overflow-x-auto lg:overflow-x-visible pb-2 lg:pb-0">
                 {admissionTabs.map((tab) => (
                   <button
                     key={tab.id}
                     onClick={() => handleTabChange(tab.id)}
-                    className={`text-left px-5 py-4 rounded-xl font-medium transition-all duration-300 whitespace-nowrap lg:whitespace-normal cursor-pointer ${
+                    className={`text-left rounded-xl font-medium transition-all duration-300 whitespace-nowrap lg:whitespace-normal cursor-pointer ${
                       activeTab === tab.id
                         ? 'bg-[#f0c14b] text-[#21313c]'
                         : 'text-white/70'
                     }`}
-                    style={{ fontSize: '15px' }}
+                    style={{ fontSize: isMobile ? '12px' : '15px', padding: isMobile ? '8px 12px' : '16px 20px' }}
                   >
                     {tab.label}
                   </button>
@@ -1751,15 +1755,16 @@ const Admissions = () => {
             {/* Right Content Area */}
             <div
               className="flex-1 bg-[#f6f7f0] rounded-b-2xl lg:rounded-r-2xl lg:rounded-bl-none relative overflow-hidden"
-              style={{ height: '720px' }}
+              style={{ height: isMobile ? '500px' : '720px' }}
             >
               <div
                 ref={tabContentRef}
-                className="absolute inset-0 overflow-y-auto overscroll-contain p-6 md:p-8 lg:p-10"
+                className={`absolute inset-0 overflow-y-auto overscroll-contain ${isMobile ? '' : 'p-6 md:p-8 lg:p-10'}`}
                 style={{
                   WebkitOverflowScrolling: 'touch',
                   scrollbarWidth: 'thin',
                   scrollbarColor: '#c1c1c1 transparent',
+                  ...(isMobile ? { padding: '16px' } : {}),
                 }}
               >
 
@@ -2228,7 +2233,7 @@ const Admissions = () => {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
-            className="text-center mb-24"
+            className={`text-center ${isMobile ? 'mb-12' : 'mb-24'}`}
           >
             <span
               className="text-[#999] uppercase tracking-widest block mb-6"
@@ -2331,7 +2336,7 @@ const Admissions = () => {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
-            className="mb-20"
+            className={isMobile ? 'mb-10' : 'mb-20'}
           >
             <span
               className="text-[#999] uppercase tracking-widest block mb-6"
@@ -2364,12 +2369,12 @@ const Admissions = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: index * 0.15 }}
                 viewport={{ once: true }}
-                className={`flex group cursor-pointer ${index === 1 ? 'flex-row-reverse' : ''}`}
-                style={{ height: '400px' }}
+                className={`group cursor-pointer ${isMobile ? 'flex flex-col' : `flex ${index === 1 ? 'flex-row-reverse' : ''}`}`}
+                style={{ height: isMobile ? 'auto' : '400px' }}
                 onClick={() => setSelectedBeyondDegree(item)}
               >
                 {/* Image Half */}
-                <div className="relative w-1/2 overflow-hidden">
+                <div className={`relative overflow-hidden ${isMobile ? 'w-full' : 'w-1/2'}`} style={isMobile ? { height: '200px' } : undefined}>
                   <motion.div
                     className="absolute inset-0"
                     whileHover={{ scale: 1.05 }}
@@ -2388,7 +2393,7 @@ const Admissions = () => {
                 </div>
 
                 {/* Content Half */}
-                <div className="w-1/2 bg-[#2a3f4c] flex flex-col justify-center p-4 md:p-8 lg:p-16">
+                <div className={`bg-[#2a3f4c] flex flex-col justify-center ${isMobile ? 'w-full p-5' : 'w-1/2 p-4 md:p-8 lg:p-16'}`}>
                   <span
                     className="text-[#f0c14b] font-medium mb-2 md:mb-4 text-xs md:text-sm"
                   >
@@ -2509,7 +2514,7 @@ const Admissions = () => {
                 <h3
                   className="text-[#21313c] mb-6"
                   style={{
-                    fontSize: '32px',
+                    fontSize: isMobile ? '22px' : '32px',
                     fontWeight: 600,
                     lineHeight: 1.2,
                   }}
@@ -2521,15 +2526,15 @@ const Admissions = () => {
                 </h3>
                 <p
                   className="text-[#666] mb-8"
-                  style={{ fontSize: '16px', lineHeight: 1.8 }}
+                  style={{ fontSize: isMobile ? '13px' : '16px', lineHeight: 1.8 }}
                 >
                   Our advisors are ready to welcome you. Book a campus visit and explore what makes JLU special.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4">
                   <motion.button
                     onClick={() => setIsTourModalOpen(true)}
-                    className="px-8 py-4 bg-[#21313c] text-white font-medium flex items-center justify-center gap-3"
-                    style={{ borderRadius: '100px' }}
+                    className="bg-[#21313c] text-white font-medium flex items-center justify-center gap-3"
+                    style={{ padding: isMobile ? '10px 20px' : '16px 32px', fontSize: isMobile ? '13px' : undefined, borderRadius: '100px' }}
                     whileHover={{ scale: 1.02 }}
                     whileTap={{ scale: 0.98 }}
                   >
@@ -2538,8 +2543,8 @@ const Admissions = () => {
                   </motion.button>
                   <Link href="/apply">
                     <motion.button
-                      className="px-8 py-4 bg-[#f0c14b] text-[#21313c] font-medium flex items-center justify-center gap-3 w-full"
-                      style={{ borderRadius: '100px' }}
+                      className="bg-[#f0c14b] text-[#21313c] font-medium flex items-center justify-center gap-3 w-full"
+                      style={{ padding: isMobile ? '10px 20px' : '16px 32px', fontSize: isMobile ? '13px' : undefined, borderRadius: '100px' }}
                       whileHover={{ scale: 1.02 }}
                       whileTap={{ scale: 0.98 }}
                     >
@@ -2677,25 +2682,25 @@ const Admissions = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
                 viewport={{ once: true }}
-                className="group cursor-pointer bg-[#f6f7f0] p-8 hover:bg-[#21313c] transition-colors duration-300"
-                style={{ minHeight: '280px' }}
+                className="group cursor-pointer bg-[#f6f7f0] hover:bg-[#21313c] transition-colors duration-300"
+                style={{ minHeight: isMobile ? '200px' : '280px', padding: isMobile ? '20px' : '32px' }}
                 onClick={() => setSelectedFinancialOption(option)}
               >
                 <span
                   className="text-[#f0c14b] font-bold block mb-6"
-                  style={{ fontSize: '48px', lineHeight: 1 }}
+                  style={{ fontSize: isMobile ? '32px' : '48px', lineHeight: 1 }}
                 >
                   {String(option.id).padStart(2, '0')}
                 </span>
                 <h4
                   className="text-[#21313c] group-hover:text-white font-semibold mb-3 transition-colors"
-                  style={{ fontSize: '22px', letterSpacing: '-0.02em' }}
+                  style={{ fontSize: isMobile ? '16px' : '22px', letterSpacing: '-0.02em' }}
                 >
                   {option.title}
                 </h4>
                 <p
                   className="text-[#666] group-hover:text-[#999] transition-colors"
-                  style={{ fontSize: '15px', lineHeight: 1.7 }}
+                  style={{ fontSize: isMobile ? '12px' : '15px', lineHeight: 1.7 }}
                 >
                   {option.description}
                 </p>

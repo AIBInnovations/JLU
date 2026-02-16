@@ -308,7 +308,7 @@ export default function AlumniPage() {
 
   const scrollToAlumni = (index: number) => {
     if (alumniScrollRef.current) {
-      const cardWidth = isMobile ? 300 : 380;
+      const cardWidth = isMobile ? 220 : 380;
       const gap = 24;
       alumniScrollRef.current.scrollTo({
         left: index * (cardWidth + gap),
@@ -363,7 +363,7 @@ export default function AlumniPage() {
               style={{
                 fontFamily: 'Inter, Arial Black, sans-serif',
                 fontWeight: 800,
-                fontSize: isMobile ? '20px' : '32px',
+                fontSize: isMobile ? '22px' : '32px',
                 lineHeight: '1.3',
                 letterSpacing: '-0.02em',
               }}
@@ -410,11 +410,11 @@ export default function AlumniPage() {
       >
         <div className="max-w-[1400px] mx-auto space-y-16 md:space-y-24">
           {/* Block 1 - Image Left, Text Right */}
-          <div className="flex flex-col md:flex-row items-center gap-8 md:gap-16">
+          <div className="flex flex-row items-center gap-4 md:gap-16">
             {/* Image */}
             <div
-              className="w-full md:w-1/2 rounded-2xl md:rounded-3xl overflow-hidden"
-              style={{ height: isMobile ? '280px' : '380px' }}
+              className="w-1/2 rounded-2xl md:rounded-3xl overflow-hidden"
+              style={{ height: isMobile ? '180px' : '380px' }}
             >
               <img
                 src="/alumni2.jpg"
@@ -426,14 +426,14 @@ export default function AlumniPage() {
             {/* Text in front */}
             <div
               ref={showcaseText1Ref}
-              className="w-full md:w-1/2"
+              className="w-1/2"
             >
               <h2
                 className="text-[#21313c]"
                 style={{
                   fontFamily: 'Inter, Arial Black, sans-serif',
                   fontWeight: 800,
-                  fontSize: isMobile ? '24px' : '36px',
+                  fontSize: isMobile ? '16px' : '36px',
                   lineHeight: '1.25',
                   letterSpacing: '-0.02em',
                 }}
@@ -455,18 +455,18 @@ export default function AlumniPage() {
           </div>
 
           {/* Block 2 - Text Left, Image Right */}
-          <div className="flex flex-col-reverse md:flex-row items-center gap-8 md:gap-16">
+          <div className="flex flex-row items-center gap-4 md:gap-16">
             {/* Text in front */}
             <div
               ref={showcaseText2Ref}
-              className="w-full md:w-1/2"
+              className="w-1/2"
             >
               <h2
-                className="text-[#21313c] md:text-right"
+                className="text-[#21313c] text-right"
                 style={{
                   fontFamily: 'Inter, Arial Black, sans-serif',
                   fontWeight: 800,
-                  fontSize: isMobile ? '24px' : '36px',
+                  fontSize: isMobile ? '16px' : '36px',
                   lineHeight: '1.25',
                   letterSpacing: '-0.02em',
                 }}
@@ -488,8 +488,8 @@ export default function AlumniPage() {
 
             {/* Image */}
             <div
-              className="w-full md:w-1/2 rounded-2xl md:rounded-3xl overflow-hidden"
-              style={{ height: isMobile ? '280px' : '380px' }}
+              className="w-1/2 rounded-2xl md:rounded-3xl overflow-hidden"
+              style={{ height: isMobile ? '180px' : '380px' }}
             >
               <img
                 src="/alumni3.jpg"
@@ -515,7 +515,7 @@ export default function AlumniPage() {
             className="text-[#21313c]"
             style={{
               fontFamily: 'Inter, Arial Black, sans-serif',
-              fontSize: isMobile ? '24px' : '36px',
+              fontSize: isMobile ? '18px' : '36px',
               fontWeight: 800,
               lineHeight: 1.25,
               letterSpacing: '-0.02em',
@@ -534,7 +534,7 @@ export default function AlumniPage() {
             className="flex gap-5 pb-8"
             style={{
               width: 'max-content',
-              transform: `translateX(calc(50vw - ${(isMobile ? 260 : 300) / 2}px - ${activeServiceIndex * ((isMobile ? 260 : 300) + 20)}px))`,
+              transform: `translateX(calc(50vw - ${(isMobile ? 200 : 300) / 2}px - ${activeServiceIndex * ((isMobile ? 200 : 300) + 20)}px))`,
               transition: 'transform 0.7s cubic-bezier(0.4, 0, 0.2, 1)',
             }}
           >
@@ -546,7 +546,7 @@ export default function AlumniPage() {
                 key={`${service.title}-${index}`}
                 className="flex-shrink-0 cursor-pointer"
                 style={{
-                  width: isMobile ? '260px' : '300px',
+                  width: isMobile ? '200px' : '300px',
                   opacity: isActive ? 1 : 0.4,
                   transform: isActive ? 'scale(1)' : 'scale(0.9)',
                   transition: 'opacity 0.5s, transform 0.5s',
@@ -562,7 +562,7 @@ export default function AlumniPage() {
                   {/* Card Image with hover zoom */}
                   <div
                     className="relative overflow-hidden rounded-2xl mb-4"
-                    style={{ height: isMobile ? '240px' : '280px' }}
+                    style={{ height: isMobile ? '160px' : '280px' }}
                   >
                     <img
                       src={service.image}
@@ -573,7 +573,7 @@ export default function AlumniPage() {
                   {/* Card Title */}
                   <h3
                     className="text-[#21313c] font-medium px-1"
-                    style={{ fontSize: isMobile ? '18px' : '20px' }}
+                    style={{ fontSize: isMobile ? '13px' : '20px' }}
                   >
                     {service.title}
                   </h3>
@@ -593,7 +593,7 @@ export default function AlumniPage() {
                   <p className="text-[#999] text-sm mb-3">Service Overview</p>
                   <p
                     className="text-[#21313c] leading-relaxed mb-4"
-                    style={{ fontSize: isMobile ? '14px' : '15px' }}
+                    style={{ fontSize: isMobile ? '11px' : '15px' }}
                   >
                     {service.description}
                   </p>
@@ -615,18 +615,18 @@ export default function AlumniPage() {
       <section className="py-20 md:py-32 px-4 sm:px-6 lg:px-12 bg-white overflow-hidden">
         <div className="max-w-[1800px] mx-auto">
           <motion.div
-            className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-12"
+            className="flex flex-row items-end justify-between gap-6 mb-12"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
           >
             <div>
-              <span className="text-sm font-medium text-[#4a90a4] tracking-wider uppercase mb-4 block">
+              <span className="text-[10px] md:text-sm font-medium text-[#4a90a4] tracking-wider uppercase mb-2 md:mb-4 block">
                 Success Stories
               </span>
               <h2
-                className="text-3xl md:text-4xl lg:text-5xl font-semibold text-[#21313c]"
+                className="text-xl md:text-4xl lg:text-5xl font-semibold text-[#21313c]"
                 style={{ fontFamily: 'Inter, sans-serif', letterSpacing: '-0.02em' }}
               >
                 Notable{' '}
@@ -634,40 +634,38 @@ export default function AlumniPage() {
                   Alumni
                 </span>
               </h2>
-              <p className="text-[#666] mt-4 max-w-xl">
+              <p className="text-[#666] mt-2 md:mt-4 max-w-xl text-xs md:text-base">
                 Our alumni are making waves across industries worldwide, leading innovation and driving change.
               </p>
             </div>
 
             {/* Navigation Arrows */}
-            {!isMobile && (
-              <div className="flex gap-3">
+            <div className="flex gap-2 md:gap-3">
                 <button
                   onClick={() => scrollToAlumni(Math.max(0, activeAlumniIndex - 1))}
-                  className="w-12 h-12 rounded-full border-2 border-[#21313c]/20 flex items-center justify-center text-[#21313c] hover:bg-[#21313c] hover:text-white transition-colors disabled:opacity-30"
+                  className="w-8 h-8 md:w-12 md:h-12 rounded-full border-2 border-[#21313c]/20 flex items-center justify-center text-[#21313c] hover:bg-[#21313c] hover:text-white transition-colors disabled:opacity-30"
                   disabled={activeAlumniIndex === 0}
                 >
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="md:w-5 md:h-5">
                     <polyline points="15 18 9 12 15 6" strokeLinecap="round" strokeLinejoin="round"/>
                   </svg>
                 </button>
                 <button
                   onClick={() => scrollToAlumni(Math.min(notableAlumni.length - 1, activeAlumniIndex + 1))}
-                  className="w-12 h-12 rounded-full border-2 border-[#21313c]/20 flex items-center justify-center text-[#21313c] hover:bg-[#21313c] hover:text-white transition-colors disabled:opacity-30"
+                  className="w-8 h-8 md:w-12 md:h-12 rounded-full border-2 border-[#21313c]/20 flex items-center justify-center text-[#21313c] hover:bg-[#21313c] hover:text-white transition-colors disabled:opacity-30"
                   disabled={activeAlumniIndex === notableAlumni.length - 1}
                 >
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="md:w-5 md:h-5">
                     <polyline points="9 18 15 12 9 6" strokeLinecap="round" strokeLinejoin="round"/>
                   </svg>
                 </button>
               </div>
-            )}
           </motion.div>
 
           {/* Alumni Cards Carousel */}
           <div
             ref={alumniScrollRef}
-            className="flex gap-6 overflow-x-auto pb-6 scrollbar-hide"
+            className="flex gap-3 md:gap-6 overflow-x-auto pb-6 scrollbar-hide"
             style={{ scrollSnapType: 'x mandatory' }}
           >
             {notableAlumni.map((alumni) => (
@@ -675,11 +673,11 @@ export default function AlumniPage() {
                 key={alumni.id}
                 className="flex-shrink-0 bg-[#f6f7f0] rounded-2xl overflow-hidden shadow-lg hover:-translate-y-2 transition-transform duration-300"
                 style={{
-                  width: isMobile ? '300px' : '380px',
+                  width: isMobile ? '220px' : '380px',
                   scrollSnapAlign: 'start',
                 }}
               >
-                <div className="relative h-56 overflow-hidden">
+                <div className="relative h-32 md:h-56 overflow-hidden">
                   <img
                     src={alumni.image}
                     alt={alumni.name}
@@ -687,31 +685,31 @@ export default function AlumniPage() {
                   />
                   <div className="absolute inset-0 bg-[#21313c]/50" />
 
-                  <span className="absolute top-4 right-4 px-3 py-1 bg-[#efc04b] text-[#21313c] text-xs font-semibold rounded-full">
+                  <span className="absolute top-2 right-2 md:top-4 md:right-4 px-2 py-0.5 md:px-3 md:py-1 bg-[#efc04b] text-[#21313c] text-[9px] md:text-xs font-semibold rounded-full">
                     Batch {alumni.batch}
                   </span>
 
-                  <div className="absolute bottom-4 left-4 right-4">
-                    <h3 className="text-xl font-semibold text-white">{alumni.name}</h3>
-                    <p className="text-white/80 text-sm">{alumni.designation} at {alumni.company}</p>
+                  <div className="absolute bottom-2 left-2 right-2 md:bottom-4 md:left-4 md:right-4">
+                    <h3 className="text-sm md:text-xl font-semibold text-white">{alumni.name}</h3>
+                    <p className="text-white/80 text-[10px] md:text-sm">{alumni.designation} at {alumni.company}</p>
                   </div>
                 </div>
 
-                <div className="p-6">
-                  <p className="text-[#666] text-sm mb-4">{alumni.achievement}</p>
+                <div className="p-3 md:p-6">
+                  <p className="text-[#666] text-[10px] md:text-sm mb-2 md:mb-4">{alumni.achievement}</p>
                   <div className="flex items-center justify-between">
                     <a
                       href="#"
-                      className="flex items-center gap-2 text-[#4a90a4] font-medium text-sm hover:text-[#21313c] transition-colors"
+                      className="flex items-center gap-1 md:gap-2 text-[#4a90a4] font-medium text-[10px] md:text-sm hover:text-[#21313c] transition-colors"
                     >
-                      <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                      <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" className="md:w-4 md:h-4">
                         <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
                       </svg>
                       Connect
                     </a>
                     <a
                       href="#"
-                      className="text-[#21313c]/60 text-sm hover:text-[#21313c] transition-colors"
+                      className="text-[#21313c]/60 text-[10px] md:text-sm hover:text-[#21313c] transition-colors"
                     >
                       Read Story →
                     </a>
@@ -721,20 +719,7 @@ export default function AlumniPage() {
             ))}
           </div>
 
-          {/* Mobile Dots */}
-          {isMobile && (
-            <div className="flex justify-center gap-2 mt-4">
-              {notableAlumni.map((_, index) => (
-                <button
-                  key={index}
-                  onClick={() => scrollToAlumni(index)}
-                  className={`w-2 h-2 rounded-full transition-all ${
-                    activeAlumniIndex === index ? 'w-6 bg-[#21313c]' : 'bg-[#21313c]/20'
-                  }`}
-                />
-              ))}
-            </div>
-          )}
+
         </div>
       </section>
 
@@ -748,11 +733,11 @@ export default function AlumniPage() {
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
           >
-            <span className="text-sm font-medium text-[#efc04b] tracking-wider uppercase mb-4 block">
+            <span className="text-[10px] md:text-sm font-medium text-[#efc04b] tracking-wider uppercase mb-2 md:mb-4 block">
               Testimonials
             </span>
             <h2
-              className="text-3xl md:text-4xl lg:text-5xl font-semibold text-white"
+              className="text-xl md:text-4xl lg:text-5xl font-semibold text-white"
               style={{ fontFamily: 'Inter, sans-serif', letterSpacing: '-0.02em' }}
             >
               Voices of{' '}
@@ -771,10 +756,10 @@ export default function AlumniPage() {
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -20 }}
                 transition={{ duration: 0.5 }}
-                className="flex flex-col md:flex-row items-center gap-8 md:gap-12"
+                className="flex flex-row items-center gap-4 md:gap-12"
               >
                 {/* Image */}
-                <div className="w-32 h-32 md:w-48 md:h-48 rounded-full overflow-hidden border-4 border-[#efc04b] flex-shrink-0">
+                <div className="w-24 h-24 md:w-48 md:h-48 rounded-full overflow-hidden border-2 md:border-4 border-[#efc04b] flex-shrink-0">
                   <img
                     src={testimonials[activeTestimonial].image}
                     alt={testimonials[activeTestimonial].name}
@@ -783,27 +768,27 @@ export default function AlumniPage() {
                 </div>
 
                 {/* Content */}
-                <div className="text-center md:text-left">
-                  <svg className="w-10 h-10 text-[#efc04b]/30 mb-4 mx-auto md:mx-0" viewBox="0 0 24 24" fill="currentColor">
+                <div className="text-left">
+                  <svg className="w-6 h-6 md:w-10 md:h-10 text-[#efc04b]/30 mb-2 md:mb-4" viewBox="0 0 24 24" fill="currentColor">
                     <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/>
                   </svg>
-                  <p className="text-white/90 text-lg md:text-xl lg:text-2xl leading-relaxed mb-6">
+                  <p className="text-white/90 text-xs md:text-xl lg:text-2xl leading-relaxed mb-3 md:mb-6">
                     "{testimonials[activeTestimonial].quote}"
                   </p>
-                  <p className="text-[#efc04b] font-semibold text-lg">{testimonials[activeTestimonial].name}</p>
-                  <p className="text-white/60 text-sm">Batch {testimonials[activeTestimonial].batch} | {testimonials[activeTestimonial].role}</p>
+                  <p className="text-[#efc04b] font-semibold text-sm md:text-lg">{testimonials[activeTestimonial].name}</p>
+                  <p className="text-white/60 text-[10px] md:text-sm">Batch {testimonials[activeTestimonial].batch} | {testimonials[activeTestimonial].role}</p>
                 </div>
               </motion.div>
             </AnimatePresence>
           </div>
 
           {/* Testimonial Dots */}
-          <div className="flex justify-center gap-3 mt-10">
+          <div className="flex justify-center gap-2 md:gap-3 mt-6 md:mt-10">
             {testimonials.map((_, index) => (
               <button
                 key={index}
                 onClick={() => setActiveTestimonial(index)}
-                className={`w-3 h-3 rounded-full transition-all ${
+                className={`w-2 h-2 md:w-3 md:h-3 rounded-full transition-all ${
                   activeTestimonial === index ? 'bg-[#efc04b] scale-125' : 'bg-white/30 hover:bg-white/50'
                 }`}
               />
@@ -816,18 +801,18 @@ export default function AlumniPage() {
       <section className="py-20 md:py-32 px-4 sm:px-6 lg:px-12 bg-[#f6f7f0]">
         <div className="max-w-[1400px] mx-auto">
           <motion.div
-            className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-12"
+            className="flex flex-row items-end justify-between gap-6 mb-12"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
           >
             <div>
-              <span className="text-sm font-medium text-[#4a90a4] tracking-wider uppercase mb-4 block">
+              <span className="text-[10px] md:text-sm font-medium text-[#4a90a4] tracking-wider uppercase mb-2 md:mb-4 block">
                 Mark Your Calendar
               </span>
               <h2
-                className="text-3xl md:text-4xl lg:text-5xl font-semibold text-[#21313c]"
+                className="text-xl md:text-4xl lg:text-5xl font-semibold text-[#21313c]"
                 style={{ fontFamily: 'Inter, sans-serif', letterSpacing: '-0.02em' }}
               >
                 Upcoming{' '}
@@ -840,48 +825,48 @@ export default function AlumniPage() {
               href="https://alumni.jlu.edu.in"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 text-[#4a90a4] font-semibold hover:text-[#21313c] transition-colors"
+              className="inline-flex items-center gap-1 md:gap-2 text-[#4a90a4] font-semibold text-[10px] md:text-base hover:text-[#21313c] transition-colors"
             >
               View All Events
-              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg className="w-3 h-3 md:w-5 md:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
               </svg>
             </a>
           </motion.div>
 
-          <div className="grid md:grid-cols-3 gap-6">
+          <div className="grid grid-cols-3 gap-3 md:gap-6">
             {upcomingEvents.map((event) => (
               <div
                 key={event.title}
-                className="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 group cursor-pointer hover:-translate-y-1"
+                className="bg-white rounded-xl md:rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 group cursor-pointer hover:-translate-y-1"
               >
-                <div className="relative h-48 overflow-hidden">
+                <div className="relative h-24 md:h-48 overflow-hidden">
                   <img
                     src={event.image}
                     alt={event.title}
                     className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                   />
                   <div className="absolute inset-0 bg-[#21313c]/30" />
-                  <span className="absolute top-4 left-4 px-3 py-1 bg-[#efc04b] text-[#21313c] text-xs font-semibold rounded-full">
+                  <span className="absolute top-2 left-2 md:top-4 md:left-4 px-2 py-0.5 md:px-3 md:py-1 bg-[#efc04b] text-[#21313c] text-[8px] md:text-xs font-semibold rounded-full">
                     {event.type}
                   </span>
                 </div>
-                <div className="p-6">
-                  <h3 className="text-lg font-semibold text-[#21313c] mb-3 group-hover:text-[#4a90a4] transition-colors">
+                <div className="p-3 md:p-6">
+                  <h3 className="text-xs md:text-lg font-semibold text-[#21313c] mb-1 md:mb-3 group-hover:text-[#4a90a4] transition-colors">
                     {event.title}
                   </h3>
-                  <div className="space-y-2 text-sm text-[#666]">
-                    <div className="flex items-center gap-2">
-                      <svg className="w-4 h-4 text-[#4a90a4]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <div className="space-y-1 md:space-y-2 text-[10px] md:text-sm text-[#666]">
+                    <div className="flex items-center gap-1 md:gap-2">
+                      <svg className="w-3 h-3 md:w-4 md:h-4 text-[#4a90a4] shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
                       </svg>
-                      {event.date}
+                      <span className="truncate">{event.date}</span>
                     </div>
-                    <div className="flex items-center gap-2">
-                      <svg className="w-4 h-4 text-[#4a90a4]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <div className="flex items-center gap-1 md:gap-2">
+                      <svg className="w-3 h-3 md:w-4 md:h-4 text-[#4a90a4] shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
                       </svg>
-                      {event.location}
+                      <span className="truncate">{event.location}</span>
                     </div>
                   </div>
                 </div>
@@ -894,16 +879,16 @@ export default function AlumniPage() {
       {/* Stats Section */}
       <section className="py-16 md:py-20 px-4 sm:px-6 lg:px-12 bg-[#f6f7f0]">
         <div className="max-w-[1400px] mx-auto">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12">
+          <div className="grid grid-cols-4 gap-12">
             {alumniStats.map((stat) => (
               <div
                 key={stat.label}
                 className="text-center"
               >
-                <span className="text-4xl md:text-5xl lg:text-6xl font-bold text-[#21313c] block mb-2">
+                <span className="text-xl md:text-5xl lg:text-6xl font-bold text-[#21313c] block mb-1 md:mb-2">
                   {stat.value}
                 </span>
-                <span className="text-[#666] text-sm md:text-base">{stat.label}</span>
+                <span className="text-[#666] text-[9px] md:text-base">{stat.label}</span>
               </div>
             ))}
           </div>
@@ -921,7 +906,7 @@ export default function AlumniPage() {
             transition={{ duration: 0.6 }}
           >
             <h2
-              className="text-2xl md:text-3xl font-semibold text-white mb-3"
+              className="text-lg md:text-3xl font-semibold text-white mb-2 md:mb-3"
               style={{ fontFamily: 'Inter, sans-serif', letterSpacing: '-0.02em' }}
             >
               Ready to{' '}
@@ -929,16 +914,16 @@ export default function AlumniPage() {
                 Reconnect?
               </span>
             </h2>
-            <p className="text-white/70 text-base max-w-xl mx-auto mb-6">
+            <p className="text-white/70 text-xs md:text-base max-w-xl mx-auto mb-4 md:mb-6">
               Join thousands of JLU alumni who are already networking, mentoring, and growing together.
             </p>
 
-            <div className="flex flex-col sm:flex-row gap-3 justify-center mb-8">
+            <div className="flex flex-row gap-3 justify-center mb-8">
               <a
                 href="https://alumni.jlu.edu.in"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="bg-[#efc04b] text-[#21313c] px-6 py-2.5 rounded-lg font-semibold text-sm hover:bg-[#d4a93d] transition-all shadow-lg inline-flex items-center justify-center gap-2"
+                className="bg-[#efc04b] text-[#21313c] px-4 py-2 md:px-6 md:py-2.5 rounded-lg font-semibold text-[10px] md:text-sm hover:bg-[#d4a93d] transition-all shadow-lg inline-flex items-center justify-center gap-1 md:gap-2"
               >
                 Register Now
                 <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -947,7 +932,7 @@ export default function AlumniPage() {
               </a>
               <a
                 href="mailto:alumni@jlu.edu.in"
-                className="border-2 border-white text-white px-6 py-2.5 rounded-lg font-semibold text-sm hover:bg-white hover:text-[#21313c] transition-all inline-flex items-center justify-center gap-2"
+                className="border-2 border-white text-white px-4 py-2 md:px-6 md:py-2.5 rounded-lg font-semibold text-[10px] md:text-sm hover:bg-white hover:text-[#21313c] transition-all inline-flex items-center justify-center gap-1 md:gap-2"
               >
                 Contact Us
               </a>
@@ -956,39 +941,39 @@ export default function AlumniPage() {
 
           {/* Contact Info */}
           <motion.div
-            className="grid sm:grid-cols-3 gap-6 text-center"
+            className="grid grid-cols-3 gap-6 text-center"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.1 }}
           >
             <div>
-              <div className="w-10 h-10 rounded-full bg-[#efc04b] flex items-center justify-center mx-auto mb-2">
-                <svg className="w-4 h-4 text-[#21313c]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <div className="w-7 h-7 md:w-10 md:h-10 rounded-full bg-[#efc04b] flex items-center justify-center mx-auto mb-1 md:mb-2">
+                <svg className="w-3 h-3 md:w-4 md:h-4 text-[#21313c]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
                 </svg>
               </div>
-              <p className="text-white/60 text-xs mb-0.5">Phone</p>
-              <p className="text-white font-medium text-sm">0755-6611152</p>
+              <p className="text-white/60 text-[9px] md:text-xs mb-0.5">Phone</p>
+              <p className="text-white font-medium text-[10px] md:text-sm">0755-6611152</p>
             </div>
             <div>
-              <div className="w-10 h-10 rounded-full bg-[#efc04b] flex items-center justify-center mx-auto mb-2">
-                <svg className="w-4 h-4 text-[#21313c]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <div className="w-7 h-7 md:w-10 md:h-10 rounded-full bg-[#efc04b] flex items-center justify-center mx-auto mb-1 md:mb-2">
+                <svg className="w-3 h-3 md:w-4 md:h-4 text-[#21313c]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                 </svg>
               </div>
-              <p className="text-white/60 text-xs mb-0.5">Email</p>
-              <p className="text-white font-medium text-sm">alumni@jlu.edu.in</p>
+              <p className="text-white/60 text-[9px] md:text-xs mb-0.5">Email</p>
+              <p className="text-white font-medium text-[10px] md:text-sm">alumni@jlu.edu.in</p>
             </div>
             <div>
-              <div className="w-10 h-10 rounded-full bg-[#efc04b] flex items-center justify-center mx-auto mb-2">
-                <svg className="w-4 h-4 text-[#21313c]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <div className="w-7 h-7 md:w-10 md:h-10 rounded-full bg-[#efc04b] flex items-center justify-center mx-auto mb-1 md:mb-2">
+                <svg className="w-3 h-3 md:w-4 md:h-4 text-[#21313c]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
                 </svg>
               </div>
-              <p className="text-white/60 text-xs mb-0.5">Address</p>
-              <p className="text-white font-medium text-sm">JLU, Bhopal - 462044, MP</p>
+              <p className="text-white/60 text-[9px] md:text-xs mb-0.5">Address</p>
+              <p className="text-white font-medium text-[10px] md:text-sm">JLU, Bhopal - 462044, MP</p>
             </div>
           </motion.div>
 
@@ -1009,10 +994,10 @@ export default function AlumniPage() {
               <a
                 key={social.name}
                 href="#"
-                className="w-9 h-9 rounded-full bg-white/10 flex items-center justify-center hover:bg-[#efc04b] hover:text-[#21313c] transition-colors group"
+                className="w-7 h-7 md:w-9 md:h-9 rounded-full bg-white/10 flex items-center justify-center hover:bg-[#efc04b] hover:text-[#21313c] transition-colors group"
                 aria-label={social.name}
               >
-                <svg className="w-4 h-4 text-white group-hover:text-[#21313c]" viewBox="0 0 24 24" fill="currentColor">
+                <svg className="w-3 h-3 md:w-4 md:h-4 text-white group-hover:text-[#21313c]" viewBox="0 0 24 24" fill="currentColor">
                   <path d={social.icon} />
                 </svg>
               </a>

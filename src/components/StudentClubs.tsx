@@ -136,7 +136,7 @@ export const StudentClubs = () => {
 
   // Card stacking effect - panels slide up and overlap previous ones
   useEffect(() => {
-    if (!mounted || isMobile || !stackingWrapperRef.current || !stackingSectionRef.current) return;
+    if (!mounted || !stackingWrapperRef.current || !stackingSectionRef.current) return;
 
     const panels = panelsRef.current.filter(Boolean) as HTMLElement[];
     if (panels.length === 0) return;
@@ -211,7 +211,7 @@ export const StudentClubs = () => {
       clearTimeout(timeout);
       ScrollTrigger.getAll().forEach(t => t.kill());
     };
-  }, [mounted, isMobile]);
+  }, [mounted]);
 
   return (
     <div ref={containerRef} className="relative bg-[#f6f7f0]">
@@ -274,116 +274,108 @@ export const StudentClubs = () => {
         </div>
       </section>
 
-      {/* Mobile Layout */}
-      {isMobile ? (
-        <div>
-
-          {/* Mobile Club List */}
-          <section className="px-6 py-12 bg-[#21313c]">
-            <p
-              className="text-xs mb-6"
-              style={{ color: 'rgba(255,255,255,0.5)', letterSpacing: '0.2em', textTransform: 'uppercase' }}
-            >
-              ALL CLUBS
-            </p>
-            <div className="space-y-3">
-              {clubs.map((club, index) => (
-                <div
-                  key={club.id}
-                  className="flex items-center gap-4 py-2 border-b border-white/10"
+      {/* Stacking Panels Section */}
+      <div ref={containerRef}>
+        <div ref={stackingWrapperRef}>
+          <div ref={stackingSectionRef} className={`${isMobile ? 'flex flex-col' : 'flex'} h-screen`}>
+            {/* Mobile: Blue club list pinned at TOP */}
+            {isMobile && (
+              <div className="h-[40vh] bg-[#21313c] flex flex-col justify-center px-4 py-3 overflow-y-auto shrink-0">
+                <p
+                  className="mb-2"
+                  style={{ color: 'rgba(255,255,255,0.5)', fontSize: '0.5rem', letterSpacing: '0.2em', textTransform: 'uppercase' }}
                 >
-                  <span style={{ color: '#8bc34a', fontFamily: 'monospace', fontSize: '0.75rem', width: '24px' }}>
-                    {String(index + 1).padStart(2, '0')}.
-                  </span>
-                  <span style={{ color: 'rgba(255,255,255,0.8)', fontSize: '0.875rem', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
-                    {club.shortName}
-                  </span>
-                </div>
-              ))}
-            </div>
-          </section>
-
-          {/* Mobile Club Details */}
-          {clubs.map((club, index) => (
-            <section key={club.id} className="border-b border-[#21313c]/10 bg-[#f6f7f0]">
-              <div className="aspect-[4/3] relative overflow-hidden">
-                <img
-                  src={club.image}
-                  alt={club.name}
-                  className="w-full h-full object-cover"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
-                <div className="absolute bottom-6 left-6 right-6">
-                  <span style={{ color: '#8bc34a', fontFamily: 'monospace', fontSize: '0.75rem' }}>
-                    {String(index + 1).padStart(2, '0')}
-                  </span>
-                  <h3 style={{ color: '#ffffff', fontSize: '1.5rem', fontWeight: 600, marginTop: '4px' }}>
-                    {club.name}
-                  </h3>
-                  <button
-                    onClick={() => setRegistrationClub(club)}
-                    className="mt-3 px-5 py-2.5 rounded-full text-xs uppercase tracking-wider transition-colors"
-                    style={{ backgroundColor: '#8bc34a', color: '#21313c', fontWeight: 600 }}
-                  >
-                    Register Now
-                  </button>
-                </div>
-              </div>
-              <div className="px-6 py-8">
-                <p style={{ color: '#666', fontSize: '0.875rem', lineHeight: 1.7 }}>
-                  {club.description}
+                  ALL CLUBS
                 </p>
-              </div>
-            </section>
-          ))}
-        </div>
-      ) : (
-        /* Desktop Layout */
-        <div ref={containerRef}>
-          {/* Stacking Panels Section - Wrapper for scroll distance */}
-          <div ref={stackingWrapperRef}>
-            {/* This container gets pinned (both panels + sidebar together) */}
-            <div ref={stackingSectionRef} className="flex h-screen">
-              {/* Left Content - Stacking Panels */}
-              <div className="w-[65%] relative h-full overflow-hidden">
-                {/* All club panels stacked */}
-                {clubs.map((club, index) => (
-                  <section
-                    key={club.id}
-                    ref={el => { panelsRef.current[index] = el; }}
-                    className="absolute inset-0 h-full w-full flex flex-col"
-                    style={{
-                      backgroundColor: index % 2 === 0 ? '#f6f7f0' : '#ffffff',
-                    }}
-                  >
-                    {/* Image - Top Half */}
-                    <div className="h-[55%] relative overflow-hidden">
-                      <img
-                        src={club.image}
-                        alt={club.name}
-                        className="w-full h-full object-cover"
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
-
-                      {/* Number overlay on image */}
-                      <div className="absolute bottom-8 left-16 xl:left-24">
+                <div className="space-y-0.5">
+                  {clubs.map((club, index) => (
+                    <div
+                      key={club.id}
+                      className={`flex items-center gap-2 py-1 border-b border-white/10 transition-all duration-300 cursor-pointer ${
+                        activeClub === index ? 'opacity-100' : 'opacity-40'
+                      }`}
+                      onClick={() => {
+                        if (stackingWrapperRef.current) {
+                          const wrapperTop = stackingWrapperRef.current.getBoundingClientRect().top + window.scrollY;
+                          const scrollTo = wrapperTop + (index * window.innerHeight);
+                          window.scrollTo({ top: scrollTo, behavior: 'smooth' });
+                        }
+                      }}
+                    >
+                      <span style={{ color: '#8bc34a', fontFamily: 'monospace', fontSize: '0.5rem', width: '16px', fontWeight: 600 }}>
+                        {String(index + 1).padStart(2, '0')}.
+                      </span>
+                      <span style={{ color: 'rgba(255,255,255,0.8)', fontSize: '0.6rem', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
+                        {club.shortName}
+                      </span>
+                      {activeClub === index && (
                         <span
+                          className="ml-auto shrink-0"
+                          style={{ width: '5px', height: '5px', borderRadius: '50%', backgroundColor: '#8bc34a' }}
+                        />
+                      )}
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
+
+            {/* Stacking Panels - bottom half on mobile, left side on desktop */}
+            <div className={`${isMobile ? 'h-[60vh]' : 'w-[65%] h-full'} relative overflow-hidden`}>
+              {clubs.map((club, index) => (
+                <section
+                  key={club.id}
+                  ref={el => { panelsRef.current[index] = el; }}
+                  className="absolute inset-0 h-full w-full flex flex-col"
+                  style={{
+                    backgroundColor: index % 2 === 0 ? '#f6f7f0' : '#ffffff',
+                  }}
+                >
+                  {/* Image */}
+                  <div className={`${isMobile ? 'h-[40%]' : 'h-[55%]'} relative overflow-hidden`}>
+                    <img
+                      src={club.image}
+                      alt={club.name}
+                      className="w-full h-full object-cover"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
+
+                    {/* Number + Title overlay on image (mobile) / Number only (desktop) */}
+                    <div className={`absolute ${isMobile ? 'bottom-2 left-3 right-3 flex items-end gap-2' : 'bottom-8 left-16 xl:left-24'}`}>
+                      <span
+                        style={{
+                          fontFamily: 'monospace',
+                          fontSize: isMobile ? '1.5rem' : 'clamp(4rem, 8vw, 8rem)',
+                          fontWeight: 700,
+                          color: 'rgba(255,255,255,0.9)',
+                          lineHeight: 1,
+                          textShadow: '0 4px 30px rgba(0,0,0,0.3)',
+                          flexShrink: 0,
+                        }}
+                      >
+                        {String(index + 1).padStart(2, '0')}
+                      </span>
+                      {isMobile && (
+                        <h2
                           style={{
-                            fontFamily: 'monospace',
-                            fontSize: 'clamp(4rem, 8vw, 8rem)',
-                            fontWeight: 700,
-                            color: 'rgba(255,255,255,0.9)',
-                            lineHeight: 1,
-                            textShadow: '0 4px 30px rgba(0,0,0,0.3)',
+                            fontSize: '1.1rem',
+                            fontWeight: 600,
+                            lineHeight: 1.1,
+                            letterSpacing: '-0.02em',
+                            color: '#ffffff',
+                            textShadow: '0 2px 10px rgba(0,0,0,0.4)',
+                            paddingBottom: '2px',
                           }}
                         >
-                          {String(index + 1).padStart(2, '0')}
-                        </span>
-                      </div>
+                          {club.name}
+                        </h2>
+                      )}
                     </div>
+                  </div>
 
-                    {/* Content - Bottom Half */}
-                    <div className="h-[45%] px-16 xl:px-24 py-10 flex flex-col justify-center">
+                  {/* Content */}
+                  <div className={`${isMobile ? 'h-[60%] px-4 pt-2 pb-3' : 'h-[45%] px-16 xl:px-24 py-10'} flex flex-col justify-start`}>
+                    {!isMobile && (
                       <h2
                         className="text-[#21313c] mb-4"
                         style={{
@@ -395,25 +387,29 @@ export const StudentClubs = () => {
                       >
                         {club.name}
                       </h2>
-                      <button
-                        onClick={() => setRegistrationClub(club)}
-                        className="self-start group flex items-center gap-3 text-sm uppercase tracking-wider hover:gap-5 transition-all mb-5"
-                        style={{ color: '#21313c', fontWeight: 600 }}
-                      >
-                        Register for this club
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" className="group-hover:translate-x-1 transition-transform">
-                          <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                        </svg>
-                      </button>
-                      <p style={{ color: '#666', fontSize: '1rem', lineHeight: 1.7, maxWidth: '500px' }}>
-                        {club.description}
-                      </p>
-                    </div>
-                  </section>
-                ))}
-              </div>
+                    )}
+                    <button
+                      onClick={() => setRegistrationClub(club)}
+                      className="self-start group flex items-center gap-2 md:gap-3 text-[14px] md:text-sm uppercase tracking-wider hover:gap-5 transition-all mb-3 md:mb-5"
+                      style={{ color: '#21313c', fontWeight: 600 }}
+                    >
+                      Register for this club
+                      <svg width={isMobile ? 14 : 20} height={isMobile ? 14 : 20} viewBox="0 0 24 24" fill="none" className="group-hover:translate-x-1 transition-transform">
+                        <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                      </svg>
+                    </button>
+                    <p style={{ color: '#666', fontSize: isMobile ? '1.05rem' : '1rem', lineHeight: 1.6, maxWidth: '500px' }}
+                      className={isMobile ? 'line-clamp-5' : ''}
+                    >
+                      {club.description}
+                    </p>
+                  </div>
+                </section>
+              ))}
+            </div>
 
-              {/* Right Sidebar - Stays with pinned section */}
+            {/* Right Sidebar - Desktop only */}
+            {!isMobile && (
               <div className="w-[35%] h-full bg-[#21313c] flex flex-col justify-center p-12 xl:p-16">
                 <p
                   className="mb-8"
@@ -422,7 +418,6 @@ export const StudentClubs = () => {
                   ALL CLUBS
                 </p>
 
-                {/* Club List */}
                 <div className="space-y-4">
                   {clubs.map((club, index) => (
                     <div
@@ -431,7 +426,6 @@ export const StudentClubs = () => {
                         activeClub === index ? 'opacity-100' : 'opacity-40 hover:opacity-70'
                       }`}
                       onClick={() => {
-                        // Scroll to the position for this club
                         if (stackingWrapperRef.current) {
                           const wrapperTop = stackingWrapperRef.current.getBoundingClientRect().top + window.scrollY;
                           const scrollTo = wrapperTop + (index * window.innerHeight);
@@ -455,39 +449,39 @@ export const StudentClubs = () => {
                   ))}
                 </div>
               </div>
-            </div>
+            )}
           </div>
-
-          {/* Final CTA - After all stacking */}
-          <section className="py-24 flex items-center justify-center px-16 xl:px-24 bg-[#f0c14b]">
-            <div className="text-center">
-              <p
-                className="mb-4"
-                style={{ color: 'rgba(33,49,60,0.5)', fontSize: '0.75rem', letterSpacing: '0.2em', textTransform: 'uppercase' }}
-              >
-                READY TO JOIN?
-              </p>
-              <h2
-                className="text-[#21313c] mb-8"
-                style={{
-                  fontSize: 'clamp(2rem, 5vw, 4rem)',
-                  fontWeight: 600,
-                  lineHeight: 1,
-                }}
-              >
-                Find Your{' '}
-                <span style={{ fontFamily: "'Times New Roman', serif", fontStyle: 'italic' }}>Tribe</span>
-              </h2>
-              <button
-                className="px-10 py-4 rounded-full font-semibold hover:scale-105 transition-transform"
-                style={{ backgroundColor: '#21313c', color: '#ffffff' }}
-              >
-                Explore All Clubs
-              </button>
-            </div>
-          </section>
         </div>
-      )}
+
+        {/* Final CTA - After all stacking */}
+        <section className="py-12 md:py-24 flex items-center justify-center px-6 md:px-16 xl:px-24 bg-[#f0c14b]">
+          <div className="text-center">
+            <p
+              className="mb-3 md:mb-4"
+              style={{ color: 'rgba(33,49,60,0.5)', fontSize: isMobile ? '0.6rem' : '0.75rem', letterSpacing: '0.2em', textTransform: 'uppercase' }}
+            >
+              READY TO JOIN?
+            </p>
+            <h2
+              className="text-[#21313c] mb-6 md:mb-8"
+              style={{
+                fontSize: isMobile ? '1.75rem' : 'clamp(2rem, 5vw, 4rem)',
+                fontWeight: 600,
+                lineHeight: 1,
+              }}
+            >
+              Find Your{' '}
+              <span style={{ fontFamily: "'Times New Roman', serif", fontStyle: 'italic' }}>Tribe</span>
+            </h2>
+            <button
+              className="px-8 py-3 md:px-10 md:py-4 rounded-full font-semibold text-sm md:text-base hover:scale-105 transition-transform"
+              style={{ backgroundColor: '#21313c', color: '#ffffff' }}
+            >
+              Explore All Clubs
+            </button>
+          </div>
+        </section>
+      </div>
       {/* Registration Modal */}
       <AnimatePresence>
         {registrationClub && (

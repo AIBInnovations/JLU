@@ -4,7 +4,7 @@ import { useRef, useEffect, useState } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { motion, useScroll, useTransform } from 'framer-motion';
-import { useIsMobile } from '../../../hooks/useIsMobile';
+
 import { Footer } from '@/components';
 
 gsap.registerPlugin(ScrollTrigger);
@@ -12,17 +12,16 @@ gsap.registerPlugin(ScrollTrigger);
 const customEase: [number, number, number, number] = [0.22, 1, 0.36, 1];
 
 const galleryImages = [
-  { id: 1, src: '/ev1.jpg', position: 'top-[10%] left-[5%]', size: 'w-[140px] h-[200px] md:w-[180px] md:h-[260px]', opacity: 0.7 },
-  { id: 2, src: '/ex.jpg', position: 'top-[5%] left-[22%]', size: 'w-[100px] h-[140px] md:w-[130px] md:h-[170px]', opacity: 0.5 },
-  { id: 3, src: '/glob.jpg', position: '', size: 'w-[200px] h-[280px] md:w-[260px] md:h-[360px]', isCenter: true, opacity: 1 },
-  { id: 4, src: '/ev3.jpg', position: 'top-[8%] right-[18%]', size: 'w-[120px] h-[170px] md:w-[160px] md:h-[220px]', opacity: 0.6 },
-  { id: 5, src: '/comm.jpg', position: 'top-[12%] right-[3%]', size: 'w-[90px] h-[130px] md:w-[120px] md:h-[160px]', opacity: 0.4 },
-  { id: 6, src: '/ev5.jpg', position: 'bottom-[12%] left-[8%]', size: 'w-[110px] h-[160px] md:w-[150px] md:h-[200px]', opacity: 0.5 },
-  { id: 7, src: '/about1.jpg', position: 'bottom-[10%] right-[5%]', size: 'w-[130px] h-[180px] md:w-[170px] md:h-[230px]', opacity: 0.6 },
+  { id: 1, src: '/ev1.jpg', position: 'top-[10%] left-[5%]', size: 'w-[70px] h-[100px] md:w-[180px] md:h-[260px]', opacity: 0.7 },
+  { id: 2, src: '/ex.jpg', position: 'top-[5%] left-[22%]', size: 'w-[50px] h-[70px] md:w-[130px] md:h-[170px]', opacity: 0.5 },
+  { id: 3, src: '/glob.jpg', position: '', size: 'w-[120px] h-[170px] md:w-[260px] md:h-[360px]', isCenter: true, opacity: 1 },
+  { id: 4, src: '/ev3.jpg', position: 'top-[8%] right-[18%]', size: 'w-[60px] h-[85px] md:w-[160px] md:h-[220px]', opacity: 0.6 },
+  { id: 5, src: '/comm.jpg', position: 'top-[12%] right-[3%]', size: 'w-[45px] h-[65px] md:w-[120px] md:h-[160px]', opacity: 0.4 },
+  { id: 6, src: '/ev5.jpg', position: 'bottom-[12%] left-[8%]', size: 'w-[55px] h-[80px] md:w-[150px] md:h-[200px]', opacity: 0.5 },
+  { id: 7, src: '/about1.jpg', position: 'bottom-[10%] right-[5%]', size: 'w-[65px] h-[90px] md:w-[170px] md:h-[230px]', opacity: 0.6 },
 ];
 
 export default function GlobalNetworkPage() {
-  const isMobile = useIsMobile();
   const [mounted, setMounted] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
   const heroRef = useRef<HTMLDivElement>(null);
@@ -42,7 +41,7 @@ export default function GlobalNetworkPage() {
   }, []);
 
   useEffect(() => {
-    if (!mounted || isMobile) return;
+    if (!mounted) return;
 
     const ctx = gsap.context(() => {
       if (gallerySectionRef.current) {
@@ -50,6 +49,7 @@ export default function GlobalNetworkPage() {
         const centerImageInner = centerImageInnerRef.current;
         const textOverlay = textOverlayRef.current;
         const horizontalTextTrack = document.querySelector('.horizontal-text-track');
+        const isMobileScreen = window.innerWidth < 768;
         const sideImages = gsap.utils.toArray<HTMLElement>('.gallery-image:not(.center-image)');
 
         sideImages.forEach((img) => {
@@ -115,7 +115,7 @@ export default function GlobalNetworkPage() {
           zoomTl.to('.black-overlay', { opacity: 1, duration: 0.2, ease: 'power2.out' }, 0.4);
 
           if (horizontalTextTrack) {
-            zoomTl.fromTo(horizontalTextTrack, { xPercent: 0 }, { xPercent: -72, duration: 0.5, ease: 'none' }, 0.45);
+            zoomTl.fromTo(horizontalTextTrack, { xPercent: 0 }, { xPercent: isMobileScreen ? -85 : -72, duration: 0.5, ease: 'none' }, 0.45);
           }
 
           zoomTl.fromTo('.scroll-desc-1', { opacity: 0, y: 40 }, { opacity: 1, y: 0, duration: 0.05, ease: 'power2.out' }, 0.47);
@@ -132,7 +132,7 @@ export default function GlobalNetworkPage() {
     }, containerRef);
 
     return () => ctx.revert();
-  }, [mounted, isMobile]);
+  }, [mounted]);
 
   if (!mounted) {
     return <div className="min-h-screen bg-[#0a0a0a]" />;
@@ -203,7 +203,6 @@ export default function GlobalNetworkPage() {
       </div>
 
       {/* Gallery Showcase */}
-      {!isMobile && (
         <section ref={gallerySectionRef} className="relative h-screen w-full bg-[#f5f5f5] overflow-hidden">
           <div className="relative w-full h-full overflow-hidden">
             {galleryImages.map((img) => (
@@ -231,42 +230,42 @@ export default function GlobalNetworkPage() {
                 {img.isCenter && (
                   <div ref={textOverlayRef} className="absolute inset-0 flex flex-col justify-center opacity-0">
                     <div className="black-overlay absolute inset-0 bg-black/50 opacity-0" />
-                    <div className="absolute top-[40%] left-8 md:left-12 right-8 md:right-12 flex items-center z-10">
+                    <div className="absolute top-[25%] md:top-[40%] left-8 md:left-12 right-8 md:right-12 flex items-center z-10">
                       <div className="w-full h-px bg-white" />
                     </div>
-                    <div className="absolute top-[15%] left-0 right-0 overflow-hidden z-10">
+                    <div className="absolute top-[20%] md:top-[15%] left-0 right-0 overflow-hidden z-10">
                       <div className="horizontal-text-track flex items-center whitespace-nowrap" style={{ width: 'max-content' }}>
-                        <span className="text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-light text-white mx-12 md:mx-20">
+                        <span className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-light text-white mx-4 sm:mx-10 md:mx-20">
                           45+ International MOUs
                         </span>
-                        <span className="text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-light text-white/80 mx-12 md:mx-20">
+                        <span className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-light text-white/80 mx-4 sm:mx-10 md:mx-20">
                           14 Countries
                         </span>
-                        <span className="text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-light text-white/60 mx-12 md:mx-20">
+                        <span className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-light text-white/60 mx-4 sm:mx-10 md:mx-20">
                           Erasmus+ Partner
                         </span>
-                        <span className="text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-light text-white mx-12 md:mx-20">
+                        <span className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-light text-white mx-4 sm:mx-10 md:mx-20">
                           AUAP Country Chair
                         </span>
                       </div>
                     </div>
                     <div className="scroll-desc-1 absolute bottom-[10%] left-8 md:left-12 max-w-xl z-10 opacity-0">
-                      <p className="text-white text-base md:text-lg lg:text-xl leading-relaxed">
+                      <p className="text-white text-lg lg:text-xl leading-relaxed">
                         JLU has signed <span className="text-[#f4c950] font-semibold">45+ Memoranda of Understanding</span> with leading universities worldwide, enabling student and faculty exchanges, joint research, and credited electives across continents.
                       </p>
                     </div>
                     <div className="scroll-desc-2 absolute bottom-[10%] left-8 md:left-12 max-w-xl z-10 opacity-0">
-                      <p className="text-white text-base md:text-lg lg:text-xl leading-relaxed">
+                      <p className="text-white text-lg lg:text-xl leading-relaxed">
                         From <span className="text-[#f4c950] font-semibold">the UK and Australia to Thailand and Kazakhstan</span>, JLU&apos;s academic partnerships span 14 countries — opening doors to semester exchanges, international teaching months, and diverse learning experiences.
                       </p>
                     </div>
                     <div className="scroll-desc-3 absolute bottom-[10%] left-8 md:left-12 max-w-xl z-10 opacity-0">
-                      <p className="text-white text-base md:text-lg lg:text-xl leading-relaxed">
+                      <p className="text-white text-lg lg:text-xl leading-relaxed">
                         As the <span className="text-[#f4c950] font-semibold">only university from Central India</span> in 3 EU-funded Erasmus+ projects, JLU students access European research networks, collaborative programs, and fully funded exchange opportunities.
                       </p>
                     </div>
                     <div className="scroll-desc-4 absolute bottom-[10%] left-8 md:left-12 max-w-xl z-10 opacity-0">
-                      <p className="text-white text-base md:text-lg lg:text-xl leading-relaxed">
+                      <p className="text-white text-lg lg:text-xl leading-relaxed">
                         Serving as <span className="text-[#f4c950] font-semibold">India Country Chair for AUAP</span>, JLU shapes the future of cross-border education — connecting 2,500+ students from 8 countries and 27 Indian states to a truly global network.
                       </p>
                     </div>
@@ -276,24 +275,6 @@ export default function GlobalNetworkPage() {
             ))}
           </div>
         </section>
-      )}
-
-      {/* Mobile Gallery */}
-      {isMobile && (
-        <section className="relative py-16 px-6 bg-white">
-          <div className="grid grid-cols-2 gap-4">
-            {galleryImages.slice(0, 4).map((img) => (
-              <div key={img.id} className="aspect-3/4 rounded-lg overflow-hidden">
-                <img src={img.src} alt={`JLU Global ${img.id}`} className="w-full h-full object-cover" />
-              </div>
-            ))}
-          </div>
-          <div className="mt-8 text-center">
-            <h2 className="text-2xl font-light text-gray-900 mb-2">Global Partnerships</h2>
-            <p className="text-gray-600 text-sm">45+ international collaborations across 14 countries</p>
-          </div>
-        </section>
-      )}
 
       {/* Full-VH Feature Section */}
       <section className="relative min-h-screen w-full flex items-center bg-[#f6f7f0]">
@@ -336,10 +317,10 @@ export default function GlobalNetworkPage() {
             </div>
             {/* Right - Images */}
             <div className="relative">
-              <div className="rounded-2xl overflow-hidden aspect-[4/5]">
+              <div className="rounded-2xl overflow-hidden aspect-[4/5] md:w-full">
                 <img src="/about1.jpg" alt="JLU Campus - International Students" className="w-full h-full object-cover" loading="lazy" />
               </div>
-              <div className="absolute -bottom-6 -left-6 w-48 h-48 md:w-56 md:h-56 rounded-2xl overflow-hidden shadow-2xl border-4 border-[#f6f7f0]">
+              <div className="absolute -bottom-4 -left-4 w-40 h-40 md:-bottom-6 md:-left-6 md:w-56 md:h-56 rounded-2xl overflow-hidden shadow-2xl border-4 border-[#f6f7f0]">
                 <img src="/glob.jpg" alt="JLU Global Partners Map" className="w-full h-full object-cover" loading="lazy" />
               </div>
             </div>
