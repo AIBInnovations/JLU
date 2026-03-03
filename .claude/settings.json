@@ -1,7 +1,9 @@
 {
   "permissions": {
     "allow": [
-      "WebFetch(domain:www.instagram.com)"
+      "WebFetch(domain:www.instagram.com)",
+      "WebFetch(domain:www.jfrlu.ac.in)",
+      "Bash(xargs -0 -I{} du -b \"{}\")"
     ]
   }
 }

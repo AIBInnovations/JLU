@@ -777,7 +777,7 @@ export const FacultyPage = ({
               }}
             >
               <img
-                src="https://images.unsplash.com/photo-1568792923760-d70635a89fdc?w=400&q=80"
+                src="/campus/gallery-14.jpg"
                 alt={partnerships[0] || 'Partner'}
                 className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
               />
@@ -798,7 +798,7 @@ export const FacultyPage = ({
               }}
             >
               <img
-                src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=400&q=80"
+                src="/campus/gallery-15.jpg"
                 alt={partnerships[1] || 'Partner'}
                 className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
               />
@@ -819,7 +819,7 @@ export const FacultyPage = ({
               }}
             >
               <img
-                src="https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=400&q=80"
+                src="/campus/gallery-16.jpg"
                 alt={partnerships[2] || 'Partner'}
                 className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
               />
@@ -840,7 +840,7 @@ export const FacultyPage = ({
               }}
             >
               <img
-                src="https://images.unsplash.com/photo-1529070538774-1843cb3265df?w=400&q=80"
+                src="/campus/gallery-17.jpg"
                 alt={partnerships[3] || 'Partner'}
                 className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
               />

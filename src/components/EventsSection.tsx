@@ -56,7 +56,13 @@ const events: Event[] = [
   },
 ];
 
-const galleryImages = ['/e1.jpg', '/e2.jpg', '/e3.jpg', '/e4.jpg', '/e5.jpg'];
+const galleryImages = [
+  '/JLu%20events/photos/Convocation/DSC_0823.JPG',
+  '/JLu%20events/photos/Lehar/IMG_8971.JPG',
+  '/JLu%20events/photos/Anti%20Ragging%20WEEK/IMG_1879.JPG',
+  '/JLu%20events/photos/Mental%20Health%20week/IMG_7813.JPG',
+  '/JLu%20events/photos/JAgran%20%20of%20Social%20science/DSC08838.JPG',
+];
 
 export const EventsSection = () => {
   const isMobile = useIsMobile();
@@ -110,7 +116,7 @@ export const EventsSection = () => {
               }}
             >
               <img
-                src="/event1.jpg"
+                src="/JLu%20events/photos/Lehar/IMG_9067.JPG"
                 alt="Campus Events"
                 className="w-full h-full object-cover rounded-xl"
               />

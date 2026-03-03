@@ -62,7 +62,7 @@ const IgnitedMindAwards = () => {
             style={{ aspectRatio: '4 / 5' }}
           >
             <Image
-              src="/ev5.jpg"
+              src="/jlu ignited mind Award/photos/AMF_1081.JPG"
               alt="JLU Ignited Mind Awards Ceremony"
               fill
               className="object-cover transition-transform duration-700 group-hover:scale-105"
@@ -158,6 +158,39 @@ const IgnitedMindAwards = () => {
               ))}
             </div>
           </div>
+        </div>
+
+        {/* Photo Gallery */}
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3 md:gap-4 mt-10 md:mt-16">
+          {[
+            { src: '/jlu ignited mind Award/photos/AMF_1426.JPG', alt: 'Ignited Mind Awards - Award Presentation' },
+            { src: '/jlu ignited mind Award/photos/AMF_1441.JPG', alt: 'Ignited Mind Awards - Felicitation' },
+            { src: '/jlu ignited mind Award/photos/Copy of DSC_4378.JPG', alt: 'Ignited Mind Awards - Ceremony Highlight' },
+            { src: '/jlu ignited mind Award/photos/Copy of DSC_4398.JPG', alt: 'Ignited Mind Awards - Guest of Honour' },
+            { src: '/jlu ignited mind Award/photos/Copy of DSC_4644.JPG', alt: 'Ignited Mind Awards - Stage Event' },
+            { src: '/jlu ignited mind Award/photos/Copy of DSC_4645.JPG', alt: 'Ignited Mind Awards - Audience' },
+            { src: '/jlu ignited mind Award/photos/DSC_4579.JPG', alt: 'Ignited Mind Awards - Award Ceremony' },
+          ].map((photo, index) => (
+            <motion.div
+              key={photo.src}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.4, delay: index * 0.06, ease: customEase }}
+              viewport={{ once: true }}
+              className={`group relative overflow-hidden rounded-xl ${
+                index === 0 ? 'col-span-2 row-span-2' : ''
+              }`}
+              style={{ aspectRatio: index === 0 ? '1' : '4 / 3' }}
+            >
+              <Image
+                src={photo.src}
+                alt={photo.alt}
+                fill
+                className="object-cover transition-transform duration-700 group-hover:scale-105"
+              />
+              <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-500" />
+            </motion.div>
+          ))}
         </div>
       </div>
     </section>

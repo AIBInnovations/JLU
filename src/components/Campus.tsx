@@ -1879,20 +1879,6 @@ const Campus = () => {
             >
               Experience the vibrant life, learning, and celebrations at JLU campus.
             </motion.p>
-            <motion.a
-              href="#"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.4, ease: customEase }}
-              viewport={{ once: true }}
-              className="pointer-events-auto px-5 py-2.5 md:px-8 md:py-4 bg-[#21313c] text-white font-medium flex items-center gap-2 md:gap-3 text-xs md:text-base"
-              style={{ borderRadius: '100px' }}
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.98 }}
-            >
-              Explore Gallery
-              <span>→</span>
-            </motion.a>
           </div>
         </div>
       </div>

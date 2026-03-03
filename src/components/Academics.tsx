@@ -25,7 +25,7 @@ const philosophyCards: PhilosophyCardData[] = [
     id: 1,
     title: 'Values-driven learning',
     description: 'Education rooted in ethics, purpose, and responsible leadership.',
-    image: 'https://images.unsplash.com/photo-1524178232363-1fb2b075b655?w=800&q=80',
+    image: '/interdisciplinary/classroom.jpg',
     modalContent: {
       heading: 'Values-Driven Learning',
       intro: 'At JLU, education goes beyond academics. We believe in nurturing individuals who lead with integrity, think with purpose, and act responsibly.',
@@ -42,7 +42,7 @@ const philosophyCards: PhilosophyCardData[] = [
     id: 2,
     title: 'Interdisciplinary structure',
     description: 'Programs designed to connect disciplines, ideas, and real-world application.',
-    image: 'https://images.unsplash.com/photo-1427504494785-3a9ca7044f45?w=800&q=80',
+    image: '/interdisciplinary/lab.jpg',
     modalContent: {
       heading: 'Interdisciplinary Structure',
       intro: 'Modern challenges require integrated thinking. Our academic structure breaks silos and encourages cross-disciplinary exploration.',
@@ -59,7 +59,7 @@ const philosophyCards: PhilosophyCardData[] = [
     id: 3,
     title: 'Industry & research integration',
     description: 'Learning shaped by industry exposure, live projects, and active research.',
-    image: 'https://images.unsplash.com/photo-1532094349884-543bc11b234d?w=800&q=80',
+    image: '/interdisciplinary/seminar.jpg',
     modalContent: {
       heading: 'Industry & Research Integration',
       intro: 'Theory meets practice at JLU. We ensure students are industry-ready through real-world exposure and active research participation.',
@@ -307,7 +307,7 @@ const Academics = () => {
         >
           <motion.div className="absolute inset-0" style={{ y }}>
             <Image
-              src="https://images.unsplash.com/photo-1481627834876-b7833e8f5570?w=1920&q=80"
+              src="/interdisciplinary/campus-students.jpg"
               alt="Academics at JLU"
               fill
               className="object-cover scale-110"
@@ -455,28 +455,28 @@ const Academics = () => {
                 label: 'Undergraduate',
                 tag: 'UG',
                 count: '34',
-                image: 'https://images.unsplash.com/photo-1523240795612-9a054b0db644?w=800&q=80',
+                image: '/interdisciplinary/campus-students.jpg',
                 color: '#c3fd7a',
               },
               {
                 label: 'Postgraduate',
                 tag: 'PG',
                 count: '13',
-                image: 'https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=800&q=80',
+                image: '/interdisciplinary/library.jpg',
                 color: '#f0c14b',
               },
               {
                 label: 'Doctoral',
                 tag: 'PhD',
                 count: '1',
-                image: 'https://images.unsplash.com/photo-1532094349884-543bc11b234d?w=800&q=80',
+                image: '/interdisciplinary/lab.jpg',
                 color: '#8bc34a',
               },
               {
                 label: 'Diploma',
                 tag: 'Diploma',
                 count: '3',
-                image: 'https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=800&q=80',
+                image: '/interdisciplinary/campus-activity.jpg',
                 color: '#e85a71',
               },
             ].map((cat, i) => (
@@ -1020,7 +1020,7 @@ const Academics = () => {
               {/* Image below text */}
               <div className="relative w-full overflow-hidden mt-6 md:mt-10 h-45 sm:h-60 md:h-70 rounded-xl md:rounded-none">
                 <Image
-                  src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?w=800&q=80"
+                  src="/interdisciplinary/campus-slider.jpg"
                   alt="Students learning and collaborating at JLU"
                   fill
                   className="object-cover"

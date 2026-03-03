@@ -94,19 +94,19 @@ const facultySpotlight = [
     id: 1,
     name: 'Shri. Abhishek Mohan Gupta',
     title: 'Pro - Chancellor',
-    image: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=800&q=80',
+    image: '/pc.jpg',
   },
   {
     id: 2,
     name: 'Mr. Pankaj Das',
     title: 'Registrar',
-    image: 'https://images.unsplash.com/photo-1560250097-0b93528c311a?w=800&q=80',
+    image: '/registrar.jpg',
   },
   {
     id: 3,
     name: 'Dr. Nilanjan Chattopadhyay',
     title: 'Vice Chancellor',
-    image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=800&q=80',
+    image: '/ppc.jpg',
   },
 ];
 
@@ -220,7 +220,7 @@ const Research = () => {
         >
           <motion.div className="absolute inset-0" style={{ y }}>
             <Image
-              src="https://images.unsplash.com/photo-1507413245164-6160d8298b31?w=1920&q=80"
+              src="/campus/gallery-12.jpg"
               alt="Research"
               fill
               className="object-cover scale-110"
@@ -522,7 +522,7 @@ const Research = () => {
               className="relative shrink-0 overflow-hidden rounded-lg w-full lg:w-145 h-52 sm:h-64 md:h-80 lg:h-125"
             >
               <Image
-                src="https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?w=1200&q=80"
+                src="/JLu%20events/photos/JAgran%20%20of%20Social%20science/DSC08881.JPG"
                 alt="Research Journal"
                 fill
                 className="object-cover"

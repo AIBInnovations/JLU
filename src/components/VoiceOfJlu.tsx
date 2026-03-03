@@ -9,13 +9,40 @@ export const VoiceOfJlu = () => {
   const isMobile = useIsMobile();
   const [activeCard, setActiveCard] = useState<number | null>(null);
   const [mobileIndex, setMobileIndex] = useState(0);
+  const [playingVideo, setPlayingVideo] = useState<number | null>(null);
+  const [mutedVideo, setMutedVideo] = useState<Record<number, boolean>>({});
+  const [hasAutoPlayed, setHasAutoPlayed] = useState(false);
   const facultyRef = useRef(null);
+  const voicesRef = useRef(null);
+  const videoRefs = useRef<Record<number, HTMLVideoElement | null>>({});
   const isInView = useInView(facultyRef, { once: true, amount: 0.3 });
+  const voicesInView = useInView(voicesRef, { once: true, amount: 0.3 });
 
-  // Set default active card based on device - closed on mobile, 7th card open on desktop
+  const middleIndex = 3; // middle of 7 cards
+
+  // Pause all videos except the given index
+  const pauseAllExcept = (exceptIndex: number) => {
+    Object.entries(videoRefs.current).forEach(([key, vid]) => {
+      if (vid && Number(key) !== exceptIndex && Number(key) !== 100 + exceptIndex) {
+        vid.pause();
+        vid.currentTime = 0.5;
+      }
+    });
+  };
+
+  // Set default active card to middle
   useEffect(() => {
-    setActiveCard(isMobile ? null : 7);
+    setActiveCard(isMobile ? null : middleIndex);
   }, []);
+
+  // Auto-play middle card when section scrolls into view
+  useEffect(() => {
+    if (voicesInView && !hasAutoPlayed && !isMobile) {
+      setActiveCard(middleIndex);
+      setPlayingVideo(middleIndex);
+      setHasAutoPlayed(true);
+    }
+  }, [voicesInView, hasAutoPlayed, isMobile]);
 
   const containerVariants = {
     hidden: { opacity: 1 },
@@ -55,15 +82,13 @@ export const VoiceOfJlu = () => {
   };
 
   const voices = [
-    { image: '/a.jpg', name: 'John Doe', title: 'B.Tech I Year' },
-    { image: '/b.jpg', name: 'Jane Smith', title: 'MBA II Year' },
-    { image: '/c.jpg', name: 'Alex Johnson', title: 'B.Sc III Year' },
-    { image: '/d.jpg', name: 'Emily Davis', title: 'B.Com I Year' },
-    { image: '/e.jpg', name: 'Michael Brown', title: 'M.Tech II Year' },
-    { image: '/f.jpg', name: 'Sarah Wilson', title: 'BBA I Year' },
-    { image: '/g.jpg', name: 'David Lee', title: 'B.Tech II Year' },
-    { image: '/h.jpg', name: 'Emma Taylor', title: 'MBA I Year' },
-    { image: '/i.jpg', name: 'Chris Martin', title: 'B.Sc II Year' },
+    { name: 'Priya Sharma', title: 'B.Des II Year', video: '/voices%20of%20jlu/cdc%20reel.mp4' },
+    { name: 'John Doe', title: 'B.Tech I Year', video: '/voices%20of%20jlu/Faiz%20siddiui%20reel.mp4' },
+    { name: 'Jane Smith', title: 'MBA II Year', video: '/voices%20of%20jlu/faiza%20reel%20final.mp4' },
+    { name: 'Alex Johnson', title: 'B.Sc III Year', video: '/voices%20of%20jlu/cdc%20reel.mp4' },
+    { name: 'Emily Davis', title: 'B.Com I Year', video: '/voices%20of%20jlu/hospitality%20w%20bgm.mp4' },
+    { name: 'Michael Brown', title: 'M.Tech II Year', video: '/voices%20of%20jlu/shubham%20rawat%20cdc%20reel.mp4' },
+    { name: 'Sarah Wilson', title: 'BBA I Year', video: '/voices%20of%20jlu/tanya%20sharma%20cdc%20reel.mp4' },
   ];
 
   const faculty = [
@@ -110,6 +135,7 @@ export const VoiceOfJlu = () => {
       </motion.div>
 
       {/* Cards Container */}
+      <div ref={voicesRef} />
       {isMobile ? (
         /* Mobile: Arrow navigation cards */
         <div style={{ paddingLeft: '12px', paddingRight: '12px' }}>
@@ -130,35 +156,65 @@ export const VoiceOfJlu = () => {
                     height: '340px',
                     borderRadius: index === activeCard ? '32px' : '40px',
                   }}
-                  onClick={() => setActiveCard(index === activeCard ? null : index)}
+                  onClick={() => {
+                    if (index === activeCard) {
+                      setActiveCard(null);
+                      setPlayingVideo(null);
+                      const vid = videoRefs.current[index];
+                      if (vid) { vid.pause(); vid.currentTime = 0.5; }
+                    } else {
+                      pauseAllExcept(index);
+                      setActiveCard(index);
+                      setPlayingVideo(index);
+                    }
+                  }}
                 >
-                  <img
-                    src={voice.image}
-                    alt={voice.name}
-                    className="absolute inset-0 w-full h-full object-cover object-center"
-                    style={{ objectPosition: 'center 20%' }}
+                  {/* Video - always present, plays when active */}
+                  <video
+                    ref={(el) => { videoRefs.current[index] = el; }}
+                    src={`${voice.video}#t=0.5`}
+                    autoPlay={playingVideo === index}
+                    muted={mutedVideo[index] !== false}
+                    playsInline
+                    preload="metadata"
+                    className="absolute inset-0 w-full h-full object-cover"
+                    style={{ borderRadius: 'inherit' }}
+                    onEnded={() => { setPlayingVideo(null); setActiveCard(null); }}
                   />
 
-                  {/* Overlay with text - only show on active card */}
-                  {index === activeCard && (
-                    <div className="absolute inset-0">
-                      <div
-                        className="absolute bottom-0 left-0 right-0 p-4 pt-6"
-                        style={{
-                          background: 'rgba(255, 255, 255, 0.2)',
-                          backdropFilter: 'blur(6px)',
-                          WebkitBackdropFilter: 'blur(6px)',
-                          borderBottomLeftRadius: '40px',
-                          borderBottomRightRadius: '40px',
+                  {/* Custom controls - only when playing */}
+                  {playingVideo === index && (
+                    <div className="absolute bottom-3 right-3 flex gap-2 z-20">
+                      <button
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          const vid = videoRefs.current[index];
+                          if (vid) { vid.paused ? vid.play() : vid.pause(); }
+                          setPlayingVideo(vid?.paused ? null : index);
                         }}
+                        className="w-8 h-8 rounded-full bg-black/40 backdrop-blur-sm flex items-center justify-center"
                       >
-                        <h3 className="text-white font-bold text-xs">
-                          {voice.name} ({voice.title})
-                        </h3>
-                        <p className="text-white/90 text-xs mt-1 leading-relaxed">
-                          "Lorem ipsum dolor sit amet..."
-                        </p>
-                      </div>
+                        <svg className="w-3.5 h-3.5 text-white" fill="currentColor" viewBox="0 0 24 24">
+                          {videoRefs.current[index]?.paused
+                            ? <path d="M8 5v14l11-7z" />
+                            : <><rect x="6" y="4" width="4" height="16" /><rect x="14" y="4" width="4" height="16" /></>
+                          }
+                        </svg>
+                      </button>
+                      <button
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          setMutedVideo((prev) => ({ ...prev, [index]: prev[index] === false ? true : false }));
+                        }}
+                        className="w-8 h-8 rounded-full bg-black/40 backdrop-blur-sm flex items-center justify-center"
+                      >
+                        <svg className="w-3.5 h-3.5 text-white" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+                          {mutedVideo[index] !== false
+                            ? <><path d="M11 5L6 9H2v6h4l5 4V5z" /><line x1="23" y1="9" x2="17" y2="15" /><line x1="17" y1="9" x2="23" y2="15" /></>
+                            : <><path d="M11 5L6 9H2v6h4l5 4V5z" /><path d="M19.07 4.93a10 10 0 010 14.14M15.54 8.46a5 5 0 010 7.07" /></>
+                          }
+                        </svg>
+                      </button>
                     </div>
                   )}
                 </div>
@@ -200,36 +256,65 @@ export const VoiceOfJlu = () => {
                 height: 'clamp(280px, 34vw, 780px)',
                 borderRadius: index === activeCard ? '60px' : '80px',
               }}
-              onClick={() => setActiveCard(index === activeCard ? null : index)}
+              onClick={() => {
+                if (index === activeCard) {
+                  setActiveCard(null);
+                  setPlayingVideo(null);
+                  const vid = videoRefs.current[100 + index];
+                  if (vid) { vid.pause(); vid.currentTime = 0.5; }
+                } else {
+                  pauseAllExcept(index);
+                  setActiveCard(index);
+                  setPlayingVideo(index);
+                }
+              }}
             >
-              <img
-                src={voice.image}
-                alt={voice.name}
-                className="absolute inset-0 w-full h-full object-cover object-center"
-                style={{ objectPosition: index === 2 ? '70% 20%' : index === 8 ? '30% 20%' : 'center 20%' }}
+              {/* Video - always present, plays when active */}
+              <video
+                ref={(el) => { videoRefs.current[100 + index] = el; }}
+                src={`${voice.video}#t=0.5`}
+                autoPlay={playingVideo === index}
+                muted={mutedVideo[index] !== false}
+                playsInline
+                preload="metadata"
+                className="absolute inset-0 w-full h-full object-cover"
+                style={{ borderRadius: 'inherit' }}
+                onEnded={() => { setPlayingVideo(null); setActiveCard(null); }}
               />
 
-              {/* Overlay with text - only show on active card */}
-              {index === activeCard && (
-                <div className="absolute inset-0">
-                  {/* Frosted glass card at bottom */}
-                  <div
-                    className="absolute bottom-0 left-0 right-0 p-6 lg:p-8 pt-10 lg:pt-12"
-                    style={{
-                      background: 'rgba(255, 255, 255, 0.2)',
-                      backdropFilter: 'blur(6px)',
-                      WebkitBackdropFilter: 'blur(6px)',
-                      borderBottomLeftRadius: '60px',
-                      borderBottomRightRadius: '60px',
+              {/* Custom controls - only when playing */}
+              {playingVideo === index && (
+                <div className="absolute bottom-6 right-6 flex gap-3 z-20">
+                  <button
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      const vid = videoRefs.current[100 + index];
+                      if (vid) { vid.paused ? vid.play() : vid.pause(); }
+                      setPlayingVideo(vid?.paused ? null : index);
                     }}
+                    className="w-10 h-10 rounded-full bg-black/40 backdrop-blur-sm flex items-center justify-center hover:bg-black/60 transition-colors"
                   >
-                    <h3 className="text-white font-bold text-sm lg:text-base">
-                      {voice.name} ({voice.title})
-                    </h3>
-                    <p className="text-white/90 text-xs lg:text-sm mt-1.5 leading-relaxed">
-                      "Lorem ipsum dolor sit amet consectetur. Rhoncus erat sagittis sed nisl."
-                    </p>
-                  </div>
+                    <svg className="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 24 24">
+                      {videoRefs.current[100 + index]?.paused
+                        ? <path d="M8 5v14l11-7z" />
+                        : <><rect x="6" y="4" width="4" height="16" /><rect x="14" y="4" width="4" height="16" /></>
+                      }
+                    </svg>
+                  </button>
+                  <button
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      setMutedVideo((prev) => ({ ...prev, [index]: prev[index] === false ? true : false }));
+                    }}
+                    className="w-10 h-10 rounded-full bg-black/40 backdrop-blur-sm flex items-center justify-center hover:bg-black/60 transition-colors"
+                  >
+                    <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+                      {mutedVideo[index] !== false
+                        ? <><path d="M11 5L6 9H2v6h4l5 4V5z" /><line x1="23" y1="9" x2="17" y2="15" /><line x1="17" y1="9" x2="23" y2="15" /></>
+                        : <><path d="M11 5L6 9H2v6h4l5 4V5z" /><path d="M19.07 4.93a10 10 0 010 14.14M15.54 8.46a5 5 0 010 7.07" /></>
+                      }
+                    </svg>
+                  </button>
                 </div>
               )}
             </div>

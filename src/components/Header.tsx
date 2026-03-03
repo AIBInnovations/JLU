@@ -6,6 +6,7 @@ import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
 import { useIsMobile } from '../hooks/useIsMobile';
 import Image from 'next/image';
+import SearchOverlay from './SearchOverlay';
 
 // Navigation item types
 interface NavigationColumn {
@@ -883,6 +884,7 @@ const MenuButton = ({ onClick, buttonRef, isOpen }: MenuButtonProps) => {
 export const Header = () => {
   const menuButtonRef = useRef<HTMLButtonElement>(null);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [isVisible, setIsVisible] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
   const isMobile = useIsMobile();
@@ -933,6 +935,9 @@ export const Header = () => {
       animate={{ y: isVisible || isMenuOpen ? 0 : -100 }}
       transition={{ duration: 0.3, ease: 'easeInOut' }}
     >
+      {/* Search Overlay */}
+      <SearchOverlay isOpen={isSearchOpen} onClose={() => setIsSearchOpen(false)} />
+
       {/* Menu Overlay */}
       <MenuOverlay
         isOpen={isMenuOpen}
@@ -982,6 +987,8 @@ export const Header = () => {
         <div className="flex items-center gap-3 sm:gap-4">
           {/* Search button */}
           <button
+            onClick={() => setIsSearchOpen(true)}
+            aria-label="Open search"
             className={`flex items-center justify-center bg-white text-slate-800 shadow-lg shadow-black/5 transition-all hover:shadow-xl hover:shadow-black/10 ${
               isMobile ? 'h-6 w-6 rounded-md' : 'h-12 w-12 rounded-xl'
             }`}

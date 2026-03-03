@@ -19,13 +19,13 @@ const customEase: [number, number, number, number] = [0.22, 1, 0.36, 1];
 
 // Gallery images for the multi-image showcase - placement-themed images
 const galleryImages = [
-  { id: 1, src: 'https://images.unsplash.com/photo-1521737711867-e3b97375f902?w=600&q=80', position: 'top-[5%] left-[2%]', size: 'w-[85px] h-[115px] md:w-[180px] md:h-[260px]', opacity: 0.7 },
-  { id: 2, src: 'https://images.unsplash.com/photo-1556761175-b413da4baf72?w=400&q=80', position: 'top-[2%] left-[30%]', size: 'w-[65px] h-[85px] md:w-[130px] md:h-[170px]', opacity: 0.5 },
-  { id: 3, src: 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=800&q=80', position: '', size: 'w-[140px] h-[190px] md:w-[260px] md:h-[360px]', isCenter: true, opacity: 1 },
-  { id: 4, src: 'https://images.unsplash.com/photo-1551434678-e076c223a692?w=600&q=80', position: 'top-[3%] right-[2%]', size: 'w-[75px] h-[100px] md:w-[160px] md:h-[220px]', opacity: 0.6 },
-  { id: 5, src: 'https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=400&q=80', position: 'top-[22%] right-[1%]', size: 'w-[55px] h-[75px] md:w-[120px] md:h-[160px]', opacity: 0.4 },
-  { id: 6, src: 'https://images.unsplash.com/photo-1553877522-43269d4ea984?w=600&q=80', position: 'bottom-[8%] left-[2%]', size: 'w-[70px] h-[95px] md:w-[150px] md:h-[200px]', opacity: 0.5 },
-  { id: 7, src: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=600&q=80', position: 'bottom-[5%] right-[2%]', size: 'w-[80px] h-[105px] md:w-[170px] md:h-[230px]', opacity: 0.6 },
+  { id: 1, src: '/campus/gallery-1.jpg', position: 'top-[5%] left-[2%]', size: 'w-[85px] h-[115px] md:w-[180px] md:h-[260px]', opacity: 0.7 },
+  { id: 2, src: '/campus/gallery-3.jpg', position: 'top-[2%] left-[30%]', size: 'w-[65px] h-[85px] md:w-[130px] md:h-[170px]', opacity: 0.5 },
+  { id: 3, src: '/campus/gallery-5.jpg', position: '', size: 'w-[140px] h-[190px] md:w-[260px] md:h-[360px]', isCenter: true, opacity: 1 },
+  { id: 4, src: '/campus/gallery-7.jpg', position: 'top-[3%] right-[2%]', size: 'w-[75px] h-[100px] md:w-[160px] md:h-[220px]', opacity: 0.6 },
+  { id: 5, src: '/campus/gallery-11.jpg', position: 'top-[22%] right-[1%]', size: 'w-[55px] h-[75px] md:w-[120px] md:h-[160px]', opacity: 0.4 },
+  { id: 6, src: '/campus/gallery-15.jpg', position: 'bottom-[8%] left-[2%]', size: 'w-[70px] h-[95px] md:w-[150px] md:h-[200px]', opacity: 0.5 },
+  { id: 7, src: '/campus/gallery-16.jpg', position: 'bottom-[5%] right-[2%]', size: 'w-[80px] h-[105px] md:w-[170px] md:h-[230px]', opacity: 0.6 },
 ];
 
 
@@ -568,12 +568,12 @@ export default function PlacementPage() {
                 {
                   title: 'Industry-Ready Curriculum',
                   description: 'Programs co-designed with industry leaders, ensuring skills align with market demands.',
-                  image: 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=800&q=80',
+                  image: '/campus/gallery-9.jpg',
                 },
                 {
                   title: 'Dedicated Training & Development',
                   description: 'Pre-placement training including aptitude, technical skills & communication workshops.',
-                  image: 'https://images.unsplash.com/photo-1551434678-e076c223a692?w=800&q=80',
+                  image: '/campus/smart-classroom.jpg',
                 },
               ].map((card, i) => (
                 <motion.div
@@ -610,12 +610,12 @@ export default function PlacementPage() {
                 {
                   title: 'Mock Interviews & Soft Skills',
                   description: 'Rigorous mock interviews, group discussions & personality development sessions.',
-                  image: 'https://images.unsplash.com/photo-1553877522-43269d4ea984?w=800&q=80',
+                  image: '/JLu%20events/photos/Convocation/DSC_0823.JPG',
                 },
                 {
                   title: 'Global Career Network',
                   description: 'International placement partnerships & alumni network spanning Fortune 500 companies.',
-                  image: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=800&q=80',
+                  image: '/campus/gallery-13.jpg',
                 },
               ].map((card, i) => (
                 <motion.div
@@ -654,28 +654,28 @@ export default function PlacementPage() {
               {
                 title: 'Industry-Ready Curriculum',
                 description: 'Programs co-designed with industry leaders, ensuring skills align with market demands and emerging technologies.',
-                image: 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=800&q=80',
+                image: '/campus/gallery-9.jpg',
                 accent: '#c3fd7a',
                 darkText: true,
               },
               {
                 title: 'Dedicated Training & Development',
                 description: 'Pre-placement training programs including aptitude, technical skills, and professional communication workshops.',
-                image: 'https://images.unsplash.com/photo-1551434678-e076c223a692?w=800&q=80',
+                image: '/campus/smart-classroom.jpg',
                 accent: '#4a90a4',
                 darkText: false,
               },
               {
                 title: 'Mock Interviews & Soft Skills',
                 description: 'Rigorous mock interviews, group discussions, and personality development sessions with industry professionals.',
-                image: 'https://images.unsplash.com/photo-1553877522-43269d4ea984?w=800&q=80',
+                image: '/JLu%20events/photos/Convocation/DSC_0823.JPG',
                 accent: '#e85a71',
                 darkText: false,
               },
               {
                 title: 'Global Career Network',
                 description: 'International placement partnerships and alumni network spanning Fortune 500 companies across 15+ countries.',
-                image: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=800&q=80',
+                image: '/campus/gallery-13.jpg',
                 accent: '#f4c950',
                 darkText: true,
               },
@@ -876,7 +876,7 @@ export default function PlacementPage() {
               className="col-span-2 row-span-2 group relative overflow-hidden rounded-2xl min-h-[280px] md:min-h-[600px]"
             >
               <img
-                src="https://images.unsplash.com/photo-1521737711867-e3b97375f902?w=1200&q=80"
+                src="/JLu%20events/photos/Convocation/DSC_1149.JPG"
                 alt="Corporate Success"
                 loading="lazy"
                 className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
@@ -903,7 +903,7 @@ export default function PlacementPage() {
               className="group relative overflow-hidden rounded-2xl min-h-[180px] md:min-h-[280px]"
             >
               <img
-                src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=800&q=80"
+                src="/student%20council/IMG_7537.JPG"
                 alt="Professional Growth"
                 loading="lazy"
                 className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
@@ -925,7 +925,7 @@ export default function PlacementPage() {
               className="group relative overflow-hidden rounded-2xl min-h-[180px] md:min-h-[280px]"
             >
               <img
-                src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=800&q=80"
+                src="/campus/gallery-9.jpg"
                 alt="Industry Connections"
                 loading="lazy"
                 className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
@@ -971,21 +971,21 @@ export default function PlacementPage() {
                 name: 'Priya Sharma',
                 role: 'Software Engineer, Infosys',
                 batch: 'B.Tech CSE, Batch 2024',
-                image: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=200&q=80',
+                image: '/student%20council/IMG_7537.JPG',
               },
               {
                 quote: "From resume workshops to final interviews, JLU's structured placement process gave me the confidence and skills to land my dream role at a Big 4 firm.",
                 name: 'Arjun Patel',
                 role: 'Associate Consultant, Deloitte',
                 batch: 'MBA, Batch 2024',
-                image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=200&q=80',
+                image: '/campus/smart-classroom.jpg',
               },
               {
                 quote: 'The global exposure through summer programs and industry visits gave me an edge. I received 3 offers and chose my perfect fit in product management.',
                 name: 'Sneha Gupta',
                 role: 'Product Manager, Flipkart',
                 batch: 'BBA, Batch 2023',
-                image: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=200&q=80',
+                image: '/student%20council/IMG_7541.JPG',
               },
             ];
 

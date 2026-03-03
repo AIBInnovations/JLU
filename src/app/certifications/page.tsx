@@ -16,7 +16,7 @@ const professionalCertificates = [
     subtitle: 'Professional Certification',
     duration: '4 months',
     fee: '₹21,500',
-    image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=1200&q=80',
+    image: '/campus/smart-classroom.jpg',
     gradient: 'from-[#4a90a4] to-[#2d5a6a]',
     features: ['Basic to Expert', 'Real Projects', 'Industry Certificate'],
   },
@@ -26,7 +26,7 @@ const professionalCertificates = [
     subtitle: 'Healthcare Certificate',
     duration: 'Self-paced',
     fee: 'Contact Admissions',
-    image: 'https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=1200&q=80',
+    image: '/campus/gallery-1.jpg',
     gradient: 'from-[#27ae60] to-[#1a7a42]',
     features: ['Online Learning', 'Expert Faculty', 'Professional Cert'],
   },
@@ -36,7 +36,7 @@ const professionalCertificates = [
     subtitle: 'Masterclass Series',
     duration: '6 Sessions',
     fee: 'Free',
-    image: 'https://images.unsplash.com/photo-1589829545856-d10d557cf95f?w=1200&q=80',
+    image: '/campus/gallery-3.jpg',
     gradient: 'from-[#8e44ad] to-[#5f2c7a]',
     features: ['Expert Sessions', 'Case Studies', 'Research Focus'],
   },
@@ -46,7 +46,7 @@ const professionalCertificates = [
     subtitle: 'Professional Development',
     duration: 'Semester',
     fee: 'Contact Faculty',
-    image: 'https://images.unsplash.com/photo-1521587760476-6c12a4b040da?w=1200&q=80',
+    image: '/campus/gallery-5.jpg',
     gradient: 'from-[#e67e22] to-[#a85919]',
     features: ['Modern Tools', 'Research Training', 'Practical Approach'],
   },
@@ -73,7 +73,7 @@ export default function CertificationsPage() {
         >
           <motion.div className="absolute inset-0" style={{ y }}>
             <Image
-              src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?w=1920&q=80"
+              src="/campus/gallery-7.jpg"
               alt="Certifications"
               fill
               className="object-cover scale-110"
@@ -244,7 +244,7 @@ export default function CertificationsPage() {
       <section className="relative py-20 md:py-32 overflow-hidden">
         <div className="absolute inset-0">
           <Image
-            src="https://images.unsplash.com/photo-1531482615713-2afd69097998?w=1920&q=80"
+            src="/campus/gallery-9.jpg"
             alt="Partnerships"
             fill
             className="object-cover"
@@ -346,7 +346,7 @@ export default function CertificationsPage() {
               className="relative h-96 rounded-2xl overflow-hidden"
             >
               <Image
-                src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?w=1200&q=80"
+                src="/campus/gallery-11.jpg"
                 alt="Harvard Business School"
                 fill
                 className="object-cover"
@@ -409,7 +409,7 @@ export default function CertificationsPage() {
               className="relative h-96 rounded-2xl overflow-hidden order-2 md:order-1"
             >
               <Image
-                src="https://images.unsplash.com/photo-1556761175-b413da4baf72?w=1200&q=80"
+                src="/campus/gallery-13.jpg"
                 alt="Skills Development"
                 fill
                 className="object-cover"

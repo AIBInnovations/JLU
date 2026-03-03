@@ -29,70 +29,70 @@ const clubs: Club[] = [
     name: 'Student Council',
     shortName: 'Student Council',
     description: 'The voice of every student, shaping campus policies and fostering community spirit through leadership and collaboration.',
-    image: 'https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=800&q=80',
+    image: '/student%20council/IMG_7622.JPG',
   },
   {
     id: 2,
     name: 'Sports & Adventure Club',
     shortName: 'Sports & Adventure',
     description: 'Sports and Adventure fills the void between academics, recreation and outdoors. This Club gives an opportunity to participate in competitive sports activities, learn new skills, improve skill levels, and enjoy the recreational and social fellowship derived from sports involvement.',
-    image: 'https://images.unsplash.com/photo-1517649763962-0c623066013b?w=800&q=80',
+    image: '/campus/sports.jpg',
   },
   {
     id: 3,
     name: 'Photography Club',
     shortName: 'Photography',
     description: 'Explore the many different aspects of photography. You will not need a fancy camera; you can use your mobile or any other photo-taking device. Learn tips and tricks for making the most out of your cameras, techniques for taking different kinds of images, and editing methods for creating awesome final products.',
-    image: 'https://images.unsplash.com/photo-1542038784456-1ea8e935640e?w=800&q=80',
+    image: '/JLu%20events/photos/Mental%20Health%20week/IMG_7837.JPG',
   },
   {
     id: 4,
     name: 'Music Club',
     shortName: 'Music',
     description: 'A student-run club dedicated to promoting and cultivating a love for music. Organize jam sessions, concerts, open mics, and other musical performances. Workshops and training sessions on various musical instruments, as well as opportunities for members to collaborate on music events.',
-    image: 'https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=800&q=80',
+    image: '/JLu%20events/photos/Lehar/IMG_9150.JPG',
   },
   {
     id: 5,
     name: 'Dance Club',
     shortName: 'Dance',
     description: 'A social club for students who are interested in dance. Learn and improve your dance skills in various styles - ballroom, salsa, hip hop, contemporary, or folk dance. Participate in dance performances, competitions, and festivals both on and off-campus.',
-    image: 'https://images.unsplash.com/photo-1508700929628-666bc8bd84ea?w=800&q=80',
+    image: '/JLu%20events/photos/Lehar/IMG_9018.JPG',
   },
   {
     id: 6,
     name: 'Literary Club',
     shortName: 'Literary',
     description: 'Promotes creative writing skills and what it takes to be a writer and poet. Discuss books, share writings, critique each other\'s work. Activities include discussions, lectures, poetry writing and reading, short story writing, quiz competitions, and interactive sessions.',
-    image: 'https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?w=800&q=80',
+    image: '/JLu%20events/photos/Anti%20Ragging%20WEEK/IMG_2091.JPG',
   },
   {
     id: 7,
     name: 'Dramatics Club',
     shortName: 'Dramatics',
     description: 'An initiative to promote theatrical arts on campus and encourage expressive performances. Plan, mount and perform various theatrical art forms including stage performances, road plays, mono acts, mime acts, and role plays. No experience required.',
-    image: 'https://images.unsplash.com/photo-1503095396549-807759245b35?w=800&q=80',
+    image: '/JLu%20events/photos/Anti%20Ragging%20WEEK/IMG_3582.JPG',
   },
   {
     id: 8,
     name: 'MUN & Debating Society',
     shortName: 'MUN & Debate',
     description: 'Develop skills for parliamentary debate, public speaking and effective communication in a formal setting. Stay aware of current events, present research, learn model UN process, draft resolution assistance, and speech delivery techniques.',
-    image: 'https://images.unsplash.com/photo-1475721027785-f74eccf877e2?w=800&q=80',
+    image: '/student%20council/IMG_7640.JPG',
   },
   {
     id: 9,
     name: 'Community Service Club',
     shortName: 'Community Service',
     description: 'A hub for community outreach, volunteering and social impact that promotes social wellbeing and harmony. Committed to work in the community and spread awareness about promoting social change within the university and the city.',
-    image: 'https://images.unsplash.com/photo-1559027615-cd4628902d4a?w=800&q=80',
+    image: '/JLu%20events/photos/Anti%20Ragging%20WEEK/IMG_1947.JPG',
   },
   {
     id: 10,
     name: 'Start-up & Entrepreneurship Club',
     shortName: 'Startup & Entrepreneurship',
     description: 'A learning-by-doing environment to cultivate entrepreneurship skills. Participate in business development through lectures, bootcamps with resources and mentoring from experienced entrepreneurs. Connect with JLU Foundation for Innovation and Entrepreneurship ecosystem.',
-    image: 'https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=800&q=80',
+    image: '/student%20council/IMG_7649.JPG',
   },
 ];
 
@@ -226,7 +226,7 @@ export const StudentClubs = () => {
           >
             <motion.div className="absolute inset-0" style={{ y: heroY }}>
               <img
-                src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=1600&q=80"
+                src="/JLu%20events/photos/Lehar/IMG_9060.JPG"
                 alt="Student Clubs at JLU"
                 className="w-full h-full object-cover scale-110"
               />

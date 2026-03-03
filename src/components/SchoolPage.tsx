@@ -16,74 +16,74 @@ interface SchoolPageProps {
 // Curated secondary images per school for visual variety
 const secondaryImages: Record<string, string[]> = {
   jlbs: [
-    'https://images.unsplash.com/photo-1524178232363-1fb2b075b655?w=800&q=80',
-    'https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=800&q=80',
+    '/campus/gallery-1.jpg',
+    '/campus/gallery-2.jpg',
   ],
   'sports-mgmt': [
-    'https://images.unsplash.com/photo-1517649763962-0c623066013b?w=800&q=80',
-    'https://images.unsplash.com/photo-1471295253337-3ceaaedca402?w=800&q=80',
+    '/campus/gallery-3.jpg',
+    '/campus/gallery-4.jpg',
   ],
   hospitality: [
-    'https://images.unsplash.com/photo-1551882547-ff40c63fe5fa?w=800&q=80',
-    'https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=800&q=80',
+    '/campus/gallery-5.jpg',
+    '/campus/gallery-6.jpg',
   ],
   journalism: [
-    'https://images.unsplash.com/photo-1585776245991-cf89dd7fc73a?w=800&q=80',
-    'https://images.unsplash.com/photo-1478147427282-58a87a120781?w=800&q=80',
+    '/campus/gallery-7.jpg',
+    '/campus/gallery-8.jpg',
   ],
   'advertising-pr': [
-    'https://images.unsplash.com/photo-1542744094-3a31f272c490?w=800&q=80',
-    'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&q=80',
+    '/campus/gallery-9.jpg',
+    '/campus/gallery-10.jpg',
   ],
   'events-entertainment': [
-    'https://images.unsplash.com/photo-1492684223066-81342ee5ff30?w=800&q=80',
-    'https://images.unsplash.com/photo-1501281668745-f7f57925c3b4?w=800&q=80',
+    '/campus/gallery-11.jpg',
+    '/campus/gallery-12.jpg',
   ],
   'languages-social': [
-    'https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?w=800&q=80',
-    'https://images.unsplash.com/photo-1513475382585-d06e58bcb0e0?w=800&q=80',
+    '/campus/gallery-13.jpg',
+    '/campus/gallery-14.jpg',
   ],
   design: [
-    'https://images.unsplash.com/photo-1558655146-9f40138edfeb?w=800&q=80',
-    'https://images.unsplash.com/photo-1545235617-9465d2a55698?w=800&q=80',
+    '/campus/gallery-15.jpg',
+    '/campus/gallery-16.jpg',
   ],
   architecture: [
-    'https://images.unsplash.com/photo-1503387762-592deb58ef4e?w=800&q=80',
-    'https://images.unsplash.com/photo-1431576901776-e539bd916ba2?w=800&q=80',
+    '/campus/gallery-17.jpg',
+    '/campus/gallery-18.jpg',
   ],
   fashion: [
-    'https://images.unsplash.com/photo-1537832816519-689ad163238b?w=800&q=80',
-    'https://images.unsplash.com/photo-1441984904996-e0b6ba687e04?w=800&q=80',
+    '/campus/gallery-19.jpg',
+    '/JLu%20events/photos/Convocation/DSC_0823.JPG',
   ],
   ai: [
-    'https://images.unsplash.com/photo-1620712943543-bcc4688e7485?w=800&q=80',
-    'https://images.unsplash.com/photo-1555949963-aa79dcee981c?w=800&q=80',
+    '/JLu%20events/photos/Convocation/DSC_0858.JPG',
+    '/JLu%20events/photos/Lehar/IMG_9018.JPG',
   ],
   engineering: [
-    'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=800&q=80',
-    'https://images.unsplash.com/photo-1504639725590-34d0984388bd?w=800&q=80',
+    '/JLu%20events/photos/Lehar/IMG_9025.JPG',
+    '/JLu%20events/photos/Lehar/IMG_9060.JPG',
   ],
   'computer-application': [
-    'https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=800&q=80',
-    'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=800&q=80',
+    '/JLu%20events/photos/Lehar/IMG_9087.JPG',
+    '/JLu%20events/photos/Lehar/IMG_9148.JPG',
   ],
   pharmacy: [
-    'https://images.unsplash.com/photo-1585435557343-3b092031a831?w=800&q=80',
-    'https://images.unsplash.com/photo-1576671081837-49000212a370?w=800&q=80',
+    '/JLu%20events/photos/Convocation/DSC_0885.JPG',
+    '/JLu%20events/photos/Convocation/DSC_1020.JPG',
   ],
   law: [
-    'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=800&q=80',
-    'https://images.unsplash.com/photo-1521587760476-6c12a4b040da?w=800&q=80',
+    '/campus/hero-campus.jpg',
+    '/campus/smart-classroom.jpg',
   ],
   'iica-creative': [
-    'https://images.unsplash.com/photo-1485846234645-a62644f84728?w=800&q=80',
-    'https://images.unsplash.com/photo-1536240478700-b869070f9279?w=800&q=80',
+    '/campus/sports.jpg',
+    '/campus/hostel.jpg',
   ],
 };
 
 const fallbackImages = [
-  'https://images.unsplash.com/photo-1523050854058-8df90110c9f1?w=800&q=80',
-  'https://images.unsplash.com/photo-1541339907198-e08756dedf3f?w=800&q=80',
+  '/campus/gym.jpg',
+  '/campus/accommodation.jpg',
 ];
 
 export const SchoolPage = ({ school, faculty }: SchoolPageProps) => {

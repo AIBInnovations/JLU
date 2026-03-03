@@ -12,7 +12,7 @@ const lawData = {
   name: 'Faculty of Law',
   tagline: 'Developing legal minds with practice-based education, moot courts, and global partnerships.',
   description: 'The Faculty of Law is committed to exposing students to various perspectives of legal knowledge and equipping them for contemporary challenges in the legal field. Our programs are mapped to European Teaching and Learning standards via the EU\'s Erasmus+ funded Tuning India project. With collaborations with International Association of Law Schools (IALS), European Law Institute, and World Bank\'s Global Forum on Law, we provide a truly global legal education.',
-  heroImage: 'https://images.unsplash.com/photo-1589829545856-d10d557cf95f?w=1600&q=80',
+  heroImage: '/interdisciplinary/law.jpg',
   accentColor: '#ffffff',
   programs: [
     { name: 'LLB', duration: '3 Years Full-Time', type: 'undergraduate' as const },

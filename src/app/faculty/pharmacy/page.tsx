@@ -12,7 +12,7 @@ const pharmacyData = {
   name: 'Faculty of Pharmacy',
   tagline: 'PCI-approved pharmacy education with laboratory-focused study and industry-aligned training.',
   description: 'Our B.Pharm program is approved by the Pharmacy Council of India (PCI) and designed to create competent pharmaceutical professionals. The curriculum encompasses pharmaceutical chemistry, pharmacology, pharmaceutics, and clinical pharmacy. With state-of-the-art laboratories, compulsory industrial training, and research-based projects, we prepare students for diverse careers in the pharmaceutical industry.',
-  heroImage: 'https://images.unsplash.com/photo-1587854692152-cbe660dbde88?w=1600&q=80',
+  heroImage: '/campus/smart-classroom.jpg',
   accentColor: '#ffffff',
   programs: [
     { name: 'B.Pharm (Bachelor of Pharmacy)', duration: '4 Years (8 Semesters) | 60 Seats', type: 'undergraduate' as const },

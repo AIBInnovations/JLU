@@ -29,12 +29,12 @@ const staggerItem = {
 };
 
 const pastEventsImages = [
-  'https://images.unsplash.com/photo-1523580494863-6f3031224c94?w=800&q=80', // Convocation
-  'https://images.unsplash.com/photo-1532094349884-543bc11b234d?w=800&q=80', // Science Expo
-  'https://images.unsplash.com/photo-1574629810360-7efbbe195018?w=800&q=80', // Sports Meet
-  'https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=800&q=80', // Cultural Fest
-  'https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=800&q=80', // Tech Summit
-  'https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=800&q=80', // Alumni Meet
+  '/JLu%20events/photos/Convocation/DSC_0823.JPG', // Convocation
+  '/JLu%20events/photos/JAgran%20%20of%20Social%20science/DSC08838.JPG', // Social Science
+  '/JLu%20events/photos/Anti%20Ragging%20WEEK/IMG_1879.JPG', // Anti Ragging Week
+  '/JLu%20events/photos/Lehar/IMG_9018.JPG', // Cultural Fest
+  '/JLu%20events/photos/Mental%20Health%20week/IMG_7775.JPG', // Mental Health Week
+  '/jlu%20ignited%20mind%20Award/photos/AMF_1081.JPG', // Ignited Mind Award
 ];
 
 const pastEventsData = [
@@ -124,7 +124,7 @@ const NewsAndEvents = () => {
         >
           <motion.div className="absolute inset-0" style={{ y }}>
             <Image
-              src="https://images.unsplash.com/photo-1523580494863-6f3031224c94?w=1920&q=80"
+              src="/JLu%20events/photos/Convocation/DSC_0858.JPG"
               alt="News & Events"
               fill
               className="object-cover scale-110"
@@ -258,7 +258,7 @@ const NewsAndEvents = () => {
                 transition={{ duration: 0.8, ease: customEase }}
               >
                 <Image
-                  src="https://images.unsplash.com/photo-1523580494863-6f3031224c94?w=1200&q=80"
+                  src="/JLu%20events/photos/Convocation/DSC_0858.JPG"
                   alt="JLU 11th Foundation Day"
                   fill
                   className="object-cover"
@@ -300,7 +300,7 @@ const NewsAndEvents = () => {
               >
                 <div className="relative shrink-0 overflow-hidden w-20 h-20 md:w-28 md:h-28 rounded-lg">
                   <Image
-                    src="https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=400&q=80"
+                    src="/JLu%20events/photos/Lehar/IMG_9025.JPG"
                     alt="AUAP Conference"
                     fill
                     className="object-cover group-hover:scale-105 transition-transform duration-500"
@@ -329,7 +329,7 @@ const NewsAndEvents = () => {
               >
                 <div className="relative shrink-0 overflow-hidden w-20 h-20 md:w-28 md:h-28 rounded-lg">
                   <Image
-                    src="https://images.unsplash.com/photo-1524995997946-a3eb161ffa5f?w=400&q=80"
+                    src="/JLu%20events/photos/Lehar/IMG_9067.JPG"
                     alt="JLU Rankings"
                     fill
                     className="object-cover group-hover:scale-105 transition-transform duration-500"
@@ -358,7 +358,7 @@ const NewsAndEvents = () => {
               >
                 <div className="relative shrink-0 overflow-hidden w-20 h-20 md:w-28 md:h-28 rounded-lg">
                   <Image
-                    src="https://images.unsplash.com/photo-1532094349884-543bc11b234d?w=400&q=80"
+                    src="/JLu%20events/photos/JAgran%20%20of%20Social%20science/DSC08858.JPG"
                     alt="Research Innovation"
                     fill
                     className="object-cover group-hover:scale-105 transition-transform duration-500"
@@ -387,7 +387,7 @@ const NewsAndEvents = () => {
               >
                 <div className="relative shrink-0 overflow-hidden w-20 h-20 md:w-28 md:h-28 rounded-lg">
                   <Image
-                    src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=400&q=80"
+                    src="/jlu%20ignited%20mind%20Award/photos/AMF_1426.JPG"
                     alt="Convocation"
                     fill
                     className="object-cover group-hover:scale-105 transition-transform duration-500"
@@ -764,7 +764,7 @@ const NewsAndEvents = () => {
             style={{ width: '28%', height: '24%', top: '0%', left: '13%' }}
           >
             <Image
-              src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?w=800&q=80"
+              src="/JLu%20events/photos/Anti%20Ragging%20WEEK/IMG_1947.JPG"
               alt="Students in library"
               fill
               className="object-cover group-hover:scale-105 transition-transform duration-500"
@@ -781,7 +781,7 @@ const NewsAndEvents = () => {
             style={{ width: '21%', height: '32%', top: '0%', left: '52%' }}
           >
             <Image
-              src="https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=600&q=80"
+              src="/JLu%20events/photos/Lehar/IMG_9025.JPG"
               alt="Event hall"
               fill
               className="object-cover group-hover:scale-105 transition-transform duration-500"
@@ -798,7 +798,7 @@ const NewsAndEvents = () => {
             style={{ width: '13%', height: '19%', top: '-5%', left: '89%' }}
           >
             <Image
-              src="https://images.unsplash.com/photo-1562774053-701939374585?w=400&q=80"
+              src="/campus/aerial-view.webp"
               alt="Campus building"
               fill
               className="object-cover group-hover:scale-105 transition-transform duration-500"
@@ -815,7 +815,7 @@ const NewsAndEvents = () => {
             style={{ width: '15%', height: '22%', top: '30%', left: '80%' }}
           >
             <Image
-              src="https://images.unsplash.com/photo-1532094349884-543bc11b234d?w=400&q=80"
+              src="/JLu%20events/photos/JAgran%20%20of%20Social%20science/DSC08858.JPG"
               alt="Lab equipment"
               fill
               className="object-cover group-hover:scale-105 transition-transform duration-500"
@@ -832,7 +832,7 @@ const NewsAndEvents = () => {
             style={{ width: '19%', height: '32%', top: '31%', left: '0%' }}
           >
             <Image
-              src="https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=500&q=80"
+              src="/JLu%20events/photos/Lehar/IMG_9060.JPG"
               alt="Campus event"
               fill
               className="object-cover group-hover:scale-105 transition-transform duration-500"
@@ -849,7 +849,7 @@ const NewsAndEvents = () => {
             style={{ width: '20%', height: '34%', top: '60%', left: '80%' }}
           >
             <Image
-              src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=600&q=80"
+              src="/jlu%20ignited%20mind%20Award/photos/AMF_1426.JPG"
               alt="Students together"
               fill
               className="object-cover group-hover:scale-105 transition-transform duration-500"
@@ -866,7 +866,7 @@ const NewsAndEvents = () => {
             style={{ width: '28%', height: '21%', top: '79%', left: '44%' }}
           >
             <Image
-              src="https://images.unsplash.com/photo-1523580494863-6f3031224c94?w=800&q=80"
+              src="/JLu%20events/photos/Convocation/DSC_0858.JPG"
               alt="Graduation"
               fill
               className="object-cover group-hover:scale-105 transition-transform duration-500"
@@ -883,7 +883,7 @@ const NewsAndEvents = () => {
             style={{ width: '15%', height: '32%', top: '68%', left: '22%' }}
           >
             <Image
-              src="https://images.unsplash.com/photo-1481627834876-b7833e8f5570?w=400&q=80"
+              src="/JLu%20events/photos/Mental%20Health%20week/IMG_7813.JPG"
               alt="Library"
               fill
               className="object-cover group-hover:scale-105 transition-transform duration-500"
@@ -900,7 +900,7 @@ const NewsAndEvents = () => {
             style={{ width: '15%', height: '18%', top: '75%', left: '-4%' }}
           >
             <Image
-              src="https://images.unsplash.com/photo-1574629810360-7efbbe195018?w=400&q=80"
+              src="/JLu%20events/photos/Anti%20Ragging%20WEEK/IMG_3582.JPG"
               alt="Sports"
               fill
               className="object-cover group-hover:scale-105 transition-transform duration-500"
@@ -938,20 +938,6 @@ const NewsAndEvents = () => {
             >
               Experience the vibrant life, learning, and celebrations at JLU campus.
             </motion.p>
-            <motion.a
-              href="#"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.4, ease: customEase }}
-              viewport={{ once: true }}
-              className="pointer-events-auto px-5 py-2.5 bg-[#21313c] text-white font-medium flex items-center gap-2 text-xs"
-              style={{ borderRadius: '100px' }}
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.98 }}
-            >
-              Explore Gallery
-              <span>→</span>
-            </motion.a>
           </div>
         </div>
 
@@ -988,7 +974,7 @@ const NewsAndEvents = () => {
                 transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
               >
                 <Image
-                  src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?w=800&q=80"
+                  src="/JLu%20events/photos/Anti%20Ragging%20WEEK/IMG_1947.JPG"
                   alt="Students collaborating"
                   fill
                   className="object-cover"
@@ -1011,7 +997,7 @@ const NewsAndEvents = () => {
                 transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
               >
                 <Image
-                  src="https://images.unsplash.com/photo-1523580494863-6f3031224c94?w=800&q=80"
+                  src="/JLu%20events/photos/Convocation/DSC_0858.JPG"
                   alt="Graduation ceremony"
                   fill
                   className="object-cover"
@@ -1034,7 +1020,7 @@ const NewsAndEvents = () => {
                 transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
               >
                 <Image
-                  src="https://images.unsplash.com/photo-1562774053-701939374585?w=400&q=80"
+                  src="/campus/aerial-view.webp"
                   alt="Campus building"
                   fill
                   className="object-cover"
@@ -1057,7 +1043,7 @@ const NewsAndEvents = () => {
                 transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
               >
                 <Image
-                  src="https://images.unsplash.com/photo-1532094349884-543bc11b234d?w=400&q=80"
+                  src="/JLu%20events/photos/JAgran%20%20of%20Social%20science/DSC08858.JPG"
                   alt="Students in lab"
                   fill
                   className="object-cover"
@@ -1080,7 +1066,7 @@ const NewsAndEvents = () => {
                 transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
               >
                 <Image
-                  src="https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=600&q=80"
+                  src="/JLu%20events/photos/Lehar/IMG_9060.JPG"
                   alt="Cultural performance"
                   fill
                   className="object-cover"
@@ -1103,7 +1089,7 @@ const NewsAndEvents = () => {
                 transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
               >
                 <Image
-                  src="https://images.unsplash.com/photo-1574629810360-7efbbe195018?w=400&q=80"
+                  src="/JLu%20events/photos/Anti%20Ragging%20WEEK/IMG_3582.JPG"
                   alt="Sports activity"
                   fill
                   className="object-cover"
@@ -1126,7 +1112,7 @@ const NewsAndEvents = () => {
                 transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
               >
                 <Image
-                  src="https://images.unsplash.com/photo-1481627834876-b7833e8f5570?w=400&q=80"
+                  src="/JLu%20events/photos/Mental%20Health%20week/IMG_7813.JPG"
                   alt="Library"
                   fill
                   className="object-cover"
@@ -1149,7 +1135,7 @@ const NewsAndEvents = () => {
                 transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
               >
                 <Image
-                  src="https://images.unsplash.com/photo-1541339907198-e08756dedf3f?w=800&q=80"
+                  src="/JLu%20events/photos/Convocation/DSC_1020.JPG"
                   alt="Campus grounds"
                   fill
                   className="object-cover"
@@ -1172,7 +1158,7 @@ const NewsAndEvents = () => {
                 transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
               >
                 <Image
-                  src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=600&q=80"
+                  src="/jlu%20ignited%20mind%20Award/photos/AMF_1426.JPG"
                   alt="Students socializing"
                   fill
                   className="object-cover"
@@ -1209,19 +1195,6 @@ const NewsAndEvents = () => {
             >
               Experience the vibrant life, learning, and celebrations at JLU campus.
             </motion.p>
-            <motion.a
-              href="#"
-              className="inline-flex items-center gap-2 bg-[#21313c] text-white font-semibold rounded-full hover:bg-[#1a3a3a] transition-colors px-8 py-4 text-base"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.4, ease: [0.22, 1, 0.36, 1] }}
-              viewport={{ once: true }}
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.98 }}
-            >
-              Explore Gallery
-              <span>→</span>
-            </motion.a>
           </div>
         </div>
       </div>

@@ -243,7 +243,7 @@ export default function FacultiesPage() {
             className="relative py-8 md:py-20 px-3 sm:px-10 lg:px-16 overflow-hidden"
           >
             <div className="mx-auto max-w-[1400px]">
-              <div className={`relative flex items-center ${faculty.side === 'right' ? 'justify-end' : 'justify-start'}`}>
+              <a href={faculty.href} className={`relative flex items-center ${faculty.side === 'right' ? 'justify-end' : 'justify-start'} group cursor-pointer`}>
                 {/* Image */}
                 <div
                   className={`faculty-image relative w-full md:w-[50%] h-[320px] md:h-[650px] ${
@@ -254,7 +254,7 @@ export default function FacultiesPage() {
                   <img
                     src={faculty.image}
                     alt={faculty.name}
-                    className="w-full h-full object-cover"
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                   />
                   {/* Wipe overlay that reveals the image */}
                   <div
@@ -267,11 +267,10 @@ export default function FacultiesPage() {
                 </div>
 
                 {/* Text Box - Overlapping */}
-                <a
-                  href={faculty.href}
+                <div
                   className={`faculty-text-box absolute ${
                     faculty.side === 'left' ? '-right-2 md:right-[5%]' : '-left-2 md:left-[5%]'
-                  } w-[85%] md:w-[50%] bg-white p-4 md:p-10 rounded-xl md:rounded-2xl transition-all duration-300 group cursor-pointer z-10 shadow-none overflow-hidden`}
+                  } w-[85%] md:w-[50%] bg-white p-4 md:p-10 rounded-xl md:rounded-2xl transition-all duration-300 z-10 shadow-none overflow-hidden`}
                 >
                   {/* Wipe overlay for text box - opposite direction to image */}
                   <div
@@ -305,8 +304,8 @@ export default function FacultiesPage() {
                       <span className="text-sm md:text-xl">→</span>
                     </div>
                   </div>
-                </a>
-              </div>
+                </div>
+              </a>
             </div>
           </section>
         ))}

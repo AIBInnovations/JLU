@@ -10,12 +10,12 @@ interface Voice {
 }
 
 const voices: Voice[] = [
-  { color: 'bg-pink-400', image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=300&q=80' },
-  { color: 'bg-cyan-400', image: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=300&q=80' },
-  { color: 'bg-yellow-400', image: 'https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?w=300&q=80' },
-  { color: 'bg-lime-400', image: 'https://images.unsplash.com/photo-1517841905240-472988babdf9?w=300&q=80' },
-  { color: 'bg-orange-400', image: 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=300&q=80' },
-  { color: 'bg-purple-400', image: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=300&q=80' },
+  { color: 'bg-pink-400', image: '/a.jpg' },
+  { color: 'bg-cyan-400', image: '/b.jpg' },
+  { color: 'bg-yellow-400', image: '/c.jpg' },
+  { color: 'bg-lime-400', image: '/d.jpg' },
+  { color: 'bg-orange-400', image: '/e.jpg' },
+  { color: 'bg-purple-400', image: '/f.jpg' },
 ];
 
 export const VoicesSection = () => {

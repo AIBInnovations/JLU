@@ -14,32 +14,32 @@ const facultyMembers: FacultyMember[] = [
   {
     name: 'Shri. Abhishek Mohan Gupta',
     role: 'Pro-Chancellor',
-    image: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=400&q=80',
+    image: '/Untitled%20design/1.png',
   },
   {
     name: 'Mr. Pankaj Das',
     role: 'Registrar',
-    image: 'https://images.unsplash.com/photo-1560250097-0b93528c311a?w=400&q=80',
+    image: '/Untitled%20design/2.png',
   },
   {
     name: 'Dr. Anupam Chouksey',
     role: 'Director General',
-    image: 'https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=400&q=80',
+    image: '/Untitled%20design/3.png',
   },
   {
     name: 'Dr. Mohan Giri',
     role: 'Vice Chancellor',
-    image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&q=80',
+    image: '/Untitled%20design/4.png',
   },
   {
     name: 'Dr. Vivek Khare',
     role: 'Dean Academics',
-    image: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=400&q=80',
+    image: '/Untitled%20design/5.png',
   },
   {
     name: 'Dr. Ruchi Gautam',
     role: 'Dean Research',
-    image: 'https://images.unsplash.com/photo-1580489944761-15a19d654956?w=400&q=80',
+    image: '/Untitled%20design/6.png',
   },
 ];
 

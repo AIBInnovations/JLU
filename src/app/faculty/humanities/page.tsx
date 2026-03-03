@@ -12,7 +12,7 @@ const humanitiesData = {
   name: 'Faculty of Humanities, Art & Design',
   tagline: 'A creative hub fostering interdisciplinary collaboration, artistic expression, and innovative design thinking.',
   description: 'The faculty serves as a creative hub encompassing three schools: Jagran School of Design, Jagran School of Languages & Social Sciences, and Jagran School of Architecture. We emphasize interdisciplinary collaboration and integrate theoretical knowledge with practical application through workshops, studio sessions, and collaborative projects. Our programs develop creative thinkers and problem solvers with cultural awareness and critical inquiry skills.',
-  heroImage: 'https://images.unsplash.com/photo-1513364776144-60967b0f800f?w=1600&q=80',
+  heroImage: '/campus/gallery-13.jpg',
   accentColor: '#ffffff',
   programs: [
     { name: 'BA Psychology', duration: '3 Years', type: 'undergraduate' as const },

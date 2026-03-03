@@ -22,9 +22,9 @@ export const PassionSection = () => {
 
   // Section data
   const sections = [
-    { video: '/p.mp4', text: 'PASSION' },
-    { video: '/s.mp4', text: 'STUDY' },
-    { video: '/p.mp4', text: 'SUCCESS' },
+    { video: '/JLu%20events/videos/Jfss(2).mp4', text: 'PASSION' },
+    { video: '/jlu%20ignited%20mind%20Award/JLU%20Foundationday%20day.mp4', text: 'STUDY' },
+    { video: '/ss.mp4', text: 'SUCCESS' },
   ];
 
   // Wait for mount
@@ -187,7 +187,7 @@ export const PassionSection = () => {
         >
           <video
             ref={(el) => addVideoRef(el, 0)}
-            src="/p.mp4"
+            src="/JLu%20events/videos/Jfss(2).mp4"
             className="absolute inset-0 w-full h-full object-cover"
             style={{ transform: 'scale(1.1)' }}
             autoPlay
@@ -206,7 +206,7 @@ export const PassionSection = () => {
         >
           <video
             ref={(el) => addVideoRef(el, 1)}
-            src="/s.mp4"
+            src="/jlu%20ignited%20mind%20Award/JLU%20Foundationday%20day.mp4"
             className="absolute inset-0 w-full h-full object-cover"
             style={{ transform: 'scale(1.1)' }}
             autoPlay
@@ -225,7 +225,7 @@ export const PassionSection = () => {
         >
           <video
             ref={(el) => addVideoRef(el, 2)}
-            src="/video.mp4"
+            src="/ss.mp4"
             className="absolute inset-0 w-full h-full object-cover"
             style={{ transform: 'scale(1.1)' }}
             autoPlay

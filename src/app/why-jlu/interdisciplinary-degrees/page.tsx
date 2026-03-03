@@ -12,13 +12,13 @@ gsap.registerPlugin(ScrollTrigger);
 const customEase: [number, number, number, number] = [0.22, 1, 0.36, 1];
 
 const galleryImages = [
-  { id: 1, src: '/ev3.jpg', position: 'top-[10%] left-[5%]', size: 'w-[70px] h-[100px] md:w-[180px] md:h-[260px]', opacity: 0.7 },
-  { id: 2, src: '/pro1.jpg', position: 'top-[5%] left-[22%]', size: 'w-[50px] h-[70px] md:w-[130px] md:h-[170px]', opacity: 0.5 },
-  { id: 3, src: '/ev1.jpg', position: '', size: 'w-[120px] h-[170px] md:w-[260px] md:h-[360px]', isCenter: true, opacity: 1 },
-  { id: 4, src: '/about1.jpg', position: 'top-[8%] right-[18%]', size: 'w-[60px] h-[85px] md:w-[160px] md:h-[220px]', opacity: 0.6 },
-  { id: 5, src: '/ev5.jpg', position: 'top-[12%] right-[3%]', size: 'w-[45px] h-[65px] md:w-[120px] md:h-[160px]', opacity: 0.4 },
-  { id: 6, src: '/comm.jpg', position: 'bottom-[12%] left-[8%]', size: 'w-[55px] h-[80px] md:w-[150px] md:h-[200px]', opacity: 0.5 },
-  { id: 7, src: '/ex1.jpg', position: 'bottom-[10%] right-[5%]', size: 'w-[65px] h-[90px] md:w-[170px] md:h-[230px]', opacity: 0.6 },
+  { id: 1, src: '/interdisciplinary/campus-event.jpg', position: 'top-[10%] left-[5%]', size: 'w-[70px] h-[100px] md:w-[180px] md:h-[260px]', opacity: 0.7 },
+  { id: 2, src: '/interdisciplinary/seminar.jpg', position: 'top-[5%] left-[22%]', size: 'w-[50px] h-[70px] md:w-[130px] md:h-[170px]', opacity: 0.5 },
+  { id: 3, src: '/interdisciplinary/campus-building.jpg', position: '', size: 'w-[120px] h-[170px] md:w-[260px] md:h-[360px]', isCenter: true, opacity: 1 },
+  { id: 4, src: '/interdisciplinary/law.jpg', position: 'top-[8%] right-[18%]', size: 'w-[60px] h-[85px] md:w-[160px] md:h-[220px]', opacity: 0.6 },
+  { id: 5, src: '/interdisciplinary/lab.jpg', position: 'top-[12%] right-[3%]', size: 'w-[45px] h-[65px] md:w-[120px] md:h-[160px]', opacity: 0.4 },
+  { id: 6, src: '/interdisciplinary/classroom.jpg', position: 'bottom-[12%] left-[8%]', size: 'w-[55px] h-[80px] md:w-[150px] md:h-[200px]', opacity: 0.5 },
+  { id: 7, src: '/interdisciplinary/campus-drone.jpg', position: 'bottom-[10%] right-[5%]', size: 'w-[65px] h-[90px] md:w-[170px] md:h-[230px]', opacity: 0.6 },
 ];
 
 export default function InterdisciplinaryDegreesPage() {
@@ -151,8 +151,8 @@ export default function InterdisciplinaryDegreesPage() {
         >
           <motion.div className="absolute inset-0" style={{ y: heroY }}>
             <img
-              src="/ev3.jpg"
-              alt="JLU Interdisciplinary Programs - 50+ Courses across 6 Faculties"
+              src="/interdisciplinary/campus-slider.jpg"
+              alt="JLU Bhopal Campus - 50+ Interdisciplinary Programs across 6 Faculties"
               className="w-full h-full object-cover scale-110"
             />
           </motion.div>
@@ -293,12 +293,12 @@ export default function InterdisciplinaryDegreesPage() {
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
             {[
-              { title: 'Engineering & Technology', desc: 'B.Tech, M.Tech in CSE, AI/ML, Civil, Mechanical with hands-on labs and industry projects.', image: '/pro1.jpg' },
-              { title: 'Management & Commerce', desc: 'MBA, BBA, B.Com with EY Six Sigma certification and CIMA recognition.', image: '/ex1.jpg' },
-              { title: 'Law & Governance', desc: 'BA LLB, BBA LLB with moot courts, legal aid clinics, and judiciary preparation.', image: '/ev1.jpg' },
-              { title: 'Design & Creative Arts', desc: 'JCCS programs in Film, Animation, Interior Design developed with Indian Institute of Creative Skills.', image: '/ev3.jpg' },
-              { title: 'Journalism & Mass Comm', desc: 'Programs powered by Jagran Prakashan — India\'s largest media group — with live newsroom training.', image: '/ev5.jpg' },
-              { title: 'Sciences & Humanities', desc: 'B.Sc, M.Sc, BA, MA programs with interdisciplinary electives across all faculties.', image: '/about1.jpg' },
+              { title: 'Engineering & Technology', desc: 'B.Tech, M.Tech in CSE, AI/ML, Civil, Mechanical with hands-on labs and industry projects.', image: '/interdisciplinary/lab.jpg' },
+              { title: 'Management & Commerce', desc: 'MBA, BBA, B.Com with EY Six Sigma certification and CIMA recognition.', image: '/interdisciplinary/management.jpg' },
+              { title: 'Law & Governance', desc: 'BA LLB, BBA LLB with moot courts, legal aid clinics, and judiciary preparation.', image: '/interdisciplinary/law.jpg' },
+              { title: 'Design & Creative Arts', desc: 'JCCS programs in Film, Animation, Interior Design developed with Indian Institute of Creative Skills.', image: '/interdisciplinary/jsjc.jpg' },
+              { title: 'Journalism & Mass Comm', desc: 'Programs powered by Jagran Prakashan — India\'s largest media group — with live newsroom training.', image: '/interdisciplinary/partnership.jpg' },
+              { title: 'Sciences & Humanities', desc: 'B.Sc, M.Sc, BA, MA programs with interdisciplinary electives across all faculties.', image: '/interdisciplinary/library.jpg' },
             ].map((faculty) => (
               <div key={faculty.title} className="group relative rounded-2xl overflow-hidden aspect-[3/4] md:aspect-[3/4]">
                 <img src={faculty.image} alt={faculty.title} className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" loading="lazy" />

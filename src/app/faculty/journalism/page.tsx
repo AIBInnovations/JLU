@@ -12,7 +12,7 @@ const journalismData = {
   name: 'Faculty of Journalism & Mass Communication',
   tagline: 'Crafting storytellers and media professionals with cutting-edge digital skills and ethical journalism practices.',
   description: 'Our journalism programs blend traditional storytelling with modern digital media production. Students gain hands-on experience in working newsrooms, develop multimedia skills, and learn to navigate the evolving media landscape. With a curriculum that includes AI in journalism, data storytelling, and media entrepreneurship, we prepare graduates to lead in broadcast, digital, and print media.',
-  heroImage: 'https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=1600&q=80',
+  heroImage: '/interdisciplinary/jsjc.jpg',
   accentColor: '#ffffff',
   programs: [
     { name: 'BA Journalism & Mass Communication', duration: '3 Years | 40 Seats', type: 'undergraduate' as const },

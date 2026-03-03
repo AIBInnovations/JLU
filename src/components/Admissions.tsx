@@ -1305,7 +1305,7 @@ const Admissions = () => {
         >
           <motion.div className="absolute inset-0" style={{ y }}>
             <Image
-              src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?w=1920&q=80"
+              src="/interdisciplinary/campus-slider.jpg"
               alt="Admissions"
               fill
               className="object-cover scale-110"
@@ -1443,7 +1443,7 @@ const Admissions = () => {
               {/* Image header */}
               <div className="relative overflow-hidden" style={{ height: isMobile ? '160px' : '192px' }}>
                 <Image
-                  src="/campus/smart-classroom.jpg"
+                  src="/interdisciplinary/classroom.jpg"
                   alt="Academic Programs"
                   fill
                   className="object-cover group-hover:scale-105 transition-transform duration-700"
@@ -1524,7 +1524,7 @@ const Admissions = () => {
               {/* Image header */}
               <div className="relative overflow-hidden" style={{ height: isMobile ? '160px' : '192px' }}>
                 <Image
-                  src="/campus/gallery-3.jpg"
+                  src="/interdisciplinary/campus-students.jpg"
                   alt="Apply to JLU"
                   fill
                   className="object-cover group-hover:scale-105 transition-transform duration-700"
@@ -1603,7 +1603,7 @@ const Admissions = () => {
               {/* Image header */}
               <div className="relative overflow-hidden" style={{ height: isMobile ? '160px' : '192px' }}>
                 <Image
-                  src="/campus/gallery-11.jpg"
+                  src="/interdisciplinary/library.jpg"
                   alt="Fee & Support"
                   fill
                   className="object-cover group-hover:scale-105 transition-transform duration-700"
@@ -2278,10 +2278,10 @@ const Admissions = () => {
                       <Image
                         src={
                           index === 0
-                            ? "https://images.unsplash.com/photo-1541339907198-e08756dedf3f?w=800&q=80"
+                            ? "/interdisciplinary/campus-students.jpg"
                             : index === 1
-                            ? "https://images.unsplash.com/photo-1606761568499-6d2451b23c66?w=800&q=80"
-                            : "https://images.unsplash.com/photo-1532094349884-543bc11b234d?w=800&q=80"
+                            ? "/campus/gallery-15.jpg"
+                            : "/campus/gallery-13.jpg"
                         }
                         alt={path.title}
                         fill
@@ -2382,8 +2382,8 @@ const Admissions = () => {
                   >
                     <Image
                       src={index === 0
-                        ? "https://images.unsplash.com/photo-1552664730-d307ca884978?w=1200&q=80"
-                        : "https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=1200&q=80"
+                        ? "/campus/smart-classroom.jpg"
+                        : "/interdisciplinary/campus-activity.jpg"
                       }
                       alt={item.title}
                       fill
@@ -2485,7 +2485,7 @@ const Admissions = () => {
                 transition={{ duration: 0.6 }}
               >
                 <Image
-                  src="https://images.unsplash.com/photo-1541339907198-e08756dedf3f?w=1200&q=80"
+                  src="/interdisciplinary/campus-drone.jpg"
                   alt="Campus Visit"
                   fill
                   className="object-cover"
@@ -2574,7 +2574,7 @@ const Admissions = () => {
                     transition={{ duration: 0.6 }}
                   >
                     <Image
-                      src="https://images.unsplash.com/photo-1523580494863-6f3031224c94?w=800&q=80"
+                      src="/interdisciplinary/campus-event.jpg"
                       alt="Student Life"
                       fill
                       className="object-cover"
@@ -2601,7 +2601,7 @@ const Admissions = () => {
                     transition={{ duration: 0.6 }}
                   >
                     <Image
-                      src="https://images.unsplash.com/photo-1555854877-bab0e564b8d5?w=800&q=80"
+                      src="/campus/hostel.jpg"
                       alt="Hostel"
                       fill
                       className="object-cover"
