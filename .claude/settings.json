@@ -3,7 +3,11 @@
     "allow": [
       "WebFetch(domain:www.instagram.com)",
       "WebFetch(domain:www.jfrlu.ac.in)",
-      "Bash(xargs -0 -I{} du -b \"{}\")"
+      "Bash(xargs -0 -I{} du -b \"{}\")",
+      "Bash(git config http.postBuffer 524288000)",
+      "Bash(git push origin main)",
+      "Bash(git reset --soft origin/main)",
+      "Bash(git bundle create /tmp/test-bundle2.bundle origin/main..HEAD)"
     ]
   }
 }

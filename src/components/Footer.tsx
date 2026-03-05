@@ -72,8 +72,8 @@ export const Footer = () => {
 
           {/* Contact Info */}
           <div className="mb-4">
-            <p className="text-lg font-light mb-1 text-[#d4e4a0]">info@jlu.edu.in</p>
-            <p className="text-lg font-light mb-2 text-[#d4e4a0]">+44(0)1273 704 200</p>
+            <a href="mailto:info@jlu.edu.in" className="text-lg font-light mb-1 text-[#d4e4a0] block hover:text-white transition-colors">info@jlu.edu.in</a>
+            <a href="tel:+441273704200" className="text-lg font-light mb-2 text-[#d4e4a0] block hover:text-white transition-colors">+44(0)1273 704 200</a>
             <address className="not-italic text-gray-300 text-xs leading-relaxed">
               Jagran Lakecity University,
               <br />
@@ -84,21 +84,25 @@ export const Footer = () => {
           {/* Links Grid */}
           <div className="grid grid-cols-2 gap-4 mb-4">
             <div>
-              <h3 className="font-semibold text-xs mb-2 text-white">Our Community</h3>
+              <h3 className="font-semibold text-xs mb-2 text-white">Explore</h3>
               <ul className="space-y-1">
-                <li><a href="#" className="text-gray-300 text-xs hover:text-white transition-colors">Alumini</a></li>
-                <li><a href="#" className="text-gray-300 text-xs hover:text-white transition-colors">Work with Us</a></li>
-                <li><a href="#" className="text-gray-300 text-xs hover:text-white transition-colors">Partner with Us</a></li>
-                <li><a href="#" className="text-gray-300 text-xs hover:text-white transition-colors">Family of Schools</a></li>
+                <li><a href="/about" className="text-gray-300 text-xs hover:text-white transition-colors">About JLU</a></li>
+                <li><a href="/academics" className="text-gray-300 text-xs hover:text-white transition-colors">Academics</a></li>
+                <li><a href="/admissions" className="text-gray-300 text-xs hover:text-white transition-colors">Admissions</a></li>
+                <li><a href="/campus-life" className="text-gray-300 text-xs hover:text-white transition-colors">Campus Life</a></li>
+                <li><a href="/research" className="text-gray-300 text-xs hover:text-white transition-colors">Research</a></li>
+                <li><a href="/placement" className="text-gray-300 text-xs hover:text-white transition-colors">Placements</a></li>
               </ul>
             </div>
             <div>
-              <h3 className="font-semibold text-xs mb-2 text-white">Links</h3>
+              <h3 className="font-semibold text-xs mb-2 text-white">Quick Links</h3>
               <ul className="space-y-1">
-                <li><a href="#" className="text-gray-300 text-xs hover:text-white transition-colors">Term Dates</a></li>
-                <li><a href="#" className="text-gray-300 text-xs hover:text-white transition-colors">Policies</a></li>
-                <li><a href="#" className="text-gray-300 text-xs hover:text-white transition-colors">Privacy Policy</a></li>
-                <li><a href="#" className="text-gray-300 text-xs hover:text-white transition-colors">Safeguarding</a></li>
+                <li><a href="/programs" className="text-gray-300 text-xs hover:text-white transition-colors">Programs</a></li>
+                <li><a href="/scholarship" className="text-gray-300 text-xs hover:text-white transition-colors">Scholarships</a></li>
+                <li><a href="/international-office" className="text-gray-300 text-xs hover:text-white transition-colors">International Office</a></li>
+                <li><a href="/alumni" className="text-gray-300 text-xs hover:text-white transition-colors">Alumni</a></li>
+                <li><a href="/news-events" className="text-gray-300 text-xs hover:text-white transition-colors">News & Events</a></li>
+                <li><a href="/apply" className="text-gray-300 text-xs hover:text-white transition-colors">Apply Now</a></li>
               </ul>
             </div>
           </div>
@@ -114,7 +118,7 @@ export const Footer = () => {
                 Scroll to top
               </button>
             </div>
-            <a href="#" className="text-gray-300 text-xs hover:text-white transition-colors flex items-center gap-1">
+            <a href="https://www.instagram.com/jaborejlu/" target="_blank" rel="noopener noreferrer" className="text-gray-300 text-xs hover:text-white transition-colors flex items-center gap-1">
               Instagram <span>↗</span>
             </a>
           </div>
@@ -200,8 +204,8 @@ export const Footer = () => {
             <div className="flex justify-between mb-8 flex-1">
               {/* Left - Contact Info */}
               <div>
-                <p className="text-3xl lg:text-4xl font-light mb-2 text-[#d4e4a0]">info@jlu.edu.in</p>
-                <p className="text-3xl lg:text-4xl font-light mb-6 text-[#d4e4a0]">+44(0)1273 704 200</p>
+                <a href="mailto:info@jlu.edu.in" className="text-3xl lg:text-4xl font-light mb-2 text-[#d4e4a0] block hover:text-white transition-colors">info@jlu.edu.in</a>
+                <a href="tel:+441273704200" className="text-3xl lg:text-4xl font-light mb-6 text-[#d4e4a0] block hover:text-white transition-colors">+44(0)1273 704 200</a>
                 <address className="not-italic text-gray-300 text-sm leading-relaxed mb-4">
                   Jagran Lakecity University,
                   <br />
@@ -209,7 +213,7 @@ export const Footer = () => {
                   <br />
                   Bhopal – 462044
                 </address>
-                <a href="#" className="text-[#d4e4a0] text-sm hover:text-white transition-colors">
+                <a href="/apply" className="text-[#d4e4a0] text-sm hover:text-white transition-colors">
                   Contact Us
                 </a>
               </div>
@@ -217,33 +221,33 @@ export const Footer = () => {
               {/* Right - Navigation Links */}
               <div className="flex gap-12">
                 <div>
-                  <h3 className="font-semibold text-sm mb-4 text-white">Our Community</h3>
+                  <h3 className="font-semibold text-sm mb-4 text-white">Explore</h3>
                   <ul className="space-y-2">
-                    <li><a href="#" className="text-gray-300 text-sm hover:text-white transition-colors">Alumini</a></li>
-                    <li><a href="#" className="text-gray-300 text-sm hover:text-white transition-colors">Work with Us</a></li>
-                    <li><a href="#" className="text-gray-300 text-sm hover:text-white transition-colors">Partner with Us</a></li>
-                    <li><a href="#" className="text-gray-300 text-sm hover:text-white transition-colors">Family of Schools</a></li>
-                    <li><a href="#" className="text-gray-300 text-sm hover:text-white transition-colors">Venue Hire</a></li>
-                    <li><a href="#" className="text-gray-300 text-sm hover:text-white transition-colors">Community Hub</a></li>
+                    <li><a href="/about" className="text-gray-300 text-sm hover:text-white transition-colors">About JLU</a></li>
+                    <li><a href="/academics" className="text-gray-300 text-sm hover:text-white transition-colors">Academics</a></li>
+                    <li><a href="/admissions" className="text-gray-300 text-sm hover:text-white transition-colors">Admissions</a></li>
+                    <li><a href="/campus-life" className="text-gray-300 text-sm hover:text-white transition-colors">Campus Life</a></li>
+                    <li><a href="/research" className="text-gray-300 text-sm hover:text-white transition-colors">Research</a></li>
+                    <li><a href="/placement" className="text-gray-300 text-sm hover:text-white transition-colors">Placements</a></li>
                   </ul>
                 </div>
                 <div>
-                  <h3 className="font-semibold text-sm mb-4 text-white">Links</h3>
+                  <h3 className="font-semibold text-sm mb-4 text-white">Quick Links</h3>
                   <ul className="space-y-2">
-                    <li><a href="#" className="text-gray-300 text-sm hover:text-white transition-colors">Term Dates</a></li>
-                    <li><a href="#" className="text-gray-300 text-sm hover:text-white transition-colors">Policies</a></li>
-                    <li><a href="#" className="text-gray-300 text-sm hover:text-white transition-colors">Privacy Policy</a></li>
-                    <li><a href="#" className="text-gray-300 text-sm hover:text-white transition-colors">Safeguarding</a></li>
-                    <li><a href="#" className="text-gray-300 text-sm hover:text-white transition-colors">Inspections</a></li>
-                    <li><a href="#" className="text-gray-300 text-sm hover:text-white transition-colors">Governors</a></li>
+                    <li><a href="/programs" className="text-gray-300 text-sm hover:text-white transition-colors">Programs</a></li>
+                    <li><a href="/scholarship" className="text-gray-300 text-sm hover:text-white transition-colors">Scholarships</a></li>
+                    <li><a href="/international-office" className="text-gray-300 text-sm hover:text-white transition-colors">International Office</a></li>
+                    <li><a href="/alumni" className="text-gray-300 text-sm hover:text-white transition-colors">Alumni</a></li>
+                    <li><a href="/news-events" className="text-gray-300 text-sm hover:text-white transition-colors">News & Events</a></li>
+                    <li><a href="/apply" className="text-gray-300 text-sm hover:text-white transition-colors">Apply Now</a></li>
                   </ul>
                 </div>
                 <div>
                   <h3 className="font-semibold text-sm mb-4 text-white">Social</h3>
                   <ul className="space-y-2">
-                    <li><a href="#" className="text-gray-300 text-sm hover:text-white transition-colors">Facebook</a></li>
-                    <li><a href="#" className="text-gray-300 text-sm hover:text-white transition-colors">Instagram</a></li>
-                    <li><a href="#" className="text-gray-300 text-sm hover:text-white transition-colors">Twitter/X</a></li>
+                    <li><a href="https://www.facebook.com/JLUBhopal" target="_blank" rel="noopener noreferrer" className="text-gray-300 text-sm hover:text-white transition-colors">Facebook</a></li>
+                    <li><a href="https://www.instagram.com/jaborejlu/" target="_blank" rel="noopener noreferrer" className="text-gray-300 text-sm hover:text-white transition-colors">Instagram</a></li>
+                    <li><a href="https://twitter.com/JLUBhopal" target="_blank" rel="noopener noreferrer" className="text-gray-300 text-sm hover:text-white transition-colors">Twitter/X</a></li>
                   </ul>
                 </div>
               </div>
@@ -260,7 +264,7 @@ export const Footer = () => {
                   Scroll to the top
                 </button>
               </div>
-              <a href="#" className="text-gray-300 text-sm hover:text-white transition-colors flex items-center gap-2">
+              <a href="https://www.instagram.com/jaborejlu/" target="_blank" rel="noopener noreferrer" className="text-gray-300 text-sm hover:text-white transition-colors flex items-center gap-2">
                 Instagram <span className="text-lg">↗</span>
               </a>
             </div>

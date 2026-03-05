@@ -1,7 +1,7 @@
 'use client';
 
 import Image from 'next/image';
-import { motion, useScroll, useTransform } from 'framer-motion';
+import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion';
 import { useState, useRef } from 'react';
 
 const researchAreas = [
@@ -10,6 +10,53 @@ const researchAreas = [
   { id: 3, name: 'Interdisciplinary Labs', active: false },
   { id: 4, name: 'Graduate Research', active: false },
 ];
+
+const researchModalData: Record<number, { title: string; description: string; highlights: string[] }> = {
+  1: {
+    title: 'Centres of Excellence',
+    description: 'JLU has established dedicated Centres of Excellence that bring together faculty, researchers, and industry partners to address complex challenges. These centres serve as hubs for advanced research, innovation, and knowledge creation across priority areas.',
+    highlights: [
+      'Centre for AI & Machine Learning — Driving research in intelligent systems, NLP, and computer vision',
+      'Centre for Sustainable Development — Focused on environmental solutions, green energy, and climate resilience',
+      'Centre for Drug Discovery & Development — Advancing pharmaceutical research and novel drug delivery systems',
+      'Centre for Digital Media & Communication — Exploring the intersection of technology, journalism, and media innovation',
+      'Centre for Entrepreneurship & Innovation — Supporting startup incubation and industry-academia collaboration',
+    ],
+  },
+  2: {
+    title: 'Faculty Research Areas',
+    description: 'JLU faculty members are actively engaged in cutting-edge research across a wide spectrum of disciplines. Their work spans fundamental science, applied technology, social sciences, and humanities — contributing to peer-reviewed publications, patents, and policy frameworks.',
+    highlights: [
+      'Artificial Intelligence, IoT, and Cybersecurity in Computer Science & Engineering',
+      'Nanotechnology and Novel Drug Delivery in Pharmaceutical Sciences',
+      'Sustainable Agriculture and Biodiversity Conservation in Life Sciences',
+      'Media Ethics, Digital Journalism, and Communication Studies',
+      'Business Analytics, Behavioural Economics, and Supply Chain Innovation in Management',
+    ],
+  },
+  3: {
+    title: 'Interdisciplinary Labs',
+    description: 'JLU\'s interdisciplinary laboratories are designed to break silos between departments and foster collaborative research. These labs provide shared infrastructure, equipment, and mentorship for projects that span multiple fields of study.',
+    highlights: [
+      'Biotech-Pharma Integration Lab — Bridging biotechnology and pharmaceutical research',
+      'Smart Systems Lab — Combining electronics, computing, and mechanical engineering for IoT solutions',
+      'Media Innovation Lab — Merging design, technology, and storytelling for next-generation media',
+      'Environmental Analytics Lab — Using data science for environmental monitoring and sustainability',
+      'Health Informatics Lab — Applying AI and data analytics to healthcare challenges',
+    ],
+  },
+  4: {
+    title: 'Graduate Research',
+    description: 'JLU offers a robust doctoral and graduate research programme that nurtures the next generation of scholars. With dedicated supervisors, funding support, and access to state-of-the-art facilities, graduate students are empowered to pursue meaningful and impactful research.',
+    highlights: [
+      'Ph.D. programmes available across all schools with interdisciplinary options',
+      'Research fellowships and assistantships for full-time doctoral scholars',
+      'Annual Research Symposium for graduate students to present and publish their work',
+      'Collaboration opportunities with national and international research institutions',
+      'Dedicated research methodology workshops and academic writing support',
+    ],
+  },
+};
 
 const statsData = [
   { id: 1, value: '2.4k+', label: 'PUBLICATIONS', description: 'Peer-reviewed journals & global indexing' },
@@ -200,6 +247,7 @@ const fundedProjectsData = [
 const Research = () => {
   const [activeArea, setActiveArea] = useState(1);
   const [activeFilter, setActiveFilter] = useState('All');
+  const [researchModal, setResearchModal] = useState<number | null>(null);
   const heroRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
     target: heroRef,
@@ -323,15 +371,16 @@ const Research = () => {
               {researchAreas.map((area) => (
                 <button
                   key={area.id}
-                  onClick={() => setActiveArea(area.id)}
-                  className="w-full flex items-center justify-between py-4 border-b border-gray-300 text-left"
+                  onClick={() => {
+                    setActiveArea(area.id);
+                    setResearchModal(area.id);
+                  }}
+                  className="w-full flex items-center justify-between py-4 border-b border-gray-300 text-left cursor-pointer hover:bg-[#f6f7f0] transition-colors px-2 -mx-2 rounded"
                 >
                   <span className={`text-lg text-[#21313c] ${activeArea === area.id ? 'font-medium' : ''}`}>
                     {area.name}
                   </span>
-                  {activeArea === area.id && (
-                    <span className="text-[#21313c]">→</span>
-                  )}
+                  <span className="text-[#21313c]">→</span>
                 </button>
               ))}
             </div>
@@ -469,7 +518,7 @@ const Research = () => {
           </div>
 
           <div className="mt-8 md:mt-12 text-center">
-            <a href="#" className="inline-flex items-center gap-2 text-[#21313c] font-medium underline hover:no-underline">
+            <a href="/research#publications" className="inline-flex items-center gap-2 text-[#21313c] font-medium underline hover:no-underline">
               Browse all publications
               <span>→</span>
             </a>
@@ -511,7 +560,7 @@ const Research = () => {
                 ))}
               </div>
 
-              <a href="#" className="inline-flex items-center gap-2 md:gap-3 text-sm md:text-base text-[#21313c] font-medium underline hover:no-underline">
+              <a href="/research#publications" className="inline-flex items-center gap-2 md:gap-3 text-sm md:text-base text-[#21313c] font-medium underline hover:no-underline">
                 Access the journal
                 <span>→</span>
               </a>
@@ -556,7 +605,7 @@ const Research = () => {
                 Meet the minds shaping the future through rigorous inquiry.
               </p>
             </div>
-            <a href="#" className="text-sm md:text-base text-[#21313c] font-medium underline hover:no-underline">
+            <a href="/faculties" className="text-sm md:text-base text-[#21313c] font-medium underline hover:no-underline">
               View all Faculty
             </a>
           </div>
@@ -651,7 +700,7 @@ const Research = () => {
           </div>
 
           <div className="mt-8 text-center">
-            <a href="#" className="inline-flex items-center gap-2 text-[#21313c] font-medium underline hover:no-underline">
+            <a href="/research#collaborations" className="inline-flex items-center gap-2 text-[#21313c] font-medium underline hover:no-underline">
               View all Patents
               <span>→</span>
             </a>
@@ -722,7 +771,7 @@ const Research = () => {
           </div>
 
           <div className="mt-8 text-center">
-            <a href="#" className="inline-flex items-center gap-2 text-[#21313c] font-medium underline hover:no-underline">
+            <a href="/research#research-funding" className="inline-flex items-center gap-2 text-[#21313c] font-medium underline hover:no-underline">
               View all Funded Projects
               <span>→</span>
             </a>
@@ -730,6 +779,67 @@ const Research = () => {
         </div>
       </div>
 
+      {/* Research Area Modal */}
+      <AnimatePresence>
+        {researchModal !== null && researchModalData[researchModal] && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-[9999] flex items-center justify-center p-4"
+            onClick={() => setResearchModal(null)}
+          >
+            <div className="absolute inset-0 bg-black/60 backdrop-blur-sm" />
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95, y: 20 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.95, y: 20 }}
+              transition={{ duration: 0.3 }}
+              className="relative bg-white rounded-2xl overflow-hidden max-w-2xl w-full max-h-[90vh] overflow-y-auto"
+              onClick={(e) => e.stopPropagation()}
+            >
+              {/* Header */}
+              <div className="bg-[#21313c] px-6 py-8 md:px-8 md:py-10 relative">
+                <button
+                  onClick={() => setResearchModal(null)}
+                  className="absolute top-4 right-4 w-10 h-10 rounded-full bg-white/10 flex items-center justify-center text-white cursor-pointer border-none hover:bg-white/20 transition-colors"
+                >
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                    <line x1="18" y1="6" x2="6" y2="18" strokeLinecap="round" />
+                    <line x1="6" y1="6" x2="18" y2="18" strokeLinecap="round" />
+                  </svg>
+                </button>
+                <span className="text-white/50 uppercase tracking-widest text-[11px] block mb-3" style={{ letterSpacing: '0.2em' }}>
+                  Research Ecosystem
+                </span>
+                <h3 className="text-white font-semibold text-xl md:text-2xl">
+                  {researchModalData[researchModal].title}
+                </h3>
+              </div>
+
+              {/* Content */}
+              <div className="p-6 md:p-8">
+                <p className="text-[#666] text-sm md:text-base mb-6" style={{ lineHeight: 1.8 }}>
+                  {researchModalData[researchModal].description}
+                </p>
+
+                <div className="space-y-3">
+                  {researchModalData[researchModal].highlights.map((item, idx) => (
+                    <div key={idx} className="flex gap-3 items-start">
+                      <div className="flex-shrink-0 w-6 h-6 rounded-full bg-[#f6f7f0] flex items-center justify-center mt-0.5">
+                        <span className="text-[#21313c] text-xs font-semibold">{idx + 1}</span>
+                      </div>
+                      <p className="text-[#444] text-sm" style={{ lineHeight: 1.7 }}>
+                        {item}
+                      </p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </section>
   );
 };

@@ -39,13 +39,13 @@ const ParallaxCard = ({ item, index }: { item: typeof overviewData[0]; index: nu
       whileInView={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6, delay: index * 0.1, ease: customEase }}
       viewport={{ once: true }}
-      className="group relative overflow-hidden cursor-pointer min-h-[400px] sm:min-h-[500px] md:min-h-[650px] rounded-xl md:rounded-none"
+      className="relative overflow-hidden min-h-[400px] sm:min-h-[500px] md:min-h-[650px] rounded-xl md:rounded-none"
     >
       {/* Background Image with Parallax */}
       <motion.img
         src={item.image}
         alt={item.title}
-        className="absolute inset-0 w-full object-cover object-top transition-transform duration-700 group-hover:scale-105"
+        className="absolute inset-0 w-full object-cover object-top"
         style={{
           y: isMobile ? 0 : y,
           height: '120%',

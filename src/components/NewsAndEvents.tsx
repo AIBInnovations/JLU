@@ -698,6 +698,7 @@ const NewsAndEvents = () => {
                   whileInView={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.6, delay: index * 0.1, ease: customEase }}
                   viewport={{ once: true }}
+                  onClick={() => setArchiveEvent(event)}
                 >
                   {/* Card Image */}
                   <motion.div

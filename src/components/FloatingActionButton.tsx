@@ -47,7 +47,7 @@ const actionItems = [
         <polyline points="9 15 12 18 15 15" strokeLinecap="round" strokeLinejoin="round"/>
       </svg>
     ),
-    href: '/brochure.pdf',
+    href: '/broucher/Fee-Structure2025.pdf',
     accentColor: '#f59e0b',
   },
   {
@@ -145,6 +145,13 @@ export const FloatingActionButton = ({ onEnquireClick }: FloatingActionButtonPro
       } else if (item.href.startsWith('http')) {
         // External links open in new tab
         window.open(item.href, '_blank', 'noopener,noreferrer');
+      } else if (item.href.endsWith('.pdf')) {
+        const link = document.createElement('a');
+        link.href = item.href;
+        link.download = '';
+        link.target = '_blank';
+        link.rel = 'noopener noreferrer';
+        link.click();
       } else {
         window.location.href = item.href;
       }

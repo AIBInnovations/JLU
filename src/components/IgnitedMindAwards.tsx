@@ -5,6 +5,16 @@ import { motion } from 'framer-motion';
 
 const customEase: [number, number, number, number] = [0.22, 1, 0.36, 1];
 
+const galleryPhotos = [
+  { src: '/jlu ignited mind Award/photos/AMF_1426.JPG', alt: 'Ignited Mind Awards - Award Presentation' },
+  { src: '/jlu ignited mind Award/photos/AMF_1441.JPG', alt: 'Ignited Mind Awards - Felicitation' },
+  { src: '/jlu ignited mind Award/photos/Copy of DSC_4378.JPG', alt: 'Ignited Mind Awards - Ceremony Highlight' },
+  { src: '/jlu ignited mind Award/photos/Copy of DSC_4398.JPG', alt: 'Ignited Mind Awards - Guest of Honour' },
+  { src: '/jlu ignited mind Award/photos/Copy of DSC_4644.JPG', alt: 'Ignited Mind Awards - Stage Event' },
+  { src: '/jlu ignited mind Award/photos/Copy of DSC_4645.JPG', alt: 'Ignited Mind Awards - Audience' },
+  { src: '/jlu ignited mind Award/photos/DSC_4579.JPG', alt: 'Ignited Mind Awards - Award Ceremony' },
+];
+
 const IgnitedMindAwards = () => {
   return (
     <section className="w-full bg-white">
@@ -160,37 +170,36 @@ const IgnitedMindAwards = () => {
           </div>
         </div>
 
-        {/* Photo Gallery */}
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3 md:gap-4 mt-10 md:mt-16">
-          {[
-            { src: '/jlu ignited mind Award/photos/AMF_1426.JPG', alt: 'Ignited Mind Awards - Award Presentation' },
-            { src: '/jlu ignited mind Award/photos/AMF_1441.JPG', alt: 'Ignited Mind Awards - Felicitation' },
-            { src: '/jlu ignited mind Award/photos/Copy of DSC_4378.JPG', alt: 'Ignited Mind Awards - Ceremony Highlight' },
-            { src: '/jlu ignited mind Award/photos/Copy of DSC_4398.JPG', alt: 'Ignited Mind Awards - Guest of Honour' },
-            { src: '/jlu ignited mind Award/photos/Copy of DSC_4644.JPG', alt: 'Ignited Mind Awards - Stage Event' },
-            { src: '/jlu ignited mind Award/photos/Copy of DSC_4645.JPG', alt: 'Ignited Mind Awards - Audience' },
-            { src: '/jlu ignited mind Award/photos/DSC_4579.JPG', alt: 'Ignited Mind Awards - Award Ceremony' },
-          ].map((photo, index) => (
-            <motion.div
-              key={photo.src}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.4, delay: index * 0.06, ease: customEase }}
-              viewport={{ once: true }}
-              className={`group relative overflow-hidden rounded-xl ${
-                index === 0 ? 'col-span-2 row-span-2' : ''
-              }`}
-              style={{ aspectRatio: index === 0 ? '1' : '4 / 3' }}
-            >
-              <Image
-                src={photo.src}
-                alt={photo.alt}
-                fill
-                className="object-cover transition-transform duration-700 group-hover:scale-105"
-              />
-              <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-500" />
-            </motion.div>
-          ))}
+        {/* Photo Gallery - Infinite Loop Carousel */}
+        <div className="mt-10 md:mt-16 overflow-hidden">
+          <motion.div
+            className="flex gap-3 md:gap-4"
+            animate={{ x: ['0%', '-50%'] }}
+            transition={{
+              x: {
+                duration: 30,
+                ease: 'linear',
+                repeat: Infinity,
+                repeatType: 'loop',
+              },
+            }}
+            style={{ width: 'max-content' }}
+          >
+            {[...galleryPhotos, ...galleryPhotos].map((photo, index) => (
+              <div
+                key={`${photo.src}-${index}`}
+                className="relative overflow-hidden rounded-xl flex-shrink-0"
+                style={{ width: '280px', height: '200px' }}
+              >
+                <Image
+                  src={photo.src}
+                  alt={photo.alt}
+                  fill
+                  className="object-cover"
+                />
+              </div>
+            ))}
+          </motion.div>
         </div>
       </div>
     </section>

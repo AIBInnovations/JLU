@@ -1154,6 +1154,7 @@ const Admissions = () => {
   const [activeTab, setActiveTab] = useState('fees');
   const [feeSearch, setFeeSearch] = useState('');
   const [selectedBeyondDegree, setSelectedBeyondDegree] = useState<typeof beyondDegrees[0] | null>(null);
+  const [campusModal, setCampusModal] = useState<{ title: string; description: string; image: string } | null>(null);
   const isMobile = useIsMobile();
   const heroRef = useRef<HTMLDivElement>(null);
   const tabContentRef = useRef<HTMLDivElement>(null);
@@ -1741,14 +1742,18 @@ const Admissions = () => {
 
               {/* Download Button */}
               <div className="hidden lg:block mt-auto pt-8">
-                <button className="w-full flex items-center justify-center gap-2 px-5 py-4 border border-[#f0c14b] text-[#f0c14b] rounded-xl font-medium transition-all duration-300 text-sm cursor-pointer">
+                <a
+                  href="/broucher/Fee-Structure2025.pdf"
+                  download="JLU-Fee-Structure-2025.pdf"
+                  className="w-full flex items-center justify-center gap-2 px-5 py-4 border border-[#f0c14b] text-[#f0c14b] rounded-xl font-medium transition-all duration-300 text-sm cursor-pointer no-underline"
+                >
                   <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                     <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" strokeLinecap="round" strokeLinejoin="round"/>
                     <polyline points="7 10 12 15 17 10" strokeLinecap="round" strokeLinejoin="round"/>
                     <line x1="12" y1="15" x2="12" y2="3" strokeLinecap="round"/>
                   </svg>
                   Download Fee Structure
-                </button>
+                </a>
               </div>
             </div>
 
@@ -2478,6 +2483,11 @@ const Admissions = () => {
               transition={{ duration: 0.6 }}
               viewport={{ once: true }}
               className="relative shrink-0 overflow-hidden group cursor-pointer w-full lg:w-145 h-72 md:h-96 lg:h-145"
+              onClick={() => setCampusModal({
+                title: 'Experience JLU Before You Decide',
+                image: '/interdisciplinary/campus-drone.jpg',
+                description: 'Jagran Lakecity University\'s sprawling campus is designed to inspire learning and creativity. Spread across a lush green landscape, the campus features state-of-the-art academic blocks, modern laboratories, a well-stocked central library, open-air amphitheatres, sports facilities, and dedicated spaces for student clubs and activities. Take a virtual tour or book a campus visit to experience the vibrant atmosphere that makes JLU a place where students thrive.',
+              })}
             >
               <motion.div
                 className="absolute inset-0"
@@ -2567,6 +2577,11 @@ const Admissions = () => {
                   transition={{ duration: 0.6, delay: 0.3 }}
                   viewport={{ once: true }}
                   className="relative overflow-hidden group cursor-pointer flex-1 h-40 md:h-48 lg:h-50"
+                  onClick={() => setCampusModal({
+                    title: 'Student Clubs & Activities',
+                    image: '/interdisciplinary/campus-event.jpg',
+                    description: 'JLU offers a vibrant ecosystem of student-led clubs spanning technology, arts, literature, entrepreneurship, social service, and more. From robotics and coding clubs to theatre, music, and debate societies — there\'s a community for every passion. These clubs organise workshops, competitions, cultural fests, and inter-university events throughout the year, helping students develop leadership, teamwork, and creative skills beyond the classroom.',
+                  })}
                 >
                   <motion.div
                     className="absolute inset-0"
@@ -2577,7 +2592,7 @@ const Admissions = () => {
                       src="/interdisciplinary/campus-event.jpg"
                       alt="Student Life"
                       fill
-                      className="object-cover"
+                      className="object-cover object-bottom"
                     />
                   </motion.div>
                   <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
@@ -2594,6 +2609,11 @@ const Admissions = () => {
                   transition={{ duration: 0.6, delay: 0.4 }}
                   viewport={{ once: true }}
                   className="relative overflow-hidden group cursor-pointer flex-1 h-40 md:h-48 lg:h-50"
+                  onClick={() => setCampusModal({
+                    title: 'On-Campus Accommodation',
+                    image: '/campus/hostel.jpg',
+                    description: 'JLU provides comfortable and secure on-campus hostel facilities for both boys and girls. The hostels feature furnished rooms, 24/7 Wi-Fi, common rooms with recreational facilities, hygienic mess with nutritious meals, laundry services, and round-the-clock security with CCTV surveillance. Living on campus fosters a sense of community and gives students easy access to the library, labs, and all campus amenities.',
+                  })}
                 >
                   <motion.div
                     className="absolute inset-0"
@@ -2800,6 +2820,58 @@ const Admissions = () => {
         onClose={() => setSelectedBeyondDegree(null)}
         data={selectedBeyondDegree}
       />
+
+      {/* Campus Experience Modal */}
+      <AnimatePresence>
+        {campusModal && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-[9999] flex items-center justify-center p-4"
+            onClick={() => setCampusModal(null)}
+          >
+            <div className="absolute inset-0 bg-black/60 backdrop-blur-sm" />
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95, y: 20 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.95, y: 20 }}
+              transition={{ duration: 0.3 }}
+              className="relative bg-white rounded-2xl overflow-hidden max-w-2xl w-full max-h-[90vh] overflow-y-auto"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <div className="relative h-56 md:h-72">
+                <Image
+                  src={campusModal.image}
+                  alt={campusModal.title}
+                  fill
+                  className="object-cover"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
+                <button
+                  onClick={() => setCampusModal(null)}
+                  className="absolute top-4 right-4 w-10 h-10 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center text-white cursor-pointer border-none"
+                >
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                    <line x1="18" y1="6" x2="6" y2="18" strokeLinecap="round" />
+                    <line x1="6" y1="6" x2="18" y2="18" strokeLinecap="round" />
+                  </svg>
+                </button>
+                <div className="absolute bottom-6 left-6 right-6">
+                  <h3 className="text-white font-semibold text-xl md:text-2xl">
+                    {campusModal.title}
+                  </h3>
+                </div>
+              </div>
+              <div className="p-6 md:p-8">
+                <p className="text-[#666] text-sm md:text-base" style={{ lineHeight: 1.8 }}>
+                  {campusModal.description}
+                </p>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </section>
   );
 };

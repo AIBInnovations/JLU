@@ -1,10 +1,14 @@
 'use client';
 
 import Image from 'next/image';
+import Link from 'next/link';
 import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion';
 import { useEffect, useRef, useState } from 'react';
+import dynamic from 'next/dynamic';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+const PartnersOrb = dynamic(() => import('./PartnersOrb'), { ssr: false });
 
 // Register GSAP plugins
 if (typeof window !== 'undefined') {
@@ -93,21 +97,29 @@ const visaSupport = [
     id: 1,
     title: 'Student Visa Guidance',
     description: 'Comprehensive guides on applying for and maintaining your student visa status throughout your studies.',
+    modalDetails: 'Our dedicated International Office team provides end-to-end visa guidance for students from over 50 countries. We assist with understanding visa categories, preparing application forms, scheduling appointments at Indian embassies and consulates, and ensuring you meet all requirements for a successful application. We also help with visa renewals, extensions, and compliance during your stay in India.',
+    highlights: ['Visa category selection & form filling assistance', 'Embassy appointment scheduling support', 'Visa renewal & extension guidance during studies', 'Compliance advisory for maintaining valid visa status', 'Dedicated helpline for urgent visa queries'],
   },
   {
     id: 2,
     title: 'Documentation Support',
     description: 'We verify your documents and issue the necessary acceptance letters for a smooth application process.',
+    modalDetails: 'Getting your documents right is crucial for a hassle-free admission and visa process. Our documentation team reviews all your academic transcripts, identity proofs, financial documents, and medical records to ensure they meet university and government standards. We issue official acceptance letters, bonafide certificates, and invitation letters required for visa applications.',
+    highlights: ['Academic transcript verification & equivalence check', 'Official acceptance & invitation letter issuance', 'Financial document review for visa compliance', 'Attestation & apostille guidance', 'Translation services for non-English documents'],
   },
   {
     id: 3,
     title: 'Pre-departure Assistance',
     description: 'Webinars and checklists to help you pack, prepare, and plan your travel to India confidently.',
+    modalDetails: 'Moving to a new country can feel overwhelming, which is why we conduct regular pre-departure webinars and orientation sessions for admitted international students. These sessions cover everything from what to pack, weather and clothing advice, currency and banking, mobile connectivity, cultural norms, safety tips, and campus life.',
+    highlights: ['Pre-departure orientation webinars & Q&A sessions', 'Comprehensive packing & travel checklists', 'Banking, SIM card & currency exchange guidance', 'Cultural orientation & safety briefings', 'Peer connect with current international students'],
   },
   {
     id: 4,
     title: 'On-arrival Help',
     description: 'Airport pickup coordination and welcome teams to ensure you settle in comfortably from day one.',
+    modalDetails: 'From the moment you land in India, JLU ensures you feel welcomed and supported. We coordinate airport pickups from Bhopal\'s Raja Bhoj Airport and arrange comfortable transport to the campus. Our welcome team helps you with hostel check-in, campus orientation, local SIM cards, bank account opening, and FRRO registration.',
+    highlights: ['Airport pickup from Raja Bhoj Airport, Bhopal', 'Hostel check-in & room allocation assistance', 'Campus orientation tour & facility walkthrough', 'FRRO/FRO registration & local compliance support', 'Welcome dinner & peer introduction sessions'],
   },
 ];
 
@@ -765,6 +777,12 @@ const ApplyModal = ({ isOpen, onClose }: ApplyModalProps) => {
 const InternationalOffice = () => {
   const heroRef = useRef<HTMLDivElement>(null);
   const [showApplyModal, setShowApplyModal] = useState(false);
+  const [orbOpen, setOrbOpen] = useState(false);
+  const [visaModal, setVisaModal] = useState<typeof visaSupport[0] | null>(null);
+  const [openFaq, setOpenFaq] = useState<number | null>(1);
+  const [showContactForm, setShowContactForm] = useState(false);
+  const [contactForm, setContactForm] = useState({ name: '', email: '', country: '', phone: '', message: '' });
+  const [contactSubmitted, setContactSubmitted] = useState(false);
   const { scrollYProgress } = useScroll({
     target: heroRef,
     offset: ['start start', 'end start'],
@@ -970,14 +988,14 @@ const InternationalOffice = () => {
                 transition={{ duration: 0.6, delay: 0.4 }}
                 viewport={{ once: true }}
               >
-                <motion.a
-                  href="#"
-                  className="inline-flex items-center gap-3 text-[#21313c] font-medium group text-sm md:text-[15px]"
+                <motion.button
+                  onClick={() => setOrbOpen(true)}
+                  className="inline-flex items-center gap-3 text-[#21313c] font-medium group text-sm md:text-[15px] cursor-pointer bg-transparent border-none p-0"
                   whileHover={{ x: 5 }}
                 >
                   View all 150+ Partners
                   <span className="group-hover:translate-x-2 transition-transform duration-300">→</span>
-                </motion.a>
+                </motion.button>
               </motion.div>
             </motion.div>
           </div>
@@ -1094,14 +1112,16 @@ const InternationalOffice = () => {
                 ))}
               </motion.div>
 
-              <motion.button
-                className="inline-flex items-center gap-2 md:gap-3 px-6 py-3 md:px-8 md:py-4 bg-[#21313c] text-white font-medium w-fit text-sm md:text-base rounded-full"
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
-              >
-                Explore pathway programs
-                <span>→</span>
-              </motion.button>
+              <Link href="/programs">
+                <motion.button
+                  className="inline-flex items-center gap-2 md:gap-3 px-6 py-3 md:px-8 md:py-4 bg-[#21313c] text-white font-medium w-fit text-sm md:text-base rounded-full cursor-pointer"
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
+                >
+                  Explore pathway programs
+                  <span>→</span>
+                </motion.button>
+              </Link>
             </motion.div>
           </div>
         </div>
@@ -1224,6 +1244,7 @@ const InternationalOffice = () => {
                 variants={staggerItem}
                 className="bg-[#f6f7f0] p-6 md:p-8 group cursor-pointer rounded-2xl"
                 whileHover={{ y: -8, transition: { duration: 0.3 } }}
+                onClick={() => setVisaModal(item)}
               >
                 {/* Number */}
                 <div
@@ -1335,8 +1356,9 @@ const InternationalOffice = () => {
               * Fees are indicative and may vary by program. Scholarships available for eligible students.
             </p>
             <motion.a
-              href="#"
-              className="inline-flex items-center gap-3 text-[#21313c] font-medium group text-sm md:text-[15px]"
+              href="/broucher/Fee-Structure2025.pdf"
+              download="JLU-Fee-Structure-2025.pdf"
+              className="inline-flex items-center gap-3 text-[#21313c] font-medium group text-sm md:text-[15px] no-underline"
               whileHover={{ x: 5 }}
             >
               Download complete fee structure
@@ -1464,8 +1486,9 @@ const InternationalOffice = () => {
                   <span>→</span>
                 </motion.button>
                 <motion.a
-                  href="#"
-                  className="inline-flex items-center justify-center gap-2 md:gap-3 px-6 py-3 md:px-8 md:py-4 border-2 border-[#21313c] text-[#21313c] font-medium text-sm md:text-base rounded-full hover:bg-[#21313c] hover:text-white transition-colors"
+                  href="/broucher/Fee-Structure2025.pdf"
+                  download="JLU-International-Admission-Form.pdf"
+                  className="inline-flex items-center justify-center gap-2 md:gap-3 px-6 py-3 md:px-8 md:py-4 border-2 border-[#21313c] text-[#21313c] font-medium text-sm md:text-base rounded-full hover:bg-[#21313c] hover:text-white transition-colors no-underline"
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
                 >
@@ -1539,15 +1562,15 @@ const InternationalOffice = () => {
               >
                 Find answers to common questions about studying at JLU as an international student.
               </p>
-              <motion.a
-                href="#"
-                className="inline-flex items-center gap-3 px-6 py-3 md:px-8 md:py-4 bg-[#21313c] text-white font-medium text-sm md:text-base rounded-full"
+              <motion.button
+                onClick={() => { setShowContactForm(true); setContactSubmitted(false); setContactForm({ name: '', email: '', country: '', phone: '', message: '' }); }}
+                className="inline-flex items-center gap-3 px-6 py-3 md:px-8 md:py-4 bg-[#21313c] text-white font-medium text-sm md:text-base rounded-full cursor-pointer border-none"
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
               >
                 Contact International Office
                 <span>→</span>
-              </motion.a>
+              </motion.button>
             </motion.div>
 
             {/* Right Side - FAQ Accordion */}
@@ -1562,21 +1585,45 @@ const InternationalOffice = () => {
                 <motion.div
                   key={faq.id}
                   variants={staggerItem}
-                  className="border-b border-gray-200 py-6 md:py-8"
+                  className="border-b border-gray-200"
                 >
-                  <div className="flex items-start gap-4">
+                  <button
+                    onClick={() => setOpenFaq(openFaq === faq.id ? null : faq.id)}
+                    className="w-full flex items-start gap-4 py-6 md:py-8 cursor-pointer bg-transparent border-none text-left"
+                  >
                     <span className="text-[#f0c14b] font-bold text-xl md:text-2xl">
                       {String(index + 1).padStart(2, '0')}
                     </span>
-                    <div>
-                      <h3 className="text-[#21313c] font-semibold text-base md:text-lg mb-3">
-                        {faq.question}
-                      </h3>
-                      <p className="text-[#666] text-sm md:text-[15px]" style={{ lineHeight: 1.8 }}>
-                        {faq.answer}
-                      </p>
+                    <div className="flex-1">
+                      <div className="flex items-center justify-between">
+                        <h3 className="text-[#21313c] font-semibold text-base md:text-lg pr-4">
+                          {faq.question}
+                        </h3>
+                        <motion.span
+                          animate={{ rotate: openFaq === faq.id ? 45 : 0 }}
+                          transition={{ duration: 0.2 }}
+                          className="text-[#21313c] text-xl flex-shrink-0"
+                        >
+                          +
+                        </motion.span>
+                      </div>
                     </div>
-                  </div>
+                  </button>
+                  <AnimatePresence>
+                    {openFaq === faq.id && (
+                      <motion.div
+                        initial={{ height: 0, opacity: 0 }}
+                        animate={{ height: 'auto', opacity: 1 }}
+                        exit={{ height: 0, opacity: 0 }}
+                        transition={{ duration: 0.3 }}
+                        className="overflow-hidden"
+                      >
+                        <p className="text-[#666] text-sm md:text-[15px] pl-12 md:pl-14 pb-6 md:pb-8" style={{ lineHeight: 1.8 }}>
+                          {faq.answer}
+                        </p>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
                 </motion.div>
               ))}
             </motion.div>
@@ -1650,14 +1697,16 @@ const InternationalOffice = () => {
                 ))}
               </motion.div>
 
-              <motion.button
-                className="inline-flex items-center gap-2 md:gap-3 px-6 py-3 md:px-8 md:py-4 bg-[#21313c] text-white font-medium text-sm md:text-base rounded-full"
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
-              >
-                Explore life in Bhopal
-                <span>→</span>
-              </motion.button>
+              <Link href="/apply">
+                <motion.button
+                  className="inline-flex items-center gap-2 md:gap-3 px-6 py-3 md:px-8 md:py-4 bg-[#21313c] text-white font-medium text-sm md:text-base rounded-full cursor-pointer"
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
+                >
+                  Explore life in Bhopal
+                  <span>→</span>
+                </motion.button>
+              </Link>
             </motion.div>
 
             {/* Right Side - Image */}
@@ -1697,6 +1746,202 @@ const InternationalOffice = () => {
       </div>
       {/* Apply Now Modal */}
       <ApplyModal isOpen={showApplyModal} onClose={() => setShowApplyModal(false)} />
+      <PartnersOrb isOpen={orbOpen} onClose={() => setOrbOpen(false)} />
+
+      {/* Visa Support Modal */}
+      <AnimatePresence>
+        {visaModal && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-[9999] flex items-center justify-center p-4"
+            onClick={() => setVisaModal(null)}
+          >
+            <div className="absolute inset-0 bg-black/60 backdrop-blur-sm" />
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95, y: 20 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.95, y: 20 }}
+              transition={{ duration: 0.3 }}
+              className="relative bg-white rounded-2xl overflow-hidden max-w-2xl w-full max-h-[90vh] overflow-y-auto"
+              onClick={(e) => e.stopPropagation()}
+            >
+              {/* Header */}
+              <div className="bg-[#21313c] px-6 py-8 md:px-8 md:py-10 relative">
+                <button
+                  onClick={() => setVisaModal(null)}
+                  className="absolute top-4 right-4 w-10 h-10 rounded-full bg-white/10 flex items-center justify-center text-white cursor-pointer border-none hover:bg-white/20 transition-colors"
+                >
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                    <line x1="18" y1="6" x2="6" y2="18" strokeLinecap="round" />
+                    <line x1="6" y1="6" x2="18" y2="18" strokeLinecap="round" />
+                  </svg>
+                </button>
+                <div className="text-[#f0c14b] font-bold text-4xl mb-3" style={{ lineHeight: 1 }}>
+                  0{visaModal.id}
+                </div>
+                <h3 className="text-white font-semibold text-xl md:text-2xl">
+                  {visaModal.title}
+                </h3>
+              </div>
+
+              {/* Content */}
+              <div className="p-6 md:p-8">
+                <p className="text-[#666] text-sm md:text-base mb-6" style={{ lineHeight: 1.8 }}>
+                  {visaModal.modalDetails}
+                </p>
+
+                <h4 className="text-[#21313c] font-semibold text-sm mb-4">What we offer</h4>
+                <div className="space-y-3">
+                  {visaModal.highlights.map((item, idx) => (
+                    <div key={idx} className="flex gap-3 items-start">
+                      <div className="flex-shrink-0 w-6 h-6 rounded-full bg-[#f6f7f0] flex items-center justify-center mt-0.5">
+                        <span className="text-[#21313c] text-xs font-semibold">{idx + 1}</span>
+                      </div>
+                      <p className="text-[#444] text-sm" style={{ lineHeight: 1.7 }}>
+                        {item}
+                      </p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* Contact International Office Form Modal */}
+      <AnimatePresence>
+        {showContactForm && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-[9999] flex items-center justify-center p-4"
+            onClick={() => setShowContactForm(false)}
+          >
+            <div className="absolute inset-0 bg-black/60 backdrop-blur-sm" />
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95, y: 20 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.95, y: 20 }}
+              transition={{ duration: 0.3 }}
+              className="relative bg-white rounded-2xl overflow-hidden max-w-lg w-full max-h-[90vh] overflow-y-auto"
+              onClick={(e) => e.stopPropagation()}
+            >
+              {/* Header */}
+              <div className="bg-[#21313c] px-6 py-6 md:px-8 md:py-8 relative">
+                <button
+                  onClick={() => setShowContactForm(false)}
+                  className="absolute top-4 right-4 w-10 h-10 rounded-full bg-white/10 flex items-center justify-center text-white cursor-pointer border-none hover:bg-white/20 transition-colors"
+                >
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                    <line x1="18" y1="6" x2="6" y2="18" strokeLinecap="round" />
+                    <line x1="6" y1="6" x2="18" y2="18" strokeLinecap="round" />
+                  </svg>
+                </button>
+                <h3 className="text-white font-semibold text-lg md:text-xl">
+                  Contact International Office
+                </h3>
+                <p className="text-white/60 text-sm mt-1">We&apos;ll get back to you within 24 hours</p>
+              </div>
+
+              {/* Form */}
+              <div className="p-6 md:p-8">
+                {contactSubmitted ? (
+                  <div className="text-center py-8">
+                    <div className="w-16 h-16 rounded-full bg-green-100 flex items-center justify-center mx-auto mb-4">
+                      <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#16a34a" strokeWidth="2">
+                        <polyline points="20 6 9 17 4 12" strokeLinecap="round" strokeLinejoin="round" />
+                      </svg>
+                    </div>
+                    <h4 className="text-[#21313c] font-semibold text-lg mb-2">Message Sent!</h4>
+                    <p className="text-[#666] text-sm">Our international office team will reach out to you shortly.</p>
+                  </div>
+                ) : (
+                  <form
+                    onSubmit={(e) => {
+                      e.preventDefault();
+                      setContactSubmitted(true);
+                    }}
+                    className="space-y-4"
+                  >
+                    <div>
+                      <label className="block text-[#21313c] text-sm font-medium mb-1.5">Full Name *</label>
+                      <input
+                        type="text"
+                        required
+                        value={contactForm.name}
+                        onChange={(e) => setContactForm({ ...contactForm, name: e.target.value })}
+                        className="w-full px-4 py-3 rounded-xl border border-gray-200 text-sm focus:outline-none focus:border-[#21313c] transition-colors"
+                        placeholder="Your full name"
+                      />
+                    </div>
+                    <div>
+                      <label className="block text-[#21313c] text-sm font-medium mb-1.5">Email Address *</label>
+                      <input
+                        type="email"
+                        required
+                        value={contactForm.email}
+                        onChange={(e) => setContactForm({ ...contactForm, email: e.target.value })}
+                        className="w-full px-4 py-3 rounded-xl border border-gray-200 text-sm focus:outline-none focus:border-[#21313c] transition-colors"
+                        placeholder="your@email.com"
+                      />
+                    </div>
+                    <div className="flex gap-4">
+                      <div className="flex-1">
+                        <label className="block text-[#21313c] text-sm font-medium mb-1.5">Country *</label>
+                        <input
+                          type="text"
+                          required
+                          value={contactForm.country}
+                          onChange={(e) => setContactForm({ ...contactForm, country: e.target.value })}
+                          className="w-full px-4 py-3 rounded-xl border border-gray-200 text-sm focus:outline-none focus:border-[#21313c] transition-colors"
+                          placeholder="Your country"
+                        />
+                      </div>
+                      <div className="flex-1">
+                        <label className="block text-[#21313c] text-sm font-medium mb-1.5">Phone</label>
+                        <input
+                          type="tel"
+                          value={contactForm.phone}
+                          onChange={(e) => setContactForm({ ...contactForm, phone: e.target.value })}
+                          className="w-full px-4 py-3 rounded-xl border border-gray-200 text-sm focus:outline-none focus:border-[#21313c] transition-colors"
+                          placeholder="+1 234 567 890"
+                        />
+                      </div>
+                    </div>
+                    <div>
+                      <label className="block text-[#21313c] text-sm font-medium mb-1.5">Message *</label>
+                      <textarea
+                        required
+                        value={contactForm.message}
+                        onChange={(e) => setContactForm({ ...contactForm, message: e.target.value })}
+                        rows={4}
+                        className="w-full px-4 py-3 rounded-xl border border-gray-200 text-sm focus:outline-none focus:border-[#21313c] transition-colors resize-none"
+                        placeholder="How can we help you?"
+                      />
+                    </div>
+                    <button
+                      type="submit"
+                      className="w-full py-3.5 bg-[#21313c] text-white font-medium rounded-xl cursor-pointer border-none hover:bg-[#2d4050] transition-colors text-sm"
+                    >
+                      Send Message
+                    </button>
+                    <p className="text-[#999] text-xs text-center">
+                      Or email us directly at{' '}
+                      <a href="mailto:international@jlu.edu.in" className="text-[#21313c] font-medium">
+                        international@jlu.edu.in
+                      </a>
+                    </p>
+                  </form>
+                )}
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </section>
   );
 };

@@ -1431,6 +1431,7 @@ const Academics = () => {
                   </Link>
                   <a
                     href="/broucher/Fee-Structure2025.pdf"
+                    download
                     target="_blank"
                     rel="noopener noreferrer"
                     className="w-full flex items-center justify-center gap-2 px-6 py-4 bg-transparent border border-[#21313c]/20 text-[#21313c] font-medium rounded-full hover:bg-[#f6f7f0] transition-colors"

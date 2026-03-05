@@ -37,7 +37,10 @@ export const CtaBanner = () => {
               Apply Now
             </a>
             <a
-              href="/admissions"
+              href="/broucher/Fee-Structure2025.pdf"
+              download
+              target="_blank"
+              rel="noopener noreferrer"
               className="border-2 border-[#21313c] text-[#21313c] px-8 py-3.5 rounded-lg font-semibold text-sm hover:bg-[#21313c] hover:text-white transition-all text-center"
             >
               Download Brochure

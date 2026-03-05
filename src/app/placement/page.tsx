@@ -1106,6 +1106,9 @@ export default function PlacementPage() {
               </a>
               <a
                 href="/broucher/placement-brochure.pdf"
+                download
+                target="_blank"
+                rel="noopener noreferrer"
                 className="border md:border-2 border-white text-white px-3 md:px-6 py-2 md:py-2.5 rounded-lg font-semibold text-[0.65rem] md:text-sm hover:bg-white hover:text-[#21313c] transition-all inline-flex items-center justify-center gap-1.5 md:gap-2"
               >
                 Download Brochure

@@ -427,6 +427,7 @@ export const ProgramDetail = ({ program }: ProgramDetailProps) => {
                       {/* Download Full Fee PDF */}
                       <a
                         href="/broucher/Fee-Structure2025.pdf"
+                        download
                         target="_blank"
                         rel="noopener noreferrer"
                         className="mt-3 md:mt-4 inline-flex items-center gap-1.5 md:gap-2 text-[#03463B] font-medium hover:underline"
@@ -498,6 +499,7 @@ export const ProgramDetail = ({ program }: ProgramDetailProps) => {
                   {/* Download Brochure */}
                   <a
                     href="/broucher/Fee-Structure2025.pdf"
+                    download
                     target="_blank"
                     rel="noopener noreferrer"
                     className="mt-2 md:mt-3 w-full flex items-center justify-center gap-2 bg-transparent border border-white/30 text-white font-medium rounded-full hover:bg-white/10 transition-colors"

@@ -609,7 +609,7 @@ const MenuOverlay = ({ isOpen, onClose, menuButtonRef }: MenuOverlayProps) => {
                 </motion.button>
 
                 {/* Navigation content */}
-                <div className="flex gap-6" style={{ marginTop: '480px', marginLeft: '-350px' }}>
+                <div className="flex gap-6" style={{ marginTop: '540px', marginLeft: '-350px' }}>
                   {/* Main navigation */}
                   <div className="flex flex-col" style={{ marginLeft: '-120px' }}>
                     <motion.p
@@ -652,10 +652,11 @@ const MenuOverlay = ({ isOpen, onClose, menuButtonRef }: MenuOverlayProps) => {
                   {/* Vertical divider line */}
                   <div className="w-[1px] bg-gray-300 h-[400px] my-8" />
 
-                  {/* Right side - Hovered item content or featured buttons and bottom menu */}
+                  {/* Right side - Hovered item content + explore more links */}
                   <div className="flex flex-col gap-2.5 pt-8 w-[520px]" style={{ marginLeft: '0px' }}>
+                    {/* Sub-content for hovered/active nav item */}
                     <AnimatePresence mode="wait">
-                      {displayNavItem ? (
+                      {displayNavItem && (
                         <motion.div
                           key={displayNavItem.label}
                           initial={{ opacity: 0, x: 20 }}
@@ -723,80 +724,71 @@ const MenuOverlay = ({ isOpen, onClose, menuButtonRef }: MenuOverlayProps) => {
                             })
                           ) : null}
                         </motion.div>
-                      ) : (
-                        <motion.div
-                          key="featured-content"
-                          initial={{ opacity: 0, x: 20 }}
-                          animate={{ opacity: 1, x: 0 }}
-                          exit={{ opacity: 0, x: -20 }}
-                          transition={{ duration: 0.25, ease: [0.4, 0, 0.2, 1] }}
-                          className="flex flex-col gap-4"
-                        >
-                          {/* Bottom Menu */}
-                          <div className="mb-4">
-                            <motion.p
-                              initial={{ opacity: 0, y: 5 }}
-                              animate={{ opacity: 1, y: 0 }}
-                              transition={{ delay: 0.1, duration: 0.3 }}
-                              className="text-xs text-gray-500 uppercase tracking-wider mb-3"
-                            >
-                              Explore More
-                            </motion.p>
-                            <div className="flex flex-col gap-2">
-                              {bottomMenuItems.map((subItem, index) => (
-                                <motion.a
-                                  key={subItem.label}
-                                  href={subItem.href}
-                                  onClick={onClose}
-                                  initial={{ opacity: 0, y: 8 }}
-                                  animate={{ opacity: 1, y: 0 }}
-                                  transition={{ delay: 0.15 + index * 0.04, duration: 0.3 }}
-                                  className="text-sm text-[#03463B]/70 hover:text-[#03463B] transition-colors cursor-pointer"
-                                >
-                                  {subItem.label}
-                                </motion.a>
-                              ))}
-                            </div>
-                          </div>
-
-                          {/* Featured Action Buttons (at bottom) */}
-                          <div className="flex flex-col gap-2 border-t pt-4 mt-3">
-                            <motion.p
-                              initial={{ opacity: 0, y: 5 }}
-                              animate={{ opacity: 1, y: 0 }}
-                              transition={{ delay: 0.4, duration: 0.3 }}
-                              className="text-[10px] text-gray-500 uppercase tracking-wider mb-0.5"
-                            >
-                              Quick Actions
-                            </motion.p>
-                            <div className="flex gap-2">
-                              <Link href="/apply" onClick={onClose}>
-                                <motion.div
-                                  initial={{ opacity: 0, y: 10 }}
-                                  animate={{ opacity: 1, y: 0 }}
-                                  transition={{ delay: 0.45, duration: 0.3 }}
-                                  className="bg-[#03463B] text-white font-normal py-2 px-4 rounded-md hover:bg-[#025039] transition-all shadow-sm hover:shadow-md text-center text-xs cursor-pointer whitespace-nowrap"
-                                >
-                                  Apply Now
-                                </motion.div>
-                              </Link>
-                              <motion.a
-                                href="https://panel123.s3.ap-south-1.amazonaws.com/360JLU/index.html"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                onClick={onClose}
-                                initial={{ opacity: 0, y: 10 }}
-                                animate={{ opacity: 1, y: 0 }}
-                                transition={{ delay: 0.5, duration: 0.3 }}
-                                className="border border-[#03463B] text-[#03463B] font-normal py-2 px-4 rounded-md hover:bg-[#03463B] hover:text-white transition-all text-center text-xs whitespace-nowrap"
-                              >
-                                360° Tour
-                              </motion.a>
-                            </div>
-                          </div>
-                        </motion.div>
                       )}
                     </AnimatePresence>
+
+                    {/* Explore More - always visible */}
+                    <div className={`${displayNavItem ? 'mt-4 pt-4 border-t border-gray-200' : ''}`}>
+                      <motion.p
+                        initial={{ opacity: 0, y: 5 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ delay: 0.1, duration: 0.3 }}
+                        className="text-xs text-gray-500 uppercase tracking-wider mb-3"
+                      >
+                        Explore More
+                      </motion.p>
+                      <div className="flex flex-col gap-2">
+                        {bottomMenuItems.map((subItem, index) => (
+                          <motion.a
+                            key={subItem.label}
+                            href={subItem.href}
+                            onClick={onClose}
+                            initial={{ opacity: 0, y: 8 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ delay: 0.15 + index * 0.04, duration: 0.3 }}
+                            className="text-sm text-[#03463B]/70 hover:text-[#03463B] transition-colors cursor-pointer"
+                          >
+                            {subItem.label}
+                          </motion.a>
+                        ))}
+                      </div>
+                    </div>
+
+                    {/* Quick Actions - always visible */}
+                    <div className="flex flex-col gap-2 border-t border-gray-200 pt-4 mt-3">
+                      <motion.p
+                        initial={{ opacity: 0, y: 5 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ delay: 0.4, duration: 0.3 }}
+                        className="text-[10px] text-gray-500 uppercase tracking-wider mb-0.5"
+                      >
+                        Quick Actions
+                      </motion.p>
+                      <div className="flex gap-2">
+                        <Link href="/apply" onClick={onClose}>
+                          <motion.div
+                            initial={{ opacity: 0, y: 10 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ delay: 0.45, duration: 0.3 }}
+                            className="bg-[#03463B] text-white font-normal py-2 px-4 rounded-md hover:bg-[#025039] transition-all shadow-sm hover:shadow-md text-center text-xs cursor-pointer whitespace-nowrap"
+                          >
+                            Apply Now
+                          </motion.div>
+                        </Link>
+                        <motion.a
+                          href="https://panel123.s3.ap-south-1.amazonaws.com/360JLU/index.html"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          onClick={onClose}
+                          initial={{ opacity: 0, y: 10 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          transition={{ delay: 0.5, duration: 0.3 }}
+                          className="border border-[#03463B] text-[#03463B] font-normal py-2 px-4 rounded-md hover:bg-[#03463B] hover:text-white transition-all text-center text-xs whitespace-nowrap"
+                        >
+                          360° Tour
+                        </motion.a>
+                      </div>
+                    </div>
                   </div>
                 </div>
 
