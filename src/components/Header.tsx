@@ -655,6 +655,7 @@ const MenuOverlay = ({ isOpen, onClose, menuButtonRef }: MenuOverlayProps) => {
                   {/* Right side - Hovered item content + explore more links */}
                   <div className="flex flex-col gap-2.5 pt-8 w-[520px]" style={{ marginLeft: '0px' }}>
                     {/* Sub-content for hovered/active nav item */}
+                    <div className="min-h-70">
                     <AnimatePresence mode="wait">
                       {displayNavItem && (
                         <motion.div
@@ -726,6 +727,7 @@ const MenuOverlay = ({ isOpen, onClose, menuButtonRef }: MenuOverlayProps) => {
                         </motion.div>
                       )}
                     </AnimatePresence>
+                    </div>
 
                     {/* Explore More - always visible */}
                     <div className={`${displayNavItem ? 'mt-4 pt-4 border-t border-gray-200' : ''}`}>

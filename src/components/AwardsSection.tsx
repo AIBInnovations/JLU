@@ -24,31 +24,31 @@ export const AwardsSection = () => {
 
   const awards = [
     {
-      image: '/aw1.jpg',
+      image: '/a1.jpeg',
       title: 'IRM International Affiliation — First in Central India',
       description: 'Jagran Lakecity University has become the first university in Central India to be awarded the Certificate of International Affiliation by the Institute of Risk Management (IRM) India Affiliate. This landmark collaboration integrates IRM\'s globally recognised Enterprise Risk Management (ERM) qualifications into the university\'s curriculum.',
       year: '2025',
     },
     {
-      image: '/aw3.jpg',
+      image: '/a2.jpeg',
       title: '4th in MP, 53rd in India — India Today Rankings',
       description: 'Jagran Lakecity University has secured the 4th position in Madhya Pradesh and 53rd position in India in the India Today Best University Rankings 2025. The Faculty of Media & Social Sciences was ranked 18th in India Overall and the Faculty of Law ranked 39th in India.',
       year: '2025',
     },
     {
-      image: '/aw2.jpg',
+      image: '/a3.jpeg',
       title: 'No. 1 Private Multidisciplinary University — Education World',
       description: 'Jagran Lakecity University, Bhopal has been ranked No. 1 in the Education World India Higher Education Rankings 2025-26 in India under the category Private Multidisciplinary Universities.',
       year: '2025-26',
     },
     {
-      image: '/aw4.jpg',
+      image: '/a4.jpeg',
       title: 'MP Excellence Award Sponsor',
       description: 'Jagran Lakecity University was the proud sponsor for the MP Excellence Award 2025 held on 26th October, 2025 at Minto Hall, Bhopal, to honor individuals and groups for their achievements in various fields.',
       year: '2025',
     },
     {
-      image: '/aw5.jpg',
+      image: '/a5.jpeg',
       title: 'FICCI Higher Education Summit — Key Speaker',
       description: 'Shri Abhishek Mohan Gupta, Pro-Chancellor, Jagran Lakecity University, was invited as a Key Speaker at the 20th FICCI Higher Education Summit 2025, held on October 6–7, 2025, in New Delhi. He shared valuable insights on shaping globally competitive universities.',
       year: '2025',
