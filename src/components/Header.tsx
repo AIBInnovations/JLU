@@ -235,9 +235,6 @@ const MenuOverlay = ({ isOpen, onClose, menuButtonRef }: MenuOverlayProps) => {
   // Get the currently active navigation item (based on current page)
   const activeNavItem = navigationItems.find(item => isActive(item.href));
 
-  // Show hovered item's sub-content, or fall back to active page's sub-content
-  const displayNavItem = hoveredNavItem || activeNavItem;
-
   const circleSize = isMobile ? 2000 : 1500;
   const buttonWidth = isMobile ? 24 : 168;
   const buttonHeight = isMobile ? 24 : 48;
@@ -610,7 +607,7 @@ const MenuOverlay = ({ isOpen, onClose, menuButtonRef }: MenuOverlayProps) => {
                 </motion.button>
 
                 {/* Navigation content */}
-                <div className="flex gap-6" style={{ marginTop: '540px', marginLeft: '-350px' }}>
+                <div className="flex gap-6" style={{ marginTop: '440px', marginLeft: '-350px', height: '490px' }}>
                   {/* Main navigation */}
                   <div className="flex flex-col" style={{ marginLeft: '-120px' }}>
                     <motion.p
@@ -653,20 +650,18 @@ const MenuOverlay = ({ isOpen, onClose, menuButtonRef }: MenuOverlayProps) => {
                   <div className="w-[1px] bg-gray-300 h-[400px] my-8" />
 
                   {/* Right side - Hovered item content + explore more links */}
-                  <div className="flex flex-col gap-2.5 pt-8 w-[520px]" style={{ marginLeft: '0px' }}>
-                    {/* Sub-content for hovered/active nav item */}
+                  <div className="flex flex-col pt-8 w-130" style={{ marginLeft: '0px' }}>
+                    {/* Fixed-height container — always same size to prevent centering shifts */}
                     <div className="min-h-70 relative">
-                      {displayNavItem && (
-                        <div
-                          key={displayNavItem.label}
-                          className="absolute inset-x-0 top-0 flex flex-col gap-2"
-                        >
+                      {/* Sub-content: shown when hovering */}
+                      {hoveredNavItem && (
+                        <div className="absolute inset-x-0 top-0 flex flex-col gap-2">
                           <h3 className="text-lg font-semibold text-[#03463B] mb-1">
-                            {displayNavItem.label}
+                            {hoveredNavItem.label}
                           </h3>
-                          {displayNavItem.type === 'megamenu' && displayNavItem.columns ? (
+                          {hoveredNavItem.type === 'megamenu' && hoveredNavItem.columns ? (
                             <div className="flex gap-8">
-                              {displayNavItem.columns.map((column) => (
+                              {hoveredNavItem.columns.map((column) => (
                                 <div key={column.title} className="flex flex-col gap-2">
                                   <p className="text-sm font-semibold text-[#03463B] mb-1">
                                     {column.title}
@@ -692,7 +687,7 @@ const MenuOverlay = ({ isOpen, onClose, menuButtonRef }: MenuOverlayProps) => {
                                     return (
                                       <button
                                         key={item}
-                                        onClick={() => handleSectionClick(displayNavItem.href, slug)}
+                                        onClick={() => handleSectionClick(hoveredNavItem.href, slug)}
                                         className="text-sm text-[#03463B]/60 hover:text-[#03463B] cursor-pointer transition-colors block text-left"
                                       >
                                         {item}
@@ -702,8 +697,8 @@ const MenuOverlay = ({ isOpen, onClose, menuButtonRef }: MenuOverlayProps) => {
                                 </div>
                               ))}
                             </div>
-                          ) : displayNavItem.sections ? (
-                            displayNavItem.sections.map((section) => {
+                          ) : hoveredNavItem.sections ? (
+                            hoveredNavItem.sections.map((section) => {
                               const label = typeof section === 'string' ? section : section.label;
                               const slug = typeof section === 'string'
                                 ? section.toLowerCase().replace(/\s+/g, '-').replace(/[&]/g, 'and')
@@ -711,7 +706,7 @@ const MenuOverlay = ({ isOpen, onClose, menuButtonRef }: MenuOverlayProps) => {
                               return (
                                 <button
                                   key={label}
-                                  onClick={() => handleSectionClick(displayNavItem.href, slug)}
+                                  onClick={() => handleSectionClick(hoveredNavItem.href, slug)}
                                   className="text-sm text-[#03463B]/60 hover:text-[#03463B] cursor-pointer transition-colors block text-left"
                                 >
                                   {label}
@@ -721,70 +716,90 @@ const MenuOverlay = ({ isOpen, onClose, menuButtonRef }: MenuOverlayProps) => {
                           ) : null}
                         </div>
                       )}
+
+                      {/* Explore More: shown when NOT hovering, inside the fixed container */}
+                      {!hoveredNavItem && (
+                        <div className="absolute inset-x-0 top-0">
+                          <p className="text-xs text-gray-500 uppercase tracking-wider mb-3">
+                            Explore More
+                          </p>
+                          <div className="flex flex-col gap-2">
+                            {bottomMenuItems.map((subItem) => (
+                              <a
+                                key={subItem.label}
+                                href={subItem.href}
+                                onClick={onClose}
+                                className="text-sm text-[#03463B]/70 hover:text-[#03463B] transition-colors cursor-pointer"
+                              >
+                                {subItem.label}
+                              </a>
+                            ))}
+                          </div>
+                          {/* Quick Actions */}
+                          <div className="flex flex-col gap-2 border-t border-gray-200 pt-4 mt-4">
+                            <p className="text-[10px] text-gray-500 uppercase tracking-wider mb-0.5">
+                              Quick Actions
+                            </p>
+                            <div className="flex gap-2">
+                              <Link href="/apply" onClick={onClose} className="bg-[#03463B] text-white font-normal py-2 px-4 rounded-md hover:bg-[#025039] transition-all shadow-sm hover:shadow-md text-center text-xs cursor-pointer whitespace-nowrap">
+                                Apply Now
+                              </Link>
+                              <a
+                                href="https://panel123.s3.ap-south-1.amazonaws.com/360JLU/index.html"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                onClick={onClose}
+                                className="border border-[#03463B] text-[#03463B] font-normal py-2 px-4 rounded-md hover:bg-[#03463B] hover:text-white transition-all text-center text-xs whitespace-nowrap"
+                              >
+                                360° Tour
+                              </a>
+                            </div>
+                          </div>
+                        </div>
+                      )}
                     </div>
 
-                    {/* Explore More - always visible */}
-                    <div className="mt-4 pt-4 border-t border-gray-200">
-                      <motion.p
-                        initial={{ opacity: 0, y: 5 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ delay: 0.1, duration: 0.3 }}
-                        className="text-xs text-gray-500 uppercase tracking-wider mb-3"
-                      >
-                        Explore More
-                      </motion.p>
-                      <div className="flex flex-col gap-2">
-                        {bottomMenuItems.map((subItem, index) => (
-                          <motion.a
-                            key={subItem.label}
-                            href={subItem.href}
-                            onClick={onClose}
-                            initial={{ opacity: 0, y: 8 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ delay: 0.15 + index * 0.04, duration: 0.3 }}
-                            className="text-sm text-[#03463B]/70 hover:text-[#03463B] transition-colors cursor-pointer"
-                          >
-                            {subItem.label}
-                          </motion.a>
-                        ))}
-                      </div>
-                    </div>
-
-                    {/* Quick Actions - always visible */}
-                    <div className="flex flex-col gap-2 border-t border-gray-200 pt-4 mt-3">
-                      <motion.p
-                        initial={{ opacity: 0, y: 5 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ delay: 0.4, duration: 0.3 }}
-                        className="text-[10px] text-gray-500 uppercase tracking-wider mb-0.5"
-                      >
-                        Quick Actions
-                      </motion.p>
-                      <div className="flex gap-2">
-                        <Link href="/apply" onClick={onClose}>
-                          <motion.div
-                            initial={{ opacity: 0, y: 10 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ delay: 0.45, duration: 0.3 }}
-                            className="bg-[#03463B] text-white font-normal py-2 px-4 rounded-md hover:bg-[#025039] transition-all shadow-sm hover:shadow-md text-center text-xs cursor-pointer whitespace-nowrap"
-                          >
-                            Apply Now
-                          </motion.div>
-                        </Link>
-                        <motion.a
-                          href="https://panel123.s3.ap-south-1.amazonaws.com/360JLU/index.html"
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          onClick={onClose}
-                          initial={{ opacity: 0, y: 10 }}
-                          animate={{ opacity: 1, y: 0 }}
-                          transition={{ delay: 0.5, duration: 0.3 }}
-                          className="border border-[#03463B] text-[#03463B] font-normal py-2 px-4 rounded-md hover:bg-[#03463B] hover:text-white transition-all text-center text-xs whitespace-nowrap"
-                        >
-                          360° Tour
-                        </motion.a>
-                      </div>
-                    </div>
+                    {/* Explore More + Quick Actions below sub-content when hovering */}
+                    {hoveredNavItem && (
+                      <>
+                        <div className="mt-4 pt-4 border-t border-gray-200">
+                          <p className="text-xs text-gray-500 uppercase tracking-wider mb-3">
+                            Explore More
+                          </p>
+                          <div className="flex flex-col gap-2">
+                            {bottomMenuItems.map((subItem) => (
+                              <a
+                                key={subItem.label}
+                                href={subItem.href}
+                                onClick={onClose}
+                                className="text-sm text-[#03463B]/70 hover:text-[#03463B] transition-colors cursor-pointer"
+                              >
+                                {subItem.label}
+                              </a>
+                            ))}
+                          </div>
+                        </div>
+                        <div className="flex flex-col gap-2 border-t border-gray-200 pt-4 mt-3">
+                          <p className="text-[10px] text-gray-500 uppercase tracking-wider mb-0.5">
+                            Quick Actions
+                          </p>
+                          <div className="flex gap-2">
+                            <Link href="/apply" onClick={onClose} className="bg-[#03463B] text-white font-normal py-2 px-4 rounded-md hover:bg-[#025039] transition-all shadow-sm hover:shadow-md text-center text-xs cursor-pointer whitespace-nowrap">
+                              Apply Now
+                            </Link>
+                            <a
+                              href="https://panel123.s3.ap-south-1.amazonaws.com/360JLU/index.html"
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              onClick={onClose}
+                              className="border border-[#03463B] text-[#03463B] font-normal py-2 px-4 rounded-md hover:bg-[#03463B] hover:text-white transition-all text-center text-xs whitespace-nowrap"
+                            >
+                              360° Tour
+                            </a>
+                          </div>
+                        </div>
+                      </>
+                    )}
                   </div>
                 </div>
 
@@ -943,7 +958,7 @@ export const Header = () => {
           ease: [0.25, 0.1, 0.25, 1]
         }}
         className="relative flex items-center justify-between px-6 pt-6 sm:px-10 lg:px-16 xl:px-20 2xl:px-32"
-        style={{ zIndex: isMenuOpen ? 102 : 60 }}
+        style={{ zIndex: 60 }}
       >
         {/* Logo on left - bigger */}
         <motion.div
