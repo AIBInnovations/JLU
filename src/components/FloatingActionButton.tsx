@@ -47,7 +47,7 @@ const actionItems = [
         <polyline points="9 15 12 18 15 15" strokeLinecap="round" strokeLinejoin="round"/>
       </svg>
     ),
-    href: '/broucher/Fee-Structure2025.pdf',
+    href: '/broucher/Fee-Structure-2026-27.pdf',
     accentColor: '#f59e0b',
   },
   {

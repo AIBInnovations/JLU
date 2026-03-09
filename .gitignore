@@ -26,3 +26,6 @@ out
 *.njsproj
 *.sln
 *.sw?
+
+# Large files
+public/broucher/Fee-Structure-2026-27.pdf

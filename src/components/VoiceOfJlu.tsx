@@ -35,11 +35,10 @@ export const VoiceOfJlu = () => {
     setActiveCard(isMobile ? null : middleIndex);
   }, []);
 
-  // Auto-play middle card when section scrolls into view
+  // Open middle card (expanded) when section scrolls into view, but don't play
   useEffect(() => {
     if (voicesInView && !hasAutoPlayed && !isMobile) {
       setActiveCard(middleIndex);
-      setPlayingVideo(middleIndex);
       setHasAutoPlayed(true);
     }
   }, [voicesInView, hasAutoPlayed, isMobile]);
@@ -161,11 +160,15 @@ export const VoiceOfJlu = () => {
                       setActiveCard(null);
                       setPlayingVideo(null);
                       const vid = videoRefs.current[index];
-                      if (vid) { vid.pause(); vid.currentTime = 0.5; }
+                      if (vid) { vid.pause(); vid.currentTime = 0.5; vid.muted = true; }
+                      setMutedVideo((prev) => ({ ...prev, [index]: true }));
                     } else {
                       pauseAllExcept(index);
                       setActiveCard(index);
                       setPlayingVideo(index);
+                      setMutedVideo((prev) => ({ ...prev, [index]: false }));
+                      const vid = videoRefs.current[index];
+                      if (vid) { vid.muted = false; vid.currentTime = 0; vid.play(); }
                     }
                   }}
                 >
@@ -261,11 +264,15 @@ export const VoiceOfJlu = () => {
                   setActiveCard(null);
                   setPlayingVideo(null);
                   const vid = videoRefs.current[100 + index];
-                  if (vid) { vid.pause(); vid.currentTime = 0.5; }
+                  if (vid) { vid.pause(); vid.currentTime = 0.5; vid.muted = true; }
+                  setMutedVideo((prev) => ({ ...prev, [index]: true }));
                 } else {
                   pauseAllExcept(index);
                   setActiveCard(index);
                   setPlayingVideo(index);
+                  setMutedVideo((prev) => ({ ...prev, [index]: false }));
+                  const vid = videoRefs.current[100 + index];
+                  if (vid) { vid.muted = false; vid.currentTime = 0; vid.play(); }
                 }
               }}
             >

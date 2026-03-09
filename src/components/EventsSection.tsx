@@ -8,6 +8,7 @@ interface Event {
   day: string;
   month: string;
   title: string;
+  description: string;
   location: string;
   time: string;
   color: string;
@@ -15,44 +16,40 @@ interface Event {
 
 const events: Event[] = [
   {
-    day: '15',
-    month: 'Feb',
-    title: 'Annual Tech Fest - Innovation Summit 2025',
-    location: 'JLU Main Auditorium, Bhopal Campus',
-    time: '10:00 AM - 6:00 PM',
-    color: 'bg-[#3b82f6]',
-  },
-  {
-    day: '20',
-    month: 'Feb',
-    title: 'Guest Lecture: Industry Leaders Forum',
-    location: 'Conference Hall, Faculty of Management',
-    time: '2:00 PM - 4:00 PM',
+    day: '09',
+    month: 'Mar',
+    title: 'International Women\'s Day',
+    description: 'Celebrating achievements, strength, and contributions of women in society with engaging activities and discussions promoting gender equality and empowerment.',
+    location: 'Jagran Lakecity University, Bhopal Campus',
+    time: '9th March 2026',
     color: 'bg-[#e85a71]',
   },
   {
-    day: '25',
-    month: 'Feb',
-    title: 'Cultural Night - Celebrating Diversity',
-    location: 'Open Air Theatre, JLU Campus',
-    time: '6:00 PM - 10:00 PM',
+    day: '01',
+    month: 'Apr',
+    title: 'JLU\'s Got Talent',
+    description: 'A vibrant platform for students to showcase diverse talents including singing, dancing, acting, and other creative performances celebrating creativity and expression.',
+    location: 'JLU Main Auditorium, Bhopal Campus',
+    time: '1st & 2nd April 2026',
+    color: 'bg-[#3b82f6]',
+  },
+  {
+    day: '24',
+    month: 'Apr',
+    title: 'Foundation Day of JLU',
+    description: 'Commemorating the establishment of the university and celebrating its journey of academic excellence, innovation, and growth.',
+    location: 'Jagran Lakecity University, Bhopal Campus',
+    time: '24th April 2026',
     color: 'bg-[#d4c84a]',
   },
   {
-    day: '05',
-    month: 'Mar',
-    title: 'Sports Week - Inter-Faculty Championship',
-    location: 'JLU Sports Complex',
-    time: '9:00 AM - 5:00 PM',
-    color: 'bg-[#3b82f6]',
-  },
-  {
     day: '12',
-    month: 'Mar',
-    title: 'Research Symposium - Emerging Technologies',
-    location: 'Faculty of Engineering & Technology',
-    time: '10:00 AM - 3:00 PM',
-    color: 'bg-[#e85a71]',
+    month: 'Jul',
+    title: 'Orientation for New Students',
+    description: 'Helping newly admitted students transition into university life with introductions to academic structure, campus facilities, values, and opportunities.',
+    location: 'Jagran Lakecity University, Bhopal Campus',
+    time: '12th July 2026',
+    color: 'bg-[#3b82f6]',
   },
 ];
 
@@ -93,7 +90,7 @@ export const EventsSection = () => {
             <span style={{ fontFamily: "'Times New Roman', serif", fontStyle: 'italic' }}>stepping into</span>
           </h2>
           <p className="text-sm md:text-[15px] max-w-2xl mx-auto" style={{ color: '#666', lineHeight: 1.7 }}>
-            From tech fests to cultural nights, experience the vibrant campus life at Jagran Lakecity University.
+            From cultural celebrations to talent showcases, experience the vibrant campus life at Jagran Lakecity University.
           </p>
           <div className="mx-auto mt-4" style={{ width: '274px', height: '0px', border: '4px solid #B2FF53' }} />
         </motion.div>
@@ -154,7 +151,7 @@ export const EventsSection = () => {
                   }}
                 >
                   {/* Card Content */}
-                  <div className="flex gap-3 md:gap-4 mb-4">
+                  <div className="flex gap-3 md:gap-4 mb-3">
                     {/* Date Badge */}
                     <div
                       className={`${event.color} text-white text-center shrink-0 rounded-lg`}
@@ -175,11 +172,16 @@ export const EventsSection = () => {
                     </h4>
                   </div>
 
+                  {/* Description */}
+                  <p className="text-xs md:text-sm text-gray-500 leading-relaxed mb-3 line-clamp-3">
+                    {event.description}
+                  </p>
+
                   {/* Event Details */}
                   <div className="mt-auto space-y-2">
                     <div className="flex items-center gap-2 text-gray-600 text-xs md:text-sm">
                       <svg className="w-4 h-4 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
                       </svg>
                       {event.time}
                     </div>
@@ -190,17 +192,6 @@ export const EventsSection = () => {
                       </svg>
                       {event.location}
                     </div>
-
-                    {/* Read More */}
-                    <a
-                      href="#"
-                      className="text-[#8bc34a] font-semibold text-xs md:text-sm inline-flex items-center gap-2 hover:gap-3 transition-all group mt-2"
-                    >
-                      Read More
-                      <svg className="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                      </svg>
-                    </a>
                   </div>
                 </div>
               ))}
@@ -285,7 +276,7 @@ export const EventsSection = () => {
             <span style={{ fontFamily: "'Times New Roman', serif", fontStyle: 'italic' }}>GOING ON</span>
           </h3>
           <p className="text-xs md:text-sm" style={{ color: '#666', lineHeight: 1.7 }}>
-            Stay updated with the latest events, workshops, seminars, and cultural activities happening at JLU Bhopal.
+            Current and upcoming events at JLU — from celebrations and talent shows to orientations and milestones.
           </p>
         </div>
 

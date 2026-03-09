@@ -12,156 +12,108 @@ export interface RequiredDocument {
   name: string;
   description: string;
   mandatory: boolean;
+  category?: string;
 }
 
 export const admissionSteps: AdmissionStep[] = [
   {
     id: 1,
-    title: "Email Required Documents",
-    description: "Send your academic documents to admissions@jlu.edu.in",
+    title: "Submit Online Application",
+    description: "Submit your application online through the official admission portal.",
     details: [
-      "Email copies of 10th, 12th, and Graduation marksheets",
-      "Subject line: 'Application for [Program Name]'",
-      "Attach all documents in PDF format"
+      "Apply through https://apply.jlu.edu.in",
+      "All admissions processed through online mode only, unless otherwise notified",
     ],
-    timeline: "Initial step",
-    icon: "mail"
-  },
-  {
-    id: 2,
-    title: "Fill Application Form",
-    description: "Complete the online application form with accurate details",
-    details: [
-      "Access the application portal",
-      "Fill personal and academic information",
-      "Select desired program and specialization",
-      "Review all details before submission"
-    ],
-    timeline: "After document submission",
+    timeline: "20th December 2025 – 31st August 2026",
     icon: "form"
   },
   {
-    id: 3,
-    title: "Validate Your Email",
-    description: "Verify your email address to activate your application",
+    id: 2,
+    title: "Email Validation",
+    description: "Upon successful registration, candidates shall receive an email for validation of their registered email ID.",
     details: [
-      "Check your inbox for validation email",
-      "Click on the verification link",
-      "Email validation required within 24 hours"
+      "Check your inbox for the validation email",
+      "Click on the verification link to activate your account",
     ],
-    timeline: "Immediately after form submission",
-    icon: "check-circle"
+    timeline: "Immediately after registration",
+    icon: "mail"
   },
   {
-    id: 4,
+    id: 3,
     title: "Access Application Dashboard",
-    description: "Log in to your personalized application dashboard",
+    description: "After validation, access the application form through the dashboard.",
     details: [
-      "Use credentials received via email",
-      "Track application status",
-      "Access all further instructions and forms"
+      "Login credentials (User ID and Password) sent via registered email and mobile number",
+      "Complete the application form in all respects",
     ],
     timeline: "After email validation",
     icon: "dashboard"
   },
   {
-    id: 5,
-    title: "Pay Application Fee",
-    description: "Complete the application fee payment online",
+    id: 4,
+    title: "Upload Documents & Pay Application Fee",
+    description: "Upload prescribed documents and pay the non-refundable application fee.",
     details: [
-      "Application fee: ₹1,000 (non-refundable)",
-      "Payment via credit/debit card, net banking, or UPI",
-      "Save payment receipt for records"
+      "Upload all required documents as specified",
+      "Pay the non-refundable application fee of \u20B91,600/- through online payment modes",
+      "Download and retain a copy of the filled-in application form for future reference",
     ],
-    timeline: "Within 48 hours of dashboard access",
-    icon: "payment"
-  },
-  {
-    id: 6,
-    title: "Upload Required Documents",
-    description: "Upload all mandatory documents through the dashboard",
-    details: [
-      "Upload scanned copies in PDF format",
-      "Maximum file size: 2MB per document",
-      "Ensure documents are clear and readable",
-      "Digital signatures where required"
-    ],
-    timeline: "After application fee payment",
+    timeline: "During application submission",
     icon: "upload"
   },
   {
-    id: 7,
-    title: "Download Application Form",
-    description: "Download the filled and submitted application form",
+    id: 5,
+    title: "Appear for JLUET / Personal Interview",
+    description: "Appear for the Jagran Lakecity University Entrance Test (JLUET) and/or Personal Interview (PI), wherever applicable.",
     details: [
-      "Download form from dashboard",
-      "Print and keep for records",
-      "Form will be required during entrance test/interview"
-    ],
-    timeline: "After document upload",
-    icon: "download"
-  },
-  {
-    id: 8,
-    title: "Appear in JLUET/Personal Interview",
-    description: "Attend the JLU Entrance Test or Personal Interview",
-    details: [
-      "Entrance test for eligible programs",
-      "Personal interview for specific courses",
-      "Carry printed application form and ID proof",
-      "Test/Interview schedule sent via email"
+      "JLUET is mandatory for Law and Design programs",
+      "Personal Interview as per program requirements",
+      "Carry printed application form and valid ID proof",
     ],
     timeline: "As per scheduled date",
     icon: "edit"
   },
   {
-    id: 9,
-    title: "Sign Refund Undertaking",
-    description: "Download, sign, and upload the refund policy undertaking",
+    id: 6,
+    title: "Receive Provisional Admission Letter (PAL)",
+    description: "Candidates shortlisted based on eligibility, merit, and performance in JLUET/PI shall be issued a Provisional Admission Letter.",
     details: [
-      "Download undertaking from dashboard",
-      "Read UGC refund policy carefully",
-      "Sign and upload scanned copy",
-      "Parent/Guardian signature required for minors"
+      "PAL issued within three (03) working days of shortlisting",
     ],
-    timeline: "After JLUET/PI result",
+    timeline: "Within 3 working days of JLUET/PI",
     icon: "file-text"
   },
   {
-    id: 10,
-    title: "Deposit Seat Booking Amount",
-    description: "Pay seat booking fee to confirm your admission",
+    id: 7,
+    title: "Confirm Admission & Deposit Seat Booking Amount",
+    description: "Report to the Admission Office, sign the Refund Undertaking, and deposit the prescribed seat booking amount.",
     details: [
-      "Seat booking fee as per program",
-      "Payment confirms your seat reservation",
-      "Fee adjustable against total annual fee",
-      "Refundable as per UGC guidelines"
+      "Must be done within three (03) working days of issuance of the PAL",
+      "Sign the Refund Undertaking at the Admission Office",
     ],
-    timeline: "Within specified deadline",
+    timeline: "Within 3 working days of PAL",
     icon: "bookmark"
   },
   {
-    id: 11,
+    id: 8,
     title: "Apply for Scholarship (If Eligible)",
-    description: "Submit scholarship application if you qualify",
+    description: "Eligible candidates may apply for scholarships as per the university scholarship policy.",
     details: [
-      "Sports scholarship for state/national players",
-      "Merit-based scholarships",
-      "Submit supporting documents and certificates",
-      "Scholarship committee review and approval"
+      "Submit duly filled Scholarship Application Form",
+      "Attach supporting documents within the stipulated timeline",
+      "Scholarships awarded subject to fulfilment of eligibility criteria and approval of competent authority",
     ],
     timeline: "After seat booking",
     icon: "award"
   },
   {
-    id: 12,
-    title: "Deposit Full Annual Fee",
-    description: "Pay the complete annual fee to finalize admission",
+    id: 9,
+    title: "Pay Full First-Semester Fee & Complete Registration",
+    description: "Final admission confirmed only after payment of the full first-semester fee and completion of registration formalities.",
     details: [
-      "Pay remaining fee after seat booking adjustment",
-      "Multiple payment options available",
-      "Fee payment before academic session begins",
-      "Receive final admission confirmation"
+      "Pay remaining fee at the Student Section Office",
+      "Complete all registration formalities",
+      "Admission is provisional until verification of original documents",
     ],
     timeline: "Before session commencement",
     icon: "check-square"
@@ -171,74 +123,95 @@ export const admissionSteps: AdmissionStep[] = [
 export const requiredDocuments: RequiredDocument[] = [
   {
     id: "doc1",
-    name: "10th Standard Marksheet",
+    name: "Class 10 Mark Sheet",
     description: "Self-attested copy of Class 10 board examination marksheet",
-    mandatory: true
+    mandatory: true,
+    category: "Undergraduate Programs"
   },
   {
     id: "doc2",
-    name: "12th Standard Marksheet",
+    name: "Class 12 Mark Sheet",
     description: "Self-attested copy of Class 12 board examination marksheet",
-    mandatory: true
+    mandatory: true,
+    category: "Undergraduate Programs"
   },
   {
     id: "doc3",
-    name: "Graduation Marksheet (For PG Programs)",
-    description: "Self-attested copies of all semester/year marksheets",
-    mandatory: true
+    name: "Graduation Mark Sheet",
+    description: "Self-attested copies of graduation marksheets",
+    mandatory: true,
+    category: "Postgraduate Programs"
   },
   {
     id: "doc4",
-    name: "Post Graduation Marksheet (For PhD Programs)",
-    description: "Self-attested copies of Master's degree marksheets",
-    mandatory: true
+    name: "Post-Graduation Mark Sheet",
+    description: "Self-attested copies of post-graduation marksheets",
+    mandatory: true,
+    category: "Doctoral Programs"
   },
   {
     id: "doc5",
-    name: "Passport Size Photograph",
-    description: "Recent color photograph with white background (JPEG format)",
-    mandatory: true
+    name: "Recent Passport-Size Colour Photograph",
+    description: "Recent colour photograph (JPEG format)",
+    mandatory: true,
+    category: "Common Documents"
   },
   {
     id: "doc6",
-    name: "Aadhar Card",
-    description: "Clear scanned copy of Aadhar card (both sides)",
-    mandatory: true
+    name: "Aadhaar Card",
+    description: "Clear scanned copy of Aadhaar card (for Indian nationals)",
+    mandatory: true,
+    category: "Common Documents"
   },
   {
     id: "doc7",
-    name: "Passport (If Available)",
-    description: "Scanned copy of passport for international students",
-    mandatory: false
+    name: "APAAR ID",
+    description: "Academic Bank of Credits APAAR ID",
+    mandatory: true,
+    category: "Common Documents"
   },
   {
     id: "doc8",
-    name: "Digital Signature",
-    description: "Scanned signature on white paper (JPG/PNG format)",
-    mandatory: true
+    name: "Valid Passport (International Applicants)",
+    description: "Scanned copy of valid passport for international applicants",
+    mandatory: false,
+    category: "Common Documents"
   },
   {
     id: "doc9",
-    name: "Category Certificate (If Applicable)",
-    description: "SC/ST/OBC certificate for reservation benefits",
-    mandatory: false
-  },
-  {
-    id: "doc10",
-    name: "Sports Certificates (For Sports Quota)",
-    description: "State/National level participation certificates",
-    mandatory: false
+    name: "Digital Signature",
+    description: "Scanned signature on white paper (JPG/PNG format)",
+    mandatory: true,
+    category: "Common Documents"
   }
 ];
 
 export const importantNotes = [
-  "All documents must be in PDF format unless specified otherwise",
-  "File size should not exceed 2MB per document",
-  "Documents should be clear, complete, and readable",
-  "False information may lead to cancellation of admission",
-  "Keep original documents ready for verification during campus visit",
-  "Application fee of ₹1,000 is non-refundable",
-  "Seat booking fee is adjustable against annual fee",
-  "Refund policy follows UGC guidelines",
-  "Scholarship applications reviewed after admission confirmation"
+  "Original documents must be produced for verification at the time of admission",
+  "All admissions processed through online mode only via https://apply.jlu.edu.in",
+  "Application fee of \u20B91,600 is non-refundable",
+  "Application dates: 20th December 2025 – 31st August 2026 (dates may be revised)",
+  "JLUET is mandatory for Law and Design programs",
+  "Admission is provisional until verification of original documents",
+  "The University reserves the right to amend or modify this policy as per UGC regulations",
+  "Any dispute arising out of the admission process shall be subject to the jurisdiction of Bhopal, Madhya Pradesh"
 ];
+
+export const eligibilityCriteria = {
+  undergraduate: {
+    title: "Undergraduate Programs",
+    criteria: [
+      "Minimum 50% aggregate marks in Class 12 or equivalent examination from a recognized board",
+      "Admission based on merit, followed by Personal Interview and/or JLUET, wherever applicable",
+      "JLUET is mandatory for Law and Design programs",
+    ]
+  },
+  postgraduate: {
+    title: "Postgraduate Programs",
+    criteria: [
+      "Minimum 50% aggregate marks in Graduation from a UGC-recognized university",
+      "Admission based on merit, followed by JLUET and Personal Interview",
+      "Eligibility criteria may vary for specific programs as per statutory council norms",
+    ]
+  }
+};

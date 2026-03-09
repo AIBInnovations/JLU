@@ -6,10 +6,10 @@ import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion'
 import { useState, useRef, useEffect } from 'react';
 import { useIsMobile } from '../hooks/useIsMobile';
 import { courseFees, searchCourses } from '../data/courseFees';
-import { admissionSteps, requiredDocuments } from '../data/admissionProcedure';
+import { admissionSteps, requiredDocuments, eligibilityCriteria } from '../data/admissionProcedure';
 import { allScholarships, scholarshipApplicationProcess } from '../data/scholarships';
 import { hostelFees, commonFacilities, messFees } from '../data/accommodation';
-import { ugcRefundPolicy, feeCategories, refundProcess, importantConditions } from '../data/refundPolicy';
+import { ugcRefundPolicy, refundProcess, importantConditions } from '../data/refundPolicy';
 
 const academicPaths = [
   {
@@ -248,38 +248,42 @@ const financialOptions = [
     title: 'Refund Policy',
     description: 'Transparent and student-friendly.',
     modalContent: {
-      heading: 'Fee Refund Policy',
-      intro: 'JLU follows a transparent and student-friendly refund policy in accordance with UGC guidelines.',
+      heading: 'Fee Refund Policy – 2026',
+      intro: 'JLU follows the UGC Notification of 2018 which provides a five-tier system for refund of fees based on the formally notified last date of admission.',
       sections: [
         {
-          title: 'Refund Timeline',
+          title: 'UGC Five-Tier Refund System',
           points: [
-            'Before admission: 100% refund (less processing fee)',
-            'Within 15 days of admission: 90% refund',
-            'Within 30 days of admission: 80% refund',
-            'After 30 days: No refund applicable',
+            'More than 15 days before formally notified last date of admission: 100% refund',
+            'Less than 15 days before formally notified last date of admission: 90% refund',
+            'Less than 15 days after formally notified last date of admission: 80% refund',
+            'More than 15 days but less than 30 days after formally notified last date: 50% refund',
+            'More than 30 days after formally notified last date of admission: No refund',
           ],
         },
         {
-          title: 'Refund Process',
+          title: 'Procedure for Seeking a Refund',
           points: [
-            'Submit written application to Admissions Office',
-            'Attach original fee receipts and ID card',
-            'Refund processed within 15 working days',
-            'Amount credited to original payment source',
+            'Send a refund request to admission@jlu.edu.in with your name, programme, and application number',
+            'Receive and complete the refund application form within 7 working days',
+            'Applicants may undergo an exit interview (informational only)',
+            'Refund processed within 15 working days from receipt of completed form',
+            'Any grievance regarding refunds must be sent to fee.info@jlu.edu.in',
           ],
         },
         {
-          title: 'Special Cases',
+          title: 'Additional Deductions & Notes',
           points: [
-            'Medical emergencies: Case-by-case consideration',
-            'Visa rejection for international programs: Full refund',
-            'Transfer to another JLU program: Fee adjustment',
+            'Processing charges: Rs. 5,000/- deducted before refund payout',
+            'Caution Money refunded in full irrespective of withdrawal date',
+            'Student blazer set must be returned or Rs. 2,500/- will be deducted',
+            'All requests must be received by 5 p.m. on the last deadline in each tier',
+            'Any communication from UGC may have an overriding effect on this policy',
           ],
         },
       ],
       cta: 'Download Full Policy',
-      ctaHref: '/broucher/Fee-Structure2025.pdf',
+      ctaHref: '/broucher/Fee-Refund-Policy-2026.pdf',
       isDownload: true,
     },
   },
@@ -359,17 +363,17 @@ const faqData = [
   {
     id: 15,
     question: 'What is the refund policy?',
-    answer: 'JLU follows UGC refund guidelines: 100% refund before class commencement (minus ₹1,000 processing fee), 90% within 15 days, 80% within 16-30 days, 50% within 31-45 days, and no refund after 45 days from commencement date.',
+    answer: 'JLU follows the UGC five-tier refund system based on the formally notified last date of admission: 100% refund if withdrawal is more than 15 days before, 90% if less than 15 days before, 80% if less than 15 days after, 50% if 15–30 days after, and no refund if more than 30 days after. Processing charges of Rs. 5,000/- are deducted before payout. Caution Money is refunded in full irrespective of withdrawal date.',
   },
   {
     id: 16,
     question: 'Which fees are non-refundable?',
-    answer: 'Application fee (₹1,000) and admission charges are completely non-refundable. Caution money and hostel security deposit are fully refundable upon course completion or withdrawal (subject to no damage). Other fees follow UGC refund policy.',
+    answer: 'Application fee of ₹1,600/- is non-refundable. Processing charges of Rs. 5,000/- are deducted from refund payouts. If the official student blazer set has been issued and not returned, Rs. 2,500/- will also be deducted. Caution Money is fully refundable irrespective of the date of withdrawal.',
   },
   {
     id: 17,
     question: 'How long does the refund process take?',
-    answer: 'Refund processing takes approximately 30 working days after approval from competent authority. You need to submit a written request with original receipts and obtain No Dues Certificate from all departments.',
+    answer: 'From the receipt of the completed refund application form, all refund requests take at least 15 working days to process. Send your request to admission@jlu.edu.in, complete the refund application form within 7 working days of receiving it, and the refund will be processed. Any grievance regarding refunds must be sent to fee.info@jlu.edu.in.',
   },
   {
     id: 18,
@@ -1743,7 +1747,7 @@ const Admissions = () => {
               {/* Download Button */}
               <div className="hidden lg:block mt-auto pt-8">
                 <a
-                  href="/broucher/Fee-Structure2025.pdf"
+                  href="/broucher/Fee-Structure-2026-27.pdf"
                   download="JLU-Fee-Structure-2025.pdf"
                   className="w-full flex items-center justify-center gap-2 px-5 py-4 border border-[#f0c14b] text-[#f0c14b] rounded-xl font-medium transition-all duration-300 text-sm cursor-pointer no-underline"
                 >
@@ -1862,11 +1866,42 @@ const Admissions = () => {
                       className="text-[#21313c] font-semibold mb-2"
                       style={{ fontSize: 'clamp(1.5rem, 3vw, 2rem)' }}
                     >
-                      Admission Procedure
+                      Admission Policy and Procedures
                     </h3>
-                    <p className="text-[#666] text-sm mb-10">
-                      Follow these steps to complete your admission at JLU.
+                    <p className="text-[#666] text-sm mb-4" style={{ lineHeight: 1.7 }}>
+                      (In accordance with University Grants Commission (UGC) Regulations and Guidelines)
                     </p>
+                    <p className="text-[#666] text-sm mb-4" style={{ lineHeight: 1.7 }}>
+                      Jagran Lakecity University (JLU), Bhopal follows a transparent, merit-based, and inclusive admission process in compliance with the norms and regulations prescribed by the University Grants Commission (UGC) and other statutory bodies, as applicable from time to time.
+                    </p>
+
+                    {/* Application Schedule */}
+                    <div className="bg-white rounded-xl p-5 mb-6">
+                      <h4 className="text-[#21313c] font-semibold text-base mb-3">Application Schedule</h4>
+                      <ul className="space-y-2">
+                        <li className="text-[#666] text-sm flex items-start gap-2">
+                          <span className="w-1.5 h-1.5 bg-[#03463B] rounded-full mt-1.5 shrink-0" />
+                          <span><strong>Commencement of Online Applications:</strong> 20th December 2025</span>
+                        </li>
+                        <li className="text-[#666] text-sm flex items-start gap-2">
+                          <span className="w-1.5 h-1.5 bg-[#03463B] rounded-full mt-1.5 shrink-0" />
+                          <span><strong>Last Date for Submission:</strong> 31st August 2026</span>
+                        </li>
+                        <li className="text-[#999] text-xs flex items-start gap-2 mt-1">
+                          <span className="w-1 h-1 bg-gray-400 rounded-full mt-1.5 shrink-0" />
+                          Dates may be revised by the University as per academic or regulatory requirements
+                        </li>
+                      </ul>
+                    </div>
+
+                    <div className="bg-white rounded-xl p-5 mb-8">
+                      <h4 className="text-[#21313c] font-semibold text-base mb-2">Mode of Application</h4>
+                      <p className="text-[#666] text-sm" style={{ lineHeight: 1.7 }}>
+                        All admissions at Jagran Lakecity University shall be processed through <strong>online mode only</strong>, unless otherwise notified. Apply through: <a href="https://apply.jlu.edu.in" target="_blank" rel="noopener noreferrer" className="text-[#03463B] font-semibold underline">apply.jlu.edu.in</a>
+                      </p>
+                    </div>
+
+                    <h4 className="text-[#21313c] font-semibold text-lg mb-4">Admission Procedure</h4>
 
                     {/* Scroll-driven Timeline
                          Layout: circle=32px, line=2px centered in circle
@@ -1953,18 +1988,65 @@ const Admissions = () => {
 
                     {/* Required Documents */}
                     <div className="mt-12 bg-white rounded-xl p-6">
-                      <h4 className="text-[#21313c] font-semibold text-lg mb-4">Required Documents</h4>
-                      <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-                        {requiredDocuments.map((doc) => (
-                          <div key={doc.id} className="flex items-start gap-2 text-sm">
-                            <span className={`w-1.5 h-1.5 rounded-full mt-1.5 shrink-0 ${doc.mandatory ? 'bg-red-500' : 'bg-gray-400'}`} />
-                            <div>
-                              <span className="text-[#21313c] font-medium">{doc.name}</span>
-                              {!doc.mandatory && <span className="text-[#999] text-xs ml-1">(if applicable)</span>}
+                      <h4 className="text-[#21313c] font-semibold text-lg mb-4">Mandatory Documents</h4>
+                      {['Undergraduate Programs', 'Postgraduate Programs', 'Doctoral Programs', 'Common Documents'].map((category) => {
+                        const docs = requiredDocuments.filter((d) => d.category === category);
+                        if (docs.length === 0) return null;
+                        return (
+                          <div key={category} className="mb-4 last:mb-0">
+                            <p className="text-[#21313c] font-medium text-sm mb-2">{category}:</p>
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-2 ml-2">
+                              {docs.map((doc) => (
+                                <div key={doc.id} className="flex items-start gap-2 text-sm">
+                                  <span className={`w-1.5 h-1.5 rounded-full mt-1.5 shrink-0 ${doc.mandatory ? 'bg-[#03463B]' : 'bg-gray-400'}`} />
+                                  <div>
+                                    <span className="text-[#21313c] font-medium">{doc.name}</span>
+                                    {!doc.mandatory && <span className="text-[#999] text-xs ml-1">(if applicable)</span>}
+                                  </div>
+                                </div>
+                              ))}
                             </div>
                           </div>
-                        ))}
-                      </div>
+                        );
+                      })}
+                      <p className="text-[#999] text-xs mt-4 italic">Original documents must be produced for verification at the time of admission.</p>
+                    </div>
+
+                    {/* Eligibility Criteria */}
+                    <div className="mt-8 bg-white rounded-xl p-6">
+                      <h4 className="text-[#21313c] font-semibold text-lg mb-4">Eligibility Criteria</h4>
+                      {Object.values(eligibilityCriteria).map((cat) => (
+                        <div key={cat.title} className="mb-4 last:mb-0">
+                          <p className="text-[#21313c] font-medium text-sm mb-2">{cat.title}:</p>
+                          <ul className="space-y-1.5 ml-2">
+                            {cat.criteria.map((c, i) => (
+                              <li key={i} className="text-[#666] text-sm flex items-start gap-2">
+                                <span className="w-1.5 h-1.5 bg-[#03463B] rounded-full mt-1.5 shrink-0" />
+                                {c}
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+                      ))}
+                    </div>
+
+                    {/* General Provisions */}
+                    <div className="mt-8 bg-white rounded-xl p-6">
+                      <h4 className="text-[#21313c] font-semibold text-lg mb-3">General Provisions</h4>
+                      <ul className="space-y-2">
+                        <li className="text-[#666] text-xs flex items-start gap-2">
+                          <span className="w-1.5 h-1.5 bg-[#03463B] rounded-full mt-1.5 shrink-0" />
+                          Admission shall be provisional until verification of original documents.
+                        </li>
+                        <li className="text-[#666] text-xs flex items-start gap-2">
+                          <span className="w-1.5 h-1.5 bg-[#03463B] rounded-full mt-1.5 shrink-0" />
+                          The University reserves the right to amend, modify, or withdraw any part of this policy in accordance with UGC regulations or institutional requirements.
+                        </li>
+                        <li className="text-[#666] text-xs flex items-start gap-2">
+                          <span className="w-1.5 h-1.5 bg-[#03463B] rounded-full mt-1.5 shrink-0" />
+                          Any dispute arising out of the admission process shall be subject to the jurisdiction of Bhopal, Madhya Pradesh.
+                        </li>
+                      </ul>
                     </div>
                   </motion.div>
                 )}
@@ -2036,33 +2118,59 @@ const Admissions = () => {
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.35 }}
                   >
-                    <h3 className="text-[#21313c] font-semibold mb-2" style={{ fontSize: 'clamp(1.5rem, 3vw, 2rem)' }}>Fee Refund Policy</h3>
-                    <p className="text-[#666] text-sm mb-8">JLU follows UGC guidelines for fee refunds. Complete transparency in all fee-related matters.</p>
+                    <h3 className="text-[#21313c] font-semibold mb-2" style={{ fontSize: 'clamp(1.5rem, 3vw, 2rem)' }}>Fee Refund Policy – 2026</h3>
+                    <p className="text-[#666] text-sm mb-4" style={{ lineHeight: 1.7 }}>
+                      The scope of this document is to define the fee refund rules for the New Batch 2026. The University Grants Commission has issued a Notification on Refund of Fees and Non-Retention of Original Certificates effective from October 2018.
+                    </p>
+                    <p className="text-[#666] text-sm mb-8" style={{ lineHeight: 1.7 }}>
+                      From Year 2020 onwards, the UGC formally notifies the last date of admission (i.e. cutoff date) and it is binding on the University to comply with such dates. The UGC Notification of 2018 provides a five-tier system for refund of fees as follows:
+                    </p>
 
                     <div className="overflow-x-auto rounded-xl bg-white mb-8">
                       <table className="w-full">
                         <thead className="bg-[#21313c] text-white">
                           <tr>
-                            <th className="px-4 py-3 text-left text-xs font-semibold">Timeline</th>
-                            <th className="px-4 py-3 text-left text-xs font-semibold">Condition</th>
-                            <th className="px-4 py-3 text-center text-xs font-semibold">Refund</th>
-                            <th className="px-4 py-3 text-center text-xs font-semibold">Deduction</th>
+                            <th className="px-4 py-3 text-left text-xs font-semibold">S.No</th>
+                            <th className="px-4 py-3 text-left text-xs font-semibold">Point of Time When Notice of Withdrawal is Served</th>
+                            <th className="px-4 py-3 text-center text-xs font-semibold">% Refund of Aggregate Fee*</th>
                           </tr>
                         </thead>
                         <tbody>
-                          {ugcRefundPolicy.map((slab) => (
+                          {ugcRefundPolicy.map((slab, index) => (
                             <tr key={slab.id} className="border-b border-gray-100">
-                              <td className="px-4 py-3 text-sm text-[#21313c] font-medium">{slab.timeline}</td>
+                              <td className="px-4 py-3 text-sm text-[#21313c] font-medium">{index + 1}</td>
                               <td className="px-4 py-3 text-xs text-[#666]">{slab.condition}</td>
                               <td className="px-4 py-3 text-sm text-[#03463B] font-bold text-center">{slab.refundPercentage}%</td>
-                              <td className="px-4 py-3 text-sm text-red-600 font-bold text-center">{slab.deductionPercentage}%</td>
                             </tr>
                           ))}
                         </tbody>
                       </table>
                     </div>
 
-                    <h4 className="text-[#21313c] font-semibold text-lg mb-4">Refund Process</h4>
+                    {/* Asterisk Note */}
+                    <div className="bg-white rounded-xl p-5 mb-8">
+                      <p className="text-[#666] text-xs" style={{ lineHeight: 1.7 }}>
+                        <strong>* Aggregate Fee</strong> includes all amounts collected from the student including Caution Money. Caution money will be refunded in full irrespective of the date on which application of withdrawal is received.
+                      </p>
+                      <div className="mt-3 space-y-2">
+                        <p className="text-[#666] text-xs" style={{ lineHeight: 1.7 }}>
+                          <strong>Processing charges:</strong> Rs. 5,000/- to be deducted from the amounts received before the refund payout is processed. However, notwithstanding this policy, any communication from UGC may have an overriding effect.
+                        </p>
+                        <p className="text-[#666] text-xs" style={{ lineHeight: 1.7 }}>
+                          <strong>Student Uniform set:</strong> In case the student has been issued the official student blazer set, the student will be liable to return the same, else deduction of Rs. 2,500/- will be applicable from the amounts received before the refund payout is processed.
+                        </p>
+                      </div>
+                    </div>
+
+                    {/* Exception Handling */}
+                    <div className="bg-white rounded-xl p-5 mb-8">
+                      <h4 className="text-[#21313c] font-semibold text-base mb-2">Exception Handling</h4>
+                      <p className="text-[#666] text-sm" style={{ lineHeight: 1.7 }}>
+                        In exceptional circumstances, JLU may admit students after the formally notified last date of admission. In such cases, the refund policy will stay the same as the table above, where the formally notified last date of admission for such students shall be the individual date on which they have been admitted.
+                      </p>
+                    </div>
+
+                    <h4 className="text-[#21313c] font-semibold text-lg mb-4">Procedure for Seeking a Refund</h4>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-3 mb-8">
                       {refundProcess.map((p) => (
                         <div key={p.step} className="flex items-start gap-3 bg-white rounded-xl p-4">
@@ -2075,25 +2183,10 @@ const Admissions = () => {
                       ))}
                     </div>
 
-                    <h4 className="text-[#21313c] font-semibold text-lg mb-4">Fee Categories</h4>
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-3 mb-8">
-                      {feeCategories.map((cat) => (
-                        <div key={cat.id} className="bg-white rounded-xl p-4">
-                          <div className="flex items-center justify-between mb-1">
-                            <h5 className="text-[#21313c] font-medium text-sm">{cat.category}</h5>
-                            <span className={`text-xs font-semibold px-2 py-0.5 rounded-full ${cat.refundable ? 'bg-green-100 text-green-700' : 'bg-red-100 text-red-700'}`}>
-                              {cat.refundable ? 'Refundable' : 'Non-refundable'}
-                            </span>
-                          </div>
-                          {cat.notes && <p className="text-[#666] text-xs">{cat.notes}</p>}
-                        </div>
-                      ))}
-                    </div>
-
                     <div className="bg-white rounded-xl p-6">
-                      <h4 className="text-[#21313c] font-semibold text-lg mb-3">Important Conditions</h4>
+                      <h4 className="text-[#21313c] font-semibold text-lg mb-3">Important Notes</h4>
                       <ul className="space-y-2">
-                        {importantConditions.slice(0, 8).map((c, i) => (
+                        {importantConditions.map((c, i) => (
                           <li key={i} className="text-[#666] text-xs flex items-start gap-2">
                             <span className="w-1.5 h-1.5 bg-[#03463B] rounded-full mt-1.5 shrink-0" />
                             {c}
@@ -2483,11 +2576,7 @@ const Admissions = () => {
               transition={{ duration: 0.6 }}
               viewport={{ once: true }}
               className="relative shrink-0 overflow-hidden group cursor-pointer w-full lg:w-145 h-72 md:h-96 lg:h-145"
-              onClick={() => setCampusModal({
-                title: 'Experience JLU Before You Decide',
-                image: '/interdisciplinary/campus-drone.jpg',
-                description: 'Jagran Lakecity University\'s sprawling campus is designed to inspire learning and creativity. Spread across a lush green landscape, the campus features state-of-the-art academic blocks, modern laboratories, a well-stocked central library, open-air amphitheatres, sports facilities, and dedicated spaces for student clubs and activities. Take a virtual tour or book a campus visit to experience the vibrant atmosphere that makes JLU a place where students thrive.',
-              })}
+              onClick={() => setIsTourModalOpen(true)}
             >
               <motion.div
                 className="absolute inset-0"
@@ -2577,12 +2666,8 @@ const Admissions = () => {
                   transition={{ duration: 0.6, delay: 0.3 }}
                   viewport={{ once: true }}
                   className="relative overflow-hidden group cursor-pointer flex-1 h-40 md:h-48 lg:h-50"
-                  onClick={() => setCampusModal({
-                    title: 'Student Clubs & Activities',
-                    image: '/interdisciplinary/campus-event.jpg',
-                    description: 'JLU offers a vibrant ecosystem of student-led clubs spanning technology, arts, literature, entrepreneurship, social service, and more. From robotics and coding clubs to theatre, music, and debate societies — there\'s a community for every passion. These clubs organise workshops, competitions, cultural fests, and inter-university events throughout the year, helping students develop leadership, teamwork, and creative skills beyond the classroom.',
-                  })}
                 >
+                  <Link href="/student-clubs" className="absolute inset-0 z-10" />
                   <motion.div
                     className="absolute inset-0"
                     whileHover={{ scale: 1.05 }}
@@ -2609,12 +2694,8 @@ const Admissions = () => {
                   transition={{ duration: 0.6, delay: 0.4 }}
                   viewport={{ once: true }}
                   className="relative overflow-hidden group cursor-pointer flex-1 h-40 md:h-48 lg:h-50"
-                  onClick={() => setCampusModal({
-                    title: 'On-Campus Accommodation',
-                    image: '/campus/hostel.jpg',
-                    description: 'JLU provides comfortable and secure on-campus hostel facilities for both boys and girls. The hostels feature furnished rooms, 24/7 Wi-Fi, common rooms with recreational facilities, hygienic mess with nutritious meals, laundry services, and round-the-clock security with CCTV surveillance. Living on campus fosters a sense of community and gives students easy access to the library, labs, and all campus amenities.',
-                  })}
                 >
+                  <Link href="/campus-life" className="absolute inset-0 z-10" />
                   <motion.div
                     className="absolute inset-0"
                     whileHover={{ scale: 1.05 }}

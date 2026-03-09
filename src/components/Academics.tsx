@@ -444,7 +444,7 @@ const Academics = () => {
               className="text-[#666] text-sm md:text-base max-w-full md:max-w-[380px]"
               style={{ lineHeight: 1.7 }}
             >
-              51+ programs across 7 faculties, designed to shape future-ready professionals with industry-relevant skills.
+              52+ programs across 7 faculties, designed to shape future-ready professionals with industry-relevant skills.
             </p>
           </motion.div>
 
@@ -454,21 +454,21 @@ const Academics = () => {
               {
                 label: 'Undergraduate',
                 tag: 'UG',
-                count: '34',
+                count: '29',
                 image: '/interdisciplinary/campus-students.jpg',
                 color: '#c3fd7a',
               },
               {
                 label: 'Postgraduate',
                 tag: 'PG',
-                count: '13',
+                count: '10',
                 image: '/interdisciplinary/library.jpg',
                 color: '#f0c14b',
               },
               {
                 label: 'Doctoral',
                 tag: 'PhD',
-                count: '1',
+                count: '10',
                 image: '/interdisciplinary/lab.jpg',
                 color: '#8bc34a',
               },
@@ -1430,7 +1430,7 @@ const Academics = () => {
                     </svg>
                   </Link>
                   <a
-                    href="/broucher/Fee-Structure2025.pdf"
+                    href="/broucher/Fee-Structure-2026-27.pdf"
                     download
                     target="_blank"
                     rel="noopener noreferrer"

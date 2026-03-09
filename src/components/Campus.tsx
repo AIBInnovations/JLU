@@ -36,9 +36,9 @@ const campusStats = [
   { number: '125', suffix: '+', label: 'Smart Classrooms' },
   { number: '50', suffix: '+', label: 'Specialized Labs' },
   { number: '28,000', suffix: '', label: 'sq. ft. Library' },
-  { number: '8', suffix: '', label: 'Food Outlets' },
+  { number: '6', suffix: '', label: 'Food Outlets' },
   { number: '6', suffix: '', label: 'Auditoriums' },
-  { number: '350', suffix: '+', label: 'Hostel Capacity' },
+  { number: '400', suffix: '+', label: 'Hostel Capacity' },
 ];
 
 // Infrastructure Items for Accordion
@@ -62,17 +62,17 @@ const infrastructureItems = [
   {
     id: 2,
     label: 'Student Accommodation',
-    description: 'Modern 3-block hostel with 14 floors offering comfortable residential spaces.',
+    description: 'Modern 4-block hostel (A, B, C & D) offering comfortable and secure living environment.',
     image: '/campus/hostel.jpg',
     details: {
-      overview: 'Our modern 3-block hostel with 14 floors provides a home away from home, with single, double, and triple occupancy options, 24/7 security, and amenities that support both study and relaxation.',
+      overview: 'Our modern 4-block hostel (A, B, C & D) provides students with a comfortable and secure living environment, truly offering a home away from home. The hostels offer single, double, and triple occupancy options, along with facilities that support both academic focus and relaxation.',
       features: [
         'Single, double & triple occupancy options',
-        'Wi-Fi enabled rooms across all blocks',
-        '24/7 security and CCTV surveillance',
-        'Common rooms, laundry, and recreation areas',
+        'Wi-Fi enabled rooms across all hostel blocks',
+        '24/7 security with CCTV surveillance',
+        'Common rooms, laundry, and recreation areas for students',
       ],
-      highlight: '3-block hostel with 14 floors and warden supervision',
+      highlight: '4-block hostel (A, B, C & D) with warden supervision',
     },
   },
   {
@@ -88,7 +88,7 @@ const infrastructureItems = [
         'Hygienic food preparation standards',
         'Vegetarian and non-vegetarian options daily',
       ],
-      highlight: '8 on-campus food outlets serving students and faculty',
+      highlight: '6 on-campus food outlets serving students and faculty',
     },
   },
 ];
@@ -289,18 +289,18 @@ const infrastructureModalData: FacilityData[] = [
     title: 'Student Accommodation',
     category: 'Campus Infrastructure',
     image: '/campus/hostel.jpg',
-    description: 'Our modern 3-block hostel with 14 floors provides a home away from home, with single, double, and triple occupancy options, 24/7 security, and amenities that support both study and relaxation.',
+    description: 'Our modern 4-block hostel (A, B, C & D) provides students with a comfortable and secure living environment, truly offering a home away from home. The hostels offer single, double, and triple occupancy options, along with facilities that support both academic focus and relaxation.',
     features: [
       'Single, double & triple occupancy options',
-      'Wi-Fi enabled rooms across all blocks',
-      '24/7 security and CCTV surveillance',
-      'Common rooms, laundry, and recreation areas',
+      'Wi-Fi enabled rooms across all hostel blocks',
+      '24/7 security with CCTV surveillance',
+      'Common rooms, laundry, and recreation areas for students',
       'In-house mess and dining facilities',
     ],
     stats: [
-      { label: 'Hostel Blocks', value: '3' },
+      { label: 'Hostel Blocks', value: '4' },
       { label: 'Floors', value: '14' },
-      { label: 'Capacity', value: '350+' },
+      { label: 'Capacity', value: '400+' },
     ],
   },
   {
@@ -317,7 +317,7 @@ const infrastructureModalData: FacilityData[] = [
       'Cafeterias in every academic block',
     ],
     stats: [
-      { label: 'Food Outlets', value: '8' },
+      { label: 'Food Outlets', value: '6' },
       { label: 'Mess Capacity', value: '180' },
       { label: 'Cuisines', value: '5+' },
     ],

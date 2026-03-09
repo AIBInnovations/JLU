@@ -37,7 +37,7 @@ export const CtaBanner = () => {
               Apply Now
             </a>
             <a
-              href="/broucher/Fee-Structure2025.pdf"
+              href="/broucher/Fee-Structure-2026-27.pdf"
               download
               target="_blank"
               rel="noopener noreferrer"

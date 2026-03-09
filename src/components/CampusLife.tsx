@@ -28,24 +28,46 @@ const staggerItem = {
   },
 };
 
-// ─── Student Council Data ───
+// ─── Student Council 2025 Data ───
 const councilLeaders = [
-  { role: 'Champion', name: 'Arshwinder Singh', program: 'BBA', image: '/campus/gallery-5.jpg' },
-  { role: 'Co-Champion', name: 'Samay Arora', program: 'BA Psychology Hons.', image: '/campus/gallery-6.jpg' },
-  { role: 'Co-Champion', name: 'Simran Behl', program: 'BAJMC', image: '/campus/gallery-4.jpg' },
+  { role: 'Champion', name: 'Ms. Oshel Sachdeva', program: 'MBA AD & PR', image: '/campus/gallery-5.jpg' },
+  { role: 'Co-Champion', name: 'Ms. Areeba Khan', program: 'BA Hons. Psychology', image: '/campus/gallery-6.jpg' },
+  { role: 'Co-Champion', name: 'Ms. Sejal Patel', program: 'BBA', image: '/campus/gallery-4.jpg' },
+];
+
+const houseCaptains = [
+  { house: 'Sharks', name: 'Ms. Jumana Hussain', position: 'Captain', program: 'BA Hons. Psychology' },
+  { house: 'Sharks', name: 'Mr. Tanmay Abhyankar', position: 'Vice-Captain', program: 'B. Des Animation Film and Design' },
+  { house: 'Lions', name: 'Mr. Joyson Tirkey', position: 'Captain', program: 'MA Physical Education' },
+  { house: 'Lions', name: 'Ms. Ishika Takhtani', position: 'Vice-Captain', program: 'BCA' },
+  { house: 'Stallions', name: 'Mr. Lakshya Shukla', position: 'Captain', program: 'MBA' },
+  { house: 'Stallions', name: 'Ms. Shrashti Maurya', position: 'Vice-Captain', program: 'MBA' },
+  { house: 'Hawks', name: 'Ms. Nupur Shrivastava', position: 'Captain', program: 'BMS' },
+  { house: 'Hawks', name: 'Ms. Khushi Varshney', position: 'Vice-Captain', program: 'BCA' },
 ];
 
 const councilClubs = [
-  { name: 'Lakecity News', secretary: 'Naureen Khan', program: 'BA Psychology V' },
-  { name: 'Literary Club', secretary: 'Richa Adwani', program: 'BBA LLB V' },
-  { name: 'Sports & Adventure Club', secretary: 'Rahul Dukhande', program: 'BBA 5th Sem' },
-  { name: 'MUN & Debating Society', secretary: 'Anushka Sahay', program: 'BMS 5th Sem' },
-  { name: 'Dance Club', secretary: 'Shruti Bonde', program: 'BAJMC V' },
-  { name: 'Dramatics Club', secretary: 'Nupur Bhatt', program: 'BA.LLB 7th Sem' },
-  { name: 'Music Club', secretary: 'Jharna Raina', program: 'BAJMC V' },
-  { name: 'Start-up & Entrepreneurship Club', secretary: 'Manas Chaturvedi', program: 'BMS 5th Sem' },
-  { name: 'Community Service Club', secretary: 'Aditi Jain', program: 'BAPS V' },
-  { name: 'Photography Club', secretary: 'TBD', program: '' },
+  { name: 'Cultural Club', secretary: 'Mr. Aaryan Baheti', deputySecretary: 'Ms. Lovely Motiyani', program: 'BMS', deputyProgram: 'BBA Events and Entertainment' },
+  { name: 'Community Service Club', secretary: 'Ms. Amna Aslam', deputySecretary: 'Ms. Aliza Khan', program: 'BA Liberal Studies', deputyProgram: 'BA Psychology' },
+  { name: 'MUN & Debating Club', secretary: 'Ms. Mavia Hasan', deputySecretary: 'Ms. Tamanna Shrivastava', program: 'BAJMC', deputyProgram: 'BAJMC' },
+  { name: 'Industry & Entrepreneurship Club', secretary: 'Ms. Mihika Sharma', deputySecretary: 'Mr. Lakshay Saxena', program: 'BCA Hons. Data Science', deputyProgram: 'BMS' },
+  { name: 'Photography Club', secretary: 'Mr. Atharv Joshi', deputySecretary: 'Mr. Dikshant Chaudhary', program: 'BCA Hons. UX', deputyProgram: 'BBA' },
+  { name: 'Sports Club', secretary: 'Mr. Samar Dwivedi', deputySecretary: 'Ms. Harshita Sharma', program: 'BA LLB Hons.', deputyProgram: 'BPES' },
+];
+
+const editorialBoard = [
+  { name: 'Rishika Bajaj', role: 'Editor in Chief', program: 'BA Hons. Psychology' },
+  { name: 'Anshita Jhanjhot', role: 'Editor in Chief', program: 'B. Design UX' },
+];
+
+const hostelRepresentatives = [
+  { name: 'Mr. Vansh Gabra', program: 'BA LLB 5th Year' },
+  { name: 'Ms. Amrita Solanki', program: 'BBA LLB 4th Year' },
+];
+
+const internationalClub = [
+  { name: 'Amalia Awene', role: 'Secretary', program: 'BA LLB 5th Year' },
+  { name: 'Luise Calomba', role: 'Deputy Secretary', program: 'BBA LLB 4th Year' },
 ];
 
 // ─── Student Clubs Data ───
@@ -542,12 +564,41 @@ const CampusLife = () => {
             ))}
           </motion.div>
 
-          {/* Club Secretaries Grid */}
+          {/* House Captains & Vice-Captains */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, ease: customEase }}
             viewport={{ once: true }}
+            className="mb-16"
+            style={isMobile ? { marginBottom: '24px' } : {}}
+          >
+            <h3 className="text-[#21313c] text-xl md:text-2xl font-semibold mb-8" style={{ letterSpacing: '-0.02em', ...(isMobile ? { fontSize: '16px', marginBottom: '16px' } : {}) }}>
+              House Captains & Vice-Captains
+            </h3>
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-5">
+              {['Sharks', 'Lions', 'Stallions', 'Hawks'].map((house) => (
+                <div key={house} className="border border-[#e5e5e5] rounded-xl p-4 md:p-5 hover:border-[#f0c14b] hover:shadow-sm transition-all duration-300">
+                  <h4 className="text-[#21313c] font-semibold text-sm md:text-base mb-3" style={isMobile ? { fontSize: '13px', marginBottom: '8px' } : {}}>{house}</h4>
+                  {houseCaptains.filter(c => c.house === house).map((member, j) => (
+                    <div key={j} className={j > 0 ? 'mt-2 pt-2 border-t border-[#f0f0f0]' : ''}>
+                      <p className="text-[#21313c] text-xs md:text-sm font-medium" style={isMobile ? { fontSize: '10px' } : {}}>{member.name}</p>
+                      <p className="text-[#999] text-[10px] md:text-xs">{member.position} · {member.program}</p>
+                    </div>
+                  ))}
+                </div>
+              ))}
+            </div>
+          </motion.div>
+
+          {/* Club Leadership */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, ease: customEase }}
+            viewport={{ once: true }}
+            className="mb-16"
+            style={isMobile ? { marginBottom: '24px' } : {}}
           >
             <h3 className="text-[#21313c] text-xl md:text-2xl font-semibold mb-8" style={{ letterSpacing: '-0.02em', ...(isMobile ? { fontSize: '16px', marginBottom: '16px' } : {}) }}>
               Club Leadership
@@ -559,7 +610,6 @@ const CampusLife = () => {
                 WebkitMaskImage: 'linear-gradient(to right, transparent, black 8%, black 92%, transparent)',
               }}
             >
-              {/* Marquee track */}
               <motion.div
                 className="flex gap-4"
                 animate={{ x: ['0%', '-50%'] }}
@@ -570,15 +620,61 @@ const CampusLife = () => {
                   <div
                     key={i}
                     className="shrink-0 border border-[#e5e5e5] rounded-xl px-5 py-4 hover:border-[#f0c14b] hover:shadow-sm transition-all duration-300"
-                    style={{ minWidth: isMobile ? '200px' : '260px', ...(isMobile ? { padding: '8px 12px' } : {}) }}
+                    style={{ minWidth: isMobile ? '220px' : '280px', ...(isMobile ? { padding: '8px 12px' } : {}) }}
                   >
-                    <h4 className="text-[#21313c] font-medium text-sm md:text-base mb-1 whitespace-nowrap" style={isMobile ? { fontSize: '12px' } : {}}>{club.name}</h4>
+                    <h4 className="text-[#21313c] font-medium text-sm md:text-base mb-2 whitespace-nowrap" style={isMobile ? { fontSize: '12px' } : {}}>{club.name}</h4>
                     <p className="text-[#999] text-xs md:text-sm whitespace-nowrap" style={isMobile ? { fontSize: '10px' } : {}}>
-                      Secretary: {club.secretary}{club.program ? ` (${club.program})` : ''}
+                      Secretary: {club.secretary} ({club.program})
+                    </p>
+                    <p className="text-[#999] text-xs md:text-sm whitespace-nowrap" style={isMobile ? { fontSize: '10px' } : {}}>
+                      Dy. Secretary: {club.deputySecretary} ({club.deputyProgram})
                     </p>
                   </div>
                 ))}
               </motion.div>
+            </div>
+          </motion.div>
+
+          {/* Editorial Board, Hostel Representatives & International Club */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, ease: customEase }}
+            viewport={{ once: true }}
+          >
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6">
+              {/* Editorial Board */}
+              <div className="border border-[#e5e5e5] rounded-xl p-5 md:p-6 hover:border-[#f0c14b] hover:shadow-sm transition-all duration-300">
+                <h4 className="text-[#21313c] font-semibold text-sm md:text-base mb-4" style={isMobile ? { fontSize: '13px', marginBottom: '10px' } : {}}>Editorial Board</h4>
+                {editorialBoard.map((member, i) => (
+                  <div key={i} className={i > 0 ? 'mt-3 pt-3 border-t border-[#f0f0f0]' : ''}>
+                    <p className="text-[#21313c] text-xs md:text-sm font-medium" style={isMobile ? { fontSize: '11px' } : {}}>{member.name}</p>
+                    <p className="text-[#999] text-[10px] md:text-xs">{member.role} · {member.program}</p>
+                  </div>
+                ))}
+              </div>
+
+              {/* Hostel Representatives */}
+              <div className="border border-[#e5e5e5] rounded-xl p-5 md:p-6 hover:border-[#f0c14b] hover:shadow-sm transition-all duration-300">
+                <h4 className="text-[#21313c] font-semibold text-sm md:text-base mb-4" style={isMobile ? { fontSize: '13px', marginBottom: '10px' } : {}}>Hostel Representatives</h4>
+                {hostelRepresentatives.map((member, i) => (
+                  <div key={i} className={i > 0 ? 'mt-3 pt-3 border-t border-[#f0f0f0]' : ''}>
+                    <p className="text-[#21313c] text-xs md:text-sm font-medium" style={isMobile ? { fontSize: '11px' } : {}}>{member.name}</p>
+                    <p className="text-[#999] text-[10px] md:text-xs">{member.program}</p>
+                  </div>
+                ))}
+              </div>
+
+              {/* International Club */}
+              <div className="border border-[#e5e5e5] rounded-xl p-5 md:p-6 hover:border-[#f0c14b] hover:shadow-sm transition-all duration-300">
+                <h4 className="text-[#21313c] font-semibold text-sm md:text-base mb-4" style={isMobile ? { fontSize: '13px', marginBottom: '10px' } : {}}>International Club</h4>
+                {internationalClub.map((member, i) => (
+                  <div key={i} className={i > 0 ? 'mt-3 pt-3 border-t border-[#f0f0f0]' : ''}>
+                    <p className="text-[#21313c] text-xs md:text-sm font-medium" style={isMobile ? { fontSize: '11px' } : {}}>{member.name}</p>
+                    <p className="text-[#999] text-[10px] md:text-xs">{member.role} · {member.program}</p>
+                  </div>
+                ))}
+              </div>
             </div>
           </motion.div>
         </div>

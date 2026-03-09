@@ -72,8 +72,9 @@ export const Footer = () => {
 
           {/* Contact Info */}
           <div className="mb-4">
-            <a href="mailto:info@jlu.edu.in" className="text-lg font-light mb-1 text-[#d4e4a0] block hover:text-white transition-colors">info@jlu.edu.in</a>
-            <a href="tel:+441273704200" className="text-lg font-light mb-2 text-[#d4e4a0] block hover:text-white transition-colors">+44(0)1273 704 200</a>
+            <a href="mailto:admission@jlu.edu.in" className="text-lg font-light mb-1 text-[#d4e4a0] block hover:text-white transition-colors">admission@jlu.edu.in</a>
+            <a href="tel:+917471110101" className="text-lg font-light mb-1 text-[#d4e4a0] block hover:text-white transition-colors">7471110101</a>
+            <a href="tel:+917471110103" className="text-lg font-light mb-2 text-[#d4e4a0] block hover:text-white transition-colors">7471110103</a>
             <address className="not-italic text-gray-300 text-xs leading-relaxed">
               Jagran Lakecity University,
               <br />
@@ -204,8 +205,9 @@ export const Footer = () => {
             <div className="flex justify-between mb-8 flex-1">
               {/* Left - Contact Info */}
               <div>
-                <a href="mailto:info@jlu.edu.in" className="text-3xl lg:text-4xl font-light mb-2 text-[#d4e4a0] block hover:text-white transition-colors">info@jlu.edu.in</a>
-                <a href="tel:+441273704200" className="text-3xl lg:text-4xl font-light mb-6 text-[#d4e4a0] block hover:text-white transition-colors">+44(0)1273 704 200</a>
+                <a href="mailto:admission@jlu.edu.in" className="text-3xl lg:text-4xl font-light mb-2 text-[#d4e4a0] block hover:text-white transition-colors">admission@jlu.edu.in</a>
+                <a href="tel:+917471110101" className="text-3xl lg:text-4xl font-light mb-2 text-[#d4e4a0] block hover:text-white transition-colors">7471110101</a>
+                <a href="tel:+917471110103" className="text-3xl lg:text-4xl font-light mb-6 text-[#d4e4a0] block hover:text-white transition-colors">7471110103</a>
                 <address className="not-italic text-gray-300 text-sm leading-relaxed mb-4">
                   Jagran Lakecity University,
                   <br />

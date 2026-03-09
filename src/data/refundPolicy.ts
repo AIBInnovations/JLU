@@ -18,196 +18,155 @@ export interface RefundCategory {
 export const ugcRefundPolicy: RefundSlab[] = [
   {
     id: "slab1",
-    timeline: "Before Commencement of Classes",
-    condition: "Cancellation request submitted before the announced date of commencement of classes",
+    timeline: "More than 15 days before last date",
+    condition: "Notice of withdrawal served more than 15 days before the formally notified last date of admission",
     refundPercentage: 100,
     deductionPercentage: 0,
-    description: "Full refund of fees paid (except processing charges of ₹1,000)"
+    description: "100% refund of aggregate fee"
   },
   {
     id: "slab2",
-    timeline: "Within 15 Days of Commencement",
-    condition: "Cancellation request submitted within 15 days from the announced date of commencement of classes",
+    timeline: "Less than 15 days before last date",
+    condition: "Notice of withdrawal served less than 15 days before the formally notified last date of admission",
     refundPercentage: 90,
     deductionPercentage: 10,
-    description: "90% of fees will be refunded (10% deduction for processing)"
+    description: "90% refund of aggregate fee"
   },
   {
     id: "slab3",
-    timeline: "Within 16 to 30 Days",
-    condition: "Cancellation request submitted between 16-30 days from the announced date of commencement of classes",
+    timeline: "Less than 15 days after last date",
+    condition: "Notice of withdrawal served less than 15 days after the formally notified last date of admission",
     refundPercentage: 80,
     deductionPercentage: 20,
-    description: "80% of fees will be refunded (20% deduction)"
+    description: "80% refund of aggregate fee"
   },
   {
     id: "slab4",
-    timeline: "Within 31 to 45 Days",
-    condition: "Cancellation request submitted between 31-45 days from the announced date of commencement of classes",
+    timeline: "15–30 days after last date",
+    condition: "Notice of withdrawal served more than 15 days but less than 30 days after the formally notified last date of admission",
     refundPercentage: 50,
     deductionPercentage: 50,
-    description: "50% of fees will be refunded (50% deduction)"
+    description: "50% refund of aggregate fee"
   },
   {
     id: "slab5",
-    timeline: "After 45 Days",
-    condition: "Cancellation request submitted after 45 days from the announced date of commencement of classes",
+    timeline: "More than 30 days after last date",
+    condition: "Notice of withdrawal served more than 30 days after the formally notified last date of admission",
     refundPercentage: 0,
     deductionPercentage: 100,
-    description: "No refund will be provided"
+    description: "No refund"
   }
 ];
 
 export const feeCategories: RefundCategory[] = [
   {
-    id: "tuition",
-    category: "Tuition Fees",
-    applicableTo: "Annual tuition fees paid for the program",
+    id: "aggregate",
+    category: "Aggregate Fee",
+    applicableTo: "All amounts collected from the student including Caution Money",
     refundable: true,
-    notes: "Subject to UGC refund policy timeline and deductions"
+    notes: "Subject to UGC refund policy timeline as per table above"
   },
   {
     id: "caution",
     category: "Caution Money",
     applicableTo: "Refundable security deposit",
     refundable: true,
-    notes: "Fully refundable at the time of course completion or withdrawal (no damage to property)"
+    notes: "Refunded in full irrespective of the date of withdrawal application"
   },
   {
-    id: "admission",
-    category: "Admission Charges",
-    applicableTo: "One-time admission processing charges",
+    id: "processing",
+    category: "Processing Charges",
+    applicableTo: "Rs. 5,000/- deducted from amounts received",
     refundable: false,
-    notes: "Non-refundable under any circumstances"
+    notes: "Deducted before the refund payout is processed"
   },
   {
-    id: "application",
-    category: "Application Fee",
-    applicableTo: "Application processing fee (₹1,000)",
+    id: "uniform",
+    category: "Student Uniform Set",
+    applicableTo: "Official student blazer set if issued",
     refundable: false,
-    notes: "Non-refundable - deducted from any refund amount"
-  },
-  {
-    id: "exam",
-    category: "Examination Fees",
-    applicableTo: "Annual examination and assessment charges",
-    refundable: true,
-    notes: "Refundable on pro-rata basis if no examinations attended"
-  },
-  {
-    id: "hostel",
-    category: "Hostel Fees",
-    applicableTo: "Annual hostel accommodation charges",
-    refundable: true,
-    notes: "Refundable as per hostel refund policy on pro-rata basis"
-  },
-  {
-    id: "hostel-deposit",
-    category: "Hostel Security Deposit",
-    applicableTo: "Refundable hostel security deposit (₹10,000)",
-    refundable: true,
-    notes: "Fully refundable if no damage to hostel property"
-  },
-  {
-    id: "mess",
-    category: "Mess Fees",
-    applicableTo: "Annual mess and dining charges",
-    refundable: true,
-    notes: "Refundable on pro-rata basis for unused months"
+    notes: "Return the blazer set or Rs. 2,500/- will be deducted from refund"
   }
 ];
 
 export const refundProcess = [
   {
     step: 1,
-    title: "Submit Written Request",
-    description: "Submit a written refund request to the Admissions Office with reason for withdrawal"
+    title: "Tier Deadline Compliance",
+    description: "All initial requests for refunds must be received by the Office of Admissions and Outreach no later than 5 p.m. on the last deadline in each tier to be processed within that tier."
   },
   {
     step: 2,
-    title: "Attach Required Documents",
-    description: "Attach original fee receipts, admission letter, and ID card with the request"
+    title: "Submit Refund Request",
+    description: "Send a request to admission@jlu.edu.in — this will be treated as a notice of withdrawal and the quantum of refund will be calculated as per the UGC five-tier table. Please include your name, programme, and application number in all communications."
   },
   {
     step: 3,
-    title: "Get No Dues Certificate",
-    description: "Obtain No Dues Certificate from Library, Hostel, Department, and Accounts section"
+    title: "Receive Refund Application Form",
+    description: "Candidates will receive a refund application form and further instructions. Failure to follow the instructions closely and submit the completed refund application form will result in the refund being delayed."
   },
   {
     step: 4,
-    title: "Dean's Approval",
-    description: "Refund request forwarded to Dean for verification and approval"
+    title: "Submit Completed Refund Form",
+    description: "The duly completed refund application form must be sent to admission@jlu.edu.in within 7 (seven) working days of being received by the applicant."
   },
   {
     step: 5,
-    title: "Accounts Processing",
-    description: "Accounts section calculates refundable amount as per UGC guidelines"
+    title: "Exit Interview (If Required)",
+    description: "Applicants for refunds may undergo an exit interview with a member of the Admissions and Outreach staff/faculty prior to their application being processed. This interview is primarily for informational purposes and will in no way impact the status of the refund request unless the applicant rescinds the refund request themselves."
   },
   {
     step: 6,
-    title: "Approval from Competent Authority",
-    description: "Final approval from university competent authority"
+    title: "Refund Processing",
+    description: "From the receipt of the completed refund application form, all refund requests will take at least 15 (fifteen) working days to process."
   },
   {
     step: 7,
-    title: "Refund Disbursement",
-    description: "Refund amount credited to the bank account provided within 30 working days"
+    title: "Grievance Handling",
+    description: "Any grievance regarding refunds under this policy must be sent to fee.info@jlu.edu.in"
   }
 ];
 
 export const importantConditions = [
-  "Refund policy is as per UGC (Prevention of Malpractices and Unfair Practices) Regulations",
-  "Timeline calculated from the announced date of commencement of classes, not admission date",
-  "Original fee receipts mandatory for processing refund request",
-  "No Dues Certificate from all departments required",
-  "Refund processed within 30 working days after approval",
-  "Caution money refunded only if no damage to university/hostel property",
-  "Admission charges and application fee are non-refundable",
-  "In case of cancellation by university, 100% refund provided",
-  "Students must sign refund policy undertaking at the time of admission",
-  "For hostel refund, pro-rata calculation based on months utilized",
-  "Mess fees refund on monthly pro-rata basis for unused period",
-  "Any outstanding dues will be deducted from refund amount",
-  "Refund applicable only to the fee payer (as per original receipt)",
-  "Migration certificate issued only after full settlement of dues"
+  "Scope: This policy defines the fee refund rules for the New Batch 2026",
+  "The UGC Notification of 2018 provides a five-tier system for refund of fees as applicable",
+  "From Year 2020 onwards, UGC formally notifies the last date of admission (cutoff date) which is binding on the University",
+  "Aggregate Fee includes all amounts collected from the student including Caution Money",
+  "Caution Money will be refunded in full irrespective of the date of withdrawal",
+  "Processing charges of Rs. 5,000/- will be deducted before refund payout",
+  "If the student has been issued the official blazer set, it must be returned or Rs. 2,500/- will be deducted",
+  "Any communication from UGC may have an overriding effect on this policy",
+  "All initial refund requests must be received by the Office of Admissions no later than 5 p.m. on the last deadline in each tier",
+  "Failure to submit completed refund application form within 7 working days will result in delay",
+  "Refund requests take at least 15 working days to process from receipt of completed form",
+  "Any grievance regarding refunds must be sent to fee.info@jlu.edu.in"
 ];
 
 export const specialCases = [
   {
-    id: "medical",
-    case: "Medical Emergency",
-    description: "In case of serious medical emergency preventing continuation of studies",
-    policy: "Considered on case-to-case basis with medical certificate from recognized hospital"
+    id: "exception",
+    case: "Exception Handling",
+    description: "Students admitted after the formally notified last date of admission",
+    policy: "Refund policy stays the same — the individual admission date will be considered as the formally notified last date for that student"
   },
   {
-    id: "transfer",
-    case: "Transfer to Other Institution",
-    description: "Student securing admission in other institution",
-    policy: "Standard UGC refund policy applicable - submit transfer/admission proof"
+    id: "deadline",
+    case: "Deadline Compliance",
+    description: "All initial refund requests must be received by 5 p.m. on the last deadline",
+    policy: "Requests received after the tier deadline will be processed in the next applicable tier"
   },
   {
-    id: "academic",
-    case: "Academic Ineligibility",
-    description: "Student found academically ineligible after admission",
-    policy: "Full refund provided if ineligibility due to university error"
-  },
-  {
-    id: "duplicate",
-    case: "Duplicate Payment",
-    description: "Accidental duplicate payment of fees",
-    policy: "Full refund of duplicate amount after verification within 15 days"
-  },
-  {
-    id: "scholarship",
-    case: "Government Scholarship",
-    description: "Student awarded government scholarship after fee payment",
-    policy: "Refund processed after scholarship amount received by university"
+    id: "ugc-override",
+    case: "UGC Override",
+    description: "Any new communication from UGC",
+    policy: "Any communication from UGC may have an overriding effect on this policy"
   }
 ];
 
 export const contactInformation = {
-  department: "Accounts & Finance Department",
-  email: "accounts@jlu.edu.in",
+  department: "Office of Admissions and Outreach",
+  email: "admission@jlu.edu.in",
+  grievanceEmail: "fee.info@jlu.edu.in",
   phone: "+91-755-4982222",
   office: "Administrative Block, Ground Floor",
   timings: "Monday to Friday: 9:00 AM - 5:00 PM",
