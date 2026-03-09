@@ -232,9 +232,6 @@ const MenuOverlay = ({ isOpen, onClose, menuButtonRef }: MenuOverlayProps) => {
   // Get the currently hovered navigation item
   const hoveredNavItem = navigationItems.find(item => item.label === hoveredItem);
 
-  // Get the currently active navigation item (based on current page)
-  const activeNavItem = navigationItems.find(item => isActive(item.href));
-
   const circleSize = isMobile ? 2000 : 1500;
   const buttonWidth = isMobile ? 24 : 168;
   const buttonHeight = isMobile ? 24 : 48;
