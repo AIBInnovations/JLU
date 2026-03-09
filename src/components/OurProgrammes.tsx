@@ -232,8 +232,8 @@ export const OurProgrammes = () => {
             }}
           >
             <img
-              src="/l.jpg"
-              alt="Image 1"
+              src="/interdisciplinary/campus-building.jpg"
+              alt="Campus Building"
               className="w-full h-full object-cover rounded-t-2xl transition-transform duration-500 group-hover:scale-110"
             />
           </div>
@@ -247,8 +247,8 @@ export const OurProgrammes = () => {
             }}
           >
             <img
-              src="/ll.jpg"
-              alt="Image 2"
+              src="/interdisciplinary/campus-drone.jpg"
+              alt="Campus Aerial View"
               className="w-full h-full object-cover rounded-t-2xl transition-transform duration-500 group-hover:scale-110"
             />
           </div>
@@ -261,8 +261,8 @@ export const OurProgrammes = () => {
             }}
           >
             <img
-              src="/lll.jpg"
-              alt="Image 3"
+              src="/campus/smart-classroom.jpg"
+              alt="Smart Classroom"
               className="w-full h-full object-cover rounded-t-2xl transition-transform duration-500 group-hover:scale-110"
             />
           </div>

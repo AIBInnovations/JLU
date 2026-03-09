@@ -45,7 +45,7 @@ export const HorizontalScroll = () => {
     { width: 540, height: 500, mobileWidth: 250, mobileHeight: 260, bg: 'bg-gray-200', hasText: false, isTextCard: false, image: '/student%20council/IMG_7649.JPG' },
     { width: 670, height: 500, mobileWidth: 250, mobileHeight: 260, bg: 'bg-gray-200', hasText: false, isTextCard: false, image: '/JLu%20events/photos/Convocation/DSC_1059.JPG' },
     { width: 540, height: 500, mobileWidth: 200, mobileHeight: 260, bg: 'bg-[#E9D502]', hasText: true, isTextCard: false, stat: '50+', statLabel: 'Degree Programs' },
-    { width: 1320, height: 500, mobileWidth: 320, mobileHeight: 260, bg: 'bg-gray-200', hasText: false, isTextCard: false, image: '/campus/smart-classroom.jpg' },
+    { width: 1320, height: 500, mobileWidth: 320, mobileHeight: 260, bg: 'bg-gray-200', hasText: false, isTextCard: false, image: '/about1.jpg' },
   ];
 
   // Divide cards into 3 rows for mobile (3, 3, 2 distribution)

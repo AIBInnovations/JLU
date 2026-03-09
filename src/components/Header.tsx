@@ -576,6 +576,7 @@ const MenuOverlay = ({ isOpen, onClose, menuButtonRef }: MenuOverlayProps) => {
                     left: '50%',
                     transform: 'translate(-50%, -50%)',
                     backgroundColor: '#03463B',
+                    zIndex: 10,
                   }}
                   aria-label="Close menu"
                 >
@@ -620,7 +621,7 @@ const MenuOverlay = ({ isOpen, onClose, menuButtonRef }: MenuOverlayProps) => {
                     >
                       Navigation
                     </motion.p>
-                    <nav className="flex flex-col gap-2.5">
+                    <nav className="flex flex-col gap-2.5" onMouseLeave={() => setHoveredItem(null)}>
                       {navigationItems.map((item, index) => (
                         <motion.div
                           key={item.label}
@@ -628,7 +629,6 @@ const MenuOverlay = ({ isOpen, onClose, menuButtonRef }: MenuOverlayProps) => {
                           animate={{ opacity: 1, x: 0 }}
                           transition={{ delay: 0.15 + index * 0.05, duration: 0.4 }}
                           onHoverStart={() => setHoveredItem(item.label)}
-                          onHoverEnd={() => setHoveredItem(null)}
                         >
                           <Link
                             href={item.href}
@@ -655,16 +655,11 @@ const MenuOverlay = ({ isOpen, onClose, menuButtonRef }: MenuOverlayProps) => {
                   {/* Right side - Hovered item content + explore more links */}
                   <div className="flex flex-col gap-2.5 pt-8 w-[520px]" style={{ marginLeft: '0px' }}>
                     {/* Sub-content for hovered/active nav item */}
-                    <div className="min-h-70">
-                    <AnimatePresence mode="wait">
+                    <div className="min-h-70 relative">
                       {displayNavItem && (
-                        <motion.div
+                        <div
                           key={displayNavItem.label}
-                          initial={{ opacity: 0, x: 20 }}
-                          animate={{ opacity: 1, x: 0 }}
-                          exit={{ opacity: 0, x: -20 }}
-                          transition={{ duration: 0.25, ease: [0.4, 0, 0.2, 1] }}
-                          className="flex flex-col gap-2"
+                          className="absolute inset-x-0 top-0 flex flex-col gap-2"
                         >
                           <h3 className="text-lg font-semibold text-[#03463B] mb-1">
                             {displayNavItem.label}
@@ -724,13 +719,12 @@ const MenuOverlay = ({ isOpen, onClose, menuButtonRef }: MenuOverlayProps) => {
                               );
                             })
                           ) : null}
-                        </motion.div>
+                        </div>
                       )}
-                    </AnimatePresence>
                     </div>
 
                     {/* Explore More - always visible */}
-                    <div className={`${displayNavItem ? 'mt-4 pt-4 border-t border-gray-200' : ''}`}>
+                    <div className="mt-4 pt-4 border-t border-gray-200">
                       <motion.p
                         initial={{ opacity: 0, y: 5 }}
                         animate={{ opacity: 1, y: 0 }}
@@ -949,7 +943,7 @@ export const Header = () => {
           ease: [0.25, 0.1, 0.25, 1]
         }}
         className="relative flex items-center justify-between px-6 pt-6 sm:px-10 lg:px-16 xl:px-20 2xl:px-32"
-        style={{ zIndex: 60 }}
+        style={{ zIndex: isMenuOpen ? 102 : 60 }}
       >
         {/* Logo on left - bigger */}
         <motion.div
