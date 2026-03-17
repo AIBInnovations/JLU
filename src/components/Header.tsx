@@ -33,13 +33,15 @@ const navigationItems: NavigationItem[] = [
     href: '/about',
     type: 'dropdown',
     sections: [
-      { label: 'Introduction', slug: 'introduction' },
-      { label: 'History & Heritage', slug: 'history' },
-      { label: 'Leadership', slug: 'leadership' },
+      { label: 'About Us', slug: 'introduction' },
       { label: 'Governance', slug: 'governance' },
-      { label: 'Accreditations', slug: 'accreditations' },
-      { label: 'Rankings & Awards', slug: 'rankings' },
+      { label: 'JLU Leadership Structure', slug: 'leadership' },
+      { label: 'Accreditations & Memberships', slug: 'accreditations' },
+      { label: 'University Partnerships', slug: 'university-partnerships' },
       { label: 'Honorary Doctorates', slug: 'honorary-doctorates' },
+      { label: 'JLU Ignited Mind Awards', slug: 'ignited-mind-awards' },
+      { label: 'JLU Staff', slug: 'jlu-staff' },
+      { label: 'Ranking & Awards', slug: 'rankings' },
     ]
   },
   {
@@ -48,26 +50,28 @@ const navigationItems: NavigationItem[] = [
     type: 'megamenu',
     columns: [
       {
-        title: 'Schools & Colleges',
+        title: 'Faculties & Schools',
         items: [
-          'School of Engineering',
-          'School of Business',
-          'School of Law',
-          'School of Liberal Arts',
-          'School of Architecture',
-          'School of Pharmacy',
-          'School of Journalism'
+          'Faculty of Management',
+          'Faculty of Journalism & Social Science',
+          'Faculty of Fashion, Design & Arts',
+          'Faculty of Engineering & Technology',
+          'Faculty of Pharmacy',
+          'Faculty of Law',
+          'IICA - Jagran Centre for Creative Skills',
         ]
       },
       {
-        title: 'Programs Offered',
+        title: 'Schools',
         items: [
-          'Undergraduate Programs',
-          'Postgraduate Programs',
-          'Doctoral Programs',
-          'Certificate Courses',
-          'Online Programs',
-          'Executive Education'
+          'Jagran Lakecity Business School',
+          'Jagran School of Sports Management',
+          'Jagran School of Hospitality & Aviation',
+          'Jagran School of Journalism',
+          'Jagran School of Design',
+          'Jagran School of Architecture',
+          'Jagran School of Engineering',
+          'Jagran School of AI',
         ]
       }
     ]
@@ -77,14 +81,17 @@ const navigationItems: NavigationItem[] = [
     href: '/campus',
     type: 'dropdown',
     sections: [
-      'Infrastructure',
-      'Facilities',
-      'Library',
-      'Laboratories',
-      'Sports Complex',
-      'Student Accommodation',
-      'Dining Services',
-      'Medical Center'
+      { label: 'University Campus', slug: 'university-campus' },
+      { label: 'Student Accommodation', slug: 'student-accommodation' },
+      { label: 'Dining Facilities', slug: 'dining-facilities' },
+      { label: 'Academic Infrastructure', slug: 'academic-infrastructure' },
+      { label: 'Gurudev Gupta Media Studio', slug: 'gurudev-gupta-media-studio' },
+      { label: 'M.S Gill Culinary Studios', slug: 'ms-gill-culinary-studios' },
+      { label: 'Technology Labs', slug: 'technology-labs' },
+      { label: 'Shri Cyril Shroff Moot Court', slug: 'shri-cyril-shroff-moot-court' },
+      { label: 'Sports Facilities', slug: 'sports-facilities' },
+      { label: 'The Pyramid – University Library', slug: 'the-pyramid-university-library' },
+      { label: 'Indoor Multipurpose Hall', slug: 'indoor-multipurpose-hall' },
     ]
   },
   {
@@ -93,33 +100,31 @@ const navigationItems: NavigationItem[] = [
     type: 'megamenu',
     columns: [
       {
-        title: 'Undergraduate Admissions',
+        title: 'Programs',
         items: [
-          'UG Application Process',
-          'Eligibility Criteria',
-          'Entrance Exams',
-          'Important Dates',
-          'UG Programs'
+          'Undergraduate Degree',
+          'Postgraduate Degree',
+          'Research Degree',
+          'Centre for Professional Skills',
+          'JLUx – Young Leadership Program',
         ]
       },
       {
-        title: 'Postgraduate Admissions',
+        title: 'Apply',
         items: [
-          'PG Application Process',
-          'Eligibility Requirements',
-          'Selection Process',
-          'PG Programs',
-          'Research Admissions'
+          'Book Campus Visits',
+          'Application Process',
+          'Admission FAQs',
+          'Online Application Form',
         ]
       },
       {
-        title: 'Support & Resources',
+        title: 'Fee & Support',
         items: [
           'Scholarships',
-          'Financial Aid',
-          'Fee Structure',
-          'Admission FAQs',
-          'Contact Admissions'
+          'Chancellor Freeships',
+          'Education Loan',
+          'Refund Policy',
         ]
       }
     ]
@@ -129,13 +134,10 @@ const navigationItems: NavigationItem[] = [
     href: '/research',
     type: 'dropdown',
     sections: [
-      'Research Centers',
-      'Research Areas',
-      'Publications',
-      'Research Projects',
-      'Innovation Labs',
-      'Collaborations',
-      'Research Funding'
+      { label: 'Publications', slug: 'publications' },
+      { label: 'Patents', slug: 'patents' },
+      { label: 'Funded Projects', slug: 'funded-projects' },
+      { label: 'JLU Research Journal', slug: 'jlu-research-journal' },
     ]
   },
   {
@@ -143,13 +145,12 @@ const navigationItems: NavigationItem[] = [
     href: '/campus-life',
     type: 'dropdown',
     sections: [
-      'Student Clubs',
-      'Cultural Activities',
-      'Sports & Recreation',
-      'Events & Festivals',
-      'Student Council',
-      'Community Service',
-      'Health & Wellness'
+      { label: 'Student Council', slug: 'student-council' },
+      { label: 'Student Clubs', slug: 'student-clubs' },
+      { label: 'Student Achievements', slug: 'student-achievements' },
+      { label: 'Corporate Relations', slug: 'corporate-relations' },
+      { label: 'IgnitoX – Incubation Hub', slug: 'ignitox-incubation-hub' },
+      { label: 'Igniting Mind Lecture Series', slug: 'igniting-mind-lecture-series' },
     ]
   },
   {
@@ -157,12 +158,16 @@ const navigationItems: NavigationItem[] = [
     href: '/international-office',
     type: 'dropdown',
     sections: [
-      'Global Partnerships',
-      'Exchange Programs',
-      'International Students',
-      'Study Abroad',
-      'Visa Assistance',
-      'International Faculty'
+      { label: 'University Partner', slug: 'university-partner' },
+      { label: 'Pathway Programs', slug: 'pathway-programs' },
+      { label: 'Summer Schools', slug: 'summer-schools' },
+      { label: 'International Admissions', slug: 'international-admissions' },
+      { label: 'Student Application Process', slug: 'student-application-process' },
+      { label: 'International FAQ', slug: 'international-faq' },
+      { label: 'Fee Structure', slug: 'fee-structure' },
+      { label: 'Application Form', slug: 'application-form' },
+      { label: 'Immigration & Visa', slug: 'immigration-and-visa' },
+      { label: 'Living in Bhopal', slug: 'living-in-bhopal' },
     ]
   },
   {
@@ -170,12 +175,11 @@ const navigationItems: NavigationItem[] = [
     href: '/news-events',
     type: 'dropdown',
     sections: [
-      'Latest News',
-      'Events Calendar',
-      'Press Releases',
-      'Media Coverage',
-      'Announcements',
-      'Photo Gallery'
+      { label: 'JLU in News', slug: 'jlu-in-news' },
+      { label: 'Photo Gallery', slug: 'photo-gallery' },
+      { label: 'Events Calendar', slug: 'events-calendar' },
+      { label: 'Past Events', slug: 'past-events' },
+      { label: 'Media Kit', slug: 'media-kit' },
     ]
   }
 ];
@@ -234,6 +238,9 @@ const MenuOverlay = ({ isOpen, onClose, menuButtonRef }: MenuOverlayProps) => {
 
   // Get the currently active navigation item (based on current page)
   const activeNavItem = navigationItems.find(item => isActive(item.href));
+
+  // Show hovered item's submenu, or fall back to active page's submenu
+  const displayedNavItem = hoveredNavItem || activeNavItem;
 
   const circleSize = isMobile ? 2000 : 1500;
   const buttonWidth = isMobile ? 24 : 168;
@@ -607,7 +614,7 @@ const MenuOverlay = ({ isOpen, onClose, menuButtonRef }: MenuOverlayProps) => {
                 </motion.button>
 
                 {/* Navigation content */}
-                <div className="flex gap-6" style={{ marginTop: '440px', marginLeft: '-350px', height: '490px' }}>
+                <div className="flex gap-6" style={{ marginTop: '440px', marginLeft: '-350px', height: '490px' }} onMouseLeave={() => setHoveredItem(null)}>
                   {/* Main navigation */}
                   <div className="flex flex-col" style={{ marginLeft: '-120px' }}>
                     <motion.p
@@ -618,7 +625,7 @@ const MenuOverlay = ({ isOpen, onClose, menuButtonRef }: MenuOverlayProps) => {
                     >
                       Navigation
                     </motion.p>
-                    <nav className="flex flex-col gap-2.5" onMouseLeave={() => setHoveredItem(null)}>
+                    <nav className="flex flex-col gap-2.5">
                       {navigationItems.map((item, index) => (
                         <motion.div
                           key={item.label}
@@ -653,15 +660,15 @@ const MenuOverlay = ({ isOpen, onClose, menuButtonRef }: MenuOverlayProps) => {
                   <div className="flex flex-col pt-8 w-130" style={{ marginLeft: '0px' }}>
                     {/* Fixed-height container — always same size to prevent centering shifts */}
                     <div className="min-h-70 relative">
-                      {/* Sub-content: shown when hovering */}
-                      {hoveredNavItem && (
+                      {/* Sub-content: shown when hovering or when on active page */}
+                      {displayedNavItem && (
                         <div className="absolute inset-x-0 top-0 flex flex-col gap-2">
                           <h3 className="text-lg font-semibold text-[#03463B] mb-1">
-                            {hoveredNavItem.label}
+                            {displayedNavItem.label}
                           </h3>
-                          {hoveredNavItem.type === 'megamenu' && hoveredNavItem.columns ? (
+                          {displayedNavItem.type === 'megamenu' && displayedNavItem.columns ? (
                             <div className="flex gap-8">
-                              {hoveredNavItem.columns.map((column) => (
+                              {displayedNavItem.columns.map((column) => (
                                 <div key={column.title} className="flex flex-col gap-2">
                                   <p className="text-sm font-semibold text-[#03463B] mb-1">
                                     {column.title}
@@ -687,7 +694,7 @@ const MenuOverlay = ({ isOpen, onClose, menuButtonRef }: MenuOverlayProps) => {
                                     return (
                                       <button
                                         key={item}
-                                        onClick={() => handleSectionClick(hoveredNavItem.href, slug)}
+                                        onClick={() => handleSectionClick(displayedNavItem.href, slug)}
                                         className="text-sm text-[#03463B]/60 hover:text-[#03463B] cursor-pointer transition-colors block text-left"
                                       >
                                         {item}
@@ -697,8 +704,8 @@ const MenuOverlay = ({ isOpen, onClose, menuButtonRef }: MenuOverlayProps) => {
                                 </div>
                               ))}
                             </div>
-                          ) : hoveredNavItem.sections ? (
-                            hoveredNavItem.sections.map((section) => {
+                          ) : displayedNavItem.sections ? (
+                            displayedNavItem.sections.map((section) => {
                               const label = typeof section === 'string' ? section : section.label;
                               const slug = typeof section === 'string'
                                 ? section.toLowerCase().replace(/\s+/g, '-').replace(/[&]/g, 'and')
@@ -706,7 +713,7 @@ const MenuOverlay = ({ isOpen, onClose, menuButtonRef }: MenuOverlayProps) => {
                               return (
                                 <button
                                   key={label}
-                                  onClick={() => handleSectionClick(hoveredNavItem.href, slug)}
+                                  onClick={() => handleSectionClick(displayedNavItem.href, slug)}
                                   className="text-sm text-[#03463B]/60 hover:text-[#03463B] cursor-pointer transition-colors block text-left"
                                 >
                                   {label}
@@ -717,8 +724,8 @@ const MenuOverlay = ({ isOpen, onClose, menuButtonRef }: MenuOverlayProps) => {
                         </div>
                       )}
 
-                      {/* Explore More: shown when NOT hovering, inside the fixed container */}
-                      {!hoveredNavItem && (
+                      {/* Explore More: shown when no nav item to display */}
+                      {!displayedNavItem && (
                         <div className="absolute inset-x-0 top-0">
                           <p className="text-xs text-gray-500 uppercase tracking-wider mb-3">
                             Explore More
@@ -759,10 +766,10 @@ const MenuOverlay = ({ isOpen, onClose, menuButtonRef }: MenuOverlayProps) => {
                       )}
                     </div>
 
-                    {/* Explore More + Quick Actions below sub-content when hovering */}
-                    {hoveredNavItem && (
+                    {/* Explore More + Quick Actions below sub-content */}
+                    {displayedNavItem && (
                       <>
-                        <div className="mt-4 pt-4 border-t border-gray-200">
+                        <div className="mt-20 pt-4 border-t border-gray-200">
                           <p className="text-xs text-gray-500 uppercase tracking-wider mb-3">
                             Explore More
                           </p>

@@ -678,6 +678,8 @@ const Campus = () => {
       </div>
 
       {/* ===== CAMPUS STATS SECTION ===== */}
+      <div id="university-campus" />
+      <div id="academic-infrastructure" />
       <div id="infrastructure" className="w-full bg-[#f6f7f0] py-16 md:py-24">
         <div className="mx-auto px-5 sm:px-8 md:px-[120px]" style={{ maxWidth: '1440px' }}>
           <motion.div
@@ -731,6 +733,10 @@ const Campus = () => {
       </div>
 
       {/* ===== TECHNOLOGY-BASED CLASSROOMS SECTION ===== */}
+      <div id="technology-labs" />
+      <div id="gurudev-gupta-media-studio" />
+      <div id="ms-gill-culinary-studios" />
+      <div id="shri-cyril-shroff-moot-court" />
       <div id="laboratories" className="w-full bg-white">
         <div className="mx-auto px-5 py-12 sm:px-8 sm:py-16 md:px-[120px] md:py-[140px]" style={{ maxWidth: '1440px' }}>
           <div className="grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-16 items-start">
@@ -978,6 +984,7 @@ const Campus = () => {
 
       {/* ===== CAMPUS INFRASTRUCTURE (Hostel & Dining) SECTION ===== */}
       <div id="student-accommodation" />
+      <div id="dining-facilities" />
       <div id="dining-services" />
       <div id="facilities" className="w-full bg-white">
         <div
@@ -1414,6 +1421,8 @@ const Campus = () => {
       </div>
 
       {/* ===== SPORTS & LEISURE SECTION ===== */}
+      <div id="sports-facilities" />
+      <div id="indoor-multipurpose-hall" />
       <div id="sports-complex" className="w-full bg-[#f6f7f0]">
         <div
           className="mx-auto px-5 py-12 sm:px-8 sm:py-16 md:px-[120px] md:py-[140px]"
@@ -1632,6 +1641,7 @@ const Campus = () => {
       </div>
 
       {/* ===== THE PYRAMID - UNIVERSITY LIBRARY SECTION ===== */}
+      <div id="the-pyramid-university-library" />
       <div id="library" className="w-full bg-white">
         <div
           className="mx-auto px-5 py-12 sm:px-8 sm:py-16 md:px-[120px] md:py-[120px]"

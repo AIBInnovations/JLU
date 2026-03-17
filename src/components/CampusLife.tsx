@@ -809,6 +809,7 @@ const CampusLife = () => {
       {/* ═══════════════════════════════════════════════════════ */}
       {/* 3. STUDENT ACHIEVEMENTS — Image + Accordion Split */}
       {/* ═══════════════════════════════════════════════════════ */}
+      <div id="student-achievements" />
       <div id="cultural-activities" className="w-full bg-white">
         <div className="mx-auto px-5 sm:px-8 md:px-[120px] py-20 md:py-32" style={{ maxWidth: '1440px', ...(isMobile ? { paddingTop: '40px', paddingBottom: '40px' } : {}) }}>
           <motion.div
@@ -1073,6 +1074,7 @@ const CampusLife = () => {
       {/* 4. CORPORATE RELATIONS — Full-width Parallax Banner + Dark Section */}
       {/* ═══════════════════════════════════════════════════════ */}
       {/* Parallax image break */}
+      <div id="corporate-relations" />
       <div id="sports-and-recreation" ref={corpBannerRef} className="relative w-full h-[40vh] md:h-[50vh] overflow-hidden" style={isMobile ? { height: '30vh' } : {}}>
         <motion.div className="absolute inset-0" style={{ y: corpBannerY }}>
           <Image
@@ -1229,6 +1231,7 @@ const CampusLife = () => {
       {/* ═══════════════════════════════════════════════════════ */}
       {/* 5. IgnitoX — INCUBATION HUB with Image */}
       {/* ═══════════════════════════════════════════════════════ */}
+      <div id="ignitox-incubation-hub" />
       <div id="community-service" className="w-full bg-white">
         <div className="mx-auto px-5 sm:px-8 md:px-[120px] py-20 md:py-32" style={{ maxWidth: '1440px', ...(isMobile ? { paddingTop: '40px', paddingBottom: '40px' } : {}) }}>
           <div className="flex flex-col lg:flex-row gap-12 lg:gap-20" style={isMobile ? { gap: '20px' } : {}}>
@@ -1336,6 +1339,7 @@ const CampusLife = () => {
       {/* 6. IGNITING MINDS — Image Banner + Speaker Cards */}
       {/* ═══════════════════════════════════════════════════════ */}
       {/* Full-width parallax image header */}
+      <div id="igniting-mind-lecture-series" />
       <div id="health-and-wellness" ref={ignitingRef} className="relative w-full h-[50vh] md:h-[60vh] overflow-hidden" style={isMobile ? { height: '35vh' } : {}}>
         <motion.div className="absolute inset-0" style={{ y: ignitingY }}>
           <Image

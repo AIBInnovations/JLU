@@ -125,7 +125,47 @@ const RankingAndAwards = () => {
           background: '#f6f7f0',
         }}
       >
-        <div ref={textContentRef} style={{ filter: 'blur(0px)', textAlign: 'center', padding: '0 1rem' }}>
+        <div ref={textContentRef} style={{ filter: 'blur(0px)', textAlign: 'center', padding: '0 1rem', position: 'relative', display: 'flex', alignItems: 'center', justifyContent: 'center', flexDirection: 'column' }}>
+          {/* Circular rotating marquee text */}
+          <div
+            style={{
+              position: 'absolute',
+              width: isMobile ? '320px' : '550px',
+              height: isMobile ? '320px' : '550px',
+              animation: 'ranking-spin 25s linear infinite',
+              pointerEvents: 'none',
+            }}
+          >
+            <svg viewBox="0 0 500 500" style={{ width: '100%', height: '100%' }}>
+              <defs>
+                <path
+                  id="rankingCircle"
+                  d="M 250,250 m -200,0 a 200,200 0 1,1 400,0 a 200,200 0 1,1 -400,0"
+                />
+              </defs>
+              <text
+                style={{
+                  fontSize: '22px',
+                  letterSpacing: '0.35em',
+                  textTransform: 'uppercase',
+                  fill: '#21313c',
+                  opacity: 0.08,
+                  fontWeight: 600,
+                }}
+              >
+                <textPath href="#rankingCircle">
+                  RANKING &amp; AWARDS • RECOGNITION • EXCELLENCE • RANKING &amp; AWARDS • RECOGNITION • EXCELLENCE •
+                </textPath>
+              </text>
+            </svg>
+          </div>
+          <style jsx>{`
+            @keyframes ranking-spin {
+              from { transform: rotate(0deg); }
+              to { transform: rotate(360deg); }
+            }
+          `}</style>
+
           <span
             style={{
               color: '#999',

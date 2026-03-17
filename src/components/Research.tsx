@@ -418,6 +418,7 @@ const Research = () => {
       </div>
 
       {/* Publications Section */}
+      <div id="patents" />
       <div id="publications" className="w-full bg-[#f6f7f0]">
         <div
           className="mx-auto px-5 py-12 md:px-10 md:py-16 lg:px-30 lg:py-20"
@@ -527,6 +528,7 @@ const Research = () => {
       </div>
 
       {/* Latest Publication Section */}
+      <div id="jlu-research-journal" />
       <div id="research-projects" className="w-full bg-white">
         <div
           className="mx-auto px-5 py-12 md:px-10 md:py-16 lg:px-30 lg:py-20"
@@ -709,6 +711,7 @@ const Research = () => {
       </div>
 
       {/* Funded Projects Section */}
+      <div id="funded-projects" />
       <div id="research-funding" className="w-full bg-white">
         <div
           className="mx-auto px-5 py-12 md:px-10 md:py-16 lg:px-30 lg:py-20"

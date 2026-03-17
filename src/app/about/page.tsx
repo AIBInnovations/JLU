@@ -31,7 +31,7 @@ export default function AboutPage() {
       </div>
 
       {/* University Partnerships */}
-      <div id="partnerships">
+      <div id="university-partnerships">
         <UniversityPartnerships />
       </div>
 
@@ -41,12 +41,12 @@ export default function AboutPage() {
       </div>
 
       {/* JLU Ignited Mind Awards */}
-      <div id="awards">
+      <div id="ignited-mind-awards">
         <IgnitedMindAwards />
       </div>
 
       {/* JLU Staff */}
-      <div id="staff">
+      <div id="jlu-staff">
         <JluStaff />
       </div>
 

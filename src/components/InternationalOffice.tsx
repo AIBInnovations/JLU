@@ -893,6 +893,7 @@ const InternationalOffice = () => {
       </div>
 
       {/* Global Partnerships Section */}
+      <div id="university-partner" />
       <div id="global-partnerships" className="w-full bg-white">
         <div
           className="mx-auto px-5 py-16 md:px-10 md:py-20 lg:px-30 lg:py-35"
@@ -1003,6 +1004,8 @@ const InternationalOffice = () => {
       </div>
 
       {/* Foundation & Prep Section */}
+      <div id="pathway-programs" />
+      <div id="summer-schools" />
       <div id="exchange-programs" className="w-full bg-[#f6f7f0]">
         <div
           className="mx-auto px-5 py-16 md:px-10 md:py-20 lg:px-30 lg:py-35"
@@ -1128,6 +1131,9 @@ const InternationalOffice = () => {
       </div>
 
       {/* Summer Schools Section */}
+      <div id="international-admissions" />
+      <div id="student-application-process" />
+      <div id="international-faq" />
       <div id="international-students" className="w-full bg-[#21313c]">
         <div
           className="mx-auto flex flex-col items-center justify-center px-5 py-16 md:px-10 md:py-20 lg:px-30 lg:py-30"
@@ -1188,6 +1194,10 @@ const InternationalOffice = () => {
       </div>
 
       {/* Visa & Immigration Support Section */}
+      <div id="fee-structure" />
+      <div id="application-form" />
+      <div id="immigration-and-visa" />
+      <div id="living-in-bhopal" />
       <div id="visa-assistance" className="w-full bg-white">
         <div
           className="mx-auto px-5 py-16 md:px-10 md:py-20 lg:px-30 lg:py-35"

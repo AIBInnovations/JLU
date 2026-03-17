@@ -195,6 +195,7 @@ const NewsAndEvents = () => {
       </div>
 
       {/* JLU in News Section */}
+      <div id="jlu-in-news" />
       <div id="latest-news" />
       <div id="media-coverage" className="w-full bg-white">
         <div
@@ -625,6 +626,7 @@ const NewsAndEvents = () => {
       </div>
 
       {/* Highlights from past events Section */}
+      <div id="past-events" />
       <div id="press-releases" className="w-full bg-white">
         <div
           className="mx-auto px-5 py-16 md:px-10 md:py-20 lg:px-30 lg:py-35"
@@ -1201,6 +1203,7 @@ const NewsAndEvents = () => {
       </div>
 
       {/* Media resources Section */}
+      <div id="media-kit" />
       <div id="announcements" className="w-full bg-[#f6f7f0]">
         <div
           className="mx-auto flex flex-col lg:flex-row justify-between gap-10 md:gap-12 lg:gap-16 px-5 py-16 md:px-10 md:py-20 lg:px-30 lg:py-35"

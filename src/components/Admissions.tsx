@@ -1399,6 +1399,17 @@ const Admissions = () => {
       {/* ═══════════════════════════════════════════════════════ */}
       {/* THREE-COLUMN SHOWCASE — Programs / Apply / Fee & Support */}
       {/* ═══════════════════════════════════════════════════════ */}
+      <div id="undergraduate-degree" />
+      <div id="postgraduate-degree" />
+      <div id="research-degree" />
+      <div id="centre-for-professional-skills" />
+      <div id="jlux-–-young-leadership-program" />
+      <div id="book-campus-visits" />
+      <div id="application-process" />
+      <div id="online-application-form" />
+      <div id="chancellor-freeships" />
+      <div id="education-loan" />
+      <div id="refund-policy" />
       <div id="ug-application-process" />
       <div id="eligibility-criteria" />
       <div id="entrance-exams" />

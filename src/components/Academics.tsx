@@ -403,6 +403,21 @@ const Academics = () => {
       {/* ═══════════════════════════════════════════════════════════ */}
       {/* PROGRAMS SHOWCASE — Visual category cards linking to /programs */}
       {/* ═══════════════════════════════════════════════════════════ */}
+      <div id="faculty-of-management" />
+      <div id="faculty-of-journalism-and-social-science" />
+      <div id="faculty-of-fashion,-design-and-arts" />
+      <div id="faculty-of-engineering-and-technology" />
+      <div id="faculty-of-pharmacy" />
+      <div id="faculty-of-law" />
+      <div id="iica---jagran-centre-for-creative-skills" />
+      <div id="jagran-lakecity-business-school" />
+      <div id="jagran-school-of-sports-management" />
+      <div id="jagran-school-of-hospitality-and-aviation" />
+      <div id="jagran-school-of-journalism" />
+      <div id="jagran-school-of-design" />
+      <div id="jagran-school-of-architecture" />
+      <div id="jagran-school-of-engineering" />
+      <div id="jagran-school-of-ai" />
       <div id="undergraduate-programs" />
       <div id="postgraduate-programs" />
       <div id="doctoral-programs" />
