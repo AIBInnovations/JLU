@@ -82,11 +82,11 @@ export const VoiceOfJlu = () => {
 
   const voices = [
     { name: 'Priya Sharma', title: 'B.Des II Year', video: '/voices%20of%20jlu/cdc%20reel.mp4' },
-    { name: 'John Doe', title: 'B.Tech I Year', video: '/voices%20of%20jlu/Faiz%20siddiui%20reel.mp4' },
     { name: 'Jane Smith', title: 'MBA II Year', video: '/voices%20of%20jlu/faiza%20reel%20final.mp4' },
-    { name: 'Alex Johnson', title: 'B.Sc III Year', video: '/voices%20of%20jlu/cdc%20reel.mp4' },
-    { name: 'Emily Davis', title: 'B.Com I Year', video: '/voices%20of%20jlu/hospitality%20w%20bgm.mp4' },
     { name: 'Michael Brown', title: 'M.Tech II Year', video: '/voices%20of%20jlu/shubham%20rawat%20cdc%20reel.mp4' },
+    { name: 'John Doe', title: 'B.Tech I Year', video: '/voices%20of%20jlu/Faiz%20siddiui%20reel.mp4' },
+    { name: 'Emily Davis', title: 'B.Com I Year', video: '/voices%20of%20jlu/hospitality%20w%20bgm.mp4' },
+    { name: 'Alex Johnson', title: 'B.Sc III Year', video: '/voices%20of%20jlu/cdc%20reel.mp4' },
     { name: 'Sarah Wilson', title: 'BBA I Year', video: '/voices%20of%20jlu/tanya%20sharma%20cdc%20reel.mp4' },
   ];
 
@@ -349,16 +349,10 @@ export const VoiceOfJlu = () => {
               className="text-2xl md:text-5xl lg:text-6xl text-[#21313c]"
               style={{ fontWeight: 600, lineHeight: 1 }}
             >
-              Our{' '}
-              <span style={{ fontFamily: "'Times New Roman', serif", fontStyle: 'italic' }}>Faculty</span>
+              Leadership{' '}
+              <span style={{ fontFamily: "'Times New Roman', serif", fontStyle: 'italic' }}>Structure</span>
             </h2>
           </div>
-          <span
-            className="text-2xl md:text-5xl lg:text-6xl text-[#21313c]"
-            style={{ fontWeight: 600 }}
-          >
-            2025
-          </span>
         </motion.div>
 
         {/* Faculty Grid */}

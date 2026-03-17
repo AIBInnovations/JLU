@@ -232,6 +232,9 @@ const MenuOverlay = ({ isOpen, onClose, menuButtonRef }: MenuOverlayProps) => {
   // Get the currently hovered navigation item
   const hoveredNavItem = navigationItems.find(item => item.label === hoveredItem);
 
+  // Get the currently active navigation item (based on current page)
+  const activeNavItem = navigationItems.find(item => isActive(item.href));
+
   const circleSize = isMobile ? 2000 : 1500;
   const buttonWidth = isMobile ? 24 : 168;
   const buttonHeight = isMobile ? 24 : 48;
@@ -462,7 +465,7 @@ const MenuOverlay = ({ isOpen, onClose, menuButtonRef }: MenuOverlayProps) => {
                           initial={{ opacity: 0, y: 8 }}
                           animate={{ opacity: 1, y: 0 }}
                           transition={{ delay: 0.95, duration: 0.3 }}
-                          className="bg-[#03463B] text-white font-semibold py-3 px-4 rounded-lg text-sm text-center cursor-pointer"
+                          className="bg-[#027ea1] text-white font-semibold py-3 px-4 rounded-lg text-sm text-center cursor-pointer"
                         >
                           Apply Now
                         </motion.div>
@@ -738,7 +741,7 @@ const MenuOverlay = ({ isOpen, onClose, menuButtonRef }: MenuOverlayProps) => {
                               Quick Actions
                             </p>
                             <div className="flex gap-2">
-                              <Link href="/apply" onClick={onClose} className="bg-[#03463B] text-white font-normal py-2 px-4 rounded-md hover:bg-[#025039] transition-all shadow-sm hover:shadow-md text-center text-xs cursor-pointer whitespace-nowrap">
+                              <Link href="/apply" onClick={onClose} className="bg-[#027ea1] text-white font-normal py-2 px-4 rounded-md hover:bg-[#026a88] transition-all shadow-sm hover:shadow-md text-center text-xs cursor-pointer whitespace-nowrap">
                                 Apply Now
                               </Link>
                               <a
@@ -746,7 +749,7 @@ const MenuOverlay = ({ isOpen, onClose, menuButtonRef }: MenuOverlayProps) => {
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 onClick={onClose}
-                                className="border border-[#03463B] text-[#03463B] font-normal py-2 px-4 rounded-md hover:bg-[#03463B] hover:text-white transition-all text-center text-xs whitespace-nowrap"
+                                className="border border-[#027ea1] text-[#027ea1] font-normal py-2 px-4 rounded-md hover:bg-[#027ea1] hover:text-white transition-all text-center text-xs whitespace-nowrap"
                               >
                                 360° Tour
                               </a>
@@ -781,7 +784,7 @@ const MenuOverlay = ({ isOpen, onClose, menuButtonRef }: MenuOverlayProps) => {
                             Quick Actions
                           </p>
                           <div className="flex gap-2">
-                            <Link href="/apply" onClick={onClose} className="bg-[#03463B] text-white font-normal py-2 px-4 rounded-md hover:bg-[#025039] transition-all shadow-sm hover:shadow-md text-center text-xs cursor-pointer whitespace-nowrap">
+                            <Link href="/apply" onClick={onClose} className="bg-[#027ea1] text-white font-normal py-2 px-4 rounded-md hover:bg-[#026a88] transition-all shadow-sm hover:shadow-md text-center text-xs cursor-pointer whitespace-nowrap">
                               Apply Now
                             </Link>
                             <a
@@ -789,7 +792,7 @@ const MenuOverlay = ({ isOpen, onClose, menuButtonRef }: MenuOverlayProps) => {
                               target="_blank"
                               rel="noopener noreferrer"
                               onClick={onClose}
-                              className="border border-[#03463B] text-[#03463B] font-normal py-2 px-4 rounded-md hover:bg-[#03463B] hover:text-white transition-all text-center text-xs whitespace-nowrap"
+                              className="border border-[#027ea1] text-[#027ea1] font-normal py-2 px-4 rounded-md hover:bg-[#027ea1] hover:text-white transition-all text-center text-xs whitespace-nowrap"
                             >
                               360° Tour
                             </a>
@@ -1027,3 +1030,5 @@ export const Header = () => {
 };
 
 export default Header;
+
+

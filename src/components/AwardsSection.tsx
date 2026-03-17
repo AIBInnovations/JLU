@@ -3,6 +3,8 @@
 import { useEffect, useRef, useState } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import * as THREE from 'three';
+import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
 import { useIsMobile } from '../hooks/useIsMobile';
 
 // Register GSAP plugin
@@ -14,6 +16,7 @@ export const AwardsSection = () => {
   const headerRef = useRef<HTMLDivElement>(null);
   const textContentRef = useRef<HTMLDivElement>(null);
   const middleCardRef = useRef<HTMLDivElement>(null);
+  const orbContainerRef = useRef<HTMLDivElement>(null);
   const [mounted, setMounted] = useState(false);
   const isMobile = useIsMobile();
 
@@ -21,6 +24,224 @@ export const AwardsSection = () => {
   useEffect(() => {
     setMounted(true);
   }, []);
+
+  // Three.js orb — same as PartnersOrb: draggable, responsive, auto-rotate
+  useEffect(() => {
+    if (!mounted) return;
+    const container = orbContainerRef.current;
+    if (!container) return;
+
+    let alive = true;
+    let animationId: number | null = null;
+
+    const labels = [
+      'No. 1 Private University', 'FICCI Speaker', 'IRM Affiliation',
+      '4th in MP', '53rd in India', 'Education World #1',
+      'MP Excellence Award', 'UGC Recognized', 'Top Ranked',
+      'QS Ranked', 'NIRF Ranked', 'Global Partnerships',
+      'Research Excellence', 'Innovation Hub', 'Industry Ready',
+      'Central India First', 'Best Campus', 'Top Faculty',
+    ];
+
+    const totalItems = labels.length;
+    const sphereRadius = 5;
+    const baseWidth = 1.2;
+    const baseHeight = 0.8;
+
+    const scene = new THREE.Scene();
+    const orbGroup = new THREE.Group();
+    orbGroup.position.y = -0.3;
+    scene.add(orbGroup);
+
+    const width = container.clientWidth;
+    const height = container.clientHeight;
+
+    const camera = new THREE.PerspectiveCamera(75, width / height, 0.1, 1000);
+    camera.position.z = 10;
+
+    let renderer: THREE.WebGLRenderer;
+    try {
+      renderer = new THREE.WebGLRenderer({
+        antialias: true,
+        alpha: true,
+        powerPreference: 'high-performance',
+      });
+    } catch {
+      return;
+    }
+
+    renderer.setSize(width, height);
+    renderer.setClearColor(0x000000, 0);
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    renderer.outputColorSpace = THREE.SRGBColorSpace;
+    container.appendChild(renderer.domElement);
+
+    // OrbitControls — draggable, zoomable, auto-rotate (same as PartnersOrb)
+    const controls = new OrbitControls(camera, renderer.domElement);
+    controls.enableDamping = true;
+    controls.dampingFactor = 0.05;
+    controls.rotateSpeed = 0.8;
+    controls.minDistance = 6;
+    controls.maxDistance = 12;
+    controls.enableZoom = true;
+    controls.enablePan = false;
+    controls.autoRotate = true;
+    controls.autoRotateSpeed = 1.5;
+
+    // Rounded rect alpha map
+    const alphaCanvas = document.createElement('canvas');
+    const alphaCtx = alphaCanvas.getContext('2d')!;
+    alphaCanvas.width = 256;
+    alphaCanvas.height = 256;
+    const rr = 20;
+    alphaCtx.beginPath();
+    alphaCtx.moveTo(rr, 0);
+    alphaCtx.lineTo(256 - rr, 0);
+    alphaCtx.quadraticCurveTo(256, 0, 256, rr);
+    alphaCtx.lineTo(256, 256 - rr);
+    alphaCtx.quadraticCurveTo(256, 256, 256 - rr, 256);
+    alphaCtx.lineTo(rr, 256);
+    alphaCtx.quadraticCurveTo(0, 256, 0, 256 - rr);
+    alphaCtx.lineTo(0, rr);
+    alphaCtx.quadraticCurveTo(0, 0, rr, 0);
+    alphaCtx.closePath();
+    alphaCtx.fillStyle = 'white';
+    alphaCtx.fill();
+    const sharedAlphaMap = new THREE.CanvasTexture(alphaCanvas);
+
+    // Create text cards with grey/ocean theme
+    const createCard = (text: string): HTMLCanvasElement => {
+      const c = document.createElement('canvas');
+      c.width = 512;
+      c.height = 320;
+      const cx = c.getContext('2d')!;
+
+      cx.fillStyle = '#ffffff';
+      cx.fillRect(0, 0, 512, 320);
+
+      // Grey-ocean accent bar
+      cx.fillStyle = '#21313c';
+      cx.fillRect(0, 0, 512, 5);
+
+      cx.fillStyle = '#21313c';
+      cx.textAlign = 'center';
+      cx.textBaseline = 'middle';
+
+      if (text.length <= 15) {
+        cx.font = 'bold 40px Inter, Arial, sans-serif';
+        cx.fillText(text, 256, 150);
+      } else {
+        cx.font = 'bold 28px Inter, Arial, sans-serif';
+        const words = text.split(' ');
+        const lines: string[] = [];
+        let line = '';
+        for (const word of words) {
+          const test = line ? `${line} ${word}` : word;
+          if (cx.measureText(test).width > 440) {
+            if (line) lines.push(line);
+            line = word;
+          } else {
+            line = test;
+          }
+        }
+        if (line) lines.push(line);
+        const lh = 38;
+        const startY = 150 - ((lines.length - 1) * lh) / 2;
+        lines.forEach((l, i) => cx.fillText(l, 256, startY + i * lh));
+      }
+
+      cx.fillStyle = '#21313c80';
+      cx.font = '16px Inter, Arial, sans-serif';
+      cx.fillText('RECOGNITION', 256, 275);
+
+      return c;
+    };
+
+    const meshes: THREE.Mesh[] = [];
+
+    for (let i = 0; i < totalItems; i++) {
+      const phi = Math.acos(-1 + (2 * i) / totalItems);
+      const theta = Math.sqrt(totalItems * Math.PI) * phi;
+
+      const cardCanvas = createCard(labels[i]);
+      const texture = new THREE.CanvasTexture(cardCanvas);
+      texture.colorSpace = THREE.SRGBColorSpace;
+      texture.generateMipmaps = true;
+      texture.minFilter = THREE.LinearMipmapLinearFilter;
+      texture.magFilter = THREE.LinearFilter;
+
+      const geometry = new THREE.PlaneGeometry(baseWidth, baseHeight);
+      const material = new THREE.MeshBasicMaterial({
+        map: texture,
+        side: THREE.DoubleSide,
+        transparent: true,
+        alphaMap: sharedAlphaMap,
+        opacity: 0.85,
+        depthWrite: true,
+        depthTest: true,
+      });
+
+      const mesh = new THREE.Mesh(geometry, material);
+      mesh.position.set(
+        sphereRadius * Math.cos(theta) * Math.sin(phi),
+        sphereRadius * Math.sin(theta) * Math.sin(phi),
+        sphereRadius * Math.cos(phi),
+      );
+      mesh.lookAt(new THREE.Vector3(0, 0, 0));
+      mesh.rotateY(Math.PI);
+
+      orbGroup.add(mesh);
+      meshes.push(mesh);
+    }
+
+    const origin = new THREE.Vector3(0, 0, 0);
+    const animate = () => {
+      if (!alive) return;
+      animationId = requestAnimationFrame(animate);
+
+      // Keep cards facing outward
+      meshes.forEach((mesh) => {
+        const worldPos = new THREE.Vector3();
+        mesh.getWorldPosition(worldPos);
+        mesh.lookAt(worldPos.clone().sub(origin).multiplyScalar(2).add(origin));
+      });
+
+      controls.update();
+      renderer.render(scene, camera);
+    };
+    animate();
+
+    // Responsive resize
+    const handleResize = () => {
+      if (!alive || !container) return;
+      const w = container.clientWidth;
+      const h = container.clientHeight;
+      renderer.setSize(w, h);
+      camera.aspect = w / h;
+      camera.updateProjectionMatrix();
+    };
+    window.addEventListener('resize', handleResize);
+
+    return () => {
+      alive = false;
+      if (animationId) cancelAnimationFrame(animationId);
+      window.removeEventListener('resize', handleResize);
+      meshes.forEach((mesh) => {
+        const geo = mesh.geometry;
+        const mat = mesh.material as THREE.MeshBasicMaterial;
+        if (mat.map) mat.map.dispose();
+        mat.dispose();
+        geo.dispose();
+        if (mesh.parent) mesh.parent.remove(mesh);
+      });
+      sharedAlphaMap.dispose();
+      controls.dispose();
+      if (container && renderer.domElement) {
+        try { container.removeChild(renderer.domElement); } catch {}
+      }
+      renderer.dispose();
+    };
+  }, [mounted, isMobile]);
 
   const awards = [
     {
@@ -132,47 +353,63 @@ export const AwardsSection = () => {
           background: '#f6f7f0',
         }}
       >
-        <div ref={textContentRef}>
-          <p
+        <div ref={textContentRef} style={{ position: 'relative', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+          {/* 3D Orb — draggable, responsive */}
+          <div
+            ref={orbContainerRef}
             style={{
-              color: '#999',
-              fontSize: isMobile ? '0.65rem' : '0.75rem',
-              letterSpacing: '0.2em',
-              textTransform: 'uppercase',
-              textAlign: 'center',
-              marginBottom: isMobile ? '0.75rem' : '1rem',
+              position: 'absolute',
+              width: isMobile ? '95vw' : '140vh',
+              height: isMobile ? '95vw' : '140vh',
+              maxWidth: '1800px',
+              maxHeight: '1800px',
+              pointerEvents: 'auto',
+              cursor: 'grab',
             }}
-          >
-            RECOGNITION
-          </p>
-          <h2
-            style={{
-              fontSize: isMobile ? 'clamp(1.5rem, 6vw, 2rem)' : 'clamp(2rem, 5vw, 4rem)',
-              fontWeight: 600,
-              color: '#21313c',
-              textAlign: 'center',
-              lineHeight: 1,
-              padding: '0 1rem',
-            }}
-          >
-            Awards & Achievements
-          </h2>
-          <p
-            style={{
-              color: '#666',
-              fontSize: isMobile ? '0.75rem' : 'clamp(0.75rem, 1vw, 1rem)',
-              textAlign: 'center',
-              marginTop: isMobile ? '1rem' : '2rem',
-              marginLeft: 'auto',
-              marginRight: 'auto',
-              maxWidth: isMobile ? '18rem' : '28rem',
-              padding: '0 1rem',
-              lineHeight: 1.7,
-            }}
-          >
-            Jagran Lakecity University continues to earn accolades across national and international platforms.{' '}
-            <span style={{ color: '#8bc34a' }}>Recognized globally.</span>
-          </p>
+          />
+
+          <div style={{ position: 'relative', zIndex: 1 }}>
+            <p
+              style={{
+                color: '#999',
+                fontSize: isMobile ? '0.65rem' : '0.75rem',
+                letterSpacing: '0.2em',
+                textTransform: 'uppercase',
+                textAlign: 'center',
+                marginBottom: isMobile ? '0.75rem' : '1rem',
+              }}
+            >
+              RECOGNITION
+            </p>
+            <h2
+              style={{
+                fontSize: isMobile ? 'clamp(1.5rem, 6vw, 2rem)' : 'clamp(2rem, 5vw, 4rem)',
+                fontWeight: 600,
+                color: '#21313c',
+                textAlign: 'center',
+                lineHeight: 1,
+                padding: '0 1rem',
+              }}
+            >
+              Awards & Achievements
+            </h2>
+            <p
+              style={{
+                color: '#666',
+                fontSize: isMobile ? '0.75rem' : 'clamp(0.75rem, 1vw, 1rem)',
+                textAlign: 'center',
+                marginTop: isMobile ? '1rem' : '2rem',
+                marginLeft: 'auto',
+                marginRight: 'auto',
+                maxWidth: isMobile ? '18rem' : '28rem',
+                padding: '0 1rem',
+                lineHeight: 1.7,
+              }}
+            >
+              Jagran Lakecity University continues to earn accolades across national and international platforms.{' '}
+              <span style={{ color: '#027fa0' }}>Recognized globally.</span>
+            </p>
+          </div>
         </div>
       </div>
 
@@ -209,7 +446,7 @@ export const AwardsSection = () => {
                     />
                   </div>
                   <div style={{ marginTop: '10px', textAlign: 'center' }}>
-                    <p style={{ color: '#8bc34a', fontSize: '0.6rem', fontWeight: 600, letterSpacing: '0.1em', textTransform: 'uppercase', marginBottom: '4px' }}>{award.year}</p>
+                    <p style={{ color: '#027fa0', fontSize: '0.6rem', fontWeight: 600, letterSpacing: '0.1em', textTransform: 'uppercase', marginBottom: '4px' }}>{award.year}</p>
                     <p style={{ color: '#21313c', fontSize: '0.7rem', fontWeight: 600, lineHeight: 1.3, marginBottom: '6px' }}>
                       {award.title}
                     </p>
@@ -239,7 +476,7 @@ export const AwardsSection = () => {
                   />
                 </div>
                 <div style={{ marginTop: '10px', textAlign: 'center' }}>
-                  <p style={{ color: '#8bc34a', fontSize: '0.6rem', fontWeight: 600, letterSpacing: '0.1em', textTransform: 'uppercase', marginBottom: '4px' }}>{awards[2].year}</p>
+                  <p style={{ color: '#027fa0', fontSize: '0.6rem', fontWeight: 600, letterSpacing: '0.1em', textTransform: 'uppercase', marginBottom: '4px' }}>{awards[2].year}</p>
                   <p style={{ color: '#21313c', fontSize: '0.7rem', fontWeight: 600, lineHeight: 1.3, marginBottom: '6px' }}>
                     {awards[2].title}
                   </p>
@@ -269,7 +506,7 @@ export const AwardsSection = () => {
                     />
                   </div>
                   <div style={{ marginTop: '10px', textAlign: 'center' }}>
-                    <p style={{ color: '#8bc34a', fontSize: '0.6rem', fontWeight: 600, letterSpacing: '0.1em', textTransform: 'uppercase', marginBottom: '4px' }}>{award.year}</p>
+                    <p style={{ color: '#027fa0', fontSize: '0.6rem', fontWeight: 600, letterSpacing: '0.1em', textTransform: 'uppercase', marginBottom: '4px' }}>{award.year}</p>
                     <p style={{ color: '#21313c', fontSize: '0.7rem', fontWeight: 600, lineHeight: 1.3, marginBottom: '6px' }}>
                       {award.title}
                     </p>
@@ -314,7 +551,7 @@ export const AwardsSection = () => {
                 />
               </div>
               <div style={{ marginTop: '12px', textAlign: 'center', maxWidth: 'clamp(166px, 17vw, 400px)' }}>
-                <p style={{ color: '#8bc34a', fontSize: 'clamp(0.6rem, 0.7vw, 0.7rem)', fontWeight: 600, letterSpacing: '0.1em', textTransform: 'uppercase', marginBottom: '6px' }}>{awards[0].year}</p>
+                <p style={{ color: '#027fa0', fontSize: 'clamp(0.6rem, 0.7vw, 0.7rem)', fontWeight: 600, letterSpacing: '0.1em', textTransform: 'uppercase', marginBottom: '6px' }}>{awards[0].year}</p>
                 <p style={{ color: '#21313c', fontSize: 'clamp(0.7rem, 0.85vw, 0.875rem)', fontWeight: 600, lineHeight: 1.3, marginBottom: '8px' }}>
                   {awards[0].title}
                 </p>
@@ -347,7 +584,7 @@ export const AwardsSection = () => {
                 />
               </div>
               <div style={{ marginTop: '12px', textAlign: 'center', maxWidth: 'clamp(166px, 17vw, 400px)' }}>
-                <p style={{ color: '#8bc34a', fontSize: 'clamp(0.6rem, 0.7vw, 0.7rem)', fontWeight: 600, letterSpacing: '0.1em', textTransform: 'uppercase', marginBottom: '6px' }}>{awards[1].year}</p>
+                <p style={{ color: '#027fa0', fontSize: 'clamp(0.6rem, 0.7vw, 0.7rem)', fontWeight: 600, letterSpacing: '0.1em', textTransform: 'uppercase', marginBottom: '6px' }}>{awards[1].year}</p>
                 <p style={{ color: '#21313c', fontSize: 'clamp(0.7rem, 0.85vw, 0.875rem)', fontWeight: 600, lineHeight: 1.3, marginBottom: '8px' }}>
                   {awards[1].title}
                 </p>
@@ -382,7 +619,7 @@ export const AwardsSection = () => {
                 />
               </div>
               <div style={{ marginTop: '12px', textAlign: 'center', maxWidth: 'clamp(166px, 17vw, 400px)' }}>
-                <p style={{ color: '#8bc34a', fontSize: 'clamp(0.6rem, 0.7vw, 0.7rem)', fontWeight: 600, letterSpacing: '0.1em', textTransform: 'uppercase', marginBottom: '6px' }}>{awards[2].year}</p>
+                <p style={{ color: '#027fa0', fontSize: 'clamp(0.6rem, 0.7vw, 0.7rem)', fontWeight: 600, letterSpacing: '0.1em', textTransform: 'uppercase', marginBottom: '6px' }}>{awards[2].year}</p>
                 <p style={{ color: '#21313c', fontSize: 'clamp(0.7rem, 0.85vw, 0.875rem)', fontWeight: 600, lineHeight: 1.3, marginBottom: '8px' }}>
                   {awards[2].title}
                 </p>
@@ -415,7 +652,7 @@ export const AwardsSection = () => {
                 />
               </div>
               <div style={{ marginTop: '12px', textAlign: 'center', maxWidth: 'clamp(166px, 17vw, 400px)' }}>
-                <p style={{ color: '#8bc34a', fontSize: 'clamp(0.6rem, 0.7vw, 0.7rem)', fontWeight: 600, letterSpacing: '0.1em', textTransform: 'uppercase', marginBottom: '6px' }}>{awards[3].year}</p>
+                <p style={{ color: '#027fa0', fontSize: 'clamp(0.6rem, 0.7vw, 0.7rem)', fontWeight: 600, letterSpacing: '0.1em', textTransform: 'uppercase', marginBottom: '6px' }}>{awards[3].year}</p>
                 <p style={{ color: '#21313c', fontSize: 'clamp(0.7rem, 0.85vw, 0.875rem)', fontWeight: 600, lineHeight: 1.3, marginBottom: '8px' }}>
                   {awards[3].title}
                 </p>
@@ -448,7 +685,7 @@ export const AwardsSection = () => {
                 />
               </div>
               <div style={{ marginTop: '12px', textAlign: 'center', maxWidth: 'clamp(166px, 17vw, 400px)' }}>
-                <p style={{ color: '#8bc34a', fontSize: 'clamp(0.6rem, 0.7vw, 0.7rem)', fontWeight: 600, letterSpacing: '0.1em', textTransform: 'uppercase', marginBottom: '6px' }}>{awards[4].year}</p>
+                <p style={{ color: '#027fa0', fontSize: 'clamp(0.6rem, 0.7vw, 0.7rem)', fontWeight: 600, letterSpacing: '0.1em', textTransform: 'uppercase', marginBottom: '6px' }}>{awards[4].year}</p>
                 <p style={{ color: '#21313c', fontSize: 'clamp(0.7rem, 0.85vw, 0.875rem)', fontWeight: 600, lineHeight: 1.3, marginBottom: '8px' }}>
                   {awards[4].title}
                 </p>

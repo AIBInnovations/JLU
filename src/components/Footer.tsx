@@ -28,7 +28,7 @@ export const Footer = () => {
   return (
     <footer
       ref={footerRef}
-      className={`relative bg-[#1a3a3a] text-white overflow-hidden ${isMobile ? 'min-h-screen' : 'h-screen'}`}
+      className={`relative bg-[#027fa0] text-white overflow-hidden ${isMobile ? 'min-h-screen' : 'h-screen'}`}
       style={{ zIndex: 30 }}
     >
       {isMobile ? (
@@ -60,7 +60,7 @@ export const Footer = () => {
             </h2>
             <a
               href="/apply"
-              className="inline-flex items-center gap-2 border border-[#d4e4a0] text-[#d4e4a0] px-4 py-2 text-xs hover:bg-[#d4e4a0] hover:text-[#1a3a3a] transition-colors"
+              className="inline-flex items-center gap-2 border border-[#d4e4a0] text-[#d4e4a0] px-4 py-2 text-xs hover:bg-[#d4e4a0] hover:text-[#027fa0] transition-colors"
             >
               SEND INQUIRY
               <span className="text-base">↗</span>
@@ -142,7 +142,7 @@ export const Footer = () => {
               <span
                 style={{
                   display: 'block',
-                  color: '#d4e4a0',
+                  color: '#ffffff',
                 }}
               >
                 Jagran
@@ -181,7 +181,7 @@ export const Footer = () => {
           </motion.div>
 
           {/* Right - Content */}
-          <div className="flex-1 px-12 xl:px-16 2xl:px-24 pt-8 pb-4 flex flex-col">
+          <div className="flex-1 pl-6 xl:pl-8 2xl:pl-12 pr-12 xl:pr-16 2xl:pr-24 pt-8 pb-4 flex flex-col">
             {/* Header Section */}
             <div className="flex justify-between items-start mb-8">
               <h2 className="text-5xl lg:text-6xl font-normal leading-tight text-[#d4e4a0]">
@@ -191,7 +191,7 @@ export const Footer = () => {
               </h2>
               <a
                 href="/apply"
-                className="inline-flex items-center gap-4 border border-[#d4e4a0] text-[#d4e4a0] px-8 py-4 text-sm hover:bg-[#d4e4a0] hover:text-[#1a3a3a] transition-colors shrink-0 rounded-full mt-4"
+                className="inline-flex items-center gap-4 border border-[#d4e4a0] text-[#d4e4a0] px-8 py-4 text-sm hover:bg-[#d4e4a0] hover:text-[#027fa0] transition-colors shrink-0 rounded-full mt-4"
               >
                 SEND INQUIRY
                 <span className="text-xl">↗</span>
@@ -273,7 +273,7 @@ export const Footer = () => {
 
             {/* Large Jagran Lakecity Text */}
             <motion.div
-              className="-mx-12 mt-auto"
+              className="-ml-6 -mr-12 mt-auto"
               style={{ y: jluY }}
             >
               <h2
@@ -287,7 +287,7 @@ export const Footer = () => {
               >
                 <span
                   style={{
-                    background: 'linear-gradient(to bottom, rgba(212,228,160,1) 0%, rgba(212,228,160,0.6) 50%, rgba(212,228,160,0) 90%)',
+                    background: 'linear-gradient(to bottom, rgba(255,255,255,1) 0%, rgba(255,255,255,0.6) 50%, rgba(255,255,255,0) 90%)',
                     WebkitBackgroundClip: 'text',
                     backgroundClip: 'text',
                     WebkitTextFillColor: 'transparent',

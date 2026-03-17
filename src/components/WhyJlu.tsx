@@ -8,10 +8,27 @@ import { useIsMobile } from '../hooks/useIsMobile';
 // Register GSAP plugin
 gsap.registerPlugin(ScrollTrigger);
 
+// Scattered background images — randomly placed behind the pinned text
+const bgImages = [
+  { src: '/a1.jpeg', top: '8%', left: '5%', width: 130, rotate: -8 },
+  { src: '/ev2.jpg', top: '15%', left: '78%', width: 140, rotate: 6 },
+  { src: '/p2.jpg', top: '55%', left: '8%', width: 120, rotate: 4 },
+  { src: '/jlu-insta2.jpg', top: '62%', left: '82%', width: 135, rotate: -5 },
+  { src: '/posthero1.jpg', top: '30%', left: '88%', width: 110, rotate: 10 },
+  { src: '/e3.jpg', top: '72%', left: '25%', width: 115, rotate: -12 },
+  { src: '/student-clubs.jpg', top: '10%', left: '40%', width: 105, rotate: 3 },
+  { src: '/alumni1.jpg', top: '75%', left: '60%', width: 125, rotate: -7 },
+  { src: '/5th.jpg', top: '38%', left: '2%', width: 120, rotate: 8 },
+  { src: '/success.jpg', top: '45%', left: '72%', width: 110, rotate: -4 },
+  { src: '/comm.jpg', top: '20%', left: '22%', width: 100, rotate: 6 },
+  { src: '/ev4.jpg', top: '80%', left: '45%', width: 115, rotate: -9 },
+];
+
 export const WhyJlu = () => {
   // Refs for GSAP animations
   const wrapperRef = useRef<HTMLDivElement>(null);
   const whyJluRef = useRef<HTMLDivElement>(null);
+  const bgImagesRef = useRef<HTMLDivElement>(null);
   const isMobile = useIsMobile();
   const [mounted, setMounted] = useState(false);
 
@@ -83,10 +100,29 @@ export const WhyJlu = () => {
       pinSpacing: false,
     });
 
+    // Blur only background images as cards scroll up (desktop only)
+    const bgImagesEl = bgImagesRef.current;
+    let blurTrigger: ScrollTrigger | undefined;
+    if (bgImagesEl && !isMobile) {
+      blurTrigger = ScrollTrigger.create({
+        trigger: wrapper,
+        start: '20% top',
+        end: '60% top',
+        onUpdate: (self) => {
+          const progress = Math.min(self.progress * 1.5, 1);
+          const blur = progress * 20;
+          const opacity = 1 - progress * 0.6;
+          bgImagesEl.style.filter = `blur(${blur}px)`;
+          bgImagesEl.style.opacity = `${opacity}`;
+        },
+      });
+    }
+
     // Cleanup
     return () => {
       clearTimeout(timeout);
       whyJluPin.kill();
+      if (blurTrigger) blurTrigger.kill();
       ScrollTrigger.refresh();
     };
   }, [isMobile, mounted]);
@@ -213,7 +249,7 @@ export const WhyJlu = () => {
       ref={wrapperRef}
       style={{
         position: 'relative',
-        height: shouldUseMobileLayout ? 'auto' : '160vh',
+        height: shouldUseMobileLayout ? 'auto' : '140vh',
         minHeight: shouldUseMobileLayout ? '100vh' : 'auto',
         background: 'transparent',
         overflow: 'hidden',
@@ -238,18 +274,53 @@ export const WhyJlu = () => {
             : '#f6f7f0',
         }}
       >
-        <div style={{ textAlign: 'center', padding: '0 1rem' }}>
-          <p
+        {/* Scattered background images (desktop only) */}
+        {!shouldUseMobileLayout && (
+          <div
+            ref={bgImagesRef}
             style={{
-              color: '#999',
-              fontSize: shouldUseMobileLayout ? '0.65rem' : '0.75rem',
-              letterSpacing: '0.2em',
-              textTransform: 'uppercase',
-              marginBottom: shouldUseMobileLayout ? '0.75rem' : '1rem',
+              position: 'absolute',
+              inset: 0,
+              zIndex: 0,
+              pointerEvents: 'none',
+              transition: 'filter 0.1s linear, opacity 0.1s linear',
             }}
           >
-            WHY CHOOSE US
-          </p>
+            {bgImages.map((img, i) => (
+              <div
+                key={i}
+                style={{
+                  position: 'absolute',
+                  top: img.top,
+                  left: img.left,
+                  width: img.width,
+                  transform: `rotate(${img.rotate}deg)`,
+                  borderRadius: '10px',
+                  overflow: 'hidden',
+                  boxShadow: '0 4px 20px rgba(0,0,0,0.08)',
+                  background: '#fff',
+                  padding: '4px',
+                }}
+              >
+                <img
+                  src={img.src}
+                  alt=""
+                  style={{
+                    width: '100%',
+                    height: 'auto',
+                    aspectRatio: '4 / 3',
+                    objectFit: 'cover',
+                    borderRadius: '7px',
+                    display: 'block',
+                  }}
+                  loading="lazy"
+                />
+              </div>
+            ))}
+          </div>
+        )}
+
+        <div style={{ textAlign: 'center', padding: '0 1rem', position: 'relative', zIndex: 1 }}>
           <h1
             style={{
               fontSize: shouldUseMobileLayout ? 'clamp(1.5rem, 6vw, 2.5rem)' : 'clamp(3rem, 8vw, 6rem)',
@@ -308,7 +379,7 @@ export const WhyJlu = () => {
         <div
           style={{
             position: 'absolute',
-            top: '65vh',
+            top: '60vh',
             left: 0,
             width: '100%',
             display: 'flex',
@@ -327,6 +398,7 @@ export const WhyJlu = () => {
               background: 'transparent',
               paddingLeft: 'clamp(8px, 1vw, 12px)',
               paddingRight: 'clamp(8px, 1vw, 12px)',
+              paddingBottom: '120px',
             }}
           >
             {whyJluCards.map((card, index) => renderCard(card, index, index))}

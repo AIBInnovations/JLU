@@ -92,7 +92,7 @@ export const EventsSection = () => {
           <p className="text-sm md:text-[15px] max-w-2xl mx-auto" style={{ color: '#666', lineHeight: 1.7 }}>
             From cultural celebrations to talent showcases, experience the vibrant campus life at Jagran Lakecity University.
           </p>
-          <div className="mx-auto mt-4" style={{ width: '274px', height: '0px', border: '4px solid #B2FF53' }} />
+          <div className="mx-auto mt-4" style={{ width: '274px', height: '0px', border: '4px solid #027fa0' }} />
         </motion.div>
 
         {/* Main Content - Split Layout */}
@@ -122,7 +122,7 @@ export const EventsSection = () => {
               {/* Button positioned inside image */}
               <a
                 href="/events"
-                className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-[#c3fd7a] text-[#21313c] px-4 py-2 md:px-6 md:py-3 rounded-full text-sm font-semibold hover:bg-[#b3ed6a] transition-colors shadow-lg flex items-center justify-center leading-none"
+                className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-[#027fa0] text-white px-4 py-2 md:px-6 md:py-3 rounded-full text-sm font-semibold hover:bg-[#026a88] transition-colors shadow-lg flex items-center justify-center leading-none"
               >
                 View Events
               </a>

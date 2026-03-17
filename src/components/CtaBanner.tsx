@@ -32,7 +32,7 @@ export const CtaBanner = () => {
           <div className="flex flex-col sm:flex-row gap-3">
             <a
               href="/apply"
-              className="bg-[#21313c] text-white px-8 py-3.5 rounded-lg font-semibold text-sm hover:bg-[#1a2630] transition-all text-center"
+              className="bg-[#027ea1] text-white px-8 py-3.5 rounded-lg font-semibold text-sm hover:bg-[#026a88] transition-all text-center"
             >
               Apply Now
             </a>
@@ -41,7 +41,7 @@ export const CtaBanner = () => {
               download
               target="_blank"
               rel="noopener noreferrer"
-              className="border-2 border-[#21313c] text-[#21313c] px-8 py-3.5 rounded-lg font-semibold text-sm hover:bg-[#21313c] hover:text-white transition-all text-center"
+              className="border-2 border-[#027ea1] text-[#027ea1] px-8 py-3.5 rounded-lg font-semibold text-sm hover:bg-[#027ea1] hover:text-white transition-all text-center"
             >
               Download Brochure
             </a>

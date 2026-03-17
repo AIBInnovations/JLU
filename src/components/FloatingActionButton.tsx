@@ -180,7 +180,7 @@ export const FloatingActionButton = ({ onEnquireClick }: FloatingActionButtonPro
     >
       {/* Panel that expands to the left - separate from button */}
       <motion.div
-        className="absolute right-0 bg-[#1a3a3a] shadow-xl overflow-hidden"
+        className="absolute right-0 bg-[#027ea1] shadow-xl overflow-hidden"
         style={{
           borderTopLeftRadius: '20px',
           borderBottomLeftRadius: '20px',
@@ -297,7 +297,7 @@ export const FloatingActionButton = ({ onEnquireClick }: FloatingActionButtonPro
       {/* Button - completely separate, never moves */}
       <button
         onClick={() => setIsExpanded(!isExpanded)}
-        className="relative flex items-center justify-center text-white bg-[#1a3a3a]"
+        className="relative flex items-center justify-center text-white bg-[#027ea1]"
         style={{
           width: buttonWidth,
           height: collapsedHeight,

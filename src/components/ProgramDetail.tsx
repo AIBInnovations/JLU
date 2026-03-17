@@ -524,7 +524,7 @@ export const ProgramDetail = ({ program }: ProgramDetailProps) => {
                   <h3 className="text-white font-semibold mb-3 md:mb-4" style={{ fontSize: isMobile ? '16px' : '18px' }}>Why Choose JLU?</h3>
                   <div className="space-y-2.5 md:space-y-3">
                     {[
-                      { icon: 'M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z', title: 'NAAC A+ Accredited', desc: 'Top-tier academic standards' },
+                      { icon: 'M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z', title: 'QS Diamond Rated', desc: 'Top-tier academic standards' },
                       { icon: 'M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z', title: 'Industry Partnerships', desc: '100+ corporate tie-ups' },
                       { icon: 'M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z', title: 'Global Exposure', desc: 'International partnerships' },
                       { icon: 'M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253', title: 'Research Excellence', desc: '2400+ publications' },

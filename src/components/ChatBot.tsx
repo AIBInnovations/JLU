@@ -19,7 +19,7 @@ interface ChatResponse {
 const chatResponses: ChatResponse[] = [
   {
     keywords: ['hello', 'hi', 'hey', 'good morning', 'good afternoon', 'good evening'],
-    response: 'Hello! Welcome to Jagran Lakecity University, Bhopal - NAAC A+ Accredited & QS Diamond Rated University. How can I help you today? Ask me about admissions, courses, fees, placements, or campus life!',
+    response: 'Hello! Welcome to Jagran Lakecity University, Bhopal - QS Diamond Rated University. How can I help you today? Ask me about admissions, courses, fees, placements, or campus life!',
   },
   {
     keywords: ['admission', 'apply', 'enroll', 'registration', 'join'],
@@ -62,8 +62,8 @@ const chatResponses: ChatResponse[] = [
     response: 'JLU Annual Events:\n\n• Foundation Day Celebration (May 1st)\n• International Festival of Media (March)\n• Lakecity Fest - Cultural extravaganza\n• Technovate - Technical fest\n• Sports Week\n• Literary Festival\n• Convocation Ceremony\n\nRecent: 11th Foundation Day (May 2024), 7th Media Festival (March 2024)\n\nFollow @jlubhopal on Instagram!',
   },
   {
-    keywords: ['ranking', 'naac', 'accreditation', 'rating', 'recognition'],
-    response: 'JLU Rankings & Recognition:\n\n• NAAC A+ Accredited\n• QS I-GAUGE Diamond Rating (First in MP!)\n• NIRF Rank: 151-200 (2024)\n• India Today Rank: #49 Private University\n• University of the Year - MP Govt (2015-2019)\n\nApprovals: UGC, AICTE, BCI, PCI\nMemberships: CII, AIMA, AIU',
+    keywords: ['ranking', 'accreditation', 'rating', 'recognition'],
+    response: 'JLU Rankings & Recognition:\n\n• QS I-GAUGE Diamond Rating (First in MP!)\n• NIRF Rank: 151-200 (2024)\n• India Today Rank: #49 Private University\n• University of the Year - MP Govt (2015-2019)\n\nApprovals: UGC, AICTE, BCI, PCI\nMemberships: CII, AIMA, AIU',
   },
   {
     keywords: ['time', 'timing', 'schedule', 'hours', 'when'],
@@ -168,7 +168,7 @@ export const ChatBot = () => {
       {/* Chat Bubble */}
       <motion.button
         onClick={() => setIsOpen(!isOpen)}
-        className="fixed z-[9000] bg-[#03463B] text-white shadow-xl hover:shadow-2xl transition-shadow flex items-center justify-center"
+        className="fixed z-[9000] bg-[#027ea1] text-white shadow-xl hover:shadow-2xl transition-shadow flex items-center justify-center"
         style={{
           left: '24px',
           bottom: '24px',
@@ -255,7 +255,7 @@ export const ChatBot = () => {
             transition={{ type: 'spring', damping: 25, stiffness: 300 }}
           >
             {/* Header */}
-            <div className="bg-[#03463B] text-white p-4 flex items-center gap-3">
+            <div className="bg-[#027ea1] text-white p-4 flex items-center gap-3">
               <div className="w-10 h-10 bg-white/20 rounded-full flex items-center justify-center">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                   <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
@@ -295,7 +295,7 @@ export const ChatBot = () => {
                     className={`max-w-[80%] p-3 rounded-2xl ${
                       message.isBot
                         ? 'bg-white text-[#21313c] rounded-tl-sm shadow-sm'
-                        : 'bg-[#03463B] text-white rounded-tr-sm'
+                        : 'bg-[#027ea1] text-white rounded-tr-sm'
                     }`}
                     style={{ whiteSpace: 'pre-line' }}
                   >
@@ -341,7 +341,7 @@ export const ChatBot = () => {
                     <button
                       key={question}
                       onClick={() => handleQuickQuestion(question)}
-                      className="text-xs px-3 py-1.5 bg-gray-100 hover:bg-[#03463B] hover:text-white text-[#21313c] rounded-full transition-colors"
+                      className="text-xs px-3 py-1.5 bg-gray-100 hover:bg-[#027ea1] hover:text-white text-[#21313c] rounded-full transition-colors"
                     >
                       {question}
                     </button>
@@ -359,12 +359,12 @@ export const ChatBot = () => {
                   value={inputValue}
                   onChange={(e) => setInputValue(e.target.value)}
                   placeholder="Type your message..."
-                  className="flex-1 px-4 py-2.5 rounded-full border border-gray-200 focus:outline-none focus:border-[#03463B] text-sm"
+                  className="flex-1 px-4 py-2.5 rounded-full border border-gray-200 focus:outline-none focus:border-[#027ea1] text-sm"
                 />
                 <motion.button
                   type="submit"
                   disabled={!inputValue.trim()}
-                  className="w-10 h-10 bg-[#03463B] text-white rounded-full flex items-center justify-center disabled:opacity-50 disabled:cursor-not-allowed"
+                  className="w-10 h-10 bg-[#027ea1] text-white rounded-full flex items-center justify-center disabled:opacity-50 disabled:cursor-not-allowed"
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                 >

@@ -47,7 +47,7 @@ const newsItems: NewsItem[] = [
 ];
 
 const categoryColors: Record<string, string> = {
-  Achievement: '#c3fd7a',
+  Achievement: '#027fa0',
   Event: '#4a90a4',
   Placements: '#f4c950',
   Workshop: '#e85a71',

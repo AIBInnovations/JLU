@@ -65,7 +65,7 @@ export const PartnersSection = () => {
           Global{' '}
           <span style={{ fontFamily: "'Times New Roman', serif", fontStyle: 'italic' }}>Partnerships</span>
         </h2>
-        <div className="mx-auto mt-6" style={{ width: '274px', height: '0px', border: '4px solid #B2FF53' }} />
+        <div className="mx-auto mt-6" style={{ width: '274px', height: '0px', border: '4px solid #027fa0' }} />
       </div>
 
       {isMobile ? (

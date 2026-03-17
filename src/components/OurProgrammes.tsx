@@ -10,7 +10,6 @@ export const OurProgrammes = () => {
     { image: '/p1.jpg', title: 'Undergraduate', subtitle: 'Programmes', width: 461, height: 520, href: '/programs?tab=UG' },
     { image: '/p2.jpg', title: 'Postgraduate', subtitle: 'Programmes', width: 461, height: 520, href: '/programs?tab=PG' },
     { image: '/p3.jpg', title: 'Ph.D.', subtitle: 'Programmes', width: 461, height: 520, href: '/programs?tab=PhD' },
-    { image: '/p4.jpg', title: 'Diplomas &', subtitle: 'Certifications', width: 461, height: 520, href: '/programs?tab=Diploma' },
   ];
 
 
@@ -41,7 +40,7 @@ export const OurProgrammes = () => {
         <p className="text-sm md:text-[15px] max-w-2xl mx-auto" style={{ color: '#666', lineHeight: 1.7 }}>
           Education here resists confinement. It takes shape in studios and libraries, in late conversations and early ideas, through collaboration as much as quiet contemplation.
         </p>
-        <div className="mx-auto mt-6" style={{ width: '274px', height: '0px', border: '4px solid #B2FF53' }} />
+        <div className="mx-auto mt-6" style={{ width: '274px', height: '0px', border: '4px solid #027fa0' }} />
       </motion.div>
 
       {/* Programme Cards */}
@@ -102,9 +101,8 @@ export const OurProgrammes = () => {
             <a
               key={index}
               href={programme.href}
-              className="relative overflow-hidden cursor-pointer group rounded-2xl block"
+              className="relative overflow-hidden cursor-pointer group rounded-2xl block flex-1"
               style={{
-                width: 'clamp(280px, 24vw, 520px)',
                 height: 'clamp(360px, 32vw, 640px)',
               }}
             >
@@ -143,7 +141,7 @@ export const OurProgrammes = () => {
       <div className="flex justify-center mt-4 md:mt-8">
         <a
           href="/programs"
-          className="flex items-center bg-[#c3fd7a] text-[#21313c] rounded-full font-semibold hover:bg-[#b3ed6a] transition-colors"
+          className="flex items-center bg-[#027ea1] text-white rounded-full font-semibold hover:bg-[#026a88] transition-colors"
           style={{
             gap: isMobile ? '6px' : '8px',
             padding: isMobile ? '8px 18px' : '12px 24px',
