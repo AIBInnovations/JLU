@@ -42,7 +42,7 @@ export const Footer = () => {
             }}
           >
             <Image
-              src="https://images.unsplash.com/photo-1562774053-701939374585?w=800&q=80"
+              src="/about1.jpg"
               alt="Jagran Lakecity University Campus"
               fill
               className="object-cover"
@@ -173,7 +173,7 @@ export const Footer = () => {
             }}
           >
             <Image
-              src="https://images.unsplash.com/photo-1562774053-701939374585?w=1200&q=80"
+              src="/about1.jpg"
               alt="Jagran Lakecity University Campus"
               fill
               className="object-cover"

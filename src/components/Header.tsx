@@ -572,7 +572,7 @@ const MenuOverlay = ({ isOpen, onClose, menuButtonRef }: MenuOverlayProps) => {
                     top: '47.6%',
                     left: '50%',
                     transform: 'translate(-50%, -50%)',
-                    backgroundColor: '#03463B',
+                    backgroundColor: '#027fa0',
                     zIndex: 10,
                   }}
                   aria-label="Close menu"
