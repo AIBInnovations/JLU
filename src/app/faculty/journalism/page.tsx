@@ -3,16 +3,16 @@ import { FacultyPage } from '@/components/FacultyPage';
 import { Footer } from '@/components/Footer';
 
 export const metadata: Metadata = {
-  title: 'Faculty of Journalism & Mass Communication | Jagran Lakecity University',
+  title: 'Faculty of Media and Social Sciences | Jagran Lakecity University',
   description: 'BA and MA in Journalism with multimedia storytelling, AI in journalism, and industry internships. Shape the future of media at JLU.',
   keywords: ['JLU journalism', 'mass communication Bhopal', 'media studies', 'journalism course', 'BA journalism'],
 };
 
 const journalismData = {
-  name: 'Faculty of Journalism & Mass Communication',
+  name: 'Faculty of Media and Social Sciences',
   tagline: 'Crafting storytellers and media professionals with cutting-edge digital skills and ethical journalism practices.',
   description: 'Our journalism programs blend traditional storytelling with modern digital media production. Students gain hands-on experience in working newsrooms, develop multimedia skills, and learn to navigate the evolving media landscape. With a curriculum that includes AI in journalism, data storytelling, and media entrepreneurship, we prepare graduates to lead in broadcast, digital, and print media.',
-  heroImage: '/interdisciplinary/jsjc.jpg',
+  heroImage: '/schools/journalism-1.jpg',
   accentColor: '#ffffff',
   programs: [
     { name: 'BA Journalism & Mass Communication', duration: '3 Years | 40 Seats', type: 'undergraduate' as const },

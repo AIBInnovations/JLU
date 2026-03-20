@@ -524,7 +524,7 @@ export default function PlacementPage() {
                   <span className="text-[#f0c14b] text-xl sm:text-2xl md:text-4xl lg:text-5xl font-bold block mb-1" style={{ letterSpacing: '-0.02em' }}>
                     {stat.number}
                   </span>
-                  <span className="text-white/60 text-[10px] sm:text-xs md:text-sm">
+                  <span className="text-white/60 text-xs sm:text-xs md:text-sm">
                     {stat.label}
                   </span>
                 </div>
@@ -662,7 +662,7 @@ export default function PlacementPage() {
                 title: 'Dedicated Training & Development',
                 description: 'Pre-placement training programs including aptitude, technical skills, and professional communication workshops.',
                 image: '/campus/smart-classroom.jpg',
-                accent: '#4a90a4',
+                accent: '#027ea1',
                 darkText: false,
               },
               {

@@ -194,23 +194,37 @@ export const Hero = () => {
           {/* Layer 2: Text - JAGRAN LAKECITY UNIVERSITY (z-index: 2) */}
           <div
             ref={textRef}
-            className="absolute inset-0 flex items-center justify-center"
+            className="absolute inset-0 flex flex-col items-center justify-center"
             style={{
               zIndex: 2,
               paddingBottom: isMobile ? '50%' : '20%',
               opacity: 0,
             }}
           >
+            {/* Central India's Global University - single line on top */}
+            <p
+              className="text-center uppercase tracking-widest select-none"
+              style={{
+                fontFamily: 'Inter, sans-serif',
+                fontSize: isMobile ? 'clamp(0.85rem, 3.5vw, 1.1rem)' : 'clamp(1.2rem, 1.6vw, 2rem)',
+                fontWeight: 500,
+                color: 'rgba(255,255,255,0.85)',
+                letterSpacing: '0.25em',
+                marginBottom: isMobile ? '4px' : '8px',
+                whiteSpace: 'nowrap',
+              }}
+            >
+              Central India&apos;s Global University
+            </p>
             <h1
               className="text-center font-bold uppercase tracking-wider select-none"
               style={{
                 fontFamily: "'Humane', sans-serif",
-                fontSize: isMobile ? 'clamp(7rem, 30vw, 12rem)' : 'clamp(18rem, 24vw, 24rem)',
-                lineHeight: isMobile ? 1.0 : 1.1,
+                fontSize: isMobile ? 'clamp(6rem, 26vw, 10rem)' : 'clamp(14rem, 20vw, 22rem)',
+                lineHeight: 1.0,
                 letterSpacing: isMobile ? '0.02em' : '0.01em',
                 wordSpacing: isMobile ? '0.05em' : '0.3em',
-                whiteSpace: isMobile ? 'normal' : 'nowrap',
-                maxWidth: isMobile ? '90vw' : 'none',
+                whiteSpace: 'nowrap',
                 backgroundImage: isMobile
                   ? 'linear-gradient(to bottom, rgba(255,255,255,1) 0%, rgba(255,255,255,0.7) 20%, rgba(255,255,255,0) 100%)'
                   : 'linear-gradient(to bottom, rgba(255,255,255,1) 0%, rgba(255,255,255,1) 10%, rgba(255,255,255,0) 70%)',
@@ -220,13 +234,7 @@ export const Hero = () => {
                 textShadow: 'none',
               }}
             >
-              {isMobile ? (
-                <>
-                  JAGRAN<br />LAKECITY
-                </>
-              ) : (
-                'JAGRAN LAKECITY'
-              )}
+              JAGRAN LAKECITY
             </h1>
           </div>
 
@@ -431,11 +439,11 @@ export const Hero = () => {
               transition={{ duration: 0.5, delay: 0.1 }}
               className={`flex items-center bg-white rounded-lg shadow-sm border border-gray-200 ${isMobile ? 'flex-shrink-0 gap-1 px-2.5 py-1.5' : 'gap-2 px-4 py-2'}`}
             >
-              <svg className={`${isMobile ? 'w-3.5 h-3.5' : 'w-5 h-5'} text-[#03463B]`} fill="currentColor" viewBox="0 0 20 20">
+              <svg className={`${isMobile ? 'w-3.5 h-3.5' : 'w-5 h-5'} text-[#027ea1]`} fill="currentColor" viewBox="0 0 20 20">
                 <path d="M9 2a1 1 0 000 2h2a1 1 0 100-2H9z" />
                 <path fillRule="evenodd" d="M4 5a2 2 0 012-2 3 3 0 003 3h2a3 3 0 003-3 2 2 0 012 2v11a2 2 0 01-2 2H6a2 2 0 01-2-2V5zm9.707 5.707a1 1 0 00-1.414-1.414L9 12.586l-1.293-1.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
               </svg>
-              <span className={`font-semibold text-gray-700 ${isMobile ? 'text-[10px] whitespace-nowrap' : 'text-sm'}`}>UGC Approved</span>
+              <span className={`font-semibold text-gray-700 ${isMobile ? 'text-[12px] whitespace-nowrap' : 'text-sm'}`}>UGC Approved</span>
             </motion.div>
 
             {/* AICTE Approved */}
@@ -446,11 +454,11 @@ export const Hero = () => {
               transition={{ duration: 0.5, delay: 0.3 }}
               className={`flex items-center bg-white rounded-lg shadow-sm border border-gray-200 ${isMobile ? 'shrink-0 gap-1 px-2.5 py-1.5' : 'gap-2 px-4 py-2'}`}
             >
-              <svg className={`${isMobile ? 'w-3.5 h-3.5' : 'w-5 h-5'} text-[#03463B]`} fill="currentColor" viewBox="0 0 20 20">
+              <svg className={`${isMobile ? 'w-3.5 h-3.5' : 'w-5 h-5'} text-[#027ea1]`} fill="currentColor" viewBox="0 0 20 20">
                 <path d="M9 2a1 1 0 000 2h2a1 1 0 100-2H9z" />
                 <path fillRule="evenodd" d="M4 5a2 2 0 012-2 3 3 0 003 3h2a3 3 0 003-3 2 2 0 012 2v11a2 2 0 01-2 2H6a2 2 0 01-2-2V5zm9.707 5.707a1 1 0 00-1.414-1.414L9 12.586l-1.293-1.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
               </svg>
-              <span className={`font-semibold text-gray-700 ${isMobile ? 'text-[10px] whitespace-nowrap' : 'text-sm'}`}>AICTE Approved</span>
+              <span className={`font-semibold text-gray-700 ${isMobile ? 'text-[12px] whitespace-nowrap' : 'text-sm'}`}>AICTE Approved</span>
             </motion.div>
 
             {/* BCI Recognized */}
@@ -461,10 +469,10 @@ export const Hero = () => {
               transition={{ duration: 0.5, delay: 0.4 }}
               className={`flex items-center bg-white rounded-lg shadow-sm border border-gray-200 ${isMobile ? 'shrink-0 gap-1 px-2.5 py-1.5' : 'gap-2 px-4 py-2'}`}
             >
-              <svg className={`${isMobile ? 'w-3.5 h-3.5' : 'w-5 h-5'} text-[#03463B]`} fill="currentColor" viewBox="0 0 20 20">
+              <svg className={`${isMobile ? 'w-3.5 h-3.5' : 'w-5 h-5'} text-[#027ea1]`} fill="currentColor" viewBox="0 0 20 20">
                 <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
               </svg>
-              <span className={`font-semibold text-gray-700 ${isMobile ? 'text-[10px] whitespace-nowrap' : 'text-sm'}`}>BCI Recognized</span>
+              <span className={`font-semibold text-gray-700 ${isMobile ? 'text-[12px] whitespace-nowrap' : 'text-sm'}`}>BCI Recognized</span>
             </motion.div>
 
             {/* QS I-Gauge Diamond */}
@@ -478,7 +486,7 @@ export const Hero = () => {
               <svg className={`${isMobile ? 'w-3.5 h-3.5' : 'w-5 h-5'} text-white`} fill="currentColor" viewBox="0 0 20 20">
                 <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
               </svg>
-              <span className={`font-bold text-white ${isMobile ? 'text-[10px] whitespace-nowrap' : 'text-sm'}`}>QS I-Gauge Diamond</span>
+              <span className={`font-bold text-white ${isMobile ? 'text-[12px] whitespace-nowrap' : 'text-sm'}`}>QS I-Gauge Diamond</span>
             </motion.div>
 
             {/* AIU Member */}
@@ -489,10 +497,10 @@ export const Hero = () => {
               transition={{ duration: 0.5, delay: 0.6 }}
               className={`flex items-center bg-white rounded-lg shadow-sm border border-gray-200 ${isMobile ? 'shrink-0 gap-1 px-2.5 py-1.5' : 'gap-2 px-4 py-2'}`}
             >
-              <svg className={`${isMobile ? 'w-3.5 h-3.5' : 'w-5 h-5'} text-[#03463B]`} fill="currentColor" viewBox="0 0 20 20">
+              <svg className={`${isMobile ? 'w-3.5 h-3.5' : 'w-5 h-5'} text-[#027ea1]`} fill="currentColor" viewBox="0 0 20 20">
                 <path d="M10.394 2.08a1 1 0 00-.788 0l-7 3a1 1 0 000 1.84L5.25 8.051a.999.999 0 01.356-.257l4-1.714a1 1 0 11.788 1.838L7.667 9.088l1.94.831a1 1 0 00.787 0l7-3a1 1 0 000-1.838l-7-3zM3.31 9.397L5 10.12v4.102a8.969 8.969 0 00-1.05-.174 1 1 0 01-.89-.89 11.115 11.115 0 01.25-3.762zM9.3 16.573A9.026 9.026 0 007 14.935v-3.957l1.818.78a3 3 0 002.364 0l5.508-2.361a11.026 11.026 0 01.25 3.762 1 1 0 01-.89.89 8.968 8.968 0 00-5.35 2.524 1 1 0 01-1.4 0zM6 18a1 1 0 001-1v-2.065a8.935 8.935 0 00-2-.712V17a1 1 0 001 1z" />
               </svg>
-              <span className={`font-semibold text-gray-700 ${isMobile ? 'text-[10px] whitespace-nowrap' : 'text-sm'}`}>AIU Member</span>
+              <span className={`font-semibold text-gray-700 ${isMobile ? 'text-[12px] whitespace-nowrap' : 'text-sm'}`}>AIU Member</span>
             </motion.div>
           </div>
         </div>
@@ -522,7 +530,7 @@ export const Hero = () => {
               className="max-w-3xl text-[#666]"
               style={{
                 fontFamily: 'Inter, sans-serif',
-                fontSize: isMobile ? '15px' : '18px',
+                fontSize: isMobile ? '20px' : '24px',
                 lineHeight: 1.7,
                 fontWeight: 400,
               }}
@@ -535,7 +543,7 @@ export const Hero = () => {
               className={`max-w-md text-[#999] ${isMobile ? 'text-left' : 'text-right'}`}
               style={{
                 fontFamily: 'Inter, sans-serif',
-                fontSize: isMobile ? '13px' : '14px',
+                fontSize: isMobile ? '17px' : '20px',
                 lineHeight: 1.6,
                 fontWeight: 400,
               }}

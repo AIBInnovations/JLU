@@ -30,7 +30,7 @@ export interface Faculty {
 export const faculties: Faculty[] = [
   {
     id: 'management',
-    name: 'Faculty of Management & Commerce',
+    name: 'Faculty of Management',
     shortName: 'Management',
     description:
       'Provides comprehensive education and training, fostering leadership and expertise in business, hospitality, tourism, and sports management through industry-relevant syllabi and practice-based learning.',
@@ -67,12 +67,12 @@ export const faculties: Faculty[] = [
           'International summer courses in UK/US',
           'Global partnerships: CBU (USA), UCL (UK), HTWG (Germany)',
         ],
-        image: '/interdisciplinary/management.jpg',
+        image: 'https://images.unsplash.com/photo-1523240795612-9a054b0db644?w=800&q=80',
       },
       {
         id: 'sports-mgmt',
-        name: 'Jagran School of Sports Management',
-        shortName: 'Sports Mgmt',
+        name: 'Jagran School of Physical Education and Sports Science',
+        shortName: 'Physical Education & Sports',
         tagline: 'Where the Business of Sports Meets Academic Rigour.',
         description:
           'Prepares students for the rapidly growing sports industry by combining management fundamentals with the dynamics of the sports ecosystem. Students learn sports marketing, event management, athlete management, and sports law alongside hands-on industry exposure.',
@@ -85,12 +85,12 @@ export const faculties: Faculty[] = [
           'Industry exposure through live sports event management',
           'Chancellor Freeships for meritorious students',
         ],
-        image: '/campus/sports.jpg',
+        image: 'https://images.unsplash.com/photo-1517649763962-0c623066013b?w=800&q=80',
       },
       {
         id: 'hospitality',
-        name: 'Jagran School of Hospitality & Aviation Management',
-        shortName: 'Hospitality & Aviation',
+        name: 'Jagran School of Hospitality & Tourism',
+        shortName: 'Hospitality & Tourism',
         tagline: 'Training for Global Service Excellence.',
         description:
           'Designed for global service industries with a focus on professionalism, operational excellence, and customer experience. Approximately 90% of hospitality students are placed in 3-star and 5-star hotels. Training kitchens, restaurant simulations, and international culinary modules provide hands-on industry readiness.',
@@ -100,8 +100,6 @@ export const faculties: Faculty[] = [
           { name: 'B.Sc Culinary Arts', duration: '3 Years', degree: 'UG' },
           { name: 'BBA Aviation & Airport Management', duration: '3 Years', degree: 'UG' },
           { name: 'MBA Aviation & Hospitality Management', duration: '2 Years', degree: 'PG' },
-          { name: 'Diploma in Food Production & Patisserie', duration: '1 Year', degree: 'Diploma' },
-          { name: 'PG Diploma in Indian Culinary Arts', duration: '1 Year', degree: 'Diploma' },
         ],
         highlights: [
           '~90% students placed in 3-star and 5-star hotels',
@@ -109,13 +107,13 @@ export const faculties: Faculty[] = [
           'Top recruiters: Oberoi, Taj, JW Marriott, The Leela',
           'International cuisine modules and food science training',
         ],
-        image: '/campus/gallery-5.jpg',
+        image: 'https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=800&q=80',
       },
     ],
   },
   {
     id: 'journalism',
-    name: 'Faculty of Journalism & Communication',
+    name: 'Faculty of Media and Social Sciences',
     shortName: 'Journalism',
     description:
       'Cultivates media excellence, creative prowess, and industry expertise. Ranked #1 in Madhya Pradesh and Top 15 in India for media education, preparing students for dynamic careers in journalism, advertising, and event management.',
@@ -145,11 +143,11 @@ export const faculties: Faculty[] = [
           'Mandatory newsroom apprenticeships and field reporting',
           'Ranked #19 in Mass Communication by The Week (2024)',
         ],
-        image: '/interdisciplinary/jsjc.jpg',
+        image: 'https://images.unsplash.com/photo-1495020689067-958852a7765e?w=800&q=80',
       },
       {
         id: 'advertising-pr',
-        name: 'Jagran School of Advertising & Public Relations',
+        name: 'Jagran School of Advertising and Public Relations',
         shortName: 'Advertising & PR',
         tagline: 'Creative Strategy Meets Brand Communication.',
         description:
@@ -165,7 +163,7 @@ export const faculties: Faculty[] = [
           'Creator economy and social media strategy modules',
           'Media planning and real campaign execution',
         ],
-        image: '/interdisciplinary/partnership.jpg',
+        image: 'https://images.unsplash.com/photo-1557804506-669a67965ba0?w=800&q=80',
       },
       {
         id: 'events-entertainment',
@@ -176,7 +174,6 @@ export const faculties: Faculty[] = [
           'Prepares students for the dynamic fields of events, media, and entertainment through practical exposure. The curriculum emphasizes live event production, vendor management, and creative direction with hands-on portfolio building.',
         programs: [
           { name: 'BBA Events & Entertainment', duration: '3 Years', degree: 'UG' },
-          { name: 'Diploma in Events Management', duration: '1 Year', degree: 'Diploma' },
         ],
         highlights: [
           'Live event management and production experience',
@@ -184,11 +181,11 @@ export const faculties: Faculty[] = [
           'Creative direction and vendor management training',
           'Portfolio development through real events',
         ],
-        image: '/interdisciplinary/campus-event.jpg',
+        image: 'https://images.unsplash.com/photo-1492684223066-81342ee5ff30?w=800&q=80',
       },
       {
         id: 'languages-social',
-        name: 'Jagran School of Languages & Social Sciences',
+        name: 'Jagran School of Languages & Social Science',
         shortName: 'Languages & Social Sciences',
         tagline: 'Critical Thinking Through Language and Culture.',
         description:
@@ -207,7 +204,7 @@ export const faculties: Faculty[] = [
           'Research methodology and field case studies',
           'Guest lectures by eminent academics and practitioners',
         ],
-        image: '/interdisciplinary/library.jpg',
+        image: 'https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?w=800&q=80',
       },
     ],
   },
@@ -245,7 +242,7 @@ export const faculties: Faculty[] = [
           'Industry partners: NVIDIA, ITC, KPIT, Toshiba-Mitsubishi',
           '100% placement assistance with mandatory internships',
         ],
-        image: '/interdisciplinary/gallery.jpg',
+        image: 'https://images.unsplash.com/photo-1561070791-2526d30994b5?w=800&q=80',
       },
       {
         id: 'architecture',
@@ -263,7 +260,7 @@ export const faculties: Faculty[] = [
           'Study tours and live site visit programs',
           'Internships with leading architecture firms',
         ],
-        image: '/interdisciplinary/campus-building.jpg',
+        image: 'https://images.unsplash.com/photo-1487958449943-2429e8be8625?w=800&q=80',
       },
       {
         id: 'fashion',
@@ -282,13 +279,13 @@ export const faculties: Faculty[] = [
           'Textile design and sustainable fashion modules',
           'Portfolio-driven curriculum with industry mentors',
         ],
-        image: '/campus/gallery-3.jpg',
+        image: 'https://images.unsplash.com/photo-1558171813-4c088753af8f?w=800&q=80',
       },
     ],
   },
   {
     id: 'engineering',
-    name: 'Faculty of Engineering & Technology',
+    name: 'Faculty of Science and Technology',
     shortName: 'Engineering',
     description:
       'Advances innovation and technical expertise through cutting-edge programs with 9 specialized laboratories. Curriculum is revised yearly to stay current with emerging technologies in AI, blockchain, IoT, and robotics.',
@@ -319,7 +316,7 @@ export const faculties: Faculty[] = [
           'IBM collaboration for Blockchain & IoT courses',
           'Annual curriculum revision for contemporary technologies',
         ],
-        image: '/interdisciplinary/lab.jpg',
+        image: 'https://images.unsplash.com/photo-1677442136019-21780ecad995?w=800&q=80',
       },
       {
         id: 'engineering',
@@ -341,11 +338,11 @@ export const faculties: Faculty[] = [
           'Programming, Database, Networking, and Project labs',
           'Admission via JLUET entrance test + interview',
         ],
-        image: '/campus/smart-classroom.jpg',
+        image: 'https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?w=800&q=80',
       },
       {
         id: 'computer-application',
-        name: 'Jagran School of Computer Applications',
+        name: 'Jagran School of Computer Application',
         shortName: 'Computer Applications',
         tagline: 'Software. Computing. Digital Solutions.',
         description:
@@ -361,7 +358,7 @@ export const faculties: Faculty[] = [
           'Industry internship program with leading tech firms',
           'Strong placement record in IT sector',
         ],
-        image: '/interdisciplinary/classroom.jpg',
+        image: 'https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=800&q=80',
       },
     ],
   },
@@ -380,8 +377,8 @@ export const faculties: Faculty[] = [
     schools: [
       {
         id: 'pharmacy',
-        name: 'School of Pharmaceutical Sciences',
-        shortName: 'Pharma Sciences',
+        name: 'Jagran School of Pharmacy',
+        shortName: 'Pharmacy',
         tagline: 'Where Science Meets Healthcare.',
         description:
           'Combines rigorous scientific learning with responsibility, preparing students for careers in healthcare, research, and pharmaceutical sciences. The program includes hospital pharmacy training, research opportunities, and industry internships alongside comprehensive lab work.',
@@ -395,7 +392,7 @@ export const faculties: Faculty[] = [
           'Research opportunities and publication support',
           'Industry internships with pharmaceutical companies',
         ],
-        image: '/campus/gallery-7.jpg',
+        image: 'https://images.unsplash.com/photo-1585435557343-3b092031a831?w=800&q=80',
       },
     ],
   },
@@ -436,13 +433,13 @@ export const faculties: Faculty[] = [
           'Collaborations with NLIU Bhopal, NLSIU Bengaluru, University of Deusto',
           'Well-appointed moot court and 35,000+ volume library',
         ],
-        image: '/interdisciplinary/law.jpg',
+        image: 'https://images.unsplash.com/photo-1589829545856-d10d557cf95f?w=800&q=80',
       },
     ],
   },
   {
     id: 'iica',
-    name: 'IICA — Jagran Centre for Creative Skills',
+    name: 'IICA - Jagran Centre for Creative Skills',
     shortName: 'IICA Creative',
     description:
       'India\'s first industry-led creative incubator in collaboration with NSDC Academy and the Ministry of Skill Development. Offers cutting-edge programs with mentorship from Oscar winners and Padma Shri awardees.',
@@ -475,7 +472,7 @@ export const faculties: Faculty[] = [
           'IP creation focus with real-world project-based learning',
           'Certification courses in Makeup & Prosthetics, DJ/VJ, AI Photography',
         ],
-        image: '/interdisciplinary/auditorium.jpg',
+        image: 'https://images.unsplash.com/photo-1513364776144-60967b0f800f?w=800&q=80',
       },
     ],
   },

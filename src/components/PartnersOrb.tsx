@@ -96,7 +96,7 @@ interface CardData {
 
 const typeColors: Record<string, { bg: string; accent: string; text: string }> = {
   university: { bg: '#f0f7ff', accent: '#1a5276', text: '#1a3c5e' },
-  industry: { bg: '#f0fff4', accent: '#03463B', text: '#1a3c2e' },
+  industry: { bg: '#e0f7fa', accent: '#027ea1', text: '#027ea1' },
   association: { bg: '#fff8f0', accent: '#b8860b', text: '#5a3e1b' },
 };
 

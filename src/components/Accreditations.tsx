@@ -7,7 +7,16 @@ import { motion } from 'framer-motion';
 const customEase: [number, number, number, number] = [0.22, 1, 0.36, 1];
 
 const Accreditations = () => {
-  const images = ['/Untitled design/1.png', '/Untitled design/2.png', '/Untitled design/3.png', '/Untitled design/4.png', '/Untitled design/5.png', '/Untitled design/6.png', '/Untitled design/7.png', '/Untitled design/8.png'];
+  const accreditations = [
+    { src: '/Untitled design/1.png', name: 'Bar Council of India', shortName: 'BCI' },
+    { src: '/Untitled design/2.png', name: 'University Grants Commission', shortName: 'UGC' },
+    { src: '/Untitled design/3.png', name: 'International Centre for Alternative Dispute Resolution', shortName: 'ICADR' },
+    { src: '/Untitled design/4.png', name: 'Association of Universities of Asia and the Pacific', shortName: 'AUAP' },
+    { src: '/Untitled design/5.png', name: 'Association of Indian Universities', shortName: 'AIU' },
+    { src: '/Untitled design/6.png', name: 'AFS Intercultural Programs India', shortName: 'AFS' },
+    { src: '/Untitled design/7.png', name: 'Tuning India', shortName: 'Tuning India' },
+    { src: '/Untitled design/8.png', name: 'International Association of Law Schools', shortName: 'IALS' },
+  ];
 
   return (
     <section className="w-full bg-[#f6f7f0]">
@@ -55,23 +64,27 @@ const Accreditations = () => {
 
         {/* Grid of 8 boxes */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-6">
-          {images.map((src, index) => (
+          {accreditations.map((item, index) => (
             <motion.div
               key={index}
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: index * 0.05, ease: customEase }}
               viewport={{ once: true }}
-              className="group relative overflow-hidden aspect-square w-full rounded-xl cursor-pointer"
+              className="group flex flex-col items-center"
             >
-              <Image
-                src={src}
-                alt={`Accreditation ${index + 1}`}
-                fill
-                className="object-cover transition-transform duration-700 group-hover:scale-105"
-              />
-              {/* Overlay */}
-              <div className="absolute inset-0 bg-black/10 group-hover:bg-black/20 transition-colors" />
+              <div className="relative overflow-hidden aspect-square w-full rounded-xl bg-white border border-[#e5e5e5]">
+                <Image
+                  src={item.src}
+                  alt={item.name}
+                  fill
+                  className="object-contain p-4 md:p-6 transition-transform duration-700 group-hover:scale-105"
+                />
+              </div>
+              <div className="mt-3 text-center">
+                <p className="text-[#21313c] font-semibold text-sm md:text-base">{item.shortName}</p>
+                <p className="text-[#999] text-xs md:text-sm leading-snug mt-0.5">{item.name}</p>
+              </div>
             </motion.div>
           ))}
         </div>

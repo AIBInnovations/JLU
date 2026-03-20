@@ -30,9 +30,9 @@ const staggerItem = {
 
 // ─── Student Council 2025 Data ───
 const councilLeaders = [
-  { role: 'Champion', name: 'Ms. Oshel Sachdeva', program: 'MBA AD & PR', image: '/campus/gallery-5.jpg' },
-  { role: 'Co-Champion', name: 'Ms. Areeba Khan', program: 'BA Hons. Psychology', image: '/campus/gallery-6.jpg' },
-  { role: 'Co-Champion', name: 'Ms. Sejal Patel', program: 'BBA', image: '/campus/gallery-4.jpg' },
+  { role: 'Champion', name: 'Ms. Oshel Sachdeva', program: 'MBA AD & PR', image: '/clubs/oshel-sachdeva.jpg' },
+  { role: 'Co-Champion', name: 'Ms. Areeba Khan', program: 'BA Hons. Psychology', image: '' },
+  { role: 'Co-Champion', name: 'Ms. Sejal Patel', program: 'BBA', image: '' },
 ];
 
 const houseCaptains = [
@@ -76,64 +76,64 @@ const studentClubs = [
     name: 'Sports & Adventure Club',
     description: 'Competitive sports participation, skill development, and recreational fellowship through various athletic activities and outdoor adventures.',
     icon: 'sports',
-    color: '#03463B',
-    image: '/campus/gallery-16.jpg',
+    color: '#027ea1',
+    image: '/clubs/sports-new.jpg',
   },
   {
     name: 'Photography Club',
     description: 'Explore diverse photographic techniques through photo excursions and workshops, open to all skill levels.',
     icon: 'camera',
     color: '#21313c',
-    image: '/campus/gallery-8.jpg',
+    image: '/clubs/photography-new.jpg',
   },
   {
     name: 'Music Club',
     description: 'Jam sessions, concerts, open mics, instrument workshops, and collaborative opportunities for all music enthusiasts.',
     icon: 'music',
     color: '#6B4C9A',
-    image: '/campus/gallery-15.jpg',
+    image: '/clubs/music-new.jpg',
   },
   {
     name: 'Dance Club',
     description: 'Ballroom, salsa, hip hop, contemporary, and folk dance styles with performances, competitions, and festival opportunities.',
     icon: 'dance',
     color: '#C4532D',
-    image: '/campus/gallery-5.jpg',
+    image: '/clubs/dance-new.jpg',
   },
   {
     name: 'Literary Club',
     description: 'Book discussions, poetry reading & writing, short story creation, and literary competitions to develop writing skills.',
     icon: 'book',
     color: '#1A5276',
-    image: '/campus/gallery-9.jpg',
+    image: '/pro1.jpg',
   },
   {
     name: 'Dramatics Club',
     description: 'Monthly performances including stage plays, road plays, mime acts, and role plays — with a vision of "Theatre in Unlikely Spaces."',
     icon: 'theater',
     color: '#8B0000',
-    image: '/campus/gallery-15.jpg',
+    image: '/JLu%20events/photos/Lehar/IMG_8971.JPG',
   },
   {
     name: 'MUN & Debating Society',
     description: 'Parliamentary debate training, research skills, and Model UN participation to develop public speaking and awareness of current events.',
     icon: 'debate',
     color: '#2C3E50',
-    image: '/campus/gallery-15.jpg',
+    image: '/clubs/mun-new.jpg',
   },
   {
     name: 'Community Service Club',
     description: 'Social wellbeing, volunteering, and community outreach initiatives focused on creating positive social change.',
     icon: 'community',
     color: '#196F3D',
-    image: '/campus/gallery-14.jpg',
+    image: '/clubs/community-new.jpg',
   },
   {
     name: 'Start-up & Entrepreneurship Club',
     description: 'Business development mentorship, potential funding through JLU\'s innovation ecosystem, and networking opportunities.',
     icon: 'startup',
     color: '#D4AC0D',
-    image: '/campus/smart-classroom.jpg',
+    image: '/clubs/entrepreneurship-new.jpg',
   },
   {
     name: 'Placement & Industry Interaction Club',
@@ -147,49 +147,33 @@ const studentClubs = [
 // ─── Student Achievements Data ───
 const achievements = [
   {
-    title: 'Smart India Hackathon 2020 — 1st Position',
-    description: 'Team PINAKULO (B.Tech CSE students) created a solution for the Ministry of Rural Development, winning Rs. 1,00,000 from the Government of India.',
-    category: 'Hackathon',
-    image: '/campus/gallery-11.jpg',
-  },
-  {
-    title: 'Navonmesh Startup Competition',
-    description: 'PINAKULO went on to win the Navonmesh Startup Competition hosted by AIC-RNTU, competing against 300+ applicants and earning Rs. 1 lakh in funding.',
-    category: 'Startup',
-    image: '/campus/gallery-12.jpg',
-  },
-  {
-    title: 'AUAP-JLU International Moot Court',
-    description: 'Annual international competition in collaboration with the Association of Universities of Asia and the Pacific, with 18+ teams from universities across India. Prize pool of Rs. 2,25,000.',
+    title: '5th International Mediation Competition — Runner-Up',
+    description: 'Preesha Vaswani, Suhani Jain, and Basharat Ali Zaidi from the Faculty of Law secured the Runner-Up position at the 5th International Mediation Competition organized by Kerala Law Academy Law College, Thiruvananthapuram. Their outstanding performance, strategic thinking, and dedication reflect the growing excellence of our law students on international platforms.',
     category: 'Law',
-    image: '/campus/gallery-15.jpg',
+    image: '/achievements-mediation.jpeg',
+    objectPosition: '50% 20%',
   },
   {
-    title: 'International Karate/Judo Gold Medals',
-    description: 'Prithviraj Singh Chouhan won gold medals in international Karate and Judo competitions, representing JLU on the global stage.',
+    title: 'IMARC 2026 — Research Paper at IIM Shillong',
+    description: 'Kushagra Sahai got the opportunity to present a research paper at IMARC 2026, the 5th International Marketing Conference hosted by IIM Shillong, engaging with leading academicians, researchers, and industry experts from across the globe. Under the guidance of Dr. Rushit Dubal, Aparna Jha, and Dr. Shruti Sinha, this milestone reflects academic excellence and the confidence to contribute meaningful ideas on prestigious platforms.',
+    category: 'Research',
+    image: '/achievements-imarc.jpeg',
+    objectPosition: '30% 20%',
+  },
+  {
+    title: 'Khelo MP Youth Games — Silver Medal in Kayak & Canoeing',
+    description: 'Priyanshu Manjhi, student of BPES, won the Silver Medal in Kayak & Canoeing at the Khelo MP Youth Games held in Bhopal. His dedication and sporting spirit make us immensely proud.',
     category: 'Sports',
-    image: '/campus/gallery-17.jpg',
-  },
-  {
-    title: 'National Chess Tournament Victories',
-    description: 'Vishal Bansiwal secured 1st place in Udaipur, 3rd in Delhi, and 2nd in Ahmedabad chess tournaments.',
-    category: 'Sports',
-    image: '/campus/gallery-16.jpg',
-  },
-  {
-    title: 'IIC National Innovation Contest',
-    description: 'JLU faculty and students qualified for the second stage of the IIC National Innovation Contest, showcasing research excellence.',
-    category: 'Innovation',
-    image: '/campus/smart-classroom.jpg',
+    image: '/achievements-kayak.png',
   },
 ];
 
 const institutionalAwards = [
   { award: 'QS I-GAUGE Diamond Rating', detail: 'Top 25 Universities in India', accent: '#f0c14b', icon: 'diamond' },
-  { award: 'University of the Year', detail: 'MP Government (5 consecutive years)', accent: '#03463B', icon: 'trophy' },
+  { award: 'University of the Year', detail: 'MP Government (5 consecutive years)', accent: '#027ea1', icon: 'trophy' },
   { award: 'Education World', detail: 'No. 1 Private University designation', accent: '#21313c', icon: 'globe' },
   { award: 'Careers360 AAA Rated', detail: 'Top B-School recognition', accent: '#f0c14b', icon: 'star' },
-  { award: 'Global League Institution', detail: 'House of Commons, London (2015)', accent: '#03463B', icon: 'award' },
+  { award: 'Global League Institution', detail: 'House of Commons, London (2015)', accent: '#027ea1', icon: 'award' },
   { award: 'CIMA Recognition', detail: 'Most Innovative University', accent: '#21313c', icon: 'badge' },
 ];
 
@@ -419,8 +403,8 @@ const CampusLife = () => {
         >
           <motion.div className="absolute inset-0" style={{ y }}>
             <Image
-              src="/campus/gallery-14.jpg"
-              alt="Campus Life"
+              src="/campus/campus-life-hero.jpg"
+              alt="Campus Life at JLU"
               fill
               className="object-cover scale-110"
               priority
@@ -492,7 +476,7 @@ const CampusLife = () => {
           <div ref={councilImgRef} className="relative w-full h-[300px] md:h-[420px] rounded-2xl overflow-hidden mb-16" style={isMobile ? { height: '200px', marginBottom: '24px' } : {}}>
             <motion.div className="absolute inset-0" style={{ y: councilImgY }}>
               <Image
-                src="/campus/gallery-6.jpg"
+                src="/clubs/student-council.jpg"
                 alt="Student Council at JLU"
                 fill
                 className="object-cover scale-110"
@@ -506,7 +490,7 @@ const CampusLife = () => {
               transition={{ duration: 0.8, ease: customEase }}
               viewport={{ once: true }}
             >
-              <p className="text-[#f0c14b]/80 uppercase tracking-widest text-[11px] md:text-[12px] mb-2" style={{ letterSpacing: '0.2em', ...(isMobile ? { fontSize: '9px' } : {}) }}>
+              <p className="text-[#f0c14b]/80 uppercase tracking-widest text-[11px] md:text-[12px] mb-2" style={{ letterSpacing: '0.2em', ...(isMobile ? { fontSize: '11px' } : {}) }}>
                 Student Governance
               </p>
               <h2
@@ -546,19 +530,23 @@ const CampusLife = () => {
                 key={i}
                 variants={staggerItem}
                 className="relative overflow-hidden group rounded-2xl"
-                style={{ minHeight: isMobile ? '140px' : '220px' }}
+                style={{ minHeight: isMobile ? '200px' : '320px' }}
               >
                 {/* Background image */}
                 <div className="absolute inset-0">
-                  <Image src={leader.image} alt={leader.name} fill className="object-cover" />
+                  {leader.image ? (
+                    <Image src={leader.image} alt={leader.name} fill className="object-cover" />
+                  ) : (
+                    <div className="w-full h-full bg-[#2a3f4c]" />
+                  )}
                 </div>
                 <div className="absolute inset-0 bg-gradient-to-t from-[#21313c] via-[#21313c]/70 to-[#21313c]/20 group-hover:via-[#21313c]/60 transition-all duration-500" />
                 <div className="relative z-10 p-6 md:p-8 flex flex-col justify-end h-full" style={isMobile ? { padding: '10px' } : {}}>
-                  <span className="text-[#f0c14b] uppercase tracking-widest text-[11px] block mb-3" style={{ letterSpacing: '0.15em', ...(isMobile ? { fontSize: '8px', marginBottom: '4px' } : {}) }}>
+                  <span className="text-[#f0c14b] uppercase tracking-widest text-[11px] block mb-3" style={{ letterSpacing: '0.15em', ...(isMobile ? { fontSize: '11px', marginBottom: '4px' } : {}) }}>
                     {leader.role}
                   </span>
-                  <h3 className="text-white text-xl md:text-2xl font-semibold mb-1" style={isMobile ? { fontSize: '12px' } : {}}>{leader.name}</h3>
-                  <p className="text-white/60 text-sm" style={isMobile ? { fontSize: '10px' } : {}}>{leader.program}</p>
+                  <h3 className="text-white text-xl md:text-2xl font-semibold mb-1" style={isMobile ? { fontSize: '13px' } : {}}>{leader.name}</h3>
+                  <p className="text-white/60 text-sm" style={isMobile ? { fontSize: '12px' } : {}}>{leader.program}</p>
                 </div>
               </motion.div>
             ))}
@@ -582,7 +570,7 @@ const CampusLife = () => {
                   <h4 className="text-[#21313c] font-semibold text-sm md:text-base mb-3" style={isMobile ? { fontSize: '13px', marginBottom: '8px' } : {}}>{house}</h4>
                   {houseCaptains.filter(c => c.house === house).map((member, j) => (
                     <div key={j} className={j > 0 ? 'mt-2 pt-2 border-t border-[#f0f0f0]' : ''}>
-                      <p className="text-[#21313c] text-xs md:text-sm font-medium" style={isMobile ? { fontSize: '10px' } : {}}>{member.name}</p>
+                      <p className="text-[#21313c] text-xs md:text-sm font-medium" style={isMobile ? { fontSize: '12px' } : {}}>{member.name}</p>
                       <p className="text-[#999] text-[10px] md:text-xs">{member.position} · {member.program}</p>
                     </div>
                   ))}
@@ -623,10 +611,10 @@ const CampusLife = () => {
                     style={{ minWidth: isMobile ? '220px' : '280px', ...(isMobile ? { padding: '8px 12px' } : {}) }}
                   >
                     <h4 className="text-[#21313c] font-medium text-sm md:text-base mb-2 whitespace-nowrap" style={isMobile ? { fontSize: '12px' } : {}}>{club.name}</h4>
-                    <p className="text-[#999] text-xs md:text-sm whitespace-nowrap" style={isMobile ? { fontSize: '10px' } : {}}>
+                    <p className="text-[#999] text-xs md:text-sm whitespace-nowrap" style={isMobile ? { fontSize: '12px' } : {}}>
                       Secretary: {club.secretary} ({club.program})
                     </p>
-                    <p className="text-[#999] text-xs md:text-sm whitespace-nowrap" style={isMobile ? { fontSize: '10px' } : {}}>
+                    <p className="text-[#999] text-xs md:text-sm whitespace-nowrap" style={isMobile ? { fontSize: '12px' } : {}}>
                       Dy. Secretary: {club.deputySecretary} ({club.deputyProgram})
                     </p>
                   </div>
@@ -691,7 +679,7 @@ const CampusLife = () => {
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
           >
-            <p className="text-[#999] uppercase tracking-widest text-[11px] md:text-[12px] mb-3" style={{ letterSpacing: '0.2em', ...(isMobile ? { fontSize: '9px', marginBottom: '6px' } : {}) }}>
+            <p className="text-[#999] uppercase tracking-widest text-[11px] md:text-[12px] mb-3" style={{ letterSpacing: '0.2em', ...(isMobile ? { fontSize: '11px', marginBottom: '6px' } : {}) }}>
               Find Your People
             </p>
             <h2
@@ -818,7 +806,7 @@ const CampusLife = () => {
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
           >
-            <p className="text-[#999] uppercase tracking-widest text-[11px] md:text-[12px] mb-3" style={{ letterSpacing: '0.2em', ...(isMobile ? { fontSize: '9px', marginBottom: '6px' } : {}) }}>
+            <p className="text-[#999] uppercase tracking-widest text-[11px] md:text-[12px] mb-3" style={{ letterSpacing: '0.2em', ...(isMobile ? { fontSize: '11px', marginBottom: '6px' } : {}) }}>
               Celebrating Excellence
             </p>
             <h2
@@ -837,8 +825,8 @@ const CampusLife = () => {
             {/* Left — Sticky image that changes with expanded achievement */}
             <div ref={achieveImgRef} className="lg:w-[45%] lg:sticky lg:top-32 lg:self-start">
               <motion.div
-                className="relative w-full h-[300px] md:h-[400px] lg:h-[480px] rounded-2xl overflow-hidden"
-                style={isMobile ? { height: '200px' } : {}}
+                className="relative w-full rounded-2xl overflow-hidden"
+                style={{ aspectRatio: '3 / 4', ...(isMobile ? { aspectRatio: '3 / 4' } : {}) }}
                 initial={{ opacity: 0, x: -30 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.8, ease: customEase }}
@@ -855,10 +843,11 @@ const CampusLife = () => {
                   >
                     <motion.div className="absolute inset-0" style={{ y: achieveImgY }}>
                       <Image
-                        src={expandedAchievement !== null ? achievements[expandedAchievement].image : '/campus/gallery-15.jpg'}
+                        src={expandedAchievement !== null ? achievements[expandedAchievement].image : achievements[0].image}
                         alt="Student Achievement"
                         fill
-                        className="object-cover scale-110"
+                        className="object-cover scale-105"
+                        style={{ objectPosition: expandedAchievement !== null && achievements[expandedAchievement].objectPosition ? achievements[expandedAchievement].objectPosition : 'center top' }}
                       />
                     </motion.div>
                   </motion.div>
@@ -887,7 +876,7 @@ const CampusLife = () => {
                     viewport={{ once: true }}
                   >
                     <span className="text-[#21313c] text-2xl md:text-3xl font-semibold block" style={{ letterSpacing: '-0.03em', ...(isMobile ? { fontSize: '18px' } : {}) }}>{s.n}</span>
-                    <span className="text-[#999] text-xs" style={isMobile ? { fontSize: '9px' } : {}}>{s.l}</span>
+                    <span className="text-[#999] text-xs" style={isMobile ? { fontSize: '11px' } : {}}>{s.l}</span>
                   </motion.div>
                 ))}
               </div>
@@ -918,7 +907,7 @@ const CampusLife = () => {
                       <div className="flex items-center gap-3 md:gap-5 flex-1" style={isMobile ? { gap: '8px' } : {}}>
                         <span
                           className="shrink-0 px-3 py-1 rounded-full text-[10px] md:text-[11px] uppercase tracking-wider font-medium"
-                          style={{ backgroundColor: '#f6f7f0', color: '#03463B', letterSpacing: '0.1em', ...(isMobile ? { fontSize: '8px', padding: '2px 8px' } : {}) }}
+                          style={{ backgroundColor: '#f6f7f0', color: '#027ea1', letterSpacing: '0.1em', ...(isMobile ? { fontSize: '11px', padding: '2px 8px' } : {}) }}
                         >
                           {achievement.category}
                         </span>
@@ -978,7 +967,7 @@ const CampusLife = () => {
                 transition={{ duration: 0.7, ease: customEase }}
                 viewport={{ once: true }}
                 className="md:col-span-5 md:row-span-2 relative rounded-2xl overflow-hidden group cursor-default"
-                style={{ background: 'linear-gradient(135deg, #21313c 0%, #03463B 100%)', minHeight: isMobile ? '180px' : '320px', ...(isMobile ? { gridColumn: 'span 2' } : {}) }}
+                style={{ background: 'linear-gradient(135deg, #21313c 0%, #027ea1 100%)', minHeight: isMobile ? '180px' : '320px', ...(isMobile ? { gridColumn: 'span 2' } : {}) }}
               >
                 {/* Decorative circles */}
                 <div className="absolute -top-12 -right-12 w-40 h-40 rounded-full opacity-10" style={{ background: '#f0c14b' }} />
@@ -997,7 +986,7 @@ const CampusLife = () => {
                   </div>
                   <div className="mt-8 flex items-center gap-2" style={isMobile ? { marginTop: '12px' } : {}}>
                     <div className="w-2 h-2 rounded-full bg-[#f0c14b]" />
-                    <span className="text-[#f0c14b] text-xs uppercase tracking-widest font-medium" style={isMobile ? { fontSize: '9px' } : {}}>Nationally Ranked</span>
+                    <span className="text-[#f0c14b] text-xs uppercase tracking-widest font-medium" style={isMobile ? { fontSize: '11px' } : {}}>Nationally Ranked</span>
                   </div>
                 </div>
               </motion.div>
@@ -1027,7 +1016,7 @@ const CampusLife = () => {
                       >
                         {item.award}
                       </h4>
-                      <p className="text-sm" style={{ color: i === 0 ? 'rgba(33,49,60,0.7)' : '#999', ...(isMobile ? { fontSize: '10px' } : {}) }}>
+                      <p className="text-sm" style={{ color: i === 0 ? 'rgba(33,49,60,0.7)' : '#999', ...(isMobile ? { fontSize: '12px' } : {}) }}>
                         {item.detail}
                       </p>
                     </div>
@@ -1060,7 +1049,7 @@ const CampusLife = () => {
                   <h4 className="text-[#21313c] font-bold text-sm md:text-base mb-1.5" style={{ letterSpacing: '-0.01em', ...(isMobile ? { fontSize: '11px' } : {}) }}>
                     {item.award}
                   </h4>
-                  <p className="text-[#999] text-xs md:text-sm" style={{ lineHeight: 1.6, ...(isMobile ? { fontSize: '10px' } : {}) }}>
+                  <p className="text-[#999] text-xs md:text-sm" style={{ lineHeight: 1.6, ...(isMobile ? { fontSize: '12px' } : {}) }}>
                     {item.detail}
                   </p>
                 </motion.div>
@@ -1093,7 +1082,7 @@ const CampusLife = () => {
             transition={{ duration: 0.8, ease: customEase }}
             viewport={{ once: true }}
           >
-            <p className="text-[#f0c14b]/80 uppercase tracking-widest text-[11px] md:text-[12px] mb-3" style={{ letterSpacing: '0.2em', ...(isMobile ? { fontSize: '9px' } : {}) }}>
+            <p className="text-[#f0c14b]/80 uppercase tracking-widest text-[11px] md:text-[12px] mb-3" style={{ letterSpacing: '0.2em', ...(isMobile ? { fontSize: '11px' } : {}) }}>
               Industry Connect
             </p>
             <h2
@@ -1187,7 +1176,7 @@ const CampusLife = () => {
                   style={{
                     backgroundColor: activeRecruiterCategory === category ? '#f0c14b' : 'rgba(255,255,255,0.08)',
                     color: activeRecruiterCategory === category ? '#21313c' : 'rgba(255,255,255,0.6)',
-                    ...(isMobile ? { padding: '4px 10px', fontSize: '10px' } : {}),
+                    ...(isMobile ? { padding: '4px 10px', fontSize: '12px' } : {}),
                   }}
                 >
                   {category}
@@ -1243,7 +1232,7 @@ const CampusLife = () => {
               transition={{ duration: 0.8, ease: customEase }}
               viewport={{ once: true }}
             >
-              <p className="text-[#999] uppercase tracking-widest text-[11px] md:text-[12px] mb-3" style={{ letterSpacing: '0.2em', ...(isMobile ? { fontSize: '9px', marginBottom: '6px' } : {}) }}>
+              <p className="text-[#999] uppercase tracking-widest text-[11px] md:text-[12px] mb-3" style={{ letterSpacing: '0.2em', ...(isMobile ? { fontSize: '11px', marginBottom: '6px' } : {}) }}>
                 Innovation Ecosystem
               </p>
               <h2
@@ -1272,7 +1261,7 @@ const CampusLife = () => {
                     whileHover={{ y: -3 }}
                   >
                     <h4 className="text-[#21313c] font-semibold text-sm md:text-base mb-2" style={isMobile ? { fontSize: '12px', marginBottom: '4px' } : {}}>{service.title}</h4>
-                    <p className="text-[#999] text-xs md:text-sm" style={{ lineHeight: 1.6, ...(isMobile ? { fontSize: '10px' } : {}) }}>{service.description}</p>
+                    <p className="text-[#999] text-xs md:text-sm" style={{ lineHeight: 1.6, ...(isMobile ? { fontSize: '12px' } : {}) }}>{service.description}</p>
                   </motion.div>
                 ))}
               </div>
@@ -1294,14 +1283,14 @@ const CampusLife = () => {
                   fill
                   className="object-cover group-hover:scale-105 transition-transform duration-700"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#03463B]/80 to-transparent" />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#027ea1]/80 to-transparent" />
                 <div className="absolute bottom-5 left-5">
                   <span className="bg-[#f0c14b] text-[#21313c] text-xs font-semibold px-3 py-1 rounded-full">Innovation Hub</span>
                 </div>
               </div>
 
-              <div className="bg-[#03463B] rounded-2xl p-8 md:p-10 text-white mb-6" style={isMobile ? { padding: '16px', marginBottom: '12px' } : {}}>
-                <span className="text-[#f0c14b] uppercase tracking-widest text-[10px] block mb-4" style={{ letterSpacing: '0.2em', ...(isMobile ? { fontSize: '8px', marginBottom: '8px' } : {}) }}>
+              <div className="bg-[#027ea1] rounded-2xl p-8 md:p-10 text-white mb-6" style={isMobile ? { padding: '16px', marginBottom: '12px' } : {}}>
+                <span className="text-[#f0c14b] uppercase tracking-widest text-[10px] block mb-4" style={{ letterSpacing: '0.2em', ...(isMobile ? { fontSize: '11px', marginBottom: '8px' } : {}) }}>
                   Success Story
                 </span>
                 <h3 className="text-2xl md:text-3xl font-semibold mb-4" style={{ letterSpacing: '-0.02em', ...(isMobile ? { fontSize: '16px', marginBottom: '8px' } : {}) }}>
@@ -1311,9 +1300,9 @@ const CampusLife = () => {
                   B.Tech CSE students created a solution for the Ministry of Rural Development, winning 1st position at Smart India Hackathon 2020 (Rs. 1,00,000) and the Navonmesh Startup Competition against 300+ applicants.
                 </p>
                 <div className="flex flex-wrap gap-3" style={isMobile ? { gap: '4px' } : {}}>
-                  <span className="px-3 py-1 rounded-full bg-white/10 text-white/70 text-xs" style={isMobile ? { fontSize: '9px', padding: '2px 8px' } : {}}>Smart India Hackathon</span>
-                  <span className="px-3 py-1 rounded-full bg-white/10 text-white/70 text-xs" style={isMobile ? { fontSize: '9px', padding: '2px 8px' } : {}}>Government of India</span>
-                  <span className="px-3 py-1 rounded-full bg-white/10 text-white/70 text-xs" style={isMobile ? { fontSize: '9px', padding: '2px 8px' } : {}}>Rs. 1,00,000</span>
+                  <span className="px-3 py-1 rounded-full bg-white/10 text-white/70 text-xs" style={isMobile ? { fontSize: '11px', padding: '2px 8px' } : {}}>Smart India Hackathon</span>
+                  <span className="px-3 py-1 rounded-full bg-white/10 text-white/70 text-xs" style={isMobile ? { fontSize: '11px', padding: '2px 8px' } : {}}>Government of India</span>
+                  <span className="px-3 py-1 rounded-full bg-white/10 text-white/70 text-xs" style={isMobile ? { fontSize: '11px', padding: '2px 8px' } : {}}>Rs. 1,00,000</span>
                 </div>
               </div>
 
@@ -1322,7 +1311,7 @@ const CampusLife = () => {
                 <ul className="space-y-3" style={isMobile ? { gap: '6px' } : {}}>
                   {['Wireless internet & modern workstations', 'Make-shift ideation space', 'Meeting zones & recreation corner', 'Startup bootcamps & IPR workshops', 'Design thinking & pitch deck programs'].map((item, i) => (
                     <li key={i} className="flex items-start gap-3 text-[#666] text-sm md:text-base" style={isMobile ? { fontSize: '12px', gap: '8px' } : {}}>
-                      <svg className="shrink-0 mt-0.5" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#03463B" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                      <svg className="shrink-0 mt-0.5" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#027ea1" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                         <polyline points="20 6 9 17 4 12" />
                       </svg>
                       {item}
@@ -1358,7 +1347,7 @@ const CampusLife = () => {
             transition={{ duration: 0.8, ease: customEase }}
             viewport={{ once: true }}
           >
-            <p className="text-[#f0c14b]/80 uppercase tracking-widest text-[11px] md:text-[12px] mb-4" style={{ letterSpacing: '0.2em', ...(isMobile ? { fontSize: '9px', marginBottom: '8px' } : {}) }}>
+            <p className="text-[#f0c14b]/80 uppercase tracking-widest text-[11px] md:text-[12px] mb-4" style={{ letterSpacing: '0.2em', ...(isMobile ? { fontSize: '11px', marginBottom: '8px' } : {}) }}>
               Igniting Minds, Changing Lives
             </p>
             <span
@@ -1415,11 +1404,11 @@ const CampusLife = () => {
                 whileHover={{ y: -4 }}
               >
                 {/* Colored top bar */}
-                <div className="h-2" style={{ backgroundColor: i % 2 === 0 ? '#21313c' : '#03463B' }} />
+                <div className="h-2" style={{ backgroundColor: i % 2 === 0 ? '#21313c' : '#027ea1' }} />
                 <div className="p-7 md:p-8" style={isMobile ? { padding: '12px' } : {}}>
                   <div
                     className="w-14 h-14 rounded-full flex items-center justify-center text-white font-semibold text-xl mb-5"
-                    style={{ backgroundColor: i % 2 === 0 ? '#21313c' : '#03463B', ...(isMobile ? { width: '32px', height: '32px', fontSize: '14px', marginBottom: '8px' } : {}) }}
+                    style={{ backgroundColor: i % 2 === 0 ? '#21313c' : '#027ea1', ...(isMobile ? { width: '32px', height: '32px', fontSize: '14px', marginBottom: '8px' } : {}) }}
                   >
                     {speaker.name.charAt(0)}
                   </div>
@@ -1429,7 +1418,7 @@ const CampusLife = () => {
                   >
                     {speaker.name}
                   </h3>
-                  <p className="text-[#999] text-xs md:text-sm mb-5" style={{ lineHeight: 1.5, ...(isMobile ? { fontSize: '10px', marginBottom: '8px' } : {}) }}>
+                  <p className="text-[#999] text-xs md:text-sm mb-5" style={{ lineHeight: 1.5, ...(isMobile ? { fontSize: '12px', marginBottom: '8px' } : {}) }}>
                     {speaker.title}
                   </p>
                   <div className="pt-4 border-t border-[#e5e5e5]" style={isMobile ? { paddingTop: '8px' } : {}}>
@@ -1504,16 +1493,17 @@ const CampusLife = () => {
               >
                 Every event, club, and initiative is designed to help students grow not just academically, but personally and professionally.
               </motion.p>
-              <motion.button
-                className="inline-flex items-center gap-2 md:gap-3 bg-white text-[#21313c] font-medium px-6 py-3 md:px-8 md:py-4 lg:px-10 lg:py-4.5 text-sm md:text-base rounded-full"
+              <motion.a
+                href="/alumni"
+                className="inline-flex items-center gap-2 md:gap-3 bg-white text-[#21313c] font-medium px-6 py-3 md:px-8 md:py-4 lg:px-10 lg:py-4.5 text-sm md:text-base rounded-full no-underline"
                 style={isMobile ? { padding: '8px 18px', fontSize: '12px' } : {}}
                 whileHover={{ scale: 1.05, backgroundColor: '#f0c14b' }}
                 whileTap={{ scale: 0.98 }}
                 transition={{ duration: 0.3 }}
               >
-                Join our community
+                Be a Part
                 <span>&rarr;</span>
-              </motion.button>
+              </motion.a>
             </div>
           </motion.div>
         </div>

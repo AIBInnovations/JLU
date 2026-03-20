@@ -24,7 +24,7 @@ const programInterests = [
   'Journalism & Communication',
   'Humanities, Art & Design',
   'Hospitality & Tourism',
-  'Sports Management',
+  'Physical Education & Sports Science',
   'Science & Research',
   'Not sure — need guidance',
 ];
@@ -102,9 +102,9 @@ const AdvisorForm = () => {
     setIsSubmitted(true);
   };
 
-  const inputClasses = "w-full px-5 py-4 bg-white border-2 border-gray-200 rounded-xl text-[#21313c] placeholder-gray-400 focus:border-[#03463B] focus:outline-none transition-colors text-base";
+  const inputClasses = "w-full px-5 py-4 bg-white border-2 border-gray-200 rounded-xl text-[#21313c] placeholder-gray-400 focus:border-[#027ea1] focus:outline-none transition-colors text-base";
   const labelClasses = "block text-[#21313c] font-medium mb-2 text-sm";
-  const selectClasses = "w-full px-5 py-4 bg-white border-2 border-gray-200 rounded-xl text-[#21313c] focus:border-[#03463B] focus:outline-none transition-colors text-base appearance-none cursor-pointer";
+  const selectClasses = "w-full px-5 py-4 bg-white border-2 border-gray-200 rounded-xl text-[#21313c] focus:border-[#027ea1] focus:outline-none transition-colors text-base appearance-none cursor-pointer";
   const errorClasses = "text-red-500 text-xs mt-1";
 
   return (
@@ -263,7 +263,7 @@ const AdvisorForm = () => {
                             <label
                               key={opt.value}
                               className={`flex items-center justify-center gap-2 px-4 py-3 border-2 rounded-xl cursor-pointer transition-colors text-center ${
-                                formData.contactMode === opt.value ? 'border-[#03463B] bg-[#03463B]/5' : 'border-gray-200'
+                                formData.contactMode === opt.value ? 'border-[#027ea1] bg-[#027ea1]/5' : 'border-gray-200'
                               }`}
                             >
                               <input type="radio" name="contactMode" value={opt.value} checked={formData.contactMode === opt.value} onChange={handleInputChange} className="hidden" />
@@ -320,7 +320,7 @@ const AdvisorForm = () => {
                       <motion.button
                         type="submit"
                         disabled={isSubmitting}
-                        className="w-full py-4 bg-[#03463B] text-white font-semibold rounded-xl hover:bg-[#025a4a] transition-colors flex items-center justify-center gap-2 disabled:opacity-70 disabled:cursor-not-allowed cursor-pointer"
+                        className="w-full py-4 bg-[#027ea1] text-white font-semibold rounded-xl hover:bg-[#026986] transition-colors flex items-center justify-center gap-2 disabled:opacity-70 disabled:cursor-not-allowed cursor-pointer"
                         whileHover={{ scale: 1.01 }}
                         whileTap={{ scale: 0.99 }}
                       >
@@ -356,7 +356,7 @@ const AdvisorForm = () => {
                         animate={{ scale: 1 }}
                         transition={{ type: 'spring', delay: 0.2 }}
                       >
-                        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#03463B" strokeWidth="3">
+                        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#027ea1" strokeWidth="3">
                           <polyline points="20 6 9 17 4 12" strokeLinecap="round" strokeLinejoin="round" />
                         </svg>
                       </motion.div>
@@ -364,7 +364,7 @@ const AdvisorForm = () => {
                       <p className="text-gray-500 max-w-sm mb-4">
                         An admissions advisor will reach out to you shortly via your preferred contact method. We typically respond within 24 hours.
                       </p>
-                      <div className="flex items-center gap-2 text-[#03463B] text-sm font-medium">
+                      <div className="flex items-center gap-2 text-[#027ea1] text-sm font-medium">
                         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                           <path d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" strokeLinecap="round" strokeLinejoin="round" />
                         </svg>

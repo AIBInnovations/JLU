@@ -3,7 +3,7 @@ export interface Program {
   slug: string;
   name: string;
   shortName: string;
-  category: 'UG' | 'PG' | 'PhD' | 'Diploma';
+  category: 'UG' | 'PG' | 'PhD';
   duration: string;
   type: string;
   degree: string;
@@ -981,73 +981,6 @@ export const programs: Program[] = [
     feeId: 'ma-journalism',
   },
 
-  // Diploma Programs (3)
-  {
-    id: 'diploma-events',
-    slug: 'diploma-in-events-management',
-    name: 'Diploma in Events Management',
-    shortName: 'Diploma Events',
-    category: 'Diploma',
-    duration: '1 Year',
-    type: 'Full Time',
-    degree: 'Diploma',
-    school: 'School of Hospitality',
-    description: 'Professional diploma covering event planning, coordination, and management for corporate and social events.',
-    highlights: [
-      'Live event experience',
-      'Industry exposure',
-      'Vendor management training',
-      'Portfolio development'
-    ],
-    careerProspects: ['Event Coordinator', 'Wedding Planner', 'Corporate Event Manager', 'Exhibition Manager', 'Venue Manager'],
-    eligibility: '10+2 from any stream',
-    image: 'https://images.unsplash.com/photo-1540575467063-178a50c2df87',
-    feeId: 'diploma-events',
-  },
-  {
-    id: 'diploma-food',
-    slug: 'diploma-in-food-production',
-    name: 'Diploma in Food Production',
-    shortName: 'Diploma Food Prod',
-    category: 'Diploma',
-    duration: '1 Year',
-    type: 'Full Time',
-    degree: 'Diploma',
-    school: 'School of Hospitality',
-    description: 'Practical diploma in food production covering culinary techniques, kitchen operations, and food safety.',
-    highlights: [
-      'Hands-on kitchen training',
-      'Industry placements',
-      'Food safety certification',
-      'Multi-cuisine exposure'
-    ],
-    careerProspects: ['Chef de Partie', 'Kitchen Supervisor', 'Food Production Manager', 'Catering Manager', 'Pastry Chef'],
-    eligibility: '10+2 from any stream',
-    image: 'https://images.unsplash.com/photo-1466637574441-749b8f19452f',
-    feeId: 'diploma-food-production',
-  },
-  {
-    id: 'pgd-culinary',
-    slug: 'pg-diploma-indian-culinary-arts',
-    name: 'PG Diploma in Indian Culinary Arts',
-    shortName: 'PGD Indian Culinary',
-    category: 'Diploma',
-    duration: '1 Year',
-    type: 'Full Time',
-    degree: 'PG Diploma',
-    school: 'School of Hospitality',
-    description: 'Specialized post-graduate diploma focusing on Indian cuisines, regional cooking, and traditional techniques.',
-    highlights: [
-      'Regional cuisine mastery',
-      'Traditional techniques',
-      'Chef mentorship',
-      'Restaurant internship'
-    ],
-    careerProspects: ['Indian Cuisine Chef', 'Executive Chef', 'Culinary Consultant', 'Restaurant Owner', 'Food Blogger'],
-    eligibility: 'Graduate in any discipline',
-    image: 'https://images.unsplash.com/photo-1596797038530-2c107229654b',
-    feeId: 'pgd-culinary',
-  },
 
   // PhD Programs (1)
   {

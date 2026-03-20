@@ -15,7 +15,7 @@ const tracks = [
       </svg>
     ),
     items: ['Model United Nations', 'Debate & Public Speaking', 'Policy Drafting Workshops', 'Governance Simulations'],
-    color: '#4a90a4',
+    color: '#027ea1',
   },
   {
     title: 'Innovation & Technology',
@@ -136,7 +136,7 @@ export default function JLUxPage() {
             transition={{ duration: 1, delay: 0.5, ease: customEase }}
             className="px-4 pt-28 sm:pt-32 sm:px-6 md:pl-10 md:pt-[120px]"
           >
-            <span className="inline-block bg-[#f4c950] text-[#21313c] text-[10px] sm:text-xs font-bold uppercase tracking-[0.2em] px-4 py-2 rounded-full">
+            <span className="inline-block bg-[#f4c950] text-[#21313c] text-[12px] sm:text-xs font-bold uppercase tracking-[0.2em] px-4 py-2 rounded-full">
               For Classes 11 & 12
             </span>
             <motion.h2
@@ -179,12 +179,12 @@ export default function JLUxPage() {
               transition={{ duration: 0.8, ease: customEase }}
               viewport={{ once: true }}
             >
-              <span className="text-[#999] uppercase tracking-widest text-[10px] sm:text-xs mb-4 block" style={{ letterSpacing: '0.2em' }}>
+              <span className="text-[#999] uppercase tracking-widest text-[12px] sm:text-xs mb-4 block" style={{ letterSpacing: '0.2em' }}>
                 Young Leadership Program
               </span>
               <h2 className="text-[#21313c] text-3xl sm:text-4xl md:text-5xl font-bold leading-tight mb-6">
                 Shape Tomorrow&apos;s{' '}
-                <span style={{ fontFamily: "'Times New Roman', serif", fontStyle: 'italic', color: '#4a90a4' }}>
+                <span style={{ fontFamily: "'Times New Roman', serif", fontStyle: 'italic', color: '#027ea1' }}>
                   Leaders
                 </span>{' '}
                 Today
@@ -253,7 +253,7 @@ export default function JLUxPage() {
             viewport={{ once: true }}
             className="mb-12 md:mb-16"
           >
-            <span className="text-[#999] uppercase tracking-widest text-[10px] sm:text-xs mb-4 block" style={{ letterSpacing: '0.2em' }}>
+            <span className="text-[#999] uppercase tracking-widest text-[12px] sm:text-xs mb-4 block" style={{ letterSpacing: '0.2em' }}>
               How It Works
             </span>
             <h2 className="text-[#21313c] text-3xl sm:text-4xl md:text-5xl font-bold leading-tight">
@@ -300,7 +300,7 @@ export default function JLUxPage() {
             className="mb-12 md:mb-16 flex flex-col md:flex-row md:justify-between md:items-end pb-8 border-b border-[#e5e5e5]"
           >
             <div className="mb-6 md:mb-0">
-              <span className="text-[#999] uppercase tracking-widest text-[10px] sm:text-xs mb-4 block" style={{ letterSpacing: '0.2em' }}>
+              <span className="text-[#999] uppercase tracking-widest text-[12px] sm:text-xs mb-4 block" style={{ letterSpacing: '0.2em' }}>
                 Choose Your Path
               </span>
               <h2 className="text-[#21313c] text-3xl sm:text-4xl md:text-5xl font-bold leading-tight">
@@ -367,7 +367,7 @@ export default function JLUxPage() {
             viewport={{ once: true }}
             className="mb-12"
           >
-            <span className="text-[#f4c950] uppercase tracking-widest text-[10px] sm:text-xs mb-4 block" style={{ letterSpacing: '0.2em' }}>
+            <span className="text-[#f4c950] uppercase tracking-widest text-[12px] sm:text-xs mb-4 block" style={{ letterSpacing: '0.2em' }}>
               Learn From The Best
             </span>
             <h2 className="text-white text-3xl sm:text-4xl md:text-5xl font-bold leading-tight max-w-[600px]">
@@ -411,7 +411,7 @@ export default function JLUxPage() {
             viewport={{ once: true }}
             className="text-center mb-12 md:mb-16"
           >
-            <span className="text-[#999] uppercase tracking-widest text-[10px] sm:text-xs mb-4 block" style={{ letterSpacing: '0.2em' }}>
+            <span className="text-[#999] uppercase tracking-widest text-[12px] sm:text-xs mb-4 block" style={{ letterSpacing: '0.2em' }}>
               Why Join JLUx
             </span>
             <h2 className="text-[#21313c] text-3xl sm:text-4xl md:text-5xl font-bold leading-tight">
@@ -454,7 +454,7 @@ export default function JLUxPage() {
               transition={{ duration: 0.6, ease: customEase }}
               viewport={{ once: true }}
             >
-              <span className="text-[#999] uppercase tracking-widest text-[10px] sm:text-xs mb-4 block" style={{ letterSpacing: '0.2em' }}>
+              <span className="text-[#999] uppercase tracking-widest text-[12px] sm:text-xs mb-4 block" style={{ letterSpacing: '0.2em' }}>
                 Who Can Apply
               </span>
               <h2 className="text-[#21313c] text-3xl sm:text-4xl md:text-5xl font-bold leading-tight mb-6">
@@ -479,7 +479,7 @@ export default function JLUxPage() {
                     viewport={{ once: true }}
                     className="flex items-start gap-3"
                   >
-                    <div className="w-6 h-6 rounded-full bg-[#4a90a4] flex items-center justify-center shrink-0 mt-0.5">
+                    <div className="w-6 h-6 rounded-full bg-[#027ea1] flex items-center justify-center shrink-0 mt-0.5">
                       <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
                         <polyline points="20 6 9 17 4 12"/>
                       </svg>
@@ -510,7 +510,7 @@ export default function JLUxPage() {
       <section className="relative py-20 md:py-28 px-4 sm:px-6 md:px-16 bg-[#21313c] overflow-hidden">
         <div className="absolute inset-0 opacity-10">
           <div className="absolute top-0 right-0 w-[500px] h-[500px] rounded-full bg-[#f4c950] blur-[200px]" />
-          <div className="absolute bottom-0 left-0 w-[400px] h-[400px] rounded-full bg-[#4a90a4] blur-[200px]" />
+          <div className="absolute bottom-0 left-0 w-[400px] h-[400px] rounded-full bg-[#027ea1] blur-[200px]" />
         </div>
         <div className="relative mx-auto max-w-[800px] text-center">
           <motion.div
@@ -519,7 +519,7 @@ export default function JLUxPage() {
             transition={{ duration: 0.6, ease: customEase }}
             viewport={{ once: true }}
           >
-            <span className="inline-block bg-[#f4c950]/20 text-[#f4c950] text-[10px] sm:text-xs font-bold uppercase tracking-[0.2em] px-4 py-2 rounded-full mb-6">
+            <span className="inline-block bg-[#f4c950]/20 text-[#f4c950] text-[12px] sm:text-xs font-bold uppercase tracking-[0.2em] px-4 py-2 rounded-full mb-6">
               Applications Open
             </span>
             <h2 className="text-white text-3xl sm:text-4xl md:text-5xl font-bold leading-tight mb-6">

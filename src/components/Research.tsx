@@ -61,8 +61,7 @@ const researchModalData: Record<number, { title: string; description: string; hi
 const statsData = [
   { id: 1, value: '2.4k+', label: 'PUBLICATIONS', description: 'Peer-reviewed journals & global indexing' },
   { id: 2, value: '142', label: 'PATENTS', description: 'Innovation-driven intellectual property' },
-  { id: 3, value: '$85M', label: 'FUNDED PROJECTS', description: 'Government & industry-backed research' },
-  { id: 4, value: 'Global', label: 'OUTCOMES', description: 'Policy, industry & social impact' },
+  { id: 3, value: 'Global', label: 'OUTCOMES', description: 'Policy, industry & social impact' },
 ];
 
 const publicationsData = [
@@ -136,26 +135,6 @@ const journalCategories = [
   'Interdisciplinary Labs',
 ];
 
-const facultySpotlight = [
-  {
-    id: 1,
-    name: 'Shri. Abhishek Mohan Gupta',
-    title: 'Pro - Chancellor',
-    image: '/pc.jpg',
-  },
-  {
-    id: 2,
-    name: 'Mr. Pankaj Das',
-    title: 'Registrar',
-    image: '/registrar.jpg',
-  },
-  {
-    id: 3,
-    name: 'Dr. Nilanjan Chattopadhyay',
-    title: 'Vice Chancellor',
-    image: '/ppc.jpg',
-  },
-];
 
 const patentsData = [
   {
@@ -268,8 +247,8 @@ const Research = () => {
         >
           <motion.div className="absolute inset-0" style={{ y }}>
             <Image
-              src="/campus/gallery-12.jpg"
-              alt="Research"
+              src="/pro1.jpg"
+              alt="Research at JLU"
               fill
               className="object-cover scale-110"
               priority
@@ -405,10 +384,10 @@ const Research = () => {
                 <p className="text-xl sm:text-2xl md:text-3xl lg:text-5xl font-bold text-[#21313c] mb-1 md:mb-2">
                   {stat.value}
                 </p>
-                <p className="text-[10px] sm:text-xs md:text-sm font-medium text-[#21313c] tracking-wider mb-1">
+                <p className="text-[12px] sm:text-xs md:text-sm font-medium text-[#21313c] tracking-wider mb-1">
                   {stat.label}
                 </p>
-                <p className="text-[10px] sm:text-xs md:text-sm text-[#21313c] hidden sm:block">
+                <p className="text-[12px] sm:text-xs md:text-sm text-[#21313c] hidden sm:block">
                   {stat.description}
                 </p>
               </div>
@@ -436,7 +415,7 @@ const Research = () => {
                 Peer-reviewed research advancing knowledge across disciplines.
               </p>
             </div>
-            <div className="flex items-center gap-2 bg-[#03463B] text-white px-3 sm:px-4 py-1.5 sm:py-2 rounded-full">
+            <div className="flex items-center gap-2 bg-[#027ea1] text-white px-3 sm:px-4 py-1.5 sm:py-2 rounded-full">
               <span className="text-xl sm:text-2xl md:text-3xl font-bold">2.4k+</span>
               <span className="text-xs sm:text-sm">Published Papers</span>
             </div>
@@ -470,14 +449,14 @@ const Research = () => {
               >
                 {/* Category Tag */}
                 <div className="flex items-center justify-between mb-4">
-                  <span className="px-3 py-1 bg-[#e8f5e9] text-[#03463B] text-[10px] md:text-xs font-medium rounded-full">
+                  <span className="px-3 py-1 bg-[#e0f2f7] text-[#027ea1] text-[12px] md:text-xs font-medium rounded-full">
                     {pub.category}
                   </span>
                   <span className="text-xs text-gray-400">{pub.year}</span>
                 </div>
 
                 {/* Title */}
-                <h3 className="text-[#21313c] font-semibold text-sm md:text-base leading-snug mb-3 group-hover:text-[#03463B] transition-colors line-clamp-3">
+                <h3 className="text-[#21313c] font-semibold text-sm md:text-base leading-snug mb-3 group-hover:text-[#027ea1] transition-colors line-clamp-3">
                   {pub.title}
                 </h3>
 
@@ -504,7 +483,7 @@ const Research = () => {
                     href={`https://doi.org/${pub.doi}`}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-xs text-[#03463B] font-medium hover:underline flex items-center gap-1"
+                    className="text-xs text-[#027ea1] font-medium hover:underline flex items-center gap-1"
                   >
                     DOI
                     <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
@@ -589,61 +568,6 @@ const Research = () => {
         </div>
       </div>
 
-      {/* Faculty Spotlight Section */}
-      <div id="innovation-labs" className="w-full bg-white">
-        <div
-          className="mx-auto px-5 py-12 md:px-10 md:py-16 lg:px-30 lg:py-20"
-          style={{
-            maxWidth: '1440px',
-          }}
-        >
-          {/* Header */}
-          <div className="flex flex-col md:flex-row justify-between items-start gap-4 md:gap-0 mb-8 md:mb-12 lg:mb-16">
-            <div>
-              <h2 className="text-2xl md:text-4xl lg:text-5xl font-bold text-[#21313c] mb-2 md:mb-4">
-                Faculty Spotlight
-              </h2>
-              <p className="text-base md:text-lg lg:text-xl text-[#21313c]">
-                Meet the minds shaping the future through rigorous inquiry.
-              </p>
-            </div>
-            <a href="/faculties" className="text-sm md:text-base text-[#21313c] font-medium underline hover:no-underline">
-              View all Faculty
-            </a>
-          </div>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6 md:gap-8">
-            {facultySpotlight.map((faculty) => (
-              <div
-                key={faculty.id}
-                className="flex flex-col"
-              >
-                {/* Image */}
-                <div
-                  className="relative overflow-hidden w-full h-60 sm:h-72 md:h-80 lg:h-105"
-                >
-                  <Image
-                    src={faculty.image}
-                    alt={faculty.name}
-                    fill
-                    className="object-cover"
-                  />
-                </div>
-                {/* Content */}
-                <div className="mt-4 md:mt-6">
-                  <h3 className="text-lg md:text-xl lg:text-2xl font-bold text-[#21313c] mb-1 md:mb-2">
-                    {faculty.name}
-                  </h3>
-                  <p className="text-sm md:text-base text-[#666666]">
-                    {faculty.title}
-                  </p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </div>
-
       {/* Patents Section */}
       <div id="collaborations" className="w-full bg-[#f6f7f0]">
         <div
@@ -678,7 +602,7 @@ const Research = () => {
                 <div className="flex justify-between items-start mb-4">
                   <span className={`px-3 py-1 rounded-full text-xs font-medium ${
                     patent.status === 'Granted'
-                      ? 'bg-green-100 text-green-800'
+                      ? 'bg-[#e0f2f7] text-[#027ea1]'
                       : 'bg-yellow-100 text-yellow-800'
                   }`}>
                     {patent.status}
@@ -729,7 +653,7 @@ const Research = () => {
                 Government and industry-backed research driving innovation and impact.
               </p>
             </div>
-            <div className="flex items-center gap-2 bg-[#1a5f4a] text-white px-3 sm:px-4 py-1.5 sm:py-2 rounded-full">
+            <div className="flex items-center gap-2 bg-[#027ea1] text-white px-3 sm:px-4 py-1.5 sm:py-2 rounded-full">
               <span className="text-xl sm:text-2xl md:text-3xl font-bold">₹85M+</span>
               <span className="text-xs sm:text-sm">Total Funding</span>
             </div>
@@ -752,17 +676,17 @@ const Research = () => {
                   <tr key={project.id} className="border-b border-gray-200 hover:bg-gray-50 transition-colors">
                     <td className="py-3 sm:py-4 px-1 sm:px-2">
                       <p className="text-xs sm:text-sm md:text-base font-medium text-[#21313c]">{project.title}</p>
-                      <p className="text-[10px] sm:text-xs text-gray-500 mt-1">PI: {project.pi}</p>
-                      <p className="text-[10px] sm:text-xs text-gray-500 md:hidden mt-1">{project.fundingAgency}</p>
+                      <p className="text-[12px] sm:text-xs text-gray-500 mt-1">PI: {project.pi}</p>
+                      <p className="text-[12px] sm:text-xs text-gray-500 md:hidden mt-1">{project.fundingAgency}</p>
                     </td>
                     <td className="py-3 sm:py-4 px-1 sm:px-2 text-sm text-gray-600 hidden md:table-cell">{project.fundingAgency}</td>
-                    <td className="py-3 sm:py-4 px-1 sm:px-2 text-xs sm:text-sm md:text-base font-semibold text-[#1a5f4a]">{project.amount}</td>
+                    <td className="py-3 sm:py-4 px-1 sm:px-2 text-xs sm:text-sm md:text-base font-semibold text-[#027ea1]">{project.amount}</td>
                     <td className="py-3 sm:py-4 px-1 sm:px-2 text-sm text-gray-600 hidden lg:table-cell">{project.duration}</td>
                     <td className="py-3 sm:py-4 px-1 sm:px-2">
                       <span className={`px-3 py-1 rounded-full text-xs font-medium ${
                         project.status === 'Ongoing'
                           ? 'bg-blue-100 text-blue-800'
-                          : 'bg-green-100 text-green-800'
+                          : 'bg-[#e0f2f7] text-[#027ea1]'
                       }`}>
                         {project.status}
                       </span>

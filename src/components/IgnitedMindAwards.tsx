@@ -33,7 +33,7 @@ const IgnitedMindAwards = () => {
         >
           <div className="mb-6 md:mb-0">
             <span
-              className="text-[#999] uppercase tracking-widest block text-[10px] sm:text-xs mb-3 md:mb-4"
+              className="text-[#999] uppercase tracking-widest block text-sm sm:text-base mb-3 md:mb-4"
               style={{ letterSpacing: '0.2em' }}
             >
               Awards
@@ -53,7 +53,7 @@ const IgnitedMindAwards = () => {
             </h2>
           </div>
           <p
-            className="text-[#666] text-sm md:text-base max-w-full md:max-w-[400px]"
+            className="text-[#666] text-base md:text-lg max-w-full md:max-w-[400px]"
             style={{ lineHeight: 1.7 }}
           >
             The Ignited Mind Awards recognise individuals who embody innovation, leadership and positive change. They celebrate voices that inspire and contribute meaningfully to society.
@@ -80,7 +80,7 @@ const IgnitedMindAwards = () => {
             <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent" />
             <div className="absolute bottom-0 left-0 right-0 p-5 sm:p-8 md:p-10">
               <span
-                className="text-[#f4c950] text-[9px] sm:text-[10px] md:text-[11px] uppercase tracking-widest block mb-3"
+                className="text-[#f4c950] text-[11px] sm:text-[12px] md:text-[13px] uppercase tracking-widest block mb-3"
                 style={{ letterSpacing: '0.2em' }}
               >
                 Annual Ceremony
@@ -92,7 +92,7 @@ const IgnitedMindAwards = () => {
                 Celebrating Extraordinary Minds
               </h3>
               <p
-                className="text-white/80 text-xs sm:text-sm md:text-[15px] max-w-[95%] md:max-w-[90%]"
+                className="text-white/80 text-sm sm:text-base md:text-lg max-w-[95%] md:max-w-[90%]"
                 style={{ lineHeight: 1.7 }}
               >
                 Inspired by Dr. APJ Abdul Kalam&apos;s vision, the Ignited Mind Awards honour changemakers across fields — from education and social impact to arts, sports and entrepreneurship — who light the way for future generations.
@@ -110,7 +110,7 @@ const IgnitedMindAwards = () => {
               className="mb-8"
             >
               <p
-                className="text-[#666] text-sm md:text-[15px] mb-6"
+                className="text-[#666] text-base md:text-lg mb-6"
                 style={{ lineHeight: 1.7 }}
               >
                 Held annually at the JLU campus, the Ignited Mind Awards bring together luminaries, thought leaders and emerging voices to celebrate achievement that goes beyond personal success — honouring those who uplift communities and push boundaries.
@@ -157,10 +157,10 @@ const IgnitedMindAwards = () => {
                     {String(index + 1).padStart(2, '0')}
                   </div>
                   <div>
-                    <h4 className="text-[#21313c] text-sm md:text-[15px] font-semibold mb-1">
+                    <h4 className="text-[#21313c] text-base md:text-lg font-semibold mb-1">
                       {item.category}
                     </h4>
-                    <p className="text-[#999] text-xs md:text-[13px]" style={{ lineHeight: 1.6 }}>
+                    <p className="text-[#999] text-sm md:text-base" style={{ lineHeight: 1.6 }}>
                       {item.description}
                     </p>
                   </div>

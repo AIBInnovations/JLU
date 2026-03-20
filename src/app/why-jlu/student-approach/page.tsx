@@ -294,19 +294,19 @@ export default function StudentApproachPage() {
               </p>
               <div className="grid grid-cols-2 gap-6 mb-8">
                 <div className="border-l-2 border-[#f4c950] pl-4">
-                  <p className="text-2xl md:text-3xl font-bold text-[#03463B]">122</p>
+                  <p className="text-2xl md:text-3xl font-bold text-[#027ea1]">122</p>
                   <p className="text-gray-500 text-sm mt-1">Smart Classrooms</p>
                 </div>
                 <div className="border-l-2 border-[#f4c950] pl-4">
-                  <p className="text-2xl md:text-3xl font-bold text-[#03463B]">42,000+</p>
+                  <p className="text-2xl md:text-3xl font-bold text-[#027ea1]">42,000+</p>
                   <p className="text-gray-500 text-sm mt-1">Library Books</p>
                 </div>
                 <div className="border-l-2 border-[#f4c950] pl-4">
-                  <p className="text-2xl md:text-3xl font-bold text-[#03463B]">30+</p>
+                  <p className="text-2xl md:text-3xl font-bold text-[#027ea1]">30+</p>
                   <p className="text-gray-500 text-sm mt-1">Student Clubs</p>
                 </div>
                 <div className="border-l-2 border-[#f4c950] pl-4">
-                  <p className="text-2xl md:text-3xl font-bold text-[#03463B]">4</p>
+                  <p className="text-2xl md:text-3xl font-bold text-[#027ea1]">4</p>
                   <p className="text-gray-500 text-sm mt-1">Auditoriums</p>
                 </div>
               </div>
@@ -348,7 +348,7 @@ export default function StudentApproachPage() {
               <a href="/apply" className="bg-[#21313c] text-white px-8 py-3.5 rounded-lg font-semibold text-sm hover:bg-[#1a2630] transition-all text-center">
                 Apply Now
               </a>
-              <a href="/broucher/Fee-Structure-2026-27.pdf" download target="_blank" rel="noopener noreferrer" className="border-2 border-[#21313c] text-[#21313c] px-8 py-3.5 rounded-lg font-semibold text-sm hover:bg-[#21313c] hover:text-white transition-all text-center">
+              <a href="/broucher/JLU-Brochure-2026.pdf" download target="_blank" rel="noopener noreferrer" className="border-2 border-[#21313c] text-[#21313c] px-8 py-3.5 rounded-lg font-semibold text-sm hover:bg-[#21313c] hover:text-white transition-all text-center">
                 Download Brochure
               </a>
             </div>

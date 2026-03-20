@@ -160,8 +160,8 @@ export const AntiRaggingBanner = () => {
                       initial={{ opacity: 0, scale: 0.9 }}
                       animate={{ opacity: 1, scale: 1 }}
                     >
-                      <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#16a34a" strokeWidth="3">
+                      <div className="w-16 h-16 bg-[#e0f2f7] rounded-full flex items-center justify-center mx-auto mb-4">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#027ea1" strokeWidth="3">
                           <polyline points="20 6 9 17 4 12" strokeLinecap="round" strokeLinejoin="round"/>
                         </svg>
                       </div>
@@ -204,7 +204,7 @@ export const AntiRaggingBanner = () => {
                         <button
                           type="button"
                           onClick={() => setReportData(prev => ({ ...prev, anonymous: !prev.anonymous }))}
-                          className={`relative w-12 h-6 rounded-full transition-colors ${reportData.anonymous ? 'bg-[#03463B]' : 'bg-gray-300'}`}
+                          className={`relative w-12 h-6 rounded-full transition-colors ${reportData.anonymous ? 'bg-[#027ea1]' : 'bg-gray-300'}`}
                         >
                           <span
                             className={`absolute top-1 w-4 h-4 bg-white rounded-full transition-transform shadow-sm ${reportData.anonymous ? 'left-7' : 'left-1'}`}
@@ -251,7 +251,7 @@ export const AntiRaggingBanner = () => {
                       {/* Emergency Contact */}
                       <div className="text-center pt-4 border-t border-gray-100">
                         <p className="text-xs text-gray-400 mb-2">For immediate assistance, call</p>
-                        <a href="tel:18001805522" className="text-[#03463B] font-bold text-lg hover:underline">
+                        <a href="tel:18001805522" className="text-[#027ea1] font-bold text-lg hover:underline">
                           1800-180-5522
                         </a>
                       </div>

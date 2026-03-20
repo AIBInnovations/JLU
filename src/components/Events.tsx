@@ -87,7 +87,7 @@ const pastEvents: Event[] = [
     date: '15 April 2024',
     title: 'Lakecity Hack 2024',
     description: 'Annual hackathon bringing together tech enthusiasts and innovators',
-    venue: 'Faculty of Engineering',
+    venue: 'Faculty of Science and Technology',
     category: 'Technology',
     image: '/JLu%20events/photos/Anti%20Ragging%20WEEK/IMG_2091.JPG',
   },
@@ -179,7 +179,7 @@ const Events = () => {
         >
           <motion.div className="absolute inset-0" style={{ y }}>
             <Image
-              src="/JLu%20events/photos/Lehar/IMG_9272.JPG"
+              src="/JLu%20events/photos/Lehar/IMG_9067.JPG"
               alt="Events at JLU"
               fill
               className="object-cover scale-110"
@@ -300,7 +300,7 @@ const Events = () => {
                     </svg>
                     {event.date}
                   </div>
-                  <h3 className="text-[#21313c] font-semibold text-[11px] md:text-lg mb-1 md:mb-2 group-hover:text-[#03463B] transition-colors leading-tight">
+                  <h3 className="text-[#21313c] font-semibold text-[11px] md:text-lg mb-1 md:mb-2 group-hover:text-[#027ea1] transition-colors leading-tight">
                     {event.title}
                   </h3>
                   <p className="text-[#666] text-[9px] md:text-sm mb-1.5 md:mb-3 line-clamp-2 leading-snug">{event.description}</p>
@@ -417,16 +417,16 @@ const Events = () => {
                   style={{ gridTemplateColumns: isMobile ? '60px 1fr 1fr 20px' : '140px 1fr 1fr 40px', gap: isMobile ? '8px' : '40px', marginLeft: isMobile ? '-8px' : '-24px', marginRight: isMobile ? '-8px' : '-24px', paddingLeft: isMobile ? '8px' : '24px', paddingRight: isMobile ? '8px' : '24px', borderBottom: '1px solid #e5e5e5' }}
                 >
                   <div>
-                    <span className="text-[#21313c] font-semibold block" style={{ fontSize: isMobile ? '9px' : '13px', lineHeight: 1.4 }}>{event.date.split(' ')[0]}</span>
-                    <span className="text-[#21313c] block" style={{ fontSize: isMobile ? '8px' : '13px' }}>{event.date.split(' ').slice(1).join(' ')}</span>
+                    <span className="text-[#21313c] font-semibold block" style={{ fontSize: isMobile ? '12px' : '13px', lineHeight: 1.4 }}>{event.date.split(' ')[0]}</span>
+                    <span className="text-[#21313c] block" style={{ fontSize: isMobile ? '12px' : '13px' }}>{event.date.split(' ').slice(1).join(' ')}</span>
                   </div>
                   <div>
-                    <h3 className="text-[#21313c] group-hover:text-[#666] transition-colors" style={{ fontSize: isMobile ? '11px' : '24px', fontWeight: 600, lineHeight: 1.2, marginBottom: isMobile ? '4px' : '12px' }}>{event.title}</h3>
+                    <h3 className="text-[#21313c] group-hover:text-[#666] transition-colors" style={{ fontSize: isMobile ? '13px' : '24px', fontWeight: 600, lineHeight: 1.2, marginBottom: isMobile ? '4px' : '12px' }}>{event.title}</h3>
                     <span className="inline-block px-1.5 md:px-3 py-0.5 md:py-1 bg-[#e8f0fe] text-[#3b82f6] rounded text-[7px] md:text-xs font-medium">{event.category}</span>
                   </div>
                   <div>
-                    <p className="text-[#666] mb-1 md:mb-3 line-clamp-2" style={{ fontSize: isMobile ? '9px' : '15px', lineHeight: 1.6 }}>{event.description}</p>
-                    <p className="text-[#999] truncate" style={{ fontSize: isMobile ? '8px' : '13px' }}>{event.venue}</p>
+                    <p className="text-[#666] mb-1 md:mb-3 line-clamp-2" style={{ fontSize: isMobile ? '12px' : '15px', lineHeight: 1.6 }}>{event.description}</p>
+                    <p className="text-[#999] truncate" style={{ fontSize: isMobile ? '12px' : '13px' }}>{event.venue}</p>
                   </div>
                   <div className="flex items-center justify-end h-full">
                     <span className="text-[#21313c] md:opacity-0 md:group-hover:opacity-100 group-hover:translate-x-1 transition-all" style={{ fontSize: isMobile ? '12px' : '20px' }}>→</span>
@@ -464,16 +464,16 @@ const Events = () => {
                         style={{ gridTemplateColumns: isMobile ? '60px 1fr 1fr 20px' : '140px 1fr 1fr 40px', gap: isMobile ? '8px' : '40px', marginLeft: isMobile ? '-8px' : '-24px', marginRight: isMobile ? '-8px' : '-24px', paddingLeft: isMobile ? '8px' : '24px', paddingRight: isMobile ? '8px' : '24px', borderBottom: '1px solid #e5e5e5' }}
                       >
                         <div>
-                          <span className="text-[#21313c] font-semibold block" style={{ fontSize: isMobile ? '9px' : '13px', lineHeight: 1.4 }}>{event.date.split(' ')[0]}</span>
-                          <span className="text-[#21313c] block" style={{ fontSize: isMobile ? '8px' : '13px' }}>{event.date.split(' ').slice(1).join(' ')}</span>
+                          <span className="text-[#21313c] font-semibold block" style={{ fontSize: isMobile ? '12px' : '13px', lineHeight: 1.4 }}>{event.date.split(' ')[0]}</span>
+                          <span className="text-[#21313c] block" style={{ fontSize: isMobile ? '12px' : '13px' }}>{event.date.split(' ').slice(1).join(' ')}</span>
                         </div>
                         <div>
-                          <h3 className="text-[#21313c] group-hover:text-[#666] transition-colors" style={{ fontSize: isMobile ? '11px' : '24px', fontWeight: 600, lineHeight: 1.2, marginBottom: isMobile ? '4px' : '12px' }}>{event.title}</h3>
+                          <h3 className="text-[#21313c] group-hover:text-[#666] transition-colors" style={{ fontSize: isMobile ? '13px' : '24px', fontWeight: 600, lineHeight: 1.2, marginBottom: isMobile ? '4px' : '12px' }}>{event.title}</h3>
                           <span className="inline-block px-1.5 md:px-3 py-0.5 md:py-1 bg-[#e8f0fe] text-[#3b82f6] rounded text-[7px] md:text-xs font-medium">{event.category}</span>
                         </div>
                         <div>
-                          <p className="text-[#666] mb-1 md:mb-3 line-clamp-2" style={{ fontSize: isMobile ? '9px' : '15px', lineHeight: 1.6 }}>{event.description}</p>
-                          <p className="text-[#999] truncate" style={{ fontSize: isMobile ? '8px' : '13px' }}>{event.venue}</p>
+                          <p className="text-[#666] mb-1 md:mb-3 line-clamp-2" style={{ fontSize: isMobile ? '12px' : '15px', lineHeight: 1.6 }}>{event.description}</p>
+                          <p className="text-[#999] truncate" style={{ fontSize: isMobile ? '12px' : '13px' }}>{event.venue}</p>
                         </div>
                         <div className="flex items-center justify-end h-full">
                           <span className="text-[#21313c] md:opacity-0 md:group-hover:opacity-100 group-hover:translate-x-1 transition-all" style={{ fontSize: isMobile ? '12px' : '20px' }}>→</span>
@@ -744,7 +744,7 @@ const Events = () => {
                     className="object-cover"
                   />
                 ) : (
-                  <div className="absolute inset-0 bg-gradient-to-br from-[#03463B] to-[#025039]" />
+                  <div className="absolute inset-0 bg-gradient-to-br from-[#027ea1] to-[#026986]" />
                 )}
                 <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent" />
 
@@ -780,7 +780,7 @@ const Events = () => {
                 <div className="flex flex-col gap-3 mb-6">
                   <div className="flex items-center gap-3 text-[#21313c]">
                     <div className="w-9 h-9 bg-[#f6f7f0] rounded-lg flex items-center justify-center shrink-0">
-                      <svg className="w-4 h-4 text-[#03463B]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <svg className="w-4 h-4 text-[#027ea1]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
                       </svg>
                     </div>
@@ -791,7 +791,7 @@ const Events = () => {
                   </div>
                   <div className="flex items-center gap-3 text-[#21313c]">
                     <div className="w-9 h-9 bg-[#f6f7f0] rounded-lg flex items-center justify-center shrink-0">
-                      <svg className="w-4 h-4 text-[#03463B]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <svg className="w-4 h-4 text-[#027ea1]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
                       </svg>

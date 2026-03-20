@@ -3,16 +3,16 @@ import { FacultyPage } from '@/components/FacultyPage';
 import { Footer } from '@/components/Footer';
 
 export const metadata: Metadata = {
-  title: 'Faculty of Engineering & Technology | Jagran Lakecity University',
+  title: 'Faculty of Science and Technology | Jagran Lakecity University',
   description: 'B.Tech and M.Tech programs with AI, Machine Learning, and Data Science specializations. Research-focused engineering education at JLU.',
   keywords: ['JLU engineering', 'B.Tech Bhopal', 'computer science', 'AI ML course', 'engineering college'],
 };
 
 const engineeringData = {
-  name: 'Faculty of Engineering & Technology',
+  name: 'Faculty of Science and Technology',
   tagline: 'Research-driven engineering education with focus on AI, Machine Learning, and emerging technologies.',
   description: 'Our engineering programs combine theoretical foundations with practical, research-based learning. Students engage with cutting-edge technologies including Artificial Intelligence, Machine Learning, and Data Science. With international industrial training programs and full semesters dedicated to real-world projects, we prepare engineers who can innovate and lead in the technology-driven world.',
-  heroImage: '/campus/gallery-12.jpg',
+  heroImage: '/schools/engineering-1.jpg',
   accentColor: '#ffffff',
   programs: [
     { name: 'B.Tech Computer Science & Engineering', duration: '4 Years', type: 'undergraduate' as const },

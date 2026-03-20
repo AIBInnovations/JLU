@@ -21,63 +21,75 @@ interface Alumni {
 const alumniData: Alumni[] = [
   {
     id: '1',
-    name: 'Aakansha Sharma',
-    batch: '2019',
+    name: 'Mr. Sagar Agrawal',
+    batch: '2025',
     image: '/jlu-placement1.jpeg',
-    designation: 'Consultant',
-    company: 'Deloitte',
-    testimonial: 'The MBA program at JLU was transformative. The case study methodology and industry mentorship prepared me for consulting at a Big 4 firm.',
-    linkedin: 'https://linkedin.com/in/aakansha-sharma-a07277129',
+    designation: 'JLU00505',
+    company: 'BA.LLB Program',
+    testimonial: 'Alumni Award Recipient 2025',
   },
   {
     id: '2',
-    name: 'Mohd Sohail',
-    batch: '2020',
+    name: 'Mr. Sanchit Shrivastava',
+    batch: '2025',
     image: '/jlu-placement2.jpeg',
-    designation: 'Process Associate',
-    company: 'Genpact',
-    testimonial: 'JLU provided me with incredible opportunities to learn and grow. The practical exposure and industry connections helped me land my dream role.',
-    linkedin: 'https://linkedin.com/in/mohd-sohail-ms',
+    designation: 'JLU04696',
+    company: 'BAJMC Program',
+    testimonial: 'Alumni Award Recipient 2025',
   },
   {
     id: '3',
-    name: 'Prerna Jha',
-    batch: '2021',
+    name: 'Mr. Aman Verma',
+    batch: '2024',
     image: '/jlu-placement3.jpeg',
-    designation: 'Marketing Executive',
-    company: 'SAGE Realty',
-    testimonial: 'JLU\'s focus on holistic development and the excellent faculty helped me build both technical and soft skills essential for my career.',
-    linkedin: 'https://linkedin.com/in/prerna-jha-907b2a1b6',
+    designation: 'JLU01216',
+    company: 'BBA Program',
+    testimonial: 'Alumni Award Recipient 2024',
   },
   {
     id: '4',
-    name: 'Rahul Verma',
-    batch: '2022',
+    name: 'Mr. Ugyen Rhuntsho Rabgay',
+    batch: '2024',
     image: '/jlu-insta1.jpg',
-    designation: 'Systems Engineer',
-    company: 'Infosys',
-    testimonial: 'From campus placements to career growth, JLU has been instrumental in shaping my journey. The alumni network is incredibly supportive.',
-    linkedin: '#',
+    designation: 'JLU00927',
+    company: 'BAJMC Program',
+    testimonial: 'Alumni Award Recipient 2024',
   },
   {
     id: '5',
-    name: 'Sneha Patel',
-    batch: '2021',
+    name: 'Mr. Namgay Dorji',
+    batch: '2024',
     image: '/jlu-insta2.jpg',
-    designation: 'Relationship Manager',
-    company: 'HDFC Bank',
-    testimonial: 'The Faculty of Commerce at JLU gave me hands-on experience with real banking scenarios. It opened doors to the financial sector.',
-    linkedin: '#',
+    designation: 'JLU00402',
+    company: 'BBA.LLB Program',
+    testimonial: 'Alumni Award Recipient 2024',
   },
   {
     id: '6',
-    name: 'Aditya Singh',
+    name: 'Mr. Sajal Jain',
     batch: '2023',
     image: '/jlu-insta3.jpg',
-    designation: 'Associate Editor',
-    company: 'Times of India',
-    testimonial: 'The Faculty of Journalism at JLU and the International Festival of Media gave me the exposure I needed to join mainstream media.',
-    linkedin: '#',
+    designation: 'JLU02151',
+    company: 'B.Com Program',
+    testimonial: 'Alumni Award Recipient 2023',
+  },
+  {
+    id: '7',
+    name: 'Ms. Urvashi Mathur',
+    batch: '2023',
+    image: '/jlu-placement1.jpeg',
+    designation: 'JLU02531',
+    company: 'B.Sc. (Hospitality & Hotel Administration) Program',
+    testimonial: 'Alumni Award Recipient 2023',
+  },
+  {
+    id: '8',
+    name: 'Ms. Sumaira Yasin',
+    batch: '2023',
+    image: '/jlu-placement2.jpeg',
+    designation: 'JLU00922',
+    company: 'BAJMC Program',
+    testimonial: 'Alumni Award Recipient 2023',
   },
 ];
 
@@ -136,7 +148,12 @@ export const AlumniSection = () => {
       }
     }, sectionRef);
 
-    return () => ctx.revert();
+    return () => {
+      ctx.revert();
+      ScrollTrigger.getAll().forEach((t) => t.kill());
+      gsap.killTweensOf('*');
+      ScrollTrigger.refresh();
+    };
   }, [mounted]);
 
   const navigateCards = (direction: 'prev' | 'next') => {
@@ -199,7 +216,7 @@ export const AlumniSection = () => {
   }, [currentPair, mounted]);
 
   if (!mounted) {
-    return <div className="h-screen bg-[#f6f7f0]" />;
+    return <div className="min-h-screen bg-[#f6f7f0]" />;
   }
 
   return (
@@ -230,14 +247,17 @@ export const AlumniSection = () => {
             {/* Section Title */}
             <div className="mb-6 md:mb-8">
               <h2
-                className="text-3xl md:text-4xl lg:text-5xl font-semibold text-[#21313c]"
+                className="text-4xl md:text-5xl lg:text-6xl font-semibold text-[#21313c]"
                 style={{ fontFamily: 'Inter, sans-serif', letterSpacing: '-0.02em' }}
               >
-                Our{' '}
+                Alumni{' '}
                 <span style={{ fontFamily: "'Times New Roman', serif", fontStyle: 'italic', fontWeight: 400 }}>
-                  Alumni
+                  Award
                 </span>
               </h2>
+              <p className="text-[#999] text-sm sm:text-base mt-2" style={{ letterSpacing: '0.05em' }}>
+                Recipients — Last 3 Years
+              </p>
             </div>
 
             <h3
@@ -251,22 +271,19 @@ export const AlumniSection = () => {
               }}
             >
               <span className="alumni-text-line block overflow-hidden">
-                <span className="inline-block">Our distinguished alumni</span>
+                <span className="inline-block">Celebrating alumni who</span>
               </span>
               <span className="alumni-text-line block overflow-hidden">
-                <span className="inline-block">are making waves across</span>
+                <span className="inline-block">have excelled in their</span>
               </span>
               <span className="alumni-text-line block overflow-hidden">
-                <span className="inline-block">industries worldwide,</span>
+                <span className="inline-block">respective fields and</span>
               </span>
               <span className="alumni-text-line block overflow-hidden">
-                <span className="inline-block">leading innovation and</span>
+                <span className="inline-block">brought pride to the</span>
               </span>
               <span className="alumni-text-line block overflow-hidden">
-                <span className="inline-block">inspiring the next</span>
-              </span>
-              <span className="alumni-text-line block overflow-hidden">
-                <span className="inline-block">generation of leaders.</span>
+                <span className="inline-block">JLU community.</span>
               </span>
             </h3>
 
@@ -283,16 +300,16 @@ export const AlumniSection = () => {
                 }}
               >
                 <span className="alumni-text-line block overflow-hidden">
-                  <span className="inline-block">From classrooms to</span>
+                  <span className="inline-block">Honoring excellence</span>
                 </span>
                 <span className="alumni-text-line block overflow-hidden">
-                  <span className="inline-block">boardrooms — JLU</span>
+                  <span className="inline-block">across programs and</span>
                 </span>
                 <span className="alumni-text-line block overflow-hidden">
-                  <span className="inline-block">graduates are shaping</span>
+                  <span className="inline-block">years — JLU Alumni</span>
                 </span>
                 <span className="alumni-text-line block overflow-hidden">
-                  <span className="inline-block">the future.</span>
+                  <span className="inline-block">Award.</span>
                 </span>
               </p>
             )}
@@ -438,14 +455,14 @@ export const AlumniSection = () => {
                   className="absolute top-4 right-4 px-3 py-1 bg-[#f0c14b] text-[#21313c] font-semibold rounded-full"
                   style={{ fontSize: '12px' }}
                 >
-                  Batch {topAlumni.batch}
+                  {topAlumni.batch}
                 </span>
 
                 {/* Content */}
                 <div className="absolute bottom-0 left-0 right-0 p-5">
                   <h4 className="text-white font-semibold text-lg mb-0.5">{topAlumni.name}</h4>
-                  <p className="text-white/80 text-sm">{topAlumni.designation}</p>
-                  <p className="text-[#f0c14b] text-sm font-medium">{topAlumni.company}</p>
+                  <p className="text-white/80 text-base">{topAlumni.designation}</p>
+                  <p className="text-[#f0c14b] text-base font-medium">{topAlumni.company}</p>
                 </div>
               </div>
 
@@ -472,14 +489,14 @@ export const AlumniSection = () => {
                   className="absolute top-4 right-4 px-3 py-1 bg-[#f0c14b] text-[#21313c] font-semibold rounded-full"
                   style={{ fontSize: '12px' }}
                 >
-                  Batch {bottomAlumni.batch}
+                  {bottomAlumni.batch}
                 </span>
 
                 {/* Content */}
                 <div className="absolute bottom-0 left-0 right-0 p-5">
                   <h4 className="text-white font-semibold text-lg mb-0.5">{bottomAlumni.name}</h4>
-                  <p className="text-white/80 text-sm">{bottomAlumni.designation}</p>
-                  <p className="text-[#f0c14b] text-sm font-medium">{bottomAlumni.company}</p>
+                  <p className="text-white/80 text-base">{bottomAlumni.designation}</p>
+                  <p className="text-[#f0c14b] text-base font-medium">{bottomAlumni.company}</p>
                 </div>
               </div>
             </div>
@@ -502,14 +519,14 @@ export const AlumniSection = () => {
                   <div className="absolute inset-0 bg-gradient-to-t from-[#21313c] via-[#21313c]/20 to-transparent" />
                   <span
                     className="absolute top-3 right-3 px-2 py-0.5 bg-[#f0c14b] text-[#21313c] font-semibold rounded-full"
-                    style={{ fontSize: '10px' }}
+                    style={{ fontSize: '12px' }}
                   >
-                    Batch {topAlumni.batch}
+                    {topAlumni.batch}
                   </span>
                   <div className="absolute bottom-0 left-0 right-0 p-3">
                     <h4 className="text-white font-semibold text-sm">{topAlumni.name}</h4>
-                    <p className="text-white/80 text-xs">{topAlumni.designation}</p>
-                    <p className="text-[#f0c14b] text-xs font-medium">{topAlumni.company}</p>
+                    <p className="text-white/80 text-sm">{topAlumni.designation}</p>
+                    <p className="text-[#f0c14b] text-sm font-medium">{topAlumni.company}</p>
                   </div>
                 </div>
                 <div
@@ -525,14 +542,14 @@ export const AlumniSection = () => {
                   <div className="absolute inset-0 bg-gradient-to-t from-[#21313c] via-[#21313c]/20 to-transparent" />
                   <span
                     className="absolute top-3 right-3 px-2 py-0.5 bg-[#f0c14b] text-[#21313c] font-semibold rounded-full"
-                    style={{ fontSize: '10px' }}
+                    style={{ fontSize: '12px' }}
                   >
-                    Batch {bottomAlumni.batch}
+                    {bottomAlumni.batch}
                   </span>
                   <div className="absolute bottom-0 left-0 right-0 p-3">
                     <h4 className="text-white font-semibold text-sm">{bottomAlumni.name}</h4>
-                    <p className="text-white/80 text-xs">{bottomAlumni.designation}</p>
-                    <p className="text-[#f0c14b] text-xs font-medium">{bottomAlumni.company}</p>
+                    <p className="text-white/80 text-sm">{bottomAlumni.designation}</p>
+                    <p className="text-[#f0c14b] text-sm font-medium">{bottomAlumni.company}</p>
                   </div>
                 </div>
               </div>

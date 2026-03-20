@@ -25,22 +25,22 @@ export const OurProgrammes = () => {
         transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
       >
         <p
-          className="text-xs md:text-sm mb-4"
+          className="text-base md:text-lg mb-4"
           style={{ color: '#999', letterSpacing: '0.2em', textTransform: 'uppercase' }}
         >
           ACADEMIC PROGRAMMES
         </p>
         <h2
-          className="text-3xl md:text-4xl lg:text-5xl text-[#21313c] mb-4"
+          className="text-4xl md:text-5xl lg:text-6xl text-[#21313c] mb-4"
           style={{ fontWeight: 600, lineHeight: 1 }}
         >
           Learning,{' '}
           <span style={{ fontFamily: "'Times New Roman', serif", fontStyle: 'italic' }}>Unbounded</span>
         </h2>
-        <p className="text-sm md:text-[15px] max-w-2xl mx-auto" style={{ color: '#666', lineHeight: 1.7 }}>
+        <p className="text-lg md:text-xl max-w-2xl mx-auto" style={{ color: '#666', lineHeight: 1.7 }}>
           Education here resists confinement. It takes shape in studios and libraries, in late conversations and early ideas, through collaboration as much as quiet contemplation.
         </p>
-        <div className="mx-auto mt-6" style={{ width: '274px', height: '0px', border: '4px solid #027fa0' }} />
+        <div className="mx-auto mt-6" style={{ width: '274px', height: '0px', border: '4px solid #027ea1' }} />
       </motion.div>
 
       {/* Programme Cards */}
@@ -180,7 +180,7 @@ export const OurProgrammes = () => {
 
         {/* Small Text - Right aligned */}
         <div className="flex justify-end">
-          <p className="text-xs md:text-sm lg:w-1/2" style={{ color: '#666', lineHeight: 1.7 }}>
+          <p className="text-base md:text-lg lg:w-1/2" style={{ color: '#666', lineHeight: 1.7 }}>
             It remains relevant because it stays connected to the world beyond campus, and personal because it grows with each individual who experiences it.
           </p>
         </div>
@@ -197,13 +197,13 @@ export const OurProgrammes = () => {
         <div className="flex flex-col md:flex-row md:justify-between md:items-end mb-6 md:mb-10">
           <div>
             <p
-              className="text-xs md:text-sm mb-2"
+              className="text-base md:text-lg mb-2"
               style={{ color: '#999', letterSpacing: '0.2em', textTransform: 'uppercase' }}
             >
               CAMPUS LIFE
             </p>
             <h3
-              className="text-2xl md:text-3xl lg:text-4xl text-[#21313c]"
+              className="text-3xl md:text-4xl lg:text-5xl text-[#21313c]"
               style={{ fontWeight: 600, lineHeight: 1.1 }}
             >
               Beyond the{' '}
@@ -230,8 +230,8 @@ export const OurProgrammes = () => {
             }}
           >
             <img
-              src="/interdisciplinary/campus-building.jpg"
-              alt="Campus Building"
+              src="/campus/gallery-6.jpg"
+              alt="Students at JLU's Got Talent"
               className="w-full h-full object-cover rounded-t-2xl transition-transform duration-500 group-hover:scale-110"
             />
           </div>
@@ -245,8 +245,8 @@ export const OurProgrammes = () => {
             }}
           >
             <img
-              src="/interdisciplinary/campus-drone.jpg"
-              alt="Campus Aerial View"
+              src="/campus/beyond-classroom.jpg"
+              alt="Students Beyond the Classroom"
               className="w-full h-full object-cover rounded-t-2xl transition-transform duration-500 group-hover:scale-110"
             />
           </div>
@@ -259,8 +259,8 @@ export const OurProgrammes = () => {
             }}
           >
             <img
-              src="/campus/smart-classroom.jpg"
-              alt="Smart Classroom"
+              src="/campus/gallery-3.jpg"
+              alt="Students in Traditional Outfits"
               className="w-full h-full object-cover rounded-t-2xl transition-transform duration-500 group-hover:scale-110"
             />
           </div>

@@ -16,68 +16,68 @@ interface SchoolPageProps {
 // Curated secondary images per school for visual variety
 const secondaryImages: Record<string, string[]> = {
   jlbs: [
-    '/campus/gallery-1.jpg',
-    '/campus/gallery-2.jpg',
+    '/schools/jlbs-1.jpg',
+    '/schools/jlbs-2.jpg',
   ],
   'sports-mgmt': [
-    '/campus/gallery-3.jpg',
-    '/campus/gallery-4.jpg',
+    '/schools/sports-1.jpg',
+    '/schools/sports-2.jpg',
   ],
   hospitality: [
-    '/campus/gallery-5.jpg',
-    '/campus/gallery-6.jpg',
+    '/schools/hospitality-1.jpg',
+    '/schools/hospitality-2.jpg',
   ],
   journalism: [
-    '/campus/gallery-7.jpg',
-    '/campus/gallery-8.jpg',
+    '/schools/journalism-1.jpg',
+    '/schools/journalism-2.jpg',
   ],
   'advertising-pr': [
-    '/campus/gallery-9.jpg',
-    '/campus/gallery-10.jpg',
+    '/schools/advertising-1.jpg',
+    '/schools/advertising-2.jpg',
   ],
   'events-entertainment': [
-    '/campus/gallery-11.jpg',
-    '/campus/gallery-12.jpg',
+    '/schools/events-1.jpg',
+    '/schools/events-2.jpg',
   ],
   'languages-social': [
-    '/campus/gallery-13.jpg',
-    '/campus/gallery-14.jpg',
+    '/schools/languages-1.jpg',
+    '/schools/languages-2.jpg',
   ],
   design: [
-    '/campus/gallery-15.jpg',
-    '/campus/gallery-16.jpg',
+    '/schools/design-1.jpg',
+    '/schools/design-2.jpg',
   ],
   architecture: [
-    '/campus/gallery-17.jpg',
-    '/campus/gallery-18.jpg',
+    '/schools/architecture-1.jpg',
+    '/schools/architecture-2.jpg',
   ],
   fashion: [
-    '/campus/gallery-19.jpg',
-    '/JLu%20events/photos/Convocation/DSC_0823.JPG',
+    '/schools/fashion-1.jpg',
+    '/schools/fashion-2.jpg',
   ],
   ai: [
-    '/JLu%20events/photos/Convocation/DSC_0858.JPG',
-    '/JLu%20events/photos/Lehar/IMG_9018.JPG',
+    '/schools/ai-1.jpg',
+    '/schools/ai-2.jpg',
   ],
   engineering: [
-    '/JLu%20events/photos/Lehar/IMG_9025.JPG',
-    '/JLu%20events/photos/Lehar/IMG_9060.JPG',
+    '/schools/engineering-1.jpg',
+    '/schools/engineering-2.jpg',
   ],
   'computer-application': [
-    '/JLu%20events/photos/Lehar/IMG_9087.JPG',
-    '/JLu%20events/photos/Lehar/IMG_9148.JPG',
+    '/schools/computer-1.jpg',
+    '/schools/computer-2.jpg',
   ],
   pharmacy: [
-    '/JLu%20events/photos/Convocation/DSC_0885.JPG',
-    '/JLu%20events/photos/Convocation/DSC_1020.JPG',
+    '/schools/pharmacy-1.jpg',
+    '/schools/pharmacy-2.jpg',
   ],
   law: [
-    '/campus/hero-campus.jpg',
-    '/campus/smart-classroom.jpg',
+    '/schools/law-1.jpg',
+    '/schools/law-2.jpg',
   ],
   'iica-creative': [
-    '/campus/sports.jpg',
-    '/campus/hostel.jpg',
+    '/schools/iica-1.jpg',
+    '/schools/iica-2.jpg',
   ],
 };
 

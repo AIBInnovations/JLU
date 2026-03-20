@@ -8,7 +8,7 @@ import { useIsMobile } from '../hooks/useIsMobile';
 import { courseFees, searchCourses } from '../data/courseFees';
 import { admissionSteps, requiredDocuments, eligibilityCriteria } from '../data/admissionProcedure';
 import { allScholarships, scholarshipApplicationProcess } from '../data/scholarships';
-import { hostelFees, commonFacilities, messFees } from '../data/accommodation';
+import { hostelFees, commonFacilities, messFees, hostelAmenities, accounting } from '../data/accommodation';
 import { ugcRefundPolicy, refundProcess, importantConditions } from '../data/refundPolicy';
 
 const academicPaths = [
@@ -608,7 +608,7 @@ const CampusTourModal = ({ isOpen, onClose }: CampusTourModalProps) => {
                       animate={{ scale: 1 }}
                       transition={{ type: 'spring', delay: 0.2 }}
                     >
-                      <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#03463B" strokeWidth="3">
+                      <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#027ea1" strokeWidth="3">
                         <polyline points="20 6 9 17 4 12" strokeLinecap="round" strokeLinejoin="round"/>
                       </svg>
                     </motion.div>
@@ -634,7 +634,7 @@ const CampusTourModal = ({ isOpen, onClose }: CampusTourModalProps) => {
                         name="name"
                         value={formData.name}
                         onChange={handleChange}
-                        className={`w-full px-4 py-3 rounded-xl border ${errors.name ? 'border-red-400 bg-red-50' : 'border-gray-200'} focus:outline-none focus:border-[#03463B] focus:ring-2 focus:ring-[#03463B]/10 transition-all`}
+                        className={`w-full px-4 py-3 rounded-xl border ${errors.name ? 'border-red-400 bg-red-50' : 'border-gray-200'} focus:outline-none focus:border-[#027ea1] focus:ring-2 focus:ring-[#027ea1]/10 transition-all`}
                         placeholder="Enter your full name"
                       />
                       {errors.name && (
@@ -652,7 +652,7 @@ const CampusTourModal = ({ isOpen, onClose }: CampusTourModalProps) => {
                         name="email"
                         value={formData.email}
                         onChange={handleChange}
-                        className={`w-full px-4 py-3 rounded-xl border ${errors.email ? 'border-red-400 bg-red-50' : 'border-gray-200'} focus:outline-none focus:border-[#03463B] focus:ring-2 focus:ring-[#03463B]/10 transition-all`}
+                        className={`w-full px-4 py-3 rounded-xl border ${errors.email ? 'border-red-400 bg-red-50' : 'border-gray-200'} focus:outline-none focus:border-[#027ea1] focus:ring-2 focus:ring-[#027ea1]/10 transition-all`}
                         placeholder="Enter your email"
                       />
                       {errors.email && (
@@ -674,7 +674,7 @@ const CampusTourModal = ({ isOpen, onClose }: CampusTourModalProps) => {
                           name="phone"
                           value={formData.phone}
                           onChange={handleChange}
-                          className={`flex-1 px-4 py-3 rounded-r-xl border ${errors.phone ? 'border-red-400 bg-red-50' : 'border-gray-200'} focus:outline-none focus:border-[#03463B] focus:ring-2 focus:ring-[#03463B]/10 transition-all`}
+                          className={`flex-1 px-4 py-3 rounded-r-xl border ${errors.phone ? 'border-red-400 bg-red-50' : 'border-gray-200'} focus:outline-none focus:border-[#027ea1] focus:ring-2 focus:ring-[#027ea1]/10 transition-all`}
                           placeholder="Enter your phone number"
                         />
                       </div>
@@ -694,7 +694,7 @@ const CampusTourModal = ({ isOpen, onClose }: CampusTourModalProps) => {
                         value={formData.preferredDate}
                         onChange={handleChange}
                         min={getMinDate()}
-                        className={`w-full px-4 py-3 rounded-xl border ${errors.preferredDate ? 'border-red-400 bg-red-50' : 'border-gray-200'} focus:outline-none focus:border-[#03463B] focus:ring-2 focus:ring-[#03463B]/10 transition-all`}
+                        className={`w-full px-4 py-3 rounded-xl border ${errors.preferredDate ? 'border-red-400 bg-red-50' : 'border-gray-200'} focus:outline-none focus:border-[#027ea1] focus:ring-2 focus:ring-[#027ea1]/10 transition-all`}
                       />
                       {errors.preferredDate && (
                         <p className="text-red-500 text-xs mt-1">{errors.preferredDate}</p>
@@ -710,7 +710,7 @@ const CampusTourModal = ({ isOpen, onClose }: CampusTourModalProps) => {
                         name="preferredTime"
                         value={formData.preferredTime}
                         onChange={handleChange}
-                        className={`w-full px-4 py-3 rounded-xl border ${errors.preferredTime ? 'border-red-400 bg-red-50' : 'border-gray-200'} focus:outline-none focus:border-[#03463B] focus:ring-2 focus:ring-[#03463B]/10 transition-all appearance-none bg-white`}
+                        className={`w-full px-4 py-3 rounded-xl border ${errors.preferredTime ? 'border-red-400 bg-red-50' : 'border-gray-200'} focus:outline-none focus:border-[#027ea1] focus:ring-2 focus:ring-[#027ea1]/10 transition-all appearance-none bg-white`}
                         style={{
                           backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 24 24' fill='none' stroke='%2321313c' stroke-width='2'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E")`,
                           backgroundRepeat: 'no-repeat',
@@ -736,7 +736,7 @@ const CampusTourModal = ({ isOpen, onClose }: CampusTourModalProps) => {
                         name="numberOfVisitors"
                         value={formData.numberOfVisitors}
                         onChange={handleChange}
-                        className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:outline-none focus:border-[#03463B] focus:ring-2 focus:ring-[#03463B]/10 transition-all appearance-none bg-white"
+                        className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:outline-none focus:border-[#027ea1] focus:ring-2 focus:ring-[#027ea1]/10 transition-all appearance-none bg-white"
                         style={{
                           backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 24 24' fill='none' stroke='%2321313c' stroke-width='2'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E")`,
                           backgroundRepeat: 'no-repeat',
@@ -759,7 +759,7 @@ const CampusTourModal = ({ isOpen, onClose }: CampusTourModalProps) => {
                         value={formData.message}
                         onChange={handleChange}
                         rows={3}
-                        className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:outline-none focus:border-[#03463B] focus:ring-2 focus:ring-[#03463B]/10 transition-all resize-none"
+                        className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:outline-none focus:border-[#027ea1] focus:ring-2 focus:ring-[#027ea1]/10 transition-all resize-none"
                         placeholder="Any specific areas you'd like to explore?"
                       />
                     </div>
@@ -768,7 +768,7 @@ const CampusTourModal = ({ isOpen, onClose }: CampusTourModalProps) => {
                     <motion.button
                       type="submit"
                       disabled={isSubmitting}
-                      className="w-full py-4 bg-[#03463B] text-white font-semibold rounded-xl hover:bg-[#025a4a] transition-colors disabled:opacity-70 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+                      className="w-full py-4 bg-[#027ea1] text-white font-semibold rounded-xl hover:bg-[#026986] transition-colors disabled:opacity-70 disabled:cursor-not-allowed flex items-center justify-center gap-2"
                       whileHover={{ scale: 1.01 }}
                       whileTap={{ scale: 0.99 }}
                     >
@@ -924,7 +924,7 @@ const FinancialInfoModal = ({ isOpen, onClose, data }: FinancialInfoModalProps) 
                     <ul className="space-y-2 pl-8">
                       {section.points.map((point, pointIndex) => (
                         <li key={pointIndex} className="text-[#666] text-sm leading-relaxed flex items-start gap-2">
-                          <span className="w-1.5 h-1.5 bg-[#03463B] rounded-full mt-2 shrink-0"></span>
+                          <span className="w-1.5 h-1.5 bg-[#027ea1] rounded-full mt-2 shrink-0"></span>
                           {point}
                         </li>
                       ))}
@@ -1003,8 +1003,8 @@ const BeyondDegreeModal = ({ isOpen, onClose, data }: BeyondDegreeModalProps) =>
 
   if (!data) return null;
 
-  const accentColor = data.id === 1 ? '#03463B' : '#f0c14b';
-  const accentBg = data.id === 1 ? '#03463B' : '#f0c14b';
+  const accentColor = data.id === 1 ? '#027ea1' : '#f0c14b';
+  const accentBg = data.id === 1 ? '#027ea1' : '#f0c14b';
   const accentText = data.id === 1 ? '#fff' : '#21313c';
 
   return (
@@ -1049,7 +1049,7 @@ const BeyondDegreeModal = ({ isOpen, onClose, data }: BeyondDegreeModalProps) =>
             {/* Header with accent gradient */}
             <motion.div
               className="relative p-6 pb-8 overflow-hidden shrink-0"
-              style={{ background: `linear-gradient(135deg, #21313c 0%, ${data.id === 1 ? '#03463B' : '#2a3f4c'} 100%)` }}
+              style={{ background: `linear-gradient(135deg, #21313c 0%, ${data.id === 1 ? '#027ea1' : '#2a3f4c'} 100%)` }}
               initial={{ opacity: 0, x: 40 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.4, delay: 0.2, ease: [0.32, 0.72, 0, 1] }}
@@ -1303,15 +1303,15 @@ const Admissions = () => {
       <div ref={heroRef} className="relative w-screen m-0 p-0 overflow-hidden">
         {/* Hero Image with reveal animation */}
         <motion.div
-          className="relative w-screen h-screen"
+          className="relative w-screen min-h-screen"
           initial={{ clipPath: 'inset(100% 0% 0% 0%)' }}
           animate={{ clipPath: 'inset(0% 0% 0% 0%)' }}
           transition={{ duration: 2, ease: customEase }}
         >
           <motion.div className="absolute inset-0" style={{ y }}>
             <Image
-              src="/interdisciplinary/campus-slider.jpg"
-              alt="Admissions"
+              src="/admissions.jpg"
+              alt="JLU Admissions - Student Orientation"
               fill
               className="object-cover scale-110"
               priority
@@ -1450,7 +1450,7 @@ const Admissions = () => {
               transition={{ duration: 0.7, ease: customEase }}
               viewport={{ once: true }}
               className="group relative rounded-3xl overflow-hidden"
-              style={{ background: 'linear-gradient(165deg, #21313c 0%, #03463B 100%)', minHeight: isMobile ? '420px' : '560px' }}
+              style={{ background: 'linear-gradient(165deg, #21313c 0%, #027ea1 100%)', minHeight: isMobile ? '420px' : '560px' }}
             >
               {/* Decorative element */}
               <div className="absolute -top-20 -right-20 w-56 h-56 rounded-full opacity-[0.06]" style={{ background: '#f0c14b' }} />
@@ -1671,11 +1671,7 @@ const Admissions = () => {
 
                 {/* Fee Details Link */}
                 <div className="mt-8 pt-6 border-t border-[#21313c]/10">
-                  <div className="flex items-center justify-between">
-                    <div>
-                      <p className="text-[#21313c] font-semibold text-sm">Annual fees from</p>
-                      <p className="text-[#21313c] text-2xl font-bold">₹75,000</p>
-                    </div>
+                  <div className="flex items-center justify-end">
                     <motion.button
                       className="px-5 py-2.5 bg-[#21313c] text-white font-medium text-sm rounded-full flex items-center gap-2"
                       whileHover={{ scale: 1.05 }}
@@ -1758,8 +1754,8 @@ const Admissions = () => {
               {/* Download Button */}
               <div className="hidden lg:block mt-auto pt-8">
                 <a
-                  href="/broucher/Fee-Structure-2026-27.pdf"
-                  download="JLU-Fee-Structure-2025.pdf"
+                  href="/broucher/Fee-Structure-2026-27-new.pdf"
+                  download="JLU-Fee-Structure-2026-27.pdf"
                   className="w-full flex items-center justify-center gap-2 px-5 py-4 border border-[#f0c14b] text-[#f0c14b] rounded-xl font-medium transition-all duration-300 text-sm cursor-pointer no-underline"
                 >
                   <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
@@ -1813,7 +1809,7 @@ const Admissions = () => {
                         value={feeSearch}
                         onChange={(e) => setFeeSearch(e.target.value)}
                         placeholder="Search programs..."
-                        className="w-full px-5 py-3 bg-white border border-gray-200 rounded-xl text-sm focus:outline-none focus:border-[#03463B] focus:ring-2 focus:ring-[#03463B]/10 transition-all"
+                        className="w-full px-5 py-3 bg-white border border-gray-200 rounded-xl text-sm focus:outline-none focus:border-[#027ea1] focus:ring-2 focus:ring-[#027ea1]/10 transition-all"
                       />
                     </div>
 
@@ -1891,11 +1887,11 @@ const Admissions = () => {
                       <h4 className="text-[#21313c] font-semibold text-base mb-3">Application Schedule</h4>
                       <ul className="space-y-2">
                         <li className="text-[#666] text-sm flex items-start gap-2">
-                          <span className="w-1.5 h-1.5 bg-[#03463B] rounded-full mt-1.5 shrink-0" />
+                          <span className="w-1.5 h-1.5 bg-[#027ea1] rounded-full mt-1.5 shrink-0" />
                           <span><strong>Commencement of Online Applications:</strong> 20th December 2025</span>
                         </li>
                         <li className="text-[#666] text-sm flex items-start gap-2">
-                          <span className="w-1.5 h-1.5 bg-[#03463B] rounded-full mt-1.5 shrink-0" />
+                          <span className="w-1.5 h-1.5 bg-[#027ea1] rounded-full mt-1.5 shrink-0" />
                           <span><strong>Last Date for Submission:</strong> 31st August 2026</span>
                         </li>
                         <li className="text-[#999] text-xs flex items-start gap-2 mt-1">
@@ -1908,7 +1904,7 @@ const Admissions = () => {
                     <div className="bg-white rounded-xl p-5 mb-8">
                       <h4 className="text-[#21313c] font-semibold text-base mb-2">Mode of Application</h4>
                       <p className="text-[#666] text-sm" style={{ lineHeight: 1.7 }}>
-                        All admissions at Jagran Lakecity University shall be processed through <strong>online mode only</strong>, unless otherwise notified. Apply through: <a href="https://apply.jlu.edu.in" target="_blank" rel="noopener noreferrer" className="text-[#03463B] font-semibold underline">apply.jlu.edu.in</a>
+                        All admissions at Jagran Lakecity University shall be processed through <strong>online mode only</strong>, unless otherwise notified. Apply through: <a href="https://apply.jlu.edu.in" target="_blank" rel="noopener noreferrer" className="text-[#027ea1] font-semibold underline">apply.jlu.edu.in</a>
                       </p>
                     </div>
 
@@ -1986,7 +1982,7 @@ const Admissions = () => {
                               <ul className="space-y-1">
                                 {step.details.map((detail, i) => (
                                   <li key={i} className="text-[#666] text-xs flex items-start gap-2">
-                                    <span className="w-1 h-1 bg-[#03463B] rounded-full mt-1.5 shrink-0" />
+                                    <span className="w-1 h-1 bg-[#027ea1] rounded-full mt-1.5 shrink-0" />
                                     {detail}
                                   </li>
                                 ))}
@@ -2009,7 +2005,7 @@ const Admissions = () => {
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-2 ml-2">
                               {docs.map((doc) => (
                                 <div key={doc.id} className="flex items-start gap-2 text-sm">
-                                  <span className={`w-1.5 h-1.5 rounded-full mt-1.5 shrink-0 ${doc.mandatory ? 'bg-[#03463B]' : 'bg-gray-400'}`} />
+                                  <span className={`w-1.5 h-1.5 rounded-full mt-1.5 shrink-0 ${doc.mandatory ? 'bg-[#027ea1]' : 'bg-gray-400'}`} />
                                   <div>
                                     <span className="text-[#21313c] font-medium">{doc.name}</span>
                                     {!doc.mandatory && <span className="text-[#999] text-xs ml-1">(if applicable)</span>}
@@ -2032,7 +2028,7 @@ const Admissions = () => {
                           <ul className="space-y-1.5 ml-2">
                             {cat.criteria.map((c, i) => (
                               <li key={i} className="text-[#666] text-sm flex items-start gap-2">
-                                <span className="w-1.5 h-1.5 bg-[#03463B] rounded-full mt-1.5 shrink-0" />
+                                <span className="w-1.5 h-1.5 bg-[#027ea1] rounded-full mt-1.5 shrink-0" />
                                 {c}
                               </li>
                             ))}
@@ -2046,15 +2042,15 @@ const Admissions = () => {
                       <h4 className="text-[#21313c] font-semibold text-lg mb-3">General Provisions</h4>
                       <ul className="space-y-2">
                         <li className="text-[#666] text-xs flex items-start gap-2">
-                          <span className="w-1.5 h-1.5 bg-[#03463B] rounded-full mt-1.5 shrink-0" />
+                          <span className="w-1.5 h-1.5 bg-[#027ea1] rounded-full mt-1.5 shrink-0" />
                           Admission shall be provisional until verification of original documents.
                         </li>
                         <li className="text-[#666] text-xs flex items-start gap-2">
-                          <span className="w-1.5 h-1.5 bg-[#03463B] rounded-full mt-1.5 shrink-0" />
+                          <span className="w-1.5 h-1.5 bg-[#027ea1] rounded-full mt-1.5 shrink-0" />
                           The University reserves the right to amend, modify, or withdraw any part of this policy in accordance with UGC regulations or institutional requirements.
                         </li>
                         <li className="text-[#666] text-xs flex items-start gap-2">
-                          <span className="w-1.5 h-1.5 bg-[#03463B] rounded-full mt-1.5 shrink-0" />
+                          <span className="w-1.5 h-1.5 bg-[#027ea1] rounded-full mt-1.5 shrink-0" />
                           Any dispute arising out of the admission process shall be subject to the jurisdiction of Bhopal, Madhya Pradesh.
                         </li>
                       </ul>
@@ -2098,7 +2094,7 @@ const Admissions = () => {
                                 <tr key={s.id} className="border-b border-gray-100">
                                   <td className="px-4 py-3 text-sm text-[#21313c] font-medium">{s.level}</td>
                                   <td className="px-4 py-3 text-sm text-[#666]">{s.rank}</td>
-                                  <td className="px-4 py-3 text-sm text-[#03463B] font-semibold">{s.reward}</td>
+                                  <td className="px-4 py-3 text-sm text-[#027ea1] font-semibold">{s.reward}</td>
                                 </tr>
                               ))}
                             </tbody>
@@ -2151,7 +2147,7 @@ const Admissions = () => {
                             <tr key={slab.id} className="border-b border-gray-100">
                               <td className="px-4 py-3 text-sm text-[#21313c] font-medium">{index + 1}</td>
                               <td className="px-4 py-3 text-xs text-[#666]">{slab.condition}</td>
-                              <td className="px-4 py-3 text-sm text-[#03463B] font-bold text-center">{slab.refundPercentage}%</td>
+                              <td className="px-4 py-3 text-sm text-[#027ea1] font-bold text-center">{slab.refundPercentage}%</td>
                             </tr>
                           ))}
                         </tbody>
@@ -2199,7 +2195,7 @@ const Admissions = () => {
                       <ul className="space-y-2">
                         {importantConditions.map((c, i) => (
                           <li key={i} className="text-[#666] text-xs flex items-start gap-2">
-                            <span className="w-1.5 h-1.5 bg-[#03463B] rounded-full mt-1.5 shrink-0" />
+                            <span className="w-1.5 h-1.5 bg-[#027ea1] rounded-full mt-1.5 shrink-0" />
                             {c}
                           </li>
                         ))}
@@ -2219,42 +2215,59 @@ const Admissions = () => {
                     <h3 className="text-[#21313c] font-semibold mb-2" style={{ fontSize: 'clamp(1.5rem, 3vw, 2rem)' }}>On Campus Accommodation</h3>
                     <p className="text-[#666] text-sm mb-8">Safe, comfortable, and well-equipped hostel facilities for boys and girls.</p>
 
+                    <p className="text-[#999] text-xs font-semibold uppercase tracking-wider mb-4">Hostel & Mess Fee Structure (2026-27)</p>
+
                     <div className="overflow-x-auto rounded-xl bg-white mb-6">
                       <table className="w-full">
                         <thead className="bg-[#21313c] text-white">
                           <tr>
-                            <th className="px-4 py-3 text-left text-xs font-semibold">Hostel</th>
                             <th className="px-4 py-3 text-left text-xs font-semibold">Room Type</th>
-                            <th className="px-4 py-3 text-left text-xs font-semibold">Occupancy</th>
-                            <th className="px-4 py-3 text-right text-xs font-semibold">Annual Fee</th>
-                            <th className="px-4 py-3 text-right text-xs font-semibold">Deposit</th>
+                            <th className="px-4 py-3 text-right text-xs font-semibold">Caution Money (Refundable)</th>
+                            <th className="px-4 py-3 text-right text-xs font-semibold">Hostel Charges / Semester</th>
                           </tr>
                         </thead>
                         <tbody>
                           {hostelFees.map((h) => (
                             <tr key={h.id} className="border-b border-gray-100">
-                              <td className="px-4 py-3 text-sm text-[#21313c] font-medium">{h.hostelType}</td>
-                              <td className="px-4 py-3 text-sm text-[#666]">{h.roomType}</td>
-                              <td className="px-4 py-3 text-sm text-[#666]">{h.occupancy}</td>
-                              <td className="px-4 py-3 text-sm text-[#21313c] font-bold text-right">₹{h.annualFees.toLocaleString('en-IN')}</td>
-                              <td className="px-4 py-3 text-sm text-[#666] text-right">₹{h.securityDeposit.toLocaleString('en-IN')}</td>
+                              <td className="px-4 py-3 text-sm text-[#21313c] font-medium">{h.roomType}</td>
+                              <td className="px-4 py-3 text-sm text-[#666] text-right">₹{h.cautionMoney.toLocaleString('en-IN')}</td>
+                              <td className="px-4 py-3 text-sm text-[#21313c] font-bold text-right">₹{h.semesterFees.toLocaleString('en-IN')}</td>
                             </tr>
                           ))}
                         </tbody>
                       </table>
+                      <p className="text-[#999] text-xs px-4 py-2">All applicable taxes are included in the amounts quoted.</p>
                     </div>
 
-                    <div className="bg-white rounded-xl p-5 mb-8">
-                      <h4 className="text-[#21313c] font-semibold text-base mb-2">Mess Fees</h4>
+                    <div className="bg-white rounded-xl p-5 mb-6">
+                      <h4 className="text-[#21313c] font-semibold text-base mb-2">Mess Charges</h4>
                       <p className="text-[#21313c] font-bold text-lg">
-                        ₹{messFees.annual.toLocaleString('en-IN')}<span className="text-[#666] font-normal text-sm"> /year</span>
-                        <span className="text-[#666] font-normal text-sm ml-2">(₹{messFees.monthly.toLocaleString('en-IN')}/month)</span>
+                        ₹{messFees.semester.toLocaleString('en-IN')}<span className="text-[#666] font-normal text-sm"> /semester (Veg)</span>
                       </p>
-                      <p className="text-[#666] text-xs mt-1">{messFees.description}</p>
+                      <p className="text-[#666] text-xs mt-2">Includes: {messFees.meals.join(' • ')}</p>
+                      <p className="text-[#999] text-xs mt-1">{messFees.description}</p>
+                    </div>
+
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+                      <div className="bg-white rounded-xl p-5">
+                        <h4 className="text-[#21313c] font-semibold text-sm mb-3">Hostel Amenities Included</h4>
+                        <div className="flex flex-wrap gap-2">
+                          {hostelAmenities.map((a) => (
+                            <span key={a} className="bg-[#f6f7f0] text-[#21313c] text-xs px-3 py-1.5 rounded-full font-medium">{a}</span>
+                          ))}
+                        </div>
+                      </div>
+                      <div className="bg-white rounded-xl p-5">
+                        <h4 className="text-[#21313c] font-semibold text-sm mb-3">Payment Information</h4>
+                        <div className="space-y-2">
+                          <p className="text-[#666] text-xs"><span className="text-[#21313c] font-medium">Hostel Fee:</span> Paid directly to <span className="font-semibold text-[#21313c]">{accounting.hostel.vendor}</span></p>
+                          <p className="text-[#666] text-xs"><span className="text-[#21313c] font-medium">Mess Fee (Veg):</span> Paid directly to <span className="font-semibold text-[#21313c]">{accounting.mess.vendor}</span></p>
+                        </div>
+                      </div>
                     </div>
 
                     <h4 className="text-[#21313c] font-semibold text-lg mb-4">Hostel Facilities</h4>
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-3 mb-8">
                       {commonFacilities.map((f) => (
                         <div key={f.id} className="bg-white rounded-xl p-4">
                           <h5 className="text-[#21313c] font-medium text-sm mb-1">{f.name}</h5>
@@ -2262,6 +2275,17 @@ const Admissions = () => {
                         </div>
                       ))}
                     </div>
+
+                    <a
+                      href="/broucher/Hostel-Mess-Fee-Structure-2026-27.xlsx"
+                      download="JLU-Hostel-Mess-Fee-Structure-2026-27.xlsx"
+                      className="inline-flex items-center gap-2 bg-[#21313c] text-white px-6 py-3 rounded-lg text-sm font-semibold hover:bg-[#2a4050] transition-colors"
+                    >
+                      <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                      </svg>
+                      Download Hostel & Mess Fee Structure
+                    </a>
                   </motion.div>
                 )}
 
@@ -2387,10 +2411,10 @@ const Admissions = () => {
                       <Image
                         src={
                           index === 0
-                            ? "/interdisciplinary/campus-students.jpg"
+                            ? "/p1.jpg"
                             : index === 1
-                            ? "/campus/gallery-15.jpg"
-                            : "/campus/gallery-13.jpg"
+                            ? "/p2.jpg"
+                            : "/p3.jpg"
                         }
                         alt={path.title}
                         fill
@@ -2491,8 +2515,8 @@ const Admissions = () => {
                   >
                     <Image
                       src={index === 0
-                        ? "/campus/smart-classroom.jpg"
-                        : "/interdisciplinary/campus-activity.jpg"
+                        ? "/campus/professional-skills-new.jpg"
+                        : "/campus/jlux-leadership.jpg"
                       }
                       alt={item.title}
                       fill
@@ -2732,99 +2756,9 @@ const Admissions = () => {
         </div>
       </div>
 
-      {/* Financial Support - Vertical Accordion Style */}
       <div id="scholarships" />
       <div id="financial-aid" />
       <div id="fee-structure" />
-      <div className="w-full bg-white">
-        <div
-          className="mx-auto px-5 py-16 md:px-10 md:py-20 lg:px-30 lg:py-35"
-          style={{
-            maxWidth: '1440px',
-          }}
-        >
-          {/* Section Header */}
-          <motion.div
-            initial={{ opacity: 0, y: 40 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-            className="flex flex-col md:flex-row md:justify-between md:items-end mb-10 md:mb-16 lg:mb-20 gap-4 md:gap-0"
-          >
-            <div>
-              <span
-                className="text-[#999] uppercase tracking-widest block mb-6"
-                style={{ fontSize: '12px', letterSpacing: '0.2em' }}
-              >
-                Financial Support
-              </span>
-              <h2
-                className="text-[#21313c]"
-                style={{
-                  fontSize: 'clamp(2.5rem, 5vw, 4rem)',
-                  fontWeight: 600,
-                  lineHeight: 1.1,
-                  letterSpacing: '-0.03em',
-                }}
-              >
-                Making education{' '}
-                <span style={{ fontFamily: "'Times New Roman', serif", fontStyle: 'italic', fontWeight: 400 }}>
-                  accessible
-                </span>
-              </h2>
-            </div>
-            <p
-              className="text-[#666]"
-              style={{
-                fontSize: '16px',
-                lineHeight: 1.7,
-                maxWidth: '400px',
-              }}
-            >
-              Transparent pathways to funding your future.
-            </p>
-          </motion.div>
-
-          {/* Four Cards in Row */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
-            {financialOptions.map((option, index) => (
-              <motion.div
-                key={option.id}
-                initial={{ opacity: 0, y: 40 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                viewport={{ once: true }}
-                className="group cursor-pointer bg-[#f6f7f0] hover:bg-[#21313c] transition-colors duration-300"
-                style={{ minHeight: isMobile ? '200px' : '280px', padding: isMobile ? '20px' : '32px' }}
-                onClick={() => setSelectedFinancialOption(option)}
-              >
-                <span
-                  className="text-[#f0c14b] font-bold block mb-6"
-                  style={{ fontSize: isMobile ? '32px' : '48px', lineHeight: 1 }}
-                >
-                  {String(option.id).padStart(2, '0')}
-                </span>
-                <h4
-                  className="text-[#21313c] group-hover:text-white font-semibold mb-3 transition-colors"
-                  style={{ fontSize: isMobile ? '16px' : '22px', letterSpacing: '-0.02em' }}
-                >
-                  {option.title}
-                </h4>
-                <p
-                  className="text-[#666] group-hover:text-[#999] transition-colors"
-                  style={{ fontSize: isMobile ? '12px' : '15px', lineHeight: 1.7 }}
-                >
-                  {option.description}
-                </p>
-                <span className="inline-flex items-center gap-2 text-[#21313c] group-hover:text-white font-medium text-sm mt-4 opacity-0 group-hover:opacity-100 transition-opacity">
-                  Learn More
-                  <span>→</span>
-                </span>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </div>
 
       {/* CTA Section */}
       <div id="admission-faqs" />
@@ -2844,7 +2778,7 @@ const Admissions = () => {
             transition={{ duration: 0.8 }}
           >
             <span
-              className="text-[#21313c]/60 uppercase tracking-widest block mb-3 md:mb-5 lg:mb-6 text-[9px] md:text-[11px] lg:text-[12px]"
+              className="text-[#21313c]/60 uppercase tracking-widest block mb-3 md:mb-5 lg:mb-6 text-[11px] md:text-[12px] lg:text-[13px]"
               style={{ letterSpacing: '0.2em' }}
             >
               Start Your Journey

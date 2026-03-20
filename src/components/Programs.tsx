@@ -124,7 +124,7 @@ const Programs = () => {
                 52+
               </span>
               <span
-                className="text-[#21313c] uppercase tracking-widest block text-[9px] sm:text-xs md:text-sm mt-2 md:mt-4"
+                className="text-[#21313c] uppercase tracking-widest block text-[11px] sm:text-xs md:text-sm mt-2 md:mt-4"
                 style={{
                   fontWeight: 500,
                 }}
@@ -136,7 +136,7 @@ const Programs = () => {
             {/* Right - Content */}
             <div className="max-w-full md:max-w-[600px] flex-1">
               <div
-                className="text-[#666] mb-3 md:mb-8 flex items-center flex-wrap gap-y-1 text-[9px] sm:text-[11px] md:text-[13px]"
+                className="text-[#666] mb-3 md:mb-8 flex items-center flex-wrap gap-y-1 text-[11px] sm:text-[13px] md:text-[13px]"
                 style={{
                   letterSpacing: '0.1em',
                   textTransform: 'uppercase',

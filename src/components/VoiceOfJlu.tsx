@@ -7,7 +7,7 @@ import { useIsMobile } from '../hooks/useIsMobile';
 
 export const VoiceOfJlu = () => {
   const isMobile = useIsMobile();
-  const [activeCard, setActiveCard] = useState<number | null>(null);
+  const [activeCard, setActiveCard] = useState<number | null>(0);
   const [mobileIndex, setMobileIndex] = useState(0);
   const [playingVideo, setPlayingVideo] = useState<number | null>(null);
   const [mutedVideo, setMutedVideo] = useState<Record<number, boolean>>({});
@@ -17,8 +17,6 @@ export const VoiceOfJlu = () => {
   const videoRefs = useRef<Record<number, HTMLVideoElement | null>>({});
   const isInView = useInView(facultyRef, { once: true, amount: 0.3 });
   const voicesInView = useInView(voicesRef, { once: true, amount: 0.3 });
-
-  const middleIndex = 3; // middle of 7 cards
 
   // Pause all videos except the given index
   const pauseAllExcept = (exceptIndex: number) => {
@@ -30,15 +28,15 @@ export const VoiceOfJlu = () => {
     });
   };
 
-  // Set default active card to middle
+  // Set default active card to first (index 0)
   useEffect(() => {
-    setActiveCard(isMobile ? null : middleIndex);
+    setActiveCard(isMobile ? null : 0);
   }, []);
 
-  // Open middle card (expanded) when section scrolls into view, but don't play
+  // Open first card (expanded) when section scrolls into view, but don't play
   useEffect(() => {
     if (voicesInView && !hasAutoPlayed && !isMobile) {
-      setActiveCard(middleIndex);
+      setActiveCard(0);
       setHasAutoPlayed(true);
     }
   }, [voicesInView, hasAutoPlayed, isMobile]);
@@ -81,22 +79,22 @@ export const VoiceOfJlu = () => {
   };
 
   const voices = [
-    { name: 'Priya Sharma', title: 'B.Des II Year', video: '/voices%20of%20jlu/cdc%20reel.mp4' },
-    { name: 'Jane Smith', title: 'MBA II Year', video: '/voices%20of%20jlu/faiza%20reel%20final.mp4' },
-    { name: 'Michael Brown', title: 'M.Tech II Year', video: '/voices%20of%20jlu/shubham%20rawat%20cdc%20reel.mp4' },
-    { name: 'John Doe', title: 'B.Tech I Year', video: '/voices%20of%20jlu/Faiz%20siddiui%20reel.mp4' },
-    { name: 'Emily Davis', title: 'B.Com I Year', video: '/voices%20of%20jlu/hospitality%20w%20bgm.mp4' },
-    { name: 'Alex Johnson', title: 'B.Sc III Year', video: '/voices%20of%20jlu/cdc%20reel.mp4' },
-    { name: 'Sarah Wilson', title: 'BBA I Year', video: '/voices%20of%20jlu/tanya%20sharma%20cdc%20reel.mp4' },
+    { name: 'Faiz Siddiqui', title: 'B.Tech', video: '/voices%20of%20jlu/Faiz%20siddiui%20reel.mp4', thumbnail: '' },
+    { name: 'Faiza Khan', title: 'BCA (Data Science) 4th Sem', video: '/voices%20of%20jlu/faiza%20reel%20final.mp4', thumbnail: '/thumbnails/voice-1.jpg' },
+    { name: 'Khwahish Ramani', title: 'Bachelor of Management 2022-2025', video: '/voices%20of%20jlu/cdc%20reel.mp4', thumbnail: '/thumbnails/voice-2.jpg' },
+    { name: 'Jamila Johaer & Aaminah Azhar', title: 'Diploma in Food Production', video: '/voices%20of%20jlu/hospitality%20w%20bgm.mp4', thumbnail: '/thumbnails/voice-4.jpg' },
+    { name: 'Tanya Sharma', title: 'B.Des (User Experience) 2021-2025', video: '/voices%20of%20jlu/tanya%20sharma%20cdc%20reel.mp4', thumbnail: '/thumbnails/voice-5.jpg' },
+    { name: 'Shubham Rawat', title: 'FALW-JSLW (LLM) 2024-2025', video: '/voices%20of%20jlu/shubham%20rawat%20cdc%20reel.mp4', thumbnail: '/thumbnails/voice-6.jpg' },
   ];
 
   const faculty = [
-    { image: '/aa.png', name: 'Shri. Hari Mohan Gupta', title: 'Chancellor' },
-    { image: '/bb.png', name: 'Shri. Abhishek Mohan Gupta', title: 'Pro-Chancellor' },
-    { image: '/cc.png', name: 'Dr. Nilanjan Chattopadhyay', title: 'Vice Chancellor' },
-    { image: '/dd.png', name: 'Prof. (Dr.) Anoop Swarup', title: 'Founding Vice Chancellor' },
-    { image: '/ee.png', name: 'Dr. Sandeep Shastri', title: 'Former Vice Chancellor' },
-    { image: '/ff.png', name: 'Prof. (Dr.) Vivek Khare', title: 'Dean' },
+    { image: '/leadership/chancellor.jpg', name: 'Mr. Hari Mohan Gupta', title: 'Chancellor', linkedin: 'https://in.linkedin.com/in/hari-mohan-gupta-318960153' },
+    { image: '/leadership/pro-chancellor.jpg', name: 'Mr. Abhishek Mohan Gupta', title: 'Pro Chancellor', linkedin: 'https://in.linkedin.com/in/abhishekmgupta' },
+    { image: '/leadership/vice-chancellor.webp', name: 'Prof. Dr. Nilanjan Chattopadhyay', title: 'Vice Chancellor', linkedin: 'https://www.linkedin.com/in/nchattopadhyay/' },
+    { image: '/leadership/registrar.jpg', name: 'Mr. Pankaj Das', title: 'Registrar', linkedin: '' },
+    { image: '/leadership/cfo.jpg', name: 'CA Archana Jain', title: 'Chief Finance and Accounts Officer', linkedin: 'https://www.linkedin.com/in/archana-jain-33189397/' },
+    { image: '/leadership/pvc-student-welfare.jpg', name: 'Dr. Vivek Khare', title: 'Pro Vice Chancellor (Student Welfare)', linkedin: 'https://in.linkedin.com/in/dr-vivek-khare-8666a61a' },
+    { image: '/leadership/pvc-science-tech.png', name: 'Dr. Prasheel Suryawanshi', title: 'Pro Vice Chancellor (Science and Technology)', linkedin: 'https://www.linkedin.com/in/prasheel-suryawanshi-8b368b21/' },
   ];
 
   return (
@@ -110,25 +108,25 @@ export const VoiceOfJlu = () => {
         transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
       >
         <p
-          className="text-xs md:text-sm mb-4"
+          className="text-base md:text-lg mb-4"
           style={{ color: '#999', letterSpacing: '0.2em', textTransform: 'uppercase' }}
         >
           STUDENT TESTIMONIALS
         </p>
         <h2
-          className="text-3xl md:text-4xl lg:text-5xl text-[#21313c] mb-4"
+          className="text-4xl md:text-5xl lg:text-6xl text-[#21313c] mb-6 md:mb-8"
           style={{ fontWeight: 600, lineHeight: 1 }}
         >
           Voices of{' '}
           <span style={{ fontFamily: "'Times New Roman', serif", fontStyle: 'italic' }}>JLU</span>
         </h2>
-        <p className="text-sm md:text-[15px] max-w-md mx-auto" style={{ color: '#666', lineHeight: 1.7 }}>
+        <p className="text-xl md:text-2xl max-w-2xl mx-auto" style={{ color: '#666', lineHeight: 1.8 }}>
           Distinct individuals. Diverse journeys. One shared ecosystem.
         </p>
-        <p className="text-sm md:text-[15px] max-w-xl mx-auto mt-4" style={{ color: '#666', lineHeight: 1.7 }}>
+        <p className="text-xl md:text-2xl max-w-3xl mx-auto mt-5" style={{ color: '#666', lineHeight: 1.8 }}>
           Every person at JLU contributes to its character. Together, these voices create an environment that feels open, textured, and continually in motion.
         </p>
-        <p className="text-xs md:text-sm max-w-lg mx-auto mt-3" style={{ color: '#999', fontStyle: 'italic' }}>
+        <p className="text-lg md:text-xl max-w-2xl mx-auto mt-4" style={{ color: '#999', fontStyle: 'italic', lineHeight: 1.7 }}>
           This is the university as it is lived, not just described.
         </p>
       </motion.div>
@@ -151,8 +149,8 @@ export const VoiceOfJlu = () => {
                   key={index}
                   className="relative cursor-pointer transition-all duration-300 overflow-hidden flex-shrink-0"
                   style={{
-                    width: index === activeCard ? '220px' : '65px',
-                    height: '340px',
+                    width: index === activeCard ? '260px' : '75px',
+                    height: '380px',
                     borderRadius: index === activeCard ? '32px' : '40px',
                   }}
                   onClick={() => {
@@ -172,6 +170,14 @@ export const VoiceOfJlu = () => {
                     }
                   }}
                 >
+                  {/* Thumbnail overlay when not playing */}
+                  {voice.thumbnail && playingVideo !== index && (
+                    <img
+                      src={voice.thumbnail}
+                      alt={voice.name}
+                      className="absolute inset-0 w-full h-full object-cover z-[1]"
+                    />
+                  )}
                   {/* Video - always present, plays when active */}
                   <video
                     ref={(el) => { videoRefs.current[index] = el; }}
@@ -255,8 +261,8 @@ export const VoiceOfJlu = () => {
               key={index}
               className="relative cursor-pointer transition-all duration-300 overflow-hidden"
               style={{
-                width: index === activeCard ? 'clamp(200px, 28vw, 680px)' : 'clamp(60px, 7vw, 160px)',
-                height: 'clamp(280px, 34vw, 780px)',
+                width: index === activeCard ? 'clamp(240px, 32vw, 750px)' : 'clamp(70px, 8vw, 180px)',
+                height: 'clamp(320px, 38vw, 850px)',
                 borderRadius: index === activeCard ? '60px' : '80px',
               }}
               onClick={() => {
@@ -276,6 +282,15 @@ export const VoiceOfJlu = () => {
                 }
               }}
             >
+              {/* Thumbnail overlay when not playing */}
+              {voice.thumbnail && playingVideo !== index && (
+                <img
+                  src={voice.thumbnail}
+                  alt={voice.name}
+                  className="absolute inset-0 w-full h-full object-cover z-[1]"
+                  style={{ borderRadius: 'inherit' }}
+                />
+              )}
               {/* Video - always present, plays when active */}
               <video
                 ref={(el) => { videoRefs.current[100 + index] = el; }}
@@ -340,13 +355,13 @@ export const VoiceOfJlu = () => {
         >
           <div>
             <p
-              className="text-xs md:text-sm mb-2"
+              className="text-base md:text-lg mb-2"
               style={{ color: '#999', letterSpacing: '0.2em', textTransform: 'uppercase' }}
             >
               MEET OUR TEAM
             </p>
             <h2
-              className="text-2xl md:text-5xl lg:text-6xl text-[#21313c]"
+              className="text-3xl md:text-5xl lg:text-6xl text-[#21313c]"
               style={{ fontWeight: 600, lineHeight: 1 }}
             >
               Leadership{' '}
@@ -369,16 +384,32 @@ export const VoiceOfJlu = () => {
                     borderRadius: '12px',
                   }}
                 >
-                  <img
-                    src={member.image}
-                    alt={member.name}
-                    className="w-full h-full object-cover"
-                  />
+                  {member.image ? (
+                    <img
+                      src={member.image}
+                      alt={member.name}
+                      className="w-full h-full object-cover"
+                    />
+                  ) : (
+                    <div className="w-full h-full bg-[#e8eae2] flex items-center justify-center">
+                      <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#999" strokeWidth="1.5">
+                        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" strokeLinecap="round" strokeLinejoin="round"/>
+                        <circle cx="12" cy="7" r="4" strokeLinecap="round" strokeLinejoin="round"/>
+                      </svg>
+                    </div>
+                  )}
                 </div>
                 <div className="mt-2">
-                  <h3 className="text-[#21313c] font-semibold text-xs">
-                    {member.name}
-                  </h3>
+                  <div className="flex items-center justify-between">
+                    <h3 className="text-[#21313c] font-semibold text-xs">
+                      {member.name}
+                    </h3>
+                    {member.linkedin && (
+                      <a href={member.linkedin} target="_blank" rel="noopener noreferrer" className="text-[#0077b5] hover:text-[#005582] transition-colors">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+                      </a>
+                    )}
+                  </div>
                   <p className="text-gray-500 text-xs">
                     {member.title}
                   </p>
@@ -398,7 +429,7 @@ export const VoiceOfJlu = () => {
             >
               {/* First Row - slides from right to left */}
               <div className="flex justify-end gap-4 lg:gap-6">
-                {faculty.slice(0, 3).map((member, index) => (
+                {faculty.slice(0, 4).map((member, index) => (
                   <motion.div
                     key={index}
                     variants={topRowVariants}
@@ -424,9 +455,16 @@ export const VoiceOfJlu = () => {
                       />
                     </div>
                     <div className="mt-3">
-                      <h3 className="text-[#21313c] font-semibold text-sm md:text-base lg:text-lg">
-                        {member.name}
-                      </h3>
+                      <div className="flex items-center justify-between">
+                        <h3 className="text-[#21313c] font-semibold text-sm md:text-base lg:text-lg">
+                          {member.name}
+                        </h3>
+                        {member.linkedin && (
+                          <a href={member.linkedin} target="_blank" rel="noopener noreferrer" className="text-[#0077b5] hover:text-[#005582] transition-colors ml-2">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+                          </a>
+                        )}
+                      </div>
                       <p className="text-gray-500 text-xs md:text-sm">
                         {member.title}
                       </p>
@@ -437,9 +475,9 @@ export const VoiceOfJlu = () => {
 
               {/* Second Row - slides from left to right */}
               <div className="flex justify-start gap-4 lg:gap-6">
-                {faculty.slice(3, 6).map((member, index) => (
+                {faculty.slice(4, 7).map((member, index) => (
                   <motion.div
-                    key={index + 3}
+                    key={index + 4}
                     variants={bottomRowVariants}
                     whileHover={{ y: -8 }}
                     style={{
@@ -466,6 +504,11 @@ export const VoiceOfJlu = () => {
                       <h3 className="text-[#21313c] font-semibold text-sm md:text-base lg:text-lg">
                         {member.name}
                       </h3>
+                        {member.linkedin && (
+                          <a href={member.linkedin} target="_blank" rel="noopener noreferrer" className="text-[#0077b5] hover:text-[#005582] transition-colors ml-2">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+                          </a>
+                        )}
                       <p className="text-gray-500 text-xs md:text-sm">
                         {member.title}
                       </p>

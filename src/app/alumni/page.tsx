@@ -56,81 +56,75 @@ const services = [
 const notableAlumni = [
   {
     id: '1',
-    name: 'Aparna Jha',
-    batch: '2018',
+    name: 'Mr. Sagar Agrawal',
+    batch: '2025',
     image: '/jlu-placement1.jpeg',
-    designation: 'Software Developer',
-    company: 'Amazon',
-    achievement: 'Led development of AWS cloud services used by millions',
+    designation: 'JLU00505',
+    company: 'BA.LLB Program',
+    achievement: 'Alumni Award Recipient 2025',
   },
   {
     id: '2',
-    name: 'Aman Solanki',
-    batch: '2019',
+    name: 'Mr. Sanchit Shrivastava',
+    batch: '2025',
     image: '/jlu-placement2.jpeg',
-    designation: 'Business Analyst',
-    company: 'Deloitte',
-    achievement: 'Youngest consultant to lead Fortune 500 transformation project',
+    designation: 'JLU04696',
+    company: 'BAJMC Program',
+    achievement: 'Alumni Award Recipient 2025',
   },
   {
     id: '3',
-    name: 'Soumya Shabani',
-    batch: '2020',
+    name: 'Mr. Aman Verma',
+    batch: '2024',
     image: '/jlu-placement3.jpeg',
-    designation: 'Associate Director',
-    company: 'HDFC Bank',
-    achievement: 'Pioneered digital banking initiatives across 5 states',
+    designation: 'JLU01216',
+    company: 'BBA Program',
+    achievement: 'Alumni Award Recipient 2024',
   },
   {
     id: '4',
-    name: 'Derick Vineet Nathaniel',
-    batch: '2017',
+    name: 'Mr. Ugyen Rhuntsho Rabgay',
+    batch: '2024',
     image: '/jlu-insta1.jpg',
-    designation: 'Senior Consultant',
-    company: 'Infosys',
-    achievement: 'Architect of enterprise solutions for global clients',
+    designation: 'JLU00927',
+    company: 'BAJMC Program',
+    achievement: 'Alumni Award Recipient 2024',
   },
   {
     id: '5',
-    name: 'Kedar Ghimire',
-    batch: '2021',
+    name: 'Mr. Namgay Dorji',
+    batch: '2024',
     image: '/jlu-insta2.jpg',
-    designation: 'Media Professional',
-    company: 'NDTV',
-    achievement: 'Award-winning journalist covering national affairs',
+    designation: 'JLU00402',
+    company: 'BBA.LLB Program',
+    achievement: 'Alumni Award Recipient 2024',
   },
   {
     id: '6',
-    name: 'Priya Sharma',
-    batch: '2016',
+    name: 'Mr. Sajal Jain',
+    batch: '2023',
     image: '/jlu-insta3.jpg',
-    designation: 'Founder & CEO',
-    company: 'TechStartup Inc.',
-    achievement: 'Built a $10M startup from JLU incubation center',
-  },
-];
-
-const upcomingEvents = [
-  {
-    title: 'Annual Alumni Meet 2025',
-    date: 'March 15, 2025',
-    location: 'JLU Campus, Bhopal',
-    type: 'Reunion',
-    image: '/e1.jpg',
+    designation: 'JLU02151',
+    company: 'B.Com Program',
+    achievement: 'Alumni Award Recipient 2023',
   },
   {
-    title: 'Career Networking Summit',
-    date: 'April 5, 2025',
-    location: 'Virtual Event',
-    type: 'Career',
-    image: '/e2.jpg',
+    id: '7',
+    name: 'Ms. Urvashi Mathur',
+    batch: '2023',
+    image: '/jlu-placement1.jpeg',
+    designation: 'JLU02531',
+    company: 'B.Sc. (Hospitality & Hotel Administration) Program',
+    achievement: 'Alumni Award Recipient 2023',
   },
   {
-    title: 'Entrepreneurship Conclave',
-    date: 'April 20, 2025',
-    location: 'Delhi NCR Chapter',
-    type: 'Business',
-    image: '/e3.jpg',
+    id: '8',
+    name: 'Ms. Sumaira Yasin',
+    batch: '2023',
+    image: '/jlu-placement2.jpeg',
+    designation: 'JLU00922',
+    company: 'BAJMC Program',
+    achievement: 'Alumni Award Recipient 2023',
   },
 ];
 
@@ -593,13 +587,13 @@ export default function AlumniPage() {
                   <p className="text-[#999] text-sm mb-3">Service Overview</p>
                   <p
                     className="text-[#21313c] leading-relaxed mb-4"
-                    style={{ fontSize: isMobile ? '11px' : '15px' }}
+                    style={{ fontSize: isMobile ? '13px' : '15px' }}
                   >
                     {service.description}
                   </p>
                   <a
                     href="#"
-                    className="text-[#21313c] font-medium text-sm hover:text-[#4a90a4] transition-colors"
+                    className="text-[#21313c] font-medium text-sm hover:text-[#027ea1] transition-colors"
                   >
                     Explore Service
                   </a>
@@ -622,20 +616,24 @@ export default function AlumniPage() {
             transition={{ duration: 0.8 }}
           >
             <div>
-              <span className="text-[10px] md:text-sm font-medium text-[#4a90a4] tracking-wider uppercase mb-2 md:mb-4 block">
-                Success Stories
+              <span className="text-[12px] md:text-sm font-medium text-[#027ea1] tracking-wider uppercase mb-2 md:mb-4 block">
+                Recognition
               </span>
               <h2
                 className="text-xl md:text-4xl lg:text-5xl font-semibold text-[#21313c]"
                 style={{ fontFamily: 'Inter, sans-serif', letterSpacing: '-0.02em' }}
               >
-                Notable{' '}
+                Alumni{' '}
                 <span style={{ fontFamily: "'Times New Roman', serif", fontStyle: 'italic', fontWeight: 400, color: '#efc04b' }}>
-                  Alumni
+                  Award
                 </span>
+                {' '}Recipients
               </h2>
+              <p className="text-[#999] text-xs sm:text-sm mt-1" style={{ letterSpacing: '0.05em' }}>
+                Last 3 Years
+              </p>
               <p className="text-[#666] mt-2 md:mt-4 max-w-xl text-xs md:text-base">
-                Our alumni are making waves across industries worldwide, leading innovation and driving change.
+                Celebrating alumni who have excelled in their respective fields and brought pride to the JLU community.
               </p>
             </div>
 
@@ -685,22 +683,22 @@ export default function AlumniPage() {
                   />
                   <div className="absolute inset-0 bg-[#21313c]/50" />
 
-                  <span className="absolute top-2 right-2 md:top-4 md:right-4 px-2 py-0.5 md:px-3 md:py-1 bg-[#efc04b] text-[#21313c] text-[9px] md:text-xs font-semibold rounded-full">
+                  <span className="absolute top-2 right-2 md:top-4 md:right-4 px-2 py-0.5 md:px-3 md:py-1 bg-[#efc04b] text-[#21313c] text-[11px] md:text-xs font-semibold rounded-full">
                     Batch {alumni.batch}
                   </span>
 
                   <div className="absolute bottom-2 left-2 right-2 md:bottom-4 md:left-4 md:right-4">
                     <h3 className="text-sm md:text-xl font-semibold text-white">{alumni.name}</h3>
-                    <p className="text-white/80 text-[10px] md:text-sm">{alumni.designation} at {alumni.company}</p>
+                    <p className="text-white/80 text-[12px] md:text-sm">{alumni.designation} at {alumni.company}</p>
                   </div>
                 </div>
 
                 <div className="p-3 md:p-6">
-                  <p className="text-[#666] text-[10px] md:text-sm mb-2 md:mb-4">{alumni.achievement}</p>
+                  <p className="text-[#666] text-[12px] md:text-sm mb-2 md:mb-4">{alumni.achievement}</p>
                   <div className="flex items-center justify-between">
                     <a
                       href="#"
-                      className="flex items-center gap-1 md:gap-2 text-[#4a90a4] font-medium text-[10px] md:text-sm hover:text-[#21313c] transition-colors"
+                      className="flex items-center gap-1 md:gap-2 text-[#027ea1] font-medium text-[12px] md:text-sm hover:text-[#21313c] transition-colors"
                     >
                       <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" className="md:w-4 md:h-4">
                         <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
@@ -709,7 +707,7 @@ export default function AlumniPage() {
                     </a>
                     <a
                       href="#"
-                      className="text-[#21313c]/60 text-[10px] md:text-sm hover:text-[#21313c] transition-colors"
+                      className="text-[#21313c]/60 text-[12px] md:text-sm hover:text-[#21313c] transition-colors"
                     >
                       Read Story →
                     </a>
@@ -733,7 +731,7 @@ export default function AlumniPage() {
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
           >
-            <span className="text-[10px] md:text-sm font-medium text-[#efc04b] tracking-wider uppercase mb-2 md:mb-4 block">
+            <span className="text-[12px] md:text-sm font-medium text-[#efc04b] tracking-wider uppercase mb-2 md:mb-4 block">
               Testimonials
             </span>
             <h2
@@ -776,7 +774,7 @@ export default function AlumniPage() {
                     "{testimonials[activeTestimonial].quote}"
                   </p>
                   <p className="text-[#efc04b] font-semibold text-sm md:text-lg">{testimonials[activeTestimonial].name}</p>
-                  <p className="text-white/60 text-[10px] md:text-sm">Batch {testimonials[activeTestimonial].batch} | {testimonials[activeTestimonial].role}</p>
+                  <p className="text-white/60 text-[12px] md:text-sm">Batch {testimonials[activeTestimonial].batch} | {testimonials[activeTestimonial].role}</p>
                 </div>
               </motion.div>
             </AnimatePresence>
@@ -797,85 +795,6 @@ export default function AlumniPage() {
         </div>
       </section>
 
-      {/* Upcoming Events Section */}
-      <section className="py-20 md:py-32 px-4 sm:px-6 lg:px-12 bg-[#f6f7f0]">
-        <div className="max-w-[1400px] mx-auto">
-          <motion.div
-            className="flex flex-row items-end justify-between gap-6 mb-12"
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-          >
-            <div>
-              <span className="text-[10px] md:text-sm font-medium text-[#4a90a4] tracking-wider uppercase mb-2 md:mb-4 block">
-                Mark Your Calendar
-              </span>
-              <h2
-                className="text-xl md:text-4xl lg:text-5xl font-semibold text-[#21313c]"
-                style={{ fontFamily: 'Inter, sans-serif', letterSpacing: '-0.02em' }}
-              >
-                Upcoming{' '}
-                <span style={{ fontFamily: "'Times New Roman', serif", fontStyle: 'italic', fontWeight: 400, color: '#efc04b' }}>
-                  Events
-                </span>
-              </h2>
-            </div>
-            <a
-              href="https://alumni.jlu.edu.in"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-1 md:gap-2 text-[#4a90a4] font-semibold text-[10px] md:text-base hover:text-[#21313c] transition-colors"
-            >
-              View All Events
-              <svg className="w-3 h-3 md:w-5 md:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-              </svg>
-            </a>
-          </motion.div>
-
-          <div className="grid grid-cols-3 gap-3 md:gap-6">
-            {upcomingEvents.map((event) => (
-              <div
-                key={event.title}
-                className="bg-white rounded-xl md:rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 group cursor-pointer hover:-translate-y-1"
-              >
-                <div className="relative h-24 md:h-48 overflow-hidden">
-                  <img
-                    src={event.image}
-                    alt={event.title}
-                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-                  />
-                  <div className="absolute inset-0 bg-[#21313c]/30" />
-                  <span className="absolute top-2 left-2 md:top-4 md:left-4 px-2 py-0.5 md:px-3 md:py-1 bg-[#efc04b] text-[#21313c] text-[8px] md:text-xs font-semibold rounded-full">
-                    {event.type}
-                  </span>
-                </div>
-                <div className="p-3 md:p-6">
-                  <h3 className="text-xs md:text-lg font-semibold text-[#21313c] mb-1 md:mb-3 group-hover:text-[#4a90a4] transition-colors">
-                    {event.title}
-                  </h3>
-                  <div className="space-y-1 md:space-y-2 text-[10px] md:text-sm text-[#666]">
-                    <div className="flex items-center gap-1 md:gap-2">
-                      <svg className="w-3 h-3 md:w-4 md:h-4 text-[#4a90a4] shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                      </svg>
-                      <span className="truncate">{event.date}</span>
-                    </div>
-                    <div className="flex items-center gap-1 md:gap-2">
-                      <svg className="w-3 h-3 md:w-4 md:h-4 text-[#4a90a4] shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                      </svg>
-                      <span className="truncate">{event.location}</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
       {/* Stats Section */}
       <section className="py-16 md:py-20 px-4 sm:px-6 lg:px-12 bg-[#f6f7f0]">
         <div className="max-w-[1400px] mx-auto">
@@ -888,7 +807,7 @@ export default function AlumniPage() {
                 <span className="text-xl md:text-5xl lg:text-6xl font-bold text-[#21313c] block mb-1 md:mb-2">
                   {stat.value}
                 </span>
-                <span className="text-[#666] text-[9px] md:text-base">{stat.label}</span>
+                <span className="text-[#666] text-[11px] md:text-base">{stat.label}</span>
               </div>
             ))}
           </div>
@@ -923,7 +842,7 @@ export default function AlumniPage() {
                 href="https://alumni.jlu.edu.in"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="bg-[#efc04b] text-[#21313c] px-4 py-2 md:px-6 md:py-2.5 rounded-lg font-semibold text-[10px] md:text-sm hover:bg-[#d4a93d] transition-all shadow-lg inline-flex items-center justify-center gap-1 md:gap-2"
+                className="bg-[#efc04b] text-[#21313c] px-4 py-2 md:px-6 md:py-2.5 rounded-lg font-semibold text-[12px] md:text-sm hover:bg-[#d4a93d] transition-all shadow-lg inline-flex items-center justify-center gap-1 md:gap-2"
               >
                 Register Now
                 <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -932,7 +851,7 @@ export default function AlumniPage() {
               </a>
               <a
                 href="mailto:alumni@jlu.edu.in"
-                className="border-2 border-white text-white px-4 py-2 md:px-6 md:py-2.5 rounded-lg font-semibold text-[10px] md:text-sm hover:bg-white hover:text-[#21313c] transition-all inline-flex items-center justify-center gap-1 md:gap-2"
+                className="border-2 border-white text-white px-4 py-2 md:px-6 md:py-2.5 rounded-lg font-semibold text-[12px] md:text-sm hover:bg-white hover:text-[#21313c] transition-all inline-flex items-center justify-center gap-1 md:gap-2"
               >
                 Contact Us
               </a>
@@ -953,8 +872,8 @@ export default function AlumniPage() {
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
                 </svg>
               </div>
-              <p className="text-white/60 text-[9px] md:text-xs mb-0.5">Phone</p>
-              <p className="text-white font-medium text-[10px] md:text-sm">0755-6611152</p>
+              <p className="text-white/60 text-[11px] md:text-xs mb-0.5">Phone</p>
+              <p className="text-white font-medium text-[12px] md:text-sm">0755-6611152</p>
             </div>
             <div>
               <div className="w-7 h-7 md:w-10 md:h-10 rounded-full bg-[#efc04b] flex items-center justify-center mx-auto mb-1 md:mb-2">
@@ -962,8 +881,8 @@ export default function AlumniPage() {
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                 </svg>
               </div>
-              <p className="text-white/60 text-[9px] md:text-xs mb-0.5">Email</p>
-              <p className="text-white font-medium text-[10px] md:text-sm">alumni@jlu.edu.in</p>
+              <p className="text-white/60 text-[11px] md:text-xs mb-0.5">Email</p>
+              <p className="text-white font-medium text-[12px] md:text-sm">alumni@jlu.edu.in</p>
             </div>
             <div>
               <div className="w-7 h-7 md:w-10 md:h-10 rounded-full bg-[#efc04b] flex items-center justify-center mx-auto mb-1 md:mb-2">
@@ -972,8 +891,8 @@ export default function AlumniPage() {
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
                 </svg>
               </div>
-              <p className="text-white/60 text-[9px] md:text-xs mb-0.5">Address</p>
-              <p className="text-white font-medium text-[10px] md:text-sm">JLU, Bhopal - 462044, MP</p>
+              <p className="text-white/60 text-[11px] md:text-xs mb-0.5">Address</p>
+              <p className="text-white font-medium text-[12px] md:text-sm">JLU, Bhopal - 462044, MP</p>
             </div>
           </motion.div>
 

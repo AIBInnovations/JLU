@@ -23,7 +23,7 @@ export default function FacultiesPage() {
 
   const faculties = [
     {
-      name: 'Faculty of Engineering',
+      name: 'Faculty of Science and Technology',
       description: 'The Faculty of Engineering is committed to exposing students to various perspectives of technological innovation and equipping them for contemporary challenges in engineering and applied sciences through cutting-edge research and industry collaboration.',
       image: '/about-us.jpg',
       href: '/faculty/engineering',
@@ -65,7 +65,7 @@ export default function FacultiesPage() {
       side: 'right'
     },
     {
-      name: 'Faculty of Journalism',
+      name: 'Faculty of Media and Social Sciences',
       description: 'The Faculty of Journalism is committed to exposing students to various perspectives of media and communication and equipping them for contemporary challenges in digital journalism, mass communication, and ethical storytelling.',
       image: '/about-us.jpg',
       href: '/faculty/journalism',

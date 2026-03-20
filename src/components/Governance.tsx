@@ -24,9 +24,9 @@ const governanceData: Record<string, GovernanceBodyData> = {
     title: 'Governing Body',
     description: 'The Governing Body is the apex body of the university responsible for overall policy direction, strategic planning, and ensuring the university fulfills its mission and objectives.',
     members: [
-      { name: 'Shri Hari Mohan Gupta', designation: 'Chancellor, Jagran Lakecity University, Bhopal', role: 'Ex-Officio Chairman' },
-      { name: 'Shri Abhishek Mohan Gupta', designation: 'Pro Chancellor, Jagran Lakecity University, Bhopal', role: 'Special Invitee' },
-      { name: 'Prof. (Dr.) Nilanjan Chattopadhyay', designation: 'Vice Chancellor, Jagran Lakecity University, Bhopal', role: 'Member' },
+      { name: 'Mr. Hari Mohan Gupta', designation: 'Chancellor, Jagran Lakecity University, Bhopal', role: 'Ex-Officio Chairman' },
+      { name: 'Mr. Abhishek Mohan Gupta', designation: 'Pro Chancellor, Jagran Lakecity University, Bhopal', role: 'Special Invitee' },
+      { name: 'Prof. Dr. Nilanjan Chattopadhyay', designation: 'Vice Chancellor, Jagran Lakecity University, Bhopal', role: 'Member' },
       { name: 'Prof. Gopal Sharma', designation: 'Retd. Professor (Political Science), Vikram University, Ujjain', role: 'Member (Govt. Nominee)' },
       { name: 'Prof. Ashish Bhawalkar', designation: 'Professor, Govt. Sardar Vallabhbhai Patel Polytechnic College, Bhopal', role: 'Member (Govt. Nominee)' },
       { name: 'Dr. Mahendra Mehra', designation: 'Assistant Professor, Govt. Motilal Vigyan Mahavidyalay, Bhopal', role: 'Member (Govt. Nominee)' },
@@ -41,7 +41,7 @@ const governanceData: Record<string, GovernanceBodyData> = {
     title: 'Board of Management',
     description: 'The Board of Management is the principal executive body responsible for the general superintendence, direction, and control of the affairs of the university.',
     members: [
-      { name: 'Prof. (Dr.) Nilanjan Chattopadhyay', designation: 'Vice Chancellor, Jagran Lakecity University, Bhopal', role: 'Chairperson' },
+      { name: 'Prof. Dr. Nilanjan Chattopadhyay', designation: 'Vice Chancellor, Jagran Lakecity University, Bhopal', role: 'Chairperson' },
       { name: 'Dr. Prakash Bartunia', designation: 'Ex Chancellor, Dr. Babasaheb Bhimrao Ambedkar Central University, Lucknow', role: 'Member (State Government)' },
       { name: 'Dr. Pragyesh Agrawal', designation: 'Director, Institute of Excellence in Higher Education, Bhopal', role: 'Member (State Government)' },
       { name: 'Shri Nasiruddin Khan', designation: 'Secretary, JSWS, Bhopal', role: 'Member (Sponsoring Body)' },
@@ -57,7 +57,7 @@ const governanceData: Record<string, GovernanceBodyData> = {
     title: 'Academic Council',
     description: 'The Academic Council is the principal academic body responsible for maintaining standards of instruction, education, and examination within the university.',
     members: [
-      { name: 'Prof. (Dr.) Nilanjan Chattopadhyay', designation: 'Vice Chancellor, Jagran Lakecity University, Bhopal', role: 'Chairperson' },
+      { name: 'Prof. Dr. Nilanjan Chattopadhyay', designation: 'Vice Chancellor, Jagran Lakecity University, Bhopal', role: 'Chairperson' },
       { name: 'Prof. (Dr.) S. Surya Prakash', designation: 'Vice Chancellor, National Law Institute University (NLIU), Bhopal', role: 'Member' },
       { name: 'Prof. Yatindra Singh Sisodia', designation: 'Director, M.P. Institute of Social Science Research (MPISSR Institute), Ujjain', role: 'Member' },
       { name: 'Mr. Bhaskar Ranjan Das', designation: 'Ex Director (South Asia) – AICPA & CIMA', role: 'Member' },
@@ -143,7 +143,7 @@ const GovernanceModal = ({ isOpen, onClose, data }: GovernanceModalProps) => {
           >
             {/* Header */}
             <motion.div
-              className="flex items-center justify-between p-6 border-b border-gray-100 bg-[#03463B] shrink-0"
+              className="flex items-center justify-between p-6 border-b border-gray-100 bg-[#027ea1] shrink-0"
               initial={{ opacity: 0, x: 40 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.4, delay: 0.2, ease: [0.32, 0.72, 0, 1] }}
@@ -190,8 +190,8 @@ const GovernanceModal = ({ isOpen, onClose, data }: GovernanceModalProps) => {
                     className="flex items-start gap-4 py-4 border-b border-gray-100 last:border-0"
                   >
                     {/* Avatar */}
-                    <div className="w-10 h-10 rounded-full bg-[#03463B]/10 flex items-center justify-center flex-shrink-0">
-                      <span className="text-[#03463B] font-semibold text-sm">
+                    <div className="w-10 h-10 rounded-full bg-[#027ea1]/10 flex items-center justify-center flex-shrink-0">
+                      <span className="text-[#027ea1] font-semibold text-sm">
                         {member.name.split(' ').map(n => n[0]).join('').slice(0, 2)}
                       </span>
                     </div>
@@ -201,7 +201,7 @@ const GovernanceModal = ({ isOpen, onClose, data }: GovernanceModalProps) => {
                       <p className="text-[#666] text-sm">{member.designation}</p>
                     </div>
                     {/* Role Badge */}
-                    <span className="px-3 py-1 bg-[#c3fd7a]/30 text-[#03463B] text-xs font-medium rounded-full whitespace-nowrap">
+                    <span className="px-3 py-1 bg-[#c3fd7a]/30 text-[#027ea1] text-xs font-medium rounded-full whitespace-nowrap">
                       {member.role}
                     </span>
                   </motion.div>
@@ -304,57 +304,6 @@ const Governance = () => {
           </div>
         </motion.div>
 
-        {/* JLU Leadership Section */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-16 items-center">
-          {/* Image with reveal */}
-          <motion.div
-            initial={{ clipPath: 'polygon(0% 0%, 100% 0%, 100% 0%, 0% 0%)' }}
-            whileInView={{ clipPath: 'polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)' }}
-            transition={{ duration: 1.2, ease: 'easeOut' }}
-            viewport={{ once: true }}
-            className="relative w-full h-[250px] sm:h-[320px] md:h-[400px] rounded-xl overflow-hidden"
-          >
-            <img
-              src="/leader.jpg"
-              alt="JLU Leadership"
-              className="object-cover object-top w-full h-full"
-            />
-          </motion.div>
-
-          {/* Content */}
-          <motion.div
-            initial={{ opacity: 0, x: 30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.6, delay: 0.2, ease: customEase }}
-            viewport={{ once: true }}
-          >
-            <span
-              className="text-[#999] uppercase tracking-widest block text-[10px] sm:text-xs mb-3 md:mb-4"
-              style={{ letterSpacing: '0.2em' }}
-            >
-              Team
-            </span>
-            <h3
-              className="text-[#21313c] text-xl sm:text-2xl md:text-[clamp(1.75rem,3vw,2.5rem)] mb-4 md:mb-6"
-              style={{
-                fontWeight: 600,
-                lineHeight: 1.1,
-                letterSpacing: '-0.02em',
-              }}
-            >
-              JLU{' '}
-              <span style={{ fontFamily: "'Times New Roman', serif", fontStyle: 'italic' }}>
-                Leadership
-              </span>
-            </h3>
-            <p
-              className="text-[#666] text-sm md:text-[15px]"
-              style={{ lineHeight: 1.7 }}
-            >
-              Leadership at JLU is inclusive and collaborative. Academic leaders, administrators and faculty work together to create an environment that supports innovation, learning and student growth. The structure reflects a belief in shared responsibility and open dialogue.
-            </p>
-          </motion.div>
-        </div>
       </div>
 
       {/* Governance Modal */}

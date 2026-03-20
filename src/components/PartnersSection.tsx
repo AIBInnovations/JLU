@@ -45,7 +45,12 @@ export const PartnersSection = () => {
       });
     }, sectionRef);
 
-    return () => ctx.revert();
+    return () => {
+      ctx.revert();
+      ScrollTrigger.getAll().forEach((t) => t.kill());
+      gsap.killTweensOf('*');
+      ScrollTrigger.refresh();
+    };
   }, [mounted]);
 
   return (
@@ -53,19 +58,19 @@ export const PartnersSection = () => {
       {/* Section Title */}
       <div className="text-center mb-8 md:mb-14 px-4">
         <p
-          className="text-xs md:text-sm mb-4"
+          className="text-base md:text-lg mb-4"
           style={{ color: '#999', letterSpacing: '0.2em', textTransform: 'uppercase' }}
         >
           COLLABORATIONS
         </p>
         <h2
-          className="text-3xl md:text-4xl lg:text-5xl text-[#21313c] mb-4"
+          className="text-4xl md:text-5xl lg:text-6xl text-[#21313c] mb-4"
           style={{ fontWeight: 600, lineHeight: 1 }}
         >
           Global{' '}
           <span style={{ fontFamily: "'Times New Roman', serif", fontStyle: 'italic' }}>Partnerships</span>
         </h2>
-        <div className="mx-auto mt-6" style={{ width: '274px', height: '0px', border: '4px solid #027fa0' }} />
+        <div className="mx-auto mt-6" style={{ width: '274px', height: '0px', border: '4px solid #027ea1' }} />
       </div>
 
       {isMobile ? (
@@ -100,7 +105,7 @@ export const PartnersSection = () => {
 
           {/* First Row - 2 boxes */}
           <div>
-            <p className="text-[10px] text-gray-500 mb-1.5 tracking-wide uppercase">Academic Partners</p>
+            <p className="text-base text-gray-500 mb-2 tracking-wide uppercase font-semibold">Academic Partners</p>
             <div className="flex">
               <div
                 className="border border-gray-300 flex items-center justify-center"
@@ -119,13 +124,13 @@ export const PartnersSection = () => {
 
           {/* Second + Third Row - 3 boxes each */}
           <div className="mt-3">
-            <p className="text-[10px] text-gray-500 mb-1.5 tracking-wide uppercase">Industry & Institutional Partners</p>
+            <p className="text-base text-gray-500 mb-2 tracking-wide uppercase font-semibold">Industry & Institutional Partners</p>
             <div className="flex">
               <div
                 className="border border-gray-300 flex items-center justify-center"
                 style={{ width: 'calc(33.33vw - 4px)', height: '70px' }}
               >
-                <img src="/nus.png" alt="NUS" style={{ maxHeight: '32px' }} className="object-contain" />
+                <img src="/nus.png" alt="NUS" style={{ maxHeight: '50px' }} className="object-contain" />
               </div>
               <div
                 className="border border-l-0 border-gray-300 flex items-center justify-center"
@@ -152,7 +157,7 @@ export const PartnersSection = () => {
                 className="border border-t-0 border-l-0 border-gray-300 flex items-center justify-center"
                 style={{ width: 'calc(33.33vw - 4px)', height: '70px' }}
               >
-                <button onClick={() => setOrbOpen(true)} className="text-[#03463B] font-semibold text-xs">
+                <button onClick={() => setOrbOpen(true)} className="text-[#027ea1] font-semibold text-xs">
                   See More →
                 </button>
               </div>
@@ -170,7 +175,7 @@ export const PartnersSection = () => {
         <div className="px-4 lg:px-16 xl:px-20 2xl:px-32">
           {/* First Row - 2 boxes + animated text on right */}
           <div>
-            <p className="text-xs text-gray-500 mb-2">Academic Partners</p>
+            <p className="text-lg text-gray-500 mb-4 tracking-wide uppercase font-semibold">Academic Partners</p>
             <div className="flex">
               <div
                 className="border border-gray-300 flex items-center justify-center"
@@ -231,7 +236,7 @@ export const PartnersSection = () => {
 
           {/* Bottom boxes - 6 boxes */}
           <div className="mt-6">
-            <p className="text-xs text-gray-500 mb-2">Industry & Institutional Partners</p>
+            <p className="text-lg text-gray-500 mb-4 tracking-wide uppercase font-semibold">Industry & Institutional Partners</p>
 
             {/* Second Row - 3 boxes */}
             <div className="flex">
@@ -242,7 +247,7 @@ export const PartnersSection = () => {
                 <img
                   src="/nus.png"
                   alt="NUS"
-                  className="max-h-24 object-contain"
+                  className="max-h-36 object-contain"
                 />
               </div>
               <div
@@ -285,7 +290,7 @@ export const PartnersSection = () => {
               >
                 <button
                   onClick={() => setOrbOpen(true)}
-                  className="inline-flex items-center gap-2 text-[#03463B] font-semibold text-sm cursor-pointer"
+                  className="inline-flex items-center gap-2 text-[#027ea1] font-semibold text-sm cursor-pointer"
                 >
                   See More
                   <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">

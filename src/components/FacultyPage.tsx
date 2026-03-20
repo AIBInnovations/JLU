@@ -288,6 +288,9 @@ export const FacultyPage = ({
 
     return () => {
       triggers.forEach((t) => t.kill());
+      ScrollTrigger.getAll().forEach((t) => t.kill());
+      gsap.killTweensOf('*');
+      ScrollTrigger.refresh();
     };
   }, [mounted]);
 
@@ -304,7 +307,7 @@ export const FacultyPage = ({
       {/* Hero Section */}
       <section
         ref={heroRef}
-        className="relative h-screen overflow-hidden"
+        className="relative min-h-screen overflow-hidden"
       >
         {/* Background Image with Parallax */}
         <div
@@ -430,18 +433,18 @@ export const FacultyPage = ({
                     {/* Card 1 - Left */}
                     <div className="p-3 rounded-xl bg-[#21313c] flex-1">
                       <h3 className="font-bold text-white text-xs mb-1">Moot Court Excellence</h3>
-                      <p className="text-white/70 text-[10px] leading-relaxed">Well-appointed Moot Court for practice-based education with regular competitions.</p>
+                      <p className="text-white/70 text-[12px] leading-relaxed">Well-appointed Moot Court for practice-based education with regular competitions.</p>
                     </div>
                     {/* Card 2 - Right */}
                     <div className="p-3 rounded-xl bg-white shadow-lg flex-1 mt-6">
                       <h3 className="font-bold text-[#21313c] text-xs mb-1">International Standards</h3>
-                      <p className="text-[#21313c]/70 text-[10px] leading-relaxed">Programs mapped to European Teaching and Learning standards.</p>
+                      <p className="text-[#21313c]/70 text-[12px] leading-relaxed">Programs mapped to European Teaching and Learning standards.</p>
                     </div>
                   </div>
                   {/* Card 3 - Center bottom */}
                   <div className="p-3 rounded-xl bg-[#21313c] mx-auto" style={{ width: '70%' }}>
                     <h3 className="font-bold text-white text-xs mb-1">Global Network</h3>
-                    <p className="text-white/70 text-[10px] leading-relaxed">Partnerships with IALS, European Law Institute, and World Bank&apos;s Global Forum.</p>
+                    <p className="text-white/70 text-[12px] leading-relaxed">Partnerships with IALS, European Law Institute, and World Bank&apos;s Global Forum.</p>
                   </div>
                 </>
               ) : (
@@ -470,9 +473,9 @@ export const FacultyPage = ({
       <section
         ref={facultySectionRef}
         className="px-3 md:px-16 xl:px-24 bg-[#f0f0ec] overflow-hidden relative"
-        style={{ height: '100vh' }}
+        style={{ minHeight: '100vh' }}
       >
-        <div className="max-w-[1440px] mx-auto w-full h-full flex items-center">
+        <div className="max-w-[1440px] mx-auto w-full min-h-full flex items-center">
           <div ref={facultyCardsRef} className="flex items-center justify-between w-full gap-3 md:gap-8 lg:gap-12" style={{ willChange: 'transform' }}>
             {/* Left Side - 3 Faculty Cards */}
             <div className="flex flex-col gap-2 md:gap-4">
@@ -777,7 +780,7 @@ export const FacultyPage = ({
               }}
             >
               <img
-                src="/campus/gallery-14.jpg"
+                src="/schools/entrepreneurship-1.jpg"
                 alt={partnerships[0] || 'Partner'}
                 className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
               />
@@ -798,7 +801,7 @@ export const FacultyPage = ({
               }}
             >
               <img
-                src="/campus/gallery-15.jpg"
+                src="/schools/entrepreneurship-2.jpg"
                 alt={partnerships[1] || 'Partner'}
                 className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
               />
@@ -819,7 +822,7 @@ export const FacultyPage = ({
               }}
             >
               <img
-                src="/campus/gallery-16.jpg"
+                src="/schools/jlbs-2.jpg"
                 alt={partnerships[2] || 'Partner'}
                 className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
               />
@@ -840,7 +843,7 @@ export const FacultyPage = ({
               }}
             >
               <img
-                src="/campus/gallery-17.jpg"
+                src="/schools/advertising-1.jpg"
                 alt={partnerships[3] || 'Partner'}
                 className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
               />

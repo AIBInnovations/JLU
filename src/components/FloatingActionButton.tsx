@@ -47,7 +47,7 @@ const actionItems = [
         <polyline points="9 15 12 18 15 15" strokeLinecap="round" strokeLinejoin="round"/>
       </svg>
     ),
-    href: '/broucher/Fee-Structure-2026-27.pdf',
+    href: '/broucher/JLU-Brochure-2026.pdf',
     accentColor: '#f59e0b',
   },
   {
@@ -73,7 +73,7 @@ const actionItems = [
       </svg>
     ),
     href: 'tel:18001805522',
-    accentColor: '#10b981',
+    accentColor: '#027ea1',
   },
 ];
 

@@ -10,13 +10,13 @@ const customEase: [number, number, number, number] = [0.22, 1, 0.36, 1];
 const overviewData = [
   {
     title: 'PROMOTING BODY',
-    image: '/pro.jpg',
+    image: '/jlu-mgt-award.jpg',
     description:
       'JLU is promoted by a group with deep roots in media, communication and public engagement. Their vision has always been to build institutions that are meaningful, dynamic and connected to society\'s evolving needs. This ethos continues to guide the university\'s purpose, priorities and partnerships.',
   },
   {
     title: 'JLU AT A GLANCE',
-    image: '/o.jpg',
+    image: '/interdisciplinary/campus-drone.jpg',
     description:
       'Jagran Lakecity University is a multidisciplinary private university offering undergraduate, postgraduate, doctoral and skill based programs across diverse fields. With students from across India and abroad, JLU brings together academic rigour, global exposure and a vibrant campus life to create a learning experience that is engaging, relevant and forward looking.',
   },
@@ -58,7 +58,7 @@ const ParallaxCard = ({ item, index }: { item: typeof overviewData[0]; index: nu
       {/* Content */}
       <div className="absolute inset-0 flex flex-col justify-end p-5 sm:p-8 md:p-10">
         <span
-          className="text-white/60 uppercase tracking-widest mb-2 sm:mb-3 md:mb-4 text-[9px] sm:text-[10px] md:text-[11px]"
+          className="text-white/60 uppercase tracking-widest mb-2 sm:mb-3 md:mb-4 text-[11px] sm:text-[12px] md:text-[13px]"
           style={{ letterSpacing: '0.2em' }}
         >
           {String(index + 1).padStart(2, '0')} — {item.title}
@@ -92,7 +92,7 @@ const InstitutionalOverview = () => {
         >
           <div className="mb-6 md:mb-0">
             <span
-              className="text-[#999] uppercase tracking-widest block text-[10px] sm:text-xs mb-3 md:mb-4"
+              className="text-[#999] uppercase tracking-widest block text-[12px] sm:text-xs mb-3 md:mb-4"
               style={{ letterSpacing: '0.2em' }}
             >
               Overview

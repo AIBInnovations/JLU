@@ -59,7 +59,7 @@ const About = () => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.8, delay: 0.8 }}
-            className="text-white font-semibold leading-tight text-base sm:text-lg md:text-[clamp(1.25rem,2.5vw,2rem)]"
+            className="text-white font-semibold leading-tight text-lg sm:text-xl md:text-[clamp(1.5rem,2.5vw,2.25rem)]"
           >
             A university with a pulse. Jagran Lakecity University is not defined by buildings alone. It is defined by the rhythm of daily life, the exchange of ideas, and the quiet confidence of people who belong here.
           </motion.p>

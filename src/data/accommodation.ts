@@ -1,12 +1,10 @@
 export interface HostelFees {
   id: string;
-  hostelType: string;
   roomType: string;
   occupancy: string;
-  annualFees: number;
-  securityDeposit: number;
-  amenities: string[];
-  description?: string;
+  semesterFees: number;
+  cautionMoney: number;
+  isAC: boolean;
 }
 
 export interface HostelFacility {
@@ -18,275 +16,156 @@ export interface HostelFacility {
 
 export const hostelFees: HostelFees[] = [
   {
-    id: "boys-ac-single",
-    hostelType: "Boys Hostel",
-    roomType: "AC Single Room",
+    id: "single-ensuite-ac",
+    roomType: "Single Ensuite - AC",
     occupancy: "Single Occupancy",
-    annualFees: 120000,
-    securityDeposit: 10000,
-    amenities: [
-      "Air Conditioned",
-      "Attached Bathroom",
-      "Study Table & Chair",
-      "Wardrobe",
-      "WiFi",
-      "24x7 Power Backup",
-      "Hot Water Supply"
-    ],
-    description: "Premium single occupancy room with AC and modern amenities"
+    semesterFees: 75000,
+    cautionMoney: 10000,
+    isAC: true,
   },
   {
-    id: "boys-ac-double",
-    hostelType: "Boys Hostel",
-    roomType: "AC Double Room",
-    occupancy: "Double Occupancy",
-    annualFees: 90000,
-    securityDeposit: 10000,
-    amenities: [
-      "Air Conditioned",
-      "Attached Bathroom",
-      "Study Table & Chair (2)",
-      "Wardrobe (2)",
-      "WiFi",
-      "24x7 Power Backup",
-      "Hot Water Supply"
-    ],
-    description: "Shared AC room with all modern facilities"
-  },
-  {
-    id: "boys-nonac-triple",
-    hostelType: "Boys Hostel",
-    roomType: "Non-AC Triple Room",
-    occupancy: "Triple Occupancy",
-    annualFees: 70000,
-    securityDeposit: 10000,
-    amenities: [
-      "Well Ventilated",
-      "Attached Bathroom",
-      "Study Table & Chair (3)",
-      "Wardrobe (3)",
-      "WiFi",
-      "24x7 Power Backup",
-      "Hot Water Supply"
-    ],
-    description: "Economical triple sharing room with essential amenities"
-  },
-  {
-    id: "boys-nonac-quad",
-    hostelType: "Boys Hostel",
-    roomType: "Non-AC Quad Room",
-    occupancy: "Four Occupancy",
-    annualFees: 60000,
-    securityDeposit: 10000,
-    amenities: [
-      "Spacious Room",
-      "Attached Bathroom",
-      "Study Table & Chair (4)",
-      "Wardrobe (4)",
-      "WiFi",
-      "24x7 Power Backup",
-      "Common Hot Water"
-    ],
-    description: "Budget-friendly four sharing room"
-  },
-  {
-    id: "girls-ac-single",
-    hostelType: "Girls Hostel",
-    roomType: "AC Single Room",
+    id: "single-ac",
+    roomType: "Single Occupancy - AC",
     occupancy: "Single Occupancy",
-    annualFees: 120000,
-    securityDeposit: 10000,
-    amenities: [
-      "Air Conditioned",
-      "Attached Bathroom",
-      "Study Table & Chair",
-      "Wardrobe",
-      "WiFi",
-      "24x7 Power Backup",
-      "Hot Water Supply",
-      "Security Systems"
-    ],
-    description: "Premium single occupancy room with enhanced security"
+    semesterFees: 56000,
+    cautionMoney: 10000,
+    isAC: true,
   },
   {
-    id: "girls-ac-double",
-    hostelType: "Girls Hostel",
-    roomType: "AC Double Room",
+    id: "double-ac",
+    roomType: "Double Occupancy - AC",
     occupancy: "Double Occupancy",
-    annualFees: 90000,
-    securityDeposit: 10000,
-    amenities: [
-      "Air Conditioned",
-      "Attached Bathroom",
-      "Study Table & Chair (2)",
-      "Wardrobe (2)",
-      "WiFi",
-      "24x7 Power Backup",
-      "Hot Water Supply",
-      "Security Systems"
-    ],
-    description: "Shared AC room with complete safety features"
+    semesterFees: 50000,
+    cautionMoney: 10000,
+    isAC: true,
   },
   {
-    id: "girls-nonac-triple",
-    hostelType: "Girls Hostel",
-    roomType: "Non-AC Triple Room",
+    id: "single-nonac",
+    roomType: "Single Occupancy - Non AC",
+    occupancy: "Single Occupancy",
+    semesterFees: 45000,
+    cautionMoney: 10000,
+    isAC: false,
+  },
+  {
+    id: "double-nonac",
+    roomType: "Double Occupancy - Non AC",
+    occupancy: "Double Occupancy",
+    semesterFees: 35000,
+    cautionMoney: 10000,
+    isAC: false,
+  },
+  {
+    id: "triple-nonac",
+    roomType: "Triple Occupancy - Non AC",
     occupancy: "Triple Occupancy",
-    annualFees: 70000,
-    securityDeposit: 10000,
-    amenities: [
-      "Well Ventilated",
-      "Attached Bathroom",
-      "Study Table & Chair (3)",
-      "Wardrobe (3)",
-      "WiFi",
-      "24x7 Power Backup",
-      "Hot Water Supply",
-      "Security Systems"
-    ],
-    description: "Comfortable triple sharing with full security"
+    semesterFees: 27000,
+    cautionMoney: 10000,
+    isAC: false,
   },
-  {
-    id: "girls-nonac-quad",
-    hostelType: "Girls Hostel",
-    roomType: "Non-AC Quad Room",
-    occupancy: "Four Occupancy",
-    annualFees: 60000,
-    securityDeposit: 10000,
-    amenities: [
-      "Spacious Room",
-      "Attached Bathroom",
-      "Study Table & Chair (4)",
-      "Wardrobe (4)",
-      "WiFi",
-      "24x7 Power Backup",
-      "Common Hot Water",
-      "Security Systems"
-    ],
-    description: "Affordable four sharing room with safety measures"
-  }
 ];
+
+export const hostelAmenities = [
+  "Laundry",
+  "WiFi",
+  "Electricity",
+  "Gym",
+  "Swimming Pool",
+  "Housekeeping",
+];
+
+export const messFees = {
+  semester: 55000,
+  type: "Veg",
+  description: "All applicable taxes are included in the amounts quoted.",
+  operator: "Yummy Food Services",
+  meals: ["Breakfast", "Lunch", "Hi Tea", "Dinner"],
+};
+
+export const busFees = {
+  semester: 15000,
+  description: "Bus fee per semester",
+};
 
 export const commonFacilities: HostelFacility[] = [
   {
-    id: "mess",
-    name: "Dining Facility",
-    description: "Hygienic mess with nutritious vegetarian and non-vegetarian meals. Separate dining halls for boys and girls with varied menu.",
-    icon: "utensils"
-  },
-  {
     id: "laundry",
-    name: "Laundry Service",
-    description: "Professional laundry service available at nominal charges. Washing machines and dryers provided in common areas.",
-    icon: "shirt"
-  },
-  {
-    id: "common-room",
-    name: "Common Room",
-    description: "Spacious common room with TV, indoor games, and recreational facilities for student relaxation and interaction.",
-    icon: "tv"
-  },
-  {
-    id: "study-room",
-    name: "24x7 Study Room",
-    description: "Dedicated air-conditioned study rooms with reading lights and comfortable seating for late-night studies.",
-    icon: "book"
+    name: "Laundry",
+    description: "Professional laundry service included in hostel charges.",
+    icon: "shirt",
   },
   {
     id: "wifi",
-    name: "High-Speed WiFi",
-    description: "24x7 high-speed internet connectivity throughout the hostel premises for academic and personal use.",
-    icon: "wifi"
+    name: "WiFi",
+    description: "High-speed internet connectivity throughout the hostel premises.",
+    icon: "wifi",
   },
   {
-    id: "security",
-    name: "24x7 Security",
-    description: "Round-the-clock security with CCTV surveillance, biometric access, and trained security personnel.",
-    icon: "shield"
-  },
-  {
-    id: "medical",
-    name: "Medical Facility",
-    description: "On-campus medical center with qualified doctors and nurses available for emergency medical assistance.",
-    icon: "heart-pulse"
+    id: "electricity",
+    name: "Electricity",
+    description: "Electricity charges included in hostel fees.",
+    icon: "zap",
   },
   {
     id: "gym",
-    name: "Fitness Center",
-    description: "Well-equipped gymnasium with modern equipment, yoga room, and outdoor sports facilities.",
-    icon: "dumbbell"
+    name: "Gym",
+    description: "Well-equipped gymnasium with modern equipment.",
+    icon: "dumbbell",
   },
   {
-    id: "parking",
-    name: "Vehicle Parking",
-    description: "Secure parking facility for bicycles, two-wheelers, and four-wheelers with covered parking areas.",
-    icon: "car"
-  },
-  {
-    id: "water",
-    name: "RO Water Supply",
-    description: "24x7 purified drinking water through RO systems installed at multiple points in each hostel block.",
-    icon: "droplet"
-  },
-  {
-    id: "power",
-    name: "Power Backup",
-    description: "Uninterrupted power supply with 100% power backup through diesel generators and inverters.",
-    icon: "zap"
+    id: "swimming-pool",
+    name: "Swimming Pool",
+    description: "Access to on-campus swimming pool facility.",
+    icon: "waves",
   },
   {
     id: "housekeeping",
     name: "Housekeeping",
-    description: "Daily housekeeping services for common areas and periodic cleaning of rooms by professional staff.",
-    icon: "broom"
-  }
+    description: "Daily housekeeping services for common areas and rooms.",
+    icon: "broom",
+  },
 ];
+
+export const accounting = {
+  hostel: {
+    description: "All hostel fee will be paid to vendor directly",
+    vendor: "Classic Accommodation",
+  },
+  mess: {
+    description: "All mess fee (Veg) will be paid directly to mess operator",
+    vendor: "Yummy Food Services",
+  },
+};
 
 export const hostelRules = [
   "Students must maintain discipline and follow hostel timings",
-  "Entry/Exit timings: Boys - 6:00 AM to 10:00 PM, Girls - 6:00 AM to 8:00 PM",
   "Visitors allowed only in designated areas during visiting hours",
   "Smoking, alcohol, and drugs strictly prohibited",
   "Ragging is a punishable offense - zero tolerance policy",
   "Students must carry their ID cards at all times",
-  "Damages to hostel property will be charged from security deposit",
-  "Prior permission required for late-night study room access after 11 PM",
-  "Attendance in mess is mandatory for hostel residents",
-  "Room change requests considered only in exceptional cases"
+  "Damages to hostel property will be charged from caution money",
+  "Room change requests considered only in exceptional cases",
 ];
-
-export const messFees = {
-  monthly: 4500,
-  annual: 50000,
-  description: "Mess fees include breakfast, lunch, evening snacks, and dinner. Special menu on festivals and occasions.",
-  mealTimings: {
-    breakfast: "7:30 AM - 9:30 AM",
-    lunch: "12:30 PM - 2:30 PM",
-    eveningSnacks: "5:00 PM - 6:00 PM",
-    dinner: "8:00 PM - 10:00 PM"
-  }
-};
 
 export const admissionProcess = [
   "Hostel admission along with university admission",
   "Fill hostel accommodation form during admission process",
   "Select preferred room type based on availability",
-  "Pay hostel fees and security deposit",
-  "Security deposit refundable at the time of leaving hostel",
+  "Pay hostel fees and caution money",
+  "Caution money of ₹10,000 is refundable at the time of leaving hostel",
   "Room allotment on first-come-first-serve basis",
   "Check-in with original documents and university ID",
-  "Collect hostel ID card and room keys from warden"
+  "Collect hostel ID card and room keys from warden",
 ];
 
 export const importantNotes = [
-  "Hostel fees mentioned are annual charges (excluding mess fees)",
-  "Security deposit of ₹10,000 is refundable (subject to no damage)",
-  "Mess fees of ₹50,000 per year charged separately",
-  "Hostel fees to be paid in full at the time of admission",
+  "All applicable taxes are included in the amounts quoted",
+  "Hostel charges are per semester",
+  "Caution money of ₹10,000 is refundable (subject to no damage)",
+  "Mess charges of ₹55,000 per semester (Veg) charged separately",
+  "Hostel fees to be paid to vendor directly — Classic Accommodation",
+  "Mess fees to be paid directly to mess operator — Yummy Food Services",
   "Room type subject to availability - early admission recommended",
-  "AC charges include electricity consumption up to 300 units/month",
-  "Excess electricity consumption charged separately",
-  "Hostel allotment valid for one academic year only",
-  "Renewal required at the start of each academic session",
-  "No refund for hostel fees once allotted (except as per refund policy)"
+  "Hostel charges include Laundry, WiFi, Electricity, Gym, Swimming Pool, and Housekeeping",
+  "Mess charges include Breakfast, Lunch, Hi Tea, and Dinner",
 ];

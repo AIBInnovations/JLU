@@ -81,7 +81,7 @@ export default function RefundPolicyPage() {
                   <tr key={slab.id} className="border-b border-gray-100">
                     <td className="px-5 py-4 text-sm text-[#21313c] font-medium">{index + 1}</td>
                     <td className="px-5 py-4 text-sm text-[#666]">{slab.condition}</td>
-                    <td className="px-5 py-4 text-sm font-bold text-center" style={{ color: slab.refundPercentage > 0 ? '#03463B' : '#dc2626' }}>
+                    <td className="px-5 py-4 text-sm font-bold text-center" style={{ color: slab.refundPercentage > 0 ? '#027ea1' : '#dc2626' }}>
                       {slab.refundPercentage > 0 ? `${slab.refundPercentage}%` : '0% (No Refund)'}
                     </td>
                   </tr>

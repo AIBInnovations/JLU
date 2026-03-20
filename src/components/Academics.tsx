@@ -7,73 +7,6 @@ import { useState, useRef, useEffect } from 'react';
 import { useIsMobile } from '../hooks/useIsMobile';
 import { faculties, School } from '../data/faculties';
 
-interface PhilosophyCardData {
-  id: number;
-  title: string;
-  description: string;
-  image: string;
-  modalContent: {
-    heading: string;
-    intro: string;
-    points: { title: string; description: string }[];
-    conclusion: string;
-  };
-}
-
-const philosophyCards: PhilosophyCardData[] = [
-  {
-    id: 1,
-    title: 'Values-driven learning',
-    description: 'Education rooted in ethics, purpose, and responsible leadership.',
-    image: '/interdisciplinary/classroom.jpg',
-    modalContent: {
-      heading: 'Values-Driven Learning',
-      intro: 'At JLU, education goes beyond academics. We believe in nurturing individuals who lead with integrity, think with purpose, and act responsibly.',
-      points: [
-        { title: 'Ethical Foundation', description: 'Every program integrates ethical reasoning and moral awareness into the curriculum.' },
-        { title: 'Purpose-Led Education', description: 'Students are encouraged to find meaning in their learning journey and connect it to larger societal goals.' },
-        { title: 'Responsible Leadership', description: 'Leadership training emphasizes accountability, empathy, and sustainable decision-making.' },
-        { title: 'Community Engagement', description: 'Regular outreach programs and social initiatives help students understand their role in society.' },
-      ],
-      conclusion: 'Our graduates leave not just with degrees, but with a strong moral compass to guide their careers.',
-    },
-  },
-  {
-    id: 2,
-    title: 'Interdisciplinary structure',
-    description: 'Programs designed to connect disciplines, ideas, and real-world application.',
-    image: '/interdisciplinary/lab.jpg',
-    modalContent: {
-      heading: 'Interdisciplinary Structure',
-      intro: 'Modern challenges require integrated thinking. Our academic structure breaks silos and encourages cross-disciplinary exploration.',
-      points: [
-        { title: 'Connected Curriculum', description: 'Courses are designed to overlap and complement each other across faculties.' },
-        { title: 'Flexible Pathways', description: 'Students can take electives from different schools, creating personalized learning journeys.' },
-        { title: 'Collaborative Projects', description: 'Team projects bring together students from diverse backgrounds to solve complex problems.' },
-        { title: 'Joint Research Initiatives', description: 'Faculty from different disciplines collaborate on research that addresses multifaceted issues.' },
-      ],
-      conclusion: 'This structure prepares students for a world where the best solutions come from connecting diverse perspectives.',
-    },
-  },
-  {
-    id: 3,
-    title: 'Industry & research integration',
-    description: 'Learning shaped by industry exposure, live projects, and active research.',
-    image: '/interdisciplinary/seminar.jpg',
-    modalContent: {
-      heading: 'Industry & Research Integration',
-      intro: 'Theory meets practice at JLU. We ensure students are industry-ready through real-world exposure and active research participation.',
-      points: [
-        { title: 'Industry Partnerships', description: 'Collaborations with leading companies provide internships, mentorship, and placement opportunities.' },
-        { title: 'Live Projects', description: 'Students work on actual industry problems, gaining practical experience before graduation.' },
-        { title: 'Research Culture', description: 'Undergraduate and postgraduate students are encouraged to participate in ongoing research projects.' },
-        { title: 'Innovation Labs', description: 'State-of-the-art labs and incubation centers support entrepreneurial and research endeavors.' },
-      ],
-      conclusion: 'Our students graduate with portfolios of real work and research experience that set them apart.',
-    },
-  },
-];
-
 const learningMethods = [
   'Dialogue-led sessions',
   'Project-based exploration',
@@ -121,160 +54,16 @@ const testimonials = [
   },
 ];
 
-// Philosophy Modal Component
-interface PhilosophyModalProps {
-  isOpen: boolean;
-  onClose: () => void;
-  data: PhilosophyCardData | null;
-}
-
-const PhilosophyModal = ({ isOpen, onClose, data }: PhilosophyModalProps) => {
-  useEffect(() => {
-    if (isOpen) {
-      document.body.style.overflow = 'hidden';
-      document.documentElement.style.overflow = 'hidden';
-    }
-    return () => {
-      document.body.style.overflow = '';
-      document.documentElement.style.overflow = '';
-    };
-  }, [isOpen]);
-
-  if (!data) return null;
-
-  return (
-    <AnimatePresence>
-      {isOpen && (
-        <>
-          {/* Backdrop with blur */}
-          <motion.div
-            className="fixed inset-0 bg-black/60 backdrop-blur-md z-[9998]"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.3 }}
-            onClick={onClose}
-            onWheel={(e) => e.stopPropagation()}
-          />
-
-          {/* Modal Container */}
-          <motion.div
-            className="fixed inset-0 z-[9999] flex items-center justify-center p-4 md:p-8"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-          >
-            {/* Modal Panel */}
-            <motion.div
-              className="relative bg-white w-full max-w-[900px] max-h-[90vh] flex flex-col rounded-2xl shadow-2xl"
-              initial={{ scale: 0.9, opacity: 0, y: 20 }}
-              animate={{ scale: 1, opacity: 1, y: 0 }}
-              exit={{ scale: 0.9, opacity: 0, y: 20 }}
-              transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
-              onClick={(e) => e.stopPropagation()}
-              onWheel={(e) => e.stopPropagation()}
-            >
-              {/* Header with Image */}
-              <div className="relative h-[180px] md:h-[240px] overflow-hidden shrink-0">
-                <Image
-                  src={data.image}
-                  alt={data.title}
-                  fill
-                  className="object-cover"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent" />
-
-                {/* Close Button */}
-                <button
-                  onClick={onClose}
-                  className="absolute top-4 right-4 w-10 h-10 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center hover:bg-white/30 transition-colors"
-                >
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2">
-                    <line x1="18" y1="6" x2="6" y2="18" strokeLinecap="round"/>
-                    <line x1="6" y1="6" x2="18" y2="18" strokeLinecap="round"/>
-                  </svg>
-                </button>
-
-                {/* Number Badge */}
-                <div className="absolute top-4 left-4 w-10 h-10 bg-white rounded-full flex items-center justify-center">
-                  <span className="text-[#21313c] font-semibold text-sm">0{data.id}</span>
-                </div>
-
-                {/* Title on Image */}
-                <div className="absolute bottom-6 left-6 right-6">
-                  <h2 className="text-white text-2xl md:text-3xl font-semibold">
-                    {data.modalContent.heading}
-                  </h2>
-                </div>
-              </div>
-
-              {/* Content */}
-              <div className="p-6 md:p-8 overflow-y-auto flex-1 min-h-0" style={{ overscrollBehavior: 'contain' }}>
-                {/* Intro */}
-                <motion.p
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.2 }}
-                  className="text-[#666] text-base md:text-lg mb-8"
-                  style={{ lineHeight: 1.7 }}
-                >
-                  {data.modalContent.intro}
-                </motion.p>
-
-                {/* Points Grid */}
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
-                  {data.modalContent.points.map((point, index) => (
-                    <motion.div
-                      key={index}
-                      initial={{ opacity: 0, y: 15 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ delay: 0.3 + index * 0.1 }}
-                      className="bg-[#f6f7f0] p-5 rounded-xl"
-                    >
-                      <div className="flex items-start gap-3">
-                        <span className="w-6 h-6 bg-[#03463B] text-white rounded-full flex items-center justify-center text-xs font-medium shrink-0 mt-0.5">
-                          {index + 1}
-                        </span>
-                        <div>
-                          <h4 className="text-[#21313c] font-semibold text-base mb-2">{point.title}</h4>
-                          <p className="text-[#666] text-sm" style={{ lineHeight: 1.6 }}>{point.description}</p>
-                        </div>
-                      </div>
-                    </motion.div>
-                  ))}
-                </div>
-
-                {/* Conclusion */}
-                <motion.div
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.7 }}
-                  className="pt-6 border-t border-gray-200"
-                >
-                  <p className="text-[#21313c] text-base md:text-lg font-medium" style={{ lineHeight: 1.7 }}>
-                    {data.modalContent.conclusion}
-                  </p>
-                </motion.div>
-              </div>
-            </motion.div>
-          </motion.div>
-        </>
-      )}
-    </AnimatePresence>
-  );
-};
-
 const Academics = () => {
   const [activeFacultyId, setActiveFacultyId] = useState('management');
   const [selectedSchool, setSelectedSchool] = useState<School | null>(null);
   const [currentTestimonial, setCurrentTestimonial] = useState(0);
-  const [selectedPhilosophy, setSelectedPhilosophy] = useState<PhilosophyCardData | null>(null);
   const heroRef = useRef<HTMLDivElement>(null);
   const tabsRef = useRef<HTMLDivElement>(null);
   const isMobile = useIsMobile();
 
   useEffect(() => {
-    if (selectedSchool || selectedPhilosophy) {
+    if (selectedSchool) {
       document.body.style.overflow = 'hidden';
       document.documentElement.style.overflow = 'hidden';
     } else {
@@ -285,7 +74,7 @@ const Academics = () => {
       document.body.style.overflow = '';
       document.documentElement.style.overflow = '';
     };
-  }, [selectedSchool, selectedPhilosophy]);
+  }, [selectedSchool]);
   const { scrollYProgress } = useScroll({
     target: heroRef,
     offset: ['start start', 'end start'],
@@ -307,8 +96,8 @@ const Academics = () => {
         >
           <motion.div className="absolute inset-0" style={{ y }}>
             <Image
-              src="/interdisciplinary/campus-students.jpg"
-              alt="Academics at JLU"
+              src="/academics-hero.jpg"
+              alt="Students in academic session at JLU"
               fill
               className="object-cover scale-110"
               priority
@@ -436,7 +225,7 @@ const Academics = () => {
           >
             <div>
               <span
-                className="text-[#999] uppercase tracking-widest block mb-4 text-[10px] md:text-xs"
+                className="text-[#999] uppercase tracking-widest block mb-4 text-[12px] md:text-xs"
                 style={{ letterSpacing: '0.2em' }}
               >
                 What We Offer
@@ -464,35 +253,28 @@ const Academics = () => {
           </motion.div>
 
           {/* Program Category Cards */}
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 md:gap-5 mb-8 md:mb-12">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 md:gap-6 mb-8 md:mb-12">
             {[
               {
                 label: 'Undergraduate',
                 tag: 'UG',
                 count: '29',
-                image: '/interdisciplinary/campus-students.jpg',
+                image: '/p1.jpg',
                 color: '#c3fd7a',
               },
               {
                 label: 'Postgraduate',
                 tag: 'PG',
                 count: '10',
-                image: '/interdisciplinary/library.jpg',
+                image: '/p2.jpg',
                 color: '#f0c14b',
               },
               {
                 label: 'Doctoral',
                 tag: 'PhD',
                 count: '10',
-                image: '/interdisciplinary/lab.jpg',
+                image: '/p3.jpg',
                 color: '#8bc34a',
-              },
-              {
-                label: 'Diploma',
-                tag: 'Diploma',
-                count: '3',
-                image: '/interdisciplinary/campus-activity.jpg',
-                color: '#e85a71',
               },
             ].map((cat, i) => (
               <motion.div
@@ -505,7 +287,7 @@ const Academics = () => {
                 <Link
                   href="/programs"
                   className="group relative block overflow-hidden rounded-2xl"
-                  style={{ aspectRatio: isMobile ? '1 / 1.1' : '1 / 1.25' }}
+                  style={{ aspectRatio: isMobile ? '1 / 1.1' : '3 / 4' }}
                 >
                   <Image
                     src={cat.image}
@@ -518,7 +300,7 @@ const Academics = () => {
                   {/* Tag */}
                   <div className="absolute top-3 left-3 md:top-4 md:left-4">
                     <span
-                      className="text-[10px] md:text-xs font-bold uppercase tracking-wider px-3 py-1 rounded-full"
+                      className="text-[12px] md:text-xs font-bold uppercase tracking-wider px-3 py-1 rounded-full"
                       style={{ backgroundColor: cat.color, color: '#21313c' }}
                     >
                       {cat.tag}
@@ -533,7 +315,7 @@ const Academics = () => {
                     >
                       {cat.count}
                     </span>
-                    <span className="text-white/50 text-[10px] md:text-xs uppercase tracking-wider block mb-2">
+                    <span className="text-white/50 text-[12px] md:text-xs uppercase tracking-wider block mb-2">
                       Programs
                     </span>
                     <h3 className="text-white text-sm md:text-lg font-semibold" style={{ lineHeight: 1.2 }}>
@@ -575,7 +357,7 @@ const Academics = () => {
                   <Link
                     key={prog}
                     href="/programs"
-                    className="text-[#666] text-[11px] md:text-sm bg-[#f6f7f0] border border-[#e5e5e5] hover:border-[#21313c]/40 hover:text-[#21313c] px-3 py-1.5 md:px-4 md:py-2 rounded-full transition-all duration-300"
+                    className="text-[#666] text-[12px] md:text-sm bg-[#f6f7f0] border border-[#e5e5e5] hover:border-[#21313c]/40 hover:text-[#21313c] px-3 py-1.5 md:px-4 md:py-2 rounded-full transition-all duration-300"
                   >
                     {prog}
                   </Link>
@@ -594,167 +376,6 @@ const Academics = () => {
               </Link>
             </div>
           </motion.div>
-        </div>
-      </div>
-
-      {/* Philosophy Section - Awwwards Style */}
-      <div className="w-full bg-white">
-        <div
-          className="mx-auto px-5 py-16 sm:px-8 sm:py-20 md:px-[120px] md:py-[140px]"
-          style={{
-            maxWidth: '1440px',
-          }}
-        >
-          {/* Section Header */}
-          <motion.div
-            initial={{ opacity: 0, y: 40 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-            className="mb-10 md:mb-20"
-          >
-            <span
-              className="text-[#999] uppercase tracking-widest block mb-4 md:mb-6 text-[10px] md:text-xs"
-              style={{ letterSpacing: '0.2em' }}
-            >
-              Our Foundation
-            </span>
-            <h2
-              className="text-[#21313c] text-2xl sm:text-3xl md:text-[clamp(2.5rem,5vw,4rem)]"
-              style={{
-                fontWeight: 600,
-                lineHeight: 1.1,
-                letterSpacing: '-0.03em',
-                maxWidth: '700px',
-              }}
-            >
-              Philosophy that guides{' '}
-              <span style={{ fontFamily: "'Times New Roman', serif", fontStyle: 'italic', fontWeight: 400 }}>
-                every step
-              </span>
-            </h2>
-          </motion.div>
-
-          {/* Philosophy Cards - Desktop: 3 columns staggered, Mobile: vertical scroll */}
-          {/* Mobile Layout */}
-          <div className="md:hidden">
-            <div className="flex gap-3 overflow-x-auto pb-4 -mx-5 px-5 snap-x snap-mandatory" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none', WebkitOverflowScrolling: 'touch' }}>
-              {philosophyCards.map((card, index) => (
-                <motion.div
-                  key={card.id}
-                  initial={{ opacity: 0, y: 40 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: index * 0.1 }}
-                  viewport={{ once: true }}
-                  onClick={() => setSelectedPhilosophy(card)}
-                  className="group cursor-pointer snap-start shrink-0"
-                  style={{ width: '72%' }}
-                >
-                  {/* Image Container */}
-                  <div className="relative overflow-hidden mb-3 h-[200px] sm:h-[240px] rounded-xl">
-                    <Image
-                      src={card.image}
-                      alt={card.title}
-                      fill
-                      className="object-cover"
-                    />
-                    <div className="absolute inset-0 bg-black/10" />
-                    {/* Number Badge */}
-                    <div
-                      className="absolute top-3 left-3 w-8 h-8 bg-white flex items-center justify-center"
-                      style={{ borderRadius: '50%' }}
-                    >
-                      <span className="text-[#21313c] font-semibold text-[10px]">
-                        0{card.id}
-                      </span>
-                    </div>
-                  </div>
-                  {/* Content */}
-                  <div>
-                    <h3
-                      className="text-[#21313c] mb-1 text-sm"
-                      style={{
-                        fontWeight: 600,
-                        lineHeight: 1.3,
-                      }}
-                    >
-                      {card.title}
-                    </h3>
-                    <p className="text-[#999] text-xs" style={{ lineHeight: 1.5 }}>
-                      {card.description}
-                    </p>
-                  </div>
-                </motion.div>
-              ))}
-            </div>
-          </div>
-
-          {/* Desktop Layout - 3 columns staggered */}
-          <div className="hidden md:grid grid-cols-3 gap-8">
-            {philosophyCards.map((card, index) => (
-              <motion.div
-                key={card.id}
-                initial={{ opacity: 0, y: 60 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.7, delay: index * 0.15 }}
-                viewport={{ once: true }}
-                onClick={() => setSelectedPhilosophy(card)}
-                className={`group cursor-pointer ${index === 1 ? 'mt-[80px]' : index === 2 ? 'mt-[160px]' : ''}`}
-              >
-                {/* Image Container */}
-                <div className="relative overflow-hidden mb-8 h-[420px]">
-                  <motion.div
-                    className="absolute inset-0"
-                    whileHover={{ scale: 1.05 }}
-                    transition={{ duration: 0.6 }}
-                  >
-                    <Image
-                      src={card.image}
-                      alt={card.title}
-                      fill
-                      className="object-cover"
-                    />
-                  </motion.div>
-                  {/* Overlay on hover */}
-                  <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-500" />
-                  {/* Number Badge */}
-                  <div
-                    className="absolute top-6 left-6 w-12 h-12 bg-white flex items-center justify-center"
-                    style={{ borderRadius: '50%' }}
-                  >
-                    <span className="text-[#21313c] font-semibold text-sm">
-                      0{card.id}
-                    </span>
-                  </div>
-                </div>
-                {/* Content */}
-                <div>
-                  <h3
-                    className="text-[#21313c] mb-4 group-hover:text-[#666] transition-colors text-2xl"
-                    style={{
-                      fontWeight: 600,
-                      lineHeight: 1.2,
-                    }}
-                  >
-                    {card.title}
-                  </h3>
-                  <p
-                    className="text-[#666] text-base"
-                    style={{
-                      lineHeight: 1.7,
-                    }}
-                  >
-                    {card.description}
-                  </p>
-                  {/* Arrow indicator */}
-                  <div className="mt-6 flex items-center gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
-                    <span className="text-[#21313c] text-sm font-medium">Explore</span>
-                    <span className="text-[#21313c]">→</span>
-                  </div>
-                </div>
-              </motion.div>
-            ))}
-          </div>
         </div>
       </div>
 
@@ -783,7 +404,7 @@ const Academics = () => {
           >
             <div>
               <span
-                className="text-[#999] uppercase tracking-widest block mb-4 md:mb-6 text-[10px] md:text-xs"
+                className="text-[#999] uppercase tracking-widest block mb-4 md:mb-6 text-[12px] md:text-xs"
                 style={{ letterSpacing: '0.2em' }}
               >
                 Academic Structure
@@ -893,7 +514,7 @@ const Academics = () => {
                       <span className="text-[#f0c14b] text-base md:text-xl font-bold block mb-0.5">
                         {stat.value}
                       </span>
-                      <span className="text-[#999] text-[9px] md:text-xs uppercase tracking-wider">
+                      <span className="text-[#999] text-[11px] md:text-xs uppercase tracking-wider">
                         {stat.label}
                       </span>
                     </motion.div>
@@ -929,12 +550,12 @@ const Academics = () => {
                       <div className="absolute inset-0 bg-gradient-to-t from-[#2d3f4a] via-transparent to-transparent" />
 
                       {/* Short name badge */}
-                      <div className="absolute top-3 left-3 bg-[#f0c14b] text-[#21313c] text-[10px] font-bold uppercase tracking-wider px-3 py-1 rounded-full">
+                      <div className="absolute top-3 left-3 bg-[#f0c14b] text-[#21313c] text-[12px] font-bold uppercase tracking-wider px-3 py-1 rounded-full">
                         {school.shortName}
                       </div>
 
                       {/* Program count badge */}
-                      <div className="absolute top-3 right-3 bg-white/15 backdrop-blur-sm text-white text-[10px] font-medium px-3 py-1 rounded-full">
+                      <div className="absolute top-3 right-3 bg-white/15 backdrop-blur-sm text-white text-[12px] font-medium px-3 py-1 rounded-full">
                         {school.programs.length} {school.programs.length === 1 ? 'Program' : 'Programs'}
                       </div>
                     </div>
@@ -953,13 +574,13 @@ const Academics = () => {
                         {school.programs.slice(0, 3).map((prog, pi) => (
                           <span
                             key={pi}
-                            className="text-[10px] md:text-[11px] text-white/60 bg-white/5 border border-white/10 px-2.5 py-1 rounded-full"
+                            className="text-[12px] md:text-[13px] text-white/60 bg-white/5 border border-white/10 px-2.5 py-1 rounded-full"
                           >
                             {prog.name.length > 25 ? prog.name.substring(0, 25) + '...' : prog.name}
                           </span>
                         ))}
                         {school.programs.length > 3 && (
-                          <span className="text-[10px] md:text-[11px] text-[#f0c14b] bg-[#f0c14b]/10 px-2.5 py-1 rounded-full">
+                          <span className="text-[12px] md:text-[13px] text-[#f0c14b] bg-[#f0c14b]/10 px-2.5 py-1 rounded-full">
                             +{school.programs.length - 3} more
                           </span>
                         )}
@@ -1021,22 +642,16 @@ const Academics = () => {
               </h2>
 
               <div className="space-y-4 md:space-y-6">
-                <p className="text-[#21313c] text-base md:text-xl" style={{ lineHeight: 1.5 }}>
-                  At JLU, teaching is not a one-way transfer of information.
-                </p>
-                <p className="text-[#21313c] text-base md:text-xl" style={{ lineHeight: 1.5 }}>
-                  It is a shared process shaped by conversation, exploration, and experience.
-                </p>
-                <p className="text-[#21313c] text-base md:text-xl" style={{ lineHeight: 1.5 }}>
-                  Classrooms open into studios, labs, field spaces, and real-world contexts. Faculty guide rather than dictate, encouraging students to question, interpret, and arrive at their own understanding.
+                <p className="text-[#21313c] text-base md:text-xl" style={{ lineHeight: 1.7 }}>
+                  At JLU, classrooms extend into studios, labs, and real-world contexts. Faculty guide students to question, explore, and build their own understanding through hands-on experience and industry exposure.
                 </p>
               </div>
 
               {/* Image below text */}
               <div className="relative w-full overflow-hidden mt-6 md:mt-10 h-45 sm:h-60 md:h-70 rounded-xl md:rounded-none">
                 <Image
-                  src="/interdisciplinary/campus-slider.jpg"
-                  alt="Students learning and collaborating at JLU"
+                  src="/interdisciplinary/lab.jpg"
+                  alt="Students in computer lab at JLU"
                   fill
                   className="object-cover"
                 />
@@ -1074,14 +689,8 @@ const Academics = () => {
               </div>
 
               <div className="space-y-4 md:space-y-6 pt-6 md:pt-8 border-t border-[#d1d1d1]">
-                <p className="text-[#21313c] text-base md:text-xl font-medium" style={{ lineHeight: 1.5 }}>
-                  The focus is simple.
-                </p>
-                <p className="text-[#21313c] text-base md:text-xl" style={{ lineHeight: 1.5 }}>
-                  Help students develop clarity of thought, confidence in expression, and the ability to apply what they know.
-                </p>
-                <p className="text-[#21313c] text-base md:text-xl" style={{ lineHeight: 1.5 }}>
-                  Education here adapts to the learner, not the other way around.
+                <p className="text-[#21313c] text-base md:text-xl" style={{ lineHeight: 1.7 }}>
+                  The goal is to develop clarity of thought, confidence in expression, and the ability to apply knowledge. Education here adapts to the learner, not the other way around.
                 </p>
               </div>
             </motion.div>
@@ -1107,7 +716,7 @@ const Academics = () => {
           >
             <div>
               <span
-                className="text-[#999] uppercase tracking-widest block mb-4 md:mb-6 text-[10px] md:text-xs"
+                className="text-[#999] uppercase tracking-widest block mb-4 md:mb-6 text-[12px] md:text-xs"
                 style={{ letterSpacing: '0.2em' }}
               >
                 Perspectives
@@ -1281,7 +890,7 @@ const Academics = () => {
                   {stat.value}
                 </span>
                 <span
-                  className="text-[#666] uppercase tracking-wider text-[10px] sm:text-[11px] md:text-xs"
+                  className="text-[#666] uppercase tracking-wider text-[12px] sm:text-[13px] md:text-xs"
                   style={{ letterSpacing: '0.05em' }}
                 >
                   {stat.label}
@@ -1291,13 +900,6 @@ const Academics = () => {
           </motion.div>
         </div>
       </div>
-
-      {/* Philosophy Modal */}
-      <PhilosophyModal
-        isOpen={selectedPhilosophy !== null}
-        onClose={() => setSelectedPhilosophy(null)}
-        data={selectedPhilosophy}
-      />
 
       {/* School Detail Side Panel */}
       <AnimatePresence>
@@ -1347,7 +949,7 @@ const Academics = () => {
 
                 {/* Title */}
                 <div className="absolute bottom-5 left-6 right-6">
-                  <span className="text-[#f0c14b] text-[10px] uppercase tracking-widest font-bold block mb-1">
+                  <span className="text-[#f0c14b] text-[12px] uppercase tracking-widest font-bold block mb-1">
                     {selectedSchool.shortName}
                   </span>
                   <h3 className="text-white text-xl md:text-2xl font-semibold" style={{ lineHeight: 1.2 }}>
@@ -1361,13 +963,13 @@ const Academics = () => {
                 {/* Head Badge */}
                 {selectedSchool.head && (
                   <div className="flex items-center gap-2 mb-5 bg-[#f6f7f0] rounded-lg px-4 py-3">
-                    <div className="w-8 h-8 rounded-full bg-[#03463B] flex items-center justify-center shrink-0">
+                    <div className="w-8 h-8 rounded-full bg-[#027ea1] flex items-center justify-center shrink-0">
                       <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
                       </svg>
                     </div>
                     <div>
-                      <p className="text-[#999] text-[10px] uppercase tracking-wider">Head of School</p>
+                      <p className="text-[#999] text-[12px] uppercase tracking-wider">Head of School</p>
                       <p className="text-[#21313c] text-sm font-semibold">{selectedSchool.head}</p>
                     </div>
                   </div>
@@ -1381,7 +983,7 @@ const Academics = () => {
                 {/* Programs */}
                 <div className="mb-6">
                   <h4 className="text-[#21313c] font-semibold text-base mb-4 flex items-center gap-2">
-                    <svg className="w-4 h-4 text-[#03463B]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <svg className="w-4 h-4 text-[#027ea1]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
                     </svg>
                     Programs Offered
@@ -1399,7 +1001,7 @@ const Academics = () => {
                           <span className="text-[#21313c] text-sm font-medium block truncate">{program.name}</span>
                           <span className="text-[#999] text-xs">{program.degree}</span>
                         </div>
-                        <span className="text-[#03463B] text-xs font-medium bg-[#03463B]/10 px-3 py-1 rounded-full shrink-0 ml-3">
+                        <span className="text-[#027ea1] text-xs font-medium bg-[#027ea1]/10 px-3 py-1 rounded-full shrink-0 ml-3">
                           {program.duration}
                         </span>
                       </motion.div>
@@ -1445,7 +1047,7 @@ const Academics = () => {
                     </svg>
                   </Link>
                   <a
-                    href="/broucher/Fee-Structure-2026-27.pdf"
+                    href="/broucher/JLU-Brochure-2026.pdf"
                     download
                     target="_blank"
                     rel="noopener noreferrer"

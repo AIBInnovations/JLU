@@ -77,22 +77,22 @@ export const EventsSection = () => {
           transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
         >
           <p
-            className="text-xs md:text-sm mb-4"
+            className="text-base md:text-lg mb-4"
             style={{ color: '#999', letterSpacing: '0.2em', textTransform: 'uppercase' }}
           >
             CAMPUS LIFE
           </p>
           <h2
-            className="text-3xl md:text-4xl lg:text-5xl text-[#21313c] mb-3"
+            className="text-4xl md:text-5xl lg:text-6xl text-[#21313c] mb-3"
             style={{ fontWeight: 600, lineHeight: 1 }}
           >
             Moments worth{' '}
             <span style={{ fontFamily: "'Times New Roman', serif", fontStyle: 'italic' }}>stepping into</span>
           </h2>
-          <p className="text-sm md:text-[15px] max-w-2xl mx-auto" style={{ color: '#666', lineHeight: 1.7 }}>
+          <p className="text-lg md:text-xl max-w-2xl mx-auto" style={{ color: '#666', lineHeight: 1.7 }}>
             From cultural celebrations to talent showcases, experience the vibrant campus life at Jagran Lakecity University.
           </p>
-          <div className="mx-auto mt-4" style={{ width: '274px', height: '0px', border: '4px solid #027fa0' }} />
+          <div className="mx-auto mt-4" style={{ width: '274px', height: '0px', border: '4px solid #027ea1' }} />
         </motion.div>
 
         {/* Main Content - Split Layout */}
@@ -122,7 +122,7 @@ export const EventsSection = () => {
               {/* Button positioned inside image */}
               <a
                 href="/events"
-                className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-[#027fa0] text-white px-4 py-2 md:px-6 md:py-3 rounded-full text-sm font-semibold hover:bg-[#026a88] transition-colors shadow-lg flex items-center justify-center leading-none"
+                className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-[#027ea1] text-white px-4 py-2 md:px-6 md:py-3 rounded-full text-sm font-semibold hover:bg-[#026a88] transition-colors shadow-lg flex items-center justify-center leading-none"
               >
                 View Events
               </a>
@@ -173,19 +173,19 @@ export const EventsSection = () => {
                   </div>
 
                   {/* Description */}
-                  <p className="text-xs md:text-sm text-gray-500 leading-relaxed mb-3 line-clamp-3">
+                  <p className="text-sm md:text-base text-gray-500 leading-relaxed mb-3 line-clamp-3">
                     {event.description}
                   </p>
 
                   {/* Event Details */}
                   <div className="mt-auto space-y-2">
-                    <div className="flex items-center gap-2 text-gray-600 text-xs md:text-sm">
+                    <div className="flex items-center gap-2 text-gray-600 text-sm md:text-base">
                       <svg className="w-4 h-4 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
                       </svg>
                       {event.time}
                     </div>
-                    <div className="flex items-center gap-2 text-gray-600 text-xs md:text-sm">
+                    <div className="flex items-center gap-2 text-gray-600 text-sm md:text-base">
                       <svg className="w-4 h-4 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
@@ -275,7 +275,7 @@ export const EventsSection = () => {
             SEE WHAT'S{' '}
             <span style={{ fontFamily: "'Times New Roman', serif", fontStyle: 'italic' }}>GOING ON</span>
           </h3>
-          <p className="text-xs md:text-sm" style={{ color: '#666', lineHeight: 1.7 }}>
+          <p className="text-sm md:text-base" style={{ color: '#666', lineHeight: 1.7 }}>
             Current and upcoming events at JLU — from celebrations and talent shows to orientations and milestones.
           </p>
         </div>

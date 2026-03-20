@@ -225,7 +225,7 @@ export const ChatBot = () => {
             animate={{ scale: 1 }}
             transition={{ delay: 1.5 }}
           >
-            <span className="text-[10px] font-bold text-[#03463B]">1</span>
+            <span className="text-[12px] font-bold text-[#027ea1]">1</span>
           </motion.span>
         )}
       </motion.button>
@@ -300,7 +300,7 @@ export const ChatBot = () => {
                     style={{ whiteSpace: 'pre-line' }}
                   >
                     <p className="text-sm">{message.text}</p>
-                    <p className={`text-[10px] mt-1 ${message.isBot ? 'text-gray-400' : 'text-white/60'}`}>
+                    <p className={`text-[12px] mt-1 ${message.isBot ? 'text-gray-400' : 'text-white/60'}`}>
                       {message.timestamp.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
                     </p>
                   </div>

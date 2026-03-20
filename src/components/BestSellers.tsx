@@ -288,7 +288,7 @@ export const BestSellers = () => {
 
         {/* Bottom Text */}
         <div className="mt-20 text-center">
-          <p className="text-gray-600 text-sm md:text-base max-w-2xl mx-auto">
+          <p className="text-gray-600 text-base md:text-lg max-w-2xl mx-auto">
             Effortless wellness and radiant skin—so you can focus on life, not your routine.
           </p>
         </div>

@@ -28,7 +28,7 @@ export const Footer = () => {
   return (
     <footer
       ref={footerRef}
-      className={`relative bg-[#027fa0] text-white overflow-hidden ${isMobile ? 'min-h-screen' : 'h-screen'}`}
+      className={`relative bg-[#027ea1] text-white overflow-hidden min-h-screen`}
       style={{ zIndex: 30 }}
     >
       {isMobile ? (
@@ -53,14 +53,14 @@ export const Footer = () => {
 
           {/* Header Section */}
           <div className="mb-4">
-            <h2 className="text-2xl font-normal leading-tight mb-4 text-[#d4e4a0]">
-              Let's Shape <span className="italic font-serif">Your</span>
+            <h2 className="text-xl font-normal leading-tight mb-4 text-[#d4e4a0]">
+              Central India's
               <br />
-              <span className="italic font-serif">Future</span> Together
+              <span className="italic font-serif">Global University</span>
             </h2>
             <a
               href="/apply"
-              className="inline-flex items-center gap-2 border border-[#d4e4a0] text-[#d4e4a0] px-4 py-2 text-xs hover:bg-[#d4e4a0] hover:text-[#027fa0] transition-colors"
+              className="inline-flex items-center gap-2 border border-[#d4e4a0] text-[#d4e4a0] px-4 py-2 text-xs hover:bg-[#d4e4a0] hover:text-[#027ea1] transition-colors"
             >
               SEND INQUIRY
               <span className="text-base">↗</span>
@@ -73,8 +73,8 @@ export const Footer = () => {
           {/* Contact Info */}
           <div className="mb-4">
             <a href="mailto:admission@jlu.edu.in" className="text-lg font-light mb-1 text-[#d4e4a0] block hover:text-white transition-colors">admission@jlu.edu.in</a>
-            <a href="tel:+917471110101" className="text-lg font-light mb-1 text-[#d4e4a0] block hover:text-white transition-colors">7471110101</a>
-            <a href="tel:+917471110103" className="text-lg font-light mb-2 text-[#d4e4a0] block hover:text-white transition-colors">7471110103</a>
+            <a href="tel:+917471110101" className="text-lg font-light mb-1 text-[#d4e4a0] block hover:text-white transition-colors">+91 7471110101</a>
+            <a href="tel:+917471110103" className="text-lg font-light mb-2 text-[#d4e4a0] block hover:text-white transition-colors">+91 7471110103</a>
             <address className="not-italic text-gray-300 text-xs leading-relaxed">
               Jagran Lakecity University,
               <br />
@@ -111,17 +111,14 @@ export const Footer = () => {
           {/* Bottom Section */}
           <div className="flex justify-between items-end mt-auto">
             <div>
-              <p className="text-gray-400 text-[10px] mb-1">© 2025 | JLU Bhopal | All Rights Reserved</p>
+              <p className="text-gray-400 text-xs mb-1">Copyright © 2025 | Jagran Lakecity University Bhopal | All Rights Reserved</p>
               <button
                 onClick={scrollToTop}
-                className="text-gray-400 text-[10px] hover:text-white transition-colors"
+                className="text-gray-400 text-sm font-medium hover:text-white transition-colors"
               >
-                Scroll to top
+                Scroll to the top ↑
               </button>
             </div>
-            <a href="https://www.instagram.com/jaborejlu/" target="_blank" rel="noopener noreferrer" className="text-gray-300 text-xs hover:text-white transition-colors flex items-center gap-1">
-              Instagram <span>↗</span>
-            </a>
           </div>
 
           {/* Large Jagran Lakecity Text */}
@@ -164,7 +161,7 @@ export const Footer = () => {
         </div>
       ) : (
         /* Desktop Layout */
-        <div className="flex h-screen">
+        <div className="flex min-h-screen">
           {/* Left - University Image with reveal animation */}
           <motion.div
             className="relative w-[40%] overflow-hidden"
@@ -184,14 +181,14 @@ export const Footer = () => {
           <div className="flex-1 pl-6 xl:pl-8 2xl:pl-12 pr-12 xl:pr-16 2xl:pr-24 pt-8 pb-4 flex flex-col">
             {/* Header Section */}
             <div className="flex justify-between items-start mb-8">
-              <h2 className="text-5xl lg:text-6xl font-normal leading-tight text-[#d4e4a0]">
-                Let's Shape <span className="italic font-serif">Your</span>
+              <h2 className="text-3xl lg:text-4xl font-normal leading-tight text-[#d4e4a0]">
+                Central India's
                 <br />
-                <span className="italic font-serif">Future</span> Together
+                <span className="italic font-serif">Global University</span>
               </h2>
               <a
                 href="/apply"
-                className="inline-flex items-center gap-4 border border-[#d4e4a0] text-[#d4e4a0] px-8 py-4 text-sm hover:bg-[#d4e4a0] hover:text-[#027fa0] transition-colors shrink-0 rounded-full mt-4"
+                className="inline-flex items-center gap-4 border border-[#d4e4a0] text-[#d4e4a0] px-8 py-4 text-sm hover:bg-[#d4e4a0] hover:text-[#027ea1] transition-colors shrink-0 rounded-full mt-4"
               >
                 SEND INQUIRY
                 <span className="text-xl">↗</span>
@@ -206,76 +203,74 @@ export const Footer = () => {
               {/* Left - Contact Info */}
               <div>
                 <a href="mailto:admission@jlu.edu.in" className="text-3xl lg:text-4xl font-light mb-2 text-[#d4e4a0] block hover:text-white transition-colors">admission@jlu.edu.in</a>
-                <a href="tel:+917471110101" className="text-3xl lg:text-4xl font-light mb-2 text-[#d4e4a0] block hover:text-white transition-colors">7471110101</a>
-                <a href="tel:+917471110103" className="text-3xl lg:text-4xl font-light mb-6 text-[#d4e4a0] block hover:text-white transition-colors">7471110103</a>
-                <address className="not-italic text-gray-300 text-sm leading-relaxed mb-4">
+                <a href="tel:+917471110101" className="text-3xl lg:text-4xl font-light mb-2 text-[#d4e4a0] block hover:text-white transition-colors">+91 7471110101</a>
+                <a href="tel:+917471110103" className="text-3xl lg:text-4xl font-light mb-6 text-[#d4e4a0] block hover:text-white transition-colors">+91 7471110103</a>
+                <address className="not-italic text-gray-300 text-base leading-relaxed mb-4">
                   Jagran Lakecity University,
                   <br />
                   Mugaliyachap, Near Ratibad
                   <br />
                   Bhopal – 462044
                 </address>
-                <a href="/apply" className="text-[#d4e4a0] text-sm hover:text-white transition-colors">
-                  Contact Us
-                </a>
               </div>
 
               {/* Right - Navigation Links */}
               <div className="flex gap-12">
                 <div>
-                  <h3 className="font-semibold text-sm mb-4 text-white">Explore</h3>
-                  <ul className="space-y-2">
-                    <li><a href="/about" className="text-gray-300 text-sm hover:text-white transition-colors">About JLU</a></li>
-                    <li><a href="/academics" className="text-gray-300 text-sm hover:text-white transition-colors">Academics</a></li>
-                    <li><a href="/admissions" className="text-gray-300 text-sm hover:text-white transition-colors">Admissions</a></li>
-                    <li><a href="/campus-life" className="text-gray-300 text-sm hover:text-white transition-colors">Campus Life</a></li>
-                    <li><a href="/research" className="text-gray-300 text-sm hover:text-white transition-colors">Research</a></li>
-                    <li><a href="/placement" className="text-gray-300 text-sm hover:text-white transition-colors">Placements</a></li>
+                  <h3 className="font-semibold text-base mb-4 text-white">Explore</h3>
+                  <ul className="space-y-3">
+                    <li><a href="/about" className="text-gray-300 text-base hover:text-white transition-colors">About JLU</a></li>
+                    <li><a href="/academics" className="text-gray-300 text-base hover:text-white transition-colors">Academics</a></li>
+                    <li><a href="/admissions" className="text-gray-300 text-base hover:text-white transition-colors">Admissions</a></li>
+                    <li><a href="/campus-life" className="text-gray-300 text-base hover:text-white transition-colors">Campus Life</a></li>
+                    <li><a href="/research" className="text-gray-300 text-base hover:text-white transition-colors">Research</a></li>
+                    <li><a href="/placement" className="text-gray-300 text-base hover:text-white transition-colors">Placements</a></li>
                   </ul>
                 </div>
                 <div>
-                  <h3 className="font-semibold text-sm mb-4 text-white">Quick Links</h3>
-                  <ul className="space-y-2">
-                    <li><a href="/programs" className="text-gray-300 text-sm hover:text-white transition-colors">Programs</a></li>
-                    <li><a href="/scholarship" className="text-gray-300 text-sm hover:text-white transition-colors">Scholarships</a></li>
-                    <li><a href="/international-office" className="text-gray-300 text-sm hover:text-white transition-colors">International Office</a></li>
-                    <li><a href="/alumni" className="text-gray-300 text-sm hover:text-white transition-colors">Alumni</a></li>
-                    <li><a href="/news-events" className="text-gray-300 text-sm hover:text-white transition-colors">News & Events</a></li>
-                    <li><a href="/apply" className="text-gray-300 text-sm hover:text-white transition-colors">Apply Now</a></li>
+                  <h3 className="font-semibold text-base mb-4 text-white">Quick Links</h3>
+                  <ul className="space-y-3">
+                    <li><a href="/programs" className="text-gray-300 text-base hover:text-white transition-colors">Programs</a></li>
+                    <li><a href="/scholarship" className="text-gray-300 text-base hover:text-white transition-colors">Scholarships</a></li>
+                    <li><a href="/international-office" className="text-gray-300 text-base hover:text-white transition-colors">International Office</a></li>
+                    <li><a href="/alumni" className="text-gray-300 text-base hover:text-white transition-colors">Alumni</a></li>
+                    <li><a href="/news-events" className="text-gray-300 text-base hover:text-white transition-colors">News & Events</a></li>
+                    <li><a href="/apply" className="text-gray-300 text-base hover:text-white transition-colors">Apply Now</a></li>
                   </ul>
                 </div>
                 <div>
-                  <h3 className="font-semibold text-sm mb-4 text-white">Social</h3>
-                  <ul className="space-y-2">
-                    <li><a href="https://www.facebook.com/JLUBhopal" target="_blank" rel="noopener noreferrer" className="text-gray-300 text-sm hover:text-white transition-colors">Facebook</a></li>
-                    <li><a href="https://www.instagram.com/jaborejlu/" target="_blank" rel="noopener noreferrer" className="text-gray-300 text-sm hover:text-white transition-colors">Instagram</a></li>
-                    <li><a href="https://twitter.com/JLUBhopal" target="_blank" rel="noopener noreferrer" className="text-gray-300 text-sm hover:text-white transition-colors">Twitter/X</a></li>
+                  <h3 className="font-semibold text-base mb-4 text-white">Social</h3>
+                  <ul className="space-y-3">
+                    <li><a href="https://www.facebook.com/JLUBhopal" target="_blank" rel="noopener noreferrer" className="text-gray-300 text-base hover:text-white transition-colors">Facebook</a></li>
+                    <li><a href="https://www.instagram.com/jaborejlu/" target="_blank" rel="noopener noreferrer" className="text-gray-300 text-base hover:text-white transition-colors">Instagram</a></li>
+                    <li><a href="https://twitter.com/JLUBhopal" target="_blank" rel="noopener noreferrer" className="text-gray-300 text-base hover:text-white transition-colors">Twitter/X</a></li>
                   </ul>
                 </div>
               </div>
             </div>
 
             {/* Bottom Section */}
-            <div className="flex justify-between items-center mb-4">
-              <div>
-                <p className="text-gray-400 text-sm mb-1">Copyright © 2025 | Jagran Lakecity University Bhopal | All Rights Reserved</p>
-                <button
-                  onClick={scrollToTop}
-                  className="text-gray-400 text-sm hover:text-white transition-colors"
-                >
-                  Scroll to the top
-                </button>
-              </div>
-              <a href="https://www.instagram.com/jaborejlu/" target="_blank" rel="noopener noreferrer" className="text-gray-300 text-sm hover:text-white transition-colors flex items-center gap-2">
-                Instagram <span className="text-lg">↗</span>
-              </a>
+            <div className="mb-4">
+              <p className="text-gray-400 text-sm">Copyright © 2025 | Jagran Lakecity University Bhopal | All Rights Reserved</p>
             </div>
 
-            {/* Large Jagran Lakecity Text */}
+            {/* Large Jagran Lakecity Text with Scroll to top */}
             <motion.div
-              className="-ml-6 -mr-12 mt-auto"
+              className="-ml-6 -mr-12 mt-auto relative"
               style={{ y: jluY }}
             >
+              <div className="absolute right-12 bottom-32 z-10 flex flex-col items-end gap-4">
+                <a href="/apply" className="inline-flex items-center gap-3 border border-[#d4e4a0] text-[#d4e4a0] px-6 py-3 text-sm hover:bg-[#d4e4a0] hover:text-[#027ea1] transition-colors rounded-full">
+                  CONTACT US
+                  <span className="text-lg">↗</span>
+                </a>
+                <button
+                  onClick={scrollToTop}
+                  className="text-gray-300 text-lg font-semibold hover:text-white transition-colors flex items-center gap-2"
+                >
+                  Scroll to the top <span className="text-2xl">↑</span>
+                </button>
+              </div>
               <h2
                 className="select-none"
                 style={{

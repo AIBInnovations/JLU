@@ -149,9 +149,9 @@ const LoanAssistance = () => {
 
   const availableCourses = formData.programLevel ? programOptions[formData.programLevel] || [] : [];
 
-  const inputClasses = "w-full px-5 py-4 bg-white border-2 border-gray-200 rounded-xl text-[#21313c] placeholder-gray-400 focus:border-[#03463B] focus:outline-none transition-colors text-base";
+  const inputClasses = "w-full px-5 py-4 bg-white border-2 border-gray-200 rounded-xl text-[#21313c] placeholder-gray-400 focus:border-[#027ea1] focus:outline-none transition-colors text-base";
   const labelClasses = "block text-[#21313c] font-medium mb-2 text-sm";
-  const selectClasses = "w-full px-5 py-4 bg-white border-2 border-gray-200 rounded-xl text-[#21313c] focus:border-[#03463B] focus:outline-none transition-colors text-base appearance-none cursor-pointer";
+  const selectClasses = "w-full px-5 py-4 bg-white border-2 border-gray-200 rounded-xl text-[#21313c] focus:border-[#027ea1] focus:outline-none transition-colors text-base appearance-none cursor-pointer";
   const errorClasses = "text-red-500 text-xs mt-1";
 
   const stepLabels = ['Personal Info', 'Program & Loan', 'Details'];
@@ -258,7 +258,7 @@ const LoanAssistance = () => {
                             <motion.div
                               className={`w-10 h-10 rounded-full flex items-center justify-center font-semibold text-sm transition-colors ${
                                 currentStep >= step
-                                  ? 'bg-[#03463B] text-white'
+                                  ? 'bg-[#027ea1] text-white'
                                   : 'bg-gray-200 text-gray-500'
                               }`}
                               animate={{ scale: currentStep === step ? 1.1 : 1 }}
@@ -279,7 +279,7 @@ const LoanAssistance = () => {
                           {step < 3 && (
                             <div
                               className={`w-10 h-1 mx-2 rounded-full transition-colors ${
-                                currentStep > step ? 'bg-[#03463B]' : 'bg-gray-200'
+                                currentStep > step ? 'bg-[#027ea1]' : 'bg-gray-200'
                               }`}
                             />
                           )}
@@ -416,7 +416,7 @@ const LoanAssistance = () => {
                               <label className={labelClasses}>Do you have a co-applicant? *</label>
                               <div className="flex gap-3">
                                 {['yes', 'no'].map((opt) => (
-                                  <label key={opt} className={`flex-1 flex items-center justify-center gap-2 px-4 py-3 border-2 rounded-xl cursor-pointer transition-colors ${formData.hasCoApplicant === opt ? 'border-[#03463B] bg-[#03463B]/5' : 'border-gray-200'}`}>
+                                  <label key={opt} className={`flex-1 flex items-center justify-center gap-2 px-4 py-3 border-2 rounded-xl cursor-pointer transition-colors ${formData.hasCoApplicant === opt ? 'border-[#027ea1] bg-[#027ea1]/5' : 'border-gray-200'}`}>
                                     <input type="radio" name="hasCoApplicant" value={opt} checked={formData.hasCoApplicant === opt} onChange={handleInputChange} className="hidden" />
                                     <span className="text-[#21313c] font-medium text-sm capitalize">{opt === 'yes' ? 'Yes' : 'No'}</span>
                                   </label>
@@ -448,7 +448,7 @@ const LoanAssistance = () => {
                               <label className={labelClasses}>Do you have collateral for the loan? *</label>
                               <div className="flex gap-3">
                                 {['yes', 'no', 'not-sure'].map((opt) => (
-                                  <label key={opt} className={`flex-1 flex items-center justify-center gap-2 px-4 py-3 border-2 rounded-xl cursor-pointer transition-colors ${formData.hasCollateral === opt ? 'border-[#03463B] bg-[#03463B]/5' : 'border-gray-200'}`}>
+                                  <label key={opt} className={`flex-1 flex items-center justify-center gap-2 px-4 py-3 border-2 rounded-xl cursor-pointer transition-colors ${formData.hasCollateral === opt ? 'border-[#027ea1] bg-[#027ea1]/5' : 'border-gray-200'}`}>
                                     <input type="radio" name="hasCollateral" value={opt} checked={formData.hasCollateral === opt} onChange={handleInputChange} className="hidden" />
                                     <span className="text-[#21313c] font-medium text-sm">{opt === 'yes' ? 'Yes' : opt === 'no' ? 'No' : 'Not Sure'}</span>
                                   </label>
@@ -470,9 +470,9 @@ const LoanAssistance = () => {
                             </div>
 
                             {/* Info Note */}
-                            <div className="p-4 bg-[#03463B]/5 rounded-xl border border-[#03463B]/15">
+                            <div className="p-4 bg-[#027ea1]/5 rounded-xl border border-[#027ea1]/15">
                               <div className="flex gap-3">
-                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#03463B" strokeWidth="1.5" className="shrink-0 mt-0.5">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#027ea1" strokeWidth="1.5" className="shrink-0 mt-0.5">
                                   <circle cx="12" cy="12" r="10" />
                                   <line x1="12" y1="16" x2="12" y2="12" strokeLinecap="round" />
                                   <line x1="12" y1="8" x2="12.01" y2="8" strokeLinecap="round" />
@@ -531,7 +531,7 @@ const LoanAssistance = () => {
                           <motion.button
                             type="submit"
                             disabled={isSubmitting}
-                            className="flex-1 py-4 bg-[#03463B] text-white font-semibold rounded-xl hover:bg-[#025a4a] transition-colors flex items-center justify-center gap-2 disabled:opacity-70 disabled:cursor-not-allowed cursor-pointer"
+                            className="flex-1 py-4 bg-[#027ea1] text-white font-semibold rounded-xl hover:bg-[#026986] transition-colors flex items-center justify-center gap-2 disabled:opacity-70 disabled:cursor-not-allowed cursor-pointer"
                             whileHover={{ scale: 1.01 }}
                             whileTap={{ scale: 0.99 }}
                           >
@@ -569,7 +569,7 @@ const LoanAssistance = () => {
                       animate={{ scale: 1 }}
                       transition={{ type: 'spring', delay: 0.2 }}
                     >
-                      <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#03463B" strokeWidth="3">
+                      <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#027ea1" strokeWidth="3">
                         <polyline points="20 6 9 17 4 12" strokeLinecap="round" strokeLinejoin="round" />
                       </svg>
                     </motion.div>

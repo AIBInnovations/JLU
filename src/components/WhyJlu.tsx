@@ -48,7 +48,7 @@ export const WhyJlu = () => {
       href: '/why-jlu/global-network'
     },
     {
-      bg: '#4a90a4',
+      bg: '#027ea1',
       title: 'Industry Intervention',
       subtitle: '',
       description: '42+ industry tie-ups with EY, KPMG, Deloitte, Amazon & TCS powering real-world placements.',
@@ -123,6 +123,8 @@ export const WhyJlu = () => {
       clearTimeout(timeout);
       whyJluPin.kill();
       if (blurTrigger) blurTrigger.kill();
+      ScrollTrigger.getAll().forEach((t) => t.kill());
+      gsap.killTweensOf('*');
       ScrollTrigger.refresh();
     };
   }, [isMobile, mounted]);

@@ -341,7 +341,12 @@ const JourneySection = ({ steps, onApplyClick }: { steps: JourneyStep[]; onApply
       });
     }, sectionRef);
 
-    return () => ctx.revert();
+    return () => {
+      ctx.revert();
+      ScrollTrigger.getAll().forEach((t) => t.kill());
+      gsap.killTweensOf('*');
+      ScrollTrigger.refresh();
+    };
   }, []);
 
   return (
@@ -627,7 +632,7 @@ const ApplyModal = ({ isOpen, onClose }: ApplyModalProps) => {
                       animate={{ scale: 1 }}
                       transition={{ type: 'spring', delay: 0.2 }}
                     >
-                      <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#03463B" strokeWidth="3">
+                      <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#027ea1" strokeWidth="3">
                         <polyline points="20 6 9 17 4 12" strokeLinecap="round" strokeLinejoin="round"/>
                       </svg>
                     </motion.div>
@@ -806,8 +811,8 @@ const InternationalOffice = () => {
         >
           <motion.div className="absolute inset-0" style={{ y }}>
             <Image
-              src="/campus/hero-campus.jpg"
-              alt="International Office"
+              src="/campus/hero-events.jpg"
+              alt="International Office - Global Students at JLU"
               fill
               className="object-cover scale-110"
               priority
@@ -1366,8 +1371,8 @@ const InternationalOffice = () => {
               * Fees are indicative and may vary by program. Scholarships available for eligible students.
             </p>
             <motion.a
-              href="/broucher/Fee-Structure-2026-27.pdf"
-              download="JLU-Fee-Structure-2025.pdf"
+              href="/broucher/Fee-Structure-2026-27-new.pdf"
+              download="JLU-Fee-Structure-2026-27.pdf"
               className="inline-flex items-center gap-3 text-[#21313c] font-medium group text-sm md:text-[15px] no-underline"
               whileHover={{ x: 5 }}
             >
@@ -1496,7 +1501,7 @@ const InternationalOffice = () => {
                   <span>→</span>
                 </motion.button>
                 <motion.a
-                  href="/broucher/Fee-Structure-2026-27.pdf"
+                  href="/broucher/JLU-Brochure-2026.pdf"
                   download="JLU-International-Admission-Form.pdf"
                   className="inline-flex items-center justify-center gap-2 md:gap-3 px-6 py-3 md:px-8 md:py-4 border-2 border-[#21313c] text-[#21313c] font-medium text-sm md:text-base rounded-full hover:bg-[#21313c] hover:text-white transition-colors no-underline"
                   whileHover={{ scale: 1.02 }}
@@ -1861,8 +1866,8 @@ const InternationalOffice = () => {
               <div className="p-6 md:p-8">
                 {contactSubmitted ? (
                   <div className="text-center py-8">
-                    <div className="w-16 h-16 rounded-full bg-green-100 flex items-center justify-center mx-auto mb-4">
-                      <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#16a34a" strokeWidth="2">
+                    <div className="w-16 h-16 rounded-full bg-[#e0f2f7] flex items-center justify-center mx-auto mb-4">
+                      <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#027ea1" strokeWidth="2">
                         <polyline points="20 6 9 17 4 12" strokeLinecap="round" strokeLinejoin="round" />
                       </svg>
                     </div>

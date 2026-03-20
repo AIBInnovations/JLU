@@ -17,7 +17,7 @@ const professionalCertificates = [
     duration: '4 months',
     fee: '₹21,500',
     image: '/campus/smart-classroom.jpg',
-    gradient: 'from-[#4a90a4] to-[#2d5a6a]',
+    gradient: 'from-[#027ea1] to-[#015d7a]',
     features: ['Basic to Expert', 'Real Projects', 'Industry Certificate'],
   },
   {

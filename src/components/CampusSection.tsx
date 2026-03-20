@@ -88,7 +88,7 @@ export const CampusSection = () => {
             { number: '2,500+', label: 'Students' },
           ].map((stat) => (
             <div key={stat.label} className="text-center">
-              <p className="text-3xl md:text-4xl font-bold text-[#03463B]">{stat.number}</p>
+              <p className="text-3xl md:text-4xl font-bold text-[#027ea1]">{stat.number}</p>
               <p className="text-gray-500 text-sm mt-1">{stat.label}</p>
             </div>
           ))}

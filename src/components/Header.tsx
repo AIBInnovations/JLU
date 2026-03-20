@@ -53,9 +53,9 @@ const navigationItems: NavigationItem[] = [
         title: 'Faculties & Schools',
         items: [
           'Faculty of Management',
-          'Faculty of Journalism & Social Science',
+          'Faculty of Media and Social Sciences',
           'Faculty of Fashion, Design & Arts',
-          'Faculty of Engineering & Technology',
+          'Faculty of Science and Technology',
           'Faculty of Pharmacy',
           'Faculty of Law',
           'IICA - Jagran Centre for Creative Skills',
@@ -65,8 +65,8 @@ const navigationItems: NavigationItem[] = [
         title: 'Schools',
         items: [
           'Jagran Lakecity Business School',
-          'Jagran School of Sports Management',
-          'Jagran School of Hospitality & Aviation',
+          'Jagran School of Physical Education and Sports Science',
+          'Jagran School of Hospitality & Tourism',
           'Jagran School of Journalism',
           'Jagran School of Design',
           'Jagran School of Architecture',
@@ -85,7 +85,7 @@ const navigationItems: NavigationItem[] = [
       { label: 'Student Accommodation', slug: 'student-accommodation' },
       { label: 'Dining Facilities', slug: 'dining-facilities' },
       { label: 'Academic Infrastructure', slug: 'academic-infrastructure' },
-      { label: 'Gurudev Gupta Media Studio', slug: 'gurudev-gupta-media-studio' },
+      { label: 'Shri Gurudev Gupta Media Studio', slug: 'gurudev-gupta-media-studio' },
       { label: 'M.S Gill Culinary Studios', slug: 'ms-gill-culinary-studios' },
       { label: 'Technology Labs', slug: 'technology-labs' },
       { label: 'Shri Cyril Shroff Moot Court', slug: 'shri-cyril-shroff-moot-court' },
@@ -188,7 +188,7 @@ const navigationItems: NavigationItem[] = [
 const bottomMenuItems = [
   { label: 'Student Clubs', href: '/student-clubs' },
   { label: 'Alumni', href: '/alumni' },
-  { label: 'Podcast', href: '/podcast' },
+  { label: 'Lakecity Voice', href: '/podcast' },
   { label: 'Placements', href: '/placement' },
   { label: 'Faculties', href: '/faculties' },
 ];
@@ -335,18 +335,18 @@ const MenuOverlay = ({ isOpen, onClose, menuButtonRef }: MenuOverlayProps) => {
                             onClick={() => setExpandedMobileItem(expandedMobileItem === item.label ? null : item.label)}
                             className={`w-full text-left py-3.5 border-b border-gray-100 flex items-center justify-between ${
                               isActive(item.href)
-                                ? 'text-[#03463B]'
-                                : 'text-[#03463B]/70'
+                                ? 'text-[#027ea1]'
+                                : 'text-[#027ea1]/70'
                             }`}
                           >
                             <span className="text-lg font-medium flex items-center gap-2.5">
                               {isActive(item.href) && (
-                                <span className="w-2 h-2 rounded-full bg-[#03463B]" />
+                                <span className="w-2 h-2 rounded-full bg-[#027ea1]" />
                               )}
                               {item.label}
                             </span>
                             <svg
-                              className={`w-4 h-4 text-[#03463B]/40 transition-transform duration-300 ${expandedMobileItem === item.label ? 'rotate-180' : ''}`}
+                              className={`w-4 h-4 text-[#027ea1]/40 transition-transform duration-300 ${expandedMobileItem === item.label ? 'rotate-180' : ''}`}
                               fill="none"
                               stroke="currentColor"
                               viewBox="0 0 24 24"
@@ -370,7 +370,7 @@ const MenuOverlay = ({ isOpen, onClose, menuButtonRef }: MenuOverlayProps) => {
                                   <Link
                                     href={item.href}
                                     onClick={onClose}
-                                    className="text-sm font-medium text-[#03463B] mb-2 inline-flex items-center gap-1"
+                                    className="text-sm font-medium text-[#027ea1] mb-2 inline-flex items-center gap-1"
                                   >
                                     View All
                                     <span className="text-xs">→</span>
@@ -379,7 +379,7 @@ const MenuOverlay = ({ isOpen, onClose, menuButtonRef }: MenuOverlayProps) => {
                                   {item.type === 'megamenu' && item.columns ? (
                                     item.columns.map((column) => (
                                       <div key={column.title} className="mb-3">
-                                        <p className="text-xs font-semibold text-[#03463B] uppercase tracking-wider mb-2">
+                                        <p className="text-xs font-semibold text-[#027ea1] uppercase tracking-wider mb-2">
                                           {column.title}
                                         </p>
                                         {column.items.map((subItem) => {
@@ -394,7 +394,7 @@ const MenuOverlay = ({ isOpen, onClose, menuButtonRef }: MenuOverlayProps) => {
                                                 key={subItem}
                                                 href={specialHref}
                                                 onClick={onClose}
-                                                className="text-sm text-[#03463B]/60 block py-1.5"
+                                                className="text-sm text-[#027ea1]/60 block py-1.5"
                                               >
                                                 {subItem}
                                               </Link>
@@ -404,7 +404,7 @@ const MenuOverlay = ({ isOpen, onClose, menuButtonRef }: MenuOverlayProps) => {
                                             <button
                                               key={subItem}
                                               onClick={() => handleSectionClick(item.href, slug)}
-                                              className="text-sm text-[#03463B]/60 block py-1.5 text-left"
+                                              className="text-sm text-[#027ea1]/60 block py-1.5 text-left"
                                             >
                                               {subItem}
                                             </button>
@@ -422,7 +422,7 @@ const MenuOverlay = ({ isOpen, onClose, menuButtonRef }: MenuOverlayProps) => {
                                         <button
                                           key={label}
                                           onClick={() => handleSectionClick(item.href, slug)}
-                                          className="text-sm text-[#03463B]/60 block py-1.5 text-left"
+                                          className="text-sm text-[#027ea1]/60 block py-1.5 text-left"
                                         >
                                           {label}
                                         </button>
@@ -458,7 +458,7 @@ const MenuOverlay = ({ isOpen, onClose, menuButtonRef }: MenuOverlayProps) => {
                           initial={{ opacity: 0, y: 6 }}
                           animate={{ opacity: 1, y: 0 }}
                           transition={{ delay: 0.7 + index * 0.04, duration: 0.3 }}
-                          className="text-xs text-[#03463B]/70 transition-colors whitespace-nowrap shrink-0"
+                          className="text-xs text-[#027ea1]/70 transition-colors whitespace-nowrap shrink-0"
                         >
                           {subItem.label}
                         </motion.a>
@@ -485,7 +485,7 @@ const MenuOverlay = ({ isOpen, onClose, menuButtonRef }: MenuOverlayProps) => {
                         initial={{ opacity: 0, y: 8 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ delay: 1.0, duration: 0.3 }}
-                        className="border-2 border-[#03463B] text-[#03463B] font-semibold py-3 px-4 rounded-lg text-sm text-center"
+                        className="border-2 border-[#027ea1] text-[#027ea1] font-semibold py-3 px-4 rounded-lg text-sm text-center"
                       >
                         360° Tour
                       </motion.a>
@@ -579,7 +579,7 @@ const MenuOverlay = ({ isOpen, onClose, menuButtonRef }: MenuOverlayProps) => {
                     top: '47.6%',
                     left: '50%',
                     transform: 'translate(-50%, -50%)',
-                    backgroundColor: '#027fa0',
+                    backgroundColor: '#027ea1',
                     zIndex: 10,
                   }}
                   aria-label="Close menu"
@@ -639,12 +639,12 @@ const MenuOverlay = ({ isOpen, onClose, menuButtonRef }: MenuOverlayProps) => {
                             onClick={onClose}
                             className={`text-lg font-medium transition-colors cursor-pointer flex items-center gap-2 ${
                               isActive(item.href)
-                                ? 'text-[#03463B]'
-                                : 'text-[#03463B]/60 hover:text-[#03463B]'
+                                ? 'text-[#027ea1]'
+                                : 'text-[#027ea1]/60 hover:text-[#027ea1]'
                             }`}
                           >
                             {isActive(item.href) && (
-                              <span className="w-2 h-2 rounded-full bg-[#03463B]" />
+                              <span className="w-2 h-2 rounded-full bg-[#027ea1]" />
                             )}
                             {item.label}
                           </Link>
@@ -663,14 +663,14 @@ const MenuOverlay = ({ isOpen, onClose, menuButtonRef }: MenuOverlayProps) => {
                       {/* Sub-content: shown when hovering or when on active page */}
                       {displayedNavItem && (
                         <div className="absolute inset-x-0 top-0 flex flex-col gap-2">
-                          <h3 className="text-lg font-semibold text-[#03463B] mb-1">
+                          <h3 className="text-lg font-semibold text-[#027ea1] mb-1">
                             {displayedNavItem.label}
                           </h3>
                           {displayedNavItem.type === 'megamenu' && displayedNavItem.columns ? (
                             <div className="flex gap-8">
                               {displayedNavItem.columns.map((column) => (
                                 <div key={column.title} className="flex flex-col gap-2">
-                                  <p className="text-sm font-semibold text-[#03463B] mb-1">
+                                  <p className="text-sm font-semibold text-[#027ea1] mb-1">
                                     {column.title}
                                   </p>
                                   {column.items.map((item) => {
@@ -685,7 +685,7 @@ const MenuOverlay = ({ isOpen, onClose, menuButtonRef }: MenuOverlayProps) => {
                                           key={item}
                                           href={specialHref}
                                           onClick={onClose}
-                                          className="text-sm text-[#03463B]/60 hover:text-[#03463B] cursor-pointer transition-colors"
+                                          className="text-sm text-[#027ea1]/60 hover:text-[#027ea1] cursor-pointer transition-colors"
                                         >
                                           {item}
                                         </Link>
@@ -695,7 +695,7 @@ const MenuOverlay = ({ isOpen, onClose, menuButtonRef }: MenuOverlayProps) => {
                                       <button
                                         key={item}
                                         onClick={() => handleSectionClick(displayedNavItem.href, slug)}
-                                        className="text-sm text-[#03463B]/60 hover:text-[#03463B] cursor-pointer transition-colors block text-left"
+                                        className="text-sm text-[#027ea1]/60 hover:text-[#027ea1] cursor-pointer transition-colors block text-left"
                                       >
                                         {item}
                                       </button>
@@ -714,7 +714,7 @@ const MenuOverlay = ({ isOpen, onClose, menuButtonRef }: MenuOverlayProps) => {
                                 <button
                                   key={label}
                                   onClick={() => handleSectionClick(displayedNavItem.href, slug)}
-                                  className="text-sm text-[#03463B]/60 hover:text-[#03463B] cursor-pointer transition-colors block text-left"
+                                  className="text-sm text-[#027ea1]/60 hover:text-[#027ea1] cursor-pointer transition-colors block text-left"
                                 >
                                   {label}
                                 </button>
@@ -736,7 +736,7 @@ const MenuOverlay = ({ isOpen, onClose, menuButtonRef }: MenuOverlayProps) => {
                                 key={subItem.label}
                                 href={subItem.href}
                                 onClick={onClose}
-                                className="text-sm text-[#03463B]/70 hover:text-[#03463B] transition-colors cursor-pointer"
+                                className="text-sm text-[#027ea1]/70 hover:text-[#027ea1] transition-colors cursor-pointer"
                               >
                                 {subItem.label}
                               </a>
@@ -779,7 +779,7 @@ const MenuOverlay = ({ isOpen, onClose, menuButtonRef }: MenuOverlayProps) => {
                                 key={subItem.label}
                                 href={subItem.href}
                                 onClick={onClose}
-                                className="text-sm text-[#03463B]/70 hover:text-[#03463B] transition-colors cursor-pointer"
+                                className="text-sm text-[#027ea1]/70 hover:text-[#027ea1] transition-colors cursor-pointer"
                               >
                                 {subItem.label}
                               </a>
@@ -853,7 +853,7 @@ const MenuButton = ({ onClick, buttonRef, isOpen }: MenuButtonProps) => {
       aria-label={isOpen ? "Close menu" : "Open menu"}
       className={`relative flex items-center justify-center shadow-lg shadow-black/5 transition-all hover:shadow-xl hover:shadow-black/10 ${
         isMobile ? 'h-6 w-6 rounded-md' : 'h-[42px] w-[150px] rounded-md'
-      } ${isOpen && isMobile ? 'bg-[#03463B]' : 'bg-white'}`}
+      } ${isOpen && isMobile ? 'bg-[#027ea1]' : 'bg-white'}`}
       style={{ zIndex: 10000 }}
     >
       {/* Desktop: Show Menu text and divider (only when not open) */}

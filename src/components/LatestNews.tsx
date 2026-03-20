@@ -47,8 +47,8 @@ const newsItems: NewsItem[] = [
 ];
 
 const categoryColors: Record<string, string> = {
-  Achievement: '#027fa0',
-  Event: '#4a90a4',
+  Achievement: '#027ea1',
+  Event: '#027ea1',
   Placements: '#f4c950',
   Workshop: '#e85a71',
 };
@@ -62,11 +62,11 @@ export const LatestNews = () => {
         {/* Section Header */}
         <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-4 md:gap-6 mb-8 md:mb-12">
           <div>
-            <span className="text-sm font-medium text-[#03463B] tracking-wider uppercase mb-2 block">
+            <span className="text-base md:text-lg font-medium text-[#027ea1] tracking-wider uppercase mb-2 block">
               Stay Updated
             </span>
             <h2
-              className="text-3xl md:text-4xl lg:text-5xl font-semibold text-[#21313c]"
+              className="text-4xl md:text-5xl lg:text-6xl font-semibold text-[#21313c]"
               style={{ fontFamily: 'Inter, sans-serif', letterSpacing: '-0.02em' }}
             >
               Latest News &{' '}
@@ -77,7 +77,7 @@ export const LatestNews = () => {
           </div>
           <a
             href="/news-events"
-            className="inline-flex items-center gap-2 text-[#03463B] font-medium"
+            className="inline-flex items-center gap-2 text-[#027ea1] font-medium"
           >
             View All News
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
@@ -106,7 +106,7 @@ export const LatestNews = () => {
 
                 {/* Category Badge */}
                 <span
-                  className={`absolute font-semibold rounded-md ${isMobile ? 'top-2 left-2 px-1.5 py-0.5 text-[10px]' : 'top-4 left-4 px-3 py-1.5 text-xs rounded-lg'}`}
+                  className={`absolute font-semibold rounded-md ${isMobile ? 'top-2 left-2 px-1.5 py-0.5 text-[12px]' : 'top-4 left-4 px-3 py-1.5 text-sm rounded-lg'}`}
                   style={{
                     backgroundColor: `${categoryColors[item.category]}e6` || '#c3fd7ae6',
                     color: item.category === 'Event' || item.category === 'Infrastructure' ? '#fff' : '#21313c',
@@ -126,19 +126,19 @@ export const LatestNews = () => {
                       <line x1="8" y1="2" x2="8" y2="6" strokeLinecap="round"/>
                       <line x1="3" y1="10" x2="21" y2="10" strokeLinecap="round"/>
                     </svg>
-                    <span className="text-xs text-gray-400">{item.date}</span>
+                    <span className="text-sm text-gray-400">{item.date}</span>
                   </div>
                 )}
                 <h3
-                  className={`font-semibold text-[#21313c] line-clamp-2 leading-snug ${isMobile ? 'text-xs mb-1' : 'text-base mb-2'}`}
+                  className={`font-semibold text-[#21313c] line-clamp-2 leading-snug ${isMobile ? 'text-sm mb-1' : 'text-lg mb-2'}`}
                   style={{ fontFamily: 'Inter, sans-serif' }}
                 >
                   {item.title}
                 </h3>
                 {isMobile ? (
-                  <span className="text-[10px] text-gray-400">{item.date}</span>
+                  <span className="text-[12px] text-gray-400">{item.date}</span>
                 ) : (
-                  <p className="text-sm text-gray-500 line-clamp-2 leading-relaxed">{item.excerpt}</p>
+                  <p className="text-base text-gray-500 line-clamp-2 leading-relaxed">{item.excerpt}</p>
                 )}
               </div>
             </article>

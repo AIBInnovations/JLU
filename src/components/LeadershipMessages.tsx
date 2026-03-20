@@ -8,8 +8,8 @@ const customEase: [number, number, number, number] = [0.22, 1, 0.36, 1];
 const leadershipData = [
   {
     title: "CHANCELLOR'S MESSAGE",
-    name: 'Shri Hari Mohan Gupta',
-    image: '/vc.jpg',
+    name: 'Mr. Hari Mohan Gupta',
+    image: '/leadership/chancellor.jpg',
     messages: [
       'At JLU, education begins with people. The purpose of a university is not only to teach knowledge, but also to nurture understanding, empathy and resilience. Every voice here matters, students, teachers and staff, because together they shape the character of this institution.',
       'Our commitment has always been to create an environment where learning is curious and connected to life beyond the classroom. As JLU continues to grow in reach and vision, it remains anchored by the belief that education should empower individuals and communities alike.',
@@ -18,7 +18,7 @@ const leadershipData = [
   {
     title: "PRO CHANCELLOR'S MESSAGE",
     name: 'Mr. Abhishek Mohan Gupta',
-    image: '/pc.jpg',
+    image: '/leadership/pro-chancellor.jpg',
     messages: [
       'Education is a dialogue, not a monologue. It thrives on diversity of thought, openness to experience and the courage to challenge conventions. At JLU, students are encouraged to question, reflect and expand their horizons.',
       'Our global partnerships, interdisciplinary programs and focus on meaningful engagement reflect a deeper belief, that learning should prepare students for the world as it is and the world as it will become.',
@@ -26,8 +26,8 @@ const leadershipData = [
   },
   {
     title: "VICE CHANCELLOR'S MESSAGE",
-    name: 'Prof. (Dr.) Nilanjan Chattopadhyay',
-    image: '/ppc.jpg',
+    name: 'Prof. Dr. Nilanjan Chattopadhyay',
+    image: '/leadership/vice-chancellor.webp',
     messages: [
       'A university is shaped by its academic spirit, the curiosity of its learners and the guidance of its educators. At JLU, classrooms are spaces of conversation, collaboration and creation.',
       'Our approach to education is rooted in real world relevance, critical thinking and human values. Every student is encouraged to think independently, work collaboratively and emerge not only career ready, but life ready.',
@@ -36,10 +36,37 @@ const leadershipData = [
   {
     title: "REGISTRAR'S MESSAGE",
     name: 'Mr. Pankaj Das',
-    image: '/registrar.jpg',
+    image: '/leadership/registrar.jpg',
     messages: [
       'The Office of the Registrar serves as the administrative backbone of Jagran Lakecity University, ensuring that academic processes, governance frameworks and institutional standards operate with efficiency and integrity.',
       'Our commitment is to provide seamless support to students, faculty and stakeholders alike, upholding the values of transparency, accountability and excellence that define JLU.',
+    ],
+  },
+  {
+    title: "CHIEF FINANCE AND ACCOUNTS OFFICER'S MESSAGE",
+    name: 'CA Archana Jain',
+    image: '/leadership/cfo.jpg',
+    messages: [
+      'Sound financial stewardship is essential to the long-term sustainability and growth of any institution. At JLU, we are committed to maintaining the highest standards of fiscal responsibility, transparency and accountability.',
+      'Our goal is to ensure that every resource is optimally utilized to support the university\'s academic mission, infrastructure development and student welfare initiatives.',
+    ],
+  },
+  {
+    title: "PRO VICE CHANCELLOR (STUDENT WELFARE)'S MESSAGE",
+    name: 'Dr. Vivek Khare',
+    image: '/leadership/pvc-student-welfare.jpg',
+    messages: [
+      'Student welfare is at the heart of everything we do at JLU. Our endeavour is to create a supportive, inclusive and enriching environment where every student can thrive academically, socially and personally.',
+      'From mentorship programs to wellness initiatives, we are dedicated to ensuring that each student\'s journey at JLU is fulfilling and transformative.',
+    ],
+  },
+  {
+    title: "PRO VICE CHANCELLOR (SCIENCE AND TECHNOLOGY)'S MESSAGE",
+    name: 'Dr. Prasheel Suryawanshi',
+    image: '/leadership/pvc-science-tech.png',
+    messages: [
+      'Science and technology are the driving forces of progress. At JLU, we are committed to fostering innovation, research excellence and technological advancement through cutting-edge programs and industry collaboration.',
+      'Our vision is to prepare students who can lead the next wave of scientific discovery and technological transformation, contributing meaningfully to society and the global knowledge economy.',
     ],
   },
 ];
@@ -60,7 +87,7 @@ const LeadershipMessages = () => {
           className="mb-8 md:mb-16"
         >
           <span
-            className="text-[#999] uppercase tracking-widest block text-[10px] sm:text-xs mb-3 md:mb-4"
+            className="text-[#999] uppercase tracking-widest block text-[12px] sm:text-xs mb-3 md:mb-4"
             style={{ letterSpacing: '0.2em' }}
           >
             Leadership
@@ -101,17 +128,26 @@ const LeadershipMessages = () => {
                   viewport={{ once: true }}
                   className="relative w-full h-[280px] rounded-xl overflow-hidden mb-4"
                 >
-                  <img
-                    src={leader.image}
-                    alt={leader.name}
-                    className="w-full h-full object-cover object-top"
-                  />
+                  {leader.image ? (
+                    <img
+                      src={leader.image}
+                      alt={leader.name}
+                      className="w-full h-full object-cover object-top"
+                    />
+                  ) : (
+                    <div className="w-full h-full bg-[#e8eae2] flex items-center justify-center">
+                      <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="#999" strokeWidth="1.5">
+                        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" strokeLinecap="round" strokeLinejoin="round"/>
+                        <circle cx="12" cy="7" r="4" strokeLinecap="round" strokeLinejoin="round"/>
+                      </svg>
+                    </div>
+                  )}
                   <div className="absolute inset-0 bg-black/20" />
                 </motion.div>
 
                 <div className="mb-3">
                   <span
-                    className="text-[#999] uppercase tracking-widest block text-[9px] mb-2"
+                    className="text-[#999] uppercase tracking-widest block text-[11px] mb-2"
                     style={{ letterSpacing: '0.15em' }}
                   >
                     {leader.title}
@@ -156,11 +192,20 @@ const LeadershipMessages = () => {
                   className="relative rounded-xl overflow-hidden"
                   style={{ width: '320px', height: '320px' }}
                 >
-                  <img
-                    src={leader.image}
-                    alt={leader.name}
-                    className="w-full h-full object-cover object-top"
-                  />
+                  {leader.image ? (
+                    <img
+                      src={leader.image}
+                      alt={leader.name}
+                      className="w-full h-full object-cover object-top"
+                    />
+                  ) : (
+                    <div className="w-full h-full bg-[#e8eae2] flex items-center justify-center">
+                      <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="#999" strokeWidth="1.5">
+                        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" strokeLinecap="round" strokeLinejoin="round"/>
+                        <circle cx="12" cy="7" r="4" strokeLinecap="round" strokeLinejoin="round"/>
+                      </svg>
+                    </div>
+                  )}
                   <div className="absolute inset-0 bg-black/20" />
                 </motion.div>
 
@@ -168,7 +213,7 @@ const LeadershipMessages = () => {
                 <div className="space-y-6">
                   <div>
                     <span
-                      className="text-[#999] uppercase tracking-widest block text-[11px] mb-3"
+                      className="text-[#999] uppercase tracking-widest block text-[13px] mb-3"
                       style={{ letterSpacing: '0.15em' }}
                     >
                       {leader.title}

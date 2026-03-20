@@ -40,9 +40,9 @@ export const HorizontalScroll = () => {
       content: "Jagran Lakecity University stands as the first university in MP & CG to receive the prestigious QS I-Gauge DIAMOND rating. Recognized as 'University of the Year' for five consecutive years (2015-2019) and ranked #1 multidisciplinary private university in Madhya Pradesh.\n\nSpread across a sprawling 232-acre campus, JLU offers 50+ degree programs to over 2,500 students, fostering innovation and academic excellence."
     },
     { width: 540, height: 500, mobileWidth: 200, mobileHeight: 260, bg: 'bg-[#c3fd7a]', hasText: true, isTextCard: false, stat: '232', statLabel: 'Acres of Campus' },
-    { width: 770, height: 500, mobileWidth: 280, mobileHeight: 260, bg: 'bg-gray-200', hasText: false, isTextCard: false, image: '/campus/aerial-view.webp' },
+    { width: 770, height: 500, mobileWidth: 280, mobileHeight: 260, bg: 'bg-gray-200', hasText: false, isTextCard: false, image: '/campus/smart-classroom.jpg' },
     { width: 540, height: 500, mobileWidth: 200, mobileHeight: 260, bg: 'bg-[#1D4ED8]', hasText: true, isTextCard: false, textColor: 'text-white', stat: '2,500+', statLabel: 'Students Enrolled' },
-    { width: 540, height: 500, mobileWidth: 250, mobileHeight: 260, bg: 'bg-gray-200', hasText: false, isTextCard: false, image: '/student%20council/IMG_7649.JPG' },
+    { width: 540, height: 500, mobileWidth: 250, mobileHeight: 260, bg: 'bg-gray-200', hasText: false, isTextCard: false, image: '/campus/sports.jpg' },
     { width: 670, height: 500, mobileWidth: 250, mobileHeight: 260, bg: 'bg-gray-200', hasText: false, isTextCard: false, image: '/JLu%20events/photos/Convocation/DSC_1059.JPG' },
     { width: 540, height: 500, mobileWidth: 200, mobileHeight: 260, bg: 'bg-[#E9D502]', hasText: true, isTextCard: false, stat: '50+', statLabel: 'Degree Programs' },
     { width: 1320, height: 500, mobileWidth: 320, mobileHeight: 260, bg: 'bg-gray-200', hasText: false, isTextCard: false, image: '/about1.jpg' },
@@ -106,6 +106,9 @@ export const HorizontalScroll = () => {
 
     return () => {
       tl.scrollTrigger?.kill();
+      ScrollTrigger.getAll().forEach((t) => t.kill());
+      gsap.killTweensOf('*');
+      ScrollTrigger.refresh();
     };
   }, [mounted, isMobile]);
 
@@ -165,6 +168,9 @@ export const HorizontalScroll = () => {
 
     return () => {
       animations.forEach(anim => anim.scrollTrigger?.kill());
+      ScrollTrigger.getAll().forEach((t) => t.kill());
+      gsap.killTweensOf('*');
+      ScrollTrigger.refresh();
     };
   }, [mounted, isMobile]);
 
@@ -209,7 +215,7 @@ export const HorizontalScroll = () => {
       <section
         ref={containerRef}
         className="relative bg-[#f6f7f0] overflow-hidden"
-        style={{ height: '100vh' }}
+        style={{ minHeight: '100vh' }}
       >
         <div className="h-full flex flex-col justify-center relative">
           {/* Top scrolling text placeholder */}

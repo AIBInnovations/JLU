@@ -31,7 +31,6 @@ const courses = [
   // Pharmacy
   'B.Pharm - Bachelor of Pharmacy',
   'M.Pharm - Master of Pharmacy',
-  'D.Pharm - Diploma in Pharmacy',
   // Journalism & Mass Communication
   'BA - Journalism & Mass Communication',
   'MA - Mass Communication',
@@ -214,7 +213,7 @@ export const EnquiryModal = ({ isOpen, onClose }: EnquiryModalProps) => {
                       animate={{ scale: 1 }}
                       transition={{ type: 'spring', delay: 0.2 }}
                     >
-                      <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#03463B" strokeWidth="3">
+                      <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#027ea1" strokeWidth="3">
                         <polyline points="20 6 9 17 4 12" strokeLinecap="round" strokeLinejoin="round"/>
                       </svg>
                     </motion.div>
@@ -240,7 +239,7 @@ export const EnquiryModal = ({ isOpen, onClose }: EnquiryModalProps) => {
                         name="name"
                         value={formData.name}
                         onChange={handleChange}
-                        className={`w-full px-4 py-3 rounded-xl border ${errors.name ? 'border-red-400 bg-red-50' : 'border-gray-200'} focus:outline-none focus:border-[#03463B] focus:ring-2 focus:ring-[#03463B]/10 transition-all`}
+                        className={`w-full px-4 py-3 rounded-xl border ${errors.name ? 'border-red-400 bg-red-50' : 'border-gray-200'} focus:outline-none focus:border-[#027ea1] focus:ring-2 focus:ring-[#027ea1]/10 transition-all`}
                         placeholder="Enter your full name"
                       />
                       {errors.name && (
@@ -258,7 +257,7 @@ export const EnquiryModal = ({ isOpen, onClose }: EnquiryModalProps) => {
                         name="email"
                         value={formData.email}
                         onChange={handleChange}
-                        className={`w-full px-4 py-3 rounded-xl border ${errors.email ? 'border-red-400 bg-red-50' : 'border-gray-200'} focus:outline-none focus:border-[#03463B] focus:ring-2 focus:ring-[#03463B]/10 transition-all`}
+                        className={`w-full px-4 py-3 rounded-xl border ${errors.email ? 'border-red-400 bg-red-50' : 'border-gray-200'} focus:outline-none focus:border-[#027ea1] focus:ring-2 focus:ring-[#027ea1]/10 transition-all`}
                         placeholder="Enter your email"
                       />
                       {errors.email && (
@@ -280,7 +279,7 @@ export const EnquiryModal = ({ isOpen, onClose }: EnquiryModalProps) => {
                           name="phone"
                           value={formData.phone}
                           onChange={handleChange}
-                          className={`flex-1 px-4 py-3 rounded-r-xl border ${errors.phone ? 'border-red-400 bg-red-50' : 'border-gray-200'} focus:outline-none focus:border-[#03463B] focus:ring-2 focus:ring-[#03463B]/10 transition-all`}
+                          className={`flex-1 px-4 py-3 rounded-r-xl border ${errors.phone ? 'border-red-400 bg-red-50' : 'border-gray-200'} focus:outline-none focus:border-[#027ea1] focus:ring-2 focus:ring-[#027ea1]/10 transition-all`}
                           placeholder="Enter your phone number"
                         />
                       </div>
@@ -298,7 +297,7 @@ export const EnquiryModal = ({ isOpen, onClose }: EnquiryModalProps) => {
                         name="course"
                         value={formData.course}
                         onChange={handleChange}
-                        className={`w-full px-4 py-3 rounded-xl border ${errors.course ? 'border-red-400 bg-red-50' : 'border-gray-200'} focus:outline-none focus:border-[#03463B] focus:ring-2 focus:ring-[#03463B]/10 transition-all appearance-none bg-white`}
+                        className={`w-full px-4 py-3 rounded-xl border ${errors.course ? 'border-red-400 bg-red-50' : 'border-gray-200'} focus:outline-none focus:border-[#027ea1] focus:ring-2 focus:ring-[#027ea1]/10 transition-all appearance-none bg-white`}
                         style={{
                           backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 24 24' fill='none' stroke='%2321313c' stroke-width='2'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E")`,
                           backgroundRepeat: 'no-repeat',
@@ -325,7 +324,7 @@ export const EnquiryModal = ({ isOpen, onClose }: EnquiryModalProps) => {
                         value={formData.message}
                         onChange={handleChange}
                         rows={4}
-                        className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:outline-none focus:border-[#03463B] focus:ring-2 focus:ring-[#03463B]/10 transition-all resize-none"
+                        className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:outline-none focus:border-[#027ea1] focus:ring-2 focus:ring-[#027ea1]/10 transition-all resize-none"
                         placeholder="Any specific questions or requirements?"
                       />
                     </div>
@@ -334,7 +333,7 @@ export const EnquiryModal = ({ isOpen, onClose }: EnquiryModalProps) => {
                     <motion.button
                       type="submit"
                       disabled={isSubmitting}
-                      className="w-full py-4 bg-[#03463B] text-white font-semibold rounded-xl hover:bg-[#025a4a] transition-colors disabled:opacity-70 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+                      className="w-full py-4 bg-[#027ea1] text-white font-semibold rounded-xl hover:bg-[#026986] transition-colors disabled:opacity-70 disabled:cursor-not-allowed flex items-center justify-center gap-2"
                       whileHover={{ scale: 1.01 }}
                       whileTap={{ scale: 0.99 }}
                     >
@@ -361,9 +360,9 @@ export const EnquiryModal = ({ isOpen, onClose }: EnquiryModalProps) => {
                     {/* Privacy Note */}
                     <p className="text-xs text-gray-400 text-center">
                       By submitting this form, you agree to our{' '}
-                      <a href="/privacy-policy" className="text-[#03463B] hover:underline">Privacy Policy</a>
+                      <a href="/privacy-policy" className="text-[#027ea1] hover:underline">Privacy Policy</a>
                       {' '}and{' '}
-                      <a href="/terms" className="text-[#03463B] hover:underline">Terms of Service</a>
+                      <a href="/terms" className="text-[#027ea1] hover:underline">Terms of Service</a>
                     </p>
                   </motion.form>
                 )}

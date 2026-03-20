@@ -12,7 +12,7 @@ interface SearchOverlayProps {
 }
 
 const categoryColors: Record<SearchItem['category'], string> = {
-  Program: '#03463B',
+  Program: '#027ea1',
   Page: '#1a6b5a',
   School: '#2d8b6e',
   Faculty: '#0c5e4f',
@@ -248,7 +248,7 @@ export const SearchOverlay = ({ isOpen, onClose }: SearchOverlayProps) => {
                 fill="none"
                 viewBox="0 0 24 24"
                 strokeWidth={2}
-                stroke="#03463B"
+                stroke="#027ea1"
                 className="h-5 w-5 shrink-0"
               >
                 <path
@@ -300,7 +300,7 @@ export const SearchOverlay = ({ isOpen, onClose }: SearchOverlayProps) => {
                       <button
                         key={link.href}
                         onClick={() => navigateTo(link.href)}
-                        className="text-sm px-3 py-1.5 rounded-full border border-gray-200 text-[#03463B] hover:bg-[#03463B] hover:text-white transition-all"
+                        className="text-sm px-3 py-1.5 rounded-full border border-gray-200 text-[#027ea1] hover:bg-[#027ea1] hover:text-white transition-all"
                       >
                         {link.title}
                       </button>
@@ -337,7 +337,7 @@ export const SearchOverlay = ({ isOpen, onClose }: SearchOverlayProps) => {
                           onMouseEnter={() => setSelectedIndex(item.globalIndex)}
                           className={`w-full flex items-start gap-3 px-5 py-2.5 text-left transition-colors ${
                             selectedIndex === item.globalIndex
-                              ? 'bg-[#03463B]/5'
+                              ? 'bg-[#027ea1]/5'
                               : 'hover:bg-gray-50'
                           }`}
                         >
@@ -366,7 +366,7 @@ export const SearchOverlay = ({ isOpen, onClose }: SearchOverlayProps) => {
                             strokeLinejoin="round"
                             className={`shrink-0 mt-1 transition-opacity ${
                               selectedIndex === item.globalIndex
-                                ? 'opacity-60 text-[#03463B]'
+                                ? 'opacity-60 text-[#027ea1]'
                                 : 'opacity-0'
                             }`}
                           >
@@ -415,7 +415,7 @@ function highlightMatch(text: string, query: string) {
     <>
       {parts.map((part, i) =>
         regex.test(part) ? (
-          <span key={i} className="text-[#03463B] font-semibold">
+          <span key={i} className="text-[#027ea1] font-semibold">
             {part}
           </span>
         ) : (

@@ -149,7 +149,7 @@ export const PoliciesSection = () => {
                   {policy.title}
                 </h3>
                 {/* Description */}
-                <p className="text-[11px] text-gray-500 leading-relaxed line-clamp-2">
+                <p className="text-[12px] text-gray-500 leading-relaxed line-clamp-2">
                   {policy.description}
                 </p>
               </motion.a>

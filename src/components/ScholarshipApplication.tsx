@@ -243,7 +243,7 @@ const ScholarshipApplication = () => {
                                 step
                               )}
                             </motion.div>
-                            <span className={`text-[10px] mt-1.5 font-medium ${currentStep >= step ? 'text-[#21313c]' : 'text-gray-400'}`}>
+                            <span className={`text-[12px] mt-1.5 font-medium ${currentStep >= step ? 'text-[#21313c]' : 'text-gray-400'}`}>
                               {stepLabels[step - 1]}
                             </span>
                           </div>
@@ -728,7 +728,7 @@ const ScholarshipApplication = () => {
                       animate={{ scale: 1 }}
                       transition={{ type: 'spring', delay: 0.2 }}
                     >
-                      <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#03463B" strokeWidth="3">
+                      <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#027ea1" strokeWidth="3">
                         <polyline points="20 6 9 17 4 12" strokeLinecap="round" strokeLinejoin="round" />
                       </svg>
                     </motion.div>

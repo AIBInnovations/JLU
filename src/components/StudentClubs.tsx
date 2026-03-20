@@ -21,6 +21,7 @@ interface Club {
   shortName: string;
   description: string;
   image: string;
+  logo?: string;
 }
 
 const clubs: Club[] = [
@@ -30,6 +31,7 @@ const clubs: Club[] = [
     shortName: 'Student Council',
     description: 'The voice of every student, shaping campus policies and fostering community spirit through leadership and collaboration.',
     image: '/student%20council/IMG_7622.JPG',
+    logo: '/logo/student-service-cell.png',
   },
   {
     id: 2,
@@ -37,6 +39,7 @@ const clubs: Club[] = [
     shortName: 'Sports & Adventure',
     description: 'Sports and Adventure fills the void between academics, recreation and outdoors. This Club gives an opportunity to participate in competitive sports activities, learn new skills, improve skill levels, and enjoy the recreational and social fellowship derived from sports involvement.',
     image: '/campus/sports.jpg',
+    logo: '/logo/sports-adventure.png',
   },
   {
     id: 3,
@@ -44,6 +47,7 @@ const clubs: Club[] = [
     shortName: 'Photography',
     description: 'Explore the many different aspects of photography. You will not need a fancy camera; you can use your mobile or any other photo-taking device. Learn tips and tricks for making the most out of your cameras, techniques for taking different kinds of images, and editing methods for creating awesome final products.',
     image: '/JLu%20events/photos/Mental%20Health%20week/IMG_7837.JPG',
+    logo: '/logo/photography.png',
   },
   {
     id: 4,
@@ -51,6 +55,7 @@ const clubs: Club[] = [
     shortName: 'Music',
     description: 'A student-run club dedicated to promoting and cultivating a love for music. Organize jam sessions, concerts, open mics, and other musical performances. Workshops and training sessions on various musical instruments, as well as opportunities for members to collaborate on music events.',
     image: '/JLu%20events/photos/Lehar/IMG_9150.JPG',
+    logo: '/logo/cultural.png',
   },
   {
     id: 5,
@@ -58,6 +63,7 @@ const clubs: Club[] = [
     shortName: 'Dance',
     description: 'A social club for students who are interested in dance. Learn and improve your dance skills in various styles - ballroom, salsa, hip hop, contemporary, or folk dance. Participate in dance performances, competitions, and festivals both on and off-campus.',
     image: '/JLu%20events/photos/Lehar/IMG_9018.JPG',
+    logo: '/logo/cultural.png',
   },
   {
     id: 6,
@@ -65,6 +71,7 @@ const clubs: Club[] = [
     shortName: 'Literary',
     description: 'Promotes creative writing skills and what it takes to be a writer and poet. Discuss books, share writings, critique each other\'s work. Activities include discussions, lectures, poetry writing and reading, short story writing, quiz competitions, and interactive sessions.',
     image: '/JLu%20events/photos/Anti%20Ragging%20WEEK/IMG_2091.JPG',
+    logo: '/logo/editorial-board.png',
   },
   {
     id: 7,
@@ -72,6 +79,7 @@ const clubs: Club[] = [
     shortName: 'Dramatics',
     description: 'An initiative to promote theatrical arts on campus and encourage expressive performances. Plan, mount and perform various theatrical art forms including stage performances, road plays, mono acts, mime acts, and role plays. No experience required.',
     image: '/JLu%20events/photos/Anti%20Ragging%20WEEK/IMG_3582.JPG',
+    logo: '/logo/cultural.png',
   },
   {
     id: 8,
@@ -79,6 +87,7 @@ const clubs: Club[] = [
     shortName: 'MUN & Debate',
     description: 'Develop skills for parliamentary debate, public speaking and effective communication in a formal setting. Stay aware of current events, present research, learn model UN process, draft resolution assistance, and speech delivery techniques.',
     image: '/student%20council/IMG_7640.JPG',
+    logo: '/logo/mun-debating.png',
   },
   {
     id: 9,
@@ -86,6 +95,7 @@ const clubs: Club[] = [
     shortName: 'Community Service',
     description: 'A hub for community outreach, volunteering and social impact that promotes social wellbeing and harmony. Committed to work in the community and spread awareness about promoting social change within the university and the city.',
     image: '/JLu%20events/photos/Anti%20Ragging%20WEEK/IMG_1947.JPG',
+    logo: '/logo/community-service.png',
   },
   {
     id: 10,
@@ -93,6 +103,7 @@ const clubs: Club[] = [
     shortName: 'Startup & Entrepreneurship',
     description: 'A learning-by-doing environment to cultivate entrepreneurship skills. Participate in business development through lectures, bootcamps with resources and mentoring from experienced entrepreneurs. Connect with JLU Foundation for Innovation and Entrepreneurship ecosystem.',
     image: '/student%20council/IMG_7649.JPG',
+    logo: '/logo/industry-entrepreneurship.png',
   },
 ];
 
@@ -277,13 +288,13 @@ export const StudentClubs = () => {
       {/* Stacking Panels Section */}
       <div ref={containerRef}>
         <div ref={stackingWrapperRef}>
-          <div ref={stackingSectionRef} className={`${isMobile ? 'flex flex-col' : 'flex'} h-screen`}>
+          <div ref={stackingSectionRef} className={`${isMobile ? 'flex flex-col' : 'flex'} min-h-screen`}>
             {/* Mobile: Blue club list pinned at TOP */}
             {isMobile && (
               <div className="h-[40vh] bg-[#21313c] flex flex-col justify-center px-4 py-3 overflow-y-auto shrink-0">
                 <p
                   className="mb-2"
-                  style={{ color: 'rgba(255,255,255,0.5)', fontSize: '0.5rem', letterSpacing: '0.2em', textTransform: 'uppercase' }}
+                  style={{ color: 'rgba(255,255,255,0.5)', fontSize: '0.7rem', letterSpacing: '0.2em', textTransform: 'uppercase' }}
                 >
                   ALL CLUBS
                 </p>
@@ -302,10 +313,10 @@ export const StudentClubs = () => {
                         }
                       }}
                     >
-                      <span style={{ color: '#8bc34a', fontFamily: 'monospace', fontSize: '0.5rem', width: '16px', fontWeight: 600 }}>
+                      <span style={{ color: '#8bc34a', fontFamily: 'monospace', fontSize: '0.7rem', width: '16px', fontWeight: 600 }}>
                         {String(index + 1).padStart(2, '0')}.
                       </span>
-                      <span style={{ color: 'rgba(255,255,255,0.8)', fontSize: '0.6rem', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
+                      <span style={{ color: 'rgba(255,255,255,0.8)', fontSize: '0.75rem', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
                         {club.shortName}
                       </span>
                       {activeClub === index && (
@@ -375,6 +386,16 @@ export const StudentClubs = () => {
 
                   {/* Content */}
                   <div className={`${isMobile ? 'h-[60%] px-4 pt-2 pb-3' : 'h-[45%] px-16 xl:px-24 py-10'} flex flex-col justify-start`}>
+                    {/* Club Logo */}
+                    {club.logo && (
+                      <div className={`${isMobile ? 'mb-2' : 'mb-4'}`}>
+                        <img
+                          src={club.logo}
+                          alt={`${club.name} logo`}
+                          className={`${isMobile ? 'h-10' : 'h-14'} w-auto object-contain`}
+                        />
+                      </div>
+                    )}
                     {!isMobile && (
                       <h2
                         className="text-[#21313c] mb-4"
@@ -413,7 +434,7 @@ export const StudentClubs = () => {
               <div className="w-[35%] h-full bg-[#21313c] flex flex-col justify-center p-12 xl:p-16">
                 <p
                   className="mb-8"
-                  style={{ color: 'rgba(255,255,255,0.5)', fontSize: '0.75rem', letterSpacing: '0.2em', textTransform: 'uppercase' }}
+                  style={{ color: 'rgba(255,255,255,0.5)', fontSize: '0.85rem', letterSpacing: '0.2em', textTransform: 'uppercase' }}
                 >
                   ALL CLUBS
                 </p>
@@ -458,7 +479,7 @@ export const StudentClubs = () => {
           <div className="text-center">
             <p
               className="mb-3 md:mb-4"
-              style={{ color: 'rgba(33,49,60,0.5)', fontSize: isMobile ? '0.6rem' : '0.75rem', letterSpacing: '0.2em', textTransform: 'uppercase' }}
+              style={{ color: 'rgba(33,49,60,0.5)', fontSize: isMobile ? '0.75rem' : '0.85rem', letterSpacing: '0.2em', textTransform: 'uppercase' }}
             >
               READY TO JOIN?
             </p>
@@ -513,7 +534,7 @@ export const StudentClubs = () => {
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-[#21313c] to-[#21313c]/40" />
                 <div className="absolute bottom-4 left-6 right-6">
-                  <p style={{ color: '#8bc34a', fontFamily: 'monospace', fontSize: '0.75rem', marginBottom: '4px' }}>
+                  <p style={{ color: '#8bc34a', fontFamily: 'monospace', fontSize: '0.85rem', marginBottom: '4px' }}>
                     {String(registrationClub.id).padStart(2, '0')} — REGISTRATION
                   </p>
                   <h3 style={{ color: '#fff', fontSize: '1.5rem', fontWeight: 600 }}>

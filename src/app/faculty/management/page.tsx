@@ -9,10 +9,10 @@ export const metadata: Metadata = {
 };
 
 const managementData = {
-  name: 'Faculty of Management & Commerce',
+  name: 'Faculty of Management',
   tagline: 'Nurturing business leaders with global exposure, Harvard case studies, and industry-aligned curriculum.',
   description: 'The Faculty houses two distinguished schools: Jagran Lakecity Business School (JLBS) and the School of Economics and Commerce. Our programs are designed to create industry-ready professionals with a strong foundation in business principles, analytical thinking, and leadership skills. With access to Harvard Business School resources, international partnerships, and hands-on learning experiences, we prepare students for success in the global business landscape.',
-  heroImage: '/interdisciplinary/management.jpg',
+  heroImage: '/schools/jlbs-1.jpg',
   accentColor: '#ffffff',
   programs: [
     { name: 'BMS (Bachelor of Management Studies)', duration: '3 Years', type: 'undergraduate' as const },

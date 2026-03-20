@@ -58,8 +58,8 @@ const UniversityPartnerships = () => {
             className="relative w-full h-[250px] sm:h-[320px] md:h-[400px] rounded-xl overflow-hidden"
           >
             <Image
-              src="https://jlu.edu.in/wp-content/uploads/2023/07/JLU-Partnership.jpg"
-              alt="University Partnerships"
+              src="/glob.jpg"
+              alt="University Partnerships - Global Network"
               fill
               className="object-cover"
             />

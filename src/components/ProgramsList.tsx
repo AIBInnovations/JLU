@@ -10,14 +10,14 @@ import { getProgramsByCategory } from '../data/programs';
 const ProgramsList = () => {
   const searchParams = useSearchParams();
   const tabParam = searchParams.get('tab');
-  const initialTab = (['UG', 'PG', 'PhD', 'Diploma'] as const).includes(tabParam as 'UG' | 'PG' | 'PhD' | 'Diploma')
-    ? (tabParam as 'UG' | 'PG' | 'PhD' | 'Diploma')
+  const initialTab = (['UG', 'PG', 'PhD'] as const).includes(tabParam as 'UG' | 'PG' | 'PhD')
+    ? (tabParam as 'UG' | 'PG' | 'PhD')
     : 'UG';
-  const [activeTab, setActiveTab] = useState<'UG' | 'PG' | 'PhD' | 'Diploma'>(initialTab);
+  const [activeTab, setActiveTab] = useState<'UG' | 'PG' | 'PhD'>(initialTab);
 
   useEffect(() => {
-    if (tabParam && (['UG', 'PG', 'PhD', 'Diploma'] as const).includes(tabParam as 'UG' | 'PG' | 'PhD' | 'Diploma')) {
-      setActiveTab(tabParam as 'UG' | 'PG' | 'PhD' | 'Diploma');
+    if (tabParam && (['UG', 'PG', 'PhD'] as const).includes(tabParam as 'UG' | 'PG' | 'PhD')) {
+      setActiveTab(tabParam as 'UG' | 'PG' | 'PhD');
     }
   }, [tabParam]);
   const [searchQuery, setSearchQuery] = useState('');
@@ -25,11 +25,10 @@ const ProgramsList = () => {
   const isMobile = useIsMobile();
   const ITEMS_PER_PAGE = 10;
 
-  const tabs: { key: 'UG' | 'PG' | 'PhD' | 'Diploma'; label: string }[] = [
+  const tabs: { key: 'UG' | 'PG' | 'PhD'; label: string }[] = [
     { key: 'UG', label: 'UG Programs' },
     { key: 'PG', label: 'PG Programs' },
     { key: 'PhD', label: 'PhD' },
-    { key: 'Diploma', label: 'Diploma Programs' },
   ];
 
   const filteredPrograms = useMemo(() => {
@@ -64,7 +63,6 @@ const ProgramsList = () => {
     UG: getProgramsByCategory('UG').length,
     PG: getProgramsByCategory('PG').length,
     PhD: getProgramsByCategory('PhD').length,
-    Diploma: getProgramsByCategory('Diploma').length,
   }), []);
 
   return (
@@ -175,20 +173,20 @@ const ProgramsList = () => {
                     }}
                   >
                     <div className="flex items-center gap-1 md:gap-4">
-                      <span className="text-[#21313c] font-medium group-hover:text-[#666] transition-colors" style={{ fontSize: isMobile ? '11px' : '17px' }}>
+                      <span className="text-[#21313c] font-medium group-hover:text-[#666] transition-colors" style={{ fontSize: isMobile ? '13px' : '17px' }}>
                         {program.name}
                       </span>
-                      <span className="md:opacity-0 md:group-hover:opacity-100 transition-opacity text-[#21313c]" style={{ fontSize: isMobile ? '11px' : '14px' }}>→</span>
+                      <span className="md:opacity-0 md:group-hover:opacity-100 transition-opacity text-[#21313c]" style={{ fontSize: isMobile ? '13px' : '14px' }}>→</span>
                     </div>
                     <div className="flex items-center">
-                      <span className="text-[#666] truncate" style={{ fontSize: isMobile ? '9px' : '14px' }} title={program.school}>
+                      <span className="text-[#666] truncate" style={{ fontSize: isMobile ? '12px' : '14px' }} title={program.school}>
                         {program.school.replace('School of ', '')}
                       </span>
                     </div>
                     <div className="flex items-center gap-1 md:gap-3">
-                      <span className="text-[#666]" style={{ fontSize: isMobile ? '9px' : '14px' }}>{program.duration}</span>
+                      <span className="text-[#666]" style={{ fontSize: isMobile ? '12px' : '14px' }}>{program.duration}</span>
                       <span className="w-0.5 h-0.5 md:w-1 md:h-1 rounded-full bg-[#ccc]" />
-                      <span className="text-[#666]" style={{ fontSize: isMobile ? '9px' : '14px' }}>{program.type}</span>
+                      <span className="text-[#666]" style={{ fontSize: isMobile ? '12px' : '14px' }}>{program.type}</span>
                     </div>
                     <div className="flex items-center">
                       <span
@@ -238,12 +236,12 @@ const ProgramsList = () => {
 
           {/* Results Summary */}
           <div className="mt-6 md:mt-16 pt-4 md:pt-8 flex items-center justify-between" style={{ borderTop: '1px solid #e5e5e5' }}>
-            <span className="text-[9px] md:text-sm text-[#666]">
+            <span className="text-[12px] md:text-sm text-[#666]">
               Showing {(currentPage - 1) * ITEMS_PER_PAGE + 1}-{Math.min(currentPage * ITEMS_PER_PAGE, filteredPrograms.length)} of {filteredPrograms.length} programs
             </span>
             <div className="flex items-center gap-3">
               <span className="text-[8px] md:text-xs text-[#999]">
-                {categoryCount.UG} UG · {categoryCount.PG} PG · {categoryCount.PhD} PhD · {categoryCount.Diploma} Diploma
+                {categoryCount.UG} UG · {categoryCount.PG} PG · {categoryCount.PhD} PhD
               </span>
             </div>
           </div>

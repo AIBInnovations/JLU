@@ -7,50 +7,50 @@ const customEase: [number, number, number, number] = [0.22, 1, 0.36, 1];
 
 const doctorates = [
   {
-    name: 'Smt. Sudha Murty',
-    designation: 'Author, Philanthropist & Chairperson, Murty Trust',
-    honour: 'Padma Bhushan & Padma Shri',
-    convocation: '8th Convocation, 2023',
+    name: 'Padmabhushan Smt. Sudha Murty',
+    designation: 'Founder of Infosys Foundation and Chairperson of the Murthy Trust. Educationist, Philanthropist and Author.',
+    honour: 'Padma Bhushan',
+    convocation: '2023',
     image: '/sudha-murty-jlu.jpg',
     objectPosition: '25% center',
   },
   {
-    name: 'Shri Piyush Pandey',
-    designation: 'Chairman of Global Creative & Executive Chairman, Ogilvy India',
+    name: 'Late Shri Piyush Pandey',
+    designation: 'Chairman of Global Creative & Executive Chairman, Ogilvy India. An extraordinary leader, passionate man of big ideas and an innovator with a focus on the indigenous in the world of advertising.',
     honour: 'Padma Shri',
-    convocation: '7th & 8th Convocation, 2022–23',
+    convocation: '2023',
     image: '/8th-convo-jlu.jpg',
     objectPosition: 'center center',
   },
   {
-    name: 'Justice Uday Umesh Lalit',
-    designation: 'Former Chief Justice of India',
-    honour: '49th Chief Justice of India',
-    convocation: '7th Convocation, 2022',
+    name: 'Dr. Peter P. Laurel',
+    designation: 'President of Lyceum of the Philippines University, Batangas & Laguna campuses. Former President of AUAP and PACU. Author, poet and founder of cultural, educational and peace research institutions.',
+    honour: 'International Academic Leader',
+    convocation: '2024',
     image: '/7th-convo-jlu.jpeg',
     objectPosition: 'center 30%',
   },
   {
-    name: 'Shri Adille J. Sumariwalla',
-    designation: 'President, Athletics Federation of India',
-    honour: 'Arjuna Awardee',
-    convocation: '7th Convocation, 2022',
+    name: 'Padmabhushan Shri Rajeev Sethi',
+    designation: 'An extraordinary designer, noted internationally for his innovative contribution to preserving and celebrating the subcontinent\'s rich cultural heritage. Has designed and curated award-winning exhibitions in Asia, Europe, Canada and America.',
+    honour: 'Padma Bhushan',
+    convocation: '2024',
     image: '/adille-jlu-full.jpg',
     objectPosition: 'center 20%',
   },
   {
-    name: 'Dr. K. Kasturirangan',
-    designation: 'Chairman, NEP Drafting Committee & Eminent Space Scientist',
-    honour: 'Padma Vibhushan',
-    convocation: '6th Convocation, 2021',
+    name: 'Mr. Cyril Shroff',
+    designation: 'A legendary figure in the Indian Legal Community, often referred to as the \'M&A King of India\'. Consistently ranked as \'Eminent Practitioner\' in India by Chambers Global.',
+    honour: 'Legal Luminary',
+    convocation: '2024',
     image: '/jlu-mgt-award.jpg',
     objectPosition: 'center center',
   },
   {
-    name: 'Smt. Anju Bobby George',
-    designation: 'Iconic Long Jump Champion of India',
-    honour: 'Padma Shri, Khel Ratna & Arjuna Awardee',
-    convocation: '6th Convocation, 2021',
+    name: 'Shri Sunil Sethi',
+    designation: 'Chairman of the Fashion Design Council of India (FDCI). An eminent industry leader, visionary entrepreneur, and one of India\'s foremost champions of fashion, handloom and the creative industries.',
+    honour: 'Industry Leader',
+    convocation: '2025',
     image: '/6th-convo-jlu.jpg',
     objectPosition: '80% center',
   },
@@ -74,7 +74,7 @@ const HonoraryDoctorates = () => {
         >
           <div className="mb-6 md:mb-0">
             <span
-              className="text-[#999] uppercase tracking-widest block text-[10px] sm:text-xs mb-3 md:mb-4"
+              className="text-[#999] uppercase tracking-widest block text-[12px] sm:text-xs mb-3 md:mb-4"
               style={{ letterSpacing: '0.2em' }}
             >
               Recognition
@@ -89,15 +89,22 @@ const HonoraryDoctorates = () => {
             >
               Honorary{' '}
               <span style={{ fontFamily: "'Times New Roman', serif", fontStyle: 'italic' }}>
-                Doctorates
+                Doctorate
+              </span>
+              {' '}
+              <span className="text-base sm:text-lg md:text-xl text-[#999]" style={{ fontWeight: 400 }}>
+                (Honoris Causa)
               </span>
             </h2>
+            <p className="text-[#999] text-xs sm:text-sm mt-2" style={{ letterSpacing: '0.05em' }}>
+              Recipients — Last 3 Years
+            </p>
           </div>
           <p
             className="text-[#666] text-sm md:text-base max-w-full md:max-w-[400px]"
             style={{ lineHeight: 1.7 }}
           >
-            Jagran Lakecity University has conferred honorary doctorates upon distinguished individuals who have made exceptional contributions to their fields and to society.
+            Jagran Lakecity University has conferred Honorary Doctorates (Honoris Causa) upon distinguished individuals who have made exceptional contributions to their fields and to society.
           </p>
         </motion.div>
 
@@ -123,7 +130,7 @@ const HonoraryDoctorates = () => {
               <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/30 to-transparent" />
               <div className="absolute bottom-0 left-0 right-0 p-4 sm:p-5 md:p-6 flex flex-col justify-end min-h-[160px] sm:min-h-[170px] md:min-h-[180px]">
                 <span
-                  className="text-[#f4c950] text-[9px] sm:text-[10px] uppercase tracking-widest block mb-2"
+                  className="text-[#f4c950] text-[11px] sm:text-[12px] uppercase tracking-widest block mb-2"
                   style={{ letterSpacing: '0.15em' }}
                 >
                   {person.convocation}
@@ -134,10 +141,10 @@ const HonoraryDoctorates = () => {
                 >
                   {person.name}
                 </h3>
-                <p className="text-white/70 text-[11px] sm:text-xs leading-relaxed mb-1 line-clamp-2">
+                <p className="text-white/70 text-[12px] sm:text-xs leading-relaxed mb-1 line-clamp-2">
                   {person.designation}
                 </p>
-                <p className="text-white/50 text-[10px] sm:text-[11px]">
+                <p className="text-white/50 text-[12px] sm:text-[13px]">
                   {person.honour}
                 </p>
               </div>

@@ -160,6 +160,8 @@ export const PassionSection = () => {
 
     return () => {
       triggers.forEach((t) => t.kill());
+      ScrollTrigger.getAll().forEach((t) => t.kill());
+      gsap.killTweensOf('*');
       ScrollTrigger.refresh();
     };
   }, [mounted, isMobile]);
@@ -177,7 +179,7 @@ export const PassionSection = () => {
       {/* Main container that scales and pins */}
       <div
         ref={containerRef}
-        className="relative w-full h-screen overflow-hidden"
+        className="relative w-full min-h-screen overflow-hidden"
       >
         {/* Panel 1 - PASSION */}
         <div

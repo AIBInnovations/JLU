@@ -28,13 +28,312 @@ const staggerItem = {
   },
 };
 
+// ============================================================
+// UPCOMING EVENTS DATA — Update this array to add/edit events
+// ============================================================
+const upcomingEventsData = [
+  { date: '2026-04-05', title: 'Orientation Program 2026-27', venue: 'JLU Main Auditorium', category: 'Academic' },
+  { date: '2026-04-15', title: 'International Yoga Day Celebration', venue: 'JLU Campus Ground', category: 'Wellness' },
+  { date: '2026-05-10', title: 'Industry Connect Summit', venue: 'JLU Convention Centre', category: 'Industry' },
+  { date: '2026-05-25', title: 'National Science Day Seminar', venue: 'Faculty of Science and Technology', category: 'Academic' },
+  { date: '2026-06-08', title: 'Workshop on AI & Machine Learning', venue: 'Jagran School of AI', category: 'Workshop' },
+  { date: '2026-06-20', title: 'Alumni Homecoming 2026', venue: 'JLU Campus', category: 'Alumni' },
+  { date: '2026-07-12', title: 'Inter-University Sports Meet', venue: 'JLU Sports Complex', category: 'Sports' },
+  { date: '2026-07-26', title: 'Hackathon: Lakecity Hack 2026', venue: 'Faculty of Science and Technology', category: 'Technology' },
+  { date: '2026-08-09', title: 'Independence Day Celebration', venue: 'JLU Main Ground', category: 'Cultural' },
+  { date: '2026-08-22', title: 'Research Paper Presentation', venue: 'JLU Research Centre', category: 'Academic' },
+  { date: '2026-09-05', title: 'Teachers Day Celebration', venue: 'JLU Auditorium', category: 'Cultural' },
+  { date: '2026-09-18', title: 'International Moot Court Competition', venue: 'Faculty of Law', category: 'Academic' },
+  { date: '2026-10-02', title: 'Lehar - Annual Cultural Fest', venue: 'JLU Campus', category: 'Cultural' },
+  { date: '2026-10-20', title: 'Placement Drive - Season 1', venue: 'JLU Placement Cell', category: 'Placement' },
+  { date: '2026-11-05', title: 'International Festival of Media', venue: 'Faculty of Media and Social Sciences', category: 'Media' },
+  { date: '2026-11-22', title: 'Entrepreneurship Conclave', venue: 'JLBS Auditorium', category: 'Industry' },
+  { date: '2026-12-10', title: 'Annual Convocation 2026', venue: 'JLU Main Auditorium', category: 'Academic' },
+  { date: '2026-12-20', title: 'Winter Cultural Night', venue: 'JLU Amphitheatre', category: 'Cultural' },
+  { date: '2027-01-15', title: 'Republic Day Celebration', venue: 'JLU Main Ground', category: 'Cultural' },
+  { date: '2027-01-28', title: 'National Law Fest', venue: 'Faculty of Law', category: 'Academic' },
+  { date: '2027-02-14', title: 'Design Exhibition & Showcase', venue: 'Jagran School of Design', category: 'Exhibition' },
+  { date: '2027-02-28', title: 'Placement Drive - Season 2', venue: 'JLU Placement Cell', category: 'Placement' },
+  { date: '2027-03-09', title: 'JLU International Festival of Media', venue: 'JLU Campus', category: 'Media' },
+  { date: '2027-03-25', title: 'Annual Sports Day', venue: 'JLU Sports Complex', category: 'Sports' },
+];
+
+const MONTHS = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+const DAYS = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+
+function getDaysInMonth(year: number, month: number) {
+  return new Date(year, month + 1, 0).getDate();
+}
+
+function getFirstDayOfMonth(year: number, month: number) {
+  return new Date(year, month, 1).getDay();
+}
+
+function EventsCalendarSection() {
+  const [calendarMonth, setCalendarMonth] = useState(() => {
+    const now = new Date();
+    return { year: now.getFullYear(), month: now.getMonth() };
+  });
+  const [selectedDate, setSelectedDate] = useState<string | null>(null);
+
+  const daysInMonth = getDaysInMonth(calendarMonth.year, calendarMonth.month);
+  const firstDay = getFirstDayOfMonth(calendarMonth.year, calendarMonth.month);
+
+  const eventDatesInMonth = new Set(
+    upcomingEventsData
+      .filter((e) => {
+        const d = new Date(e.date);
+        return d.getFullYear() === calendarMonth.year && d.getMonth() === calendarMonth.month;
+      })
+      .map((e) => new Date(e.date).getDate())
+  );
+
+  const eventsForSelected = selectedDate
+    ? upcomingEventsData.filter((e) => e.date === selectedDate)
+    : [];
+
+  const todayStr = new Date().toISOString().split('T')[0];
+
+  // Get upcoming events (from today onwards)
+  const upcoming = upcomingEventsData
+    .filter((e) => e.date >= todayStr)
+    .sort((a, b) => a.date.localeCompare(b.date))
+    .slice(0, 5);
+
+  const prevMonth = () => {
+    setCalendarMonth((prev) => {
+      if (prev.month === 0) return { year: prev.year - 1, month: 11 };
+      return { ...prev, month: prev.month - 1 };
+    });
+    setSelectedDate(null);
+  };
+
+  const nextMonth = () => {
+    setCalendarMonth((prev) => {
+      if (prev.month === 11) return { year: prev.year + 1, month: 0 };
+      return { ...prev, month: prev.month + 1 };
+    });
+    setSelectedDate(null);
+  };
+
+  const handleDayClick = (day: number) => {
+    const dateStr = `${calendarMonth.year}-${String(calendarMonth.month + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
+    setSelectedDate(selectedDate === dateStr ? null : dateStr);
+  };
+
+  return (
+    <div id="events-calendar" className="w-full bg-[#f6f7f0]">
+      <div
+        className="mx-auto px-5 py-16 md:px-10 md:py-20 lg:px-30 lg:py-35"
+        style={{ maxWidth: '1440px' }}
+      >
+        <motion.div
+          className="mb-10 md:mb-16"
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, ease: customEase }}
+          viewport={{ once: true }}
+        >
+          <span
+            className="text-[#999] uppercase tracking-widest block mb-4 md:mb-6 text-[11px] md:text-[12px]"
+            style={{ letterSpacing: '0.2em' }}
+          >
+            Events Calendar
+          </span>
+          <h2
+            className="text-[#21313c]"
+            style={{
+              fontSize: 'clamp(2.5rem, 4vw, 3.5rem)',
+              fontWeight: 600,
+              lineHeight: 1.1,
+              letterSpacing: '-0.03em',
+            }}
+          >
+            What&apos;s happening{' '}
+            <span style={{ fontFamily: "'Times New Roman', serif", fontStyle: 'italic', fontWeight: 400 }}>
+              on campus
+            </span>
+          </h2>
+        </motion.div>
+
+        <div className="flex flex-col lg:flex-row gap-10 md:gap-12 lg:gap-16">
+          {/* Left - Upcoming Events List */}
+          <motion.div
+            className="flex-1"
+            variants={staggerContainer}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+          >
+            <p className="text-[#999] uppercase tracking-widest text-[11px] mb-6" style={{ letterSpacing: '0.15em' }}>
+              Upcoming Events
+            </p>
+            {upcoming.map((event) => {
+              const d = new Date(event.date);
+              const day = String(d.getDate()).padStart(2, '0');
+              const month = MONTHS[d.getMonth()].substring(0, 3).toUpperCase();
+              return (
+                <motion.div
+                  key={event.date + event.title}
+                  variants={staggerItem}
+                  className="group cursor-pointer py-5 md:py-6 border-b border-[#21313c]/10 hover:border-[#21313c]/30 transition-colors"
+                >
+                  <div className="flex items-start gap-4 md:gap-8">
+                    <div className="text-center min-w-16 md:min-w-20">
+                      <p className="text-[#f0c14b] leading-none text-4xl md:text-5xl font-bold">{day}</p>
+                      <p className="text-[#21313c] uppercase tracking-wider text-xs md:text-sm font-medium">{month}</p>
+                    </div>
+                    <div className="flex-1">
+                      <div className="flex items-center gap-2 mb-1">
+                        <span className="px-2 py-0.5 bg-[#027ea1]/10 text-[#027ea1] text-[10px] md:text-xs font-medium rounded-full">
+                          {event.category}
+                        </span>
+                      </div>
+                      <h4 className="text-[#21313c] group-hover:text-[#f0c14b] transition-colors text-lg md:text-xl font-semibold leading-tight">
+                        {event.title}
+                      </h4>
+                      <p className="text-[#999] mt-1 text-xs md:text-sm">{event.venue}</p>
+                    </div>
+                    <motion.span
+                      className="text-[#21313c] opacity-0 group-hover:opacity-100 transition-opacity hidden md:block text-xl"
+                      whileHover={{ x: 5 }}
+                    >
+                      →
+                    </motion.span>
+                  </div>
+                </motion.div>
+              );
+            })}
+          </motion.div>
+
+          {/* Right - Full Calendar */}
+          <motion.div
+            initial={{ opacity: 0, x: 50 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8, ease: customEase }}
+            viewport={{ once: true }}
+            className="w-full lg:w-[420px] shrink-0"
+          >
+            <div className="bg-[#21313c] rounded-2xl overflow-hidden">
+              {/* Calendar Header */}
+              <div className="flex items-center justify-between px-5 py-4 md:px-6 md:py-5 border-b border-white/10">
+                <p className="text-base md:text-lg font-semibold text-white">
+                  {MONTHS[calendarMonth.month]} {calendarMonth.year}
+                </p>
+                <div className="flex gap-2">
+                  <motion.button
+                    onClick={prevMonth}
+                    className="w-8 h-8 md:w-9 md:h-9 rounded-full bg-white/10 text-white flex items-center justify-center hover:bg-white/20 transition-colors"
+                    whileHover={{ scale: 1.1 }}
+                    whileTap={{ scale: 0.95 }}
+                  >
+                    ←
+                  </motion.button>
+                  <motion.button
+                    onClick={nextMonth}
+                    className="w-8 h-8 md:w-9 md:h-9 rounded-full bg-white/10 text-white flex items-center justify-center hover:bg-white/20 transition-colors"
+                    whileHover={{ scale: 1.1 }}
+                    whileTap={{ scale: 0.95 }}
+                  >
+                    →
+                  </motion.button>
+                </div>
+              </div>
+
+              {/* Day Headers */}
+              <div className="grid grid-cols-7 px-4 md:px-6 pt-4">
+                {DAYS.map((day) => (
+                  <div key={day} className="text-center text-white/40 text-xs font-medium pb-3">
+                    {day}
+                  </div>
+                ))}
+              </div>
+
+              {/* Calendar Grid */}
+              <div className="grid grid-cols-7 px-4 md:px-6 pb-4">
+                {/* Empty cells for days before first of month */}
+                {Array.from({ length: firstDay }).map((_, i) => (
+                  <div key={`empty-${i}`} className="h-10 md:h-11" />
+                ))}
+                {/* Day cells */}
+                {Array.from({ length: daysInMonth }).map((_, i) => {
+                  const day = i + 1;
+                  const dateStr = `${calendarMonth.year}-${String(calendarMonth.month + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
+                  const hasEvent = eventDatesInMonth.has(day);
+                  const isSelected = selectedDate === dateStr;
+                  const isToday = dateStr === todayStr;
+
+                  return (
+                    <button
+                      key={day}
+                      onClick={() => hasEvent ? handleDayClick(day) : undefined}
+                      className={`h-10 md:h-11 flex flex-col items-center justify-center rounded-lg text-sm relative transition-all
+                        ${hasEvent ? 'cursor-pointer hover:bg-white/10' : 'cursor-default'}
+                        ${isSelected ? 'bg-[#f0c14b] text-[#21313c] font-bold' : ''}
+                        ${isToday && !isSelected ? 'ring-1 ring-[#f0c14b]' : ''}
+                        ${!isSelected ? 'text-white/80' : ''}
+                      `}
+                    >
+                      {day}
+                      {hasEvent && !isSelected && (
+                        <span className="absolute bottom-1 w-1 h-1 rounded-full bg-[#f0c14b]" />
+                      )}
+                    </button>
+                  );
+                })}
+              </div>
+
+              {/* Selected Date Events */}
+              <AnimatePresence>
+                {selectedDate && eventsForSelected.length > 0 && (
+                  <motion.div
+                    initial={{ height: 0, opacity: 0 }}
+                    animate={{ height: 'auto', opacity: 1 }}
+                    exit={{ height: 0, opacity: 0 }}
+                    transition={{ duration: 0.3 }}
+                    className="border-t border-white/10 overflow-hidden"
+                  >
+                    <div className="px-5 py-4 md:px-6 md:py-5 space-y-3">
+                      {eventsForSelected.map((event, idx) => (
+                        <div key={idx} className="flex items-start gap-3">
+                          <div className="w-2 h-2 rounded-full bg-[#f0c14b] mt-1.5 shrink-0" />
+                          <div>
+                            <p className="text-white font-medium text-sm">{event.title}</p>
+                            <p className="text-white/50 text-xs">{event.venue}</p>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+
+              {/* Legend */}
+              <div className="px-5 py-3 md:px-6 border-t border-white/10 flex items-center gap-4">
+                <div className="flex items-center gap-2">
+                  <span className="w-2 h-2 rounded-full bg-[#f0c14b]" />
+                  <span className="text-white/40 text-xs">Event day</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <span className="w-4 h-4 rounded ring-1 ring-[#f0c14b]" />
+                  <span className="text-white/40 text-xs">Today</span>
+                </div>
+              </div>
+            </div>
+          </motion.div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 const pastEventsImages = [
-  '/JLu%20events/photos/Convocation/DSC_0823.JPG', // Convocation
-  '/JLu%20events/photos/JAgran%20%20of%20Social%20science/DSC08838.JPG', // Social Science
-  '/JLu%20events/photos/Anti%20Ragging%20WEEK/IMG_1879.JPG', // Anti Ragging Week
+  '/JLu%20events/photos/Convocation/DSC_1039.JPG', // Convocation 2025
+  '/campus/smart-classroom.jpg', // Science Expo
+  '/student-clubs.jpg', // Sports Meet
   '/JLu%20events/photos/Lehar/IMG_9018.JPG', // Cultural Fest
   '/JLu%20events/photos/Mental%20Health%20week/IMG_7775.JPG', // Mental Health Week
-  '/jlu%20ignited%20mind%20Award/photos/AMF_1081.JPG', // Ignited Mind Award
+  '/jlu%20ignited%20mind%20Award/photos/AMF_1081.JPG', // Alumni Meet
 ];
 
 const pastEventsData = [
@@ -124,8 +423,8 @@ const NewsAndEvents = () => {
         >
           <motion.div className="absolute inset-0" style={{ y }}>
             <Image
-              src="/JLu%20events/photos/Convocation/DSC_0858.JPG"
-              alt="News & Events"
+              src="/JLu%20events/photos/Convocation/DSC_1020.JPG"
+              alt="News & Events at JLU"
               fill
               className="object-cover scale-110"
               priority
@@ -267,10 +566,10 @@ const NewsAndEvents = () => {
               </motion.div>
               <div className="absolute inset-0 bg-linear-to-t from-black/80 via-black/30 to-transparent" />
               <div className="absolute top-4 left-4 md:top-6 md:left-6 flex items-center gap-2">
-                <span className="bg-[#f0c14b] text-[#21313c] px-3 py-1 text-[10px] md:text-xs font-bold uppercase tracking-wider">
+                <span className="bg-[#f0c14b] text-[#21313c] px-3 py-1 text-[12px] md:text-xs font-bold uppercase tracking-wider">
                   Featured
                 </span>
-                <span className="bg-white/20 backdrop-blur-sm text-white px-3 py-1 text-[10px] md:text-xs font-medium">
+                <span className="bg-white/20 backdrop-blur-sm text-white px-3 py-1 text-[12px] md:text-xs font-medium">
                   Hindustan Times
                 </span>
               </div>
@@ -309,9 +608,9 @@ const NewsAndEvents = () => {
                 </div>
                 <div className="flex-1 min-w-0">
                   <div className="flex items-center gap-2 mb-1.5 md:mb-2">
-                    <span className="text-[#999] text-[10px] md:text-xs font-medium">Times of India</span>
-                    <span className="text-[#999] text-[10px]">|</span>
-                    <span className="text-[#999] text-[10px] md:text-xs">Dec 2025</span>
+                    <span className="text-[#999] text-[12px] md:text-xs font-medium">Times of India</span>
+                    <span className="text-[#999] text-[12px]">|</span>
+                    <span className="text-[#999] text-[12px] md:text-xs">Dec 2025</span>
                   </div>
                   <h4 className="text-[#21313c] font-semibold text-sm md:text-base leading-snug group-hover:text-[#f0c14b] transition-colors line-clamp-2">
                     JLU Hosts AUAP International Conference on Higher Education
@@ -338,9 +637,9 @@ const NewsAndEvents = () => {
                 </div>
                 <div className="flex-1 min-w-0">
                   <div className="flex items-center gap-2 mb-1.5 md:mb-2">
-                    <span className="text-[#999] text-[10px] md:text-xs font-medium">India Today</span>
-                    <span className="text-[#999] text-[10px]">|</span>
-                    <span className="text-[#999] text-[10px] md:text-xs">Nov 2025</span>
+                    <span className="text-[#999] text-[12px] md:text-xs font-medium">India Today</span>
+                    <span className="text-[#999] text-[12px]">|</span>
+                    <span className="text-[#999] text-[12px] md:text-xs">Nov 2025</span>
                   </div>
                   <h4 className="text-[#21313c] font-semibold text-sm md:text-base leading-snug group-hover:text-[#f0c14b] transition-colors line-clamp-2">
                     JLU Ranked Among Top Private Universities in Central India
@@ -367,9 +666,9 @@ const NewsAndEvents = () => {
                 </div>
                 <div className="flex-1 min-w-0">
                   <div className="flex items-center gap-2 mb-1.5 md:mb-2">
-                    <span className="text-[#999] text-[10px] md:text-xs font-medium">The Pioneer</span>
-                    <span className="text-[#999] text-[10px]">|</span>
-                    <span className="text-[#999] text-[10px] md:text-xs">Oct 2025</span>
+                    <span className="text-[#999] text-[12px] md:text-xs font-medium">The Pioneer</span>
+                    <span className="text-[#999] text-[12px]">|</span>
+                    <span className="text-[#999] text-[12px] md:text-xs">Oct 2025</span>
                   </div>
                   <h4 className="text-[#21313c] font-semibold text-sm md:text-base leading-snug group-hover:text-[#f0c14b] transition-colors line-clamp-2">
                     JLU Faculty Receives National Award for Innovation in Pharmaceutical Research
@@ -396,9 +695,9 @@ const NewsAndEvents = () => {
                 </div>
                 <div className="flex-1 min-w-0">
                   <div className="flex items-center gap-2 mb-1.5 md:mb-2">
-                    <span className="text-[#999] text-[10px] md:text-xs font-medium">Dainik Bhaskar</span>
-                    <span className="text-[#999] text-[10px]">|</span>
-                    <span className="text-[#999] text-[10px] md:text-xs">Sep 2025</span>
+                    <span className="text-[#999] text-[12px] md:text-xs font-medium">Dainik Bhaskar</span>
+                    <span className="text-[#999] text-[12px]">|</span>
+                    <span className="text-[#999] text-[12px] md:text-xs">Sep 2025</span>
                   </div>
                   <h4 className="text-[#21313c] font-semibold text-sm md:text-base leading-snug group-hover:text-[#f0c14b] transition-colors line-clamp-2">
                     10th Convocation Ceremony: 2,500 Students Awarded Degrees
@@ -414,216 +713,7 @@ const NewsAndEvents = () => {
       </div>
 
       {/* What's happening on campus Section */}
-      <div id="events-calendar" className="w-full bg-[#f6f7f0]">
-        <div
-          className="mx-auto px-5 py-16 md:px-10 md:py-20 lg:px-30 lg:py-35"
-          style={{
-            maxWidth: '1440px',
-          }}
-        >
-          <motion.div
-            className="mb-10 md:mb-16"
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, ease: customEase }}
-            viewport={{ once: true }}
-          >
-            <span
-              className="text-[#999] uppercase tracking-widest block mb-4 md:mb-6 text-[11px] md:text-[12px]"
-              style={{ letterSpacing: '0.2em' }}
-            >
-              Events Calendar
-            </span>
-            <h2
-              className="text-[#21313c]"
-              style={{
-                fontSize: 'clamp(2.5rem, 4vw, 3.5rem)',
-                fontWeight: 600,
-                lineHeight: 1.1,
-                letterSpacing: '-0.03em',
-              }}
-            >
-              What&apos;s happening{' '}
-              <span style={{ fontFamily: "'Times New Roman', serif", fontStyle: 'italic', fontWeight: 400 }}>
-                on campus
-              </span>
-            </h2>
-          </motion.div>
-
-          {/* Filters */}
-          <motion.div
-            className="flex flex-col md:flex-row md:items-end gap-4 md:gap-8 lg:gap-12 mb-10 md:mb-16"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.2, ease: customEase }}
-            viewport={{ once: true }}
-          >
-            <div className="flex-1">
-              <label className="block text-[#999] mb-2 uppercase tracking-wider text-[10px] md:text-[11px]">Keyword</label>
-              <input
-                type="text"
-                placeholder="Enter keyword"
-                className="w-full border-b-2 border-[#21313c]/20 bg-transparent py-3 text-[#21313c] placeholder-[#999] focus:outline-none focus:border-[#21313c] transition-colors"
-              />
-            </div>
-            <div className="flex-1">
-              <label className="block text-[#999] mb-2 uppercase tracking-wider text-[10px] md:text-[11px]">Year</label>
-              <select className="w-full border-b-2 border-[#21313c]/20 bg-transparent py-3 text-[#21313c] focus:outline-none focus:border-[#21313c] appearance-none cursor-pointer transition-colors text-sm md:text-base">
-                <option value="-Any-">-Any-</option>
-                <option value="2026">2026</option>
-                <option value="2025">2025</option>
-                <option value="2024">2024</option>
-              </select>
-            </div>
-            <motion.button
-              className="px-6 py-3 md:px-8 bg-[#21313c] text-white font-medium rounded-full text-sm md:text-base"
-              whileHover={{ scale: 1.02 }}
-              whileTap={{ scale: 0.98 }}
-            >
-              Apply Filters
-            </motion.button>
-          </motion.div>
-
-          {/* Events and Calendar */}
-          <div className="flex flex-col lg:flex-row justify-between gap-10 md:gap-12 lg:gap-15">
-            {/* Left - Events List */}
-            <motion.div
-              className="flex-1"
-              variants={staggerContainer}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true }}
-            >
-              {/* Event 1 */}
-              <motion.div
-                variants={staggerItem}
-                className="group cursor-pointer py-5 md:py-8 border-b border-[#21313c]/10 hover:border-[#21313c]/30 transition-colors"
-              >
-                <div className="flex items-start gap-4 md:gap-8">
-                  <div className="text-center min-w-16 md:min-w-20">
-                    <p className="text-[#f0c14b] leading-none text-4xl md:text-5xl font-bold">15</p>
-                    <p className="text-[#21313c] uppercase tracking-wider text-xs md:text-sm font-medium">JAN</p>
-                  </div>
-                  <div className="flex-1">
-                    <p className="text-[#999] mb-1 md:mb-2 text-xs md:text-sm">
-                      Jagran Lakecity University SEH, Bhopal
-                    </p>
-                    <h4 className="text-[#21313c] group-hover:text-[#f0c14b] transition-colors text-lg md:text-2xl font-semibold leading-tight">
-                      Global Alumni Networking Summit
-                    </h4>
-                  </div>
-                  <motion.span
-                    className="text-[#21313c] opacity-0 group-hover:opacity-100 transition-opacity hidden md:block"
-                    whileHover={{ x: 5 }}
-                  >
-                    →
-                  </motion.span>
-                </div>
-              </motion.div>
-
-              {/* Event 2 */}
-              <motion.div
-                variants={staggerItem}
-                className="group cursor-pointer py-5 md:py-8 border-b border-[#21313c]/10 hover:border-[#21313c]/30 transition-colors"
-              >
-                <div className="flex items-start gap-4 md:gap-8">
-                  <div className="text-center min-w-16 md:min-w-20">
-                    <p className="text-[#f0c14b] leading-none text-4xl md:text-5xl font-bold">22</p>
-                    <p className="text-[#21313c] uppercase tracking-wider text-xs md:text-sm font-medium">JAN</p>
-                  </div>
-                  <div className="flex-1">
-                    <p className="text-[#999] mb-1 md:mb-2 text-xs md:text-sm">
-                      Jagran Lakecity University SEH, Bhopal
-                    </p>
-                    <h4 className="text-[#21313c] group-hover:text-[#f0c14b] transition-colors text-lg md:text-2xl font-semibold leading-tight">
-                      Annual Winter Cultural Fest &apos;Aura&apos;
-                    </h4>
-                  </div>
-                  <motion.span
-                    className="text-[#21313c] opacity-0 group-hover:opacity-100 transition-opacity hidden md:block"
-                    whileHover={{ x: 5 }}
-                  >
-                    →
-                  </motion.span>
-                </div>
-              </motion.div>
-
-              {/* Event 3 */}
-              <motion.div
-                variants={staggerItem}
-                className="group cursor-pointer py-5 md:py-8 border-b border-[#21313c]/10 hover:border-[#21313c]/30 transition-colors"
-              >
-                <div className="flex items-start gap-4 md:gap-8">
-                  <div className="text-center min-w-16 md:min-w-20">
-                    <p className="text-[#f0c14b] leading-none text-4xl md:text-5xl font-bold">05</p>
-                    <p className="text-[#21313c] uppercase tracking-wider text-xs md:text-sm font-medium">FEB</p>
-                  </div>
-                  <div className="flex-1">
-                    <p className="text-[#999] mb-1 md:mb-2 text-xs md:text-sm">
-                      Jagran Lakecity University SEH, Bhopal
-                    </p>
-                    <h4 className="text-[#21313c] group-hover:text-[#f0c14b] transition-colors text-lg md:text-2xl font-semibold leading-tight">
-                      Workshop on Quantum Computing
-                    </h4>
-                  </div>
-                  <motion.span
-                    className="text-[#21313c] opacity-0 group-hover:opacity-100 transition-opacity hidden md:block"
-                    whileHover={{ x: 5 }}
-                  >
-                    →
-                  </motion.span>
-                </div>
-              </motion.div>
-
-              {/* View all link */}
-              <motion.a
-                href="#"
-                className="inline-flex items-center gap-3 mt-6 md:mt-10 text-[#21313c] font-medium group text-sm md:text-base"
-                whileHover={{ x: 5 }}
-              >
-                View all upcoming events
-                <span className="group-hover:translate-x-2 transition-transform duration-300">→</span>
-              </motion.a>
-            </motion.div>
-
-            {/* Right - Calendar */}
-            <motion.div
-              initial={{ opacity: 0, x: 50 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8, ease: customEase }}
-              viewport={{ once: true }}
-              className="w-full lg:w-auto"
-            >
-              <div className="bg-[#21313c] flex flex-col w-full lg:w-120 h-80 md:h-100 lg:h-130 rounded-2xl">
-                {/* Calendar Header */}
-                <div className="flex items-center justify-between px-5 py-4 md:px-8 md:py-6 border-b border-white/10">
-                  <p className="text-base md:text-lg font-semibold text-white">January 2026</p>
-                  <div className="flex gap-2">
-                    <motion.button
-                      className="w-8 h-8 md:w-10 md:h-10 rounded-full bg-white/10 text-white flex items-center justify-center hover:bg-white/20 transition-colors"
-                      whileHover={{ scale: 1.1 }}
-                      whileTap={{ scale: 0.95 }}
-                    >
-                      ←
-                    </motion.button>
-                    <motion.button
-                      className="w-8 h-8 md:w-10 md:h-10 rounded-full bg-white/10 text-white flex items-center justify-center hover:bg-white/20 transition-colors"
-                      whileHover={{ scale: 1.1 }}
-                      whileTap={{ scale: 0.95 }}
-                    >
-                      →
-                    </motion.button>
-                  </div>
-                </div>
-                {/* Calendar Placeholder */}
-                <div className="flex-1 flex items-center justify-center">
-                  <p className="text-2xl md:text-3xl font-medium text-white/50">Calendar</p>
-                </div>
-              </div>
-            </motion.div>
-          </div>
-        </div>
-      </div>
+      <EventsCalendarSection />
 
       {/* Highlights from past events Section */}
       <div id="past-events" />

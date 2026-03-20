@@ -28,7 +28,7 @@ const pages: SearchItem[] = [
   { title: 'Talk to Advisor', description: 'Connect with an admission advisor', href: '/talk-to-advisor', category: 'Page' },
   { title: 'Alumni', description: 'Alumni network and success stories', href: '/alumni', category: 'Page' },
   { title: 'Student Clubs', description: 'Explore student clubs and organizations', href: '/student-clubs', category: 'Page' },
-  { title: 'Podcast', description: 'JLU podcasts and media', href: '/podcast', category: 'Page' },
+  { title: 'Lakecity Voice', description: 'JLU podcast - coming soon', href: '/podcast', category: 'Page' },
   { title: 'Events', description: 'Upcoming events and past highlights', href: '/events', category: 'Page' },
   { title: 'Faculties', description: 'Explore all faculties and departments', href: '/faculties', category: 'Page' },
   { title: 'Certifications', description: 'Certificate courses and add-on programs', href: '/certifications', category: 'Page' },
@@ -60,11 +60,11 @@ const sections: SearchItem[] = [
 
 // Faculty pages
 const facultyPages: SearchItem[] = [
-  { title: 'Faculty of Engineering', description: 'Engineering departments and programs', href: '/faculty/engineering', category: 'Faculty' },
+  { title: 'Faculty of Science and Technology', description: 'Engineering departments and programs', href: '/faculty/engineering', category: 'Faculty' },
   { title: 'Faculty of Management', description: 'Management and commerce programs', href: '/faculty/management', category: 'Faculty' },
   { title: 'Faculty of Law', description: 'Law programs and departments', href: '/faculty/law', category: 'Faculty' },
   { title: 'Faculty of Humanities', description: 'Humanities, arts and social sciences', href: '/faculty/humanities', category: 'Faculty' },
-  { title: 'Faculty of Journalism', description: 'Journalism and mass communication', href: '/faculty/journalism', category: 'Faculty' },
+  { title: 'Faculty of Media and Social Sciences', description: 'Journalism and mass communication', href: '/faculty/journalism', category: 'Faculty' },
   { title: 'Faculty of Pharmacy', description: 'Pharmacy education and research', href: '/faculty/pharmacy', category: 'Faculty' },
 ];
 

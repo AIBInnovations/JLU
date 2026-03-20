@@ -251,7 +251,7 @@ export const ProgramDetail = ({ program }: ProgramDetailProps) => {
                               className="flex items-start gap-1.5 md:gap-2 text-[#666]"
                               style={{ fontSize: isMobile ? '12px' : '14px' }}
                             >
-                              <svg className="w-3 h-3 md:w-4 md:h-4 text-[#03463B] mt-0.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                              <svg className="w-3 h-3 md:w-4 md:h-4 text-[#027ea1] mt-0.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                               </svg>
                               <span>{module.name}</span>
@@ -264,7 +264,7 @@ export const ProgramDetail = ({ program }: ProgramDetailProps) => {
                   {modulesData.structure.length > 2 && (
                     <button
                       onClick={() => setShowAllModules(!showAllModules)}
-                      className="mt-4 flex items-center gap-2 text-[#21313c] font-medium hover:text-[#03463B] transition-colors"
+                      className="mt-4 flex items-center gap-2 text-[#21313c] font-medium hover:text-[#027ea1] transition-colors"
                       style={{ fontSize: isMobile ? '13px' : '14px' }}
                     >
                       {showAllModules ? 'Show Less' : `View More (${modulesData.structure.length - 2} more)`}
@@ -307,7 +307,7 @@ export const ProgramDetail = ({ program }: ProgramDetailProps) => {
                           <p className="text-[#c3fd7a] font-bold" style={{ fontSize: isMobile ? '16px' : '30px' }}>{placementData.stats[0].highestPackage}</p>
                           <p className="text-white/40 mt-0.5 md:mt-1" style={{ fontSize: isMobile ? '8px' : '12px' }}>{placementData.stats[0].year}</p>
                         </div>
-                        <div className="bg-gradient-to-br from-[#03463B] to-[#045a4a] rounded-xl" style={{ padding: isMobile ? '12px' : '24px' }}>
+                        <div className="bg-gradient-to-br from-[#027ea1] to-[#026986] rounded-xl" style={{ padding: isMobile ? '12px' : '24px' }}>
                           <p className="text-white/60 font-medium uppercase tracking-wider mb-1 md:mb-2" style={{ fontSize: isMobile ? '9px' : '12px' }}>Median Package</p>
                           <p className="text-[#f0c14b] font-bold" style={{ fontSize: isMobile ? '16px' : '30px' }}>{placementData.stats[0].medianPackage}</p>
                           <p className="text-white/40 mt-0.5 md:mt-1" style={{ fontSize: isMobile ? '8px' : '12px' }}>{placementData.stats[0].year}</p>
@@ -348,7 +348,7 @@ export const ProgramDetail = ({ program }: ProgramDetailProps) => {
                     <div className="grid grid-cols-2 md:grid-cols-4 gap-1.5 md:gap-2 text-[#666]" style={{ fontSize: isMobile ? '9px' : '12px' }}>
                       {allTopRecruiters.slice(0, isMobile ? 12 : 20).map((company, index) => (
                         <div key={index} className="flex items-center gap-1 md:gap-1.5">
-                          <div className="w-1 h-1 rounded-full bg-[#03463B]"></div>
+                          <div className="w-1 h-1 rounded-full bg-[#027ea1]"></div>
                           <span>{company}</span>
                         </div>
                       ))}
@@ -426,11 +426,11 @@ export const ProgramDetail = ({ program }: ProgramDetailProps) => {
 
                       {/* Download Full Fee PDF */}
                       <a
-                        href="/broucher/Fee-Structure-2026-27.pdf"
+                        href="/broucher/Fee-Structure-2026-27-new.pdf"
                         download
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="mt-3 md:mt-4 inline-flex items-center gap-1.5 md:gap-2 text-[#03463B] font-medium hover:underline"
+                        className="mt-3 md:mt-4 inline-flex items-center gap-1.5 md:gap-2 text-[#027ea1] font-medium hover:underline"
                         style={{ fontSize: isMobile ? '11px' : '14px' }}
                       >
                         <svg className="w-3.5 h-3.5 md:w-4 md:h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -498,7 +498,7 @@ export const ProgramDetail = ({ program }: ProgramDetailProps) => {
 
                   {/* Download Brochure */}
                   <a
-                    href="/broucher/Fee-Structure-2026-27.pdf"
+                    href="/broucher/JLU-Brochure-2026.pdf"
                     download
                     target="_blank"
                     rel="noopener noreferrer"
@@ -518,7 +518,7 @@ export const ProgramDetail = ({ program }: ProgramDetailProps) => {
                   whileInView={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.6, delay: 0.1 }}
                   viewport={{ once: true }}
-                  className="bg-gradient-to-br from-[#03463B] to-[#045a4a] rounded-xl md:rounded-2xl"
+                  className="bg-gradient-to-br from-[#027ea1] to-[#026986] rounded-xl md:rounded-2xl"
                   style={{ padding: isMobile ? '16px' : '32px' }}
                 >
                   <h3 className="text-white font-semibold mb-3 md:mb-4" style={{ fontSize: isMobile ? '16px' : '18px' }}>Why Choose JLU?</h3>
@@ -556,8 +556,8 @@ export const ProgramDetail = ({ program }: ProgramDetailProps) => {
                   <h3 className="text-[#21313c] font-semibold mb-3 md:mb-4" style={{ fontSize: isMobile ? '14px' : '18px' }}>Download Resources</h3>
                   <div className="space-y-2 md:space-y-3">
                     {[
-                      { href: '/broucher/Fee-Structure-2026-27.pdf', label: 'Program Brochure', icon: 'M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z', arrow: 'M12 10v6m0 0l-3-3m3 3l3-3', external: true },
-                      { href: '/broucher/Fee-Structure-2026-27.pdf', label: 'Fee Structure', icon: 'M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z', arrow: 'M12 10v6m0 0l-3-3m3 3l3-3', external: true },
+                      { href: '/broucher/JLU-Brochure-2026.pdf', label: 'Program Brochure', icon: 'M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z', arrow: 'M12 10v6m0 0l-3-3m3 3l3-3', external: true },
+                      { href: '/broucher/Fee-Structure-2026-27-new.pdf', label: 'Fee Structure', icon: 'M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z', arrow: 'M12 10v6m0 0l-3-3m3 3l3-3', external: true },
                       { href: '/admissions', label: 'Admission Process', icon: 'M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2', arrow: 'M9 5l7 7-7 7', external: false },
                     ].map((item, i) => (
                       <a
@@ -611,7 +611,7 @@ export const ProgramDetail = ({ program }: ProgramDetailProps) => {
                         <div>
                           <p className="text-[#999] font-medium uppercase tracking-wider" style={{ fontSize: isMobile ? '8px' : '12px' }}>{item.label}</p>
                           {item.isLink ? (
-                            <a href={item.href} className="text-[#21313c] font-semibold hover:text-[#03463B] transition-colors" style={{ fontSize: isMobile ? '11px' : '14px' }}>
+                            <a href={item.href} className="text-[#21313c] font-semibold hover:text-[#027ea1] transition-colors" style={{ fontSize: isMobile ? '11px' : '14px' }}>
                               {item.value}
                             </a>
                           ) : (
@@ -643,7 +643,7 @@ export const ProgramDetail = ({ program }: ProgramDetailProps) => {
                           href={social.href}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="rounded-lg bg-[#21313c] flex items-center justify-center hover:bg-[#03463B] transition-colors"
+                          className="rounded-lg bg-[#21313c] flex items-center justify-center hover:bg-[#027ea1] transition-colors"
                           style={{ width: isMobile ? '30px' : '36px', height: isMobile ? '30px' : '36px' }}
                         >
                           <svg className="w-3.5 h-3.5 md:w-4 md:h-4 text-white" fill="currentColor" viewBox="0 0 24 24">

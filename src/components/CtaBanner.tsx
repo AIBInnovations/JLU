@@ -8,13 +8,13 @@ export const CtaBanner = () => {
           {/* Left - Text */}
           <div className="max-w-xl">
             <p
-              className="text-xs mb-3"
+              className="text-base md:text-lg mb-3"
               style={{ color: '#21313c', letterSpacing: '0.2em', textTransform: 'uppercase', opacity: 0.6 }}
             >
-              ADMISSIONS OPEN 2025-26
+              ADMISSIONS OPEN 2026-27
             </p>
             <h2
-              className="text-2xl md:text-3xl lg:text-4xl text-[#21313c] mb-4"
+              className="text-3xl md:text-4xl lg:text-5xl text-[#21313c] mb-4"
               style={{ fontWeight: 700, lineHeight: 1.15 }}
             >
               Your Future Starts{' '}
@@ -22,7 +22,7 @@ export const CtaBanner = () => {
                 Here
               </span>
             </h2>
-            <p className="text-[#21313c]/70 text-sm md:text-base leading-relaxed">
+            <p className="text-[#21313c]/70 text-base md:text-lg leading-relaxed">
               Join 2,500+ students from 27 states and 8 countries at Central India&apos;s only QS Diamond-rated university.
               50+ programs, 42+ global partnerships, and 80%+ placement rate.
             </p>
@@ -37,7 +37,7 @@ export const CtaBanner = () => {
               Apply Now
             </a>
             <a
-              href="/broucher/Fee-Structure-2026-27.pdf"
+              href="/broucher/JLU-Brochure-2026.pdf"
               download
               target="_blank"
               rel="noopener noreferrer"
