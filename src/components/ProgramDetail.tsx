@@ -426,7 +426,7 @@ export const ProgramDetail = ({ program }: ProgramDetailProps) => {
 
                       {/* Download Full Fee PDF */}
                       <a
-                        href="/broucher/Fee-Structure-2026-27-new.pdf"
+                        href="/broucher/Fee-Structure-2026-27.pdf"
                         download
                         target="_blank"
                         rel="noopener noreferrer"
@@ -557,7 +557,7 @@ export const ProgramDetail = ({ program }: ProgramDetailProps) => {
                   <div className="space-y-2 md:space-y-3">
                     {[
                       { href: '/broucher/JLU-Brochure-2026.pdf', label: 'Program Brochure', icon: 'M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z', arrow: 'M12 10v6m0 0l-3-3m3 3l3-3', external: true },
-                      { href: '/broucher/Fee-Structure-2026-27-new.pdf', label: 'Fee Structure', icon: 'M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z', arrow: 'M12 10v6m0 0l-3-3m3 3l3-3', external: true },
+                      { href: '/broucher/Fee-Structure-2026-27.pdf', label: 'Fee Structure', icon: 'M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z', arrow: 'M12 10v6m0 0l-3-3m3 3l3-3', external: true },
                       { href: '/admissions', label: 'Admission Process', icon: 'M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2', arrow: 'M9 5l7 7-7 7', external: false },
                     ].map((item, i) => (
                       <a

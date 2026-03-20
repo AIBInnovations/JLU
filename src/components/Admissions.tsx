@@ -1754,7 +1754,7 @@ const Admissions = () => {
               {/* Download Button */}
               <div className="hidden lg:block mt-auto pt-8">
                 <a
-                  href="/broucher/Fee-Structure-2026-27-new.pdf"
+                  href="/broucher/Fee-Structure-2026-27.pdf"
                   download="JLU-Fee-Structure-2026-27.pdf"
                   className="w-full flex items-center justify-center gap-2 px-5 py-4 border border-[#f0c14b] text-[#f0c14b] rounded-xl font-medium transition-all duration-300 text-sm cursor-pointer no-underline"
                 >
