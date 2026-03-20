@@ -16,6 +16,9 @@ dist-ssr
 .next
 out
 
+# Source content (not for deployment)
+public/new content /
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json
