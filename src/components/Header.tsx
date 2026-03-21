@@ -964,7 +964,7 @@ export const Header = () => {
           delay: isHomepage ? 2.8 : 0.2,
           ease: [0.25, 0.1, 0.25, 1]
         }}
-        className="relative flex items-center justify-between px-6 pt-6 sm:px-10 lg:px-16 xl:px-20 2xl:px-32"
+        className="relative flex items-center justify-between px-6 pt-8 sm:pt-10 sm:px-10 lg:px-16 xl:px-20 2xl:px-32"
         style={{ zIndex: 60 }}
       >
         {/* Empty spacer for left */}

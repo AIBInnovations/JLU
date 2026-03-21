@@ -865,7 +865,7 @@ export const FacultyPage = ({
       <section className="py-10 md:py-32 px-4 md:px-16 xl:px-24 bg-[#f6f7f0]">
         <div className="max-w-4xl mx-auto text-center">
           <p
-            className="text-[0.6rem] md:text-xs mb-2 md:mb-4"
+            className="text-[0.6rem] md:text-xs mb-2 md:mb-4 font-bold"
             style={{ color: '#999', letterSpacing: '0.2em', textTransform: 'uppercase' }}
           >
             START YOUR JOURNEY

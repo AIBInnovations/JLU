@@ -7,7 +7,7 @@ export const CampusSection = () => {
         {/* Section Header */}
         <div className="text-center mb-10 md:mb-16">
           <p
-            className="text-xs md:text-sm mb-4"
+            className="text-xs md:text-sm mb-4 font-bold"
             style={{ color: '#999', letterSpacing: '0.2em', textTransform: 'uppercase' }}
           >
             LIFE AT JLU

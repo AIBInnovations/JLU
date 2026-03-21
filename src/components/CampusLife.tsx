@@ -3,7 +3,7 @@
 import Image from 'next/image';
 import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion';
 import { useState, useRef } from 'react';
-import { useIsMobile } from '@/hooks/useIsMobile';
+import { useIsMobile } from '../hooks/useIsMobile';
 // Custom easing for smooth animations
 const customEase: [number, number, number, number] = [0.22, 1, 0.36, 1];
 
@@ -77,70 +77,70 @@ const studentClubs = [
     description: 'Competitive sports participation, skill development, and recreational fellowship through various athletic activities and outdoor adventures.',
     icon: 'sports',
     color: '#027ea1',
-    image: '/clubs/sports-new.jpg',
+    image: '/clubs/sports-new.jpg', logo: '/logo/sports-adventure.png',
   },
   {
     name: 'Photography Club',
     description: 'Explore diverse photographic techniques through photo excursions and workshops, open to all skill levels.',
     icon: 'camera',
     color: '#21313c',
-    image: '/clubs/photography-new.jpg',
+    image: '/clubs/photography-new.jpg', logo: '/logo/photography.png',
   },
   {
     name: 'Music Club',
     description: 'Jam sessions, concerts, open mics, instrument workshops, and collaborative opportunities for all music enthusiasts.',
     icon: 'music',
     color: '#6B4C9A',
-    image: '/clubs/music-new.jpg',
+    image: '/clubs/music-new.jpg', logo: '/logo/cultural.png',
   },
   {
     name: 'Dance Club',
     description: 'Ballroom, salsa, hip hop, contemporary, and folk dance styles with performances, competitions, and festival opportunities.',
     icon: 'dance',
     color: '#C4532D',
-    image: '/clubs/dance-new.jpg',
+    image: '/clubs/dance-new.jpg', logo: '/logo/cultural.png',
   },
   {
     name: 'Literary Club',
     description: 'Book discussions, poetry reading & writing, short story creation, and literary competitions to develop writing skills.',
     icon: 'book',
     color: '#1A5276',
-    image: '/pro1.jpg',
+    image: '/pro1.jpg', logo: '/logo/editorial-board.png',
   },
   {
     name: 'Dramatics Club',
     description: 'Monthly performances including stage plays, road plays, mime acts, and role plays — with a vision of "Theatre in Unlikely Spaces."',
     icon: 'theater',
     color: '#8B0000',
-    image: '/JLu%20events/photos/Lehar/IMG_8971.JPG',
+    image: '/JLu%20events/photos/Lehar/IMG_8971.JPG', logo: '/logo/cultural.png',
   },
   {
     name: 'MUN & Debating Society',
     description: 'Parliamentary debate training, research skills, and Model UN participation to develop public speaking and awareness of current events.',
     icon: 'debate',
     color: '#2C3E50',
-    image: '/clubs/mun-new.jpg',
+    image: '/clubs/mun-new.jpg', logo: '/logo/mun-debating.png',
   },
   {
     name: 'Community Service Club',
     description: 'Social wellbeing, volunteering, and community outreach initiatives focused on creating positive social change.',
     icon: 'community',
     color: '#196F3D',
-    image: '/clubs/community-new.jpg',
+    image: '/clubs/community-new.jpg', logo: '/logo/community-service.png',
   },
   {
     name: 'Start-up & Entrepreneurship Club',
     description: 'Business development mentorship, potential funding through JLU\'s innovation ecosystem, and networking opportunities.',
     icon: 'startup',
     color: '#D4AC0D',
-    image: '/clubs/entrepreneurship-new.jpg',
+    image: '/clubs/entrepreneurship-new.jpg', logo: '/logo/industry-entrepreneurship.png',
   },
   {
     name: 'Placement & Industry Interaction Club',
     description: 'Bridges academia and industry through skill workshops, placement discussions, and professional development training.',
     icon: 'briefcase',
     color: '#34495E',
-    image: '/campus/gallery-11.jpg',
+    image: '/campus/gallery-11.jpg', logo: '/logo/student-service-cell.png',
   },
 ];
 
@@ -567,11 +567,14 @@ const CampusLife = () => {
             <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-5">
               {['Sharks', 'Lions', 'Stallions', 'Hawks'].map((house) => (
                 <div key={house} className="border border-[#e5e5e5] rounded-xl p-4 md:p-5 hover:border-[#f0c14b] hover:shadow-sm transition-all duration-300">
-                  <h4 className="text-[#21313c] font-semibold text-sm md:text-base mb-3" style={isMobile ? { fontSize: '13px', marginBottom: '8px' } : {}}>{house}</h4>
+                  <div className="flex flex-col items-center mb-4" style={isMobile ? { marginBottom: '10px' } : {}}>
+                    <img src={`/logo/${house.toLowerCase()}.png`} alt={house} className="w-14 h-14 md:w-20 md:h-20 object-contain mb-2" />
+                    <h4 className="text-[#21313c] font-semibold text-sm md:text-base" style={isMobile ? { fontSize: '13px' } : {}}>{house}</h4>
+                  </div>
                   {houseCaptains.filter(c => c.house === house).map((member, j) => (
                     <div key={j} className={j > 0 ? 'mt-2 pt-2 border-t border-[#f0f0f0]' : ''}>
-                      <p className="text-[#21313c] text-xs md:text-sm font-medium" style={isMobile ? { fontSize: '28px' } : {}}>{member.name}</p>
-                      <p className="text-[#999] text-xl md:text-2xl font-bold">{member.position} · {member.program}</p>
+                      <p className="text-[#21313c] text-base md:text-lg font-semibold">{member.name}</p>
+                      <p className="text-[#999] text-xs md:text-sm">{member.position} · {member.program}</p>
                     </div>
                   ))}
                 </div>
@@ -636,8 +639,8 @@ const CampusLife = () => {
                 <h4 className="text-[#21313c] font-semibold text-sm md:text-base mb-4" style={isMobile ? { fontSize: '13px', marginBottom: '10px' } : {}}>Editorial Board</h4>
                 {editorialBoard.map((member, i) => (
                   <div key={i} className={i > 0 ? 'mt-3 pt-3 border-t border-[#f0f0f0]' : ''}>
-                    <p className="text-[#21313c] text-xs md:text-sm font-medium" style={isMobile ? { fontSize: '28px' } : {}}>{member.name}</p>
-                    <p className="text-[#999] text-xl md:text-2xl font-bold">{member.role} · {member.program}</p>
+                    <p className="text-[#21313c] text-base md:text-lg font-semibold">{member.name}</p>
+                    <p className="text-[#999] text-xs md:text-sm">{member.role} · {member.program}</p>
                   </div>
                 ))}
               </div>
@@ -647,8 +650,8 @@ const CampusLife = () => {
                 <h4 className="text-[#21313c] font-semibold text-sm md:text-base mb-4" style={isMobile ? { fontSize: '13px', marginBottom: '10px' } : {}}>Hostel Representatives</h4>
                 {hostelRepresentatives.map((member, i) => (
                   <div key={i} className={i > 0 ? 'mt-3 pt-3 border-t border-[#f0f0f0]' : ''}>
-                    <p className="text-[#21313c] text-xs md:text-sm font-medium" style={isMobile ? { fontSize: '28px' } : {}}>{member.name}</p>
-                    <p className="text-[#999] text-xl md:text-2xl font-bold">{member.program}</p>
+                    <p className="text-[#21313c] text-base md:text-lg font-semibold">{member.name}</p>
+                    <p className="text-[#999] text-xs md:text-sm">{member.program}</p>
                   </div>
                 ))}
               </div>
@@ -658,8 +661,8 @@ const CampusLife = () => {
                 <h4 className="text-[#21313c] font-semibold text-sm md:text-base mb-4" style={isMobile ? { fontSize: '13px', marginBottom: '10px' } : {}}>International Club</h4>
                 {internationalClub.map((member, i) => (
                   <div key={i} className={i > 0 ? 'mt-3 pt-3 border-t border-[#f0f0f0]' : ''}>
-                    <p className="text-[#21313c] text-xs md:text-sm font-medium" style={isMobile ? { fontSize: '28px' } : {}}>{member.name}</p>
-                    <p className="text-[#999] text-xl md:text-2xl font-bold">{member.role} · {member.program}</p>
+                    <p className="text-[#21313c] text-base md:text-lg font-semibold">{member.name}</p>
+                    <p className="text-[#999] text-xs md:text-sm">{member.role} · {member.program}</p>
                   </div>
                 ))}
               </div>
@@ -714,14 +717,25 @@ const CampusLife = () => {
                     transition={{ duration: 0.3 }}
                   >
                     <span
-                      className="shrink-0 w-10 h-10 rounded-full flex items-center justify-center"
+                      className="shrink-0 flex items-center justify-center"
                       style={{
-                        backgroundColor: activeClubIndex === i ? '#f0c14b' : '#e8e9e3',
-                        color: activeClubIndex === i ? '#21313c' : '#666',
-                        ...(isMobile ? { width: '32px', height: '32px' } : {}),
+                        width: isMobile ? '36px' : '44px',
+                        height: isMobile ? '36px' : '44px',
                       }}
                     >
-                      <ClubIcon type={club.icon} />
+                      {club.logo ? (
+                        <img src={club.logo} alt={club.name} className="w-full h-full object-contain" style={{ mixBlendMode: 'multiply' }} />
+                      ) : (
+                        <span
+                          className="w-full h-full rounded-full flex items-center justify-center"
+                          style={{
+                            backgroundColor: activeClubIndex === i ? '#f0c14b' : '#e8e9e3',
+                            color: activeClubIndex === i ? '#21313c' : '#666',
+                          }}
+                        >
+                          <ClubIcon type={club.icon} />
+                        </span>
+                      )}
                     </span>
                     <span className="font-medium text-sm md:text-base" style={isMobile ? { fontSize: '28px' } : {}}>{club.name}</span>
                     {activeClubIndex === i && (
@@ -762,10 +776,16 @@ const CampusLife = () => {
                     </motion.div>
                     <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
                     <div
-                      className="absolute top-4 left-4 w-12 h-12 rounded-xl flex items-center justify-center text-white"
-                      style={{ backgroundColor: studentClubs[activeClubIndex].color }}
+                      className="absolute -top-12 left-4 flex items-center justify-center"
+                      style={{ width: isMobile ? '100px' : '200px', height: isMobile ? '100px' : '200px' }}
                     >
-                      <ClubIcon type={studentClubs[activeClubIndex].icon} />
+                      {studentClubs[activeClubIndex].logo ? (
+                        <img src={studentClubs[activeClubIndex].logo} alt={studentClubs[activeClubIndex].name} className="w-full h-full object-contain drop-shadow-lg" style={{ mixBlendMode: 'multiply' }} />
+                      ) : (
+                        <span className="w-14 h-14 rounded-xl flex items-center justify-center bg-white/90 backdrop-blur-sm">
+                          <ClubIcon type={studentClubs[activeClubIndex].icon} />
+                        </span>
+                      )}
                     </div>
                   </div>
 

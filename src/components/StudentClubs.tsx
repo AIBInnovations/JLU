@@ -22,6 +22,9 @@ interface Club {
   description: string;
   image: string;
   logo?: string;
+  logoOffsetRight?: string;
+  logoHeight?: string;
+  logoOffsetTop?: string;
 }
 
 const clubs: Club[] = [
@@ -72,6 +75,7 @@ const clubs: Club[] = [
     description: 'Promotes creative writing skills and what it takes to be a writer and poet. Discuss books, share writings, critique each other\'s work. Activities include discussions, lectures, poetry writing and reading, short story writing, quiz competitions, and interactive sessions.',
     image: '/JLu%20events/photos/Anti%20Ragging%20WEEK/IMG_2091.JPG',
     logo: '/logo/editorial-board.png',
+    logoOffsetRight: '-80px',
   },
   {
     id: 7,
@@ -86,8 +90,9 @@ const clubs: Club[] = [
     name: 'MUN & Debating Society',
     shortName: 'MUN & Debate',
     description: 'Develop skills for parliamentary debate, public speaking and effective communication in a formal setting. Stay aware of current events, present research, learn model UN process, draft resolution assistance, and speech delivery techniques.',
-    image: '/student%20council/IMG_7640.JPG',
+    image: '/clubs/mun-debating.jpg',
     logo: '/logo/mun-debating.png',
+    logoOffsetRight: '-80px',
   },
   {
     id: 9,
@@ -104,6 +109,9 @@ const clubs: Club[] = [
     description: 'A learning-by-doing environment to cultivate entrepreneurship skills. Participate in business development through lectures, bootcamps with resources and mentoring from experienced entrepreneurs. Connect with JLU Foundation for Innovation and Entrepreneurship ecosystem.',
     image: '/student%20council/IMG_7649.JPG',
     logo: '/logo/industry-entrepreneurship.png',
+    logoOffsetRight: '0px',
+    logoHeight: '380px',
+    logoOffsetTop: '-20px',
   },
 ];
 
@@ -117,6 +125,8 @@ export const StudentClubs = () => {
   const [mounted, setMounted] = useState(false);
   const [registrationClub, setRegistrationClub] = useState<Club | null>(null);
   const [formSubmitted, setFormSubmitted] = useState(false);
+  const [showJoinModal, setShowJoinModal] = useState(false);
+  const [joinFormSubmitted, setJoinFormSubmitted] = useState(false);
   const isMobile = useIsMobile();
   const { scrollYProgress: heroScrollProgress } = useScroll({
     target: heroRef,
@@ -385,16 +395,14 @@ export const StudentClubs = () => {
                   </div>
 
                   {/* Content */}
-                  <div className={`${isMobile ? 'h-[60%] px-4 pt-2 pb-3' : 'h-[45%] px-16 xl:px-24 py-10'} flex flex-col justify-start`}>
-                    {/* Club Logo */}
-                    {club.logo && (
-                      <div className={`${isMobile ? 'mb-2' : 'mb-4'}`}>
-                        <img
-                          src={club.logo}
-                          alt={`${club.name} logo`}
-                          className={`${isMobile ? 'h-10' : 'h-14'} w-auto object-contain`}
-                        />
-                      </div>
+                  <div className={`${isMobile ? 'h-[60%] px-4 pt-2 pb-3' : 'h-[45%] px-16 xl:px-24 py-10'} relative flex flex-col justify-start`}>
+                    {!isMobile && club.logo && (
+                      <img
+                        src={club.logo}
+                        alt={`${club.name} logo`}
+                        className={`absolute w-auto object-contain opacity-90 ${club.logoHeight ? '' : 'h-32 xl:h-40'}`}
+                        style={{ right: club.logoOffsetRight || '-8px', top: club.logoOffsetTop || '8px', ...(club.logoHeight ? { height: club.logoHeight } : {}) }}
+                      />
                     )}
                     {!isMobile && (
                       <h2
@@ -408,6 +416,15 @@ export const StudentClubs = () => {
                       >
                         {club.name}
                       </h2>
+                    )}
+                    {isMobile && club.logo && (
+                      <div className="flex items-center gap-3 mb-2">
+                        <img
+                          src={club.logo}
+                          alt={`${club.name} logo`}
+                          className="h-12 w-auto object-contain shrink-0"
+                        />
+                      </div>
                     )}
                     <button
                       onClick={() => setRegistrationClub(club)}
@@ -495,10 +512,11 @@ export const StudentClubs = () => {
               <span style={{ fontFamily: "'Times New Roman', serif", fontStyle: 'italic' }}>Tribe</span>
             </h2>
             <button
-              className="px-8 py-3 md:px-10 md:py-4 rounded-full font-semibold text-sm md:text-base hover:scale-105 transition-transform"
-              style={{ backgroundColor: '#21313c', color: '#ffffff' }}
+              onClick={() => { setShowJoinModal(true); setJoinFormSubmitted(false); }}
+              className="px-8 py-3 md:px-10 md:py-4 rounded-full font-semibold text-sm md:text-base hover:scale-105 transition-transform cursor-pointer"
+              style={{ backgroundColor: '#027ea1', color: '#ffffff' }}
             >
-              Explore All Clubs
+              Join a Club
             </button>
           </div>
         </section>
@@ -691,6 +709,217 @@ export const StudentClubs = () => {
                       type="submit"
                       className="w-full py-3.5 rounded-full text-sm font-semibold uppercase tracking-wider transition-all hover:scale-[1.02] active:scale-[0.98]"
                       style={{ backgroundColor: '#8bc34a', color: '#21313c' }}
+                    >
+                      Submit Registration
+                    </button>
+
+                    <p className="text-center text-xs" style={{ color: '#999' }}>
+                      By registering, you agree to be contacted by the club coordinators.
+                    </p>
+                  </form>
+                )}
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* Join a Club Modal */}
+      <AnimatePresence>
+        {showJoinModal && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.3 }}
+            className="fixed inset-0 z-[9999] flex items-center justify-center p-4"
+            style={{ backgroundColor: 'rgba(0,0,0,0.6)', backdropFilter: 'blur(8px)' }}
+            onClick={() => setShowJoinModal(false)}
+            onWheel={(e) => e.stopPropagation()}
+          >
+            <motion.div
+              initial={{ scale: 0.9, opacity: 0, y: 30 }}
+              animate={{ scale: 1, opacity: 1, y: 0 }}
+              exit={{ scale: 0.9, opacity: 0, y: 30 }}
+              transition={{ type: 'spring', damping: 25, stiffness: 300 }}
+              className="relative w-full max-w-lg bg-white rounded-2xl overflow-hidden shadow-2xl"
+              onClick={(e) => e.stopPropagation()}
+              style={{ maxHeight: '90vh' }}
+            >
+              {/* Modal Header */}
+              <div className="relative h-32 overflow-hidden bg-[#21313c]">
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <div className="text-center">
+                    <p style={{ color: '#027ea1', fontFamily: 'monospace', fontSize: '0.85rem', marginBottom: '4px' }}>
+                      CAMPUS LIFE
+                    </p>
+                    <h3 style={{ color: '#fff', fontSize: '1.5rem', fontWeight: 600 }}>
+                      Join a Club
+                    </h3>
+                  </div>
+                </div>
+                <button
+                  onClick={() => setShowJoinModal(false)}
+                  className="absolute top-4 right-4 w-8 h-8 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center hover:bg-white/40 transition-colors"
+                >
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+                    <path d="M18 6L6 18M6 6l12 12" stroke="#fff" strokeWidth="2" strokeLinecap="round"/>
+                  </svg>
+                </button>
+              </div>
+
+              {/* Form / Success */}
+              <div className="p-6 overflow-y-auto" style={{ maxHeight: 'calc(90vh - 8rem)' }}>
+                {joinFormSubmitted ? (
+                  <motion.div
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.4 }}
+                    className="flex flex-col items-center justify-center text-center py-8"
+                  >
+                    <div className="w-16 h-16 rounded-full bg-[#027ea1]/15 flex items-center justify-center mb-5">
+                      <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#027ea1" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                        <polyline points="20 6 9 17 4 12" />
+                      </svg>
+                    </div>
+                    <h4 className="text-[#21313c] text-xl font-semibold mb-2">Thank You!</h4>
+                    <p className="text-[#666] text-sm mb-1" style={{ lineHeight: 1.7 }}>
+                      Your request to join has been received.
+                    </p>
+                    <p className="text-[#999] text-xs mb-6">
+                      Our club coordinators will get back to you shortly.
+                    </p>
+                    <button
+                      onClick={() => setShowJoinModal(false)}
+                      className="px-8 py-3 rounded-full text-sm font-semibold uppercase tracking-wider transition-all hover:scale-[1.02] active:scale-[0.98]"
+                      style={{ backgroundColor: '#027ea1', color: '#fff' }}
+                    >
+                      Close
+                    </button>
+                  </motion.div>
+                ) : (
+                  <form
+                    className="space-y-4"
+                    onSubmit={(e) => {
+                      e.preventDefault();
+                      const formData = new FormData(e.currentTarget);
+                      const data = Object.fromEntries(formData.entries());
+                      console.log('Join club submitted:', data);
+                      setJoinFormSubmitted(true);
+                    }}
+                  >
+                    <div>
+                      <label className="block text-xs uppercase tracking-wider mb-1.5" style={{ color: '#999' }}>
+                        Select Club <span className="text-red-400">*</span>
+                      </label>
+                      <select
+                        name="club"
+                        required
+                        className="w-full px-4 py-3 rounded-lg border border-gray-200 text-sm outline-none transition-all focus:border-[#027ea1] focus:ring-2 focus:ring-[#027ea1]/20 bg-white"
+                        style={{ color: '#21313c' }}
+                        defaultValue=""
+                      >
+                        <option value="" disabled>Choose a club</option>
+                        {clubs.map((club) => (
+                          <option key={club.id} value={club.name}>{club.name}</option>
+                        ))}
+                      </select>
+                    </div>
+
+                    <div>
+                      <label className="block text-xs uppercase tracking-wider mb-1.5" style={{ color: '#999' }}>
+                        Full Name <span className="text-red-400">*</span>
+                      </label>
+                      <input
+                        name="fullName"
+                        required
+                        type="text"
+                        placeholder="Enter your full name"
+                        className="w-full px-4 py-3 rounded-lg border border-gray-200 text-sm outline-none transition-all focus:border-[#027ea1] focus:ring-2 focus:ring-[#027ea1]/20"
+                        style={{ color: '#21313c' }}
+                      />
+                    </div>
+
+                    <div>
+                      <label className="block text-xs uppercase tracking-wider mb-1.5" style={{ color: '#999' }}>
+                        Email Address <span className="text-red-400">*</span>
+                      </label>
+                      <input
+                        name="email"
+                        required
+                        type="email"
+                        placeholder="your.email@example.com"
+                        className="w-full px-4 py-3 rounded-lg border border-gray-200 text-sm outline-none transition-all focus:border-[#027ea1] focus:ring-2 focus:ring-[#027ea1]/20"
+                        style={{ color: '#21313c' }}
+                      />
+                    </div>
+
+                    <div className="grid grid-cols-2 gap-4">
+                      <div>
+                        <label className="block text-xs uppercase tracking-wider mb-1.5" style={{ color: '#999' }}>
+                          Phone Number <span className="text-red-400">*</span>
+                        </label>
+                        <input
+                          name="phone"
+                          required
+                          type="tel"
+                          placeholder="+91 XXXXX XXXXX"
+                          className="w-full px-4 py-3 rounded-lg border border-gray-200 text-sm outline-none transition-all focus:border-[#027ea1] focus:ring-2 focus:ring-[#027ea1]/20"
+                          style={{ color: '#21313c' }}
+                        />
+                      </div>
+                      <div>
+                        <label className="block text-xs uppercase tracking-wider mb-1.5" style={{ color: '#999' }}>
+                          Year of Study <span className="text-red-400">*</span>
+                        </label>
+                        <select
+                          name="year"
+                          required
+                          className="w-full px-4 py-3 rounded-lg border border-gray-200 text-sm outline-none transition-all focus:border-[#027ea1] focus:ring-2 focus:ring-[#027ea1]/20 bg-white"
+                          style={{ color: '#21313c' }}
+                          defaultValue=""
+                        >
+                          <option value="" disabled>Select year</option>
+                          <option value="1st Year">1st Year</option>
+                          <option value="2nd Year">2nd Year</option>
+                          <option value="3rd Year">3rd Year</option>
+                          <option value="4th Year">4th Year</option>
+                          <option value="5th Year">5th Year</option>
+                        </select>
+                      </div>
+                    </div>
+
+                    <div>
+                      <label className="block text-xs uppercase tracking-wider mb-1.5" style={{ color: '#999' }}>
+                        Course / Programme <span className="text-red-400">*</span>
+                      </label>
+                      <input
+                        name="course"
+                        required
+                        type="text"
+                        placeholder="e.g. B.Tech CSE, BBA, B.Com"
+                        className="w-full px-4 py-3 rounded-lg border border-gray-200 text-sm outline-none transition-all focus:border-[#027ea1] focus:ring-2 focus:ring-[#027ea1]/20"
+                        style={{ color: '#21313c' }}
+                      />
+                    </div>
+
+                    <div>
+                      <label className="block text-xs uppercase tracking-wider mb-1.5" style={{ color: '#999' }}>
+                        Why do you want to join?
+                      </label>
+                      <textarea
+                        name="reason"
+                        rows={3}
+                        placeholder="Tell us briefly why you're interested..."
+                        className="w-full px-4 py-3 rounded-lg border border-gray-200 text-sm outline-none transition-all focus:border-[#027ea1] focus:ring-2 focus:ring-[#027ea1]/20 resize-none"
+                        style={{ color: '#21313c' }}
+                      />
+                    </div>
+
+                    <button
+                      type="submit"
+                      className="w-full py-3.5 rounded-full text-sm font-semibold uppercase tracking-wider transition-all hover:scale-[1.02] active:scale-[0.98]"
+                      style={{ backgroundColor: '#027ea1', color: '#fff' }}
                     >
                       Submit Registration
                     </button>

@@ -1353,7 +1353,7 @@ const Admissions = () => {
           {/* Apply Now Button */}
           <motion.a
             href="/apply"
-            className="inline-flex items-center gap-3 mt-8 px-8 py-4 bg-[#21313c] text-white font-semibold rounded-full shadow-lg hover:bg-[#2a3f4c] transition-colors"
+            className="inline-flex items-center gap-3 mt-8 px-8 py-4 bg-[#027ea1] text-white font-semibold rounded-full shadow-lg hover:bg-[#026a88] transition-colors"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.5 }}
@@ -1423,7 +1423,7 @@ const Admissions = () => {
             viewport={{ once: true }}
             className="mb-16 md:mb-20"
           >
-            <span className="text-[#999] uppercase tracking-widest block mb-5" style={{ fontSize: '28px', letterSpacing: '0.2em' }}>
+            <span className="text-[#999] uppercase tracking-widest block mb-5 font-bold" style={{ fontSize: '28px', letterSpacing: '0.2em' }}>
               Explore Admissions
             </span>
             <h2
@@ -1576,7 +1576,12 @@ const Admissions = () => {
                       viewport={{ once: true }}
                       className="flex items-start gap-4 rounded-xl hover:bg-[#f6f7f0] transition-colors duration-300 cursor-pointer group/item"
                       style={{ padding: isMobile ? '10px' : '16px' }}
-                      onClick={i === 0 ? () => setIsTourModalOpen(true) : undefined}
+                      onClick={() => {
+                        if (i === 0) setIsTourModalOpen(true);
+                        if (i === 1) { setActiveTab('procedure'); document.getElementById('admission-tabs')?.scrollIntoView({ behavior: 'smooth' }); }
+                        if (i === 2) { setActiveTab('faqs'); document.getElementById('admission-tabs')?.scrollIntoView({ behavior: 'smooth' }); }
+                        if (i === 3) window.location.href = '/apply';
+                      }}
                     >
                       <div className="shrink-0 w-10 h-10 rounded-xl bg-[#21313c]/5 flex items-center justify-center group-hover/item:bg-[#21313c] transition-colors duration-300">
                         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#21313c" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="group-hover/item:stroke-white transition-colors duration-300">
@@ -1671,7 +1676,7 @@ const Admissions = () => {
 
                 {/* Fee Details Link */}
                 <div className="mt-8 pt-6 border-t border-[#21313c]/10">
-                  <div className="flex items-center justify-end">
+                  <div className="flex items-center justify-center">
                     <motion.button
                       className="px-5 py-2.5 bg-[#21313c] text-white font-medium text-sm rounded-full flex items-center gap-2"
                       whileHover={{ scale: 1.05 }}
@@ -1708,7 +1713,7 @@ const Admissions = () => {
             className="mb-12 md:mb-16"
           >
             <span
-              className="text-[#999] uppercase tracking-widest block mb-6"
+              className="text-[#999] uppercase tracking-widest block mb-6 font-bold"
               style={{ fontSize: '28px', letterSpacing: '0.2em' }}
             >
               Everything You Need
@@ -1730,7 +1735,7 @@ const Admissions = () => {
           </motion.div>
 
           {/* Tabs + Content Layout */}
-          <div className={`flex flex-col lg:flex-row gap-0 ${isMobile ? 'min-h-0' : 'min-h-[600px]'}`}>
+          <div id="admission-tabs" className={`flex flex-col lg:flex-row gap-0 ${isMobile ? 'min-h-0' : 'min-h-[600px]'}`}>
 
             {/* Left Sidebar — Tab Navigation */}
             <div className={`lg:w-[320px] shrink-0 bg-[#21313c] rounded-t-2xl lg:rounded-l-2xl lg:rounded-tr-none flex flex-col ${isMobile ? '' : 'p-6 lg:p-8'}`} style={isMobile ? { padding: '10px 12px' } : undefined}>
@@ -2369,7 +2374,7 @@ const Admissions = () => {
             className={`text-center ${isMobile ? 'mb-12' : 'mb-24'}`}
           >
             <span
-              className="text-[#999] uppercase tracking-widest block mb-6"
+              className="text-[#999] uppercase tracking-widest block mb-6 font-bold"
               style={{ fontSize: '28px', letterSpacing: '0.2em' }}
             >
               Academic Programs
@@ -2472,7 +2477,7 @@ const Admissions = () => {
             className={isMobile ? 'mb-10' : 'mb-20'}
           >
             <span
-              className="text-[#999] uppercase tracking-widest block mb-6"
+              className="text-[#999] uppercase tracking-widest block mb-6 font-bold"
               style={{ fontSize: '28px', letterSpacing: '0.2em' }}
             >
               Special Programs
@@ -2570,7 +2575,7 @@ const Admissions = () => {
           >
             <div>
               <span
-                className="text-[#999] uppercase tracking-widest block mb-6"
+                className="text-[#999] uppercase tracking-widest block mb-6 font-bold"
                 style={{ fontSize: '28px', letterSpacing: '0.2em' }}
               >
                 Experience
