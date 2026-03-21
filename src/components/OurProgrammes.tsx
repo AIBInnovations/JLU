@@ -232,7 +232,7 @@ export const OurProgrammes = () => {
         </div>
       </motion.div>
       <div className="mt-2 md:mt-0" style={{ paddingLeft: isMobile ? '4px' : '10px', paddingRight: isMobile ? '4px' : '10px' }}>
-        <div className="flex" style={{ gap: isMobile ? '4px' : '10px' }}>
+        <div className="flex items-end" style={{ gap: isMobile ? '4px' : '10px' }}>
           {/* First card - l */}
           <div
             className="overflow-hidden flex-1 rounded-t-2xl group cursor-pointer"
