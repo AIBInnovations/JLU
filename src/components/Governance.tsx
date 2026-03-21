@@ -266,14 +266,14 @@ const Governance = () => {
               {/* Paragraphs */}
               <div className="flex-1 space-y-4 order-2 md:order-1">
                 <p
-                  className="text-[#666] text-sm md:text-[15px]"
-                  style={{ lineHeight: 1.7 }}
+                  className="text-[#666] text-base md:text-lg"
+                  style={{ lineHeight: 1.8 }}
                 >
                   Strong governance ensures that JLU grows with clarity of purpose and integrity of action. The university's academic and administrative leadership work together to uphold standards, inspire innovation and guide long term institutional development.
                 </p>
                 <p
-                  className="text-[#666] text-sm md:text-[15px]"
-                  style={{ lineHeight: 1.7 }}
+                  className="text-[#666] text-base md:text-lg"
+                  style={{ lineHeight: 1.8 }}
                 >
                   These bodies play a key role in shaping academic direction, institutional policies and strategic growth, ensuring that JLU remains responsive to educational needs and global standards.
                 </p>

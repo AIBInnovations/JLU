@@ -62,12 +62,12 @@ export const LatestNews = () => {
         {/* Section Header */}
         <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-4 md:gap-6 mb-8 md:mb-12">
           <div>
-            <span className="text-xl md:text-2xl font-bold text-[#027ea1] tracking-wider uppercase mb-2 block">
+            <span className="text-[#999] uppercase tracking-widest block mb-4 md:mb-6 text-xl md:text-2xl font-bold" style={{ letterSpacing: '0.2em' }}>
               Stay Updated
             </span>
             <h2
-              className="text-4xl md:text-5xl lg:text-6xl font-semibold text-[#21313c]"
-              style={{ fontFamily: 'Inter, sans-serif', letterSpacing: '-0.02em' }}
+              className="text-[#21313c]"
+              style={{ fontSize: 'clamp(3rem, 6vw, 5rem)', fontWeight: 600, lineHeight: 1.1, letterSpacing: '-0.03em' }}
             >
               Latest News &{' '}
               <span style={{ fontFamily: "'Times New Roman', serif", fontStyle: 'italic', fontWeight: 400 }}>

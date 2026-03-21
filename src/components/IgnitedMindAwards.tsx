@@ -28,7 +28,7 @@ const IgnitedMindAwards = () => {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, ease: customEase }}
           viewport={{ once: true }}
-          className="flex flex-col md:flex-row md:justify-between md:items-end mb-8 md:mb-16 pb-6 md:pb-10"
+          className="flex flex-col md:flex-row md:justify-between md:items-start mb-8 md:mb-16 pb-6 md:pb-10"
           style={{ borderBottom: '1px solid #e5e5e5' }}
         >
           <div className="mb-6 md:mb-0">

@@ -10,6 +10,7 @@ const leadershipData = [
     title: "CHANCELLOR'S MESSAGE",
     name: 'Mr. Hari Mohan Gupta',
     image: '/leadership/chancellor.jpg',
+    linkedin: 'https://in.linkedin.com/in/hari-mohan-gupta-318960153',
     messages: [
       'At JLU, education begins with people. The purpose of a university is not only to teach knowledge, but also to nurture understanding, empathy and resilience. Every voice here matters, students, teachers and staff, because together they shape the character of this institution.',
       'Our commitment has always been to create an environment where learning is curious and connected to life beyond the classroom. As JLU continues to grow in reach and vision, it remains anchored by the belief that education should empower individuals and communities alike.',
@@ -19,6 +20,7 @@ const leadershipData = [
     title: "PRO CHANCELLOR'S MESSAGE",
     name: 'Mr. Abhishek Mohan Gupta',
     image: '/leadership/pro-chancellor.jpg',
+    linkedin: 'https://in.linkedin.com/in/abhishekmgupta',
     messages: [
       'Education is a dialogue, not a monologue. It thrives on diversity of thought, openness to experience and the courage to challenge conventions. At JLU, students are encouraged to question, reflect and expand their horizons.',
       'Our global partnerships, interdisciplinary programs and focus on meaningful engagement reflect a deeper belief, that learning should prepare students for the world as it is and the world as it will become.',
@@ -28,6 +30,7 @@ const leadershipData = [
     title: "VICE CHANCELLOR'S MESSAGE",
     name: 'Prof. Dr. Nilanjan Chattopadhyay',
     image: '/leadership/vice-chancellor.webp',
+    linkedin: 'https://www.linkedin.com/in/nchattopadhyay/',
     messages: [
       'A university is shaped by its academic spirit, the curiosity of its learners and the guidance of its educators. At JLU, classrooms are spaces of conversation, collaboration and creation.',
       'Our approach to education is rooted in real world relevance, critical thinking and human values. Every student is encouraged to think independently, work collaboratively and emerge not only career ready, but life ready.',
@@ -37,6 +40,7 @@ const leadershipData = [
     title: "REGISTRAR'S MESSAGE",
     name: 'Mr. Pankaj Das',
     image: '/leadership/registrar.jpg',
+    linkedin: '',
     messages: [
       'The Office of the Registrar serves as the administrative backbone of Jagran Lakecity University, ensuring that academic processes, governance frameworks and institutional standards operate with efficiency and integrity.',
       'Our commitment is to provide seamless support to students, faculty and stakeholders alike, upholding the values of transparency, accountability and excellence that define JLU.',
@@ -46,6 +50,7 @@ const leadershipData = [
     title: "CHIEF FINANCE AND ACCOUNTS OFFICER'S MESSAGE",
     name: 'CA Archana Jain',
     image: '/leadership/cfo.jpg',
+    linkedin: 'https://www.linkedin.com/in/archana-jain-33189397/',
     messages: [
       'Sound financial stewardship is essential to the long-term sustainability and growth of any institution. At JLU, we are committed to maintaining the highest standards of fiscal responsibility, transparency and accountability.',
       'Our goal is to ensure that every resource is optimally utilized to support the university\'s academic mission, infrastructure development and student welfare initiatives.',
@@ -55,6 +60,7 @@ const leadershipData = [
     title: "PRO VICE CHANCELLOR (STUDENT WELFARE)'S MESSAGE",
     name: 'Dr. Vivek Khare',
     image: '/leadership/pvc-student-welfare.jpg',
+    linkedin: 'https://in.linkedin.com/in/dr-vivek-khare-8666a61a',
     messages: [
       'Student welfare is at the heart of everything we do at JLU. Our endeavour is to create a supportive, inclusive and enriching environment where every student can thrive academically, socially and personally.',
       'From mentorship programs to wellness initiatives, we are dedicated to ensuring that each student\'s journey at JLU is fulfilling and transformative.',
@@ -64,6 +70,7 @@ const leadershipData = [
     title: "PRO VICE CHANCELLOR (SCIENCE AND TECHNOLOGY)'S MESSAGE",
     name: 'Dr. Prasheel Suryawanshi',
     image: '/leadership/pvc-science-tech.png',
+    linkedin: 'https://www.linkedin.com/in/prasheel-suryawanshi-8b368b21/',
     messages: [
       'Science and technology are the driving forces of progress. At JLU, we are committed to fostering innovation, research excellence and technological advancement through cutting-edge programs and industry collaboration.',
       'Our vision is to prepare students who can lead the next wave of scientific discovery and technological transformation, contributing meaningfully to society and the global knowledge economy.',
@@ -152,9 +159,16 @@ const LeadershipMessages = () => {
                   >
                     {leader.title}
                   </span>
-                  <h3 className="text-[#21313c] font-semibold text-base">
-                    {leader.name}
-                  </h3>
+                  <div className="flex items-center gap-2">
+                    <h3 className="text-[#21313c] font-semibold text-base">
+                      {leader.name}
+                    </h3>
+                    {leader.linkedin && (
+                      <a href={leader.linkedin} target="_blank" rel="noopener noreferrer" className="text-[#0077b5] hover:text-[#005582] transition-colors">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+                      </a>
+                    )}
+                  </div>
                 </div>
 
                 <div className="space-y-3">
@@ -218,12 +232,19 @@ const LeadershipMessages = () => {
                     >
                       {leader.title}
                     </span>
-                    <h3
-                      className="text-[#21313c] text-2xl"
-                      style={{ fontWeight: 600, lineHeight: 1.2 }}
-                    >
-                      {leader.name}
-                    </h3>
+                    <div className="flex items-center gap-3">
+                      <h3
+                        className="text-[#21313c] text-2xl"
+                        style={{ fontWeight: 600, lineHeight: 1.2 }}
+                      >
+                        {leader.name}
+                      </h3>
+                      {leader.linkedin && (
+                        <a href={leader.linkedin} target="_blank" rel="noopener noreferrer" className="text-[#0077b5] hover:text-[#005582] transition-colors">
+                          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+                        </a>
+                      )}
+                    </div>
                   </div>
 
                   <div className="space-y-4">

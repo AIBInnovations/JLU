@@ -247,15 +247,15 @@ export const AlumniSection = () => {
             {/* Section Title */}
             <div className="mb-6 md:mb-8">
               <h2
-                className="text-4xl md:text-5xl lg:text-6xl font-semibold text-[#21313c]"
-                style={{ fontFamily: 'Inter, sans-serif', letterSpacing: '-0.02em' }}
+                className="text-[#21313c]"
+                style={{ fontSize: 'clamp(3rem, 6vw, 5rem)', fontWeight: 600, lineHeight: 1.1, letterSpacing: '-0.03em' }}
               >
                 Alumni{' '}
                 <span style={{ fontFamily: "'Times New Roman', serif", fontStyle: 'italic', fontWeight: 400 }}>
                   Award
                 </span>
               </h2>
-              <p className="text-[#999] text-sm sm:text-base mt-2" style={{ letterSpacing: '0.05em' }}>
+              <p className="text-[#999] text-base sm:text-lg md:text-xl mt-3" style={{ letterSpacing: '0.05em' }}>
                 Recipients — Last 3 Years
               </p>
             </div>

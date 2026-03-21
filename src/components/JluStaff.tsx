@@ -20,7 +20,7 @@ const JluStaff = () => {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, ease: customEase }}
           viewport={{ once: true }}
-          className="flex flex-col md:flex-row md:justify-between md:items-end mb-8 md:mb-12"
+          className="flex flex-col md:flex-row md:justify-between md:items-start mb-8 md:mb-12"
         >
           <div className="mb-6 md:mb-0">
             <span
@@ -44,10 +44,10 @@ const JluStaff = () => {
             </h2>
           </div>
           <p
-            className="text-[#666] text-sm md:text-base max-w-full md:max-w-[400px]"
-            style={{ lineHeight: 1.7 }}
+            className="text-[#666] text-lg sm:text-xl md:text-[clamp(1.25rem,2vw,1.75rem)] text-right"
+            style={{ lineHeight: 1.8 }}
           >
-            Behind every classroom, event and initiative is a dedicated team that supports the university&apos;s everyday functioning.
+            Behind every classroom, event<br />and initiative is a dedicated team that supports<br />the university&apos;s everyday functioning.
           </p>
         </motion.div>
 
@@ -74,13 +74,13 @@ const JluStaff = () => {
                 View Faculty
               </span>
             </div>
-            {/* Bottom text */}
-            <div className="absolute bottom-0 left-0 right-0 p-5 sm:p-8 md:p-10 transition-opacity duration-300 group-hover:opacity-0">
+            {/* Black overlay at bottom */}
+            <div className="absolute bottom-0 left-0 right-0 bg-black/70 p-5 sm:p-8 md:p-10 transition-opacity duration-300 group-hover:opacity-0">
               <p
-                className="text-white/90 text-xs sm:text-sm md:text-[15px] max-w-[600px]"
-                style={{ lineHeight: 1.7 }}
+                className="text-white text-base sm:text-lg md:text-xl max-w-[700px]"
+                style={{ lineHeight: 1.8 }}
               >
-                JLU&apos;s staff form the backbone of the institution, contributing with commitment, care and professionalism.
+                Behind every classroom, event and initiative is a dedicated team<br />that supports the university&apos;s everyday functioning.
               </p>
             </div>
           </motion.div>
