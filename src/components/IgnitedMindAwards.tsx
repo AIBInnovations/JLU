@@ -33,7 +33,7 @@ const IgnitedMindAwards = () => {
         >
           <div className="mb-6 md:mb-0">
             <span
-              className="text-[#999] uppercase tracking-widest block text-sm sm:text-base mb-3 md:mb-4"
+              className="text-[#999] uppercase tracking-widest block text-xl md:text-2xl font-bold mb-3 md:mb-4"
               style={{ letterSpacing: '0.2em' }}
             >
               Awards
@@ -80,7 +80,7 @@ const IgnitedMindAwards = () => {
             <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent" />
             <div className="absolute bottom-0 left-0 right-0 p-5 sm:p-8 md:p-10">
               <span
-                className="text-[#f4c950] text-[11px] sm:text-[12px] md:text-[13px] uppercase tracking-widest block mb-3"
+                className="text-[#f4c950] text-xl md:text-2xl font-bold uppercase tracking-widest block mb-3"
                 style={{ letterSpacing: '0.2em' }}
               >
                 Annual Ceremony
@@ -157,7 +157,7 @@ const IgnitedMindAwards = () => {
                     {String(index + 1).padStart(2, '0')}
                   </div>
                   <div>
-                    <h4 className="text-[#21313c] text-base md:text-lg font-semibold mb-1">
+                    <h4 className="text-[#21313c] text-xl md:text-2xl font-bold mb-1">
                       {item.category}
                     </h4>
                     <p className="text-[#999] text-sm md:text-base" style={{ lineHeight: 1.6 }}>

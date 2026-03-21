@@ -76,20 +76,25 @@ export const EventsSection = () => {
           viewport={{ once: true }}
           transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
         >
-          <p
-            className="text-base md:text-lg mb-4"
-            style={{ color: '#999', letterSpacing: '0.2em', textTransform: 'uppercase' }}
+          <span
+            className="text-[#999] uppercase tracking-widest block mb-4 md:mb-6 text-xl md:text-2xl font-bold"
+            style={{ letterSpacing: '0.2em' }}
           >
             CAMPUS LIFE
-          </p>
+          </span>
           <h2
-            className="text-4xl md:text-5xl lg:text-6xl text-[#21313c] mb-3"
-            style={{ fontWeight: 600, lineHeight: 1 }}
+            className="text-[#21313c] mb-4 md:mb-6"
+            style={{
+              fontSize: 'clamp(3rem, 6vw, 5rem)',
+              fontWeight: 600,
+              lineHeight: 1.1,
+              letterSpacing: '-0.03em',
+            }}
           >
             Moments worth{' '}
-            <span style={{ fontFamily: "'Times New Roman', serif", fontStyle: 'italic' }}>stepping into</span>
+            <span style={{ fontFamily: "'Times New Roman', serif", fontStyle: 'italic', fontWeight: 400 }}>stepping into</span>
           </h2>
-          <p className="text-lg md:text-xl max-w-2xl mx-auto" style={{ color: '#666', lineHeight: 1.7 }}>
+          <p className="text-lg sm:text-xl md:text-[clamp(1.25rem,2vw,1.75rem)] max-w-[1000px] mx-auto" style={{ color: '#666', lineHeight: 1.8 }}>
             From cultural celebrations to talent showcases, experience the vibrant campus life at Jagran Lakecity University.
           </p>
           <div className="mx-auto mt-4" style={{ width: '274px', height: '0px', border: '4px solid #027ea1' }} />
@@ -267,15 +272,15 @@ export const EventsSection = () => {
         </div>
 
         {/* Text Content - Positioned Independently - Hidden on Mobile */}
-        <div className="absolute text-left hidden lg:block" style={{ top: '48%', right: '41%', maxWidth: '250px' }}>
+        <div className="absolute text-left hidden lg:block z-10" style={{ top: '52%', right: '35%', maxWidth: '380px' }}>
           <h3
-            className="text-2xl md:text-3xl lg:text-4xl text-[#21313c] mb-3 leading-tight"
+            className="text-3xl md:text-4xl lg:text-5xl text-[#21313c] mb-2 leading-[1.1]"
             style={{ fontWeight: 600 }}
           >
-            SEE WHAT'S{' '}
-            <span style={{ fontFamily: "'Times New Roman', serif", fontStyle: 'italic' }}>GOING ON</span>
+            SEE WHAT&apos;S{' '}
+            <span style={{ fontFamily: "'Times New Roman', serif", fontStyle: 'italic', fontWeight: 400 }}>GOING ON</span>
           </h3>
-          <p className="text-sm md:text-base" style={{ color: '#666', lineHeight: 1.7 }}>
+          <p className="text-base md:text-lg" style={{ color: '#666', lineHeight: 1.5 }}>
             Current and upcoming events at JLU — from celebrations and talent shows to orientations and milestones.
           </p>
         </div>

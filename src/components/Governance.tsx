@@ -243,7 +243,7 @@ const Governance = () => {
           {/* Left Column: Heading and Governance Bodies */}
           <div className="flex-1">
             <span
-              className="text-[#999] uppercase tracking-widest block text-[10px] sm:text-xs mb-3 md:mb-4"
+              className="text-[#999] uppercase tracking-widest block text-xl md:text-2xl font-bold mb-3 md:mb-4"
               style={{ letterSpacing: '0.2em' }}
             >
               Structure

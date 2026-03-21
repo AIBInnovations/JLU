@@ -296,7 +296,7 @@ export const SchoolPage = ({ school, faculty }: SchoolPageProps) => {
             className="flex flex-col md:flex-row md:items-end md:justify-between mb-10 sm:mb-14 md:mb-20"
           >
             <div>
-              <span className="text-[#f0c14b] text-[10px] sm:text-xs tracking-[0.3em] uppercase block mb-3 sm:mb-4">
+              <span className="text-[#f0c14b] text-xl md:text-2xl font-bold tracking-[0.3em] uppercase block mb-3 sm:mb-4">
                 What We Offer
               </span>
               <h2
@@ -339,7 +339,7 @@ export const SchoolPage = ({ school, faculty }: SchoolPageProps) => {
                   </span>
                   <span className={`text-[10px] sm:text-xs px-2.5 sm:px-3 py-1 sm:py-1.5 rounded-full font-medium ${
                     program.degree === 'UG'
-                      ? 'text-[#c3fd7a] bg-[#c3fd7a]/10 border border-[#c3fd7a]/20'
+                      ? 'text-[#027ea1] bg-[#027ea1]/10 border border-[#027ea1]/20'
                       : program.degree === 'PG' || program.degree === 'PhD'
                       ? 'text-[#f0c14b] bg-[#f0c14b]/10 border border-[#f0c14b]/20'
                       : 'text-[#8bc34a] bg-[#8bc34a]/10 border border-[#8bc34a]/20'
@@ -397,7 +397,7 @@ export const SchoolPage = ({ school, faculty }: SchoolPageProps) => {
             transition={{ duration: 0.8, ease: customEase }}
             className="mb-10 sm:mb-12 md:mb-20"
           >
-            <span className="text-[#999] text-[10px] sm:text-xs tracking-[0.3em] uppercase block mb-3 sm:mb-4">
+            <span className="text-[#999] text-xl md:text-2xl font-bold tracking-[0.3em] uppercase block mb-3 sm:mb-4">
               Why Choose Us
             </span>
             <h2
@@ -493,7 +493,7 @@ export const SchoolPage = ({ school, faculty }: SchoolPageProps) => {
               className="flex flex-col md:flex-row md:items-end md:justify-between mb-8 sm:mb-12 md:mb-16"
             >
               <div>
-                <span className="text-[#999] text-[10px] sm:text-xs tracking-[0.3em] uppercase block mb-3 sm:mb-4">
+                <span className="text-[#999] text-xl md:text-2xl font-bold tracking-[0.3em] uppercase block mb-3 sm:mb-4">
                   {faculty.name}
                 </span>
                 <h2
@@ -603,7 +603,7 @@ export const SchoolPage = ({ school, faculty }: SchoolPageProps) => {
               transition={{ duration: 0.8, ease: customEase }}
               className="max-w-[450px]"
             >
-              <span className="text-[#21313c]/50 text-[10px] sm:text-xs tracking-[0.2em] uppercase block mb-3 sm:mb-4">
+              <span className="text-[#21313c]/50 text-xl md:text-2xl font-bold tracking-[0.2em] uppercase block mb-3 sm:mb-4">
                 Start Your Journey
               </span>
               <h2

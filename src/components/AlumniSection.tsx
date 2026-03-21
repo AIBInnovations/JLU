@@ -402,7 +402,7 @@ export const AlumniSection = () => {
                   href="/alumni"
                   className="inline-flex items-center gap-3 group"
                   style={{
-                    fontSize: '14px',
+                    fontSize: '28px',
                     fontWeight: 600,
                     color: '#21313c',
                     letterSpacing: '0.05em',

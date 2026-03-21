@@ -62,7 +62,7 @@ export const LatestNews = () => {
         {/* Section Header */}
         <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-4 md:gap-6 mb-8 md:mb-12">
           <div>
-            <span className="text-base md:text-lg font-medium text-[#027ea1] tracking-wider uppercase mb-2 block">
+            <span className="text-xl md:text-2xl font-bold text-[#027ea1] tracking-wider uppercase mb-2 block">
               Stay Updated
             </span>
             <h2

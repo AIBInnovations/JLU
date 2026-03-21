@@ -150,9 +150,9 @@ const ScholarshipApplication = () => {
 
   const availableCourses = formData.programLevel ? programOptions[formData.programLevel] || [] : [];
 
-  const inputClasses = "w-full px-5 py-4 bg-white border-2 border-gray-200 rounded-xl text-[#21313c] placeholder-gray-400 focus:border-[#c3fd7a] focus:outline-none transition-colors text-base";
+  const inputClasses = "w-full px-5 py-4 bg-white border-2 border-gray-200 rounded-xl text-[#21313c] placeholder-gray-400 focus:border-[#027ea1] focus:outline-none transition-colors text-base";
   const labelClasses = "block text-[#21313c] font-medium mb-2 text-sm";
-  const selectClasses = "w-full px-5 py-4 bg-white border-2 border-gray-200 rounded-xl text-[#21313c] focus:border-[#c3fd7a] focus:outline-none transition-colors text-base appearance-none cursor-pointer";
+  const selectClasses = "w-full px-5 py-4 bg-white border-2 border-gray-200 rounded-xl text-[#21313c] focus:border-[#027ea1] focus:outline-none transition-colors text-base appearance-none cursor-pointer";
   const errorClasses = "text-red-500 text-xs mt-1";
 
   const stepLabels = ['Personal Info', 'Academics', 'Scholarship'];
@@ -181,7 +181,7 @@ const ScholarshipApplication = () => {
             >
               <span
                 className="text-white/70 uppercase tracking-widest block mb-4"
-                style={{ fontSize: '12px', letterSpacing: '0.2em' }}
+                style={{ fontSize: '28px', fontWeight: 700, letterSpacing: '0.2em' }}
               >
                 Financial Support
               </span>
@@ -229,7 +229,7 @@ const ScholarshipApplication = () => {
                             <motion.div
                               className={`w-10 h-10 rounded-full flex items-center justify-center font-semibold text-sm transition-colors ${
                                 currentStep >= step
-                                  ? 'bg-[#c3fd7a] text-[#21313c]'
+                                  ? 'bg-[#027ea1] text-white'
                                   : 'bg-gray-200 text-gray-500'
                               }`}
                               animate={{ scale: currentStep === step ? 1.1 : 1 }}
@@ -250,7 +250,7 @@ const ScholarshipApplication = () => {
                           {step < 3 && (
                             <div
                               className={`w-10 h-1 mx-2 rounded-full transition-colors ${
-                                currentStep > step ? 'bg-[#c3fd7a]' : 'bg-gray-200'
+                                currentStep > step ? 'bg-[#027ea1]' : 'bg-gray-200'
                               }`}
                             />
                           )}
@@ -689,7 +689,7 @@ const ScholarshipApplication = () => {
                           <motion.button
                             type="submit"
                             disabled={isSubmitting}
-                            className="flex-1 py-4 bg-[#c3fd7a] text-[#21313c] font-semibold rounded-xl hover:bg-[#b3ed6a] transition-colors flex items-center justify-center gap-2 disabled:opacity-70 disabled:cursor-not-allowed cursor-pointer"
+                            className="flex-1 py-4 bg-[#027ea1] text-white font-semibold rounded-xl hover:bg-[#025f7a] transition-colors flex items-center justify-center gap-2 disabled:opacity-70 disabled:cursor-not-allowed cursor-pointer"
                             whileHover={{ scale: 1.01 }}
                             whileTap={{ scale: 0.99 }}
                           >
@@ -723,7 +723,7 @@ const ScholarshipApplication = () => {
                     animate={{ opacity: 1, scale: 1 }}
                   >
                     <motion.div
-                      className="w-20 h-20 bg-[#c3fd7a] rounded-full flex items-center justify-center mb-6"
+                      className="w-20 h-20 bg-[#027ea1] rounded-full flex items-center justify-center mb-6"
                       initial={{ scale: 0 }}
                       animate={{ scale: 1 }}
                       transition={{ type: 'spring', delay: 0.2 }}

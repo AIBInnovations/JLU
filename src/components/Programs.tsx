@@ -124,7 +124,7 @@ const Programs = () => {
                 52+
               </span>
               <span
-                className="text-[#21313c] uppercase tracking-widest block text-[11px] sm:text-xs md:text-sm mt-2 md:mt-4"
+                className="text-[#21313c] uppercase tracking-widest block text-xl md:text-2xl font-bold mt-2 md:mt-4"
                 style={{
                   fontWeight: 500,
                 }}

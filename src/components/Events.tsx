@@ -352,7 +352,7 @@ const Events = () => {
             <div className="flex flex-row items-end gap-2 md:gap-8">
               <div style={{ minWidth: 'auto' }}>
                 <label
-                  className="block text-[#999] uppercase tracking-wider text-[7px] md:text-[10px] mb-1 md:mb-2"
+                  className="block text-[#999] uppercase tracking-wider text-[7px] md:text-xl md:text-2xl font-bold mb-1 md:mb-2"
                   style={{ letterSpacing: '0.15em' }}
                 >
                   Keyword
@@ -371,7 +371,7 @@ const Events = () => {
               </div>
               <div style={{ minWidth: 'auto' }}>
                 <label
-                  className="block text-[#999] uppercase tracking-wider text-[7px] md:text-[10px] mb-1 md:mb-2"
+                  className="block text-[#999] uppercase tracking-wider text-[7px] md:text-xl md:text-2xl font-bold mb-1 md:mb-2"
                   style={{ letterSpacing: '0.15em' }}
                 >
                   Year

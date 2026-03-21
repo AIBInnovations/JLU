@@ -8,7 +8,7 @@ export const CtaBanner = () => {
           {/* Left - Text */}
           <div className="max-w-xl">
             <p
-              className="text-base md:text-lg mb-3"
+              className="text-xl md:text-2xl font-bold mb-3"
               style={{ color: '#21313c', letterSpacing: '0.2em', textTransform: 'uppercase', opacity: 0.6 }}
             >
               ADMISSIONS OPEN 2026-27

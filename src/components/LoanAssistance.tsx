@@ -179,7 +179,7 @@ const LoanAssistance = () => {
             >
               <span
                 className="text-white/70 uppercase tracking-widest block mb-4"
-                style={{ fontSize: '12px', letterSpacing: '0.2em' }}
+                style={{ fontSize: '28px', fontWeight: 700, letterSpacing: '0.2em' }}
               >
                 Financial Support
               </span>
@@ -564,7 +564,7 @@ const LoanAssistance = () => {
                     animate={{ opacity: 1, scale: 1 }}
                   >
                     <motion.div
-                      className="w-20 h-20 bg-[#c3fd7a] rounded-full flex items-center justify-center mb-6"
+                      className="w-20 h-20 bg-[#027ea1] rounded-full flex items-center justify-center mb-6"
                       initial={{ scale: 0 }}
                       animate={{ scale: 1 }}
                       transition={{ type: 'spring', delay: 0.2 }}

@@ -24,20 +24,25 @@ export const OurProgrammes = () => {
         viewport={{ once: true }}
         transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
       >
-        <p
-          className="text-base md:text-lg mb-4"
-          style={{ color: '#999', letterSpacing: '0.2em', textTransform: 'uppercase' }}
+        <span
+          className="text-[#999] uppercase tracking-widest block mb-4 md:mb-6 text-xl md:text-2xl font-bold"
+          style={{ letterSpacing: '0.2em' }}
         >
           ACADEMIC PROGRAMMES
-        </p>
+        </span>
         <h2
-          className="text-4xl md:text-5xl lg:text-6xl text-[#21313c] mb-4"
-          style={{ fontWeight: 600, lineHeight: 1 }}
+          className="text-[#21313c] mb-4 md:mb-6"
+          style={{
+            fontSize: 'clamp(3rem, 6vw, 5rem)',
+            fontWeight: 600,
+            lineHeight: 1.1,
+            letterSpacing: '-0.03em',
+          }}
         >
           Learning,{' '}
-          <span style={{ fontFamily: "'Times New Roman', serif", fontStyle: 'italic' }}>Unbounded</span>
+          <span style={{ fontFamily: "'Times New Roman', serif", fontStyle: 'italic', fontWeight: 400 }}>Unbounded</span>
         </h2>
-        <p className="text-lg md:text-xl max-w-2xl mx-auto" style={{ color: '#666', lineHeight: 1.7 }}>
+        <p className="text-lg sm:text-xl md:text-[clamp(1.25rem,2vw,1.75rem)] max-w-[1000px] mx-auto" style={{ color: '#666', lineHeight: 1.8 }}>
           Education here resists confinement. It takes shape in studios and libraries, in late conversations and early ideas, through collaboration as much as quiet contemplation.
         </p>
         <div className="mx-auto mt-6" style={{ width: '274px', height: '0px', border: '4px solid #027ea1' }} />
@@ -167,20 +172,27 @@ export const OurProgrammes = () => {
         viewport={{ once: true }}
         transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
       >
-        {/* Big Text - Left aligned */}
-        <div className="mb-6">
-          <h3
-            className="text-xl md:text-2xl lg:text-3xl text-[#21313c] leading-tight lg:w-1/2"
-            style={{ fontWeight: 600 }}
+        <div className={`flex w-full ${isMobile ? 'flex-col gap-4' : 'flex-row gap-10'} items-start`}>
+          <p
+            className="flex-1 text-[#666]"
+            style={{
+              fontFamily: 'Inter, sans-serif',
+              fontSize: isMobile ? '24px' : '30px',
+              lineHeight: 1.7,
+              fontWeight: 400,
+            }}
           >
-            Learning at JLU is not limited to schedules or spaces. It evolves through{' '}
-            <span style={{ fontFamily: "'Times New Roman', serif", fontStyle: 'italic' }}>experience</span>, interaction, and reflection.
-          </h3>
-        </div>
-
-        {/* Small Text - Right aligned */}
-        <div className="flex justify-end">
-          <p className="text-base md:text-lg lg:w-1/2" style={{ color: '#666', lineHeight: 1.7 }}>
+            Learning at JLU is not limited to schedules or spaces. It evolves through experience, interaction, and reflection.
+          </p>
+          <p
+            className="flex-1 text-[#999]"
+            style={{
+              fontFamily: 'Inter, sans-serif',
+              fontSize: isMobile ? '24px' : '30px',
+              lineHeight: 1.7,
+              fontWeight: 400,
+            }}
+          >
             It remains relevant because it stays connected to the world beyond campus, and personal because it grows with each individual who experiences it.
           </p>
         </div>
@@ -197,7 +209,7 @@ export const OurProgrammes = () => {
         <div className="flex flex-col md:flex-row md:justify-between md:items-end mb-6 md:mb-10">
           <div>
             <p
-              className="text-base md:text-lg mb-2"
+              className="text-xl md:text-2xl font-bold mb-2"
               style={{ color: '#999', letterSpacing: '0.2em', textTransform: 'uppercase' }}
             >
               CAMPUS LIFE
@@ -230,8 +242,8 @@ export const OurProgrammes = () => {
             }}
           >
             <img
-              src="/campus/gallery-6.jpg"
-              alt="Students at JLU's Got Talent"
+              src="/campus/campus-life-group.jpg"
+              alt="Students on Campus"
               className="w-full h-full object-cover rounded-t-2xl transition-transform duration-500 group-hover:scale-110"
             />
           </div>
@@ -245,8 +257,8 @@ export const OurProgrammes = () => {
             }}
           >
             <img
-              src="/campus/beyond-classroom.jpg"
-              alt="Students Beyond the Classroom"
+              src="/campus/campus-life-hero.jpg"
+              alt="Campus Life"
               className="w-full h-full object-cover rounded-t-2xl transition-transform duration-500 group-hover:scale-110"
             />
           </div>
@@ -259,8 +271,8 @@ export const OurProgrammes = () => {
             }}
           >
             <img
-              src="/campus/gallery-3.jpg"
-              alt="Students in Traditional Outfits"
+              src="/campus/beyond-classroom.jpg"
+              alt="Students Beyond the Classroom"
               className="w-full h-full object-cover rounded-t-2xl transition-transform duration-500 group-hover:scale-110"
             />
           </div>

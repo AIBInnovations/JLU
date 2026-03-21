@@ -87,7 +87,7 @@ const LeadershipMessages = () => {
           className="mb-8 md:mb-16"
         >
           <span
-            className="text-[#999] uppercase tracking-widest block text-[12px] sm:text-xs mb-3 md:mb-4"
+            className="text-[#999] uppercase tracking-widest block text-xl md:text-2xl font-bold mb-3 md:mb-4"
             style={{ letterSpacing: '0.2em' }}
           >
             Leadership
@@ -147,7 +147,7 @@ const LeadershipMessages = () => {
 
                 <div className="mb-3">
                   <span
-                    className="text-[#999] uppercase tracking-widest block text-[11px] mb-2"
+                    className="text-[#999] uppercase tracking-widest block text-xl md:text-2xl font-bold mb-2"
                     style={{ letterSpacing: '0.15em' }}
                   >
                     {leader.title}
@@ -213,7 +213,7 @@ const LeadershipMessages = () => {
                 <div className="space-y-6">
                   <div>
                     <span
-                      className="text-[#999] uppercase tracking-widest block text-[13px] mb-3"
+                      className="text-[#999] uppercase tracking-widest block text-xl md:text-2xl font-bold mb-3"
                       style={{ letterSpacing: '0.15em' }}
                     >
                       {leader.title}

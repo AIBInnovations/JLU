@@ -253,7 +253,7 @@ const Apply = () => {
             >
               <span
                 className="text-white/70 uppercase tracking-widest block mb-4"
-                style={{ fontSize: '12px', letterSpacing: '0.2em' }}
+                style={{ fontSize: '28px', fontWeight: 700, letterSpacing: '0.2em' }}
               >
                 START YOUR JOURNEY
               </span>
@@ -326,7 +326,7 @@ const Apply = () => {
                   </motion.a>
                   <motion.a
                     href="/broucher/JLU-Brochure-2026.pdf" target="_blank" rel="noopener noreferrer"
-                    className="flex items-center justify-center gap-3 px-8 py-4 bg-[#c3fd7a] text-[#21313c] font-semibold rounded-full hover:bg-[#b3ed6a] transition-colors"
+                    className="flex items-center justify-center gap-3 px-8 py-4 bg-[#027ea1] text-white font-semibold rounded-full hover:bg-[#025f7a] transition-colors"
                     whileHover={{ scale: 1.02 }}
                     whileTap={{ scale: 0.98 }}
                   >
@@ -357,7 +357,7 @@ const Apply = () => {
                           <motion.div
                             className={`w-10 h-10 rounded-full flex items-center justify-center font-semibold text-sm transition-colors ${
                               currentStep >= step
-                                ? 'bg-[#c3fd7a] text-[#21313c]'
+                                ? 'bg-[#027ea1] text-white'
                                 : 'bg-gray-200 text-gray-500'
                             }`}
                             animate={{ scale: currentStep === step ? 1.1 : 1 }}
@@ -374,7 +374,7 @@ const Apply = () => {
                           {step < 3 && (
                             <div
                               className={`w-8 h-1 ml-3 rounded-full transition-colors ${
-                                currentStep > step ? 'bg-[#c3fd7a]' : 'bg-gray-200'
+                                currentStep > step ? 'bg-[#027ea1]' : 'bg-gray-200'
                               }`}
                             />
                           )}
@@ -582,7 +582,7 @@ const Apply = () => {
                         disabled={!validateStep(3) || isSubmitting}
                         className={`flex-1 px-6 py-4 font-semibold rounded-xl transition-colors flex items-center justify-center gap-2 ${
                           validateStep(3) && !isSubmitting
-                            ? 'bg-[#c3fd7a] text-[#21313c] hover:bg-[#b3ed6a]'
+                            ? 'bg-[#027ea1] text-white hover:bg-[#025f7a]'
                             : 'bg-gray-200 text-gray-500 cursor-not-allowed'
                         }`}
                         whileHover={validateStep(3) && !isSubmitting ? { scale: 1.02 } : {}}
@@ -619,7 +619,7 @@ const Apply = () => {
                 transition={{ duration: 0.5, ease: customEase }}
               >
                 <motion.div
-                  className="w-20 h-20 bg-[#c3fd7a] rounded-full flex items-center justify-center mx-auto mb-6"
+                  className="w-20 h-20 bg-[#027ea1] rounded-full flex items-center justify-center mx-auto mb-6"
                   initial={{ scale: 0 }}
                   animate={{ scale: 1 }}
                   transition={{ duration: 0.5, delay: 0.2, type: 'spring' }}
@@ -702,7 +702,7 @@ const Apply = () => {
                     onClick={() => setDegreeLevel('ug')}
                     className={`px-6 py-3 text-sm font-medium transition-all border ${
                       degreeLevel === 'ug'
-                        ? 'bg-[#c3fd7a] text-[#21313c] border-[#c3fd7a]'
+                        ? 'bg-[#027ea1] text-white border-[#027ea1]'
                         : 'bg-transparent text-white/70 border-white/20 hover:border-white/40'
                     }`}
                   >
@@ -712,7 +712,7 @@ const Apply = () => {
                     onClick={() => setDegreeLevel('pg')}
                     className={`px-6 py-3 text-sm font-medium transition-all border ${
                       degreeLevel === 'pg'
-                        ? 'bg-[#c3fd7a] text-[#21313c] border-[#c3fd7a]'
+                        ? 'bg-[#027ea1] text-white border-[#027ea1]'
                         : 'bg-transparent text-white/70 border-white/20 hover:border-white/40'
                     }`}
                   >
@@ -812,11 +812,11 @@ const Apply = () => {
                               )}
                               <div className="flex items-center gap-6 text-sm">
                                 <span className="text-white/60 flex items-center gap-2">
-                                  <span className="w-1.5 h-1.5 bg-[#c3fd7a] rounded-full"></span>
+                                  <span className="w-1.5 h-1.5 bg-[#027ea1] rounded-full"></span>
                                   {program.duration}
                                 </span>
                                 <span className="text-white/60 flex items-center gap-2">
-                                  <span className="w-1.5 h-1.5 bg-[#c3fd7a] rounded-full"></span>
+                                  <span className="w-1.5 h-1.5 bg-[#027ea1] rounded-full"></span>
                                   {program.type}
                                 </span>
                               </div>
@@ -829,7 +829,7 @@ const Apply = () => {
                           </div>
 
                           {/* Hover line accent */}
-                          <div className="absolute left-0 top-0 bottom-0 w-1 bg-[#c3fd7a] scale-y-0 group-hover:scale-y-100 transition-transform origin-top"></div>
+                          <div className="absolute left-0 top-0 bottom-0 w-1 bg-[#027ea1] scale-y-0 group-hover:scale-y-100 transition-transform origin-top"></div>
                         </motion.div>
                       ))}
                     </div>
@@ -861,7 +861,7 @@ const Apply = () => {
                     </p>
                     <a
                       href="/programs"
-                      className="inline-flex items-center gap-3 px-6 py-3 bg-white text-[#21313c] font-semibold text-sm hover:bg-[#c3fd7a] transition-colors"
+                      className="inline-flex items-center gap-3 px-6 py-3 bg-white text-[#21313c] font-semibold text-sm hover:bg-[#027ea1] hover:text-white transition-colors"
                     >
                       Request Full Program Listing
                       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
@@ -887,8 +887,8 @@ const Apply = () => {
             transition={{ duration: 0.6, ease: customEase }}
           >
             <span
-              className="text-[#999] uppercase tracking-widest block mb-4"
-              style={{ fontSize: '12px', letterSpacing: '0.2em' }}
+              className="text-[#999] uppercase tracking-widest block mb-4 text-xl md:text-2xl font-bold"
+              style={{ fontSize: '28px', fontWeight: 700, letterSpacing: '0.2em' }}
             >
               SUPPORT
             </span>
@@ -921,7 +921,7 @@ const Apply = () => {
               transition={{ duration: 0.5, ease: customEase }}
               whileHover={{ y: -4 }}
             >
-              <div className="w-16 h-16 bg-[#21313c] rounded-2xl flex items-center justify-center mb-4 group-hover:bg-[#c3fd7a] transition-colors">
+              <div className="w-16 h-16 bg-[#21313c] rounded-2xl flex items-center justify-center mb-4 group-hover:bg-[#027ea1] transition-colors">
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="text-white group-hover:text-[#21313c] transition-colors">
                   <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.362 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.338 1.85.573 2.81.7A2 2 0 0 1 22 16.92z" strokeLinecap="round" strokeLinejoin="round"/>
                 </svg>
@@ -940,7 +940,7 @@ const Apply = () => {
               transition={{ duration: 0.5, delay: 0.1, ease: customEase }}
               whileHover={{ y: -4 }}
             >
-              <div className="w-16 h-16 bg-[#21313c] rounded-2xl flex items-center justify-center mb-4 group-hover:bg-[#c3fd7a] transition-colors">
+              <div className="w-16 h-16 bg-[#21313c] rounded-2xl flex items-center justify-center mb-4 group-hover:bg-[#027ea1] transition-colors">
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="text-white group-hover:text-[#21313c] transition-colors">
                   <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" strokeLinecap="round" strokeLinejoin="round"/>
                   <polyline points="22,6 12,13 2,6" strokeLinecap="round" strokeLinejoin="round"/>
@@ -962,7 +962,7 @@ const Apply = () => {
               transition={{ duration: 0.5, delay: 0.2, ease: customEase }}
               whileHover={{ y: -4 }}
             >
-              <div className="w-16 h-16 bg-[#21313c] rounded-2xl flex items-center justify-center mb-4 group-hover:bg-[#c3fd7a] transition-colors">
+              <div className="w-16 h-16 bg-[#21313c] rounded-2xl flex items-center justify-center mb-4 group-hover:bg-[#027ea1] transition-colors">
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="text-white group-hover:text-[#21313c] transition-colors">
                   <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" strokeLinecap="round" strokeLinejoin="round"/>
                   <circle cx="12" cy="12" r="3" strokeLinecap="round" strokeLinejoin="round"/>

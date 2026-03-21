@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect, useRef } from 'react';
-import { motion } from 'framer-motion';
+import { motion, useScroll, useTransform } from 'framer-motion';
 import { useInView } from 'framer-motion';
 import { useIsMobile } from '../hooks/useIsMobile';
 
@@ -13,9 +13,16 @@ export const VoiceOfJlu = () => {
   const [mutedVideo, setMutedVideo] = useState<Record<number, boolean>>({});
   const [hasAutoPlayed, setHasAutoPlayed] = useState(false);
   const facultyRef = useRef(null);
+  const leadershipScrollRef = useRef(null);
   const voicesRef = useRef(null);
   const videoRefs = useRef<Record<number, HTMLVideoElement | null>>({});
   const isInView = useInView(facultyRef, { once: true, amount: 0.3 });
+  const { scrollYProgress: leadershipScrollProgress } = useScroll({
+    target: leadershipScrollRef,
+    offset: ['start end', 'end start'],
+  });
+  const marqueeTopX = useTransform(leadershipScrollProgress, [0, 1], ['30%', '-60%']);
+  const marqueeBottomX = useTransform(leadershipScrollProgress, [0, 1], ['-60%', '30%']);
   const voicesInView = useInView(voicesRef, { once: true, amount: 0.3 });
 
   // Pause all videos except the given index
@@ -41,32 +48,24 @@ export const VoiceOfJlu = () => {
     }
   }, [voicesInView, hasAutoPlayed, isMobile]);
 
-  const containerVariants = {
-    hidden: { opacity: 1 },
+  const leadershipStagger = {
+    hidden: { opacity: 0 },
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.1,
-        delayChildren: 0.2,
+        staggerChildren: 0.12,
+        delayChildren: 0.1,
       },
     },
   };
 
-  // Top row: slides from right to left (fast to slow)
-  const topRowVariants = {
-    hidden: { x: '150%' },
+  const leadershipCardVariant = {
+    hidden: { opacity: 0, y: 50, scale: 0.96 },
     visible: {
-      x: 0,
-      transition: { duration: 1.2, ease: [0.6, 0, 0.2, 1] as const },
-    },
-  };
-
-  // Bottom row: slides from left to right (fast to slow)
-  const bottomRowVariants = {
-    hidden: { x: '-150%' },
-    visible: {
-      x: 0,
-      transition: { duration: 1.2, ease: [0.6, 0, 0.2, 1] as const },
+      opacity: 1,
+      y: 0,
+      scale: 1,
+      transition: { duration: 0.9, ease: [0.22, 1, 0.36, 1] as const },
     },
   };
 
@@ -98,35 +97,46 @@ export const VoiceOfJlu = () => {
   ];
 
   return (
-    <section className="bg-[#f6f7f0] pt-16 md:pt-48 pb-12 md:pb-24">
+    <section className="bg-[#f6f7f0] pt-16 md:pt-48 pb-12 md:pb-24 overflow-x-clip">
       {/* Header */}
       <motion.div
-        className="text-center mb-12 md:mb-16 px-4"
+        className="mb-12 md:mb-20 px-4 sm:px-10 lg:px-16"
+        style={{ maxWidth: '1800px', marginLeft: 'auto', marginRight: 'auto' }}
         initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
       >
-        <p
-          className="text-base md:text-lg mb-4"
-          style={{ color: '#999', letterSpacing: '0.2em', textTransform: 'uppercase' }}
-        >
-          STUDENT TESTIMONIALS
-        </p>
-        <h2
-          className="text-4xl md:text-5xl lg:text-6xl text-[#21313c] mb-6 md:mb-8"
-          style={{ fontWeight: 600, lineHeight: 1 }}
-        >
-          Voices of{' '}
-          <span style={{ fontFamily: "'Times New Roman', serif", fontStyle: 'italic' }}>JLU</span>
-        </h2>
-        <p className="text-xl md:text-2xl max-w-2xl mx-auto" style={{ color: '#666', lineHeight: 1.8 }}>
-          Distinct individuals. Diverse journeys. One shared ecosystem.
-        </p>
-        <p className="text-xl md:text-2xl max-w-3xl mx-auto mt-5" style={{ color: '#666', lineHeight: 1.8 }}>
-          Every person at JLU contributes to its character. Together, these voices create an environment that feels open, textured, and continually in motion.
-        </p>
-        <p className="text-lg md:text-xl max-w-2xl mx-auto mt-4" style={{ color: '#999', fontStyle: 'italic', lineHeight: 1.7 }}>
+        {/* Centered heading */}
+        <div className="text-center mb-4 md:mb-6 mt-6 md:mt-10">
+          <span
+            className="text-[#999] uppercase tracking-widest block mb-4 md:mb-6 text-xl md:text-2xl font-bold"
+            style={{ letterSpacing: '0.2em' }}
+          >
+            Student Testimonials
+          </span>
+          <h2
+            className="text-[#21313c]"
+            style={{
+              fontSize: 'clamp(3rem, 6vw, 5rem)',
+              fontWeight: 600,
+              lineHeight: 1.1,
+              letterSpacing: '-0.03em',
+            }}
+          >
+            Voices of{' '}
+            <span style={{ fontFamily: "'Times New Roman', serif", fontStyle: 'italic', fontWeight: 400 }}>JLU</span>
+          </h2>
+        </div>
+
+        {/* Description - left and right split */}
+        <div className="text-center max-w-[1000px] mx-auto">
+          <p className="text-lg sm:text-xl md:text-[clamp(1.25rem,2vw,1.75rem)]" style={{ color: '#666', lineHeight: 1.8 }}>
+            Distinct individuals. Diverse journeys. One shared ecosystem. Every person at JLU contributes to its character. Together, these voices create an environment that feels open, textured, and continually in motion.
+          </p>
+        </div>
+        {/* Italic tagline - bottom center */}
+        <p className="text-xl md:text-2xl text-center mt-6 md:mt-10" style={{ color: '#999', fontStyle: 'italic', lineHeight: 1.7 }}>
           This is the university as it is lived, not just described.
         </p>
       </motion.div>
@@ -149,8 +159,8 @@ export const VoiceOfJlu = () => {
                   key={index}
                   className="relative cursor-pointer transition-all duration-300 overflow-hidden flex-shrink-0"
                   style={{
-                    width: index === activeCard ? '260px' : '75px',
-                    height: '380px',
+                    width: index === activeCard ? '260px' : '110px',
+                    height: '420px',
                     borderRadius: index === activeCard ? '32px' : '40px',
                   }}
                   onClick={() => {
@@ -261,8 +271,8 @@ export const VoiceOfJlu = () => {
               key={index}
               className="relative cursor-pointer transition-all duration-300 overflow-hidden"
               style={{
-                width: index === activeCard ? 'clamp(240px, 32vw, 750px)' : 'clamp(70px, 8vw, 180px)',
-                height: 'clamp(320px, 38vw, 850px)',
+                width: index === activeCard ? 'clamp(240px, 32vw, 750px)' : 'clamp(100px, 11vw, 240px)',
+                height: 'clamp(380px, 42vw, 920px)',
                 borderRadius: index === activeCard ? '60px' : '80px',
               }}
               onClick={() => {
@@ -345,192 +355,174 @@ export const VoiceOfJlu = () => {
       )}
 
       {/* Our Faculty Section */}
-      <div ref={facultyRef} className="mt-12 md:mt-24 lg:mt-32 px-4 md:px-12 lg:px-16 xl:px-20 2xl:px-32">
+      <div ref={facultyRef} className="mt-16 md:mt-32 lg:mt-40 px-4 sm:px-10 lg:px-16" style={{ maxWidth: '1800px', marginLeft: 'auto', marginRight: 'auto' }}>
         {/* Faculty Header */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-          className="flex justify-between items-start mb-8 md:mb-12 lg:mb-16"
+          className="text-center mb-12 md:mb-20"
         >
-          <div>
-            <p
-              className="text-base md:text-lg mb-2"
-              style={{ color: '#999', letterSpacing: '0.2em', textTransform: 'uppercase' }}
-            >
-              MEET OUR TEAM
-            </p>
-            <h2
-              className="text-3xl md:text-5xl lg:text-6xl text-[#21313c]"
-              style={{ fontWeight: 600, lineHeight: 1 }}
-            >
-              Leadership{' '}
-              <span style={{ fontFamily: "'Times New Roman', serif", fontStyle: 'italic' }}>Structure</span>
-            </h2>
-          </div>
+          <span
+            className="text-[#999] uppercase tracking-widest block mb-4 md:mb-6 text-xl md:text-2xl font-bold"
+            style={{ letterSpacing: '0.2em' }}
+          >
+            MEET OUR TEAM
+          </span>
+          <h2
+            className="text-3xl md:text-5xl lg:text-6xl text-[#21313c]"
+            style={{ fontWeight: 600, lineHeight: 1.1, letterSpacing: '-0.03em' }}
+          >
+            Leadership{' '}
+            <span style={{ fontFamily: "'Times New Roman', serif", fontStyle: 'italic', fontWeight: 400 }}>Structure</span>
+          </h2>
         </motion.div>
 
-        {/* Faculty Grid */}
-        {isMobile ? (
-          /* Mobile: 2-column grid */
-          <div className="grid grid-cols-2 gap-4">
-            {faculty.map((member, index) => (
-              <div key={index}>
-                <div
-                  className="overflow-hidden"
+        <div ref={leadershipScrollRef}>
+          {/* Top Row - 3 leaders with scroll marquee behind */}
+          <div className="relative mb-4 md:mb-8 lg:mb-10">
+            {/* Scroll-driven marquee - breaks out of padding, full viewport width */}
+            <div className="absolute top-0 bottom-0 left-[50%] w-[100vw] -translate-x-[50%] flex items-center overflow-visible pointer-events-none z-0">
+              <motion.div
+                className="whitespace-nowrap"
+                style={{ x: marqueeTopX }}
+              >
+                <span
+                  className="text-[50px] md:text-[100px] lg:text-[140px] font-bold uppercase select-none"
                   style={{
-                    width: '100%',
-                    height: '200px',
-                    borderRadius: '12px',
+                    color: 'rgba(33,49,60,0.15)',
+                    letterSpacing: '0.04em',
+                    lineHeight: 1,
                   }}
                 >
-                  {member.image ? (
-                    <img
+                  Leadership &middot; Vision &middot; Excellence &middot; Leadership &middot; Vision &middot; Excellence
+                </span>
+              </motion.div>
+            </div>
+
+            {/* Cards */}
+            <motion.div
+              variants={leadershipStagger}
+              initial="hidden"
+              animate={isInView ? 'visible' : 'hidden'}
+              className="grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-8 lg:gap-10 md:max-w-[900px] lg:max-w-[1100px] mx-auto relative z-10"
+            >
+              {faculty.slice(0, 3).map((member, index) => (
+                <motion.div
+                  key={index}
+                  variants={leadershipCardVariant}
+                  className="group relative"
+                >
+                  <div className="relative overflow-hidden rounded-2xl md:rounded-3xl" style={{ aspectRatio: '3/4' }}>
+                    <motion.img
                       src={member.image}
                       alt={member.name}
                       className="w-full h-full object-cover"
+                      whileHover={{ scale: 1.05 }}
+                      transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
                     />
-                  ) : (
-                    <div className="w-full h-full bg-[#e8eae2] flex items-center justify-center">
-                      <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#999" strokeWidth="1.5">
-                        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" strokeLinecap="round" strokeLinejoin="round"/>
-                        <circle cx="12" cy="7" r="4" strokeLinecap="round" strokeLinejoin="round"/>
-                      </svg>
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                    <div className="absolute bottom-0 left-0 right-0 p-4 md:p-6 translate-y-4 group-hover:translate-y-0 opacity-0 group-hover:opacity-100 transition-all duration-500">
+                      {member.linkedin && (
+                        <a href={member.linkedin} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 text-white/90 text-xs md:text-sm hover:text-white transition-colors">
+                          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+                          LinkedIn
+                        </a>
+                      )}
                     </div>
-                  )}
-                </div>
-                <div className="mt-2">
-                  <div className="flex items-center justify-between">
-                    <h3 className="text-[#21313c] font-semibold text-xs">
-                      {member.name}
-                    </h3>
+                  </div>
+                  <div className="mt-3 md:mt-5 flex items-start justify-between">
+                    <div>
+                      <h3 className="text-[#21313c] font-semibold text-sm md:text-lg lg:text-xl leading-tight">
+                        {member.name}
+                      </h3>
+                      <p className="text-[#999] text-xs md:text-sm mt-1" style={{ letterSpacing: '0.02em' }}>
+                        {member.title}
+                      </p>
+                    </div>
                     {member.linkedin && (
-                      <a href={member.linkedin} target="_blank" rel="noopener noreferrer" className="text-[#0077b5] hover:text-[#005582] transition-colors">
-                        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+                      <a href={member.linkedin} target="_blank" rel="noopener noreferrer" className="text-[#0077b5] hover:text-[#005582] transition-colors mt-1 shrink-0 ml-2">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
                       </a>
                     )}
                   </div>
-                  <p className="text-gray-500 text-xs">
-                    {member.title}
-                  </p>
-                </div>
-              </div>
-            ))}
+                </motion.div>
+              ))}
+            </motion.div>
           </div>
-        ) : (
-          /* Desktop: Images slide out from behind fixed wrappers */
-          <div className="relative overflow-hidden">
-            {/* Faculty Content */}
+
+          {/* Bottom Row - 4 leaders with opposite scroll marquee */}
+          <div className="relative">
+            {/* Scroll-driven marquee - breaks out of padding, opposite direction */}
+            <div className="absolute top-0 bottom-0 left-[50%] w-[100vw] -translate-x-[50%] flex items-center overflow-visible pointer-events-none z-0">
+              <motion.div
+                className="whitespace-nowrap"
+                style={{ x: marqueeBottomX }}
+              >
+                <span
+                  className="text-[50px] md:text-[100px] lg:text-[140px] font-bold uppercase select-none"
+                  style={{
+                    color: 'rgba(33,49,60,0.15)',
+                    letterSpacing: '0.04em',
+                    lineHeight: 1,
+                  }}
+                >
+                  Innovation &middot; Impact &middot; Legacy &middot; Innovation &middot; Impact &middot; Legacy
+                </span>
+              </motion.div>
+            </div>
+
+            {/* Cards */}
             <motion.div
-              variants={containerVariants}
+              variants={leadershipStagger}
               initial="hidden"
               animate={isInView ? 'visible' : 'hidden'}
-              className="flex flex-col gap-8 lg:gap-12 relative z-20"
+              className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-8 lg:gap-10 md:max-w-[1200px] lg:max-w-[1400px] mx-auto relative z-10"
             >
-              {/* First Row - slides from right to left */}
-              <div className="flex justify-end gap-4 lg:gap-6">
-                {faculty.slice(0, 4).map((member, index) => (
-                  <motion.div
-                    key={index}
-                    variants={topRowVariants}
-                    whileHover={{ y: -8 }}
-                    style={{
-                      width: 'clamp(150px, 18vw, 400px)',
-                    }}
-                  >
-                    <div
-                      className="overflow-hidden"
-                      style={{
-                        width: '100%',
-                        height: 'clamp(200px, 21vw, 480px)',
-                        borderRadius: '16px',
-                      }}
-                    >
-                      <motion.img
-                        src={member.image}
-                        alt={member.name}
-                        className="w-full h-full object-cover"
-                        whileHover={{ scale: 1.08 }}
-                        transition={{ duration: 0.4 }}
-                      />
+              {faculty.slice(3).map((member, index) => (
+                <motion.div
+                  key={index + 3}
+                  variants={leadershipCardVariant}
+                  className="group relative"
+                >
+                  <div className="relative overflow-hidden rounded-2xl md:rounded-3xl" style={{ aspectRatio: '3/4' }}>
+                    <motion.img
+                      src={member.image}
+                      alt={member.name}
+                      className="w-full h-full object-cover"
+                      whileHover={{ scale: 1.05 }}
+                      transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                    <div className="absolute bottom-0 left-0 right-0 p-4 md:p-6 translate-y-4 group-hover:translate-y-0 opacity-0 group-hover:opacity-100 transition-all duration-500">
+                      {member.linkedin && (
+                        <a href={member.linkedin} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 text-white/90 text-xs md:text-sm hover:text-white transition-colors">
+                          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+                          LinkedIn
+                        </a>
+                      )}
                     </div>
-                    <div className="mt-3">
-                      <div className="flex items-center justify-between">
-                        <h3 className="text-[#21313c] font-semibold text-sm md:text-base lg:text-lg">
-                          {member.name}
-                        </h3>
-                        {member.linkedin && (
-                          <a href={member.linkedin} target="_blank" rel="noopener noreferrer" className="text-[#0077b5] hover:text-[#005582] transition-colors ml-2">
-                            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
-                          </a>
-                        )}
-                      </div>
-                      <p className="text-gray-500 text-xs md:text-sm">
-                        {member.title}
-                      </p>
-                    </div>
-                  </motion.div>
-                ))}
-              </div>
-
-              {/* Second Row - slides from left to right */}
-              <div className="flex justify-start gap-4 lg:gap-6">
-                {faculty.slice(4, 7).map((member, index) => (
-                  <motion.div
-                    key={index + 4}
-                    variants={bottomRowVariants}
-                    whileHover={{ y: -8 }}
-                    style={{
-                      width: 'clamp(150px, 18vw, 400px)',
-                    }}
-                  >
-                    <div
-                      className="overflow-hidden"
-                      style={{
-                        width: '100%',
-                        height: 'clamp(200px, 21vw, 480px)',
-                        borderRadius: '16px',
-                      }}
-                    >
-                      <motion.img
-                        src={member.image}
-                        alt={member.name}
-                        className="w-full h-full object-cover"
-                        whileHover={{ scale: 1.08 }}
-                        transition={{ duration: 0.4 }}
-                      />
-                    </div>
-                    <div className="mt-3">
-                      <h3 className="text-[#21313c] font-semibold text-sm md:text-base lg:text-lg">
+                  </div>
+                  <div className="mt-3 md:mt-5 flex items-start justify-between">
+                    <div>
+                      <h3 className="text-[#21313c] font-semibold text-sm md:text-base lg:text-lg leading-tight">
                         {member.name}
                       </h3>
-                        {member.linkedin && (
-                          <a href={member.linkedin} target="_blank" rel="noopener noreferrer" className="text-[#0077b5] hover:text-[#005582] transition-colors ml-2">
-                            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
-                          </a>
-                        )}
-                      <p className="text-gray-500 text-xs md:text-sm">
+                      <p className="text-[#999] text-xs md:text-sm mt-1" style={{ letterSpacing: '0.02em' }}>
                         {member.title}
                       </p>
                     </div>
-                  </motion.div>
-                ))}
-              </div>
+                    {member.linkedin && (
+                      <a href={member.linkedin} target="_blank" rel="noopener noreferrer" className="text-[#0077b5] hover:text-[#005582] transition-colors mt-1 shrink-0 ml-2">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+                      </a>
+                    )}
+                  </div>
+                </motion.div>
+              ))}
             </motion.div>
-
-            {/* Fixed Left Wrapper - stays in place */}
-            <div
-              className="absolute top-0 left-0 w-1/2 h-full bg-[#f6f7f0] z-10"
-              style={{ pointerEvents: 'none' }}
-            />
-
-            {/* Fixed Right Wrapper - stays in place */}
-            <div
-              className="absolute top-0 right-0 w-1/2 h-full bg-[#f6f7f0] z-10"
-              style={{ pointerEvents: 'none' }}
-            />
           </div>
-        )}
+        </div>
       </div>
     </section>
   );

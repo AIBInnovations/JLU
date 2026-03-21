@@ -58,7 +58,7 @@ const ParallaxCard = ({ item, index }: { item: typeof overviewData[0]; index: nu
       {/* Content */}
       <div className="absolute inset-0 flex flex-col justify-end p-5 sm:p-8 md:p-10">
         <span
-          className="text-white/60 uppercase tracking-widest mb-2 sm:mb-3 md:mb-4 text-[11px] sm:text-[12px] md:text-[13px]"
+          className="text-white/60 uppercase tracking-widest mb-2 sm:mb-3 md:mb-4 text-xl md:text-2xl font-bold"
           style={{ letterSpacing: '0.2em' }}
         >
           {String(index + 1).padStart(2, '0')} — {item.title}
@@ -92,7 +92,7 @@ const InstitutionalOverview = () => {
         >
           <div className="mb-6 md:mb-0">
             <span
-              className="text-[#999] uppercase tracking-widest block text-[12px] sm:text-xs mb-3 md:mb-4"
+              className="text-[#999] uppercase tracking-widest block text-xl md:text-2xl font-bold mb-3 md:mb-4"
               style={{ letterSpacing: '0.2em' }}
             >
               Overview

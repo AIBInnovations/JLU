@@ -180,7 +180,8 @@ const RankingAndAwards = () => {
               textTransform: 'uppercase',
               letterSpacing: '0.2em',
               display: 'block',
-              fontSize: isMobile ? '16px' : '18px',
+              fontSize: isMobile ? '24px' : '30px',
+              fontWeight: 700,
               marginBottom: isMobile ? '12px' : '16px',
             }}
           >
@@ -256,7 +257,7 @@ const RankingAndAwards = () => {
                     </div>
                     <div style={{ marginTop: '10px', textAlign: 'center' }}>
                       <p style={{ color: '#f0c14b', fontSize: '12px', fontWeight: 600, letterSpacing: '0.1em', textTransform: 'uppercase', marginBottom: '4px' }}>{award.year}</p>
-                      <p style={{ color: '#21313c', fontSize: '14px', fontWeight: 600, lineHeight: 1.3, marginBottom: '6px' }}>
+                      <p style={{ color: '#21313c', fontSize: '28px', fontWeight: 600, lineHeight: 1.3, marginBottom: '6px' }}>
                         {award.title}
                       </p>
                       <p style={{ color: '#666', fontSize: '12px', lineHeight: 1.5 }}>

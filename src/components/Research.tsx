@@ -384,10 +384,10 @@ const Research = () => {
                 <p className="text-xl sm:text-2xl md:text-3xl lg:text-5xl font-bold text-[#21313c] mb-1 md:mb-2">
                   {stat.value}
                 </p>
-                <p className="text-[12px] sm:text-xs md:text-sm font-medium text-[#21313c] tracking-wider mb-1">
+                <p className="text-xl md:text-2xl font-bold md:text-sm font-medium text-[#21313c] tracking-wider mb-1">
                   {stat.label}
                 </p>
-                <p className="text-[12px] sm:text-xs md:text-sm text-[#21313c] hidden sm:block">
+                <p className="text-xl md:text-2xl font-bold md:text-sm text-[#21313c] hidden sm:block">
                   {stat.description}
                 </p>
               </div>
@@ -449,7 +449,7 @@ const Research = () => {
               >
                 {/* Category Tag */}
                 <div className="flex items-center justify-between mb-4">
-                  <span className="px-3 py-1 bg-[#e0f2f7] text-[#027ea1] text-[12px] md:text-xs font-medium rounded-full">
+                  <span className="px-3 py-1 bg-[#e0f2f7] text-[#027ea1] text-xl md:text-2xl font-bold font-medium rounded-full">
                     {pub.category}
                   </span>
                   <span className="text-xs text-gray-400">{pub.year}</span>
@@ -609,7 +609,7 @@ const Research = () => {
                   </span>
                   <span className="text-sm text-gray-500">{patent.year}</span>
                 </div>
-                <h3 className="text-lg md:text-xl font-bold text-[#21313c] mb-3">
+                <h3 className="text-xl md:text-2xl font-bold text-[#21313c] mb-3">
                   {patent.title}
                 </h3>
                 <p className="text-sm text-gray-600 mb-2">
@@ -664,11 +664,11 @@ const Research = () => {
             <table className="w-full">
               <thead>
                 <tr className="border-b-2 border-[#21313c]">
-                  <th className="text-left py-3 sm:py-4 px-1 sm:px-2 text-xs sm:text-sm md:text-base font-bold text-[#21313c]">Project Title</th>
-                  <th className="text-left py-3 sm:py-4 px-1 sm:px-2 text-xs sm:text-sm md:text-base font-bold text-[#21313c] hidden md:table-cell">Funding Agency</th>
-                  <th className="text-left py-3 sm:py-4 px-1 sm:px-2 text-xs sm:text-sm md:text-base font-bold text-[#21313c]">Amount</th>
-                  <th className="text-left py-3 sm:py-4 px-1 sm:px-2 text-xs sm:text-sm md:text-base font-bold text-[#21313c] hidden lg:table-cell">Duration</th>
-                  <th className="text-left py-3 sm:py-4 px-1 sm:px-2 text-xs sm:text-sm md:text-base font-bold text-[#21313c]">Status</th>
+                  <th className="text-left py-3 sm:py-4 px-1 sm:px-2 text-xs sm:text-xl md:text-2xl font-bold text-[#21313c]">Project Title</th>
+                  <th className="text-left py-3 sm:py-4 px-1 sm:px-2 text-xs sm:text-xl md:text-2xl font-bold text-[#21313c] hidden md:table-cell">Funding Agency</th>
+                  <th className="text-left py-3 sm:py-4 px-1 sm:px-2 text-xs sm:text-xl md:text-2xl font-bold text-[#21313c]">Amount</th>
+                  <th className="text-left py-3 sm:py-4 px-1 sm:px-2 text-xs sm:text-xl md:text-2xl font-bold text-[#21313c] hidden lg:table-cell">Duration</th>
+                  <th className="text-left py-3 sm:py-4 px-1 sm:px-2 text-xs sm:text-xl md:text-2xl font-bold text-[#21313c]">Status</th>
                 </tr>
               </thead>
               <tbody>
@@ -676,11 +676,11 @@ const Research = () => {
                   <tr key={project.id} className="border-b border-gray-200 hover:bg-gray-50 transition-colors">
                     <td className="py-3 sm:py-4 px-1 sm:px-2">
                       <p className="text-xs sm:text-sm md:text-base font-medium text-[#21313c]">{project.title}</p>
-                      <p className="text-[12px] sm:text-xs text-gray-500 mt-1">PI: {project.pi}</p>
-                      <p className="text-[12px] sm:text-xs text-gray-500 md:hidden mt-1">{project.fundingAgency}</p>
+                      <p className="text-xl md:text-2xl font-bold text-gray-500 mt-1">PI: {project.pi}</p>
+                      <p className="text-xl md:text-2xl font-bold text-gray-500 md:hidden mt-1">{project.fundingAgency}</p>
                     </td>
                     <td className="py-3 sm:py-4 px-1 sm:px-2 text-sm text-gray-600 hidden md:table-cell">{project.fundingAgency}</td>
-                    <td className="py-3 sm:py-4 px-1 sm:px-2 text-xs sm:text-sm md:text-base font-semibold text-[#027ea1]">{project.amount}</td>
+                    <td className="py-3 sm:py-4 px-1 sm:px-2 text-xs sm:text-xl md:text-2xl font-bold text-[#027ea1]">{project.amount}</td>
                     <td className="py-3 sm:py-4 px-1 sm:px-2 text-sm text-gray-600 hidden lg:table-cell">{project.duration}</td>
                     <td className="py-3 sm:py-4 px-1 sm:px-2">
                       <span className={`px-3 py-1 rounded-full text-xs font-medium ${
@@ -736,7 +736,7 @@ const Research = () => {
                     <line x1="6" y1="6" x2="18" y2="18" strokeLinecap="round" />
                   </svg>
                 </button>
-                <span className="text-white/50 uppercase tracking-widest text-[11px] block mb-3" style={{ letterSpacing: '0.2em' }}>
+                <span className="text-white/50 uppercase tracking-widest text-xl md:text-2xl font-bold block mb-3" style={{ letterSpacing: '0.2em' }}>
                   Research Ecosystem
                 </span>
                 <h3 className="text-white font-semibold text-xl md:text-2xl">

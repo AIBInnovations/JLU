@@ -535,7 +535,7 @@ export default function JLUxPage() {
             <div className="flex gap-4 justify-center flex-wrap">
               <a
                 href="/apply"
-                className="bg-[#f4c950] text-[#21313c] font-semibold py-4 px-10 rounded-xl hover:bg-[#e5ba41] transition-all shadow-lg hover:shadow-xl text-base"
+                className="bg-[#027ea1] text-white font-semibold py-4 px-10 rounded-xl hover:bg-[#025f7a] transition-all shadow-lg hover:shadow-xl text-base"
               >
                 Apply Now
               </a>

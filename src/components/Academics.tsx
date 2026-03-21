@@ -104,7 +104,7 @@ const Academics = () => {
             />
           </motion.div>
           {/* Black Overlay */}
-          <div className="absolute inset-0 bg-black/40 md:bg-black/30" />
+          <div className="absolute inset-0 bg-black/50 md:bg-black/45" />
         </motion.div>
 
         {/* Paragraph at Top Left */}
@@ -112,31 +112,27 @@ const Academics = () => {
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.3 }}
-          className="absolute top-0 left-0 px-5 md:px-0"
+          className="absolute top-0 left-0 px-5 md:px-10"
           style={{
-            paddingLeft: 'clamp(20px, 5vw, 40px)',
-            paddingTop: 'clamp(100px, 15vw, 120px)',
-            maxWidth: '800px',
+            paddingTop: 'clamp(100px, 15vw, 140px)',
+            maxWidth: '900px',
           }}
         >
           <h2
-            className="text-white font-semibold leading-tight mb-5"
+            className="text-white font-semibold leading-tight mb-4 md:mb-6"
             style={{
-              fontSize: 'clamp(1.5rem, 3vw, 1.75rem)',
+              fontSize: 'clamp(1.75rem, 4vw, 2.5rem)',
             }}
           >
             LEARNING SHAPED BY <span style={{ fontFamily: "'Times New Roman', serif", fontStyle: 'italic', color: '#f0c14b', textShadow: '2px 2px 4px rgba(0,0,0,0.5)' }}>curiosity</span>, <span style={{ fontFamily: "'Times New Roman', serif", fontStyle: 'italic', color: '#f0c14b', textShadow: '2px 2px 4px rgba(0,0,0,0.5)' }}>practice</span>, and <span style={{ fontFamily: "'Times New Roman', serif", fontStyle: 'italic', color: '#f0c14b', textShadow: '2px 2px 4px rgba(0,0,0,0.5)' }}>people</span>
           </h2>
           <p
-            className="text-white font-semibold leading-tight"
+            className="text-white/90 font-medium leading-relaxed"
             style={{
-              fontSize: 'clamp(1.1rem, 2.5vw, 1.25rem)',
+              fontSize: 'clamp(1rem, 1.8vw, 1.35rem)',
             }}
           >
-            <span className="hidden md:inline">Academics at JLU are designed to help students build<br />
-            clarity of thought, depth of understanding, and confidence<br />
-            in application. Across faculties and schools, learning is guided<br />
-            by conversation, experience, and exposure to the real world.</span>
+            <span className="hidden md:inline">Academics at JLU are designed to help students build<br />clarity of thought, depth of understanding, and confidence<br />in application. Across faculties and schools, learning is guided<br />by conversation, experience, and exposure to the real world.</span>
             <span className="md:hidden">Academics at JLU are designed to help students build clarity of thought, depth of understanding, and confidence in application.</span>
           </p>
         </motion.div>
@@ -146,16 +142,15 @@ const Academics = () => {
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.5 }}
-          className="absolute right-0 bottom-[28%] sm:bottom-[32%] md:bottom-[35%] max-w-[80%] md:max-w-none"
+          className="absolute right-0 bottom-[28%] sm:bottom-[32%] md:bottom-[35%] max-w-[80%] md:max-w-none px-5 md:px-10"
           style={{
             textAlign: 'right',
-            paddingRight: 'clamp(20px, 5vw, 40px)',
           }}
         >
           <p
-            className="text-white font-semibold leading-tight"
+            className="text-white/85 font-medium leading-relaxed"
             style={{
-              fontSize: 'clamp(0.875rem, 2vw, 1rem)',
+              fontSize: 'clamp(1rem, 2.5vw, 1.25rem)',
             }}
           >
             <span className="hidden md:inline">Students engage with ideas inside classrooms and test them beyond,<br />
@@ -225,7 +220,7 @@ const Academics = () => {
           >
             <div>
               <span
-                className="text-[#999] uppercase tracking-widest block mb-4 text-[12px] md:text-xs"
+                className="text-[#999] uppercase tracking-widest block mb-4 text-xl md:text-2xl font-bold"
                 style={{ letterSpacing: '0.2em' }}
               >
                 What We Offer
@@ -300,7 +295,7 @@ const Academics = () => {
                   {/* Tag */}
                   <div className="absolute top-3 left-3 md:top-4 md:left-4">
                     <span
-                      className="text-[12px] md:text-xs font-bold uppercase tracking-wider px-3 py-1 rounded-full"
+                      className="text-xl md:text-2xl font-bold font-bold uppercase tracking-wider px-3 py-1 rounded-full"
                       style={{ backgroundColor: cat.color, color: '#21313c' }}
                     >
                       {cat.tag}
@@ -315,7 +310,7 @@ const Academics = () => {
                     >
                       {cat.count}
                     </span>
-                    <span className="text-white/50 text-[12px] md:text-xs uppercase tracking-wider block mb-2">
+                    <span className="text-white/50 text-xl md:text-2xl font-bold uppercase tracking-wider block mb-2">
                       Programs
                     </span>
                     <h3 className="text-white text-sm md:text-lg font-semibold" style={{ lineHeight: 1.2 }}>
@@ -404,7 +399,7 @@ const Academics = () => {
           >
             <div>
               <span
-                className="text-[#999] uppercase tracking-widest block mb-4 md:mb-6 text-[12px] md:text-xs"
+                className="text-[#999] uppercase tracking-widest block mb-4 md:mb-6 text-xl md:text-2xl font-bold"
                 style={{ letterSpacing: '0.2em' }}
               >
                 Academic Structure
@@ -514,7 +509,7 @@ const Academics = () => {
                       <span className="text-[#f0c14b] text-base md:text-xl font-bold block mb-0.5">
                         {stat.value}
                       </span>
-                      <span className="text-[#999] text-[11px] md:text-xs uppercase tracking-wider">
+                      <span className="text-[#999] text-xl md:text-2xl font-bold uppercase tracking-wider">
                         {stat.label}
                       </span>
                     </motion.div>
@@ -586,24 +581,6 @@ const Academics = () => {
                         )}
                       </div>
 
-                      {/* Explore link */}
-                      <Link
-                        href={`/schools/${school.id}`}
-                        onClick={(e) => e.stopPropagation()}
-                        className="flex items-center gap-2 text-[#c3fd7a] text-xs md:text-sm font-medium hover:text-[#d4ff99] transition-colors mt-auto"
-                      >
-                        <span>Explore School</span>
-                        <motion.svg
-                          className="w-3.5 h-3.5"
-                          fill="none"
-                          stroke="currentColor"
-                          viewBox="0 0 24 24"
-                          animate={{ x: [0, 4, 0] }}
-                          transition={{ duration: 1.5, repeat: Infinity, ease: 'easeInOut' }}
-                        >
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                        </motion.svg>
-                      </Link>
                     </div>
                   </motion.div>
                 ))}
@@ -716,7 +693,7 @@ const Academics = () => {
           >
             <div>
               <span
-                className="text-[#999] uppercase tracking-widest block mb-4 md:mb-6 text-[12px] md:text-xs"
+                className="text-[#999] uppercase tracking-widest block mb-4 md:mb-6 text-xl md:text-2xl font-bold"
                 style={{ letterSpacing: '0.2em' }}
               >
                 Perspectives
@@ -1039,25 +1016,13 @@ const Academics = () => {
                 <div className="space-y-3">
                   <Link
                     href="/apply"
-                    className="w-full flex items-center justify-center gap-2 px-6 py-4 bg-[#c3fd7a] text-[#21313c] font-semibold rounded-full hover:bg-[#f0c14b] transition-colors"
+                    className="w-full flex items-center justify-center gap-2 px-6 py-4 bg-[#027ea1] text-white font-semibold rounded-full hover:bg-[#025f7a] transition-colors"
                   >
                     Apply Now
                     <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
                     </svg>
                   </Link>
-                  <a
-                    href="/broucher/JLU-Brochure-2026.pdf"
-                    download
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="w-full flex items-center justify-center gap-2 px-6 py-4 bg-transparent border border-[#21313c]/20 text-[#21313c] font-medium rounded-full hover:bg-[#f6f7f0] transition-colors"
-                  >
-                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                    </svg>
-                    Download Fee Structure
-                  </a>
                 </div>
               </div>
             </motion.div>

@@ -67,12 +67,12 @@ export const PageEventsSection = () => {
             <span className="text-[#21313c] text-xs font-bold block leading-tight">
               {event.date.split(' ')[0]}
             </span>
-            <span className="text-[#999] text-[12px] uppercase tracking-wider">
+            <span className="text-[#999] text-xl md:text-2xl font-bold uppercase tracking-wider">
               {event.date.split(' ').slice(1).join(' ')}
             </span>
           </div>
           <div className="absolute bottom-3 left-3">
-            <span className="text-white/90 text-[12px] uppercase tracking-wider bg-white/15 px-2.5 py-1 rounded-full">
+            <span className="text-white/90 text-xl md:text-2xl font-bold uppercase tracking-wider bg-white/15 px-2.5 py-1 rounded-full">
               {event.category}
             </span>
           </div>
@@ -107,7 +107,7 @@ export const PageEventsSection = () => {
           className="flex items-end justify-between mb-8 md:mb-16"
         >
           <div>
-            <span className="text-[#999] text-[12px] md:text-xs tracking-[0.3em] uppercase block mb-2 md:mb-4">
+            <span className="text-[#999] text-xl md:text-2xl font-bold tracking-[0.3em] uppercase block mb-2 md:mb-4">
               What&apos;s Happening
             </span>
             <h2

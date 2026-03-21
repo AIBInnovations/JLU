@@ -347,7 +347,7 @@ export default function FacultiesPage() {
           <div className="flex gap-3 md:gap-4 justify-center">
             <a
               href="/apply"
-              className="bg-[#c3fd7a] text-[#21313c] font-semibold py-2 px-5 md:py-3 md:px-8 rounded-lg hover:bg-[#b0e86a] transition-all shadow-md hover:shadow-lg text-xs md:text-base"
+              className="bg-[#027ea1] text-white font-semibold py-2 px-5 md:py-3 md:px-8 rounded-lg hover:bg-[#025f7a] transition-all shadow-md hover:shadow-lg text-xs md:text-base"
             >
               Apply Now
             </a>

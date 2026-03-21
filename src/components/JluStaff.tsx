@@ -24,7 +24,7 @@ const JluStaff = () => {
         >
           <div className="mb-6 md:mb-0">
             <span
-              className="text-[#999] uppercase tracking-widest block text-[10px] sm:text-xs mb-3 md:mb-4"
+              className="text-[#999] uppercase tracking-widest block text-xl md:text-2xl font-bold mb-3 md:mb-4"
               style={{ letterSpacing: '0.2em' }}
             >
               Our People
@@ -70,7 +70,7 @@ const JluStaff = () => {
             <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent transition-opacity duration-300 group-hover:opacity-0" />
             {/* Hover overlay with View button */}
             <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-all duration-300 flex items-center justify-center">
-              <span className="bg-white text-[#21313c] px-6 py-3 rounded-lg text-sm md:text-base font-semibold tracking-wide translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
+              <span className="bg-white text-[#21313c] px-6 py-3 rounded-lg text-xl md:text-2xl font-bold tracking-wide translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
                 View Faculty
               </span>
             </div>

@@ -170,7 +170,7 @@ const FreeshipApplication = () => {
             >
               <span
                 className="text-[#f0c14b] uppercase tracking-widest block mb-4"
-                style={{ fontSize: '12px', letterSpacing: '0.2em' }}
+                style={{ fontSize: '28px', fontWeight: 700, letterSpacing: '0.2em' }}
               >
                 Chancellor&apos;s Initiative
               </span>

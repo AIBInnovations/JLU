@@ -135,7 +135,7 @@ function EventsCalendarSection() {
           viewport={{ once: true }}
         >
           <span
-            className="text-[#999] uppercase tracking-widest block mb-4 md:mb-6 text-[11px] md:text-[12px]"
+            className="text-[#999] uppercase tracking-widest block mb-4 md:mb-6 text-xl md:text-2xl font-bold"
             style={{ letterSpacing: '0.2em' }}
           >
             Events Calendar
@@ -165,7 +165,7 @@ function EventsCalendarSection() {
             whileInView="visible"
             viewport={{ once: true }}
           >
-            <p className="text-[#999] uppercase tracking-widest text-[11px] mb-6" style={{ letterSpacing: '0.15em' }}>
+            <p className="text-[#999] uppercase tracking-widest text-xl md:text-2xl font-bold mb-6" style={{ letterSpacing: '0.15em' }}>
               Upcoming Events
             </p>
             {upcoming.map((event) => {
@@ -185,7 +185,7 @@ function EventsCalendarSection() {
                     </div>
                     <div className="flex-1">
                       <div className="flex items-center gap-2 mb-1">
-                        <span className="px-2 py-0.5 bg-[#027ea1]/10 text-[#027ea1] text-[10px] md:text-xs font-medium rounded-full">
+                        <span className="px-2 py-0.5 bg-[#027ea1]/10 text-[#027ea1] text-xl md:text-2xl font-bold font-medium rounded-full">
                           {event.category}
                         </span>
                       </div>
@@ -217,7 +217,7 @@ function EventsCalendarSection() {
             <div className="bg-[#21313c] rounded-2xl overflow-hidden">
               {/* Calendar Header */}
               <div className="flex items-center justify-between px-5 py-4 md:px-6 md:py-5 border-b border-white/10">
-                <p className="text-base md:text-lg font-semibold text-white">
+                <p className="text-xl md:text-2xl font-bold text-white">
                   {MONTHS[calendarMonth.month]} {calendarMonth.year}
                 </p>
                 <div className="flex gap-2">
@@ -512,7 +512,7 @@ const NewsAndEvents = () => {
           >
             <div>
               <span
-                className="text-[#999] uppercase tracking-widest block mb-4 md:mb-6 text-[11px] md:text-[12px]"
+                className="text-[#999] uppercase tracking-widest block mb-4 md:mb-6 text-xl md:text-2xl font-bold"
                 style={{ letterSpacing: '0.2em' }}
               >
                 Media Coverage
@@ -566,10 +566,10 @@ const NewsAndEvents = () => {
               </motion.div>
               <div className="absolute inset-0 bg-linear-to-t from-black/80 via-black/30 to-transparent" />
               <div className="absolute top-4 left-4 md:top-6 md:left-6 flex items-center gap-2">
-                <span className="bg-[#f0c14b] text-[#21313c] px-3 py-1 text-[12px] md:text-xs font-bold uppercase tracking-wider">
+                <span className="bg-[#f0c14b] text-[#21313c] px-3 py-1 text-xl md:text-2xl font-bold font-bold uppercase tracking-wider">
                   Featured
                 </span>
-                <span className="bg-white/20 backdrop-blur-sm text-white px-3 py-1 text-[12px] md:text-xs font-medium">
+                <span className="bg-white/20 backdrop-blur-sm text-white px-3 py-1 text-xl md:text-2xl font-bold font-medium">
                   Hindustan Times
                 </span>
               </div>
@@ -608,9 +608,9 @@ const NewsAndEvents = () => {
                 </div>
                 <div className="flex-1 min-w-0">
                   <div className="flex items-center gap-2 mb-1.5 md:mb-2">
-                    <span className="text-[#999] text-[12px] md:text-xs font-medium">Times of India</span>
+                    <span className="text-[#999] text-xl md:text-2xl font-bold font-medium">Times of India</span>
                     <span className="text-[#999] text-[12px]">|</span>
-                    <span className="text-[#999] text-[12px] md:text-xs">Dec 2025</span>
+                    <span className="text-[#999] text-xl md:text-2xl font-bold">Dec 2025</span>
                   </div>
                   <h4 className="text-[#21313c] font-semibold text-sm md:text-base leading-snug group-hover:text-[#f0c14b] transition-colors line-clamp-2">
                     JLU Hosts AUAP International Conference on Higher Education
@@ -637,9 +637,9 @@ const NewsAndEvents = () => {
                 </div>
                 <div className="flex-1 min-w-0">
                   <div className="flex items-center gap-2 mb-1.5 md:mb-2">
-                    <span className="text-[#999] text-[12px] md:text-xs font-medium">India Today</span>
+                    <span className="text-[#999] text-xl md:text-2xl font-bold font-medium">India Today</span>
                     <span className="text-[#999] text-[12px]">|</span>
-                    <span className="text-[#999] text-[12px] md:text-xs">Nov 2025</span>
+                    <span className="text-[#999] text-xl md:text-2xl font-bold">Nov 2025</span>
                   </div>
                   <h4 className="text-[#21313c] font-semibold text-sm md:text-base leading-snug group-hover:text-[#f0c14b] transition-colors line-clamp-2">
                     JLU Ranked Among Top Private Universities in Central India
@@ -666,9 +666,9 @@ const NewsAndEvents = () => {
                 </div>
                 <div className="flex-1 min-w-0">
                   <div className="flex items-center gap-2 mb-1.5 md:mb-2">
-                    <span className="text-[#999] text-[12px] md:text-xs font-medium">The Pioneer</span>
+                    <span className="text-[#999] text-xl md:text-2xl font-bold font-medium">The Pioneer</span>
                     <span className="text-[#999] text-[12px]">|</span>
-                    <span className="text-[#999] text-[12px] md:text-xs">Oct 2025</span>
+                    <span className="text-[#999] text-xl md:text-2xl font-bold">Oct 2025</span>
                   </div>
                   <h4 className="text-[#21313c] font-semibold text-sm md:text-base leading-snug group-hover:text-[#f0c14b] transition-colors line-clamp-2">
                     JLU Faculty Receives National Award for Innovation in Pharmaceutical Research
@@ -695,9 +695,9 @@ const NewsAndEvents = () => {
                 </div>
                 <div className="flex-1 min-w-0">
                   <div className="flex items-center gap-2 mb-1.5 md:mb-2">
-                    <span className="text-[#999] text-[12px] md:text-xs font-medium">Dainik Bhaskar</span>
+                    <span className="text-[#999] text-xl md:text-2xl font-bold font-medium">Dainik Bhaskar</span>
                     <span className="text-[#999] text-[12px]">|</span>
-                    <span className="text-[#999] text-[12px] md:text-xs">Sep 2025</span>
+                    <span className="text-[#999] text-xl md:text-2xl font-bold">Sep 2025</span>
                   </div>
                   <h4 className="text-[#21313c] font-semibold text-sm md:text-base leading-snug group-hover:text-[#f0c14b] transition-colors line-clamp-2">
                     10th Convocation Ceremony: 2,500 Students Awarded Degrees
@@ -733,7 +733,7 @@ const NewsAndEvents = () => {
           >
             <div>
               <span
-                className="text-[#999] uppercase tracking-widest block mb-4 md:mb-6 text-[11px] md:text-[12px]"
+                className="text-[#999] uppercase tracking-widest block mb-4 md:mb-6 text-xl md:text-2xl font-bold"
                 style={{ letterSpacing: '0.2em' }}
               >
                 Archive
@@ -1310,7 +1310,7 @@ const NewsAndEvents = () => {
           viewport={{ once: true }}
         >
           <span
-            className="text-[#999] uppercase tracking-widest block mb-4 md:mb-6 text-[11px] md:text-[12px]"
+            className="text-[#999] uppercase tracking-widest block mb-4 md:mb-6 text-xl md:text-2xl font-bold"
             style={{ letterSpacing: '0.2em' }}
           >
             Downloads
@@ -1357,7 +1357,7 @@ const NewsAndEvents = () => {
                 </svg>
               </div>
               <div className="flex-1">
-                <h3 className="text-base md:text-lg font-semibold text-[#21313c] group-hover:text-[#f0c14b] transition-colors">University Logo Pack</h3>
+                <h3 className="text-xl md:text-2xl font-bold text-[#21313c] group-hover:text-[#f0c14b] transition-colors">University Logo Pack</h3>
                 <p className="text-xs md:text-sm text-[#999]">PNG, SVG, EPS (45MB)</p>
               </div>
               <span className="text-[#21313c] opacity-0 group-hover:opacity-100 transition-opacity hidden md:block">→</span>
@@ -1381,7 +1381,7 @@ const NewsAndEvents = () => {
                 </svg>
               </div>
               <div className="flex-1">
-                <h3 className="text-base md:text-lg font-semibold text-[#21313c] group-hover:text-[#f0c14b] transition-colors">Brand Guidelines</h3>
+                <h3 className="text-xl md:text-2xl font-bold text-[#21313c] group-hover:text-[#f0c14b] transition-colors">Brand Guidelines</h3>
                 <p className="text-xs md:text-sm text-[#999]">PDF (12MB)</p>
               </div>
               <span className="text-[#21313c] opacity-0 group-hover:opacity-100 transition-opacity hidden md:block">→</span>
@@ -1403,7 +1403,7 @@ const NewsAndEvents = () => {
                 </svg>
               </div>
               <div className="flex-1">
-                <h3 className="text-base md:text-lg font-semibold text-[#21313c] group-hover:text-[#f0c14b] transition-colors">Leadership Photos</h3>
+                <h3 className="text-xl md:text-2xl font-bold text-[#21313c] group-hover:text-[#f0c14b] transition-colors">Leadership Photos</h3>
                 <p className="text-xs md:text-sm text-[#999]">High-Res Gallery</p>
               </div>
               <span className="text-[#21313c] opacity-0 group-hover:opacity-100 transition-opacity hidden md:block">→</span>
@@ -1420,7 +1420,7 @@ const NewsAndEvents = () => {
           viewport={{ once: true }}
         >
           <span
-            className="text-[#f0c14b] uppercase tracking-widest block mb-4 md:mb-6 text-[11px] md:text-[12px]"
+            className="text-[#f0c14b] uppercase tracking-widest block mb-4 md:mb-6 text-xl md:text-2xl font-bold"
             style={{ letterSpacing: '0.2em' }}
           >
             Press Inquiries

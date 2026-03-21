@@ -532,12 +532,12 @@ export const Hero = () => {
               </span>
             </h2>
           </div>
-          <div className={`flex w-full ${isMobile ? 'flex-col gap-4' : 'flex-row gap-10'} items-start`}>
+          <div className={`flex w-full ${isMobile ? 'flex-col gap-4' : 'flex-row gap-20'} items-start`}>
             <p
               className="flex-1 text-[#666]"
               style={{
                 fontFamily: 'Inter, sans-serif',
-                fontSize: isMobile ? '20px' : '24px',
+                fontSize: isMobile ? '20px' : 'clamp(1.25rem, 2vw, 1.75rem)',
                 lineHeight: 1.7,
                 fontWeight: 400,
               }}
@@ -548,7 +548,7 @@ export const Hero = () => {
               className="flex-1 text-[#999]"
               style={{
                 fontFamily: 'Inter, sans-serif',
-                fontSize: isMobile ? '20px' : '24px',
+                fontSize: isMobile ? '20px' : 'clamp(1.25rem, 2vw, 1.75rem)',
                 lineHeight: 1.7,
                 fontWeight: 400,
               }}

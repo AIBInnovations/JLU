@@ -208,7 +208,7 @@ export const EnquiryModal = ({ isOpen, onClose }: EnquiryModalProps) => {
                     exit={{ opacity: 0, scale: 0.9 }}
                   >
                     <motion.div
-                      className="w-20 h-20 bg-[#c3fd7a] rounded-full flex items-center justify-center mb-6"
+                      className="w-20 h-20 bg-[#027ea1] rounded-full flex items-center justify-center mb-6"
                       initial={{ scale: 0 }}
                       animate={{ scale: 1 }}
                       transition={{ type: 'spring', delay: 0.2 }}

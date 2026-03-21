@@ -627,7 +627,7 @@ const ApplyModal = ({ isOpen, onClose }: ApplyModalProps) => {
                     exit={{ opacity: 0, scale: 0.9 }}
                   >
                     <motion.div
-                      className="w-20 h-20 bg-[#c3fd7a] rounded-full flex items-center justify-center mb-6"
+                      className="w-20 h-20 bg-[#027ea1] rounded-full flex items-center justify-center mb-6"
                       initial={{ scale: 0 }}
                       animate={{ scale: 1 }}
                       transition={{ type: 'spring', delay: 0.2 }}
@@ -916,7 +916,7 @@ const InternationalOffice = () => {
               className="w-full lg:max-w-120"
             >
               <span
-                className="text-[#999] uppercase tracking-widest block mb-4 md:mb-6 text-[11px] md:text-[12px]"
+                className="text-[#999] uppercase tracking-widest block mb-4 md:mb-6 text-xl md:text-2xl font-bold"
                 style={{ letterSpacing: '0.2em' }}
               >
                 Global Network
@@ -1026,7 +1026,7 @@ const InternationalOffice = () => {
             className="mb-10 md:mb-12 lg:mb-16"
           >
             <span
-              className="text-[#999] uppercase tracking-widest block mb-4 md:mb-6 text-[11px] md:text-[12px]"
+              className="text-[#999] uppercase tracking-widest block mb-4 md:mb-6 text-xl md:text-2xl font-bold"
               style={{ letterSpacing: '0.2em' }}
             >
               Programs
@@ -1155,7 +1155,7 @@ const InternationalOffice = () => {
             viewport={{ once: true }}
           >
             <span
-              className="text-white/50 uppercase tracking-widest block mb-6 md:mb-8 text-[11px] md:text-[12px]"
+              className="text-white/50 uppercase tracking-widest block mb-6 md:mb-8 text-xl md:text-2xl font-bold"
               style={{ letterSpacing: '0.3em' }}
             >
               Summer Programs
@@ -1218,7 +1218,7 @@ const InternationalOffice = () => {
             viewport={{ once: true }}
           >
             <span
-              className="text-[#999] uppercase tracking-widest block mb-4 md:mb-6 text-[11px] md:text-[12px]"
+              className="text-[#999] uppercase tracking-widest block mb-4 md:mb-6 text-xl md:text-2xl font-bold"
               style={{ letterSpacing: '0.2em' }}
             >
               Support Services
@@ -1298,7 +1298,7 @@ const InternationalOffice = () => {
             viewport={{ once: true }}
           >
             <span
-              className="text-[#999] uppercase tracking-widest block mb-4 md:mb-6 text-[11px] md:text-[12px]"
+              className="text-[#999] uppercase tracking-widest block mb-4 md:mb-6 text-xl md:text-2xl font-bold"
               style={{ letterSpacing: '0.2em' }}
             >
               Investment
@@ -1429,7 +1429,7 @@ const InternationalOffice = () => {
               viewport={{ once: true }}
             >
               <span
-                className="text-[#999] uppercase tracking-widest block mb-4 md:mb-6 text-[11px] md:text-[12px]"
+                className="text-[#999] uppercase tracking-widest block mb-4 md:mb-6 text-xl md:text-2xl font-bold"
                 style={{ letterSpacing: '0.2em' }}
               >
                 Apply Now
@@ -1552,7 +1552,7 @@ const InternationalOffice = () => {
               viewport={{ once: true }}
             >
               <span
-                className="text-[#999] uppercase tracking-widest block mb-4 md:mb-6 text-[11px] md:text-[12px]"
+                className="text-[#999] uppercase tracking-widest block mb-4 md:mb-6 text-xl md:text-2xl font-bold"
                 style={{ letterSpacing: '0.2em' }}
               >
                 Help Center
@@ -1664,7 +1664,7 @@ const InternationalOffice = () => {
               viewport={{ once: true }}
             >
               <span
-                className="text-[#999] uppercase tracking-widest block mb-4 md:mb-6 text-[11px] md:text-[12px]"
+                className="text-[#999] uppercase tracking-widest block mb-4 md:mb-6 text-xl md:text-2xl font-bold"
                 style={{ letterSpacing: '0.2em' }}
               >
                 City of Lakes

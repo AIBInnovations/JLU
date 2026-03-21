@@ -176,8 +176,8 @@ export const ProgramDetail = ({ program }: ProgramDetailProps) => {
                       className="flex items-start gap-2 md:gap-3 bg-[#f6f7f0] rounded-lg group hover:bg-[#21313c] transition-colors duration-300"
                       style={{ padding: isMobile ? '10px' : '16px' }}
                     >
-                      <div className="w-5 h-5 md:w-6 md:h-6 rounded-full bg-[#c3fd7a] flex items-center justify-center shrink-0 group-hover:bg-[#f0c14b] transition-colors">
-                        <svg className="w-2.5 h-2.5 md:w-3 md:h-3 text-[#21313c]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <div className="w-5 h-5 md:w-6 md:h-6 rounded-full bg-[#027ea1] flex items-center justify-center shrink-0 group-hover:bg-[#025f7a] transition-colors">
+                        <svg className="w-2.5 h-2.5 md:w-3 md:h-3 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                         </svg>
                       </div>
@@ -456,7 +456,7 @@ export const ProgramDetail = ({ program }: ProgramDetailProps) => {
                   className="bg-[#21313c] rounded-xl md:rounded-2xl"
                   style={{ padding: isMobile ? '16px' : '32px' }}
                 >
-                  <h3 className="text-white font-semibold mb-4 md:mb-6" style={{ fontSize: isMobile ? '16px' : '18px' }}>Quick Information</h3>
+                  <h3 className="text-white font-semibold mb-4 md:mb-6" style={{ fontSize: isMobile ? '24px' : '30px' }}>Quick Information</h3>
 
                   <div className="space-y-2 md:space-y-4">
                     {[
@@ -487,7 +487,7 @@ export const ProgramDetail = ({ program }: ProgramDetailProps) => {
                   {/* Apply Button */}
                   <Link
                     href="/apply"
-                    className="mt-5 md:mt-8 w-full flex items-center justify-center gap-2 bg-[#c3fd7a] text-[#21313c] font-semibold rounded-full hover:bg-[#f0c14b] transition-colors"
+                    className="mt-5 md:mt-8 w-full flex items-center justify-center gap-2 bg-[#027ea1] text-white font-semibold rounded-full hover:bg-[#025f7a] transition-colors"
                     style={{ padding: isMobile ? '10px 16px' : '16px 24px', fontSize: isMobile ? '12px' : '16px' }}
                   >
                     Apply Now
@@ -521,7 +521,7 @@ export const ProgramDetail = ({ program }: ProgramDetailProps) => {
                   className="bg-gradient-to-br from-[#027ea1] to-[#026986] rounded-xl md:rounded-2xl"
                   style={{ padding: isMobile ? '16px' : '32px' }}
                 >
-                  <h3 className="text-white font-semibold mb-3 md:mb-4" style={{ fontSize: isMobile ? '16px' : '18px' }}>Why Choose JLU?</h3>
+                  <h3 className="text-white font-semibold mb-3 md:mb-4" style={{ fontSize: isMobile ? '24px' : '30px' }}>Why Choose JLU?</h3>
                   <div className="space-y-2.5 md:space-y-3">
                     {[
                       { icon: 'M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z', title: 'QS Diamond Rated', desc: 'Top-tier academic standards' },
@@ -530,8 +530,8 @@ export const ProgramDetail = ({ program }: ProgramDetailProps) => {
                       { icon: 'M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253', title: 'Research Excellence', desc: '2400+ publications' },
                     ].map((item, i) => (
                       <div key={i} className="flex items-start gap-2 md:gap-3">
-                        <div className="rounded-lg bg-[#c3fd7a] flex items-center justify-center shrink-0" style={{ width: isMobile ? '28px' : '32px', height: isMobile ? '28px' : '32px' }}>
-                          <svg className="w-3.5 h-3.5 md:w-4 md:h-4 text-[#21313c]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <div className="rounded-lg bg-[#027ea1] flex items-center justify-center shrink-0" style={{ width: isMobile ? '28px' : '32px', height: isMobile ? '28px' : '32px' }}>
+                          <svg className="w-3.5 h-3.5 md:w-4 md:h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d={item.icon} />
                           </svg>
                         </div>
@@ -762,7 +762,7 @@ export const ProgramDetail = ({ program }: ProgramDetailProps) => {
             <div className="flex flex-row items-center justify-center gap-3 md:gap-4">
               <Link
                 href="/apply"
-                className="bg-[#c3fd7a] text-[#21313c] font-semibold rounded-full hover:bg-[#f0c14b] transition-colors flex items-center gap-1.5 md:gap-2"
+                className="bg-[#027ea1] text-white font-semibold rounded-full hover:bg-[#025f7a] transition-colors flex items-center gap-1.5 md:gap-2"
                 style={{ padding: isMobile ? '8px 16px' : '16px 32px', fontSize: isMobile ? '11px' : '16px' }}
               >
                 Apply Now

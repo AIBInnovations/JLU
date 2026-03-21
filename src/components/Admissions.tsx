@@ -603,7 +603,7 @@ const CampusTourModal = ({ isOpen, onClose }: CampusTourModalProps) => {
                     exit={{ opacity: 0, scale: 0.9 }}
                   >
                     <motion.div
-                      className="w-20 h-20 bg-[#c3fd7a] rounded-full flex items-center justify-center mb-6"
+                      className="w-20 h-20 bg-[#027ea1] rounded-full flex items-center justify-center mb-6"
                       initial={{ scale: 0 }}
                       animate={{ scale: 1 }}
                       transition={{ type: 'spring', delay: 0.2 }}
@@ -1423,7 +1423,7 @@ const Admissions = () => {
             viewport={{ once: true }}
             className="mb-16 md:mb-20"
           >
-            <span className="text-[#999] uppercase tracking-widest block mb-5" style={{ fontSize: '12px', letterSpacing: '0.2em' }}>
+            <span className="text-[#999] uppercase tracking-widest block mb-5" style={{ fontSize: '28px', letterSpacing: '0.2em' }}>
               Explore Admissions
             </span>
             <h2
@@ -1709,7 +1709,7 @@ const Admissions = () => {
           >
             <span
               className="text-[#999] uppercase tracking-widest block mb-6"
-              style={{ fontSize: '12px', letterSpacing: '0.2em' }}
+              style={{ fontSize: '28px', letterSpacing: '0.2em' }}
             >
               Everything You Need
             </span>
@@ -1951,7 +1951,7 @@ const Admissions = () => {
                               data-label=""
                               className="font-bold"
                               style={{
-                                fontSize: '12px',
+                                fontSize: '28px',
                                 color: '#999',
                                 transition: 'color 0.35s',
                               }}
@@ -2370,7 +2370,7 @@ const Admissions = () => {
           >
             <span
               className="text-[#999] uppercase tracking-widest block mb-6"
-              style={{ fontSize: '12px', letterSpacing: '0.2em' }}
+              style={{ fontSize: '28px', letterSpacing: '0.2em' }}
             >
               Academic Programs
             </span>
@@ -2473,7 +2473,7 @@ const Admissions = () => {
           >
             <span
               className="text-[#999] uppercase tracking-widest block mb-6"
-              style={{ fontSize: '12px', letterSpacing: '0.2em' }}
+              style={{ fontSize: '28px', letterSpacing: '0.2em' }}
             >
               Special Programs
             </span>
@@ -2571,7 +2571,7 @@ const Admissions = () => {
             <div>
               <span
                 className="text-[#999] uppercase tracking-widest block mb-6"
-                style={{ fontSize: '12px', letterSpacing: '0.2em' }}
+                style={{ fontSize: '28px', letterSpacing: '0.2em' }}
               >
                 Experience
               </span>
@@ -2627,7 +2627,7 @@ const Admissions = () => {
               </motion.div>
               <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
               <div className="absolute bottom-8 left-8 right-8">
-                <span className="text-white/60 uppercase tracking-wider block mb-2" style={{ fontSize: '11px' }}>
+                <span className="text-white/60 uppercase tracking-wider block mb-2" style={{ fontSize: '28px' }}>
                   Virtual Tour Available
                 </span>
                 <h3 className="text-white font-semibold" style={{ fontSize: '24px' }}>
@@ -2778,7 +2778,7 @@ const Admissions = () => {
             transition={{ duration: 0.8 }}
           >
             <span
-              className="text-[#21313c]/60 uppercase tracking-widest block mb-3 md:mb-5 lg:mb-6 text-[11px] md:text-[12px] lg:text-[13px]"
+              className="text-[#21313c]/60 uppercase tracking-widest block mb-3 md:mb-5 lg:mb-6 text-xl md:text-2xl font-bold lg:text-[13px]"
               style={{ letterSpacing: '0.2em' }}
             >
               Start Your Journey

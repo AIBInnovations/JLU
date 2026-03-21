@@ -15,6 +15,7 @@ export const AwardsSection = () => {
   const textContentRef = useRef<HTMLDivElement>(null);
   const middleCardRef = useRef<HTMLDivElement>(null);
   const [mounted, setMounted] = useState(false);
+  const [selectedAward, setSelectedAward] = useState<{ image: string; title: string; description: string; year: string } | null>(null);
   const isMobile = useIsMobile();
 
   // Wait for mount
@@ -28,6 +29,7 @@ export const AwardsSection = () => {
       title: '4th in MP, 53rd in India — India Today Rankings 2025',
       description: 'Jagran Lakecity University has secured the 4th position in Madhya Pradesh and 53rd position in India in the India Today Best University Rankings 2025. This achievement reflects our continued commitment to academic excellence, innovative teaching practices, and holistic student development.',
       year: '2025',
+      center: true,
     },
     {
       image: '/a2.jpeg',
@@ -58,6 +60,7 @@ export const AwardsSection = () => {
       title: 'MP Excellence Award 2025 — Proud Sponsor',
       description: 'Jagran Lakecity University was the proud sponsor for the MP Excellence Award 2025 held on 26th October, 2025 at Minto Hall, Bhopal, to honor individuals and groups for their achievements in various fields.',
       year: '2025',
+      center: true,
     },
   ];
 
@@ -185,7 +188,8 @@ export const AwardsSection = () => {
             <p
               style={{
                 color: '#999',
-                fontSize: isMobile ? '1rem' : '1.15rem',
+                fontSize: isMobile ? '1.5rem' : '1.875rem',
+                fontWeight: 700,
                 letterSpacing: '0.2em',
                 textTransform: 'uppercase',
                 textAlign: 'center',
@@ -209,18 +213,17 @@ export const AwardsSection = () => {
             <p
               style={{
                 color: '#666',
-                fontSize: isMobile ? '0.95rem' : 'clamp(0.95rem, 1.1vw, 1.15rem)',
+                fontSize: isMobile ? '1.125rem' : 'clamp(1.25rem, 2vw, 1.75rem)',
                 textAlign: 'center',
                 marginTop: isMobile ? '1rem' : '2rem',
                 marginLeft: 'auto',
                 marginRight: 'auto',
-                maxWidth: isMobile ? '18rem' : '28rem',
+                maxWidth: '1000px',
                 padding: '0 1rem',
-                lineHeight: 1.7,
+                lineHeight: 1.8,
               }}
             >
-              Jagran Lakecity University continues to earn accolades across national and international platforms.{' '}
-              <span style={{ color: '#027ea1' }}>Recognized globally.</span>
+              Jagran Lakecity University continues to earn accolades across national and international platforms. Recognized globally.
             </p>
           </div>
         </div>
@@ -238,130 +241,225 @@ export const AwardsSection = () => {
         }}
       >
         {isMobile ? (
-          /* Mobile: 2 columns, 3 rows */
-          <div style={{ padding: '0 16px' }}>
-            {[0, 2, 4].map((startIdx, rowIdx) => (
+          /* Mobile: 2 columns staggered */
+          <div style={{ padding: '0 16px', display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px' }}>
+            {awards.map((award, index) => (
               <div
-                key={rowIdx}
-                ref={rowIdx === 1 ? middleCardRef : undefined}
-                style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px', marginBottom: '24px' }}
+                key={index}
+                ref={index === 2 ? middleCardRef : undefined}
+                style={{ marginTop: index % 2 === 1 ? '40px' : '0' }}
               >
-                {awards.slice(startIdx, startIdx + 2).map((award, index) => (
-                  <div key={startIdx + index}>
-                    <div
-                      style={{
-                        width: '100%',
-                        aspectRatio: '1 / 1',
-                        overflow: 'hidden',
-                        borderRadius: '12px',
-                      }}
-                    >
-                      <img
-                        src={award.image}
-                        alt={award.title}
-                        style={{ width: '100%', height: '100%', objectFit: 'cover' }}
-                      />
-                    </div>
-                    <div style={{ marginTop: '10px', textAlign: 'center' }}>
-                      <p style={{ color: '#027ea1', fontSize: '0.75rem', fontWeight: 600, letterSpacing: '0.1em', textTransform: 'uppercase', marginBottom: '4px' }}>{award.year}</p>
-                      <p style={{ color: '#21313c', fontSize: '0.85rem', fontWeight: 600, lineHeight: 1.3, marginBottom: '6px' }}>
-                        {award.title}
-                      </p>
-                      <p style={{ color: '#666', fontSize: '0.75rem', lineHeight: 1.5 }}>
-                        {award.description.length > 160 ? award.description.substring(0, 160) + '...' : award.description}
-                      </p>
-                    </div>
-                  </div>
-                ))}
+                <div
+                  style={{
+                    width: '100%',
+                    aspectRatio: '3 / 2',
+                    overflow: 'hidden',
+                  }}
+                >
+                  <img
+                    src={award.image}
+                    alt={award.title}
+                    style={{ width: '100%', height: '100%', objectFit: 'contain' }}
+                  />
+                </div>
+                <div style={{ marginTop: '10px', textAlign: award.center ? 'center' : 'left' }}>
+                  <p style={{ color: '#027ea1', fontSize: '0.85rem', fontWeight: 600, letterSpacing: '0.1em', textTransform: 'uppercase', marginBottom: '4px' }}>{award.year}</p>
+                  <p style={{ color: '#21313c', fontSize: '1.05rem', fontWeight: 600, lineHeight: 1.3, marginBottom: '4px' }}>
+                    {award.title}
+                  </p>
+                  <p style={{ color: '#666', fontSize: '0.9rem', lineHeight: 1.5 }}>
+                    {award.description.substring(0, 70)}...
+                  </p>
+                  <button
+                    onClick={() => setSelectedAward(award)}
+                    style={{ color: '#027ea1', fontSize: '0.9rem', fontWeight: 600, marginTop: '6px', background: 'none', border: 'none', cursor: 'pointer', padding: 0 }}
+                  >
+                    Read More →
+                  </button>
+                </div>
               </div>
             ))}
           </div>
         ) : (
-          /* Desktop: 3 columns, 2 rows — cards with most text in the middle */
-          <div
-            style={{
-              padding: '0 4%',
-            }}
-          >
-            {/* Row 1: a1 (left), a2 (middle - most text), a3 (right) */}
-            <div
-              style={{
-                display: 'grid',
-                gridTemplateColumns: '1fr 1fr 1fr',
-                gap: 'clamp(24px, 3vw, 48px)',
-                marginBottom: 'clamp(40px, 5vw, 80px)',
-                alignItems: 'start',
-              }}
-            >
-              {[awards[0], awards[1], awards[2]].map((award, index) => (
-                <div key={index} ref={index === 1 ? middleCardRef : undefined} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-                  <div
-                    style={{
-                      width: '100%',
-                      aspectRatio: '1 / 1',
-                      overflow: 'hidden',
-                      borderRadius: '16px',
-                    }}
-                  >
-                    <img
-                      src={award.image}
-                      alt={award.title}
-                      style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: '16px' }}
-                    />
+          /* Desktop: Staggered layout with landscape cards centered */
+          <div style={{ padding: '0 4%' }}>
+            {/* Top group */}
+            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: 'clamp(30px, 3.5vw, 56px)', alignItems: 'start', marginBottom: 'clamp(30px, 4vw, 60px)' }}>
+              {/* Left card - offset down */}
+              {(() => { const award = awards[1]; return (
+                <div ref={middleCardRef} style={{ marginTop: '60px' }}>
+                  <div style={{ width: '100%', aspectRatio: '3 / 2', overflow: 'hidden' }}>
+                    <img src={award.image} alt={award.title} style={{ width: '100%', height: '100%', objectFit: 'contain' }} />
                   </div>
-                  <div style={{ marginTop: '16px', textAlign: 'center', width: '100%' }}>
-                    <p style={{ color: '#027ea1', fontSize: 'clamp(0.7rem, 0.9vw, 0.9rem)', fontWeight: 600, letterSpacing: '0.1em', textTransform: 'uppercase', marginBottom: '8px' }}>{award.year}</p>
-                    <p style={{ color: '#21313c', fontSize: 'clamp(0.9rem, 1.1vw, 1.15rem)', fontWeight: 600, lineHeight: 1.3, marginBottom: '10px' }}>
-                      {award.title}
-                    </p>
-                    <p style={{ color: '#666', fontSize: 'clamp(0.8rem, 0.95vw, 1rem)', lineHeight: 1.7 }}>
-                      {award.description}
-                    </p>
+                  <div style={{ marginTop: '16px', textAlign: 'center' }}>
+                    <p style={{ color: '#027ea1', fontSize: 'clamp(0.9rem, 1.1vw, 1.1rem)', fontWeight: 600, letterSpacing: '0.1em', textTransform: 'uppercase', marginBottom: '8px' }}>{award.year}</p>
+                    <p style={{ color: '#21313c', fontSize: 'clamp(1.2rem, 1.5vw, 1.7rem)', fontWeight: 600, lineHeight: 1.3, marginBottom: '10px' }}>{award.title}</p>
+                    <p style={{ color: '#666', fontSize: 'clamp(1rem, 1.2vw, 1.25rem)', lineHeight: 1.7 }}>{award.description.substring(0, 100)}...</p>
+                    <button onClick={() => setSelectedAward(award)} style={{ color: '#027ea1', fontSize: 'clamp(1rem, 1.2vw, 1.25rem)', fontWeight: 600, marginTop: '10px', background: 'none', border: 'none', cursor: 'pointer', padding: 0 }}>Read More →</button>
                   </div>
                 </div>
-              ))}
+              ); })()}
+              {/* Center - landscape card (a1) */}
+              {(() => { const award = awards[0]; return (
+                <div>
+                  <div style={{ width: '100%', overflow: 'hidden' }}>
+                    <img src={award.image} alt={award.title} style={{ width: '100%', height: 'auto', objectFit: 'contain' }} />
+                  </div>
+                  <div style={{ marginTop: '16px', textAlign: 'center' }}>
+                    <p style={{ color: '#027ea1', fontSize: 'clamp(0.9rem, 1.1vw, 1.1rem)', fontWeight: 600, letterSpacing: '0.1em', textTransform: 'uppercase', marginBottom: '8px' }}>{award.year}</p>
+                    <p style={{ color: '#21313c', fontSize: 'clamp(1.2rem, 1.5vw, 1.7rem)', fontWeight: 600, lineHeight: 1.3, marginBottom: '10px' }}>{award.title}</p>
+                    <p style={{ color: '#666', fontSize: 'clamp(1rem, 1.2vw, 1.25rem)', lineHeight: 1.7 }}>{award.description.substring(0, 100)}...</p>
+                    <button onClick={() => setSelectedAward(award)} style={{ color: '#027ea1', fontSize: 'clamp(1rem, 1.2vw, 1.25rem)', fontWeight: 600, marginTop: '10px', background: 'none', border: 'none', cursor: 'pointer', padding: 0 }}>Read More →</button>
+                  </div>
+                </div>
+              ); })()}
+              {/* Right card - offset down more */}
+              {(() => { const award = awards[2]; return (
+                <div style={{ marginTop: '100px' }}>
+                  <div style={{ width: '100%', aspectRatio: '3 / 2', overflow: 'hidden' }}>
+                    <img src={award.image} alt={award.title} style={{ width: '100%', height: '100%', objectFit: 'contain' }} />
+                  </div>
+                  <div style={{ marginTop: '16px', textAlign: 'center' }}>
+                    <p style={{ color: '#027ea1', fontSize: 'clamp(0.9rem, 1.1vw, 1.1rem)', fontWeight: 600, letterSpacing: '0.1em', textTransform: 'uppercase', marginBottom: '8px' }}>{award.year}</p>
+                    <p style={{ color: '#21313c', fontSize: 'clamp(1.2rem, 1.5vw, 1.7rem)', fontWeight: 600, lineHeight: 1.3, marginBottom: '10px' }}>{award.title}</p>
+                    <p style={{ color: '#666', fontSize: 'clamp(1rem, 1.2vw, 1.25rem)', lineHeight: 1.7 }}>{award.description.substring(0, 100)}...</p>
+                    <button onClick={() => setSelectedAward(award)} style={{ color: '#027ea1', fontSize: 'clamp(1rem, 1.2vw, 1.25rem)', fontWeight: 600, marginTop: '10px', background: 'none', border: 'none', cursor: 'pointer', padding: 0 }}>Read More →</button>
+                  </div>
+                </div>
+              ); })()}
             </div>
 
-            {/* Row 2: a6 (left - short text), a5 (middle - most text), a4 (right) */}
-            <div
-              style={{
-                display: 'grid',
-                gridTemplateColumns: '1fr 1fr 1fr',
-                gap: 'clamp(24px, 3vw, 48px)',
-                alignItems: 'start',
-              }}
-            >
-              {[awards[5], awards[4], awards[3]].map((award, index) => (
-                <div key={index + 3} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-                  <div
-                    style={{
-                      width: '100%',
-                      aspectRatio: '1 / 1',
-                      overflow: 'hidden',
-                      borderRadius: '16px',
-                    }}
-                  >
-                    <img
-                      src={award.image}
-                      alt={award.title}
-                      style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: '16px' }}
-                    />
+            {/* Bottom group */}
+            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: 'clamp(30px, 3.5vw, 56px)', alignItems: 'start' }}>
+              {/* Left card - offset down */}
+              {(() => { const award = awards[3]; return (
+                <div style={{ marginTop: '40px' }}>
+                  <div style={{ width: '100%', aspectRatio: '3 / 2', overflow: 'hidden' }}>
+                    <img src={award.image} alt={award.title} style={{ width: '100%', height: '100%', objectFit: 'contain' }} />
                   </div>
-                  <div style={{ marginTop: '16px', textAlign: 'center', width: '100%' }}>
-                    <p style={{ color: '#027ea1', fontSize: 'clamp(0.7rem, 0.9vw, 0.9rem)', fontWeight: 600, letterSpacing: '0.1em', textTransform: 'uppercase', marginBottom: '8px' }}>{award.year}</p>
-                    <p style={{ color: '#21313c', fontSize: 'clamp(0.9rem, 1.1vw, 1.15rem)', fontWeight: 600, lineHeight: 1.3, marginBottom: '10px' }}>
-                      {award.title}
-                    </p>
-                    <p style={{ color: '#666', fontSize: 'clamp(0.8rem, 0.95vw, 1rem)', lineHeight: 1.7 }}>
-                      {award.description}
-                    </p>
+                  <div style={{ marginTop: '16px', textAlign: 'center' }}>
+                    <p style={{ color: '#027ea1', fontSize: 'clamp(0.9rem, 1.1vw, 1.1rem)', fontWeight: 600, letterSpacing: '0.1em', textTransform: 'uppercase', marginBottom: '8px' }}>{award.year}</p>
+                    <p style={{ color: '#21313c', fontSize: 'clamp(1.2rem, 1.5vw, 1.7rem)', fontWeight: 600, lineHeight: 1.3, marginBottom: '10px' }}>{award.title}</p>
+                    <p style={{ color: '#666', fontSize: 'clamp(1rem, 1.2vw, 1.25rem)', lineHeight: 1.7 }}>{award.description.substring(0, 100)}...</p>
+                    <button onClick={() => setSelectedAward(award)} style={{ color: '#027ea1', fontSize: 'clamp(1rem, 1.2vw, 1.25rem)', fontWeight: 600, marginTop: '10px', background: 'none', border: 'none', cursor: 'pointer', padding: 0 }}>Read More →</button>
                   </div>
                 </div>
-              ))}
+              ); })()}
+              {/* Center - landscape card (a6) */}
+              {(() => { const award = awards[5]; return (
+                <div>
+                  <div style={{ width: '100%', overflow: 'hidden' }}>
+                    <img src={award.image} alt={award.title} style={{ width: '100%', height: 'auto', objectFit: 'contain' }} />
+                  </div>
+                  <div style={{ marginTop: '16px', textAlign: 'center' }}>
+                    <p style={{ color: '#027ea1', fontSize: 'clamp(0.9rem, 1.1vw, 1.1rem)', fontWeight: 600, letterSpacing: '0.1em', textTransform: 'uppercase', marginBottom: '8px' }}>{award.year}</p>
+                    <p style={{ color: '#21313c', fontSize: 'clamp(1.2rem, 1.5vw, 1.7rem)', fontWeight: 600, lineHeight: 1.3, marginBottom: '10px' }}>{award.title}</p>
+                    <p style={{ color: '#666', fontSize: 'clamp(1rem, 1.2vw, 1.25rem)', lineHeight: 1.7 }}>{award.description.substring(0, 100)}...</p>
+                    <button onClick={() => setSelectedAward(award)} style={{ color: '#027ea1', fontSize: 'clamp(1rem, 1.2vw, 1.25rem)', fontWeight: 600, marginTop: '10px', background: 'none', border: 'none', cursor: 'pointer', padding: 0 }}>Read More →</button>
+                  </div>
+                </div>
+              ); })()}
+              {/* Right card - offset down more */}
+              {(() => { const award = awards[4]; return (
+                <div style={{ marginTop: '80px' }}>
+                  <div style={{ width: '100%', aspectRatio: '3 / 2', overflow: 'hidden' }}>
+                    <img src={award.image} alt={award.title} style={{ width: '100%', height: '100%', objectFit: 'contain' }} />
+                  </div>
+                  <div style={{ marginTop: '16px', textAlign: 'center' }}>
+                    <p style={{ color: '#027ea1', fontSize: 'clamp(0.9rem, 1.1vw, 1.1rem)', fontWeight: 600, letterSpacing: '0.1em', textTransform: 'uppercase', marginBottom: '8px' }}>{award.year}</p>
+                    <p style={{ color: '#21313c', fontSize: 'clamp(1.2rem, 1.5vw, 1.7rem)', fontWeight: 600, lineHeight: 1.3, marginBottom: '10px' }}>{award.title}</p>
+                    <p style={{ color: '#666', fontSize: 'clamp(1rem, 1.2vw, 1.25rem)', lineHeight: 1.7 }}>{award.description.substring(0, 100)}...</p>
+                    <button onClick={() => setSelectedAward(award)} style={{ color: '#027ea1', fontSize: 'clamp(1rem, 1.2vw, 1.25rem)', fontWeight: 600, marginTop: '10px', background: 'none', border: 'none', cursor: 'pointer', padding: 0 }}>Read More →</button>
+                  </div>
+                </div>
+              ); })()}
             </div>
           </div>
         )}
       </div>
+
+      {/* Award Detail Modal */}
+      {selectedAward && (
+        <div
+          style={{
+            position: 'fixed',
+            inset: 0,
+            zIndex: 9999,
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+          }}
+        >
+          <div
+            onClick={() => setSelectedAward(null)}
+            style={{
+              position: 'absolute',
+              inset: 0,
+              background: 'rgba(0,0,0,0.5)',
+              backdropFilter: 'blur(4px)',
+            }}
+          />
+          <div
+            style={{
+              position: 'relative',
+              background: 'white',
+              borderRadius: '20px',
+              maxWidth: '560px',
+              width: '90%',
+              maxHeight: '85vh',
+              overflow: 'hidden',
+              display: 'flex',
+              flexDirection: 'column',
+            }}
+          >
+            {/* Modal Image */}
+            <div style={{ position: 'relative', width: '100%', aspectRatio: '16/9', overflow: 'hidden', flexShrink: 0 }}>
+              <img
+                src={selectedAward.image}
+                alt={selectedAward.title}
+                style={{ width: '100%', height: '100%', objectFit: 'contain', background: '#e8eae2' }}
+              />
+              <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(0,0,0,0.5), transparent)' }} />
+              <button
+                onClick={() => setSelectedAward(null)}
+                style={{
+                  position: 'absolute',
+                  top: '12px',
+                  right: '12px',
+                  width: '36px',
+                  height: '36px',
+                  borderRadius: '50%',
+                  background: 'rgba(255,255,255,0.2)',
+                  backdropFilter: 'blur(8px)',
+                  border: 'none',
+                  cursor: 'pointer',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  color: 'white',
+                  fontSize: '18px',
+                }}
+              >
+                ✕
+              </button>
+              <div style={{ position: 'absolute', bottom: '16px', left: '20px' }}>
+                <span style={{ background: '#027ea1', color: 'white', fontSize: '0.7rem', fontWeight: 600, padding: '4px 12px', borderRadius: '20px', letterSpacing: '0.1em' }}>
+                  {selectedAward.year}
+                </span>
+              </div>
+            </div>
+            {/* Modal Content */}
+            <div style={{ padding: '28px', overflowY: 'auto', flex: 1 }}>
+              <h3 style={{ color: '#21313c', fontSize: '1.5rem', fontWeight: 600, lineHeight: 1.3, marginBottom: '14px' }}>
+                {selectedAward.title}
+              </h3>
+              <p style={{ color: '#666', fontSize: '1.15rem', lineHeight: 1.8 }}>
+                {selectedAward.description}
+              </p>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };

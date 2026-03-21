@@ -74,7 +74,7 @@ const HonoraryDoctorates = () => {
         >
           <div className="mb-6 md:mb-0">
             <span
-              className="text-[#999] uppercase tracking-widest block text-[12px] sm:text-xs mb-3 md:mb-4"
+              className="text-[#999] uppercase tracking-widest block text-xl md:text-2xl font-bold mb-3 md:mb-4"
               style={{ letterSpacing: '0.2em' }}
             >
               Recognition
@@ -141,7 +141,7 @@ const HonoraryDoctorates = () => {
                 >
                   {person.name}
                 </h3>
-                <p className="text-white/70 text-[12px] sm:text-xs leading-relaxed mb-1 line-clamp-2">
+                <p className="text-white/70 text-xl md:text-2xl font-bold leading-relaxed mb-1 line-clamp-2">
                   {person.designation}
                 </p>
                 <p className="text-white/50 text-[12px] sm:text-[13px]">

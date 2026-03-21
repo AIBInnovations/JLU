@@ -58,7 +58,7 @@ export const PartnersSection = () => {
       {/* Section Title */}
       <div className="text-center mb-8 md:mb-14 px-4">
         <p
-          className="text-base md:text-lg mb-4"
+          className="text-xl md:text-2xl font-bold mb-4"
           style={{ color: '#999', letterSpacing: '0.2em', textTransform: 'uppercase' }}
         >
           COLLABORATIONS
@@ -157,7 +157,7 @@ export const PartnersSection = () => {
                 className="border border-t-0 border-l-0 border-gray-300 flex items-center justify-center"
                 style={{ width: 'calc(33.33vw - 4px)', height: '70px' }}
               >
-                <button onClick={() => setOrbOpen(true)} className="text-[#027ea1] font-semibold text-xs">
+                <button onClick={() => setOrbOpen(true)} className="text-[#027ea1] font-bold text-2xl">
                   See More →
                 </button>
               </div>
@@ -290,7 +290,7 @@ export const PartnersSection = () => {
               >
                 <button
                   onClick={() => setOrbOpen(true)}
-                  className="inline-flex items-center gap-2 text-[#027ea1] font-semibold text-sm cursor-pointer"
+                  className="inline-flex items-center gap-3 text-[#027ea1] font-bold text-3xl cursor-pointer"
                 >
                   See More
                   <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">

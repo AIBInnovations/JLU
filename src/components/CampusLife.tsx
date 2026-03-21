@@ -490,7 +490,7 @@ const CampusLife = () => {
               transition={{ duration: 0.8, ease: customEase }}
               viewport={{ once: true }}
             >
-              <p className="text-[#f0c14b]/80 uppercase tracking-widest text-[11px] md:text-[12px] mb-2" style={{ letterSpacing: '0.2em', ...(isMobile ? { fontSize: '11px' } : {}) }}>
+              <p className="text-[#f0c14b]/80 uppercase tracking-widest text-xl md:text-2xl font-bold mb-2" style={{ letterSpacing: '0.2em', ...(isMobile ? { fontSize: '28px' } : {}) }}>
                 Student Governance
               </p>
               <h2
@@ -542,11 +542,11 @@ const CampusLife = () => {
                 </div>
                 <div className="absolute inset-0 bg-gradient-to-t from-[#21313c] via-[#21313c]/70 to-[#21313c]/20 group-hover:via-[#21313c]/60 transition-all duration-500" />
                 <div className="relative z-10 p-6 md:p-8 flex flex-col justify-end h-full" style={isMobile ? { padding: '10px' } : {}}>
-                  <span className="text-[#f0c14b] uppercase tracking-widest text-[11px] block mb-3" style={{ letterSpacing: '0.15em', ...(isMobile ? { fontSize: '11px', marginBottom: '4px' } : {}) }}>
+                  <span className="text-[#f0c14b] uppercase tracking-widest text-xl md:text-2xl font-bold block mb-3" style={{ letterSpacing: '0.15em', ...(isMobile ? { fontSize: '28px', marginBottom: '4px' } : {}) }}>
                     {leader.role}
                   </span>
                   <h3 className="text-white text-xl md:text-2xl font-semibold mb-1" style={isMobile ? { fontSize: '13px' } : {}}>{leader.name}</h3>
-                  <p className="text-white/60 text-sm" style={isMobile ? { fontSize: '12px' } : {}}>{leader.program}</p>
+                  <p className="text-white/60 text-sm" style={isMobile ? { fontSize: '28px' } : {}}>{leader.program}</p>
                 </div>
               </motion.div>
             ))}
@@ -570,8 +570,8 @@ const CampusLife = () => {
                   <h4 className="text-[#21313c] font-semibold text-sm md:text-base mb-3" style={isMobile ? { fontSize: '13px', marginBottom: '8px' } : {}}>{house}</h4>
                   {houseCaptains.filter(c => c.house === house).map((member, j) => (
                     <div key={j} className={j > 0 ? 'mt-2 pt-2 border-t border-[#f0f0f0]' : ''}>
-                      <p className="text-[#21313c] text-xs md:text-sm font-medium" style={isMobile ? { fontSize: '12px' } : {}}>{member.name}</p>
-                      <p className="text-[#999] text-[10px] md:text-xs">{member.position} · {member.program}</p>
+                      <p className="text-[#21313c] text-xs md:text-sm font-medium" style={isMobile ? { fontSize: '28px' } : {}}>{member.name}</p>
+                      <p className="text-[#999] text-xl md:text-2xl font-bold">{member.position} · {member.program}</p>
                     </div>
                   ))}
                 </div>
@@ -610,11 +610,11 @@ const CampusLife = () => {
                     className="shrink-0 border border-[#e5e5e5] rounded-xl px-5 py-4 hover:border-[#f0c14b] hover:shadow-sm transition-all duration-300"
                     style={{ minWidth: isMobile ? '220px' : '280px', ...(isMobile ? { padding: '8px 12px' } : {}) }}
                   >
-                    <h4 className="text-[#21313c] font-medium text-sm md:text-base mb-2 whitespace-nowrap" style={isMobile ? { fontSize: '12px' } : {}}>{club.name}</h4>
-                    <p className="text-[#999] text-xs md:text-sm whitespace-nowrap" style={isMobile ? { fontSize: '12px' } : {}}>
+                    <h4 className="text-[#21313c] font-medium text-sm md:text-base mb-2 whitespace-nowrap" style={isMobile ? { fontSize: '28px' } : {}}>{club.name}</h4>
+                    <p className="text-[#999] text-xs md:text-sm whitespace-nowrap" style={isMobile ? { fontSize: '28px' } : {}}>
                       Secretary: {club.secretary} ({club.program})
                     </p>
-                    <p className="text-[#999] text-xs md:text-sm whitespace-nowrap" style={isMobile ? { fontSize: '12px' } : {}}>
+                    <p className="text-[#999] text-xs md:text-sm whitespace-nowrap" style={isMobile ? { fontSize: '28px' } : {}}>
                       Dy. Secretary: {club.deputySecretary} ({club.deputyProgram})
                     </p>
                   </div>
@@ -636,8 +636,8 @@ const CampusLife = () => {
                 <h4 className="text-[#21313c] font-semibold text-sm md:text-base mb-4" style={isMobile ? { fontSize: '13px', marginBottom: '10px' } : {}}>Editorial Board</h4>
                 {editorialBoard.map((member, i) => (
                   <div key={i} className={i > 0 ? 'mt-3 pt-3 border-t border-[#f0f0f0]' : ''}>
-                    <p className="text-[#21313c] text-xs md:text-sm font-medium" style={isMobile ? { fontSize: '11px' } : {}}>{member.name}</p>
-                    <p className="text-[#999] text-[10px] md:text-xs">{member.role} · {member.program}</p>
+                    <p className="text-[#21313c] text-xs md:text-sm font-medium" style={isMobile ? { fontSize: '28px' } : {}}>{member.name}</p>
+                    <p className="text-[#999] text-xl md:text-2xl font-bold">{member.role} · {member.program}</p>
                   </div>
                 ))}
               </div>
@@ -647,8 +647,8 @@ const CampusLife = () => {
                 <h4 className="text-[#21313c] font-semibold text-sm md:text-base mb-4" style={isMobile ? { fontSize: '13px', marginBottom: '10px' } : {}}>Hostel Representatives</h4>
                 {hostelRepresentatives.map((member, i) => (
                   <div key={i} className={i > 0 ? 'mt-3 pt-3 border-t border-[#f0f0f0]' : ''}>
-                    <p className="text-[#21313c] text-xs md:text-sm font-medium" style={isMobile ? { fontSize: '11px' } : {}}>{member.name}</p>
-                    <p className="text-[#999] text-[10px] md:text-xs">{member.program}</p>
+                    <p className="text-[#21313c] text-xs md:text-sm font-medium" style={isMobile ? { fontSize: '28px' } : {}}>{member.name}</p>
+                    <p className="text-[#999] text-xl md:text-2xl font-bold">{member.program}</p>
                   </div>
                 ))}
               </div>
@@ -658,8 +658,8 @@ const CampusLife = () => {
                 <h4 className="text-[#21313c] font-semibold text-sm md:text-base mb-4" style={isMobile ? { fontSize: '13px', marginBottom: '10px' } : {}}>International Club</h4>
                 {internationalClub.map((member, i) => (
                   <div key={i} className={i > 0 ? 'mt-3 pt-3 border-t border-[#f0f0f0]' : ''}>
-                    <p className="text-[#21313c] text-xs md:text-sm font-medium" style={isMobile ? { fontSize: '11px' } : {}}>{member.name}</p>
-                    <p className="text-[#999] text-[10px] md:text-xs">{member.role} · {member.program}</p>
+                    <p className="text-[#21313c] text-xs md:text-sm font-medium" style={isMobile ? { fontSize: '28px' } : {}}>{member.name}</p>
+                    <p className="text-[#999] text-xl md:text-2xl font-bold">{member.role} · {member.program}</p>
                   </div>
                 ))}
               </div>
@@ -679,7 +679,7 @@ const CampusLife = () => {
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
           >
-            <p className="text-[#999] uppercase tracking-widest text-[11px] md:text-[12px] mb-3" style={{ letterSpacing: '0.2em', ...(isMobile ? { fontSize: '11px', marginBottom: '6px' } : {}) }}>
+            <p className="text-[#999] uppercase tracking-widest text-xl md:text-2xl font-bold mb-3" style={{ letterSpacing: '0.2em', ...(isMobile ? { fontSize: '28px', marginBottom: '6px' } : {}) }}>
               Find Your People
             </p>
             <h2
@@ -723,7 +723,7 @@ const CampusLife = () => {
                     >
                       <ClubIcon type={club.icon} />
                     </span>
-                    <span className="font-medium text-sm md:text-base" style={isMobile ? { fontSize: '12px' } : {}}>{club.name}</span>
+                    <span className="font-medium text-sm md:text-base" style={isMobile ? { fontSize: '28px' } : {}}>{club.name}</span>
                     {activeClubIndex === i && (
                       <motion.span layoutId="club-arrow" className="ml-auto text-[#f0c14b]">
                         &rarr;
@@ -780,7 +780,7 @@ const CampusLife = () => {
                     <p className="text-[#666] text-base md:text-lg mb-6" style={{ lineHeight: 1.8, ...(isMobile ? { fontSize: '13px', marginBottom: '12px' } : {}) }}>
                       {studentClubs[activeClubIndex].description}
                     </p>
-                    <div className="flex items-center gap-2 text-sm text-[#999]" style={isMobile ? { fontSize: '11px' } : {}}>
+                    <div className="flex items-center gap-2 text-sm text-[#999]" style={isMobile ? { fontSize: '28px' } : {}}>
                       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                         <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" /><circle cx="9" cy="7" r="4" />
                       </svg>
@@ -806,7 +806,7 @@ const CampusLife = () => {
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
           >
-            <p className="text-[#999] uppercase tracking-widest text-[11px] md:text-[12px] mb-3" style={{ letterSpacing: '0.2em', ...(isMobile ? { fontSize: '11px', marginBottom: '6px' } : {}) }}>
+            <p className="text-[#999] uppercase tracking-widest text-xl md:text-2xl font-bold mb-3" style={{ letterSpacing: '0.2em', ...(isMobile ? { fontSize: '28px', marginBottom: '6px' } : {}) }}>
               Celebrating Excellence
             </p>
             <h2
@@ -854,10 +854,10 @@ const CampusLife = () => {
                 </AnimatePresence>
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent" />
                 <div className="absolute bottom-0 left-0 p-6 md:p-8" style={isMobile ? { padding: '12px' } : {}}>
-                  <p className="text-white/70 text-sm mb-1" style={isMobile ? { fontSize: '11px' } : {}}>
+                  <p className="text-white/70 text-sm mb-1" style={isMobile ? { fontSize: '28px' } : {}}>
                     {expandedAchievement !== null ? achievements[expandedAchievement].category : 'JLU Achievements'}
                   </p>
-                  <p className="text-white font-semibold text-lg md:text-xl" style={{ letterSpacing: '-0.02em', ...(isMobile ? { fontSize: '14px' } : {}) }}>
+                  <p className="text-white font-semibold text-lg md:text-xl" style={{ letterSpacing: '-0.02em', ...(isMobile ? { fontSize: '28px' } : {}) }}>
                     {expandedAchievement !== null ? achievements[expandedAchievement].title : 'From hackathons to gold medals'}
                   </p>
                 </div>
@@ -876,7 +876,7 @@ const CampusLife = () => {
                     viewport={{ once: true }}
                   >
                     <span className="text-[#21313c] text-2xl md:text-3xl font-semibold block" style={{ letterSpacing: '-0.03em', ...(isMobile ? { fontSize: '18px' } : {}) }}>{s.n}</span>
-                    <span className="text-[#999] text-xs" style={isMobile ? { fontSize: '11px' } : {}}>{s.l}</span>
+                    <span className="text-[#999] text-xs" style={isMobile ? { fontSize: '28px' } : {}}>{s.l}</span>
                   </motion.div>
                 ))}
               </div>
@@ -907,13 +907,13 @@ const CampusLife = () => {
                       <div className="flex items-center gap-3 md:gap-5 flex-1" style={isMobile ? { gap: '8px' } : {}}>
                         <span
                           className="shrink-0 px-3 py-1 rounded-full text-[10px] md:text-[11px] uppercase tracking-wider font-medium"
-                          style={{ backgroundColor: '#f6f7f0', color: '#027ea1', letterSpacing: '0.1em', ...(isMobile ? { fontSize: '11px', padding: '2px 8px' } : {}) }}
+                          style={{ backgroundColor: '#f6f7f0', color: '#027ea1', letterSpacing: '0.1em', ...(isMobile ? { fontSize: '28px', padding: '2px 8px' } : {}) }}
                         >
                           {achievement.category}
                         </span>
                         <h3
                           className="text-[#21313c] font-semibold text-sm md:text-base lg:text-lg group-hover:text-[#f0c14b] transition-colors duration-300"
-                          style={{ letterSpacing: '-0.02em', ...(isMobile ? { fontSize: '12px' } : {}) }}
+                          style={{ letterSpacing: '-0.02em', ...(isMobile ? { fontSize: '28px' } : {}) }}
                         >
                           {achievement.title}
                         </h3>
@@ -935,7 +935,7 @@ const CampusLife = () => {
                           transition={{ duration: 0.4, ease: customEase }}
                           className="overflow-hidden"
                         >
-                          <p className="text-[#666] text-sm md:text-base pb-6 md:pb-8" style={{ lineHeight: 1.8, ...(isMobile ? { fontSize: '12px', paddingBottom: '12px' } : {}) }}>
+                          <p className="text-[#666] text-sm md:text-base pb-6 md:pb-8" style={{ lineHeight: 1.8, ...(isMobile ? { fontSize: '28px', paddingBottom: '12px' } : {}) }}>
                             {achievement.description}
                           </p>
                         </motion.div>
@@ -980,13 +980,13 @@ const CampusLife = () => {
                     <h4 className="text-white text-2xl md:text-3xl font-bold mb-3" style={{ lineHeight: 1.2, letterSpacing: '-0.02em', ...(isMobile ? { fontSize: '16px', marginBottom: '6px' } : {}) }}>
                       {institutionalAwards[0].award}
                     </h4>
-                    <p className="text-white/60 text-sm md:text-base" style={{ lineHeight: 1.6, ...(isMobile ? { fontSize: '11px' } : {}) }}>
+                    <p className="text-white/60 text-sm md:text-base" style={{ lineHeight: 1.6, ...(isMobile ? { fontSize: '28px' } : {}) }}>
                       {institutionalAwards[0].detail}
                     </p>
                   </div>
                   <div className="mt-8 flex items-center gap-2" style={isMobile ? { marginTop: '12px' } : {}}>
                     <div className="w-2 h-2 rounded-full bg-[#f0c14b]" />
-                    <span className="text-[#f0c14b] text-xs uppercase tracking-widest font-medium" style={isMobile ? { fontSize: '11px' } : {}}>Nationally Ranked</span>
+                    <span className="text-[#f0c14b] text-xs uppercase tracking-widest font-medium" style={isMobile ? { fontSize: '28px' } : {}}>Nationally Ranked</span>
                   </div>
                 </div>
               </motion.div>
@@ -1012,11 +1012,11 @@ const CampusLife = () => {
                     <div>
                       <h4
                         className="font-bold text-base md:text-lg mb-1"
-                        style={{ color: i === 0 ? '#21313c' : '#21313c', letterSpacing: '-0.01em', ...(isMobile ? { fontSize: '12px' } : {}) }}
+                        style={{ color: i === 0 ? '#21313c' : '#21313c', letterSpacing: '-0.01em', ...(isMobile ? { fontSize: '28px' } : {}) }}
                       >
                         {item.award}
                       </h4>
-                      <p className="text-sm" style={{ color: i === 0 ? 'rgba(33,49,60,0.7)' : '#999', ...(isMobile ? { fontSize: '12px' } : {}) }}>
+                      <p className="text-sm" style={{ color: i === 0 ? 'rgba(33,49,60,0.7)' : '#999', ...(isMobile ? { fontSize: '28px' } : {}) }}>
                         {item.detail}
                       </p>
                     </div>
@@ -1046,10 +1046,10 @@ const CampusLife = () => {
                   >
                     <AwardIcon type={item.icon} color={item.accent} />
                   </div>
-                  <h4 className="text-[#21313c] font-bold text-sm md:text-base mb-1.5" style={{ letterSpacing: '-0.01em', ...(isMobile ? { fontSize: '11px' } : {}) }}>
+                  <h4 className="text-[#21313c] font-bold text-sm md:text-base mb-1.5" style={{ letterSpacing: '-0.01em', ...(isMobile ? { fontSize: '28px' } : {}) }}>
                     {item.award}
                   </h4>
-                  <p className="text-[#999] text-xs md:text-sm" style={{ lineHeight: 1.6, ...(isMobile ? { fontSize: '12px' } : {}) }}>
+                  <p className="text-[#999] text-xs md:text-sm" style={{ lineHeight: 1.6, ...(isMobile ? { fontSize: '28px' } : {}) }}>
                     {item.detail}
                   </p>
                 </motion.div>
@@ -1082,7 +1082,7 @@ const CampusLife = () => {
             transition={{ duration: 0.8, ease: customEase }}
             viewport={{ once: true }}
           >
-            <p className="text-[#f0c14b]/80 uppercase tracking-widest text-[11px] md:text-[12px] mb-3" style={{ letterSpacing: '0.2em', ...(isMobile ? { fontSize: '11px' } : {}) }}>
+            <p className="text-[#f0c14b]/80 uppercase tracking-widest text-xl md:text-2xl font-bold mb-3" style={{ letterSpacing: '0.2em', ...(isMobile ? { fontSize: '28px' } : {}) }}>
               Industry Connect
             </p>
             <h2
@@ -1134,7 +1134,7 @@ const CampusLife = () => {
                     <span className="text-[#f0c14b] text-lg md:text-xl font-medium" style={isMobile ? { fontSize: '13px' } : {}}>{stat.suffix}</span>
                   )}
                 </div>
-                <p className="text-white/50 text-sm mt-2" style={isMobile ? { fontSize: '11px' } : {}}>{stat.label}</p>
+                <p className="text-white/50 text-sm mt-2" style={isMobile ? { fontSize: '28px' } : {}}>{stat.label}</p>
               </motion.div>
             ))}
           </motion.div>
@@ -1176,7 +1176,7 @@ const CampusLife = () => {
                   style={{
                     backgroundColor: activeRecruiterCategory === category ? '#f0c14b' : 'rgba(255,255,255,0.08)',
                     color: activeRecruiterCategory === category ? '#21313c' : 'rgba(255,255,255,0.6)',
-                    ...(isMobile ? { padding: '4px 10px', fontSize: '12px' } : {}),
+                    ...(isMobile ? { padding: '4px 10px', fontSize: '28px' } : {}),
                   }}
                 >
                   {category}
@@ -1205,7 +1205,7 @@ const CampusLife = () => {
                       backgroundColor: 'rgba(255,255,255,0.06)',
                       color: 'rgba(255,255,255,0.8)',
                       border: '1px solid rgba(255,255,255,0.08)',
-                      ...(isMobile ? { padding: '6px 12px', fontSize: '11px', borderRadius: '8px' } : {}),
+                      ...(isMobile ? { padding: '6px 12px', fontSize: '28px', borderRadius: '8px' } : {}),
                     }}
                   >
                     {company}
@@ -1232,7 +1232,7 @@ const CampusLife = () => {
               transition={{ duration: 0.8, ease: customEase }}
               viewport={{ once: true }}
             >
-              <p className="text-[#999] uppercase tracking-widest text-[11px] md:text-[12px] mb-3" style={{ letterSpacing: '0.2em', ...(isMobile ? { fontSize: '11px', marginBottom: '6px' } : {}) }}>
+              <p className="text-[#999] uppercase tracking-widest text-xl md:text-2xl font-bold mb-3" style={{ letterSpacing: '0.2em', ...(isMobile ? { fontSize: '28px', marginBottom: '6px' } : {}) }}>
                 Innovation Ecosystem
               </p>
               <h2
@@ -1260,8 +1260,8 @@ const CampusLife = () => {
                     viewport={{ once: true }}
                     whileHover={{ y: -3 }}
                   >
-                    <h4 className="text-[#21313c] font-semibold text-sm md:text-base mb-2" style={isMobile ? { fontSize: '12px', marginBottom: '4px' } : {}}>{service.title}</h4>
-                    <p className="text-[#999] text-xs md:text-sm" style={{ lineHeight: 1.6, ...(isMobile ? { fontSize: '12px' } : {}) }}>{service.description}</p>
+                    <h4 className="text-[#21313c] font-semibold text-sm md:text-base mb-2" style={isMobile ? { fontSize: '28px', marginBottom: '4px' } : {}}>{service.title}</h4>
+                    <p className="text-[#999] text-xs md:text-sm" style={{ lineHeight: 1.6, ...(isMobile ? { fontSize: '28px' } : {}) }}>{service.description}</p>
                   </motion.div>
                 ))}
               </div>
@@ -1290,27 +1290,27 @@ const CampusLife = () => {
               </div>
 
               <div className="bg-[#027ea1] rounded-2xl p-8 md:p-10 text-white mb-6" style={isMobile ? { padding: '16px', marginBottom: '12px' } : {}}>
-                <span className="text-[#f0c14b] uppercase tracking-widest text-[10px] block mb-4" style={{ letterSpacing: '0.2em', ...(isMobile ? { fontSize: '11px', marginBottom: '8px' } : {}) }}>
+                <span className="text-[#f0c14b] uppercase tracking-widest text-xl md:text-2xl font-bold block mb-4" style={{ letterSpacing: '0.2em', ...(isMobile ? { fontSize: '28px', marginBottom: '8px' } : {}) }}>
                   Success Story
                 </span>
                 <h3 className="text-2xl md:text-3xl font-semibold mb-4" style={{ letterSpacing: '-0.02em', ...(isMobile ? { fontSize: '16px', marginBottom: '8px' } : {}) }}>
                   Team PINAKULO
                 </h3>
-                <p className="text-white/70 text-sm md:text-base mb-6" style={{ lineHeight: 1.8, ...(isMobile ? { fontSize: '12px', marginBottom: '12px' } : {}) }}>
+                <p className="text-white/70 text-sm md:text-base mb-6" style={{ lineHeight: 1.8, ...(isMobile ? { fontSize: '28px', marginBottom: '12px' } : {}) }}>
                   B.Tech CSE students created a solution for the Ministry of Rural Development, winning 1st position at Smart India Hackathon 2020 (Rs. 1,00,000) and the Navonmesh Startup Competition against 300+ applicants.
                 </p>
                 <div className="flex flex-wrap gap-3" style={isMobile ? { gap: '4px' } : {}}>
-                  <span className="px-3 py-1 rounded-full bg-white/10 text-white/70 text-xs" style={isMobile ? { fontSize: '11px', padding: '2px 8px' } : {}}>Smart India Hackathon</span>
-                  <span className="px-3 py-1 rounded-full bg-white/10 text-white/70 text-xs" style={isMobile ? { fontSize: '11px', padding: '2px 8px' } : {}}>Government of India</span>
-                  <span className="px-3 py-1 rounded-full bg-white/10 text-white/70 text-xs" style={isMobile ? { fontSize: '11px', padding: '2px 8px' } : {}}>Rs. 1,00,000</span>
+                  <span className="px-3 py-1 rounded-full bg-white/10 text-white/70 text-xs" style={isMobile ? { fontSize: '28px', padding: '2px 8px' } : {}}>Smart India Hackathon</span>
+                  <span className="px-3 py-1 rounded-full bg-white/10 text-white/70 text-xs" style={isMobile ? { fontSize: '28px', padding: '2px 8px' } : {}}>Government of India</span>
+                  <span className="px-3 py-1 rounded-full bg-white/10 text-white/70 text-xs" style={isMobile ? { fontSize: '28px', padding: '2px 8px' } : {}}>Rs. 1,00,000</span>
                 </div>
               </div>
 
               <div className="bg-[#f6f7f0] rounded-2xl p-8 md:p-10" style={isMobile ? { padding: '16px' } : {}}>
-                <h4 className="text-[#21313c] font-semibold text-lg mb-5" style={isMobile ? { fontSize: '14px', marginBottom: '10px' } : {}}>Hub Facilities</h4>
+                <h4 className="text-[#21313c] font-semibold text-lg mb-5" style={isMobile ? { fontSize: '28px', marginBottom: '10px' } : {}}>Hub Facilities</h4>
                 <ul className="space-y-3" style={isMobile ? { gap: '6px' } : {}}>
                   {['Wireless internet & modern workstations', 'Make-shift ideation space', 'Meeting zones & recreation corner', 'Startup bootcamps & IPR workshops', 'Design thinking & pitch deck programs'].map((item, i) => (
-                    <li key={i} className="flex items-start gap-3 text-[#666] text-sm md:text-base" style={isMobile ? { fontSize: '12px', gap: '8px' } : {}}>
+                    <li key={i} className="flex items-start gap-3 text-[#666] text-sm md:text-base" style={isMobile ? { fontSize: '28px', gap: '8px' } : {}}>
                       <svg className="shrink-0 mt-0.5" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#027ea1" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                         <polyline points="20 6 9 17 4 12" />
                       </svg>
@@ -1347,7 +1347,7 @@ const CampusLife = () => {
             transition={{ duration: 0.8, ease: customEase }}
             viewport={{ once: true }}
           >
-            <p className="text-[#f0c14b]/80 uppercase tracking-widest text-[11px] md:text-[12px] mb-4" style={{ letterSpacing: '0.2em', ...(isMobile ? { fontSize: '11px', marginBottom: '8px' } : {}) }}>
+            <p className="text-[#f0c14b]/80 uppercase tracking-widest text-xl md:text-2xl font-bold mb-4" style={{ letterSpacing: '0.2em', ...(isMobile ? { fontSize: '28px', marginBottom: '8px' } : {}) }}>
               Igniting Minds, Changing Lives
             </p>
             <span
@@ -1356,7 +1356,7 @@ const CampusLife = () => {
             >
               500+
             </span>
-            <p className="text-white/70 text-sm md:text-base uppercase tracking-widest" style={{ letterSpacing: '0.15em', ...(isMobile ? { fontSize: '11px' } : {}) }}>
+            <p className="text-white/70 text-sm md:text-base uppercase tracking-widest" style={{ letterSpacing: '0.15em', ...(isMobile ? { fontSize: '28px' } : {}) }}>
               CEOs & Top Professionals
             </p>
           </motion.div>
@@ -1408,7 +1408,7 @@ const CampusLife = () => {
                 <div className="p-7 md:p-8" style={isMobile ? { padding: '12px' } : {}}>
                   <div
                     className="w-14 h-14 rounded-full flex items-center justify-center text-white font-semibold text-xl mb-5"
-                    style={{ backgroundColor: i % 2 === 0 ? '#21313c' : '#027ea1', ...(isMobile ? { width: '32px', height: '32px', fontSize: '14px', marginBottom: '8px' } : {}) }}
+                    style={{ backgroundColor: i % 2 === 0 ? '#21313c' : '#027ea1', ...(isMobile ? { width: '32px', height: '32px', fontSize: '28px', marginBottom: '8px' } : {}) }}
                   >
                     {speaker.name.charAt(0)}
                   </div>
@@ -1418,11 +1418,11 @@ const CampusLife = () => {
                   >
                     {speaker.name}
                   </h3>
-                  <p className="text-[#999] text-xs md:text-sm mb-5" style={{ lineHeight: 1.5, ...(isMobile ? { fontSize: '12px', marginBottom: '8px' } : {}) }}>
+                  <p className="text-[#999] text-xs md:text-sm mb-5" style={{ lineHeight: 1.5, ...(isMobile ? { fontSize: '28px', marginBottom: '8px' } : {}) }}>
                     {speaker.title}
                   </p>
                   <div className="pt-4 border-t border-[#e5e5e5]" style={isMobile ? { paddingTop: '8px' } : {}}>
-                    <p className="text-[#666] text-sm" style={{ lineHeight: 1.6, ...(isMobile ? { fontSize: '11px' } : {}) }}>
+                    <p className="text-[#666] text-sm" style={{ lineHeight: 1.6, ...(isMobile ? { fontSize: '28px' } : {}) }}>
                       {speaker.topic}
                     </p>
                   </div>
@@ -1473,7 +1473,7 @@ const CampusLife = () => {
           >
             <div className="text-center max-w-200 px-5 py-6 md:px-8 md:py-8 lg:px-10 lg:py-10">
               <motion.span
-                className="text-white/70 uppercase tracking-widest block mb-4 md:mb-5 lg:mb-6 text-[10px] md:text-[11px] lg:text-[12px]"
+                className="text-white/70 uppercase tracking-widest block mb-4 md:mb-5 lg:mb-6 text-xl md:text-2xl font-bold"
                 style={{ letterSpacing: '0.3em' }}
               >
                 Community
@@ -1489,14 +1489,14 @@ const CampusLife = () => {
               </motion.h2>
               <motion.p
                 className="text-white/80 text-sm md:text-base lg:text-xl mb-6 md:mb-8 lg:mb-10"
-                style={{ fontWeight: 400, lineHeight: 1.8, ...(isMobile ? { fontSize: '12px', marginBottom: '16px' } : {}) }}
+                style={{ fontWeight: 400, lineHeight: 1.8, ...(isMobile ? { fontSize: '28px', marginBottom: '16px' } : {}) }}
               >
                 Every event, club, and initiative is designed to help students grow not just academically, but personally and professionally.
               </motion.p>
               <motion.a
                 href="/alumni"
                 className="inline-flex items-center gap-2 md:gap-3 bg-white text-[#21313c] font-medium px-6 py-3 md:px-8 md:py-4 lg:px-10 lg:py-4.5 text-sm md:text-base rounded-full no-underline"
-                style={isMobile ? { padding: '8px 18px', fontSize: '12px' } : {}}
+                style={isMobile ? { padding: '8px 18px', fontSize: '28px' } : {}}
                 whileHover={{ scale: 1.05, backgroundColor: '#f0c14b' }}
                 whileTap={{ scale: 0.98 }}
                 transition={{ duration: 0.3 }}
