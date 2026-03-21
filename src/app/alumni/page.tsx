@@ -134,18 +134,18 @@ const testimonials = [
     name: "Rajesh Kumar",
     batch: "2014",
     role: "VP Engineering, Microsoft",
-    image: "/jlu-testimonial1.webp"
+    image: "/jlu-testimonial2.webp"
   },
   {
     quote: "From campus to corporate, the JLU family has always been there. The mentorship program helped me navigate my early career challenges with confidence.",
     name: "Sneha Patel",
     batch: "2017",
     role: "Product Manager, Google",
-    image: "/jlu-testimonial2.webp"
+    image: "/jlu-testimonial1.webp"
   },
   {
     quote: "The business connect platform helped me find co-founders for my startup. Today, we're a team of 50, all thanks to the JLU alumni ecosystem.",
-    name: "Vikram Singh",
+    name: "Priya Sharma",
     batch: "2016",
     role: "Founder, InnovateTech",
     image: "/jlu-testimonial3.webp"

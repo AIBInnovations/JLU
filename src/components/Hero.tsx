@@ -206,7 +206,7 @@ export const Hero = () => {
               className="text-center uppercase tracking-widest select-none"
               style={{
                 fontFamily: "'Humane', sans-serif",
-                fontSize: isMobile ? 'clamp(3.5rem, 15vw, 6rem)' : 'clamp(8rem, 13vw, 16rem)',
+                fontSize: isMobile ? 'clamp(2.5rem, 12vw, 4.5rem)' : 'clamp(5.5rem, 9vw, 11rem)',
                 fontWeight: 700,
                 lineHeight: 1.0,
                 letterSpacing: '0.05em',

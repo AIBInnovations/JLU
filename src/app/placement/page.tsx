@@ -19,13 +19,13 @@ const customEase: [number, number, number, number] = [0.22, 1, 0.36, 1];
 
 // Gallery images for the multi-image showcase - placement-themed images
 const galleryImages = [
-  { id: 1, src: '/campus/gallery-1.jpg', position: 'top-[5%] left-[2%]', size: 'w-[85px] h-[115px] md:w-[180px] md:h-[260px]', opacity: 0.7 },
-  { id: 2, src: '/campus/gallery-3.jpg', position: 'top-[2%] left-[30%]', size: 'w-[65px] h-[85px] md:w-[130px] md:h-[170px]', opacity: 0.5 },
-  { id: 3, src: '/campus/gallery-5.jpg', position: '', size: 'w-[140px] h-[190px] md:w-[260px] md:h-[360px]', isCenter: true, opacity: 1 },
-  { id: 4, src: '/campus/gallery-7.jpg', position: 'top-[3%] right-[2%]', size: 'w-[75px] h-[100px] md:w-[160px] md:h-[220px]', opacity: 0.6 },
-  { id: 5, src: '/campus/gallery-11.jpg', position: 'top-[22%] right-[1%]', size: 'w-[55px] h-[75px] md:w-[120px] md:h-[160px]', opacity: 0.4 },
-  { id: 6, src: '/campus/gallery-15.jpg', position: 'bottom-[8%] left-[2%]', size: 'w-[70px] h-[95px] md:w-[150px] md:h-[200px]', opacity: 0.5 },
-  { id: 7, src: '/campus/gallery-16.jpg', position: 'bottom-[5%] right-[2%]', size: 'w-[80px] h-[105px] md:w-[170px] md:h-[230px]', opacity: 0.6 },
+  { id: 1, src: '/JLu%20events/photos/Convocation/DSC_5604.JPG', position: 'top-[5%] left-[2%]', size: 'w-[85px] h-[115px] md:w-[180px] md:h-[260px]', opacity: 0.7 },
+  { id: 2, src: '/jlu-placement1.jpeg', position: 'top-[2%] left-[30%]', size: 'w-[65px] h-[85px] md:w-[130px] md:h-[170px]', opacity: 0.5 },
+  { id: 3, src: '/JLu%20events/photos/Convocation/DSC_4625.JPG', position: '', size: 'w-[140px] h-[190px] md:w-[260px] md:h-[360px]', isCenter: true, opacity: 1 },
+  { id: 4, src: '/jlu-placement2.jpeg', position: 'top-[3%] right-[2%]', size: 'w-[75px] h-[100px] md:w-[160px] md:h-[220px]', opacity: 0.6 },
+  { id: 5, src: '/JLu%20events/photos/Convocation/DSC_1357.JPG', position: 'top-[22%] right-[1%]', size: 'w-[55px] h-[75px] md:w-[120px] md:h-[160px]', opacity: 0.4 },
+  { id: 6, src: '/jlu-placement3.jpeg', position: 'bottom-[8%] left-[2%]', size: 'w-[70px] h-[95px] md:w-[150px] md:h-[200px]', opacity: 0.5 },
+  { id: 7, src: '/JLu%20events/photos/Convocation/DSC_5026.JPG', position: 'bottom-[5%] right-[2%]', size: 'w-[80px] h-[105px] md:w-[170px] md:h-[230px]', opacity: 0.6 },
 ];
 
 
@@ -316,8 +316,8 @@ export default function PlacementPage() {
         >
           <motion.div className="absolute inset-0" style={{ y: heroY }}>
             <img
-              src="/posthero2.jpg"
-              alt="Placement Drive"
+              src="/JLu%20events/photos/Convocation/DSC_5604.JPG"
+              alt="JLU Students Celebrating Placements"
               className="w-full h-full object-cover scale-110"
             />
           </motion.div>
@@ -464,13 +464,13 @@ export default function PlacementPage() {
 
                     <div className="scroll-desc-3 absolute bottom-[10%] left-8 md:left-12 max-w-xl z-10 opacity-0">
                       <p className="text-white text-lg lg:text-xl leading-relaxed">
-                        Our placement cell offers <span className="text-[#f0c14b] font-semibold">rigorous pre-placement training including aptitude tests, coding bootcamps, mock interviews, and soft skills development</span> — preparing students for every stage of the recruitment process.
+                        Our Career Development Centre offers <span className="text-[#f0c14b] font-semibold">rigorous pre-placement training including aptitude tests, coding bootcamps, mock interviews, and soft skills development</span> — preparing students for every stage of the recruitment process.
                       </p>
                     </div>
 
                     <div className="scroll-desc-4 absolute bottom-[10%] left-8 md:left-12 max-w-xl z-10 opacity-0">
                       <p className="text-white text-lg lg:text-xl leading-relaxed">
-                        With <span className="text-[#f0c14b] font-semibold">highest packages reaching 12 LPA and strong alumni networks in 15+ countries</span>, JLU graduates secure positions in Fortune 500 companies, innovative startups, and global corporations worldwide.
+                        With <span className="text-[#f0c14b] font-semibold">highest packages reaching 15 LPA and strong alumni networks in 15+ countries</span>, JLU graduates secure positions in Fortune 500 companies, innovative startups, and global corporations worldwide.
                       </p>
                     </div>
                   </div>
@@ -516,7 +516,7 @@ export default function PlacementPage() {
             {[
               { number: '80%+', label: 'Placement Rate' },
               { number: '500+', label: 'Recruiters' },
-              { number: '12 LPA', label: 'Highest Package' },
+              { number: '15 LPA', label: 'Highest Package' },
               { number: '200+', label: 'Companies' },
             ].map((stat, i, arr) => (
               <div key={stat.label} className="flex items-center">
@@ -568,12 +568,12 @@ export default function PlacementPage() {
                 {
                   title: 'Industry-Ready Curriculum',
                   description: 'Programs co-designed with industry leaders, ensuring skills align with market demands.',
-                  image: '/campus/gallery-9.jpg',
+                  image: '/JLu%20events/photos/Convocation/DSC_0858.JPG',
                 },
                 {
                   title: 'Dedicated Training & Development',
                   description: 'Pre-placement training including aptitude, technical skills & communication workshops.',
-                  image: '/campus/smart-classroom.jpg',
+                  image: '/JLu%20events/photos/Convocation/DSC_5604.JPG',
                 },
               ].map((card, i) => (
                 <motion.div
@@ -610,12 +610,12 @@ export default function PlacementPage() {
                 {
                   title: 'Mock Interviews & Soft Skills',
                   description: 'Rigorous mock interviews, group discussions & personality development sessions.',
-                  image: '/JLu%20events/photos/Convocation/DSC_0823.JPG',
+                  image: '/JLu%20events/photos/Convocation/DSC_0885.JPG',
                 },
                 {
                   title: 'Global Career Network',
                   description: 'International placement partnerships & alumni network spanning Fortune 500 companies.',
-                  image: '/campus/gallery-13.jpg',
+                  image: '/JLu%20events/photos/Convocation/DSC_4625.JPG',
                 },
               ].map((card, i) => (
                 <motion.div
@@ -654,28 +654,28 @@ export default function PlacementPage() {
               {
                 title: 'Industry-Ready Curriculum',
                 description: 'Programs co-designed with industry leaders, ensuring skills align with market demands and emerging technologies.',
-                image: '/campus/gallery-9.jpg',
+                image: '/JLu%20events/photos/Convocation/DSC_0858.JPG',
                 accent: '#c3fd7a',
                 darkText: true,
               },
               {
                 title: 'Dedicated Training & Development',
                 description: 'Pre-placement training programs including aptitude, technical skills, and professional communication workshops.',
-                image: '/campus/smart-classroom.jpg',
+                image: '/JLu%20events/photos/Convocation/DSC_5604.JPG',
                 accent: '#027ea1',
                 darkText: false,
               },
               {
                 title: 'Mock Interviews & Soft Skills',
                 description: 'Rigorous mock interviews, group discussions, and personality development sessions with industry professionals.',
-                image: '/JLu%20events/photos/Convocation/DSC_0823.JPG',
+                image: '/JLu%20events/photos/Convocation/DSC_0885.JPG',
                 accent: '#e85a71',
                 darkText: false,
               },
               {
                 title: 'Global Career Network',
                 description: 'International placement partnerships and alumni network spanning Fortune 500 companies across 15+ countries.',
-                image: '/campus/gallery-13.jpg',
+                image: '/JLu%20events/photos/Convocation/DSC_4625.JPG',
                 accent: '#f4c950',
                 darkText: true,
               },
@@ -756,7 +756,7 @@ export default function PlacementPage() {
               { step: '02', title: 'Resume Building', desc: 'Professional portfolio & LinkedIn optimization with expert guidance' },
               { step: '03', title: 'Mock Interviews', desc: 'Industry professionals conduct rigorous mock interview sessions' },
               { step: '04', title: 'Campus Drives', desc: '200+ companies visit campus for recruitment drives annually' },
-              { step: '05', title: 'Offer & Onboarding', desc: 'Placement cell assists with offer negotiation & smooth transition' },
+              { step: '05', title: 'Offer & Onboarding', desc: 'Career Development Centre assists with offer negotiation & smooth transition' },
             ].map((step, i) => (
               <motion.div
                 key={step.step}
@@ -876,7 +876,7 @@ export default function PlacementPage() {
               className="col-span-2 row-span-2 group relative overflow-hidden rounded-2xl min-h-[280px] md:min-h-[600px]"
             >
               <img
-                src="/JLu%20events/photos/Convocation/DSC_1149.JPG"
+                src="/JLu%20events/photos/Convocation/DSC_1357.JPG"
                 alt="Corporate Success"
                 loading="lazy"
                 className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
@@ -889,7 +889,7 @@ export default function PlacementPage() {
                   <span style={{ fontFamily: "'Times New Roman', serif", fontStyle: 'italic', fontWeight: 400 }}>Matter</span>
                 </h3>
                 <p className="text-white/70 text-[0.6rem] md:text-base max-w-[500px] hidden md:block" style={{ lineHeight: 1.7 }}>
-                  Our placement cell works tirelessly to connect talented students with leading organizations, resulting in exceptional career outcomes year after year.
+                  Our Career Development Centre works tirelessly to connect talented students with leading organizations, resulting in exceptional career outcomes year after year.
                 </p>
               </div>
             </motion.div>
@@ -903,7 +903,7 @@ export default function PlacementPage() {
               className="group relative overflow-hidden rounded-2xl min-h-[180px] md:min-h-[280px]"
             >
               <img
-                src="/student%20council/IMG_7537.JPG"
+                src="/JLu%20events/photos/Convocation/DSC_5026.JPG"
                 alt="Professional Growth"
                 loading="lazy"
                 className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
@@ -925,7 +925,7 @@ export default function PlacementPage() {
               className="group relative overflow-hidden rounded-2xl min-h-[180px] md:min-h-[280px]"
             >
               <img
-                src="/campus/gallery-9.jpg"
+                src="/JLu%20events/photos/Convocation/DSC_1020.JPG"
                 alt="Industry Connections"
                 loading="lazy"
                 className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
@@ -967,25 +967,25 @@ export default function PlacementPage() {
           {(() => {
             const testimonials = [
               {
-                quote: "The placement cell at JLU didn't just find me a job — they helped me build a career. The mock interviews and industry mentorship were game-changers.",
-                name: 'Priya Sharma',
-                role: 'Software Engineer, Infosys',
-                batch: 'B.Tech CSE, Batch 2024',
-                image: '/student%20council/IMG_7537.JPG',
+                quote: "The Career Development Centre at JLU provided exceptional support throughout my placement journey. The mock interviews and industry mentorship helped me secure my dream role.",
+                name: 'Mann Saxena',
+                role: 'Placed at AML RightSource',
+                batch: 'MBA (Business Analytics), Batch 2025',
+                image: '/jlu-placement1.jpeg',
               },
               {
-                quote: "From resume workshops to final interviews, JLU's structured placement process gave me the confidence and skills to land my dream role at a Big 4 firm.",
-                name: 'Arjun Patel',
-                role: 'Associate Consultant, Deloitte',
-                batch: 'MBA, Batch 2024',
-                image: '/campus/smart-classroom.jpg',
+                quote: "JLU's structured placement process and dedicated training programs gave me the confidence to perform well in interviews. The career guidance was truly transformative.",
+                name: 'Neha Patkar',
+                role: 'Placed at AML RightSource',
+                batch: 'MBA (Business Analytics), Batch 2025',
+                image: '/jlu-placement2.jpeg',
               },
               {
-                quote: 'The global exposure through summer programs and industry visits gave me an edge. I received 3 offers and chose my perfect fit in product management.',
-                name: 'Sneha Gupta',
-                role: 'Product Manager, Flipkart',
-                batch: 'BBA, Batch 2023',
-                image: '/student%20council/IMG_7541.JPG',
+                quote: 'The placement cell at JLU connected me with top legal firms. The exposure through internships and moot courts prepared me for a successful career in legal consulting.',
+                name: 'Shubham Rawat',
+                role: 'Consultant - Legal, Elevate',
+                batch: 'LLM, Batch 2025',
+                image: '/jlu-placement3.jpeg',
               },
             ];
 
@@ -1099,7 +1099,7 @@ export default function PlacementPage() {
                 href="mailto:placements@jlu.edu.in"
                 className="bg-[#efc04b] text-[#21313c] px-3 md:px-6 py-2 md:py-2.5 rounded-lg font-semibold text-[0.65rem] md:text-sm hover:bg-[#d4a93d] transition-all shadow-lg inline-flex items-center justify-center gap-1.5 md:gap-2"
               >
-                Contact Placement Cell
+                Contact Career Development Centre
                 <svg className="w-3 h-3 md:w-4 md:h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
                 </svg>
