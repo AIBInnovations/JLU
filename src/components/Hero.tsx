@@ -197,44 +197,51 @@ export const Hero = () => {
             className="absolute inset-0 flex flex-col items-center justify-center"
             style={{
               zIndex: 2,
-              paddingBottom: isMobile ? '50%' : '20%',
+              paddingBottom: isMobile ? '50%' : '22%',
               opacity: 0,
             }}
           >
-            {/* Central India's Global University - single line on top */}
-            <p
+            {/* Central India's Global University */}
+            <h1
               className="text-center uppercase tracking-widest select-none"
               style={{
-                fontFamily: 'Inter, sans-serif',
-                fontSize: isMobile ? 'clamp(0.85rem, 3.5vw, 1.1rem)' : 'clamp(1.2rem, 1.6vw, 2rem)',
-                fontWeight: 500,
-                color: 'rgba(255,255,255,0.85)',
-                letterSpacing: '0.25em',
-                marginBottom: isMobile ? '4px' : '8px',
-                whiteSpace: 'nowrap',
-              }}
-            >
-              Central India&apos;s Global University
-            </p>
-            <h1
-              className="text-center font-bold uppercase tracking-wider select-none"
-              style={{
                 fontFamily: "'Humane', sans-serif",
-                fontSize: isMobile ? 'clamp(6rem, 26vw, 10rem)' : 'clamp(14rem, 20vw, 22rem)',
+                fontSize: isMobile ? 'clamp(3.5rem, 15vw, 6rem)' : 'clamp(8rem, 13vw, 16rem)',
+                fontWeight: 700,
                 lineHeight: 1.0,
-                letterSpacing: isMobile ? '0.02em' : '0.01em',
-                wordSpacing: isMobile ? '0.05em' : '0.3em',
+                letterSpacing: '0.05em',
                 whiteSpace: 'nowrap',
                 backgroundImage: isMobile
-                  ? 'linear-gradient(to bottom, rgba(255,255,255,1) 0%, rgba(255,255,255,0.7) 20%, rgba(255,255,255,0) 100%)'
-                  : 'linear-gradient(to bottom, rgba(255,255,255,1) 0%, rgba(255,255,255,1) 10%, rgba(255,255,255,0) 70%)',
+                  ? 'linear-gradient(to bottom, rgba(255,255,255,0.85) 0%, rgba(255,255,255,0.7) 50%, rgba(255,255,255,0.4) 100%)'
+                  : 'linear-gradient(to bottom, rgba(255,255,255,0.85) 0%, rgba(255,255,255,0.7) 50%, rgba(255,255,255,0.4) 90%)',
                 WebkitBackgroundClip: 'text',
                 backgroundClip: 'text',
                 WebkitTextFillColor: 'transparent',
                 textShadow: 'none',
               }}
             >
-              JAGRAN LAKECITY
+              Central India&apos;s
+            </h1>
+            <h1
+              className="text-center uppercase tracking-widest select-none"
+              style={{
+                fontFamily: "'Humane', sans-serif",
+                fontSize: isMobile ? 'clamp(3.5rem, 15vw, 6rem)' : 'clamp(8rem, 13vw, 16rem)',
+                fontWeight: 700,
+                lineHeight: 0.85,
+                marginTop: isMobile ? '-4px' : '-8px',
+                letterSpacing: '0.05em',
+                whiteSpace: 'nowrap',
+                backgroundImage: isMobile
+                  ? 'linear-gradient(to bottom, rgba(255,255,255,0.85) 0%, rgba(255,255,255,0.7) 50%, rgba(255,255,255,0.4) 100%)'
+                  : 'linear-gradient(to bottom, rgba(255,255,255,0.85) 0%, rgba(255,255,255,0.7) 50%, rgba(255,255,255,0.4) 90%)',
+                WebkitBackgroundClip: 'text',
+                backgroundClip: 'text',
+                WebkitTextFillColor: 'transparent',
+                textShadow: 'none',
+              }}
+            >
+              Global University
             </h1>
           </div>
 
@@ -525,9 +532,9 @@ export const Hero = () => {
               </span>
             </h2>
           </div>
-          <div>
+          <div className={`flex w-full ${isMobile ? 'flex-col gap-4' : 'flex-row gap-10'} items-start`}>
             <p
-              className="max-w-3xl text-[#666]"
+              className="flex-1 text-[#666]"
               style={{
                 fontFamily: 'Inter, sans-serif',
                 fontSize: isMobile ? '20px' : '24px',
@@ -537,14 +544,12 @@ export const Hero = () => {
             >
               Jagran Lakecity University is not defined by buildings alone. It is defined by the rhythm of daily life, the exchange of ideas, and the quiet confidence of people who belong here.
             </p>
-          </div>
-          <div className={`flex w-full ${isMobile ? 'justify-start' : 'justify-end'}`}>
             <p
-              className={`max-w-md text-[#999] ${isMobile ? 'text-left' : 'text-right'}`}
+              className="flex-1 text-[#999]"
               style={{
                 fontFamily: 'Inter, sans-serif',
-                fontSize: isMobile ? '17px' : '20px',
-                lineHeight: 1.6,
+                fontSize: isMobile ? '20px' : '24px',
+                lineHeight: 1.7,
                 fontWeight: 400,
               }}
             >

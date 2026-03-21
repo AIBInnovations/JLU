@@ -71,8 +71,8 @@ export const faculties: Faculty[] = [
       },
       {
         id: 'sports-mgmt',
-        name: 'Jagran School of Physical Education and Sports Science',
-        shortName: 'Physical Education & Sports',
+        name: 'Jagran School of Sports Management',
+        shortName: 'Sports Management',
         tagline: 'Where the Business of Sports Meets Academic Rigour.',
         description:
           'Prepares students for the rapidly growing sports industry by combining management fundamentals with the dynamics of the sports ecosystem. Students learn sports marketing, event management, athlete management, and sports law alongside hands-on industry exposure.',
@@ -89,8 +89,8 @@ export const faculties: Faculty[] = [
       },
       {
         id: 'hospitality',
-        name: 'Jagran School of Hospitality & Tourism',
-        shortName: 'Hospitality & Tourism',
+        name: 'Jagran School of Hospitality & Aviation Management',
+        shortName: 'Hospitality & Aviation',
         tagline: 'Training for Global Service Excellence.',
         description:
           'Designed for global service industries with a focus on professionalism, operational excellence, and customer experience. Approximately 90% of hospitality students are placed in 3-star and 5-star hotels. Training kitchens, restaurant simulations, and international culinary modules provide hands-on industry readiness.',
@@ -113,7 +113,7 @@ export const faculties: Faculty[] = [
   },
   {
     id: 'journalism',
-    name: 'Faculty of Media and Social Sciences',
+    name: 'Faculty of Journalism & Social Science',
     shortName: 'Journalism',
     description:
       'Cultivates media excellence, creative prowess, and industry expertise. Ranked #1 in Madhya Pradesh and Top 15 in India for media education, preparing students for dynamic careers in journalism, advertising, and event management.',
@@ -285,7 +285,7 @@ export const faculties: Faculty[] = [
   },
   {
     id: 'engineering',
-    name: 'Faculty of Science and Technology',
+    name: 'Faculty of Engineering & Technology',
     shortName: 'Engineering',
     description:
       'Advances innovation and technical expertise through cutting-edge programs with 9 specialized laboratories. Curriculum is revised yearly to stay current with emerging technologies in AI, blockchain, IoT, and robotics.',

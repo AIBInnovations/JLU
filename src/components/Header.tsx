@@ -967,15 +967,19 @@ export const Header = () => {
         className="relative flex items-center justify-between px-6 pt-6 sm:px-10 lg:px-16 xl:px-20 2xl:px-32"
         style={{ zIndex: 60 }}
       >
-        {/* Logo on left - bigger */}
+        {/* Empty spacer for left */}
+        <div className="flex-1" />
+
+        {/* Logo centered */}
         <motion.div
-          initial={{ opacity: 0, x: -15, scale: 0.95 }}
-          animate={{ opacity: 1, x: 0, scale: 1 }}
+          initial={{ opacity: 0, y: -15, scale: 0.95 }}
+          animate={{ opacity: 1, y: 0, scale: 1 }}
           transition={{
             duration: 0.6,
             delay: isHomepage ? 2.9 : 0.3,
             ease: [0.25, 0.1, 0.25, 1]
           }}
+          className="absolute left-1/2 -translate-x-1/2"
           style={{
             opacity: isMenuOpen && isMobile ? 0 : 1,
             visibility: isMenuOpen && isMobile ? 'hidden' : 'visible',
@@ -987,7 +991,7 @@ export const Header = () => {
               src="/jlulogo.png"
               alt="Jagran Lakecity University logo"
               className={`w-auto object-contain drop-shadow-lg cursor-pointer ${
-                isMobile ? 'h-14' : 'h-16 sm:h-20'
+                isMobile ? 'h-16' : 'h-20 sm:h-24 lg:h-28'
               }`}
             />
           </Link>
