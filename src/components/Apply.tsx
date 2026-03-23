@@ -235,7 +235,7 @@ const Apply = () => {
         {/* Background Image - Covers Hero + Form Section */}
         <div className="absolute inset-0 z-0">
           <img
-            src="/about1.jpg"
+            src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/about1.jpg"
             alt="JLU Campus"
             className="w-full h-full object-cover"
           />
@@ -260,7 +260,7 @@ const Apply = () => {
               <h1
                 className="text-white mb-4"
                 style={{
-                  fontSize: 'clamp(2.5rem, 5vw, 4rem)',
+                  fontSize: 'clamp(2.25rem, 4vw, 3rem)',
                   fontWeight: 600,
                   lineHeight: 1.1,
                   letterSpacing: '-0.03em',
@@ -680,7 +680,7 @@ const Apply = () => {
               <h2
                 className="text-white mb-6"
                 style={{
-                  fontSize: 'clamp(2rem, 4vw, 3.5rem)',
+                  fontSize: 'clamp(2.25rem, 4vw, 3rem)',
                   fontWeight: 600,
                   lineHeight: 1.1,
                 }}
@@ -895,7 +895,7 @@ const Apply = () => {
             <h2
               className="text-[#21313c] mb-4"
               style={{
-                fontSize: 'clamp(2rem, 4vw, 3rem)',
+                fontSize: 'clamp(2.25rem, 4vw, 3rem)',
                 fontWeight: 600,
                 lineHeight: 1.1,
               }}

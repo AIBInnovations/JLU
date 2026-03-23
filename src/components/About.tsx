@@ -29,7 +29,7 @@ const About = () => {
         >
           <motion.div className="absolute inset-0" style={{ y }}>
             <Image
-              src="/about1.jpg"
+              src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/about1.jpg"
               alt="About JLU"
               fill
               className="object-cover scale-110"
@@ -48,21 +48,22 @@ const About = () => {
           className="absolute top-0 left-0 px-4 pt-28 sm:pt-32 max-w-[90%] sm:px-6 sm:max-w-[85%] md:pl-10 md:pt-[120px] md:max-w-[800px] md:pr-0"
         >
           <motion.h2
-            className="text-white font-semibold leading-tight mb-3 sm:mb-4 md:mb-5 text-xl sm:text-2xl md:text-[clamp(1.5rem,3vw,2.5rem)]"
+            className="text-white font-bold leading-tight mb-3 sm:mb-4 md:mb-5 text-xl sm:text-2xl md:text-[clamp(1.5rem,3vw,2.5rem)]"
           >
             WHO WE{' '}
-            <span style={{ fontFamily: "'Times New Roman', serif", fontStyle: 'italic', color: '#f0c14b', textShadow: '2px 2px 4px rgba(0,0,0,0.5)' }}>
+            <span style={{ fontFamily: "'Times New Roman', serif", fontStyle: 'italic', color: '#027ea1', textShadow: '2px 2px 4px rgba(0,0,0,0.5)' }}>
               are
             </span>
           </motion.h2>
-          <motion.p
+          <motion.h1
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.8, delay: 0.8 }}
-            className="text-white font-semibold leading-tight text-lg sm:text-xl md:text-[clamp(1.5rem,2.5vw,2.25rem)]"
+            className="text-white"
+            style={{ fontWeight: 600, lineHeight: 1.5, fontSize: 'clamp(1rem, 2vw, 1.5rem)' }}
           >
             A university with a pulse. Jagran Lakecity University is not defined by buildings alone. It is defined by the rhythm of daily life, the exchange of ideas, and the quiet confidence of people who belong here.
-          </motion.p>
+          </motion.h1>
         </motion.div>
 
         {/* Large "About Us" Text - Bottom Left */}

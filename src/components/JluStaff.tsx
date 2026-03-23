@@ -29,25 +29,24 @@ const JluStaff = () => {
             >
               Our People
             </span>
-            <h2
-              className="text-[#21313c] text-2xl sm:text-3xl md:text-[clamp(2.5rem,5vw,4rem)]"
+            <h1
+              className="text-[#21313c] text-3xl md:text-4xl lg:text-5xl"
               style={{
                 fontWeight: 600,
-                lineHeight: 1,
-                letterSpacing: '-0.02em',
+                lineHeight: 1.1,
               }}
             >
               JLU{' '}
               <span style={{ fontFamily: "'Times New Roman', serif", fontStyle: 'italic' }}>
                 Staff
               </span>
-            </h2>
+            </h1>
           </div>
           <p
-            className="text-[#666] text-lg sm:text-xl md:text-[clamp(1.25rem,2vw,1.75rem)] text-right"
-            style={{ lineHeight: 1.8 }}
+            className="text-[#666] text-sm sm:text-base md:text-[clamp(1.15rem,1.8vw,1.5rem)] text-right mt-10 ml-auto"
+            style={{ lineHeight: 1.7, fontWeight: 400 }}
           >
-            Behind every classroom, event<br />and initiative is a dedicated team that supports<br />the university&apos;s everyday functioning.
+            Behind every classroom, event and initiative is a dedicated team that supports<br />the university&apos;s everyday functioning.
           </p>
         </motion.div>
 

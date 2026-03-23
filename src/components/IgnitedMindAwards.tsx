@@ -6,13 +6,13 @@ import { motion } from 'framer-motion';
 const customEase: [number, number, number, number] = [0.22, 1, 0.36, 1];
 
 const galleryPhotos = [
-  { src: '/jlu ignited mind Award/photos/AMF_1426.JPG', alt: 'Ignited Mind Awards - Award Presentation' },
-  { src: '/jlu ignited mind Award/photos/AMF_1441.JPG', alt: 'Ignited Mind Awards - Felicitation' },
-  { src: '/jlu ignited mind Award/photos/Copy of DSC_4378.JPG', alt: 'Ignited Mind Awards - Ceremony Highlight' },
-  { src: '/jlu ignited mind Award/photos/Copy of DSC_4398.JPG', alt: 'Ignited Mind Awards - Guest of Honour' },
-  { src: '/jlu ignited mind Award/photos/Copy of DSC_4644.JPG', alt: 'Ignited Mind Awards - Stage Event' },
-  { src: '/jlu ignited mind Award/photos/Copy of DSC_4645.JPG', alt: 'Ignited Mind Awards - Audience' },
-  { src: '/jlu ignited mind Award/photos/DSC_4579.JPG', alt: 'Ignited Mind Awards - Award Ceremony' },
+  { src: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/jlu%20ignited%20mind%20Award/photos/AMF_1426.JPG', alt: 'Ignited Mind Awards - Award Presentation' },
+  { src: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/jlu%20ignited%20mind%20Award/photos/AMF_1441.JPG', alt: 'Ignited Mind Awards - Felicitation' },
+  { src: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/jlu%20ignited%20mind%20Award/photos/Copy%20of%20DSC_4378.JPG', alt: 'Ignited Mind Awards - Ceremony Highlight' },
+  { src: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/jlu%20ignited%20mind%20Award/photos/Copy%20of%20DSC_4398.JPG', alt: 'Ignited Mind Awards - Guest of Honour' },
+  { src: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/jlu%20ignited%20mind%20Award/photos/Copy%20of%20DSC_4644.JPG', alt: 'Ignited Mind Awards - Stage Event' },
+  { src: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/jlu%20ignited%20mind%20Award/photos/Copy%20of%20DSC_4645.JPG', alt: 'Ignited Mind Awards - Audience' },
+  { src: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/jlu%20ignited%20mind%20Award/photos/DSC_4579.JPG', alt: 'Ignited Mind Awards - Award Ceremony' },
 ];
 
 const IgnitedMindAwards = () => {
@@ -38,23 +38,22 @@ const IgnitedMindAwards = () => {
             >
               Awards
             </span>
-            <h2
-              className="text-[#21313c] text-2xl sm:text-3xl md:text-[clamp(2.5rem,5vw,4rem)]"
+            <h1
+              className="text-[#21313c] text-3xl md:text-4xl lg:text-5xl"
               style={{
                 fontWeight: 600,
-                lineHeight: 1,
-                letterSpacing: '-0.02em',
+                lineHeight: 1.1,
               }}
             >
               JLU Ignited Mind{' '}
               <span style={{ fontFamily: "'Times New Roman', serif", fontStyle: 'italic' }}>
                 Awards
               </span>
-            </h2>
+            </h1>
           </div>
           <p
-            className="text-[#666] text-base md:text-lg max-w-full md:max-w-[400px]"
-            style={{ lineHeight: 1.7 }}
+            className="text-[#666] text-sm sm:text-base md:text-[clamp(1.15rem,1.8vw,1.5rem)] max-w-full md:max-w-[600px] text-right ml-auto"
+            style={{ lineHeight: 1.7, fontWeight: 400 }}
           >
             The Ignited Mind Awards recognise individuals who embody innovation, leadership and positive change. They celebrate voices that inspire and contribute meaningfully to society.
           </p>
@@ -72,7 +71,7 @@ const IgnitedMindAwards = () => {
             style={{ aspectRatio: '4 / 5' }}
           >
             <Image
-              src="/jlu ignited mind Award/photos/AMF_1081.JPG"
+              src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/jlu%20ignited%20mind%20Award/photos/AMF_1081.JPG"
               alt="JLU Ignited Mind Awards Ceremony"
               fill
               className="object-cover transition-transform duration-700 group-hover:scale-105"

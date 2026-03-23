@@ -25,49 +25,49 @@ export default function FacultiesPage() {
     {
       name: 'Faculty of Science and Technology',
       description: 'The Faculty of Engineering is committed to exposing students to various perspectives of technological innovation and equipping them for contemporary challenges in engineering and applied sciences through cutting-edge research and industry collaboration.',
-      image: '/about-us.jpg',
+      image: 'https://images.unsplash.com/photo-1677442136019-21780ecad995?w=800&q=80',
       href: '/faculty/engineering',
       side: 'left'
     },
     {
       name: 'Faculty of Business',
       description: 'The Faculty of Business is committed to exposing students to various perspectives of global commerce and equipping them for contemporary challenges in business leadership, entrepreneurship, and strategic management in the modern marketplace.',
-      image: '/admissions.jpg',
+      image: 'https://images.unsplash.com/photo-1523240795612-9a054b0db644?w=800&q=80',
       href: '/faculty/business',
       side: 'right'
     },
     {
       name: 'Faculty of Law',
       description: 'The Faculty of Law is committed to exposing students to various perspectives of legal knowledge and equipping them for contemporary challenges in the legal field through rigorous training in jurisprudence, advocacy, and critical legal thinking.',
-      image: '/student-clubs.jpg',
+      image: 'https://images.unsplash.com/photo-1589829545856-d10d557cf95f?w=800&q=80',
       href: '/faculty/law',
       side: 'left'
     },
     {
       name: 'Faculty of Liberal Arts',
       description: 'The Faculty of Liberal Arts is committed to exposing students to various perspectives of human culture and thought and equipping them for contemporary challenges in social sciences, humanities, and interdisciplinary research.',
-      image: '/about-us.jpg',
+      image: 'https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?w=800&q=80',
       href: '/faculty/liberal-arts',
       side: 'right'
     },
     {
       name: 'Faculty of Architecture',
       description: 'The Faculty of Architecture is committed to exposing students to various perspectives of design thinking and equipping them for contemporary challenges in sustainable architecture, urban planning, and innovative built environments.',
-      image: '/admissions.jpg',
+      image: 'https://images.unsplash.com/photo-1487958449943-2429e8be8625?w=800&q=80',
       href: '/faculty/architecture',
       side: 'left'
     },
     {
       name: 'Faculty of Pharmacy',
       description: 'The Faculty of Pharmacy is committed to exposing students to various perspectives of pharmaceutical sciences and equipping them for contemporary challenges in healthcare, drug development, and clinical practice.',
-      image: '/student-clubs.jpg',
+      image: 'https://images.unsplash.com/photo-1585435557343-3b092031a831?w=800&q=80',
       href: '/faculty/pharmacy',
       side: 'right'
     },
     {
       name: 'Faculty of Media and Social Sciences',
       description: 'The Faculty of Journalism is committed to exposing students to various perspectives of media and communication and equipping them for contemporary challenges in digital journalism, mass communication, and ethical storytelling.',
-      image: '/about-us.jpg',
+      image: 'https://images.unsplash.com/photo-1495020689067-958852a7765e?w=800&q=80',
       href: '/faculty/journalism',
       side: 'left'
     }
@@ -196,7 +196,7 @@ export default function FacultiesPage() {
             className="text-white font-semibold leading-tight mb-3 sm:mb-4 md:mb-5 text-xl sm:text-2xl md:text-[clamp(1.5rem,3vw,2.5rem)]"
           >
             ACADEMIC{' '}
-            <span style={{ fontFamily: "'Times New Roman', serif", fontStyle: 'italic', color: '#f0c14b', textShadow: '2px 2px 4px rgba(0,0,0,0.5)' }}>
+            <span style={{ fontFamily: "'Times New Roman', serif", fontStyle: 'italic', color: '#027ea1', textShadow: '2px 2px 4px rgba(0,0,0,0.5)' }}>
               Excellence
             </span>
           </motion.h2>
@@ -204,7 +204,7 @@ export default function FacultiesPage() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.8, delay: 0.8 }}
-            className="text-white font-semibold leading-tight text-base sm:text-lg md:text-[clamp(1.25rem,2.5vw,2rem)]"
+            className="text-white" style={{ fontWeight: 600, lineHeight: 1.5, fontSize: 'clamp(1rem, 2vw, 1.5rem)' }}
           >
             Explore our diverse faculties, each dedicated to shaping future leaders through innovation, research and hands-on learning across disciplines.
           </motion.p>

@@ -140,20 +140,15 @@ function EventsCalendarSection() {
           >
             Events Calendar
           </span>
-          <h2
-            className="text-[#21313c]"
-            style={{
-              fontSize: 'clamp(2.5rem, 4vw, 3.5rem)',
-              fontWeight: 600,
-              lineHeight: 1.1,
-              letterSpacing: '-0.03em',
-            }}
+          <h1
+            className="text-[#21313c] text-2xl md:text-4xl lg:text-5xl font-bold leading-tight"
+            style={{ letterSpacing: '-0.02em' }}
           >
             What&apos;s happening{' '}
-            <span style={{ fontFamily: "'Times New Roman', serif", fontStyle: 'italic', fontWeight: 400 }}>
+            <span style={{ fontFamily: "'Times New Roman', serif", fontStyle: 'italic' }}>
               on campus
             </span>
-          </h2>
+          </h1>
         </motion.div>
 
         <div className="flex flex-col lg:flex-row gap-10 md:gap-12 lg:gap-16">
@@ -189,7 +184,7 @@ function EventsCalendarSection() {
                           {event.category}
                         </span>
                       </div>
-                      <h4 className="text-[#21313c] group-hover:text-[#f0c14b] transition-colors text-lg md:text-xl font-semibold leading-tight">
+                      <h4 className="text-[#21313c] group-hover:text-[#f0c14b] transition-colors text-lg md:text-xl font-bold leading-tight">
                         {event.title}
                       </h4>
                       <p className="text-[#999] mt-1 text-xs md:text-sm">{event.venue}</p>
@@ -328,12 +323,12 @@ function EventsCalendarSection() {
 }
 
 const pastEventsImages = [
-  '/JLu%20events/photos/Convocation/DSC_1039.JPG', // Convocation 2025
-  '/campus/smart-classroom.jpg', // Science Expo
-  '/student-clubs.jpg', // Sports Meet
-  '/JLu%20events/photos/Lehar/IMG_9018.JPG', // Cultural Fest
-  '/JLu%20events/photos/Mental%20Health%20week/IMG_7775.JPG', // Mental Health Week
-  '/jlu%20ignited%20mind%20Award/photos/AMF_1081.JPG', // Alumni Meet
+  'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/JLu%20events/photos/Convocation/DSC_1039.JPG', // Convocation 2025
+  'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/campus/computer%20lab.JPG', // Science Expo
+  'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/student-clubs.jpg', // Sports Meet
+  'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/JLu%20events/photos/Lehar/IMG_9018.JPG', // Cultural Fest
+  'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/JLu%20events/photos/Mental%20Health%20week/IMG_7775.JPG', // Mental Health Week
+  'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/jlu%20ignited%20mind%20Award/photos/AMF_1081.JPG', // Alumni Meet
 ];
 
 const pastEventsData = [
@@ -423,7 +418,7 @@ const NewsAndEvents = () => {
         >
           <motion.div className="absolute inset-0" style={{ y }}>
             <Image
-              src="/JLu%20events/photos/Convocation/DSC_1020.JPG"
+              src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/JLu%20events/photos/Convocation/DSC_1020.JPG"
               alt="News & Events at JLU"
               fill
               className="object-cover scale-110"
@@ -447,17 +442,17 @@ const NewsAndEvents = () => {
           }}
         >
           <h2
-            className="text-white font-semibold leading-tight mb-5"
+            className="text-white font-bold leading-tight mb-5"
             style={{
-              fontSize: 'clamp(1.5rem, 3vw, 2.5rem)',
+              fontSize: 'clamp(1.5rem, 2.5vw, 2rem)',
             }}
           >
-            STAY <span style={{ fontFamily: "'Times New Roman', serif", fontStyle: 'italic', color: '#f0c14b', textShadow: '2px 2px 4px rgba(0,0,0,0.5)' }}>connected</span>
+            STAY <span style={{ fontFamily: "'Times New Roman', serif", fontStyle: 'italic', color: '#027ea1', textShadow: '2px 2px 4px rgba(0,0,0,0.5)' }}>connected</span>
           </h2>
           <p
-            className="text-white font-semibold leading-tight"
+            className="text-white"
             style={{
-              fontSize: 'clamp(1.25rem, 2.5vw, 2rem)',
+              fontWeight: 600, lineHeight: 1.5, fontSize: 'clamp(1rem, 2vw, 1.5rem)',
             }}
           >
             Stay updated with the latest news, announcements, and events happening at Jagran Lakecity University.
@@ -520,7 +515,7 @@ const NewsAndEvents = () => {
               <h2
                 className="text-[#21313c]"
                 style={{
-                  fontSize: 'clamp(2rem, 4vw, 3.5rem)',
+                  fontSize: 'clamp(2.25rem, 4vw, 3rem)',
                   fontWeight: 600,
                   lineHeight: 1.1,
                   letterSpacing: '-0.03em',
@@ -558,7 +553,7 @@ const NewsAndEvents = () => {
                 transition={{ duration: 0.8, ease: customEase }}
               >
                 <Image
-                  src="/JLu%20events/photos/Convocation/DSC_0858.JPG"
+                  src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/JLu%20events/photos/Convocation/DSC_0858.JPG"
                   alt="JLU 11th Foundation Day"
                   fill
                   className="object-cover"
@@ -600,7 +595,7 @@ const NewsAndEvents = () => {
               >
                 <div className="relative shrink-0 overflow-hidden w-20 h-20 md:w-28 md:h-28 rounded-lg">
                   <Image
-                    src="/JLu%20events/photos/Lehar/IMG_9025.JPG"
+                    src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/JLu%20events/photos/Lehar/IMG_9025.JPG"
                     alt="AUAP Conference"
                     fill
                     className="object-cover group-hover:scale-105 transition-transform duration-500"
@@ -612,7 +607,7 @@ const NewsAndEvents = () => {
                     <span className="text-[#999] text-[12px]">|</span>
                     <span className="text-[#999] text-xl md:text-2xl font-bold">Dec 2025</span>
                   </div>
-                  <h4 className="text-[#21313c] font-semibold text-sm md:text-base leading-snug group-hover:text-[#f0c14b] transition-colors line-clamp-2">
+                  <h4 className="text-[#21313c] font-bold text-sm md:text-base leading-snug group-hover:text-[#f0c14b] transition-colors line-clamp-2">
                     JLU Hosts AUAP International Conference on Higher Education
                   </h4>
                   <p className="text-[#666] text-xs md:text-sm mt-1.5 hidden md:block line-clamp-2" style={{ lineHeight: 1.6 }}>
@@ -629,7 +624,7 @@ const NewsAndEvents = () => {
               >
                 <div className="relative shrink-0 overflow-hidden w-20 h-20 md:w-28 md:h-28 rounded-lg">
                   <Image
-                    src="/JLu%20events/photos/Lehar/IMG_9067.JPG"
+                    src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/JLu%20events/photos/Lehar/IMG_9067.JPG"
                     alt="JLU Rankings"
                     fill
                     className="object-cover group-hover:scale-105 transition-transform duration-500"
@@ -641,7 +636,7 @@ const NewsAndEvents = () => {
                     <span className="text-[#999] text-[12px]">|</span>
                     <span className="text-[#999] text-xl md:text-2xl font-bold">Nov 2025</span>
                   </div>
-                  <h4 className="text-[#21313c] font-semibold text-sm md:text-base leading-snug group-hover:text-[#f0c14b] transition-colors line-clamp-2">
+                  <h4 className="text-[#21313c] font-bold text-sm md:text-base leading-snug group-hover:text-[#f0c14b] transition-colors line-clamp-2">
                     JLU Ranked Among Top Private Universities in Central India
                   </h4>
                   <p className="text-[#666] text-xs md:text-sm mt-1.5 hidden md:block line-clamp-2" style={{ lineHeight: 1.6 }}>
@@ -658,7 +653,7 @@ const NewsAndEvents = () => {
               >
                 <div className="relative shrink-0 overflow-hidden w-20 h-20 md:w-28 md:h-28 rounded-lg">
                   <Image
-                    src="/JLu%20events/photos/JAgran%20%20of%20Social%20science/DSC08858.JPG"
+                    src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/JLu%20events/photos/JAgran%20of%20Social%20science/DSC08858.JPG"
                     alt="Research Innovation"
                     fill
                     className="object-cover group-hover:scale-105 transition-transform duration-500"
@@ -670,7 +665,7 @@ const NewsAndEvents = () => {
                     <span className="text-[#999] text-[12px]">|</span>
                     <span className="text-[#999] text-xl md:text-2xl font-bold">Oct 2025</span>
                   </div>
-                  <h4 className="text-[#21313c] font-semibold text-sm md:text-base leading-snug group-hover:text-[#f0c14b] transition-colors line-clamp-2">
+                  <h4 className="text-[#21313c] font-bold text-sm md:text-base leading-snug group-hover:text-[#f0c14b] transition-colors line-clamp-2">
                     JLU Faculty Receives National Award for Innovation in Pharmaceutical Research
                   </h4>
                   <p className="text-[#666] text-xs md:text-sm mt-1.5 hidden md:block line-clamp-2" style={{ lineHeight: 1.6 }}>
@@ -687,7 +682,7 @@ const NewsAndEvents = () => {
               >
                 <div className="relative shrink-0 overflow-hidden w-20 h-20 md:w-28 md:h-28 rounded-lg">
                   <Image
-                    src="/jlu%20ignited%20mind%20Award/photos/AMF_1426.JPG"
+                    src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/jlu%20ignited%20mind%20Award/photos/AMF_1426.JPG"
                     alt="Convocation"
                     fill
                     className="object-cover group-hover:scale-105 transition-transform duration-500"
@@ -699,7 +694,7 @@ const NewsAndEvents = () => {
                     <span className="text-[#999] text-[12px]">|</span>
                     <span className="text-[#999] text-xl md:text-2xl font-bold">Sep 2025</span>
                   </div>
-                  <h4 className="text-[#21313c] font-semibold text-sm md:text-base leading-snug group-hover:text-[#f0c14b] transition-colors line-clamp-2">
+                  <h4 className="text-[#21313c] font-bold text-sm md:text-base leading-snug group-hover:text-[#f0c14b] transition-colors line-clamp-2">
                     10th Convocation Ceremony: 2,500 Students Awarded Degrees
                   </h4>
                   <p className="text-[#666] text-xs md:text-sm mt-1.5 hidden md:block line-clamp-2" style={{ lineHeight: 1.6 }}>
@@ -741,7 +736,7 @@ const NewsAndEvents = () => {
               <h2
                 className="text-[#21313c]"
                 style={{
-                  fontSize: 'clamp(2rem, 4vw, 3.5rem)',
+                  fontSize: 'clamp(2.25rem, 4vw, 3rem)',
                   fontWeight: 600,
                   lineHeight: 1.1,
                   letterSpacing: '-0.03em',
@@ -811,7 +806,7 @@ const NewsAndEvents = () => {
                       />
                     </motion.div>
                     <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
-                    <span className="absolute top-4 left-4 md:top-6 md:left-6 bg-[#f0c14b] px-3 py-1.5 md:px-4 md:py-2 text-xs md:text-sm font-semibold text-[#21313c] z-10">
+                    <span className="absolute top-4 left-4 md:top-6 md:left-6 bg-[#f0c14b] px-3 py-1.5 md:px-4 md:py-2 text-xs md:text-sm font-bold text-[#21313c] z-10">
                       {event.year}
                     </span>
                     <div className="absolute bottom-4 left-4 right-4 md:bottom-6 md:left-6 md:right-6">
@@ -857,7 +852,7 @@ const NewsAndEvents = () => {
             style={{ width: '28%', height: '24%', top: '0%', left: '13%' }}
           >
             <Image
-              src="/JLu%20events/photos/Anti%20Ragging%20WEEK/IMG_1947.JPG"
+              src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/JLu%20events/photos/Anti%20Ragging%20WEEK/IMG_1947.JPG"
               alt="Students in library"
               fill
               className="object-cover group-hover:scale-105 transition-transform duration-500"
@@ -874,7 +869,7 @@ const NewsAndEvents = () => {
             style={{ width: '21%', height: '32%', top: '0%', left: '52%' }}
           >
             <Image
-              src="/JLu%20events/photos/Lehar/IMG_9025.JPG"
+              src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/JLu%20events/photos/Lehar/IMG_9025.JPG"
               alt="Event hall"
               fill
               className="object-cover group-hover:scale-105 transition-transform duration-500"
@@ -891,7 +886,7 @@ const NewsAndEvents = () => {
             style={{ width: '13%', height: '19%', top: '-5%', left: '89%' }}
           >
             <Image
-              src="/campus/aerial-view.webp"
+              src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/campus/aerial-view.webp"
               alt="Campus building"
               fill
               className="object-cover group-hover:scale-105 transition-transform duration-500"
@@ -908,7 +903,7 @@ const NewsAndEvents = () => {
             style={{ width: '15%', height: '22%', top: '30%', left: '80%' }}
           >
             <Image
-              src="/JLu%20events/photos/JAgran%20%20of%20Social%20science/DSC08858.JPG"
+              src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/JLu%20events/photos/JAgran%20of%20Social%20science/DSC08858.JPG"
               alt="Lab equipment"
               fill
               className="object-cover group-hover:scale-105 transition-transform duration-500"
@@ -925,7 +920,7 @@ const NewsAndEvents = () => {
             style={{ width: '19%', height: '32%', top: '31%', left: '0%' }}
           >
             <Image
-              src="/JLu%20events/photos/Lehar/IMG_9060.JPG"
+              src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/JLu%20events/photos/Lehar/IMG_9060.JPG"
               alt="Campus event"
               fill
               className="object-cover group-hover:scale-105 transition-transform duration-500"
@@ -942,7 +937,7 @@ const NewsAndEvents = () => {
             style={{ width: '20%', height: '34%', top: '60%', left: '80%' }}
           >
             <Image
-              src="/jlu%20ignited%20mind%20Award/photos/AMF_1426.JPG"
+              src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/jlu%20ignited%20mind%20Award/photos/AMF_1426.JPG"
               alt="Students together"
               fill
               className="object-cover group-hover:scale-105 transition-transform duration-500"
@@ -959,7 +954,7 @@ const NewsAndEvents = () => {
             style={{ width: '28%', height: '21%', top: '79%', left: '44%' }}
           >
             <Image
-              src="/JLu%20events/photos/Convocation/DSC_0858.JPG"
+              src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/JLu%20events/photos/Convocation/DSC_0858.JPG"
               alt="Graduation"
               fill
               className="object-cover group-hover:scale-105 transition-transform duration-500"
@@ -976,7 +971,7 @@ const NewsAndEvents = () => {
             style={{ width: '15%', height: '32%', top: '68%', left: '22%' }}
           >
             <Image
-              src="/JLu%20events/photos/Mental%20Health%20week/IMG_7813.JPG"
+              src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/JLu%20events/photos/Mental%20Health%20week/IMG_7813.JPG"
               alt="Library"
               fill
               className="object-cover group-hover:scale-105 transition-transform duration-500"
@@ -993,7 +988,7 @@ const NewsAndEvents = () => {
             style={{ width: '15%', height: '18%', top: '75%', left: '-4%' }}
           >
             <Image
-              src="/JLu%20events/photos/Anti%20Ragging%20WEEK/IMG_3582.JPG"
+              src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/JLu%20events/photos/Anti%20Ragging%20WEEK/IMG_3582.JPG"
               alt="Sports"
               fill
               className="object-cover group-hover:scale-105 transition-transform duration-500"
@@ -1067,7 +1062,7 @@ const NewsAndEvents = () => {
                 transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
               >
                 <Image
-                  src="/JLu%20events/photos/Anti%20Ragging%20WEEK/IMG_1947.JPG"
+                  src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/JLu%20events/photos/Anti%20Ragging%20WEEK/IMG_1947.JPG"
                   alt="Students collaborating"
                   fill
                   className="object-cover"
@@ -1090,7 +1085,7 @@ const NewsAndEvents = () => {
                 transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
               >
                 <Image
-                  src="/JLu%20events/photos/Convocation/DSC_0858.JPG"
+                  src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/JLu%20events/photos/Convocation/DSC_0858.JPG"
                   alt="Graduation ceremony"
                   fill
                   className="object-cover"
@@ -1113,7 +1108,7 @@ const NewsAndEvents = () => {
                 transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
               >
                 <Image
-                  src="/campus/aerial-view.webp"
+                  src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/campus/aerial-view.webp"
                   alt="Campus building"
                   fill
                   className="object-cover"
@@ -1136,7 +1131,7 @@ const NewsAndEvents = () => {
                 transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
               >
                 <Image
-                  src="/JLu%20events/photos/JAgran%20%20of%20Social%20science/DSC08858.JPG"
+                  src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/JLu%20events/photos/JAgran%20of%20Social%20science/DSC08858.JPG"
                   alt="Students in lab"
                   fill
                   className="object-cover"
@@ -1159,7 +1154,7 @@ const NewsAndEvents = () => {
                 transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
               >
                 <Image
-                  src="/JLu%20events/photos/Lehar/IMG_9060.JPG"
+                  src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/JLu%20events/photos/Lehar/IMG_9060.JPG"
                   alt="Cultural performance"
                   fill
                   className="object-cover"
@@ -1182,7 +1177,7 @@ const NewsAndEvents = () => {
                 transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
               >
                 <Image
-                  src="/JLu%20events/photos/Anti%20Ragging%20WEEK/IMG_3582.JPG"
+                  src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/JLu%20events/photos/Anti%20Ragging%20WEEK/IMG_3582.JPG"
                   alt="Sports activity"
                   fill
                   className="object-cover"
@@ -1205,7 +1200,7 @@ const NewsAndEvents = () => {
                 transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
               >
                 <Image
-                  src="/JLu%20events/photos/Mental%20Health%20week/IMG_7813.JPG"
+                  src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/JLu%20events/photos/Mental%20Health%20week/IMG_7813.JPG"
                   alt="Library"
                   fill
                   className="object-cover"
@@ -1228,7 +1223,7 @@ const NewsAndEvents = () => {
                 transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
               >
                 <Image
-                  src="/JLu%20events/photos/Convocation/DSC_1020.JPG"
+                  src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/JLu%20events/photos/Convocation/DSC_1020.JPG"
                   alt="Campus grounds"
                   fill
                   className="object-cover"
@@ -1251,7 +1246,7 @@ const NewsAndEvents = () => {
                 transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
               >
                 <Image
-                  src="/jlu%20ignited%20mind%20Award/photos/AMF_1426.JPG"
+                  src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/jlu%20ignited%20mind%20Award/photos/AMF_1426.JPG"
                   alt="Students socializing"
                   fill
                   className="object-cover"
@@ -1318,7 +1313,7 @@ const NewsAndEvents = () => {
           <h2
             className="text-[#21313c] mb-4"
             style={{
-              fontSize: 'clamp(2rem, 4vw, 3.5rem)',
+              fontSize: 'clamp(2.25rem, 4vw, 3rem)',
               fontWeight: 600,
               lineHeight: 1.1,
               letterSpacing: '-0.03em',
@@ -1426,7 +1421,7 @@ const NewsAndEvents = () => {
             Press Inquiries
           </span>
           <h3
-            className="text-white mb-4 text-xl md:text-2xl lg:text-3xl font-semibold"
+            className="text-white mb-4 text-xl md:text-2xl lg:text-3xl font-bold"
             style={{
               lineHeight: 1.2,
               letterSpacing: '-0.02em',
@@ -1446,7 +1441,7 @@ const NewsAndEvents = () => {
               href="https://jlu.edu.in/wp-content/uploads/2024/05/JLU-Media-Kit.pdf"
               target="_blank"
               rel="noopener noreferrer"
-              className="w-full py-3 md:py-4 bg-[#f0c14b] text-[#21313c] font-semibold rounded-full hover:bg-[#e5b63e] transition-colors text-sm md:text-base text-center block no-underline"
+              className="w-full py-3 md:py-4 bg-[#f0c14b] text-[#21313c] font-bold rounded-full hover:bg-[#e5b63e] transition-colors text-sm md:text-base text-center block no-underline"
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
             >
@@ -1456,7 +1451,7 @@ const NewsAndEvents = () => {
               href="https://wa.me/917314041400?text=Hello!%20I%20would%20like%20to%20contact%20the%20Communications%20team%20at%20JLU."
               target="_blank"
               rel="noopener noreferrer"
-              className="w-full py-3 md:py-4 bg-transparent border-2 border-white text-white font-semibold rounded-full hover:bg-white hover:text-[#21313c] transition-colors text-sm md:text-base text-center block no-underline"
+              className="w-full py-3 md:py-4 bg-transparent border-2 border-white text-white font-bold rounded-full hover:bg-white hover:text-[#21313c] transition-colors text-sm md:text-base text-center block no-underline"
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
             >
@@ -1517,7 +1512,7 @@ const NewsAndEvents = () => {
                   {archiveEvent.description}
                 </p>
                 <div className="border-t border-gray-100 pt-6">
-                  <h4 className="text-[#21313c] font-semibold text-sm uppercase tracking-wider mb-4">Event Highlights</h4>
+                  <h4 className="text-[#21313c] font-bold text-sm uppercase tracking-wider mb-4">Event Highlights</h4>
                   <div className="grid grid-cols-2 gap-4">
                     <div className="bg-[#f6f7f0] rounded-xl p-4">
                       <p className="text-[#21313c] font-bold text-lg">500+</p>

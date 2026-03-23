@@ -8,14 +8,14 @@ const customEase: [number, number, number, number] = [0.22, 1, 0.36, 1];
 
 const Accreditations = () => {
   const accreditations = [
-    { src: '/Untitled design/1.png', name: 'Bar Council of India', shortName: 'BCI' },
-    { src: '/Untitled design/2.png', name: 'University Grants Commission', shortName: 'UGC' },
-    { src: '/Untitled design/3.png', name: 'International Centre for Alternative Dispute Resolution', shortName: 'ICADR' },
-    { src: '/Untitled design/4.png', name: 'Association of Universities of Asia and the Pacific', shortName: 'AUAP' },
-    { src: '/Untitled design/5.png', name: 'Association of Indian Universities', shortName: 'AIU' },
-    { src: '/Untitled design/6.png', name: 'AFS Intercultural Programs India', shortName: 'AFS' },
-    { src: '/Untitled design/7.png', name: 'Tuning India', shortName: 'Tuning India' },
-    { src: '/Untitled design/8.png', name: 'International Association of Law Schools', shortName: 'IALS' },
+    { src: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/Untitled design/1.png', name: 'Bar Council of India', shortName: 'BCI' },
+    { src: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/Untitled design/2.png', name: 'University Grants Commission', shortName: 'UGC' },
+    { src: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/Untitled design/3.png', name: 'International Centre for Alternative Dispute Resolution', shortName: 'ICADR' },
+    { src: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/Untitled design/4.png', name: 'Association of Universities of Asia and the Pacific', shortName: 'AUAP' },
+    { src: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/Untitled design/5.png', name: 'Association of Indian Universities', shortName: 'AIU' },
+    { src: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/Untitled design/6.png', name: 'AFS Intercultural Programs India', shortName: 'AFS' },
+    { src: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/Untitled design/7.png', name: 'Tuning India', shortName: 'Tuning India' },
+    { src: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/Untitled design/8.png', name: 'International Association of Law Schools', shortName: 'IALS' },
   ];
 
   return (
@@ -30,33 +30,30 @@ const Accreditations = () => {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, ease: customEase }}
           viewport={{ once: true }}
-          className="flex flex-col md:flex-row md:justify-between md:items-start mb-8 md:mb-16 pb-6 md:pb-10"
+          className="flex flex-col items-center text-center mb-8 md:mb-16 pb-6 md:pb-10"
           style={{ borderBottom: '1px solid #e5e5e5' }}
         >
-          <div className="mb-6 md:mb-0">
-            <span
-              className="text-[#999] uppercase tracking-widest block text-xl md:text-2xl font-bold mb-3 md:mb-4"
-              style={{ letterSpacing: '0.2em' }}
-            >
-              Recognition
+          <span
+            className="text-[#999] uppercase tracking-widest block text-xl md:text-2xl font-bold mb-3 md:mb-4"
+            style={{ letterSpacing: '0.2em' }}
+          >
+            Recognition
+          </span>
+          <h1
+            className="text-[#21313c] text-3xl md:text-4xl lg:text-5xl"
+            style={{
+              fontWeight: 600,
+              lineHeight: 1.1,
+            }}
+          >
+            Accreditations &{' '}
+            <span style={{ fontFamily: "'Times New Roman', serif", fontStyle: 'italic' }}>
+              Memberships
             </span>
-            <h2
-              className="text-[#21313c] text-2xl sm:text-3xl md:text-[clamp(2.5rem,5vw,4rem)]"
-              style={{
-                fontWeight: 600,
-                lineHeight: 1,
-                letterSpacing: '-0.02em',
-              }}
-            >
-              Accreditations &{' '}
-              <span style={{ fontFamily: "'Times New Roman', serif", fontStyle: 'italic' }}>
-                Memberships
-              </span>
-            </h2>
-          </div>
+          </h1>
           <p
-            className="text-[#666] text-lg sm:text-xl md:text-[clamp(1.25rem,2vw,1.75rem)] max-w-full md:max-w-[500px]"
-            style={{ lineHeight: 1.8 }}
+            className="text-[#666] text-sm sm:text-base md:text-[clamp(1.15rem,1.8vw,1.5rem)] max-w-full mt-4"
+            style={{ lineHeight: 1.7, fontWeight: 400 }}
           >
             JLU's academic quality and institutional practices are strengthened through accreditations and memberships with recognised national and international bodies.
           </p>

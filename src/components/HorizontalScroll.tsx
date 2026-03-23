@@ -29,7 +29,7 @@ export const HorizontalScroll = () => {
 
   const cards = [
     {
-      width: 540,
+      width: 800,
       height: 500,
       mobileWidth: 280,
       mobileHeight: 260,
@@ -40,12 +40,12 @@ export const HorizontalScroll = () => {
       content: "Jagran Lakecity University stands as the first university in MP & CG to receive the prestigious QS I-Gauge DIAMOND rating. Recognized as 'University of the Year' for five consecutive years (2015-2019) and ranked #1 multidisciplinary private university in Madhya Pradesh.\n\nSpread across a sprawling 232-acre campus, JLU offers 50+ degree programs to over 2,500 students, fostering innovation and academic excellence."
     },
     { width: 540, height: 500, mobileWidth: 200, mobileHeight: 260, bg: 'bg-[#c3fd7a]', hasText: true, isTextCard: false, stat: '232', statLabel: 'Acres of Campus' },
-    { width: 770, height: 500, mobileWidth: 280, mobileHeight: 260, bg: 'bg-gray-200', hasText: false, isTextCard: false, image: '/campus/smart-classroom.jpg' },
+    { width: 770, height: 500, mobileWidth: 280, mobileHeight: 260, bg: 'bg-gray-200', hasText: false, isTextCard: false, image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/campus/computer%20lab.JPG' },
     { width: 540, height: 500, mobileWidth: 200, mobileHeight: 260, bg: 'bg-[#1D4ED8]', hasText: true, isTextCard: false, textColor: 'text-white', stat: '2,500+', statLabel: 'Students Enrolled' },
-    { width: 540, height: 500, mobileWidth: 250, mobileHeight: 260, bg: 'bg-gray-200', hasText: false, isTextCard: false, image: '/campus/sports.jpg' },
-    { width: 670, height: 500, mobileWidth: 250, mobileHeight: 260, bg: 'bg-gray-200', hasText: false, isTextCard: false, image: '/JLu%20events/photos/Convocation/DSC_1059.JPG' },
+    { width: 540, height: 500, mobileWidth: 250, mobileHeight: 260, bg: 'bg-gray-200', hasText: false, isTextCard: false, image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/campus/sports.jpg' },
+    { width: 670, height: 500, mobileWidth: 250, mobileHeight: 260, bg: 'bg-gray-200', hasText: false, isTextCard: false, image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/JLu%20events/photos/Convocation/DSC_1059.JPG' },
     { width: 540, height: 500, mobileWidth: 200, mobileHeight: 260, bg: 'bg-[#E9D502]', hasText: true, isTextCard: false, stat: '50+', statLabel: 'Degree Programs' },
-    { width: 1320, height: 500, mobileWidth: 320, mobileHeight: 260, bg: 'bg-gray-200', hasText: false, isTextCard: false, image: '/about1.jpg' },
+    { width: 1320, height: 500, mobileWidth: 320, mobileHeight: 260, bg: 'bg-gray-200', hasText: false, isTextCard: false, image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/about1.jpg' },
   ];
 
   // Divide cards into 3 rows for mobile (3, 3, 2 distribution)
@@ -192,9 +192,13 @@ export const HorizontalScroll = () => {
         />
       ) : null}
       {card.isTextCard ? (
-        <div className={`relative ${card.image ? 'bg-white/85 backdrop-blur-sm rounded-lg p-4 md:p-6' : ''} text-left`}>
-          <h2 className={`text-xl md:text-4xl font-bold ${card.textColor ?? 'text-[#21313c]'} mb-3 md:mb-6 drop-shadow-sm`}>{card.title}</h2>
-          <div className={`${card.textColor ?? 'text-[#21313c]'} text-xs md:text-lg leading-relaxed whitespace-pre-line drop-shadow-sm`}>
+        <div className={`relative ${card.image ? 'bg-white/85 backdrop-blur-sm rounded-lg p-4 md:p-6' : ''} text-left flex flex-col justify-center h-full`}>
+          <h1 className={`text-xl md:text-4xl lg:text-5xl ${card.textColor ?? 'text-[#21313c]'} mb-3 md:mb-6 drop-shadow-sm`} style={{ fontWeight: 600, lineHeight: 1.1 }}>
+            {card.title === 'Excellence in Education' ? (
+              <>Excellence in <span style={{ fontFamily: "'Times New Roman', serif", fontStyle: 'italic', fontWeight: 700 }}>Education</span></>
+            ) : card.title}
+          </h1>
+          <div className={`${card.textColor ?? 'text-[#21313c]'} text-xs md:text-[clamp(1.15rem,1.8vw,1.5rem)] whitespace-pre-line drop-shadow-sm`} style={{ lineHeight: 1.7 }}>
             {isMobile ? card.content?.substring(0, 120) + '...' : card.content}
           </div>
         </div>

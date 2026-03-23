@@ -12,7 +12,7 @@ const engineeringData = {
   name: 'Faculty of Science and Technology',
   tagline: 'Research-driven engineering education with focus on AI, Machine Learning, and emerging technologies.',
   description: 'Our engineering programs combine theoretical foundations with practical, research-based learning. Students engage with cutting-edge technologies including Artificial Intelligence, Machine Learning, and Data Science. With international industrial training programs and full semesters dedicated to real-world projects, we prepare engineers who can innovate and lead in the technology-driven world.',
-  heroImage: '/schools/engineering-1.jpg',
+  heroImage: 'https://images.unsplash.com/photo-1677442136019-21780ecad995?w=1600&q=80',
   accentColor: '#ffffff',
   programs: [
     { name: 'B.Tech Computer Science & Engineering', duration: '4 Years', type: 'undergraduate' as const },

@@ -16,7 +16,7 @@ const newsItems: NewsItem[] = [
     id: '1',
     title: 'JLU Achieves QS I-GAUGE Diamond Rating - First in Madhya Pradesh',
     excerpt: 'Jagran Lakecity University becomes the first and only university in MP & Chhattisgarh to receive the prestigious QS Diamond rating, ranking among top 25 universities in India.',
-    image: '/aw1.jpg',
+    image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/aw1.jpg',
     date: 'Dec 15, 2024',
     category: 'Achievement',
   },
@@ -24,7 +24,7 @@ const newsItems: NewsItem[] = [
     id: '2',
     title: '7th International Festival of Media Concludes Successfully',
     excerpt: 'The Faculty of Journalism and Creative Studies hosted the 7th edition of JLU International Festival of Media on March 9-10, 2024, bringing together media professionals from across the globe.',
-    image: '/ev1.jpg',
+    image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/ev1.jpg',
     date: 'Mar 10, 2024',
     category: 'Event',
   },
@@ -32,7 +32,7 @@ const newsItems: NewsItem[] = [
     id: '3',
     title: 'Placement Season 2024: Highest Package of ₹24 LPA',
     excerpt: 'JLU students receive offers from top recruiters including Amazon, Infosys, TCS, Deloitte, and HDFC Bank with 80%+ placement rate and average package of ₹5 LPA.',
-    image: '/ev2.jpg',
+    image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/ev2.jpg',
     date: 'Feb 20, 2024',
     category: 'Placements',
   },
@@ -40,7 +40,7 @@ const newsItems: NewsItem[] = [
     id: '4',
     title: 'JLU Celebrates 11th Foundation Day with Grand Ceremony',
     excerpt: 'The university marked its Eleventh Foundation Day on May 1, 2024 with a vibrant cultural extravaganza and annual awards ceremony at the Chandanpura campus.',
-    image: '/event1.jpg',
+    image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/event1.jpg',
     date: 'May 1, 2024',
     category: 'Event',
   },
@@ -65,15 +65,15 @@ export const LatestNews = () => {
             <span className="text-[#999] uppercase tracking-widest block mb-4 md:mb-6 text-xl md:text-2xl font-bold" style={{ letterSpacing: '0.2em' }}>
               Stay Updated
             </span>
-            <h2
-              className="text-[#21313c]"
-              style={{ fontSize: 'clamp(3rem, 6vw, 5rem)', fontWeight: 600, lineHeight: 1.1, letterSpacing: '-0.03em' }}
+            <h1
+              className="text-[#21313c] text-3xl md:text-4xl lg:text-5xl"
+              style={{ fontWeight: 600, lineHeight: 1.1 }}
             >
               Latest News &{' '}
-              <span style={{ fontFamily: "'Times New Roman', serif", fontStyle: 'italic', fontWeight: 400 }}>
+              <span style={{ fontFamily: "'Times New Roman', serif", fontStyle: 'italic' }}>
                 Updates
               </span>
-            </h2>
+            </h1>
           </div>
           <a
             href="/news-events"
@@ -106,7 +106,7 @@ export const LatestNews = () => {
 
                 {/* Category Badge */}
                 <span
-                  className={`absolute font-semibold rounded-md ${isMobile ? 'top-2 left-2 px-1.5 py-0.5 text-[12px]' : 'top-4 left-4 px-3 py-1.5 text-sm rounded-lg'}`}
+                  className={`absolute font-bold rounded-md ${isMobile ? 'top-2 left-2 px-1.5 py-0.5 text-[12px]' : 'top-4 left-4 px-3 py-1.5 text-sm rounded-lg'}`}
                   style={{
                     backgroundColor: `${categoryColors[item.category]}e6` || '#c3fd7ae6',
                     color: item.category === 'Event' || item.category === 'Infrastructure' ? '#fff' : '#21313c',
@@ -130,7 +130,7 @@ export const LatestNews = () => {
                   </div>
                 )}
                 <h3
-                  className={`font-semibold text-[#21313c] line-clamp-2 leading-snug ${isMobile ? 'text-sm mb-1' : 'text-lg mb-2'}`}
+                  className={`font-bold text-[#21313c] line-clamp-2 leading-snug ${isMobile ? 'text-sm mb-1' : 'text-lg mb-2'}`}
                   style={{ fontFamily: 'Inter, sans-serif' }}
                 >
                   {item.title}

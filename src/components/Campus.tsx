@@ -47,7 +47,7 @@ const infrastructureItems = [
     id: 1,
     label: 'University Campus',
     description: 'A thoughtfully planned campus that supports academic focus and student life.',
-    image: '/interdisciplinary/campus-drone.jpg',
+    image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/interdisciplinary/campus-drone.jpg',
     details: {
       overview: 'Spread across 232 acres, the JLU campus is designed to inspire learning and foster community. Every corner reflects a balance between modern infrastructure and natural surroundings, with 9 academic blocks housing world-class facilities.',
       features: [
@@ -63,7 +63,7 @@ const infrastructureItems = [
     id: 2,
     label: 'Student Accommodation',
     description: 'Modern 4-block hostel (A, B, C & D) offering comfortable and secure living environment.',
-    image: '/campus/hostel.jpg',
+    image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/campus/hostel.jpg',
     details: {
       overview: 'Our modern 4-block hostel (A, B, C & D) provides students with a comfortable and secure living environment, truly offering a home away from home. The hostels offer single, double, and triple occupancy options, along with facilities that support both academic focus and relaxation.',
       features: [
@@ -79,7 +79,7 @@ const infrastructureItems = [
     id: 3,
     label: 'Dining Facilities',
     description: 'APPETITE food court and mess facilities catering to diverse tastes.',
-    image: '/campus/culinary-studio.jpg',
+    image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/campus/%20m%20s%20gill%20studio.JPG',
     details: {
       overview: 'From a hygienic mess dining hall with 180-person capacity to the APPETITE food court featuring 5 outlets offering global cuisines, students have access to diverse food options throughout the day.',
       features: [
@@ -133,7 +133,7 @@ const healthcareItems = [
       { value: '24/7', label: 'Availability' },
       { value: '2', label: 'Ambulances' },
     ],
-    image: '/interdisciplinary/campus-building.jpg',
+    image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/interdisciplinary/campus-building.jpg',
     features: ['Qualified medical staff on campus', 'Sanitized medical equipment', 'Emergency ambulance services', 'First-aid facilities in every block'],
   },
   {
@@ -144,7 +144,7 @@ const healthcareItems = [
       { value: '5,000', label: 'sq. ft. Area' },
       { value: '50+', label: 'Equipment' },
     ],
-    image: '/campus/gym-new.jpg',
+    image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/campus/gym-new.jpg',
     features: ['Cardiovascular training zone', 'Free weights & resistance machines', 'Yoga and meditation space', 'Professional trainers available'],
   },
   {
@@ -155,7 +155,7 @@ const healthcareItems = [
       { value: '6', label: 'Lanes' },
       { value: 'Olympic', label: 'Standard' },
     ],
-    image: '/campus/pool-olympic.jpg',
+    image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/campus/pool-olympic.jpg',
     features: ['Olympic standard dimensions', 'Temperature-controlled water', 'Trained lifeguards on duty', 'Competition-ready timing system'],
   },
 ];
@@ -189,7 +189,7 @@ const facilityCards: FacilityData[] = [
     id: 'media-studio',
     title: 'Shri Gurudev Gupta Media Studio',
     category: 'Academic Infrastructure',
-    image: '/interdisciplinary/campus-activity.jpg',
+    image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/interdisciplinary/campus-activity.jpg',
     description: 'A professional studio environment for media production and hands-on learning. The studio is equipped with industry-standard equipment to prepare students for careers in broadcasting, film, and digital media.',
     features: [
       'Professional broadcast-quality cameras and equipment',
@@ -208,7 +208,7 @@ const facilityCards: FacilityData[] = [
     id: 'culinary-studio',
     title: 'M S Gill Culinary Studios',
     category: 'Academic Infrastructure',
-    image: '/campus/culinary-studio.jpg',
+    image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/campus/%20m%20s%20gill%20studio.JPG',
     description: 'Industry-standard kitchens designed for hospitality and culinary training. Students learn from professional chefs in a real-world kitchen environment that mirrors top restaurants and hotels.',
     features: [
       'Commercial-grade cooking stations',
@@ -227,7 +227,7 @@ const facilityCards: FacilityData[] = [
     id: 'tech-labs',
     title: 'Technology Labs',
     category: 'Academic Infrastructure',
-    image: '/campus/tech-labs.jpg',
+    image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/campus/tech-labs.jpg',
     description: 'Well-equipped labs supporting engineering, computing, and applied sciences. Our technology labs provide students with hands-on experience using the latest tools and software in their fields.',
     features: [
       'High-performance computing clusters',
@@ -246,7 +246,7 @@ const facilityCards: FacilityData[] = [
     id: 'moot-court',
     title: 'Shri Cyril Shroff Moot Court',
     category: 'Academic Infrastructure',
-    image: '/campus/moot-court.jpg',
+    image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/campus/moot-court.jpg',
     description: 'A dedicated space for legal practice, debates, and mock trials. The moot court replicates an actual courtroom setting, providing law students with invaluable practical experience.',
     features: [
       'Authentic courtroom design and layout',
@@ -269,7 +269,7 @@ const infrastructureModalData: FacilityData[] = [
     id: 'university-campus',
     title: 'University Campus',
     category: 'Campus Infrastructure',
-    image: '/interdisciplinary/campus-drone.jpg',
+    image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/interdisciplinary/campus-drone.jpg',
     description: 'Spread across 232 acres, the JLU campus is designed to inspire learning and foster community. Every corner reflects a balance between modern infrastructure and natural surroundings, with 9 academic blocks housing world-class facilities.',
     features: [
       'Landscaped gardens and green spaces',
@@ -288,7 +288,7 @@ const infrastructureModalData: FacilityData[] = [
     id: 'student-accommodation',
     title: 'Student Accommodation',
     category: 'Campus Infrastructure',
-    image: '/campus/hostel.jpg',
+    image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/campus/hostel.jpg',
     description: 'Our modern 4-block hostel (A, B, C & D) provides students with a comfortable and secure living environment, truly offering a home away from home. The hostels offer single, double, and triple occupancy options, along with facilities that support both academic focus and relaxation.',
     features: [
       'Single, double & triple occupancy options',
@@ -307,7 +307,7 @@ const infrastructureModalData: FacilityData[] = [
     id: 'dining-facilities',
     title: 'Dining Facilities',
     category: 'Campus Infrastructure',
-    image: '/campus/culinary-studio.jpg',
+    image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/campus/%20m%20s%20gill%20studio.JPG',
     description: 'From a hygienic mess dining hall with 180-person capacity to the APPETITE food court featuring 5 outlets offering global cuisines, students have access to diverse food options throughout the day.',
     features: [
       'APPETITE food court with 5 global cuisine outlets',
@@ -330,7 +330,7 @@ const healthcareModalData: FacilityData[] = [
     id: 'medical-clinic',
     title: 'Medical Clinic',
     category: 'Healthcare & Wellness',
-    image: '/interdisciplinary/campus-building.jpg',
+    image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/interdisciplinary/campus-building.jpg',
     description: 'A fully equipped medical clinic with qualified staff, sanitized equipment, and ambulance services available round the clock for emergencies.',
     features: [
       'Qualified medical staff on campus',
@@ -349,7 +349,7 @@ const healthcareModalData: FacilityData[] = [
     id: 'fitness-center',
     title: 'Fitness Center',
     category: 'Healthcare & Wellness',
-    image: '/campus/gym-new.jpg',
+    image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/campus/gym-new.jpg',
     description: 'A modern fitness center featuring cardiovascular machines, weight training equipment, and dedicated areas for yoga and functional training.',
     features: [
       'Cardiovascular training zone',
@@ -368,7 +368,7 @@ const healthcareModalData: FacilityData[] = [
     id: 'swimming-pool',
     title: 'Swimming Pool',
     category: 'Healthcare & Wellness',
-    image: '/campus/pool-olympic.jpg',
+    image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/campus/pool-olympic.jpg',
     description: 'A 6-lane Olympic standard swimming pool with trained lifeguards, temperature control, and dedicated lanes for competitive practice.',
     features: [
       'Olympic standard dimensions',
@@ -391,7 +391,7 @@ const sportsModalData: FacilityData[] = [
     id: 'swimming-pool-sports',
     title: '6-Lane Olympic Swimming Pool',
     category: 'Sports Facilities',
-    image: '/campus/pool-olympic.jpg',
+    image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/campus/pool-olympic.jpg',
     description: 'An Olympic-standard 6-lane pool with trained lifeguards, temperature control, and competition-ready facilities for both recreational and competitive swimming.',
     features: [
       'Olympic standard 25m pool',
@@ -410,7 +410,7 @@ const sportsModalData: FacilityData[] = [
     id: 'outdoor-sports',
     title: 'Outdoor Sports Complex',
     category: 'Sports Facilities',
-    image: '/campus/gallery-16.jpg',
+    image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/campus/gallery-16.jpg',
     description: 'A sprawling outdoor sports complex with 2 football fields, a cricket ground with practice nets, basketball courts, volleyball courts, tennis courts, and an athletic track.',
     features: [
       '2 full-size football fields',
@@ -429,7 +429,7 @@ const sportsModalData: FacilityData[] = [
     id: 'indoor-hall',
     title: 'Indoor Multipurpose Hall',
     category: 'Sports Facilities',
-    image: '/campus/sports.jpg',
+    image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/campus/sports.jpg',
     description: 'A 15,000 sq. ft. climate-controlled venue for indoor sports, cultural events, conferences, and large gatherings. Equipped with professional lighting and sound systems.',
     features: [
       'Climate-controlled 15,000 sq. ft. space',
@@ -621,7 +621,7 @@ const Campus = () => {
         >
           <motion.div className="absolute inset-0" style={{ y }}>
             <Image
-              src="/interdisciplinary/campus-drone.jpg"
+              src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/interdisciplinary/campus-drone.jpg"
               alt="JLU Campus Aerial View"
               fill
               className="object-cover scale-110"
@@ -640,7 +640,7 @@ const Campus = () => {
         >
           <motion.h2 className="text-white font-semibold leading-tight mb-3 sm:mb-4 md:mb-5 text-xl sm:text-2xl md:text-[clamp(1.5rem,3vw,2.5rem)]">
             WHERE{' '}
-            <span style={{ fontFamily: "'Times New Roman', serif", fontStyle: 'italic', color: '#f0c14b', textShadow: '2px 2px 4px rgba(0,0,0,0.5)' }}>
+            <span style={{ fontFamily: "'Times New Roman', serif", fontStyle: 'italic', color: '#027ea1', textShadow: '2px 2px 4px rgba(0,0,0,0.5)' }}>
               learning
             </span>{' '}
             LIVES
@@ -649,7 +649,8 @@ const Campus = () => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.8, delay: 0.8 }}
-            className="text-white font-semibold leading-tight text-base sm:text-lg md:text-[clamp(1.25rem,2.5vw,2rem)]"
+            className="text-white"
+            style={{ fontWeight: 600, lineHeight: 1.5, fontSize: 'clamp(1rem, 2vw, 1.5rem)' }}
           >
             A 232-acre ecosystem where academic excellence, creativity, collaboration, and community life come together to shape the leaders of tomorrow.
           </motion.p>
@@ -750,7 +751,7 @@ const Campus = () => {
             >
               <div className="relative h-[300px] sm:h-[450px] md:h-[620px] overflow-hidden">
                 <Image
-                  src="/campus/smart-classroom.jpg"
+                  src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/campus/computer%20lab.JPG"
                   alt="Technology-Based Classrooms"
                   fill
                   className="object-cover"
@@ -800,7 +801,7 @@ const Campus = () => {
                 Smart Learning Spaces
               </span>
               <h2
-                className="text-[#21313c] text-2xl sm:text-3xl md:text-[clamp(2rem,4vw,3rem)] mb-4 md:mb-6"
+                className="text-[#21313c] text-2xl sm:text-3xl md:text-4xl lg:text-5xl mb-4 md:mb-6"
                 style={{ fontWeight: 600, lineHeight: 1.1, letterSpacing: '-0.02em' }}
               >
                 Technology-Based{' '}
@@ -859,11 +860,11 @@ const Campus = () => {
               Healthcare & Safety
             </span>
             <h2
-              className="text-white text-2xl sm:text-3xl md:text-[clamp(2rem,4vw,3.5rem)] mb-4"
+              className="text-white text-2xl sm:text-3xl md:text-4xl lg:text-5xl mb-4"
               style={{ fontWeight: 600, lineHeight: 1.1, letterSpacing: '-0.02em' }}
             >
               Your well-being,{' '}
-              <span style={{ fontFamily: "'Times New Roman', serif", fontStyle: 'italic', fontWeight: 400, color: '#f0c14b' }}>
+              <span style={{ fontFamily: "'Times New Roman', serif", fontStyle: 'italic', fontWeight: 400, color: '#027ea1' }}>
                 our priority
               </span>
             </h2>
@@ -1011,7 +1012,7 @@ const Campus = () => {
                 Facilities
               </motion.span>
               <h2
-                className="text-[#21313c] text-3xl sm:text-4xl md:text-[clamp(2.5rem,5vw,4rem)]"
+                className="text-[#21313c] text-3xl sm:text-4xl md:text-4xl lg:text-5xl"
                 style={{ fontWeight: 600, lineHeight: 1.1, letterSpacing: '-0.03em' }}
               >
                 Built for{' '}
@@ -1237,7 +1238,7 @@ const Campus = () => {
                   transition={{ duration: 0.8, ease: customEase }}
                 >
                   <Image
-                    src="/interdisciplinary/campus-activity.jpg"
+                    src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/interdisciplinary/campus-activity.jpg"
                     alt="Shri Gurudev Gupta Media Studio"
                     fill
                     className="object-cover"
@@ -1286,7 +1287,7 @@ const Campus = () => {
                   transition={{ duration: 0.8, ease: customEase }}
                 >
                   <Image
-                    src="/campus/culinary-studio.jpg"
+                    src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/campus/%20m%20s%20gill%20studio.JPG"
                     alt="M S Gill Culinary Studios"
                     fill
                     className="object-cover"
@@ -1335,7 +1336,7 @@ const Campus = () => {
                   transition={{ duration: 0.8, ease: customEase }}
                 >
                   <Image
-                    src="/campus/tech-labs.jpg"
+                    src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/campus/tech-labs.jpg"
                     alt="Technology Labs"
                     fill
                     className="object-cover"
@@ -1384,7 +1385,7 @@ const Campus = () => {
                   transition={{ duration: 0.8, ease: customEase }}
                 >
                   <Image
-                    src="/campus/moot-court.jpg"
+                    src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/campus/moot-court.jpg"
                     alt="Shri Cyril Shroff Moot Court"
                     fill
                     className="object-cover"
@@ -1450,7 +1451,7 @@ const Campus = () => {
                 Cultivating balance,
               </h2>
               <h2
-                className="text-[#21313c] text-xl sm:text-2xl md:text-[40px] mt-2"
+                className="text-[#21313c] text-xl sm:text-2xl md:text-4xl lg:text-5xl mt-2"
                 style={{ fontWeight: 600, lineHeight: 1.2 }}
               >
                 Fueling{' '}
@@ -1482,7 +1483,7 @@ const Campus = () => {
                   transition={{ duration: 0.8, ease: customEase }}
                 >
                   <Image
-                    src="/campus/pool-olympic.jpg"
+                    src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/campus/pool-olympic.jpg"
                     alt="Olympic Swimming Pool"
                     fill
                     className="object-cover"
@@ -1559,7 +1560,7 @@ const Campus = () => {
                     transition={{ duration: 0.8, ease: customEase }}
                   >
                     <Image
-                      src="/campus/gallery-16.jpg"
+                      src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/campus/gallery-16.jpg"
                       alt="Outdoor Sports Fields"
                       fill
                       className="object-cover"
@@ -1593,7 +1594,7 @@ const Campus = () => {
                     transition={{ duration: 0.8, ease: customEase }}
                   >
                     <Image
-                      src="/campus/sports.jpg"
+                      src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/campus/sports.jpg"
                       alt="Indoor Multipurpose Hall"
                       fill
                       className="object-cover"
@@ -1657,7 +1658,7 @@ const Campus = () => {
               className="relative h-[300px] sm:h-[400px] md:h-[550px] overflow-hidden rounded-xl"
             >
               <Image
-                src="/campus/pyramid-library.jpg"
+                src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/campus/pyramid.jpeg"
                 alt="The Pyramid - University Library"
                 fill
                 className="object-cover"
@@ -1688,7 +1689,7 @@ const Campus = () => {
                 Knowledge Hub
               </span>
               <h2
-                className="text-[#21313c] text-2xl sm:text-3xl md:text-[clamp(2rem,4vw,3rem)] mb-4 md:mb-6"
+                className="text-[#21313c] text-2xl sm:text-3xl md:text-4xl lg:text-5xl mb-4 md:mb-6"
                 style={{ fontWeight: 600, lineHeight: 1.1, letterSpacing: '-0.02em' }}
               >
                 The Pyramid{' '}
@@ -1763,7 +1764,7 @@ const Campus = () => {
             className="absolute overflow-hidden group cursor-pointer rounded-lg md:rounded-2xl"
             style={{ width: '28%', height: '24%', top: '0%', left: '13%' }}
           >
-            <Image src="/interdisciplinary/campus-drone.jpg" alt="JLU Campus Aerial View" fill className="object-cover group-hover:scale-105 transition-transform duration-500" />
+            <Image src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/interdisciplinary/campus-drone.jpg" alt="JLU Campus Aerial View" fill className="object-cover group-hover:scale-105 transition-transform duration-500" />
           </motion.div>
 
           {/* Card 2 */}
@@ -1775,7 +1776,7 @@ const Campus = () => {
             className="absolute overflow-hidden group cursor-pointer rounded-lg md:rounded-2xl"
             style={{ width: '21%', height: '32%', top: '0%', left: '52%' }}
           >
-            <Image src="/campus/pyramid-library.jpg" alt="The Pyramid Library" fill className="object-cover group-hover:scale-105 transition-transform duration-500" />
+            <Image src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/campus/pyramid.jpeg" alt="The Pyramid Library" fill className="object-cover group-hover:scale-105 transition-transform duration-500" />
           </motion.div>
 
           {/* Card 3 */}
@@ -1787,7 +1788,7 @@ const Campus = () => {
             className="absolute overflow-hidden group cursor-pointer rounded-lg md:rounded-2xl"
             style={{ width: '13%', height: '19%', top: '-5%', left: '89%' }}
           >
-            <Image src="/campus/pool-olympic.jpg" alt="Swimming Pool" fill className="object-cover group-hover:scale-105 transition-transform duration-500" />
+            <Image src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/campus/pool-olympic.jpg" alt="Swimming Pool" fill className="object-cover group-hover:scale-105 transition-transform duration-500" />
           </motion.div>
 
           {/* Card 4 */}
@@ -1799,7 +1800,7 @@ const Campus = () => {
             className="absolute overflow-hidden group cursor-pointer rounded-lg md:rounded-2xl"
             style={{ width: '15%', height: '22%', top: '30%', left: '80%' }}
           >
-            <Image src="/campus/tech-labs.jpg" alt="Technology Labs" fill className="object-cover group-hover:scale-105 transition-transform duration-500" />
+            <Image src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/campus/tech-labs.jpg" alt="Technology Labs" fill className="object-cover group-hover:scale-105 transition-transform duration-500" />
           </motion.div>
 
           {/* Card 5 */}
@@ -1811,7 +1812,7 @@ const Campus = () => {
             className="absolute overflow-hidden group cursor-pointer rounded-lg md:rounded-2xl"
             style={{ width: '19%', height: '32%', top: '31%', left: '0%' }}
           >
-            <Image src="/JLu%20events/photos/Lehar/IMG_9060.JPG" alt="Cultural Fest" fill className="object-cover group-hover:scale-105 transition-transform duration-500" />
+            <Image src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/JLu%20events/photos/Lehar/IMG_9060.JPG" alt="Cultural Fest" fill className="object-cover group-hover:scale-105 transition-transform duration-500" />
           </motion.div>
 
           {/* Card 6 */}
@@ -1823,7 +1824,7 @@ const Campus = () => {
             className="absolute overflow-hidden group cursor-pointer rounded-lg md:rounded-2xl"
             style={{ width: '20%', height: '34%', top: '60%', left: '80%' }}
           >
-            <Image src="/campus/culinary-studio.jpg" alt="Culinary Studios" fill className="object-cover group-hover:scale-105 transition-transform duration-500" />
+            <Image src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/campus/%20m%20s%20gill%20studio.JPG" alt="Culinary Studios" fill className="object-cover group-hover:scale-105 transition-transform duration-500" />
           </motion.div>
 
           {/* Card 7 */}
@@ -1835,7 +1836,7 @@ const Campus = () => {
             className="absolute overflow-hidden group cursor-pointer rounded-lg md:rounded-2xl"
             style={{ width: '28%', height: '21%', top: '79%', left: '44%' }}
           >
-            <Image src="/interdisciplinary/campus-activity.jpg" alt="Shri Gurudev Gupta Media Studio" fill className="object-cover group-hover:scale-105 transition-transform duration-500" />
+            <Image src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/interdisciplinary/campus-activity.jpg" alt="Shri Gurudev Gupta Media Studio" fill className="object-cover group-hover:scale-105 transition-transform duration-500" />
           </motion.div>
 
           {/* Card 8 */}
@@ -1847,7 +1848,7 @@ const Campus = () => {
             className="absolute overflow-hidden group cursor-pointer rounded-lg md:rounded-2xl"
             style={{ width: '15%', height: '32%', top: '68%', left: '22%' }}
           >
-            <Image src="/campus/gym-new.jpg" alt="Fitness Center" fill className="object-cover group-hover:scale-105 transition-transform duration-500" />
+            <Image src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/campus/gym-new.jpg" alt="Fitness Center" fill className="object-cover group-hover:scale-105 transition-transform duration-500" />
           </motion.div>
 
           {/* Card 9 */}
@@ -1859,7 +1860,7 @@ const Campus = () => {
             className="absolute overflow-hidden group cursor-pointer rounded-lg md:rounded-2xl"
             style={{ width: '15%', height: '18%', top: '75%', left: '-4%' }}
           >
-            <Image src="/campus/moot-court.jpg" alt="Moot Court" fill className="object-cover group-hover:scale-105 transition-transform duration-500" />
+            <Image src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/campus/moot-court.jpg" alt="Moot Court" fill className="object-cover group-hover:scale-105 transition-transform duration-500" />
           </motion.div>
 
           {/* Center Content */}
@@ -1869,7 +1870,7 @@ const Campus = () => {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.2, ease: customEase }}
               viewport={{ once: true }}
-              className="text-[#21313c] mb-2 md:mb-4 text-lg sm:text-2xl md:text-[clamp(2rem,4vw,3rem)]"
+              className="text-[#21313c] mb-2 md:mb-4 text-lg sm:text-2xl md:text-4xl lg:text-5xl"
               style={{ fontWeight: 600, lineHeight: 1.2, letterSpacing: '-0.02em' }}
             >
               Campus Gallery:{' '}
@@ -1915,11 +1916,11 @@ const Campus = () => {
                 Virtual Experience
               </span>
               <h2
-                className="text-white text-2xl sm:text-3xl md:text-[clamp(2.5rem,5vw,4rem)] mb-4 md:mb-6"
+                className="text-white text-2xl sm:text-3xl md:text-4xl lg:text-5xl mb-4 md:mb-6"
                 style={{ fontWeight: 600, lineHeight: 1.1, letterSpacing: '-0.02em' }}
               >
                 Explore our campus{' '}
-                <span style={{ fontFamily: "'Times New Roman', serif", fontStyle: 'italic', fontWeight: 400, color: '#f0c14b' }}>
+                <span style={{ fontFamily: "'Times New Roman', serif", fontStyle: 'italic', fontWeight: 400, color: '#027ea1' }}>
                   from anywhere
                 </span>
               </h2>

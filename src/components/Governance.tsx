@@ -248,31 +248,30 @@ const Governance = () => {
             >
               Structure
             </span>
-            <h2
-              className="text-[#21313c] text-2xl sm:text-3xl md:text-[clamp(2.5rem,5vw,4rem)] mb-6 md:mb-8"
+            <h1
+              className="text-[#21313c] text-3xl md:text-4xl lg:text-5xl mb-6 md:mb-8"
               style={{
                 fontWeight: 600,
-                lineHeight: 1,
-                letterSpacing: '-0.02em',
+                lineHeight: 1.1,
               }}
             >
               <span style={{ fontFamily: "'Times New Roman', serif", fontStyle: 'italic' }}>
                 Governance
               </span>
-            </h2>
+            </h1>
 
             {/* Two column: Paragraphs + Bodies List side by side */}
             <div className="flex flex-col md:flex-row gap-8 md:gap-16">
               {/* Paragraphs */}
               <div className="flex-1 space-y-4 order-2 md:order-1">
                 <p
-                  className="text-[#666] text-base md:text-lg"
+                  className="text-[#666] text-base md:text-xl"
                   style={{ lineHeight: 1.8 }}
                 >
                   Strong governance ensures that JLU grows with clarity of purpose and integrity of action. The university's academic and administrative leadership work together to uphold standards, inspire innovation and guide long term institutional development.
                 </p>
                 <p
-                  className="text-[#666] text-base md:text-lg"
+                  className="text-[#666] text-base md:text-xl"
                   style={{ lineHeight: 1.8 }}
                 >
                   These bodies play a key role in shaping academic direction, institutional policies and strategic growth, ensuring that JLU remains responsive to educational needs and global standards.
@@ -280,7 +279,7 @@ const Governance = () => {
               </div>
 
               {/* Governance Bodies List */}
-              <div className="w-full md:w-auto md:min-w-[280px] order-1 md:order-2 md:-mt-6">
+              <div className="w-full md:w-auto md:min-w-[280px] order-1 md:order-2 md:-mt-1">
                 {governanceBodies.map((body, index) => (
                   <motion.div
                     key={index}
@@ -291,7 +290,7 @@ const Governance = () => {
                     onClick={() => handleOpenModal(body)}
                     className="group flex items-center justify-between py-4 border-b border-[#e5e5e5] cursor-pointer hover:bg-[#fafafa] transition-colors -mx-4 px-4 md:mx-0 md:px-0"
                   >
-                    <span className="text-[#21313c] text-sm md:text-[15px] font-medium">
+                    <span className="text-[#21313c] text-sm md:text-[clamp(1.15rem,1.8vw,1.5rem)] font-medium">
                       {body}
                     </span>
                     <span className="text-[#21313c] opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all">

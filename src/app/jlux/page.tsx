@@ -119,7 +119,7 @@ export default function JLUxPage() {
         >
           <motion.div className="absolute inset-0" style={{ y }}>
             <img
-              src="/about-us.jpg"
+              src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/about-us.jpg"
               alt="JLUx Young Leadership Program"
               className="w-full h-full object-cover scale-110"
             />
@@ -143,7 +143,8 @@ export default function JLUxPage() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.8, delay: 0.8 }}
-              className="text-white font-semibold leading-tight mt-4 text-base sm:text-lg md:text-[clamp(1.25rem,2.5vw,2rem)] max-w-[700px]"
+              className="text-white mt-4 max-w-[700px]"
+              style={{ fontWeight: 600, lineHeight: 1.5, fontSize: 'clamp(1rem, 2vw, 1.5rem)' }}
             >
               JLU&apos;s signature early-leadership initiative designed to give young minds a head start in developing critical thinking, public speaking, and leadership capabilities.
             </motion.h2>
@@ -205,7 +206,7 @@ export default function JLUxPage() {
             >
               <div className="relative rounded-2xl overflow-hidden aspect-[4/5]">
                 <img
-                  src="/student-clubs.jpg"
+                  src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/student-clubs.jpg"
                   alt="JLUx Students"
                   className="w-full h-full object-cover"
                 />
@@ -353,7 +354,7 @@ export default function JLUxPage() {
       <section className="relative py-20 md:py-32 px-4 sm:px-6 md:px-16 overflow-hidden">
         <div className="absolute inset-0">
           <img
-            src="/admissions.jpg"
+            src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/admissions.jpg"
             alt="JLUx Mentorship"
             className="w-full h-full object-cover"
           />
@@ -497,7 +498,7 @@ export default function JLUxPage() {
               className="relative rounded-2xl overflow-hidden aspect-square"
             >
               <img
-                src="/hero.jpg"
+                src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/hero.jpg"
                 alt="JLUx Campus Experience"
                 className="w-full h-full object-cover"
               />

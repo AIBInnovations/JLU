@@ -22,7 +22,7 @@ export const BestSellers = () => {
       name: 'Pure Refresh',
       category: 'True Radiance',
       price: '$39.99',
-      image: '/product1.jpg',
+      image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/product1.jpg',
       color: '#FFE5EC',
     },
     {
@@ -30,7 +30,7 @@ export const BestSellers = () => {
       name: 'Radiant Glow',
       category: 'Luminous Glow',
       price: '$36.99',
-      image: '/product2.jpg',
+      image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/product2.jpg',
       color: '#E5DEFF',
     },
     {
@@ -38,7 +38,7 @@ export const BestSellers = () => {
       name: 'Overnight Sleep',
       category: 'Pure Nourish',
       price: '$35.99',
-      image: '/product3.jpg',
+      image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/product3.jpg',
       color: '#FFF4E5',
     },
     {
@@ -46,7 +46,7 @@ export const BestSellers = () => {
       name: 'Vitamin C Serum',
       category: 'Bright Boost',
       price: '$42.99',
-      image: '/product4.jpg',
+      image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/product4.jpg',
       color: '#E5F4FF',
     },
   ];
@@ -102,9 +102,9 @@ export const BestSellers = () => {
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <div className="text-center mb-12 md:mb-16">
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-[#21313c] mb-2">
+          <h1 className="text-3xl md:text-4xl lg:text-5xl text-[#21313c] mb-2" style={{ fontWeight: 600, lineHeight: 1.1 }}>
             Our Best Sellers
-          </h2>
+          </h1>
           <p className="text-2xl md:text-3xl lg:text-4xl italic text-[#21313c]">
             Products
           </p>
@@ -115,7 +115,7 @@ export const BestSellers = () => {
           {/* Left Side - Image */}
           <div className="relative h-[400px] md:h-[500px] lg:h-[600px] rounded-2xl overflow-hidden">
             <img
-              src="/elysara-hero.jpg"
+              src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/elysara-hero.jpg"
               alt="Elysara Brilliance"
               className="w-full h-full object-cover"
             />

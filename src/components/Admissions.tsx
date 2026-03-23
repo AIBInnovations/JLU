@@ -877,7 +877,7 @@ const FinancialInfoModal = ({ isOpen, onClose, data }: FinancialInfoModalProps) 
               transition={{ duration: 0.4, delay: 0.2, ease: [0.32, 0.72, 0, 1] }}
             >
               <div>
-                <span className="text-[#f0c14b] font-bold text-3xl block mb-1">
+                <span className="text-[#027ea1] font-bold text-3xl block mb-1">
                   {String(data.id).padStart(2, '0')}
                 </span>
                 <h2 className="text-xl font-semibold text-[#21313c]">{data.modalContent.heading}</h2>
@@ -916,7 +916,7 @@ const FinancialInfoModal = ({ isOpen, onClose, data }: FinancialInfoModalProps) 
                     transition={{ duration: 0.4, delay: 0.3 + index * 0.1 }}
                   >
                     <h3 className="text-[#21313c] font-semibold text-lg mb-3 flex items-center gap-2">
-                      <span className="w-6 h-6 bg-[#f0c14b] rounded-full flex items-center justify-center text-xs font-bold text-[#21313c]">
+                      <span className="w-6 h-6 bg-[#027ea1] rounded-full flex items-center justify-center text-xs font-bold text-[#21313c]">
                         {index + 1}
                       </span>
                       {section.title}
@@ -1003,8 +1003,8 @@ const BeyondDegreeModal = ({ isOpen, onClose, data }: BeyondDegreeModalProps) =>
 
   if (!data) return null;
 
-  const accentColor = data.id === 1 ? '#027ea1' : '#f0c14b';
-  const accentBg = data.id === 1 ? '#027ea1' : '#f0c14b';
+  const accentColor = data.id === 1 ? '#027ea1' : '#027ea1';
+  const accentBg = data.id === 1 ? '#027ea1' : '#027ea1';
   const accentText = data.id === 1 ? '#fff' : '#21313c';
 
   return (
@@ -1255,7 +1255,7 @@ const Admissions = () => {
         const content = stepEl.querySelector<HTMLElement>('[data-content]');
 
         if (marker) {
-          marker.style.background = active ? '#f0c14b' : '#e5e7eb';
+          marker.style.background = active ? '#027ea1' : '#e5e7eb';
           marker.style.transform = active ? 'scale(1)' : 'scale(0.85)';
           marker.style.boxShadow = active ? '0 0 0 4px rgba(240,193,75,0.2)' : 'none';
         }
@@ -1310,7 +1310,7 @@ const Admissions = () => {
         >
           <motion.div className="absolute inset-0" style={{ y }}>
             <Image
-              src="/admissions.jpg"
+              src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/admissions.jpg"
               alt="JLU Admissions - Student Orientation"
               fill
               className="object-cover scale-110"
@@ -1336,15 +1336,15 @@ const Admissions = () => {
           <h2
             className="text-white font-semibold leading-tight mb-5"
             style={{
-              fontSize: 'clamp(1.5rem, 3vw, 2.5rem)',
+              fontSize: 'clamp(1.5rem, 2.5vw, 2rem)',
             }}
           >
-            YOUR <span style={{ fontFamily: "'Times New Roman', serif", fontStyle: 'italic', color: '#f0c14b', textShadow: '2px 2px 4px rgba(0,0,0,0.5)' }}>journey</span> STARTS HERE
+            YOUR <span style={{ fontFamily: "'Times New Roman', serif", fontStyle: 'italic', color: '#027ea1', textShadow: '2px 2px 4px rgba(0,0,0,0.5)' }}>journey</span> STARTS HERE
           </h2>
           <p
-            className="text-white font-semibold leading-tight"
+            className="text-white"
             style={{
-              fontSize: 'clamp(1.25rem, 2.5vw, 2rem)',
+              fontWeight: 600, lineHeight: 1.5, fontSize: 'clamp(1rem, 2vw, 1.5rem)',
             }}
           >
             Admissions at Jagran Lakecity University are designed to help you choose the right path — with clarity, confidence, and support at every step.
@@ -1428,7 +1428,7 @@ const Admissions = () => {
             </span>
             <h2
               className="text-[#21313c] mb-6"
-              style={{ fontSize: 'clamp(2.5rem, 5vw, 4rem)', fontWeight: 600, lineHeight: 1.1, letterSpacing: '-0.03em' }}
+              style={{ fontSize: 'clamp(2.25rem, 4vw, 3rem)', fontWeight: 600, lineHeight: 1.1, letterSpacing: '-0.03em' }}
             >
               Your path to{' '}
               <span style={{ fontFamily: "'Times New Roman', serif", fontStyle: 'italic', fontWeight: 400 }}>
@@ -1450,23 +1450,23 @@ const Admissions = () => {
               transition={{ duration: 0.7, ease: customEase }}
               viewport={{ once: true }}
               className="group relative rounded-3xl overflow-hidden"
-              style={{ background: 'linear-gradient(165deg, #21313c 0%, #027ea1 100%)', minHeight: isMobile ? '420px' : '560px' }}
+              style={{ background: 'linear-gradient(165deg, #21313c 0%, #027ea1 100%)' }}
             >
               {/* Decorative element */}
-              <div className="absolute -top-20 -right-20 w-56 h-56 rounded-full opacity-[0.06]" style={{ background: '#f0c14b' }} />
-              <div className="absolute -bottom-16 -left-16 w-44 h-44 rounded-full opacity-[0.06]" style={{ background: '#f0c14b' }} />
+              <div className="absolute -top-20 -right-20 w-56 h-56 rounded-full opacity-[0.06]" style={{ background: '#027ea1' }} />
+              <div className="absolute -bottom-16 -left-16 w-44 h-44 rounded-full opacity-[0.06]" style={{ background: '#027ea1' }} />
 
               {/* Image header */}
               <div className="relative overflow-hidden" style={{ height: isMobile ? '160px' : '192px' }}>
                 <Image
-                  src="/interdisciplinary/classroom.jpg"
+                  src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/interdisciplinary/classroom.jpg"
                   alt="Academic Programs"
                   fill
                   className="object-cover group-hover:scale-105 transition-transform duration-700"
                 />
                 <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-[#21313c]" />
                 <div className="absolute top-5 left-6">
-                  <span className="text-[#f0c14b] text-xs uppercase tracking-widest font-medium" style={{ letterSpacing: '0.2em' }}>
+                  <span className="text-[#027ea1] text-xs uppercase tracking-widest font-medium" style={{ letterSpacing: '0.2em' }}>
                     Programs
                   </span>
                 </div>
@@ -1490,14 +1490,14 @@ const Admissions = () => {
                   ].map((item, i) => {
                     const inner = (
                       <>
-                        <div className="shrink-0 w-8 h-8 rounded-lg bg-[#f0c14b]/15 flex items-center justify-center mt-0.5">
-                          <span className="text-[#f0c14b] text-xs font-bold">{String(i + 1).padStart(2, '0')}</span>
+                        <div className="shrink-0 w-8 h-8 rounded-lg bg-[#027ea1]/15 flex items-center justify-center mt-0.5">
+                          <span className="text-[#027ea1] text-xs font-bold">{String(i + 1).padStart(2, '0')}</span>
                         </div>
                         <div>
-                          <h4 className="text-white font-semibold text-[15px] mb-0.5 group-hover/item:text-[#f0c14b] transition-colors">{item.title}</h4>
+                          <h4 className="text-white font-semibold text-[15px] mb-0.5 group-hover/item:text-[#027ea1] transition-colors">{item.title}</h4>
                           <p className="text-white/40 text-xs">{item.desc}</p>
                         </div>
-                        <span className="ml-auto text-white/20 group-hover/item:text-[#f0c14b] group-hover/item:translate-x-1 transition-all text-sm mt-1">&rarr;</span>
+                        <span className="ml-auto text-white/20 group-hover/item:text-[#027ea1] group-hover/item:translate-x-1 transition-all text-sm mt-1">&rarr;</span>
                       </>
                     );
                     return (
@@ -1535,19 +1535,19 @@ const Admissions = () => {
               transition={{ duration: 0.7, delay: 0.15, ease: customEase }}
               viewport={{ once: true }}
               className="group relative rounded-3xl overflow-hidden border border-[#e5e5e5] flex flex-col"
-              style={{ background: '#fff', minHeight: isMobile ? '420px' : '560px' }}
+              style={{ background: '#fff' }}
             >
               {/* Image header */}
               <div className="relative overflow-hidden" style={{ height: isMobile ? '160px' : '192px' }}>
                 <Image
-                  src="/interdisciplinary/campus-students.jpg"
+                  src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/interdisciplinary/campus-students.jpg"
                   alt="Apply to JLU"
                   fill
                   className="object-cover group-hover:scale-105 transition-transform duration-700"
                 />
                 <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-white" />
                 <div className="absolute top-5 left-6">
-                  <span className="bg-[#f0c14b] text-[#21313c] text-xs uppercase tracking-widest font-bold px-3 py-1.5 rounded-full" style={{ letterSpacing: '0.15em' }}>
+                  <span className="bg-[#027ea1] text-white text-xs uppercase tracking-widest font-bold px-3 py-1.5 rounded-full" style={{ letterSpacing: '0.15em' }}>
                     Apply
                   </span>
                 </div>
@@ -1619,17 +1619,17 @@ const Admissions = () => {
               transition={{ duration: 0.7, delay: 0.3, ease: customEase }}
               viewport={{ once: true }}
               className="group relative rounded-3xl overflow-hidden"
-              style={{ background: '#f0c14b', minHeight: isMobile ? '420px' : '560px' }}
+              style={{ background: '#027ea1' }}
             >
               {/* Image header */}
               <div className="relative overflow-hidden" style={{ height: isMobile ? '160px' : '192px' }}>
                 <Image
-                  src="/interdisciplinary/library.jpg"
+                  src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/interdisciplinary/library.jpg"
                   alt="Fee & Support"
                   fill
                   className="object-cover group-hover:scale-105 transition-transform duration-700"
                 />
-                <div className="absolute inset-0" style={{ background: 'linear-gradient(to bottom, transparent 30%, #f0c14b 100%)' }} />
+                <div className="absolute inset-0" style={{ background: 'linear-gradient(to bottom, transparent 30%, #027ea1 100%)' }} />
                 <div className="absolute top-5 left-6">
                   <span className="bg-[#21313c] text-white text-xs uppercase tracking-widest font-bold px-3 py-1.5 rounded-full" style={{ letterSpacing: '0.15em' }}>
                     Fee & Support
@@ -1721,7 +1721,7 @@ const Admissions = () => {
             <h2
               className="text-[#21313c]"
               style={{
-                fontSize: 'clamp(2.5rem, 5vw, 4rem)',
+                fontSize: 'clamp(2.25rem, 4vw, 3rem)',
                 fontWeight: 600,
                 lineHeight: 1.1,
                 letterSpacing: '-0.03em',
@@ -1746,7 +1746,7 @@ const Admissions = () => {
                     onClick={() => handleTabChange(tab.id)}
                     className={`text-left rounded-lg lg:rounded-xl font-medium transition-all duration-300 whitespace-nowrap lg:whitespace-normal cursor-pointer shrink-0 ${
                       activeTab === tab.id
-                        ? 'bg-[#f0c14b] text-[#21313c]'
+                        ? 'bg-[#027ea1] text-white'
                         : 'text-white/70'
                     }`}
                     style={{ fontSize: isMobile ? '11px' : '15px', padding: isMobile ? '7px 10px' : '16px 20px', scrollSnapAlign: isMobile ? 'start' : undefined }}
@@ -1761,7 +1761,7 @@ const Admissions = () => {
                 <a
                   href="/broucher/Fee-Structure-2026-27.pdf"
                   download="JLU-Fee-Structure-2026-27.pdf"
-                  className="w-full flex items-center justify-center gap-2 px-5 py-4 border border-[#f0c14b] text-[#f0c14b] rounded-xl font-medium transition-all duration-300 text-sm cursor-pointer no-underline"
+                  className="w-full flex items-center justify-center gap-2 px-5 py-4 border border-[#027ea1] text-[#027ea1] rounded-xl font-medium transition-all duration-300 text-sm cursor-pointer no-underline"
                 >
                   <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                     <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" strokeLinecap="round" strokeLinejoin="round"/>
@@ -1926,7 +1926,7 @@ const Admissions = () => {
                       {/* Filled progress line — height set dynamically by useEffect */}
                       <div
                         ref={progressLineRef}
-                        className="absolute w-[2px] bg-[#f0c14b] origin-top rounded-full will-change-transform"
+                        className="absolute w-[2px] bg-[#027ea1] origin-top rounded-full will-change-transform"
                         style={{ left: '15px', transform: 'scaleY(0)', height: 0 }}
                       />
 
@@ -2113,7 +2113,7 @@ const Admissions = () => {
                       <ol className="space-y-2">
                         {scholarshipApplicationProcess.map((step, i) => (
                           <li key={i} className="text-[#666] text-sm flex items-start gap-3">
-                            <span className="w-6 h-6 bg-[#f0c14b] rounded-full flex items-center justify-center text-[#21313c] font-bold text-xs shrink-0">{i + 1}</span>
+                            <span className="w-6 h-6 bg-[#027ea1] rounded-full flex items-center justify-center text-[#21313c] font-bold text-xs shrink-0">{i + 1}</span>
                             {step}
                           </li>
                         ))}
@@ -2186,7 +2186,7 @@ const Admissions = () => {
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-3 mb-8">
                       {refundProcess.map((p) => (
                         <div key={p.step} className="flex items-start gap-3 bg-white rounded-xl p-4">
-                          <div className="w-8 h-8 bg-[#f0c14b] rounded-full flex items-center justify-center text-[#21313c] font-bold text-xs shrink-0">{p.step}</div>
+                          <div className="w-8 h-8 bg-[#027ea1] rounded-full flex items-center justify-center text-[#21313c] font-bold text-xs shrink-0">{p.step}</div>
                           <div>
                             <h5 className="text-[#21313c] font-medium text-sm">{p.title}</h5>
                             <p className="text-[#666] text-xs mt-0.5">{p.description}</p>
@@ -2313,15 +2313,15 @@ const Admissions = () => {
                             onClick={() => toggleFaq(faq.id)}
                           >
                             <span className="flex items-center gap-3">
-                              <span className={`text-xs font-medium ${openFaq === faq.id ? 'text-[#f0c14b]' : 'text-[#ccc]'}`}>
+                              <span className={`text-xs font-medium ${openFaq === faq.id ? 'text-[#027ea1]' : 'text-[#ccc]'}`}>
                                 {String(index + 1).padStart(2, '0')}
                               </span>
-                              <span className={`font-semibold text-sm transition-colors ${openFaq === faq.id ? 'text-[#f0c14b]' : 'text-[#21313c]'}`}>
+                              <span className={`font-semibold text-sm transition-colors ${openFaq === faq.id ? 'text-[#027ea1]' : 'text-[#21313c]'}`}>
                                 {faq.question}
                               </span>
                             </span>
                             <motion.div
-                              className={`w-7 h-7 rounded-full flex items-center justify-center shrink-0 transition-colors ${openFaq === faq.id ? 'bg-[#f0c14b]' : 'bg-[#21313c]'}`}
+                              className={`w-7 h-7 rounded-full flex items-center justify-center shrink-0 transition-colors ${openFaq === faq.id ? 'bg-[#027ea1]' : 'bg-[#21313c]'}`}
                               animate={{ rotate: openFaq === faq.id ? 45 : 0 }}
                               transition={{ duration: 0.3 }}
                             >
@@ -2382,7 +2382,7 @@ const Admissions = () => {
             <h2
               className="text-[#21313c]"
               style={{
-                fontSize: 'clamp(2.5rem, 5vw, 4rem)',
+                fontSize: 'clamp(2.25rem, 4vw, 3rem)',
                 fontWeight: 600,
                 lineHeight: 1.1,
                 letterSpacing: '-0.03em',
@@ -2416,10 +2416,10 @@ const Admissions = () => {
                       <Image
                         src={
                           index === 0
-                            ? "/p1.jpg"
+                            ? "https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/p1.jpg"
                             : index === 1
-                            ? "/p2.jpg"
-                            : "/p3.jpg"
+                            ? "https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/p2.jpg"
+                            : "https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/p3.jpg"
                         }
                         alt={path.title}
                         fill
@@ -2439,7 +2439,7 @@ const Admissions = () => {
 
                   {/* Content */}
                   <h3
-                    className="text-[#21313c] font-semibold mb-3 group-hover:text-[#f0c14b] transition-colors"
+                    className="text-[#21313c] font-semibold mb-3 group-hover:text-[#027ea1] transition-colors"
                     style={{ fontSize: '24px', letterSpacing: '-0.02em' }}
                   >
                     {path.title}
@@ -2485,7 +2485,7 @@ const Admissions = () => {
             <h2
               className="text-white"
               style={{
-                fontSize: 'clamp(2.5rem, 5vw, 4rem)',
+                fontSize: 'clamp(2.25rem, 4vw, 3rem)',
                 fontWeight: 600,
                 lineHeight: 1.1,
                 letterSpacing: '-0.03em',
@@ -2520,8 +2520,8 @@ const Admissions = () => {
                   >
                     <Image
                       src={index === 0
-                        ? "/campus/professional-skills-new.jpg"
-                        : "/campus/jlux-leadership.jpg"
+                        ? "https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/campus/professional-skills-new.jpg"
+                        : "https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/campus/jlux-leadership.jpg"
                       }
                       alt={item.title}
                       fill
@@ -2533,7 +2533,7 @@ const Admissions = () => {
                 {/* Content Half */}
                 <div className={`bg-[#2a3f4c] flex flex-col justify-center ${isMobile ? 'w-full p-5' : 'w-1/2 p-4 md:p-8 lg:p-16'}`}>
                   <span
-                    className="text-[#f0c14b] font-medium mb-2 md:mb-4 text-xs md:text-sm"
+                    className="text-[#027ea1] font-medium mb-2 md:mb-4 text-xs md:text-sm"
                   >
                     {String(item.id).padStart(2, '0')}
                   </span>
@@ -2583,7 +2583,7 @@ const Admissions = () => {
               <h2
                 className="text-[#21313c]"
                 style={{
-                  fontSize: 'clamp(2.5rem, 5vw, 4rem)',
+                  fontSize: 'clamp(2.25rem, 4vw, 3rem)',
                   fontWeight: 600,
                   lineHeight: 1.1,
                   letterSpacing: '-0.03em',
@@ -2596,11 +2596,13 @@ const Admissions = () => {
               </h2>
             </div>
             <p
-              className="text-[#666]"
+              className="text-[#999] text-right"
               style={{
-                fontSize: '16px',
+                fontFamily: 'Inter, sans-serif',
+                fontSize: 'clamp(1.15rem, 1.8vw, 1.5rem)',
                 lineHeight: 1.7,
-                maxWidth: '400px',
+                fontWeight: 400,
+                maxWidth: '450px',
               }}
             >
               Step inside the campus. Get a sense of what it's like to belong.
@@ -2624,7 +2626,7 @@ const Admissions = () => {
                 transition={{ duration: 0.6 }}
               >
                 <Image
-                  src="/interdisciplinary/campus-drone.jpg"
+                  src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/interdisciplinary/campus-drone.jpg"
                   alt="Campus Visit"
                   fill
                   className="object-cover"
@@ -2682,7 +2684,7 @@ const Admissions = () => {
                   </motion.button>
                   <Link href="/apply">
                     <motion.button
-                      className="bg-[#f0c14b] text-[#21313c] font-medium flex items-center justify-center gap-3 w-full"
+                      className="bg-[#027ea1] text-white font-medium flex items-center justify-center gap-3 w-full"
                       style={{ padding: isMobile ? '10px 20px' : '16px 32px', fontSize: isMobile ? '13px' : undefined, borderRadius: '100px' }}
                       whileHover={{ scale: 1.02 }}
                       whileTap={{ scale: 0.98 }}
@@ -2714,7 +2716,7 @@ const Admissions = () => {
                     transition={{ duration: 0.6 }}
                   >
                     <Image
-                      src="/interdisciplinary/campus-event.jpg"
+                      src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/interdisciplinary/campus-event.jpg"
                       alt="Student Life"
                       fill
                       className="object-cover object-bottom"
@@ -2742,7 +2744,7 @@ const Admissions = () => {
                     transition={{ duration: 0.6 }}
                   >
                     <Image
-                      src="/campus/hostel.jpg"
+                      src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/campus/hostel.jpg"
                       alt="Hostel"
                       fill
                       className="object-cover"
@@ -2770,7 +2772,7 @@ const Admissions = () => {
       <div id="contact-admissions" />
       <div className="w-full px-3 pb-8 md:px-6 md:pb-14 lg:px-10 lg:pb-20">
         <div
-          className="mx-auto flex flex-col items-center justify-center bg-[#f0c14b] px-4 py-8 md:px-10 md:py-16 lg:px-30 lg:py-30 rounded-xl md:rounded-3xl lg:rounded-4xl"
+          className="mx-auto flex flex-col items-center justify-center bg-[#20323d] px-4 py-6 md:px-10 md:py-10 lg:px-20 lg:py-14 rounded-xl md:rounded-3xl lg:rounded-4xl"
           style={{
             maxWidth: '1400px',
           }}
@@ -2783,15 +2785,15 @@ const Admissions = () => {
             transition={{ duration: 0.8 }}
           >
             <span
-              className="text-[#21313c]/60 uppercase tracking-widest block mb-3 md:mb-5 lg:mb-6 text-xl md:text-2xl font-bold lg:text-[13px]"
+              className="text-[#999] uppercase tracking-widest block mb-4 md:mb-6 text-xl md:text-2xl font-bold"
               style={{ letterSpacing: '0.2em' }}
             >
               Start Your Journey
             </span>
             <h2
-              className="text-[#21313c]"
+              className="text-white"
               style={{
-                fontSize: 'clamp(1.75rem, 5vw, 4rem)',
+                fontSize: 'clamp(2.25rem, 4vw, 3rem)',
                 fontWeight: 600,
                 lineHeight: 1.1,
                 letterSpacing: '-0.03em',
@@ -2799,7 +2801,6 @@ const Admissions = () => {
             >
               Your future deserves<br />
               <span
-                className="text-[#21313c]"
                 style={{ fontFamily: "'Times New Roman', serif", fontStyle: 'italic', fontWeight: 400 }}
               >
                 the right start.
@@ -2816,7 +2817,7 @@ const Admissions = () => {
           >
             <motion.a
               href="/apply"
-              className="px-8 md:px-10 py-3 md:py-4 bg-[#21313c] text-white font-semibold flex items-center justify-center gap-3 w-full sm:w-auto rounded-full"
+              className="px-8 md:px-10 py-3 md:py-4 bg-[#027ea1] text-white font-semibold flex items-center justify-center gap-3 w-full sm:w-auto rounded-full"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.98 }}
             >
@@ -2825,8 +2826,8 @@ const Admissions = () => {
             </motion.a>
             <motion.a
               href="/talk-to-advisor"
-              className="px-8 md:px-10 py-3 md:py-4 bg-transparent border border-[#21313c]/50 text-[#21313c] font-medium w-full sm:w-auto rounded-full text-center"
-              whileHover={{ scale: 1.05, borderColor: '#21313c' }}
+              className="px-8 md:px-10 py-3 md:py-4 bg-transparent border border-white/50 text-white font-medium w-full sm:w-auto rounded-full text-center"
+              whileHover={{ scale: 1.05, borderColor: '#ffffff' }}
               whileTap={{ scale: 0.98 }}
             >
               Talk to an Admissions Advisor

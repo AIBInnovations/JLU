@@ -10,18 +10,18 @@ gsap.registerPlugin(ScrollTrigger);
 
 // Scattered background images — randomly placed behind the pinned text
 const bgImages = [
-  { src: '/a1.jpeg', top: '8%', left: '5%', width: 130, rotate: -8 },
-  { src: '/ev2.jpg', top: '15%', left: '78%', width: 140, rotate: 6 },
-  { src: '/p2.jpg', top: '55%', left: '8%', width: 120, rotate: 4 },
-  { src: '/jlu-insta2.jpg', top: '62%', left: '82%', width: 135, rotate: -5 },
-  { src: '/posthero1.jpg', top: '30%', left: '88%', width: 110, rotate: 10 },
-  { src: '/e3.jpg', top: '72%', left: '25%', width: 115, rotate: -12 },
-  { src: '/student-clubs.jpg', top: '10%', left: '40%', width: 105, rotate: 3 },
-  { src: '/alumni1.jpg', top: '75%', left: '60%', width: 125, rotate: -7 },
-  { src: '/5th.jpg', top: '38%', left: '2%', width: 120, rotate: 8 },
-  { src: '/success.jpg', top: '45%', left: '72%', width: 110, rotate: -4 },
-  { src: '/comm.jpg', top: '20%', left: '22%', width: 100, rotate: 6 },
-  { src: '/ev4.jpg', top: '80%', left: '45%', width: 115, rotate: -9 },
+  { src: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/a1.jpeg', top: '8%', left: '5%', width: 130, rotate: -8 },
+  { src: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/ev2.jpg', top: '15%', left: '78%', width: 140, rotate: 6 },
+  { src: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/p2.jpg', top: '55%', left: '8%', width: 120, rotate: 4 },
+  { src: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/jlu-insta2.jpg', top: '62%', left: '82%', width: 135, rotate: -5 },
+  { src: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/posthero1.jpg', top: '30%', left: '88%', width: 110, rotate: 10 },
+  { src: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/e3.jpg', top: '72%', left: '25%', width: 115, rotate: -12 },
+  { src: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/student-clubs.jpg', top: '10%', left: '40%', width: 105, rotate: 3 },
+  { src: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/alumni1.jpg', top: '75%', left: '60%', width: 125, rotate: -7 },
+  { src: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/5th.jpg', top: '38%', left: '2%', width: 120, rotate: 8 },
+  { src: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/success.jpg', top: '45%', left: '72%', width: 110, rotate: -4 },
+  { src: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/comm.jpg', top: '20%', left: '22%', width: 100, rotate: 6 },
+  { src: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/ev4.jpg', top: '80%', left: '45%', width: 115, rotate: -9 },
 ];
 
 export const WhyJlu = () => {
@@ -44,7 +44,7 @@ export const WhyJlu = () => {
       subtitle: '',
       description: '45+ international collaborations across 14 countries with universities like Cambridge, UCL, RMIT & more.',
       textColor: '#21313c',
-      image: '/glob.jpg',
+      image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/glob.jpg',
       href: '/why-jlu/global-network'
     },
     {
@@ -53,7 +53,7 @@ export const WhyJlu = () => {
       subtitle: '',
       description: '42+ industry tie-ups with EY, KPMG, Deloitte, Amazon & TCS powering real-world placements.',
       textColor: '#ffffff',
-      image: '/ex1.jpg',
+      image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/ex1.jpg',
       href: '/why-jlu/industry-intervention'
     },
     {
@@ -62,7 +62,7 @@ export const WhyJlu = () => {
       subtitle: '',
       description: '50+ programs across 6 faculties blending law, tech, design, media & management.',
       textColor: '#ffffff',
-      image: '/ev3.jpg',
+      image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/ev3.jpg',
       href: '/why-jlu/interdisciplinary-degrees'
     },
     {
@@ -71,7 +71,7 @@ export const WhyJlu = () => {
       subtitle: '',
       description: 'Experiential learning with 1-on-1 mentoring, 45+ labs & hands-on projects from day one.',
       textColor: '#21313c',
-      image: '/comm.jpg',
+      image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/comm.jpg',
       href: '/why-jlu/student-approach'
     }
   ];
@@ -325,11 +325,10 @@ export const WhyJlu = () => {
         <div style={{ textAlign: 'center', padding: '0 1rem', position: 'relative', zIndex: 1 }}>
           <h1
             style={{
-              fontSize: shouldUseMobileLayout ? 'clamp(1.5rem, 6vw, 2.5rem)' : 'clamp(3rem, 8vw, 6rem)',
+              fontSize: shouldUseMobileLayout ? 'clamp(1.5rem, 6vw, 2.5rem)' : 'clamp(2.25rem, 4vw, 3rem)',
               fontWeight: 600,
               color: '#000000',
-              letterSpacing: '-0.02em',
-              lineHeight: 1,
+              lineHeight: 1.1,
             }}
           >
             Pillars of{' '}

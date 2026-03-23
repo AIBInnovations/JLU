@@ -247,7 +247,7 @@ const Research = () => {
         >
           <motion.div className="absolute inset-0" style={{ y }}>
             <Image
-              src="/pro1.jpg"
+              src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/pro1.jpg"
               alt="Research at JLU"
               fill
               className="object-cover scale-110"
@@ -272,15 +272,15 @@ const Research = () => {
           <h2
             className="text-white font-semibold leading-tight mb-5"
             style={{
-              fontSize: 'clamp(1.5rem, 3vw, 2.5rem)',
+              fontSize: 'clamp(1.5rem, 2.5vw, 2rem)',
             }}
           >
-            RESEARCH THAT <span style={{ fontFamily: "'Times New Roman', serif", fontStyle: 'italic', color: '#f0c14b', textShadow: '2px 2px 4px rgba(0,0,0,0.5)' }}>matters</span>
+            RESEARCH THAT <span style={{ fontFamily: "'Times New Roman', serif", fontStyle: 'italic', color: '#027ea1', textShadow: '2px 2px 4px rgba(0,0,0,0.5)' }}>matters</span>
           </h2>
           <p
-            className="text-white font-semibold leading-tight"
+            className="text-white"
             style={{
-              fontSize: 'clamp(1.25rem, 2.5vw, 2rem)',
+              fontWeight: 600, lineHeight: 1.5, fontSize: 'clamp(1rem, 2vw, 1.5rem)',
             }}
           >
             Advancing knowledge through interdisciplinary inquiry, innovation, and real-world impact.
@@ -552,7 +552,7 @@ const Research = () => {
               className="relative shrink-0 overflow-hidden rounded-lg w-full lg:w-145 h-52 sm:h-64 md:h-80 lg:h-125"
             >
               <Image
-                src="/JLu%20events/photos/JAgran%20%20of%20Social%20science/DSC08881.JPG"
+                src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/JLu%20events/photos/JAgran%20of%20Social%20science/DSC08881.JPG"
                 alt="Research Journal"
                 fill
                 className="object-cover"

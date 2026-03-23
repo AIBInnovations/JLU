@@ -16,7 +16,7 @@ const professionalCertificates = [
     subtitle: 'Professional Certification',
     duration: '4 months',
     fee: '₹21,500',
-    image: '/campus/smart-classroom.jpg',
+    image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/campus/computer%20lab.JPG',
     gradient: 'from-[#027ea1] to-[#015d7a]',
     features: ['Basic to Expert', 'Real Projects', 'Industry Certificate'],
   },
@@ -26,7 +26,7 @@ const professionalCertificates = [
     subtitle: 'Healthcare Certificate',
     duration: 'Self-paced',
     fee: 'Contact Admissions',
-    image: '/campus/gallery-1.jpg',
+    image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/campus/gallery-1.jpg',
     gradient: 'from-[#27ae60] to-[#1a7a42]',
     features: ['Online Learning', 'Expert Faculty', 'Professional Cert'],
   },
@@ -36,7 +36,7 @@ const professionalCertificates = [
     subtitle: 'Masterclass Series',
     duration: '6 Sessions',
     fee: 'Free',
-    image: '/campus/gallery-3.jpg',
+    image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/campus/gallery-3.jpg',
     gradient: 'from-[#8e44ad] to-[#5f2c7a]',
     features: ['Expert Sessions', 'Case Studies', 'Research Focus'],
   },
@@ -46,7 +46,7 @@ const professionalCertificates = [
     subtitle: 'Professional Development',
     duration: 'Semester',
     fee: 'Contact Faculty',
-    image: '/campus/gallery-5.jpg',
+    image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/campus/gallery-5.jpg',
     gradient: 'from-[#e67e22] to-[#a85919]',
     features: ['Modern Tools', 'Research Training', 'Practical Approach'],
   },
@@ -73,7 +73,7 @@ export default function CertificationsPage() {
         >
           <motion.div className="absolute inset-0" style={{ y }}>
             <Image
-              src="/campus/gallery-7.jpg"
+              src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/campus/gallery-7.jpg"
               alt="Certifications"
               fill
               className="object-cover scale-110"
@@ -244,7 +244,7 @@ export default function CertificationsPage() {
       <section className="relative py-20 md:py-32 overflow-hidden">
         <div className="absolute inset-0">
           <Image
-            src="/campus/gallery-9.jpg"
+            src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/campus/gallery-9.jpg"
             alt="Partnerships"
             fill
             className="object-cover"
@@ -346,7 +346,7 @@ export default function CertificationsPage() {
               className="relative h-96 rounded-2xl overflow-hidden"
             >
               <Image
-                src="/campus/gallery-11.jpg"
+                src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/campus/gallery-11.jpg"
                 alt="Harvard Business School"
                 fill
                 className="object-cover"
@@ -409,7 +409,7 @@ export default function CertificationsPage() {
               className="relative h-96 rounded-2xl overflow-hidden order-2 md:order-1"
             >
               <Image
-                src="/campus/gallery-13.jpg"
+                src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/campus/gallery-13.jpg"
                 alt="Skills Development"
                 fill
                 className="object-cover"

@@ -163,7 +163,7 @@ export const ProgramDetail = ({ program }: ProgramDetailProps) => {
                 className="mb-8 md:mb-12"
               >
                 <h2 className="text-[#21313c] font-semibold mb-4 md:mb-6" style={{ fontSize: isMobile ? '18px' : '24px' }}>
-                  Program <span style={{ fontFamily: "'Times New Roman', serif", fontStyle: 'italic', color: '#f0c14b' }}>Highlights</span>
+                  Program <span style={{ fontFamily: "'Times New Roman', serif", fontStyle: 'italic', color: '#027ea1' }}>Highlights</span>
                 </h2>
                 <div className="grid grid-cols-2 gap-2 md:gap-4">
                   {program.highlights.map((highlight, index) => (
@@ -227,7 +227,7 @@ export const ProgramDetail = ({ program }: ProgramDetailProps) => {
                   className="mb-8 md:mb-12"
                 >
                   <h2 className="text-[#21313c] font-semibold mb-4 md:mb-6" style={{ fontSize: isMobile ? '18px' : '24px' }}>
-                    Curriculum <span style={{ fontFamily: "'Times New Roman', serif", fontStyle: 'italic', color: '#f0c14b' }}>Modules</span>
+                    Curriculum <span style={{ fontFamily: "'Times New Roman', serif", fontStyle: 'italic', color: '#027ea1' }}>Modules</span>
                   </h2>
                   <div className="space-y-4 md:space-y-6">
                     {(showAllModules ? modulesData.structure : modulesData.structure.slice(0, 2)).map((section, sectionIndex) => (
@@ -295,7 +295,7 @@ export const ProgramDetail = ({ program }: ProgramDetailProps) => {
                   className="mb-8 md:mb-12"
                 >
                   <h2 className="text-[#21313c] font-semibold mb-4 md:mb-6" style={{ fontSize: isMobile ? '18px' : '24px' }}>
-                    Previous <span style={{ fontFamily: "'Times New Roman', serif", fontStyle: 'italic', color: '#f0c14b' }}>Placements</span>
+                    Previous <span style={{ fontFamily: "'Times New Roman', serif", fontStyle: 'italic', color: '#027ea1' }}>Placements</span>
                   </h2>
 
                   {/* Placement Stats Cards */}
@@ -376,7 +376,7 @@ export const ProgramDetail = ({ program }: ProgramDetailProps) => {
                   className="mb-8 md:mb-12"
                 >
                   <h2 className="text-[#21313c] font-semibold mb-4 md:mb-6" style={{ fontSize: isMobile ? '18px' : '24px' }}>
-                    Fee <span style={{ fontFamily: "'Times New Roman', serif", fontStyle: 'italic', color: '#f0c14b' }}>Structure</span>
+                    Fee <span style={{ fontFamily: "'Times New Roman', serif", fontStyle: 'italic', color: '#027ea1' }}>Structure</span>
                   </h2>
 
                   <div className="bg-[#f6f7f0] rounded-xl md:rounded-2xl overflow-hidden">
@@ -675,7 +675,7 @@ export const ProgramDetail = ({ program }: ProgramDetailProps) => {
             >
               <div className="flex items-center justify-between mb-5 md:mb-8">
                 <h2 className="text-[#21313c] font-semibold" style={{ fontSize: isMobile ? '18px' : '24px' }}>
-                  Related <span style={{ fontFamily: "'Times New Roman', serif", fontStyle: 'italic', color: '#f0c14b' }}>Programs</span>
+                  Related <span style={{ fontFamily: "'Times New Roman', serif", fontStyle: 'italic', color: '#027ea1' }}>Programs</span>
                 </h2>
                 <Link
                   href="/programs"
@@ -754,7 +754,7 @@ export const ProgramDetail = ({ program }: ProgramDetailProps) => {
             className="text-center"
           >
             <h2 className="text-white font-semibold mb-3 md:mb-4" style={{ fontSize: isMobile ? '18px' : '36px' }}>
-              Ready to Begin Your <span style={{ fontFamily: "'Times New Roman', serif", fontStyle: 'italic', color: '#f0c14b' }}>Journey?</span>
+              Ready to Begin Your <span style={{ fontFamily: "'Times New Roman', serif", fontStyle: 'italic', color: '#027ea1' }}>Journey?</span>
             </h2>
             <p className="text-white/70 mb-5 md:mb-8 max-w-xl mx-auto" style={{ fontSize: isMobile ? '11px' : '16px' }}>
               Take the first step towards your future. Apply now and join thousands of students shaping their tomorrow at JLU.

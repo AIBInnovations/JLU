@@ -24,32 +24,32 @@ const services = [
   {
     title: 'Alumni Directory',
     description: 'Connect with fellow graduates across the globe. Search by batch, program, location, or industry.',
-    image: '/jlu-alumni-directory.jpg',
+    image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/jlu-alumni-directory.jpg',
   },
   {
     title: 'Career Connect',
     description: 'Access exclusive job postings, internships, and career opportunities from our network of 500+ recruiting partners.',
-    image: '/jlu-career-connect.jpg',
+    image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/jlu-career-connect.jpg',
   },
   {
     title: 'Mentorship Program',
     description: 'Give back or get guidance. Our mentorship platform connects experienced alumni with current students.',
-    image: '/jlu-mentorship.jpg',
+    image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/jlu-mentorship.jpg',
   },
   {
     title: 'Business Network',
     description: 'Showcase your business, find partners, and unlock entrepreneurial opportunities within the JLU alumni ecosystem.',
-    image: '/jlu-business-network.jpg',
+    image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/jlu-business-network.jpg',
   },
   {
     title: 'Alumni Chapters',
     description: 'Join regional chapters across India and worldwide. Attend local meetups and community gatherings.',
-    image: '/jlu-alumni-chapters.jpg',
+    image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/jlu-alumni-chapters.jpg',
   },
   {
     title: 'Events & Reunions',
     description: 'Never miss a reunion, homecoming, or alumni event. Register for upcoming gatherings.',
-    image: '/jlu-events-reunions.jpg',
+    image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/jlu-events-reunions.jpg',
   },
 ];
 
@@ -58,7 +58,7 @@ const notableAlumni = [
     id: '1',
     name: 'Mr. Sagar Agrawal',
     batch: '2025',
-    image: '/jlu-placement1.jpeg',
+    image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/jlu-placement1.jpeg',
     designation: 'JLU00505',
     company: 'BA.LLB Program',
     achievement: 'Alumni Award Recipient 2025',
@@ -67,7 +67,7 @@ const notableAlumni = [
     id: '2',
     name: 'Mr. Sanchit Shrivastava',
     batch: '2025',
-    image: '/jlu-placement2.jpeg',
+    image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/jlu-placement2.jpeg',
     designation: 'JLU04696',
     company: 'BAJMC Program',
     achievement: 'Alumni Award Recipient 2025',
@@ -76,7 +76,7 @@ const notableAlumni = [
     id: '3',
     name: 'Mr. Aman Verma',
     batch: '2024',
-    image: '/jlu-placement3.jpeg',
+    image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/jlu-placement3.jpeg',
     designation: 'JLU01216',
     company: 'BBA Program',
     achievement: 'Alumni Award Recipient 2024',
@@ -85,7 +85,7 @@ const notableAlumni = [
     id: '4',
     name: 'Mr. Ugyen Rhuntsho Rabgay',
     batch: '2024',
-    image: '/jlu-insta1.jpg',
+    image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/jlu-insta1.jpg',
     designation: 'JLU00927',
     company: 'BAJMC Program',
     achievement: 'Alumni Award Recipient 2024',
@@ -94,7 +94,7 @@ const notableAlumni = [
     id: '5',
     name: 'Mr. Namgay Dorji',
     batch: '2024',
-    image: '/jlu-insta2.jpg',
+    image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/jlu-insta2.jpg',
     designation: 'JLU00402',
     company: 'BBA.LLB Program',
     achievement: 'Alumni Award Recipient 2024',
@@ -103,7 +103,7 @@ const notableAlumni = [
     id: '6',
     name: 'Mr. Sajal Jain',
     batch: '2023',
-    image: '/jlu-insta3.jpg',
+    image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/jlu-insta3.jpg',
     designation: 'JLU02151',
     company: 'B.Com Program',
     achievement: 'Alumni Award Recipient 2023',
@@ -112,7 +112,7 @@ const notableAlumni = [
     id: '7',
     name: 'Ms. Urvashi Mathur',
     batch: '2023',
-    image: '/jlu-placement1.jpeg',
+    image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/jlu-placement1.jpeg',
     designation: 'JLU02531',
     company: 'B.Sc. (Hospitality & Hotel Administration) Program',
     achievement: 'Alumni Award Recipient 2023',
@@ -121,7 +121,7 @@ const notableAlumni = [
     id: '8',
     name: 'Ms. Sumaira Yasin',
     batch: '2023',
-    image: '/jlu-placement2.jpeg',
+    image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/jlu-placement2.jpeg',
     designation: 'JLU00922',
     company: 'BAJMC Program',
     achievement: 'Alumni Award Recipient 2023',
@@ -134,21 +134,21 @@ const testimonials = [
     name: "Rajesh Kumar",
     batch: "2014",
     role: "VP Engineering, Microsoft",
-    image: "/jlu-testimonial2.webp"
+    image: "https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/jlu-testimonial2.webp"
   },
   {
     quote: "From campus to corporate, the JLU family has always been there. The mentorship program helped me navigate my early career challenges with confidence.",
     name: "Sneha Patel",
     batch: "2017",
     role: "Product Manager, Google",
-    image: "/jlu-testimonial1.webp"
+    image: "https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/jlu-testimonial1.webp"
   },
   {
     quote: "The business connect platform helped me find co-founders for my startup. Today, we're a team of 50, all thanks to the JLU alumni ecosystem.",
     name: "Priya Sharma",
     batch: "2016",
     role: "Founder, InnovateTech",
-    image: "/jlu-testimonial3.webp"
+    image: "https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/jlu-testimonial3.webp"
   },
 ];
 
@@ -326,7 +326,7 @@ export default function AlumniPage() {
         {/* Background Image */}
         <div className="absolute inset-0">
           <img
-            src="/alumni1.jpg"
+            src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/alumni1.jpg"
             alt="Alumni Gathering"
             className="w-full h-full object-cover"
           />
@@ -411,7 +411,7 @@ export default function AlumniPage() {
               style={{ height: isMobile ? '180px' : '380px' }}
             >
               <img
-                src="/alumni2.jpg"
+                src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/alumni2.jpg"
                 alt="Alumni gathering"
                 className="w-full h-full object-cover"
               />
@@ -486,7 +486,7 @@ export default function AlumniPage() {
               style={{ height: isMobile ? '180px' : '380px' }}
             >
               <img
-                src="/alumni3.jpg"
+                src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/alumni3.jpg"
                 alt="Alumni success stories"
                 className="w-full h-full object-cover"
               />
@@ -522,7 +522,7 @@ export default function AlumniPage() {
         </motion.div>
 
         {/* Center - Carousel with Step Scroll */}
-        <div className="w-full overflow-hidden">
+        <div className="w-full overflow-hidden" style={{ minHeight: isMobile ? '420px' : '620px' }}>
           <div
             ref={serviceContainerRef}
             className="flex gap-5 pb-8"
@@ -616,7 +616,7 @@ export default function AlumniPage() {
             transition={{ duration: 0.8 }}
           >
             <div>
-              <span className="text-[12px] md:text-sm font-medium text-[#027ea1] tracking-wider uppercase mb-2 md:mb-4 block">
+              <span className="text-[#999] uppercase tracking-widest block mb-4 md:mb-6 text-xl md:text-2xl font-bold">
                 Recognition
               </span>
               <h2
@@ -624,7 +624,7 @@ export default function AlumniPage() {
                 style={{ fontFamily: 'Inter, sans-serif', letterSpacing: '-0.02em' }}
               >
                 Alumni{' '}
-                <span style={{ fontFamily: "'Times New Roman', serif", fontStyle: 'italic', fontWeight: 400, color: '#efc04b' }}>
+                <span style={{ fontFamily: "'Times New Roman', serif", fontStyle: 'italic', fontWeight: 400, color: '#027ea1' }}>
                   Award
                 </span>
                 {' '}Recipients
@@ -683,7 +683,7 @@ export default function AlumniPage() {
                   />
                   <div className="absolute inset-0 bg-[#21313c]/50" />
 
-                  <span className="absolute top-2 right-2 md:top-4 md:right-4 px-2 py-0.5 md:px-3 md:py-1 bg-[#efc04b] text-[#21313c] text-[11px] md:text-xs font-semibold rounded-full">
+                  <span className="absolute top-2 right-2 md:top-4 md:right-4 px-2 py-0.5 md:px-3 md:py-1 bg-[#027ea1] text-white text-[11px] md:text-xs font-semibold rounded-full">
                     Batch {alumni.batch}
                   </span>
 
@@ -731,7 +731,7 @@ export default function AlumniPage() {
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
           >
-            <span className="text-[12px] md:text-sm font-medium text-[#efc04b] tracking-wider uppercase mb-2 md:mb-4 block">
+            <span className="text-[#999] uppercase tracking-widest block mb-4 md:mb-6 text-xl md:text-2xl font-bold">
               Testimonials
             </span>
             <h2
@@ -739,7 +739,7 @@ export default function AlumniPage() {
               style={{ fontFamily: 'Inter, sans-serif', letterSpacing: '-0.02em' }}
             >
               Voices of{' '}
-              <span style={{ fontFamily: "'Times New Roman', serif", fontStyle: 'italic', fontWeight: 400, color: '#efc04b' }}>
+              <span style={{ fontFamily: "'Times New Roman', serif", fontStyle: 'italic', fontWeight: 400, color: '#027ea1' }}>
                 Alumni
               </span>
             </h2>
@@ -757,7 +757,7 @@ export default function AlumniPage() {
                 className="flex flex-row items-center gap-4 md:gap-12"
               >
                 {/* Image */}
-                <div className="w-24 h-24 md:w-48 md:h-48 rounded-full overflow-hidden border-2 md:border-4 border-[#efc04b] flex-shrink-0">
+                <div className="w-24 h-24 md:w-48 md:h-48 rounded-full overflow-hidden border-2 md:border-4 border-[#027ea1] flex-shrink-0">
                   <img
                     src={testimonials[activeTestimonial].image}
                     alt={testimonials[activeTestimonial].name}
@@ -767,13 +767,13 @@ export default function AlumniPage() {
 
                 {/* Content */}
                 <div className="text-left">
-                  <svg className="w-6 h-6 md:w-10 md:h-10 text-[#efc04b]/30 mb-2 md:mb-4" viewBox="0 0 24 24" fill="currentColor">
+                  <svg className="w-6 h-6 md:w-10 md:h-10 text-[#027ea1]/30 mb-2 md:mb-4" viewBox="0 0 24 24" fill="currentColor">
                     <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/>
                   </svg>
                   <p className="text-white/90 text-xs md:text-xl lg:text-2xl leading-relaxed mb-3 md:mb-6">
                     "{testimonials[activeTestimonial].quote}"
                   </p>
-                  <p className="text-[#efc04b] font-semibold text-sm md:text-lg">{testimonials[activeTestimonial].name}</p>
+                  <p className="text-[#027ea1] font-semibold text-sm md:text-lg">{testimonials[activeTestimonial].name}</p>
                   <p className="text-white/60 text-[12px] md:text-sm">Batch {testimonials[activeTestimonial].batch} | {testimonials[activeTestimonial].role}</p>
                 </div>
               </motion.div>
@@ -787,7 +787,7 @@ export default function AlumniPage() {
                 key={index}
                 onClick={() => setActiveTestimonial(index)}
                 className={`w-2 h-2 md:w-3 md:h-3 rounded-full transition-all ${
-                  activeTestimonial === index ? 'bg-[#efc04b] scale-125' : 'bg-white/30 hover:bg-white/50'
+                  activeTestimonial === index ? 'bg-[#027ea1] scale-125' : 'bg-white/30 hover:bg-white/50'
                 }`}
               />
             ))}
@@ -825,11 +825,11 @@ export default function AlumniPage() {
             transition={{ duration: 0.6 }}
           >
             <h2
-              className="text-lg md:text-3xl font-semibold text-white mb-2 md:mb-3"
+              className="text-xl md:text-4xl lg:text-5xl font-semibold text-white mb-2 md:mb-3"
               style={{ fontFamily: 'Inter, sans-serif', letterSpacing: '-0.02em' }}
             >
               Ready to{' '}
-              <span style={{ fontFamily: "'Times New Roman', serif", fontStyle: 'italic', fontWeight: 400, color: '#efc04b' }}>
+              <span style={{ fontFamily: "'Times New Roman', serif", fontStyle: 'italic', fontWeight: 400, color: '#027ea1' }}>
                 Reconnect?
               </span>
             </h2>
@@ -842,7 +842,7 @@ export default function AlumniPage() {
                 href="https://alumni.jlu.edu.in"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="bg-[#efc04b] text-[#21313c] px-4 py-2 md:px-6 md:py-2.5 rounded-lg font-semibold text-[12px] md:text-sm hover:bg-[#d4a93d] transition-all shadow-lg inline-flex items-center justify-center gap-1 md:gap-2"
+                className="bg-[#027ea1] text-white px-4 py-2 md:px-6 md:py-2.5 rounded-lg font-semibold text-[12px] md:text-sm hover:bg-[#025f7a] transition-all shadow-lg inline-flex items-center justify-center gap-1 md:gap-2"
               >
                 Register Now
                 <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -867,7 +867,7 @@ export default function AlumniPage() {
             transition={{ duration: 0.6, delay: 0.1 }}
           >
             <div>
-              <div className="w-7 h-7 md:w-10 md:h-10 rounded-full bg-[#efc04b] flex items-center justify-center mx-auto mb-1 md:mb-2">
+              <div className="w-7 h-7 md:w-10 md:h-10 rounded-full bg-[#027ea1] flex items-center justify-center mx-auto mb-1 md:mb-2">
                 <svg className="w-3 h-3 md:w-4 md:h-4 text-[#21313c]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
                 </svg>
@@ -876,7 +876,7 @@ export default function AlumniPage() {
               <p className="text-white font-medium text-[12px] md:text-sm">0755-6611152</p>
             </div>
             <div>
-              <div className="w-7 h-7 md:w-10 md:h-10 rounded-full bg-[#efc04b] flex items-center justify-center mx-auto mb-1 md:mb-2">
+              <div className="w-7 h-7 md:w-10 md:h-10 rounded-full bg-[#027ea1] flex items-center justify-center mx-auto mb-1 md:mb-2">
                 <svg className="w-3 h-3 md:w-4 md:h-4 text-[#21313c]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                 </svg>
@@ -885,7 +885,7 @@ export default function AlumniPage() {
               <p className="text-white font-medium text-[12px] md:text-sm">alumni@jlu.edu.in</p>
             </div>
             <div>
-              <div className="w-7 h-7 md:w-10 md:h-10 rounded-full bg-[#efc04b] flex items-center justify-center mx-auto mb-1 md:mb-2">
+              <div className="w-7 h-7 md:w-10 md:h-10 rounded-full bg-[#027ea1] flex items-center justify-center mx-auto mb-1 md:mb-2">
                 <svg className="w-3 h-3 md:w-4 md:h-4 text-[#21313c]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
@@ -913,7 +913,7 @@ export default function AlumniPage() {
               <a
                 key={social.name}
                 href="#"
-                className="w-7 h-7 md:w-9 md:h-9 rounded-full bg-white/10 flex items-center justify-center hover:bg-[#efc04b] hover:text-[#21313c] transition-colors group"
+                className="w-7 h-7 md:w-9 md:h-9 rounded-full bg-white/10 flex items-center justify-center hover:bg-[#027ea1] hover:text-white transition-colors group"
                 aria-label={social.name}
               >
                 <svg className="w-3 h-3 md:w-4 md:h-4 text-white group-hover:text-[#21313c]" viewBox="0 0 24 24" fill="currentColor">

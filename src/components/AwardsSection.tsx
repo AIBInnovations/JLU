@@ -25,38 +25,38 @@ export const AwardsSection = () => {
 
   const awards = [
     {
-      image: '/a1.jpeg',
+      image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/a1.jpeg',
       title: '4th in MP, 53rd in India — India Today Rankings 2025',
       description: 'Jagran Lakecity University has secured the 4th position in Madhya Pradesh and 53rd position in India in the India Today Best University Rankings 2025. This achievement reflects our continued commitment to academic excellence, innovative teaching practices, and holistic student development.',
       year: '2025',
       center: true,
     },
     {
-      image: '/a2.jpeg',
+      image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/a2.jpeg',
       title: 'Top Rankings — The Week & India Today 2025',
       description: 'The Faculty of Media & Social Sciences was ranked 18th in India Overall (Govt + Private) and 14th among Private Institutions by The Week 2025, and 15th among Private Institutions by India Today 2025 and the top 10 highest scoring Institutions (Established after 2000). The Faculty of Law ranked 39th in India (Govt + Private Law Colleges) and 30th amongst Private Law Colleges by The Week 2025. These rankings are more than numbers \u2014 they\'re milestones in a journey built on passion, purpose, and perseverance.',
       year: '2025',
     },
     {
-      image: '/a3.jpeg',
+      image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/a3.jpeg',
       title: 'No. 1 Private Multidisciplinary University — Education World',
       description: 'Jagran Lakecity University, Bhopal has been ranked No. 1 in the Education World India Higher Education Rankings 2025-26 in India under the category Private Multidisciplinary Universities.',
       year: '2025-26',
     },
     {
-      image: '/a4.jpeg',
+      image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/a4.jpeg',
       title: 'FICCI Higher Education Summit 2025 — Key Speaker',
       description: 'Mr. Abhishek Mohan Gupta, Pro Chancellor, Jagran Lakecity University, was invited as a Key Speaker at the 20th FICCI Higher Education Summit 2025, held on October 6\u20137, 2025, in New Delhi. He shared valuable insights on shaping globally competitive universities and creating impactful learning ecosystems.',
       year: '2025',
     },
     {
-      image: '/a5.jpeg',
+      image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/a5.jpeg',
       title: 'IRM International Affiliation — First in Central India',
       description: 'Jagran Lakecity University has become the first university in Central India to be awarded the Certificate of International Affiliation by the Institute of Risk Management (IRM) India Affiliate. This landmark collaboration integrates IRM\'s globally recognised Enterprise Risk Management (ERM) qualifications into the university\'s curriculum, empowering students with the foresight, strategic thinking, and resilience required to navigate an increasingly complex and uncertain world.',
       year: '2025',
     },
     {
-      image: '/a6.jpeg',
+      image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/a6.jpeg',
       title: 'MP Excellence Award 2025 — Proud Sponsor',
       description: 'Jagran Lakecity University was the proud sponsor for the MP Excellence Award 2025 held on 26th October, 2025 at Minto Hall, Bhopal, to honor individuals and groups for their achievements in various fields.',
       year: '2025',
@@ -198,29 +198,24 @@ export const AwardsSection = () => {
             >
               RECOGNITION
             </p>
-            <h2
-              style={{
-                fontSize: isMobile ? 'clamp(2rem, 8vw, 2.5rem)' : 'clamp(2.5rem, 5vw, 4.5rem)',
-                fontWeight: 600,
-                color: '#21313c',
-                textAlign: 'center',
-                lineHeight: 1,
-                padding: '0 1rem',
-              }}
+            <h1
+              className="text-[#21313c] text-3xl md:text-4xl lg:text-5xl text-center"
+              style={{ fontWeight: 600, lineHeight: 1.1, padding: '0 1rem' }}
             >
               Awards & Achievements
-            </h2>
+            </h1>
             <p
               style={{
                 color: '#666',
-                fontSize: isMobile ? '1.125rem' : 'clamp(1.25rem, 2vw, 1.75rem)',
+                fontSize: isMobile ? '1rem' : 'clamp(1.15rem, 1.8vw, 1.5rem)',
                 textAlign: 'center',
                 marginTop: isMobile ? '1rem' : '2rem',
                 marginLeft: 'auto',
                 marginRight: 'auto',
                 maxWidth: '1000px',
                 padding: '0 1rem',
-                lineHeight: 1.8,
+                lineHeight: 1.7,
+                fontWeight: 400,
               }}
             >
               Jagran Lakecity University continues to earn accolades across national and international platforms. Recognized globally.

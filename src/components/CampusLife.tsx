@@ -30,7 +30,7 @@ const staggerItem = {
 
 // ─── Student Council 2025 Data ───
 const councilLeaders = [
-  { role: 'Champion', name: 'Ms. Oshel Sachdeva', program: 'MBA AD & PR', image: '/clubs/oshel-sachdeva.jpg' },
+  { role: 'Champion', name: 'Ms. Oshel Sachdeva', program: 'MBA AD & PR', image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/campus%20life%20/champion%20oshel%20sachdeva.jpeg' },
   { role: 'Co-Champion', name: 'Ms. Areeba Khan', program: 'BA Hons. Psychology', image: '' },
   { role: 'Co-Champion', name: 'Ms. Sejal Patel', program: 'BBA', image: '' },
 ];
@@ -77,70 +77,70 @@ const studentClubs = [
     description: 'Competitive sports participation, skill development, and recreational fellowship through various athletic activities and outdoor adventures.',
     icon: 'sports',
     color: '#027ea1',
-    image: '/clubs/sports-new.jpg', logo: '/logo/sports-adventure.png',
+    image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/campus%20life%20/sports%20and%20adventure%20club.JPG', logo: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/logo/sports-adventure.png',
   },
   {
     name: 'Photography Club',
     description: 'Explore diverse photographic techniques through photo excursions and workshops, open to all skill levels.',
     icon: 'camera',
     color: '#21313c',
-    image: '/clubs/photography-new.jpg', logo: '/logo/photography.png',
+    image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/campus%20life%20/photography.JPG', logo: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/logo/photography.png',
   },
   {
     name: 'Music Club',
     description: 'Jam sessions, concerts, open mics, instrument workshops, and collaborative opportunities for all music enthusiasts.',
     icon: 'music',
     color: '#6B4C9A',
-    image: '/clubs/music-new.jpg', logo: '/logo/cultural.png',
+    image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/clubs/music-new.jpg', logo: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/logo/cultural.png',
   },
   {
     name: 'Dance Club',
     description: 'Ballroom, salsa, hip hop, contemporary, and folk dance styles with performances, competitions, and festival opportunities.',
     icon: 'dance',
     color: '#C4532D',
-    image: '/clubs/dance-new.jpg', logo: '/logo/cultural.png',
+    image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/campus%20life%20/dance%20club.JPG', logo: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/logo/cultural.png',
   },
   {
     name: 'Literary Club',
     description: 'Book discussions, poetry reading & writing, short story creation, and literary competitions to develop writing skills.',
     icon: 'book',
     color: '#1A5276',
-    image: '/pro1.jpg', logo: '/logo/editorial-board.png',
+    image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/pro1.jpg', logo: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/logo/editorial-board.png',
   },
   {
     name: 'Dramatics Club',
     description: 'Monthly performances including stage plays, road plays, mime acts, and role plays — with a vision of "Theatre in Unlikely Spaces."',
     icon: 'theater',
     color: '#8B0000',
-    image: '/JLu%20events/photos/Lehar/IMG_8971.JPG', logo: '/logo/cultural.png',
+    image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/JLu%20events/photos/Lehar/IMG_8971.JPG', logo: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/logo/cultural.png',
   },
   {
     name: 'MUN & Debating Society',
     description: 'Parliamentary debate training, research skills, and Model UN participation to develop public speaking and awareness of current events.',
     icon: 'debate',
     color: '#2C3E50',
-    image: '/clubs/mun-new.jpg', logo: '/logo/mun-debating.png',
+    image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/campus%20life%20/mun%26debating%20club.JPG', logo: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/logo/mun-debating.png',
   },
   {
     name: 'Community Service Club',
     description: 'Social wellbeing, volunteering, and community outreach initiatives focused on creating positive social change.',
     icon: 'community',
     color: '#196F3D',
-    image: '/clubs/community-new.jpg', logo: '/logo/community-service.png',
+    image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/campus%20life%20/communit%20service%20club.JPG', logo: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/logo/community-service.png',
   },
   {
     name: 'Start-up & Entrepreneurship Club',
     description: 'Business development mentorship, potential funding through JLU\'s innovation ecosystem, and networking opportunities.',
     icon: 'startup',
     color: '#D4AC0D',
-    image: '/clubs/entrepreneurship-new.jpg', logo: '/logo/industry-entrepreneurship.png',
+    image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/campus%20life%20/industry%20and%20ent%20club.JPG', logo: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/logo/industry-entrepreneurship.png',
   },
   {
     name: 'Placement & Industry Interaction Club',
     description: 'Bridges academia and industry through skill workshops, placement discussions, and professional development training.',
     icon: 'briefcase',
     color: '#34495E',
-    image: '/campus/gallery-11.jpg', logo: '/logo/student-service-cell.png',
+    image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/campus/gallery-11.jpg', logo: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/logo/student-service-cell.png',
   },
 ];
 
@@ -150,21 +150,21 @@ const achievements = [
     title: '5th International Mediation Competition — Runner-Up',
     description: 'Preesha Vaswani, Suhani Jain, and Basharat Ali Zaidi from the Faculty of Law secured the Runner-Up position at the 5th International Mediation Competition organized by Kerala Law Academy Law College, Thiruvananthapuram. Their outstanding performance, strategic thinking, and dedication reflect the growing excellence of our law students on international platforms.',
     category: 'Law',
-    image: '/achievements-mediation.jpeg',
+    image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/achievements-mediation.jpeg',
     objectPosition: '50% 20%',
   },
   {
     title: 'IMARC 2026 — Research Paper at IIM Shillong',
     description: 'Kushagra Sahai got the opportunity to present a research paper at IMARC 2026, the 5th International Marketing Conference hosted by IIM Shillong, engaging with leading academicians, researchers, and industry experts from across the globe. Under the guidance of Dr. Rushit Dubal, Aparna Jha, and Dr. Shruti Sinha, this milestone reflects academic excellence and the confidence to contribute meaningful ideas on prestigious platforms.',
     category: 'Research',
-    image: '/achievements-imarc.jpeg',
+    image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/achievements-imarc.jpeg',
     objectPosition: '30% 20%',
   },
   {
     title: 'Khelo MP Youth Games — Silver Medal in Kayak & Canoeing',
     description: 'Priyanshu Manjhi, student of BPES, won the Silver Medal in Kayak & Canoeing at the Khelo MP Youth Games held in Bhopal. His dedication and sporting spirit make us immensely proud.',
     category: 'Sports',
-    image: '/achievements-kayak.png',
+    image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/achievements-kayak.png',
   },
 ];
 
@@ -403,7 +403,7 @@ const CampusLife = () => {
         >
           <motion.div className="absolute inset-0" style={{ y }}>
             <Image
-              src="/campus/campus-life-hero.jpg"
+              src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/campus%20life%20/Landng%20photo.JPG"
               alt="Campus Life at JLU"
               fill
               className="object-cover scale-110"
@@ -427,14 +427,14 @@ const CampusLife = () => {
           <motion.h2
             className="text-white font-semibold leading-tight mb-3 sm:mb-4 md:mb-5 text-2xl sm:text-3xl md:text-[clamp(1.5rem,3vw,2.5rem)]"
           >
-            Life, <span style={{ fontFamily: "'Times New Roman', serif", fontStyle: 'italic', color: '#f0c14b', textShadow: '2px 2px 4px rgba(0,0,0,0.5)' }}>Between</span> Everything
+            Life, <span style={{ fontFamily: "'Times New Roman', serif", fontStyle: 'italic', color: '#027ea1', textShadow: '2px 2px 4px rgba(0,0,0,0.5)' }}>Between</span> Everything
           </motion.h2>
           <motion.p
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.8, delay: 0.8 }}
-            className="text-white leading-relaxed text-xl sm:text-2xl md:text-[clamp(1.25rem,2.5vw,2rem)]"
-            style={{ fontWeight: 400 }}
+            className="text-white"
+            style={{ fontWeight: 600, lineHeight: 1.5, fontSize: 'clamp(1rem, 2vw, 1.5rem)' }}
           >
             Campus life at JLU lives in the in-between.<br />
             Between classes and conversations.<br />
@@ -476,7 +476,7 @@ const CampusLife = () => {
           <div ref={councilImgRef} className="relative w-full h-[300px] md:h-[420px] rounded-2xl overflow-hidden mb-16" style={isMobile ? { height: '200px', marginBottom: '24px' } : {}}>
             <motion.div className="absolute inset-0" style={{ y: councilImgY }}>
               <Image
-                src="/clubs/student-council.jpg"
+                src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/campus%20life%20/syudent%20council.JPG"
                 alt="Student Council at JLU"
                 fill
                 className="object-cover scale-110"
@@ -495,7 +495,7 @@ const CampusLife = () => {
               </p>
               <h2
                 className="text-white"
-                style={{ fontWeight: 600, fontSize: isMobile ? '1.4rem' : 'clamp(2rem, 4vw, 3.5rem)', lineHeight: 1.1, letterSpacing: '-0.03em' }}
+                style={{ fontWeight: 600, fontSize: isMobile ? '1.4rem' : 'clamp(2.25rem, 4vw, 3rem)', lineHeight: 1.1, letterSpacing: '-0.03em' }}
               >
                 Student{' '}
                 <span style={{ fontFamily: "'Times New Roman', serif", fontStyle: 'italic', fontWeight: 400 }}>
@@ -687,7 +687,7 @@ const CampusLife = () => {
             </p>
             <h2
               className="text-[#21313c] mb-6"
-              style={{ fontWeight: 600, fontSize: isMobile ? '1.4rem' : 'clamp(2rem, 4vw, 3.5rem)', lineHeight: 1.1, letterSpacing: '-0.03em' }}
+              style={{ fontWeight: 600, fontSize: isMobile ? '1.4rem' : 'clamp(2.25rem, 4vw, 3rem)', lineHeight: 1.1, letterSpacing: '-0.03em' }}
             >
               Student{' '}
               <span style={{ fontFamily: "'Times New Roman', serif", fontStyle: 'italic', fontWeight: 400 }}>
@@ -831,7 +831,7 @@ const CampusLife = () => {
             </p>
             <h2
               className="text-[#21313c] mb-6"
-              style={{ fontWeight: 600, fontSize: isMobile ? '1.4rem' : 'clamp(2rem, 4vw, 3.5rem)', lineHeight: 1.1, letterSpacing: '-0.03em' }}
+              style={{ fontWeight: 600, fontSize: isMobile ? '1.4rem' : 'clamp(2.25rem, 4vw, 3rem)', lineHeight: 1.1, letterSpacing: '-0.03em' }}
             >
               Student{' '}
               <span style={{ fontFamily: "'Times New Roman', serif", fontStyle: 'italic', fontWeight: 400 }}>
@@ -1087,7 +1087,7 @@ const CampusLife = () => {
       <div id="sports-and-recreation" ref={corpBannerRef} className="relative w-full h-[40vh] md:h-[50vh] overflow-hidden" style={isMobile ? { height: '30vh' } : {}}>
         <motion.div className="absolute inset-0" style={{ y: corpBannerY }}>
           <Image
-            src="/campus/gallery-8.jpg"
+            src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/campus/gallery-8.jpg"
             alt="Corporate Relations"
             fill
             className="object-cover scale-110"
@@ -1110,7 +1110,7 @@ const CampusLife = () => {
               style={{ fontWeight: 600, fontSize: isMobile ? '1.6rem' : 'clamp(2.5rem, 6vw, 5rem)', lineHeight: 1.1, letterSpacing: '-0.03em' }}
             >
               Corporate{' '}
-              <span style={{ fontFamily: "'Times New Roman', serif", fontStyle: 'italic', fontWeight: 400, color: '#f0c14b' }}>
+              <span style={{ fontFamily: "'Times New Roman', serif", fontStyle: 'italic', fontWeight: 400, color: '#027ea1' }}>
                 Relations
               </span>
             </h2>
@@ -1168,7 +1168,7 @@ const CampusLife = () => {
             transition={{ duration: 0.8, ease: customEase }}
             viewport={{ once: true }}
           >
-            {['/campus/smart-classroom.jpg', '/campus/gallery-13.jpg', '/campus/gallery-3.jpg'].map((src, i) => (
+            {['https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/campus/computer%20lab.JPG', 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/campus/gallery-13.jpg', 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/campus/gallery-3.jpg'].map((src, i) => (
               <div key={i} className="relative h-[120px] md:h-[180px] overflow-hidden group" style={isMobile ? { height: '80px' } : {}}>
                 <Image src={src} alt="Corporate" fill className="object-cover group-hover:scale-110 transition-transform duration-700" />
                 <div className="absolute inset-0 bg-[#21313c]/30 group-hover:bg-transparent transition-colors duration-500" />
@@ -1257,7 +1257,7 @@ const CampusLife = () => {
               </p>
               <h2
                 className="text-[#21313c] mb-6"
-                style={{ fontWeight: 600, fontSize: isMobile ? '1.4rem' : 'clamp(2rem, 4vw, 3.5rem)', lineHeight: 1.1, letterSpacing: '-0.03em' }}
+                style={{ fontWeight: 600, fontSize: isMobile ? '1.4rem' : 'clamp(2.25rem, 4vw, 3rem)', lineHeight: 1.1, letterSpacing: '-0.03em' }}
               >
                 IgnitoX —{' '}
                 <span style={{ fontFamily: "'Times New Roman', serif", fontStyle: 'italic', fontWeight: 400 }}>
@@ -1298,7 +1298,7 @@ const CampusLife = () => {
               {/* Lab/Innovation image */}
               <div className="relative w-full h-[220px] md:h-[280px] rounded-2xl overflow-hidden mb-6 group" style={isMobile ? { height: '160px', marginBottom: '12px' } : {}}>
                 <Image
-                  src="/campus/gallery-12.jpg"
+                  src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/campus/gallery-12.jpg"
                   alt="IgnitoX Innovation Hub"
                   fill
                   className="object-cover group-hover:scale-105 transition-transform duration-700"
@@ -1352,7 +1352,7 @@ const CampusLife = () => {
       <div id="health-and-wellness" ref={ignitingRef} className="relative w-full h-[50vh] md:h-[60vh] overflow-hidden" style={isMobile ? { height: '35vh' } : {}}>
         <motion.div className="absolute inset-0" style={{ y: ignitingY }}>
           <Image
-            src="/campus/gallery-10.jpg"
+            src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/campus/gallery-10.jpg"
             alt="Igniting Minds Lecture Series"
             fill
             className="object-cover scale-110"
@@ -1395,7 +1395,7 @@ const CampusLife = () => {
           >
             <h2
               className="text-[#21313c] mb-6"
-              style={{ fontWeight: 600, fontSize: isMobile ? '1.4rem' : 'clamp(2rem, 4vw, 3.5rem)', lineHeight: 1.1, letterSpacing: '-0.03em' }}
+              style={{ fontWeight: 600, fontSize: isMobile ? '1.4rem' : 'clamp(2.25rem, 4vw, 3rem)', lineHeight: 1.1, letterSpacing: '-0.03em' }}
             >
               Igniting Minds{' '}
               <span style={{ fontFamily: "'Times New Roman', serif", fontStyle: 'italic', fontWeight: 400 }}>
@@ -1460,7 +1460,7 @@ const CampusLife = () => {
             transition={{ duration: 0.8, ease: customEase }}
             viewport={{ once: true }}
           >
-            {['/campus/gallery-9.jpg', '/campus/gallery-4.jpg', '/campus/gallery-7.jpg', '/campus/gallery-19.jpg'].map((src, i) => (
+            {['https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/campus/gallery-9.jpg', 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/campus/gallery-4.jpg', 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/campus/gallery-7.jpg', 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/campus/gallery-19.jpg'].map((src, i) => (
               <div key={i} className="relative h-[100px] md:h-[160px] overflow-hidden group" style={isMobile ? { height: '60px' } : {}}>
                 <Image src={src} alt="Campus" fill className="object-cover group-hover:scale-110 transition-transform duration-700" />
               </div>
@@ -1480,7 +1480,7 @@ const CampusLife = () => {
         >
           <motion.div className="absolute inset-0" style={{ scale: communityScale }}>
             <Image
-              src="/campus/hero-campus.jpg"
+              src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/campus/hero-campus.jpg"
               alt="Campus Community"
               fill
               className="object-cover"

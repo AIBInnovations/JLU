@@ -10,13 +10,13 @@ const customEase: [number, number, number, number] = [0.22, 1, 0.36, 1];
 const overviewData = [
   {
     title: 'PROMOTING BODY',
-    image: '/jlu-mgt-award.jpg',
+    image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/jlu-mgt-award.jpg',
     description:
       'JLU is promoted by a group with deep roots in media, communication and public engagement. Their vision has always been to build institutions that are meaningful, dynamic and connected to society\'s evolving needs. This ethos continues to guide the university\'s purpose, priorities and partnerships.',
   },
   {
     title: 'JLU AT A GLANCE',
-    image: '/interdisciplinary/campus-drone.jpg',
+    image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/interdisciplinary/campus-drone.jpg',
     description:
       'Jagran Lakecity University is a multidisciplinary private university offering undergraduate, postgraduate, doctoral and skill based programs across diverse fields. With students from across India and abroad, JLU brings together academic rigour, global exposure and a vibrant campus life to create a learning experience that is engaging, relevant and forward looking.',
   },
@@ -58,7 +58,7 @@ const ParallaxCard = ({ item, index, onReadMore }: { item: typeof overviewData[0
       {/* Content */}
       <div className={`absolute inset-0 flex flex-col ${index === 0 ? 'justify-start pt-10 sm:pt-14 md:pt-16' : 'justify-end'} p-5 sm:p-8 md:p-10`}>
         <span
-          className="text-white/60 uppercase tracking-widest mb-2 sm:mb-3 md:mb-4 text-xl md:text-2xl font-bold"
+          className="text-white uppercase tracking-widest mb-2 sm:mb-3 md:mb-4 text-xl md:text-2xl font-bold"
           style={{ letterSpacing: '0.2em' }}
         >
           {String(index + 1).padStart(2, '0')} — {item.title}
@@ -106,23 +106,22 @@ const InstitutionalOverview = () => {
             >
               Overview
             </span>
-            <h2
-              className="text-[#21313c] text-2xl sm:text-3xl md:text-[clamp(2.5rem,5vw,4rem)]"
+            <h1
+              className="text-[#21313c] text-3xl md:text-4xl lg:text-5xl"
               style={{
                 fontWeight: 600,
-                lineHeight: 1,
-                letterSpacing: '-0.02em',
+                lineHeight: 1.1,
               }}
             >
               Institutional{' '}
               <span style={{ fontFamily: "'Times New Roman', serif", fontStyle: 'italic' }}>
                 Overview
               </span>
-            </h2>
+            </h1>
           </div>
           <p
-            className="text-[#666] text-lg sm:text-xl md:text-[clamp(1.25rem,2vw,1.75rem)] max-w-full md:max-w-[500px]"
-            style={{ lineHeight: 1.8 }}
+            className="text-[#666] text-sm sm:text-base md:text-[clamp(1.15rem,1.8vw,1.5rem)] max-w-full md:max-w-[500px] text-right ml-auto mt-6"
+            style={{ lineHeight: 1.7, fontWeight: 400 }}
           >
             Understanding the foundation and scope of Jagran Lakecity University.
           </p>

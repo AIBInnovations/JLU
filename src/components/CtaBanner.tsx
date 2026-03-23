@@ -13,15 +13,15 @@ export const CtaBanner = () => {
             >
               ADMISSIONS OPEN 2026-27
             </p>
-            <h2
+            <h1
               className="text-3xl md:text-4xl lg:text-5xl text-[#21313c] mb-4"
-              style={{ fontWeight: 700, lineHeight: 1.15 }}
+              style={{ fontWeight: 600, lineHeight: 1.1 }}
             >
               Your Future Starts{' '}
-              <span style={{ fontFamily: "'Times New Roman', serif", fontStyle: 'italic', fontWeight: 400 }}>
+              <span style={{ fontFamily: "'Times New Roman', serif", fontStyle: 'italic' }}>
                 Here
               </span>
-            </h2>
+            </h1>
             <p className="text-[#21313c]/70 text-base md:text-lg leading-relaxed">
               Join 2,500+ students from 27 states and 8 countries at Central India&apos;s only QS Diamond-rated university.
               50+ programs, 42+ global partnerships, and 80%+ placement rate.
@@ -32,7 +32,7 @@ export const CtaBanner = () => {
           <div className="flex flex-col sm:flex-row gap-3">
             <a
               href="/apply"
-              className="bg-[#027ea1] text-white px-8 py-3.5 rounded-lg font-semibold text-sm hover:bg-[#026a88] transition-all text-center"
+              className="bg-[#027ea1] text-white px-8 py-3.5 rounded-lg font-bold text-sm hover:bg-[#026a88] transition-all text-center"
             >
               Apply Now
             </a>
@@ -41,7 +41,7 @@ export const CtaBanner = () => {
               download
               target="_blank"
               rel="noopener noreferrer"
-              className="border-2 border-[#027ea1] text-[#027ea1] px-8 py-3.5 rounded-lg font-semibold text-sm hover:bg-[#027ea1] hover:text-white transition-all text-center"
+              className="border-2 border-[#027ea1] text-[#027ea1] px-8 py-3.5 rounded-lg font-bold text-sm hover:bg-[#027ea1] hover:text-white transition-all text-center"
             >
               Download Brochure
             </a>

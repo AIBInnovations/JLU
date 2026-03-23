@@ -78,22 +78,22 @@ export const VoiceOfJlu = () => {
   };
 
   const voices = [
-    { name: 'Faiz Siddiqui', title: 'B.Tech', video: '/voices%20of%20jlu/Faiz%20siddiui%20reel.mp4', thumbnail: '' },
-    { name: 'Faiza Khan', title: 'BCA (Data Science) 4th Sem', video: '/voices%20of%20jlu/faiza%20reel%20final.mp4', thumbnail: '/thumbnails/voice-1.jpg' },
-    { name: 'Khwahish Ramani', title: 'Bachelor of Management 2022-2025', video: '/voices%20of%20jlu/cdc%20reel.mp4', thumbnail: '/thumbnails/voice-2.jpg' },
-    { name: 'Jamila Johaer & Aaminah Azhar', title: 'Diploma in Food Production', video: '/voices%20of%20jlu/hospitality%20w%20bgm.mp4', thumbnail: '/thumbnails/voice-4.jpg' },
-    { name: 'Tanya Sharma', title: 'B.Des (User Experience) 2021-2025', video: '/voices%20of%20jlu/tanya%20sharma%20cdc%20reel.mp4', thumbnail: '/thumbnails/voice-5.jpg' },
-    { name: 'Shubham Rawat', title: 'FALW-JSLW (LLM) 2024-2025', video: '/voices%20of%20jlu/shubham%20rawat%20cdc%20reel.mp4', thumbnail: '/thumbnails/voice-6.jpg' },
+    { name: 'Faiz Siddiqui', title: 'B.Tech', video: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/voices%20of%20jlu/Faiz%20siddiui%20reel.mp4', thumbnail: '' },
+    { name: 'Faiza Khan', title: 'BCA (Data Science) 4th Sem', video: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/voices%20of%20jlu/faiza%20reel%20final.mp4', thumbnail: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/thumbnails/voice-1.jpg' },
+    { name: 'Khwahish Ramani', title: 'Bachelor of Management 2022-2025', video: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/voices%20of%20jlu/cdc%20reel.mp4', thumbnail: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/thumbnails/voice-2.jpg' },
+    { name: 'Jamila Johaer & Aaminah Azhar', title: 'Diploma in Food Production', video: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/voices%20of%20jlu/hospitality%20w%20bgm.mp4', thumbnail: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/thumbnails/voice-4.jpg' },
+    { name: 'Tanya Sharma', title: 'B.Des (User Experience) 2021-2025', video: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/voices%20of%20jlu/tanya%20sharma%20cdc%20reel.mp4', thumbnail: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/thumbnails/voice-5.jpg' },
+    { name: 'Shubham Rawat', title: 'FALW-JSLW (LLM) 2024-2025', video: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/voices%20of%20jlu/shubham%20rawat%20cdc%20reel.mp4', thumbnail: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/thumbnails/voice-6.jpg' },
   ];
 
   const faculty = [
-    { image: '/leadership/chancellor.jpg', name: 'Mr. Hari Mohan Gupta', title: 'Chancellor', linkedin: 'https://in.linkedin.com/in/hari-mohan-gupta-318960153' },
-    { image: '/leadership/pro-chancellor.jpg', name: 'Mr. Abhishek Mohan Gupta', title: 'Pro Chancellor', linkedin: 'https://in.linkedin.com/in/abhishekmgupta' },
-    { image: '/leadership/vice-chancellor.webp', name: 'Prof. Dr. Nilanjan Chattopadhyay', title: 'Vice Chancellor', linkedin: 'https://www.linkedin.com/in/nchattopadhyay/' },
-    { image: '/leadership/registrar.jpg', name: 'Mr. Pankaj Das', title: 'Registrar', linkedin: '' },
-    { image: '/leadership/cfo.jpg', name: 'CA Archana Jain', title: 'Chief Finance and Accounts Officer', linkedin: 'https://www.linkedin.com/in/archana-jain-33189397/' },
-    { image: '/leadership/pvc-student-welfare.jpg', name: 'Dr. Vivek Khare', title: 'Pro Vice Chancellor (Student Welfare)', linkedin: 'https://in.linkedin.com/in/dr-vivek-khare-8666a61a' },
-    { image: '/leadership/pvc-science-tech.png', name: 'Dr. Prasheel Suryawanshi', title: 'Pro Vice Chancellor (Science and Technology)', linkedin: 'https://www.linkedin.com/in/prasheel-suryawanshi-8b368b21/' },
+    { image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/leadership/chancellor.jpg', name: 'Mr. Hari Mohan Gupta', title: 'Chancellor', linkedin: 'https://in.linkedin.com/in/hari-mohan-gupta-318960153' },
+    { image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/leadership/pro-chancellor.jpg', name: 'Mr. Abhishek Mohan Gupta', title: 'Pro Chancellor', linkedin: 'https://in.linkedin.com/in/abhishekmgupta' },
+    { image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/leadership/vice-chancellor.webp', name: 'Prof. Dr. Nilanjan Chattopadhyay', title: 'Vice Chancellor', linkedin: 'https://www.linkedin.com/in/nchattopadhyay/' },
+    { image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/leadership/registrar.jpg', name: 'Mr. Pankaj Das', title: 'Registrar', linkedin: '' },
+    { image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/leadership/cfo.jpg', name: 'CA Archana Jain', title: 'Chief Finance and Accounts Officer', linkedin: 'https://www.linkedin.com/in/archana-jain-33189397/' },
+    { image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/leadership/pvc-student-welfare.jpg', name: 'Dr. Vivek Khare', title: 'Pro Vice Chancellor (Student Welfare)', linkedin: 'https://in.linkedin.com/in/dr-vivek-khare-8666a61a' },
+    { image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/leadership/pvc-science-tech.png', name: 'Dr. Prasheel Suryawanshi', title: 'Pro Vice Chancellor (Science and Technology)', linkedin: 'https://www.linkedin.com/in/prasheel-suryawanshi-8b368b21/' },
   ];
 
   return (
@@ -115,23 +115,18 @@ export const VoiceOfJlu = () => {
           >
             Student Testimonials
           </span>
-          <h2
-            className="text-[#21313c]"
-            style={{
-              fontSize: 'clamp(3rem, 6vw, 5rem)',
-              fontWeight: 600,
-              lineHeight: 1.1,
-              letterSpacing: '-0.03em',
-            }}
+          <h1
+            className="text-[#21313c] text-3xl md:text-4xl lg:text-5xl"
+            style={{ fontWeight: 600, lineHeight: 1.1 }}
           >
             Voices of{' '}
-            <span style={{ fontFamily: "'Times New Roman', serif", fontStyle: 'italic', fontWeight: 400 }}>JLU</span>
-          </h2>
+            <span style={{ fontFamily: "'Times New Roman', serif", fontStyle: 'italic' }}>JLU</span>
+          </h1>
         </div>
 
         {/* Description - left and right split */}
         <div className="text-center max-w-[1000px] mx-auto">
-          <p className="text-lg sm:text-xl md:text-[clamp(1.25rem,2vw,1.75rem)]" style={{ color: '#666', lineHeight: 1.8 }}>
+          <p className="text-sm sm:text-base md:text-[clamp(1.15rem,1.8vw,1.5rem)]" style={{ color: '#666', lineHeight: 1.7, fontWeight: 400 }}>
             Distinct individuals. Diverse journeys. One shared ecosystem. Every person at JLU contributes to its character. Together, these voices create an environment that feels open, textured, and continually in motion.
           </p>
         </div>
@@ -369,13 +364,13 @@ export const VoiceOfJlu = () => {
           >
             MEET OUR TEAM
           </span>
-          <h2
-            className="text-3xl md:text-5xl lg:text-6xl text-[#21313c]"
-            style={{ fontWeight: 600, lineHeight: 1.1, letterSpacing: '-0.03em' }}
+          <h1
+            className="text-3xl md:text-4xl lg:text-5xl text-[#21313c]"
+            style={{ fontWeight: 600, lineHeight: 1.1 }}
           >
             Leadership{' '}
-            <span style={{ fontFamily: "'Times New Roman', serif", fontStyle: 'italic', fontWeight: 400 }}>Structure</span>
-          </h2>
+            <span style={{ fontFamily: "'Times New Roman', serif", fontStyle: 'italic', fontWeight: 700 }}>Structure</span>
+          </h1>
         </motion.div>
 
         <div ref={leadershipScrollRef}>
@@ -433,7 +428,7 @@ export const VoiceOfJlu = () => {
                   </div>
                   <div className="mt-3 md:mt-5 flex items-start justify-between">
                     <div>
-                      <h3 className="text-[#21313c] font-semibold text-sm md:text-lg lg:text-xl leading-tight">
+                      <h3 className="text-[#21313c] font-bold text-sm md:text-lg lg:text-xl leading-tight">
                         {member.name}
                       </h3>
                       <p className="text-[#999] text-xs md:text-sm mt-1" style={{ letterSpacing: '0.02em' }}>
@@ -505,7 +500,7 @@ export const VoiceOfJlu = () => {
                   </div>
                   <div className="mt-3 md:mt-5 flex items-start justify-between">
                     <div>
-                      <h3 className="text-[#21313c] font-semibold text-sm md:text-base lg:text-lg leading-tight">
+                      <h3 className="text-[#21313c] font-bold text-sm md:text-base lg:text-lg leading-tight">
                         {member.name}
                       </h3>
                       <p className="text-[#999] text-xs md:text-sm mt-1" style={{ letterSpacing: '0.02em' }}>

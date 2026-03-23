@@ -1,12 +1,15 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
+import { motion, useScroll, useTransform } from 'framer-motion';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { useIsMobile } from '../hooks/useIsMobile';
 import { PageEventsSection } from './PageEventsSection';
 
 gsap.registerPlugin(ScrollTrigger);
+
+const customEase: [number, number, number, number] = [0.22, 1, 0.36, 1];
 
 interface Program {
   name: string;
@@ -52,42 +55,42 @@ const defaultFacultyMembers: FacultyMember[] = [
     name: 'Dr. Rajesh Kumar',
     designation: 'Professor & Head',
     qualification: 'Ph.D., M.Tech',
-    image: '/posthero1.jpg',
+    image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/posthero1.jpg',
     specialization: 'Research & Innovation',
   },
   {
     name: 'Dr. Priya Sharma',
     designation: 'Associate Professor',
     qualification: 'Ph.D., MBA',
-    image: '/posthero2.jpg',
+    image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/posthero2.jpg',
     specialization: 'Strategy & Leadership',
   },
   {
     name: 'Prof. Amit Verma',
     designation: 'Assistant Professor',
     qualification: 'M.Tech, B.Tech',
-    image: '/posthero3.jpg',
+    image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/posthero3.jpg',
     specialization: 'Technology & Systems',
   },
   {
     name: 'Dr. Sneha Patel',
     designation: 'Associate Professor',
     qualification: 'Ph.D., M.Sc',
-    image: '/posthero1.jpg',
+    image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/posthero1.jpg',
     specialization: 'Analytics & Data Science',
   },
   {
     name: 'Prof. Vikram Singh',
     designation: 'Assistant Professor',
     qualification: 'MBA, B.Com',
-    image: '/posthero2.jpg',
+    image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/posthero2.jpg',
     specialization: 'Finance & Economics',
   },
   {
     name: 'Dr. Ananya Gupta',
     designation: 'Associate Professor',
     qualification: 'Ph.D., M.A.',
-    image: '/posthero3.jpg',
+    image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/posthero3.jpg',
     specialization: 'Communication & Media',
   },
 ];
@@ -112,6 +115,12 @@ export const FacultyPage = ({
   void _features;
   const heroRef = useRef<HTMLDivElement>(null);
   const heroImageRef = useRef<HTMLDivElement>(null);
+  const { scrollYProgress: heroScrollProgress } = useScroll({
+    target: heroRef,
+    offset: ['start start', 'end start'],
+  });
+  const heroY = useTransform(heroScrollProgress, [0, 1], ['0%', '30%']);
+  const heroOpacity = useTransform(heroScrollProgress, [0, 0.5], [1, 0]);
   const statsRef = useRef<HTMLDivElement>(null);
   const programsRef = useRef<HTMLDivElement>(null);
   const aboutTextRef = useRef<HTMLDivElement>(null);
@@ -133,20 +142,7 @@ export const FacultyPage = ({
 
     const triggers: ScrollTrigger[] = [];
 
-    // Hero parallax effect
-    if (heroImageRef.current) {
-      const parallax = gsap.to(heroImageRef.current, {
-        yPercent: 30,
-        ease: 'none',
-        scrollTrigger: {
-          trigger: heroRef.current,
-          start: 'top top',
-          end: 'bottom top',
-          scrub: true,
-        },
-      });
-      if (parallax.scrollTrigger) triggers.push(parallax.scrollTrigger);
-    }
+    // Hero parallax now handled by Framer Motion
 
     // Stats animation
     if (statsRef.current) {
@@ -298,83 +294,67 @@ export const FacultyPage = ({
   const postgraduatePrograms = programs.filter((p) => p.type === 'postgraduate');
   const researchPrograms = programs.filter((p) => p.type === 'research');
 
-  if (!mounted) {
-    return <div className="min-h-screen bg-[#f6f7f0]" />;
-  }
-
   return (
     <div className="bg-[#f6f7f0]">
       {/* Hero Section */}
-      <section
-        ref={heroRef}
-        className="relative min-h-screen overflow-hidden"
-      >
-        {/* Background Image with Parallax */}
-        <div
-          ref={heroImageRef}
-          className="absolute inset-0 w-full h-[130%]"
-          style={{ top: '-15%' }}
+      <div ref={heroRef} className="relative w-screen m-0 p-0 overflow-hidden">
+        <motion.div
+          className="relative w-screen min-h-[100svh] md:min-h-screen"
+          initial={{ clipPath: 'inset(100% 0% 0% 0%)' }}
+          animate={{ clipPath: 'inset(0% 0% 0% 0%)' }}
+          transition={{ duration: 2, ease: customEase }}
         >
-          <img
-            src={heroImage}
-            alt={name}
-            className="w-full h-full object-cover"
-          />
-          <div
-            className="absolute inset-0"
-            style={{
-              background: `linear-gradient(to bottom, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0.6) 100%)`,
-            }}
-          />
-        </div>
+          <motion.div className="absolute inset-0" style={{ y: heroY }}>
+            <img
+              src={heroImage}
+              alt={name}
+              className="w-full h-full object-cover scale-110"
+            />
+          </motion.div>
+          <motion.div className="absolute inset-0 bg-black/30" style={{ opacity: heroOpacity }} />
+        </motion.div>
 
-        {/* Hero Content */}
-        <div className="relative z-10 h-full flex flex-col justify-end pb-20 px-4 md:px-16 xl:px-24">
-          <p
+        {/* Hero Text - Top Left */}
+        <motion.div
+          initial={{ opacity: 0, y: -30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1, delay: 0.5, ease: customEase }}
+          className="absolute top-0 left-0 px-4 pt-28 sm:pt-32 max-w-[90%] sm:px-6 sm:max-w-[85%] md:pl-10 md:pt-[120px] md:max-w-[800px] md:pr-0"
+        >
+          <motion.p
             className="text-[0.65rem] md:text-sm mb-2 md:mb-4"
             style={{ color: accentColor, letterSpacing: '0.2em', textTransform: 'uppercase' }}
           >
             FACULTY
-          </p>
-          <h1
-            className="text-white mb-4 md:mb-6"
+          </motion.p>
+          <motion.h1
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.8, delay: 0.8 }}
+            className="text-white font-semibold leading-tight mb-3 sm:mb-4 md:mb-5 text-xl sm:text-2xl md:text-[clamp(1.5rem,3vw,2.5rem)]"
+          >
+            {tagline}
+          </motion.h1>
+        </motion.div>
+
+        {/* Large Faculty Name Text - Bottom Left */}
+        <div className="absolute bottom-0 left-0 pl-3 sm:pl-6 md:pl-10 pb-0">
+          <motion.h1
+            initial={{ opacity: 0, y: 100 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1.2, delay: 0.2, ease: customEase }}
+            className="font-light select-none text-[2.5rem] sm:text-[3.5rem] md:text-[clamp(4rem,8vw,8rem)] text-white"
             style={{
-              fontSize: isMobile ? 'clamp(2.5rem, 10vw, 3.5rem)' : 'clamp(3rem, 6vw, 5rem)',
-              fontWeight: 600,
-              lineHeight: 1.05,
+              fontFamily: "system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif",
+              lineHeight: 0.9,
               letterSpacing: '-0.02em',
-              maxWidth: '800px',
+              fontWeight: 300,
             }}
           >
             {name}
-          </h1>
-          <p
-            className="text-white/80 mb-6 md:mb-8"
-            style={{
-              fontSize: isMobile ? '0.85rem' : '1.25rem',
-              maxWidth: '600px',
-              lineHeight: 1.6,
-            }}
-          >
-            {tagline}
-          </p>
-          <div
-            style={{
-              width: '80px',
-              height: '4px',
-              backgroundColor: accentColor,
-            }}
-          />
-
-          {/* Scroll Indicator */}
-          <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2">
-            <span style={{ color: 'rgba(255,255,255,0.6)', fontSize: '0.75rem', letterSpacing: '0.1em' }}>
-              EXPLORE
-            </span>
-            <div className="w-px h-10 bg-white/40 animate-pulse" />
-          </div>
+          </motion.h1>
         </div>
-      </section>
+      </div>
 
       {/* About Section */}
       <section className="py-12 md:py-32 px-4 md:px-16 xl:px-24">
@@ -384,7 +364,7 @@ export const FacultyPage = ({
               <h2
                 className="text-[#21313c] mb-4 md:mb-6"
                 style={{
-                  fontSize: isMobile ? 'clamp(1.5rem, 6vw, 2rem)' : 'clamp(2rem, 4vw, 3rem)',
+                  fontSize: isMobile ? 'clamp(1.5rem, 6vw, 2rem)' : 'clamp(2.25rem, 4vw, 3rem)',
                   fontWeight: 600,
                   lineHeight: 1.2,
                   letterSpacing: '-0.02em',
@@ -591,7 +571,7 @@ export const FacultyPage = ({
           <h2
             className="text-[#21313c] mb-8 md:mb-12"
             style={{
-              fontSize: isMobile ? 'clamp(1.5rem, 6vw, 2rem)' : 'clamp(2rem, 4vw, 3rem)',
+              fontSize: isMobile ? 'clamp(1.5rem, 6vw, 2rem)' : 'clamp(2.25rem, 4vw, 3rem)',
               fontWeight: 600,
               lineHeight: 1.2,
               letterSpacing: '-0.02em',
@@ -780,7 +760,7 @@ export const FacultyPage = ({
               }}
             >
               <img
-                src="/schools/entrepreneurship-1.jpg"
+                src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/schools/entrepreneurship-1.jpg"
                 alt={partnerships[0] || 'Partner'}
                 className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
               />
@@ -801,7 +781,7 @@ export const FacultyPage = ({
               }}
             >
               <img
-                src="/schools/entrepreneurship-2.jpg"
+                src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/schools/entrepreneurship-2.jpg"
                 alt={partnerships[1] || 'Partner'}
                 className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
               />
@@ -822,7 +802,7 @@ export const FacultyPage = ({
               }}
             >
               <img
-                src="/schools/jlbs-2.jpg"
+                src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/schools/jlbs-2.jpg"
                 alt={partnerships[2] || 'Partner'}
                 className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
               />
@@ -843,7 +823,7 @@ export const FacultyPage = ({
               }}
             >
               <img
-                src="/schools/advertising-1.jpg"
+                src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/schools/advertising-1.jpg"
                 alt={partnerships[3] || 'Partner'}
                 className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
               />

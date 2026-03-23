@@ -12,13 +12,13 @@ gsap.registerPlugin(ScrollTrigger);
 const customEase: [number, number, number, number] = [0.22, 1, 0.36, 1];
 
 const galleryImages = [
-  { id: 1, src: '/interdisciplinary/campus-event.jpg', position: 'top-[10%] left-[5%]', size: 'w-[70px] h-[100px] md:w-[180px] md:h-[260px]', opacity: 0.7 },
-  { id: 2, src: '/interdisciplinary/seminar.jpg', position: 'top-[5%] left-[22%]', size: 'w-[50px] h-[70px] md:w-[130px] md:h-[170px]', opacity: 0.5 },
-  { id: 3, src: '/interdisciplinary/campus-building.jpg', position: '', size: 'w-[120px] h-[170px] md:w-[260px] md:h-[360px]', isCenter: true, opacity: 1 },
-  { id: 4, src: '/interdisciplinary/law.jpg', position: 'top-[8%] right-[18%]', size: 'w-[60px] h-[85px] md:w-[160px] md:h-[220px]', opacity: 0.6 },
-  { id: 5, src: '/interdisciplinary/lab.jpg', position: 'top-[12%] right-[3%]', size: 'w-[45px] h-[65px] md:w-[120px] md:h-[160px]', opacity: 0.4 },
-  { id: 6, src: '/interdisciplinary/classroom.jpg', position: 'bottom-[12%] left-[8%]', size: 'w-[55px] h-[80px] md:w-[150px] md:h-[200px]', opacity: 0.5 },
-  { id: 7, src: '/interdisciplinary/campus-drone.jpg', position: 'bottom-[10%] right-[5%]', size: 'w-[65px] h-[90px] md:w-[170px] md:h-[230px]', opacity: 0.6 },
+  { id: 1, src: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/interdisciplinary/campus-event.jpg', position: 'top-[10%] left-[5%]', size: 'w-[70px] h-[100px] md:w-[180px] md:h-[260px]', opacity: 0.7 },
+  { id: 2, src: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/interdisciplinary/seminar.jpg', position: 'top-[5%] left-[22%]', size: 'w-[50px] h-[70px] md:w-[130px] md:h-[170px]', opacity: 0.5 },
+  { id: 3, src: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/interdisciplinary/campus-building.jpg', position: '', size: 'w-[120px] h-[170px] md:w-[260px] md:h-[360px]', isCenter: true, opacity: 1 },
+  { id: 4, src: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/interdisciplinary/law.jpg', position: 'top-[8%] right-[18%]', size: 'w-[60px] h-[85px] md:w-[160px] md:h-[220px]', opacity: 0.6 },
+  { id: 5, src: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/interdisciplinary/lab.jpg', position: 'top-[12%] right-[3%]', size: 'w-[45px] h-[65px] md:w-[120px] md:h-[160px]', opacity: 0.4 },
+  { id: 6, src: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/interdisciplinary/classroom.jpg', position: 'bottom-[12%] left-[8%]', size: 'w-[55px] h-[80px] md:w-[150px] md:h-[200px]', opacity: 0.5 },
+  { id: 7, src: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/interdisciplinary/campus-drone.jpg', position: 'bottom-[10%] right-[5%]', size: 'w-[65px] h-[90px] md:w-[170px] md:h-[230px]', opacity: 0.6 },
 ];
 
 export default function InterdisciplinaryDegreesPage() {
@@ -135,11 +135,11 @@ export default function InterdisciplinaryDegreesPage() {
   }, [mounted]);
 
   if (!mounted) {
-    return <div className="min-h-screen bg-[#0a0a0a]" />;
+    return <div className="min-h-screen bg-white" />;
   }
 
   return (
-    <div ref={containerRef} className="bg-[#0a0a0a] min-h-screen overflow-x-hidden">
+    <div ref={containerRef} className="bg-white min-h-screen overflow-x-hidden">
 
       {/* Hero Section */}
       <div ref={heroRef} className="relative w-screen m-0 p-0 overflow-hidden">
@@ -151,7 +151,7 @@ export default function InterdisciplinaryDegreesPage() {
         >
           <motion.div className="absolute inset-0" style={{ y: heroY }}>
             <img
-              src="/interdisciplinary/campus-slider.jpg"
+              src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/interdisciplinary/campus-slider.jpg"
               alt="JLU Bhopal Campus - 50+ Interdisciplinary Programs across 6 Faculties"
               className="w-full h-full object-cover scale-110"
             />
@@ -175,7 +175,7 @@ export default function InterdisciplinaryDegreesPage() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.8, delay: 0.8 }}
-            className="text-white font-semibold leading-tight text-base sm:text-lg md:text-[clamp(1.25rem,2.5vw,2rem)]"
+            className="text-white" style={{ fontWeight: 600, lineHeight: 1.5, fontSize: 'clamp(1rem, 2vw, 1.5rem)' }}
           >
             50+ programs across 6 faculties and 15+ schools blending law, engineering, design, journalism, management, and creative arts. From Sports Management to Business Analytics to the Jagran Centre for Creative Skills — JLU builds future-ready graduates.
           </motion.p>
@@ -251,22 +251,22 @@ export default function InterdisciplinaryDegreesPage() {
                     </div>
                     <div className="scroll-desc-1 absolute bottom-[10%] left-8 md:left-12 max-w-xl z-10 opacity-0">
                       <p className="text-white text-lg lg:text-xl leading-relaxed">
-                        <span className="text-[#f4c950] font-semibold">Engineering, Management, Law, Design, Journalism, and Sciences</span> — six faculties working together to create cross-disciplinary learning that mirrors the complexity of the real world.
+                        <span className="text-[#027ea1] font-semibold">Engineering, Management, Law, Design, Journalism, and Sciences</span> — six faculties working together to create cross-disciplinary learning that mirrors the complexity of the real world.
                       </p>
                     </div>
                     <div className="scroll-desc-2 absolute bottom-[10%] left-8 md:left-12 max-w-xl z-10 opacity-0">
                       <p className="text-white text-lg lg:text-xl leading-relaxed">
-                        From B.Tech in AI/ML to MBA in Business Analytics to BA LLB — <span className="text-[#f4c950] font-semibold">over 50 programs</span> designed to blend multiple disciplines into career-ready qualifications with industry certifications built in.
+                        From B.Tech in AI/ML to MBA in Business Analytics to BA LLB — <span className="text-[#027ea1] font-semibold">over 50 programs</span> designed to blend multiple disciplines into career-ready qualifications with industry certifications built in.
                       </p>
                     </div>
                     <div className="scroll-desc-3 absolute bottom-[10%] left-8 md:left-12 max-w-xl z-10 opacity-0">
                       <p className="text-white text-lg lg:text-xl leading-relaxed">
-                        Specialized schools like the <span className="text-[#f4c950] font-semibold">Jagran Centre for Creative Skills (JCCS)</span>, School of Law, and School of Engineering provide focused excellence and deep domain expertise within each discipline.
+                        Specialized schools like the <span className="text-[#027ea1] font-semibold">Jagran Centre for Creative Skills (JCCS)</span>, School of Law, and School of Engineering provide focused excellence and deep domain expertise within each discipline.
                       </p>
                     </div>
                     <div className="scroll-desc-4 absolute bottom-[10%] left-8 md:left-12 max-w-xl z-10 opacity-0">
                       <p className="text-white text-lg lg:text-xl leading-relaxed">
-                        Every degree integrates <span className="text-[#f4c950] font-semibold">practical skill modules</span> — from EY Six Sigma for MBA to live newsroom training for Journalism to moot courts for Law — ensuring graduates are job-ready from day one.
+                        Every degree integrates <span className="text-[#027ea1] font-semibold">practical skill modules</span> — from EY Six Sigma for MBA to live newsroom training for Journalism to moot courts for Law — ensuring graduates are job-ready from day one.
                       </p>
                     </div>
                   </div>
@@ -277,28 +277,28 @@ export default function InterdisciplinaryDegreesPage() {
         </section>
 
       {/* Full-VH Feature Section */}
-      <section className="relative min-h-screen w-full flex items-center bg-[#f6f7f0]">
-        <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-12 py-20 md:py-0 w-full">
+      <section className="relative w-full bg-[#f6f7f0]">
+        <div className="mx-auto px-5 sm:px-8 md:px-[120px] py-16 md:py-[140px] w-full" style={{ maxWidth: '1440px' }}>
           <div className="text-center mb-12 md:mb-16">
-            <span className="text-xs tracking-[0.2em] uppercase text-gray-400 block mb-4">
+            <span className="text-[#999] uppercase tracking-widest block mb-4 md:mb-6 text-xl md:text-2xl font-bold" style={{ fontSize: '28px', letterSpacing: '0.25em' }}>
               6 FACULTIES &bull; 15+ SCHOOLS
             </span>
             <h2 className="text-3xl md:text-4xl lg:text-5xl text-[#21313c] mb-4" style={{ fontWeight: 600, lineHeight: 1.1 }}>
               One University,{' '}
               <span style={{ fontFamily: "'Times New Roman', serif", fontStyle: 'italic' }}>Infinite Possibilities</span>
             </h2>
-            <p className="text-gray-500 text-sm md:text-base max-w-2xl mx-auto leading-relaxed">
+            <p className="text-[#999] max-w-2xl mx-auto" style={{ fontFamily: 'Inter, sans-serif', fontSize: 'clamp(1.15rem, 1.8vw, 1.5rem)', lineHeight: 1.7, fontWeight: 400 }}>
               JLU&apos;s 6 faculties house 15+ specialized schools offering 50+ programs that blend disciplines for future-ready careers.
             </p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
             {[
-              { title: 'Engineering & Technology', desc: 'B.Tech, M.Tech in CSE, AI/ML, Civil, Mechanical with hands-on labs and industry projects.', image: '/interdisciplinary/lab.jpg' },
-              { title: 'Management & Commerce', desc: 'MBA, BBA, B.Com with EY Six Sigma certification and CIMA recognition.', image: '/interdisciplinary/management.jpg' },
-              { title: 'Law & Governance', desc: 'BA LLB, BBA LLB with moot courts, legal aid clinics, and judiciary preparation.', image: '/interdisciplinary/law.jpg' },
-              { title: 'Design & Creative Arts', desc: 'JCCS programs in Film, Animation, Interior Design developed with Indian Institute of Creative Skills.', image: '/interdisciplinary/jsjc.jpg' },
-              { title: 'Journalism & Mass Comm', desc: 'Programs powered by Jagran Prakashan — India\'s largest media group — with live newsroom training.', image: '/interdisciplinary/partnership.jpg' },
-              { title: 'Sciences & Humanities', desc: 'B.Sc, M.Sc, BA, MA programs with interdisciplinary electives across all faculties.', image: '/interdisciplinary/library.jpg' },
+              { title: 'Engineering & Technology', desc: 'B.Tech, M.Tech in CSE, AI/ML, Civil, Mechanical with hands-on labs and industry projects.', image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/interdisciplinary/lab.jpg' },
+              { title: 'Management & Commerce', desc: 'MBA, BBA, B.Com with EY Six Sigma certification and CIMA recognition.', image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/interdisciplinary/management.jpg' },
+              { title: 'Law & Governance', desc: 'BA LLB, BBA LLB with moot courts, legal aid clinics, and judiciary preparation.', image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/interdisciplinary/law.jpg' },
+              { title: 'Design & Creative Arts', desc: 'JCCS programs in Film, Animation, Interior Design developed with Indian Institute of Creative Skills.', image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/interdisciplinary/jsjc.jpg' },
+              { title: 'Journalism & Mass Comm', desc: 'Programs powered by Jagran Prakashan — India\'s largest media group — with live newsroom training.', image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/interdisciplinary/partnership.jpg' },
+              { title: 'Sciences & Humanities', desc: 'B.Sc, M.Sc, BA, MA programs with interdisciplinary electives across all faculties.', image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/interdisciplinary/library.jpg' },
             ].map((faculty) => (
               <div key={faculty.title} className="group relative rounded-2xl overflow-hidden aspect-[3/4] md:aspect-[3/4]">
                 <img src={faculty.image} alt={faculty.title} className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" loading="lazy" />
@@ -314,33 +314,33 @@ export default function InterdisciplinaryDegreesPage() {
       </section>
 
       {/* CTA Section */}
-      <section className="relative overflow-hidden" style={{ background: '#f4c950' }}>
-        <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-12 py-14 md:py-20">
+      <section className="relative overflow-hidden mb-12 md:mb-20" style={{ background: '#1f3240' }}>
+        <div className="mx-auto px-5 sm:px-8 md:px-[120px] py-14 md:py-20" style={{ maxWidth: '1440px' }}>
           <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-8">
             <div className="max-w-xl">
-              <p className="text-xs mb-3" style={{ color: '#21313c', letterSpacing: '0.2em', textTransform: 'uppercase', opacity: 0.6 }}>
+              <p className="text-xs mb-3" style={{ color: 'white', letterSpacing: '0.2em', textTransform: 'uppercase', opacity: 0.6 }}>
                 ADMISSIONS OPEN 2025-26
               </p>
-              <h2 className="text-2xl md:text-3xl lg:text-4xl text-[#21313c] mb-4" style={{ fontWeight: 700, lineHeight: 1.15 }}>
+              <h2 className="text-2xl md:text-3xl lg:text-4xl text-white mb-4" style={{ fontWeight: 700, lineHeight: 1.15 }}>
                 Break Academic{' '}
                 <span style={{ fontFamily: "'Times New Roman', serif", fontStyle: 'italic', fontWeight: 400 }}>Boundaries</span>
               </h2>
-              <p className="text-[#21313c]/70 text-sm md:text-base leading-relaxed">
+              <p className="text-white/70 text-sm md:text-base leading-relaxed">
                 Explore 50+ skill-based interdisciplinary programs across Law, Engineering, Design, Journalism, Management, and Creative Arts at Central India&apos;s only QS Diamond-rated university.
               </p>
             </div>
             <div className="flex flex-col sm:flex-row gap-3">
-              <a href="/apply" className="bg-[#21313c] text-white px-8 py-3.5 rounded-lg font-semibold text-sm hover:bg-[#1a2630] transition-all text-center">
+              <a href="/apply" className="bg-[#027ea1] text-white px-8 py-3.5 rounded-lg font-semibold text-sm hover:bg-[#025f7a] transition-all text-center">
                 Apply Now
               </a>
-              <a href="/broucher/JLU-Brochure-2026.pdf" download target="_blank" rel="noopener noreferrer" className="border-2 border-[#21313c] text-[#21313c] px-8 py-3.5 rounded-lg font-semibold text-sm hover:bg-[#21313c] hover:text-white transition-all text-center">
+              <a href="/broucher/JLU-Brochure-2026.pdf" download target="_blank" rel="noopener noreferrer" className="border-2 border-white/50 text-white px-8 py-3.5 rounded-lg font-semibold text-sm hover:bg-white/10 transition-all text-center">
                 Download Brochure
               </a>
             </div>
           </div>
         </div>
-        <div className="absolute -right-20 -top-20 w-64 h-64 rounded-full opacity-10" style={{ background: '#21313c' }} />
-        <div className="absolute -left-10 -bottom-10 w-40 h-40 rounded-full opacity-10" style={{ background: '#21313c' }} />
+        <div className="absolute -right-20 -top-20 w-64 h-64 rounded-full opacity-10" style={{ background: 'white' }} />
+        <div className="absolute -left-10 -bottom-10 w-40 h-40 rounded-full opacity-10" style={{ background: 'white' }} />
       </section>
 
       <Footer />

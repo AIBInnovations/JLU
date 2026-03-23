@@ -54,11 +54,11 @@ const events: Event[] = [
 ];
 
 const galleryImages = [
-  '/JLu%20events/photos/Convocation/DSC_0823.JPG',
-  '/JLu%20events/photos/Lehar/IMG_8971.JPG',
-  '/JLu%20events/photos/Anti%20Ragging%20WEEK/IMG_1879.JPG',
-  '/JLu%20events/photos/Mental%20Health%20week/IMG_7813.JPG',
-  '/JLu%20events/photos/JAgran%20%20of%20Social%20science/DSC08838.JPG',
+  'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/JLu%20events/photos/Convocation/DSC_0823.JPG',
+  'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/JLu%20events/photos/Lehar/IMG_8971.JPG',
+  'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/JLu%20events/photos/Anti%20Ragging%20WEEK/IMG_1879.JPG',
+  'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/JLu%20events/photos/Mental%20Health%20week/IMG_7813.JPG',
+  'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/JLu%20events/photos/JAgran%20of%20Social%20science/DSC08838.JPG',
 ];
 
 export const EventsSection = () => {
@@ -82,19 +82,14 @@ export const EventsSection = () => {
           >
             CAMPUS LIFE
           </span>
-          <h2
-            className="text-[#21313c] mb-4 md:mb-6"
-            style={{
-              fontSize: 'clamp(3rem, 6vw, 5rem)',
-              fontWeight: 600,
-              lineHeight: 1.1,
-              letterSpacing: '-0.03em',
-            }}
+          <h1
+            className="text-[#21313c] text-3xl md:text-4xl lg:text-5xl mb-4 md:mb-6"
+            style={{ fontWeight: 600, lineHeight: 1.1 }}
           >
             Moments worth{' '}
-            <span style={{ fontFamily: "'Times New Roman', serif", fontStyle: 'italic', fontWeight: 400 }}>stepping into</span>
-          </h2>
-          <p className="text-lg sm:text-xl md:text-[clamp(1.25rem,2vw,1.75rem)] max-w-[1000px] mx-auto" style={{ color: '#666', lineHeight: 1.8 }}>
+            <span style={{ fontFamily: "'Times New Roman', serif", fontStyle: 'italic' }}>stepping into</span>
+          </h1>
+          <p className="text-sm sm:text-base md:text-[clamp(1.15rem,1.8vw,1.5rem)] max-w-[1000px] mx-auto" style={{ color: '#666', lineHeight: 1.7, fontWeight: 400 }}>
             From cultural celebrations to talent showcases, experience the vibrant campus life at Jagran Lakecity University.
           </p>
           <div className="mx-auto mt-4" style={{ width: '274px', height: '0px', border: '4px solid #027ea1' }} />
@@ -118,7 +113,7 @@ export const EventsSection = () => {
               }}
             >
               <img
-                src="/JLu%20events/photos/Lehar/IMG_9067.JPG"
+                src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/JLu%20events/photos/Lehar/IMG_9067.JPG"
                 alt="Campus Events"
                 className="w-full h-full object-cover rounded-xl"
               />
@@ -127,7 +122,7 @@ export const EventsSection = () => {
               {/* Button positioned inside image */}
               <a
                 href="/events"
-                className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-[#027ea1] text-white px-4 py-2 md:px-6 md:py-3 rounded-full text-sm font-semibold hover:bg-[#026a88] transition-colors shadow-lg flex items-center justify-center leading-none"
+                className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-[#027ea1] text-white px-4 py-2 md:px-6 md:py-3 rounded-full text-sm font-bold hover:bg-[#026a88] transition-colors shadow-lg flex items-center justify-center leading-none"
               >
                 View Events
               </a>

@@ -12,13 +12,13 @@ gsap.registerPlugin(ScrollTrigger);
 const customEase: [number, number, number, number] = [0.22, 1, 0.36, 1];
 
 const galleryImages = [
-  { id: 1, src: '/ev1.jpg', position: 'top-[10%] left-[5%]', size: 'w-[70px] h-[100px] md:w-[180px] md:h-[260px]', opacity: 0.7 },
-  { id: 2, src: '/ex.jpg', position: 'top-[5%] left-[22%]', size: 'w-[50px] h-[70px] md:w-[130px] md:h-[170px]', opacity: 0.5 },
-  { id: 3, src: '/glob.jpg', position: '', size: 'w-[120px] h-[170px] md:w-[260px] md:h-[360px]', isCenter: true, opacity: 1 },
-  { id: 4, src: '/ev3.jpg', position: 'top-[8%] right-[18%]', size: 'w-[60px] h-[85px] md:w-[160px] md:h-[220px]', opacity: 0.6 },
-  { id: 5, src: '/comm.jpg', position: 'top-[12%] right-[3%]', size: 'w-[45px] h-[65px] md:w-[120px] md:h-[160px]', opacity: 0.4 },
-  { id: 6, src: '/ev5.jpg', position: 'bottom-[12%] left-[8%]', size: 'w-[55px] h-[80px] md:w-[150px] md:h-[200px]', opacity: 0.5 },
-  { id: 7, src: '/about1.jpg', position: 'bottom-[10%] right-[5%]', size: 'w-[65px] h-[90px] md:w-[170px] md:h-[230px]', opacity: 0.6 },
+  { id: 1, src: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/ev1.jpg', position: 'top-[10%] left-[5%]', size: 'w-[70px] h-[100px] md:w-[180px] md:h-[260px]', opacity: 0.7 },
+  { id: 2, src: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/ex.jpg', position: 'top-[5%] left-[22%]', size: 'w-[50px] h-[70px] md:w-[130px] md:h-[170px]', opacity: 0.5 },
+  { id: 3, src: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/glob.jpg', position: '', size: 'w-[120px] h-[170px] md:w-[260px] md:h-[360px]', isCenter: true, opacity: 1 },
+  { id: 4, src: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/ev3.jpg', position: 'top-[8%] right-[18%]', size: 'w-[60px] h-[85px] md:w-[160px] md:h-[220px]', opacity: 0.6 },
+  { id: 5, src: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/comm.jpg', position: 'top-[12%] right-[3%]', size: 'w-[45px] h-[65px] md:w-[120px] md:h-[160px]', opacity: 0.4 },
+  { id: 6, src: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/ev5.jpg', position: 'bottom-[12%] left-[8%]', size: 'w-[55px] h-[80px] md:w-[150px] md:h-[200px]', opacity: 0.5 },
+  { id: 7, src: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/about1.jpg', position: 'bottom-[10%] right-[5%]', size: 'w-[65px] h-[90px] md:w-[170px] md:h-[230px]', opacity: 0.6 },
 ];
 
 export default function GlobalNetworkPage() {
@@ -135,11 +135,11 @@ export default function GlobalNetworkPage() {
   }, [mounted]);
 
   if (!mounted) {
-    return <div className="min-h-screen bg-[#0a0a0a]" />;
+    return <div className="min-h-screen bg-white" />;
   }
 
   return (
-    <div ref={containerRef} className="bg-[#0a0a0a] min-h-screen overflow-x-hidden">
+    <div ref={containerRef} className="bg-white min-h-screen overflow-x-hidden">
 
       {/* Hero Section */}
       <div ref={heroRef} className="relative w-screen m-0 p-0 overflow-hidden">
@@ -151,7 +151,7 @@ export default function GlobalNetworkPage() {
         >
           <motion.div className="absolute inset-0" style={{ y: heroY }}>
             <img
-              src="/glob.jpg"
+              src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/glob.jpg"
               alt="JLU Global Network - 45+ International Collaborations"
               className="w-full h-full object-cover scale-110"
             />
@@ -175,7 +175,7 @@ export default function GlobalNetworkPage() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.8, delay: 0.8 }}
-            className="text-white font-semibold leading-tight text-base sm:text-lg md:text-[clamp(1.25rem,2.5vw,2rem)]"
+            className="text-white" style={{ fontWeight: 600, lineHeight: 1.5, fontSize: 'clamp(1rem, 2vw, 1.5rem)' }}
           >
             45+ MOUs with universities across 14 countries including Cambridge, UCL, Imperial College London, RMIT Australia, and Vancouver Film School powering semester exchanges, credited electives, and international teaching months.
           </motion.p>
@@ -251,22 +251,22 @@ export default function GlobalNetworkPage() {
                     </div>
                     <div className="scroll-desc-1 absolute bottom-[10%] left-8 md:left-12 max-w-xl z-10 opacity-0">
                       <p className="text-white text-lg lg:text-xl leading-relaxed">
-                        JLU has signed <span className="text-[#f4c950] font-semibold">45+ Memoranda of Understanding</span> with leading universities worldwide, enabling student and faculty exchanges, joint research, and credited electives across continents.
+                        JLU has signed <span className="text-[#027ea1] font-semibold">45+ Memoranda of Understanding</span> with leading universities worldwide, enabling student and faculty exchanges, joint research, and credited electives across continents.
                       </p>
                     </div>
                     <div className="scroll-desc-2 absolute bottom-[10%] left-8 md:left-12 max-w-xl z-10 opacity-0">
                       <p className="text-white text-lg lg:text-xl leading-relaxed">
-                        From <span className="text-[#f4c950] font-semibold">the UK and Australia to Thailand and Kazakhstan</span>, JLU&apos;s academic partnerships span 14 countries — opening doors to semester exchanges, international teaching months, and diverse learning experiences.
+                        From <span className="text-[#027ea1] font-semibold">the UK and Australia to Thailand and Kazakhstan</span>, JLU&apos;s academic partnerships span 14 countries — opening doors to semester exchanges, international teaching months, and diverse learning experiences.
                       </p>
                     </div>
                     <div className="scroll-desc-3 absolute bottom-[10%] left-8 md:left-12 max-w-xl z-10 opacity-0">
                       <p className="text-white text-lg lg:text-xl leading-relaxed">
-                        As the <span className="text-[#f4c950] font-semibold">only university from Central India</span> in 3 EU-funded Erasmus+ projects, JLU students access European research networks, collaborative programs, and fully funded exchange opportunities.
+                        As the <span className="text-[#027ea1] font-semibold">only university from Central India</span> in 3 EU-funded Erasmus+ projects, JLU students access European research networks, collaborative programs, and fully funded exchange opportunities.
                       </p>
                     </div>
                     <div className="scroll-desc-4 absolute bottom-[10%] left-8 md:left-12 max-w-xl z-10 opacity-0">
                       <p className="text-white text-lg lg:text-xl leading-relaxed">
-                        Serving as <span className="text-[#f4c950] font-semibold">India Country Chair for AUAP</span>, JLU shapes the future of cross-border education — connecting 2,500+ students from 8 countries and 27 Indian states to a truly global network.
+                        Serving as <span className="text-[#027ea1] font-semibold">India Country Chair for AUAP</span>, JLU shapes the future of cross-border education — connecting 2,500+ students from 8 countries and 27 Indian states to a truly global network.
                       </p>
                     </div>
                   </div>
@@ -277,35 +277,35 @@ export default function GlobalNetworkPage() {
         </section>
 
       {/* Full-VH Feature Section */}
-      <section className="relative min-h-screen w-full flex items-center bg-[#f6f7f0]">
-        <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-12 py-20 md:py-0 w-full">
+      <section className="relative w-full bg-[#f6f7f0]">
+        <div className="mx-auto px-5 sm:px-8 md:px-[120px] py-16 md:py-[140px] w-full">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-16 items-center">
             {/* Left - Content */}
             <div>
-              <span className="text-xs tracking-[0.2em] uppercase text-gray-400 block mb-4">
+              <span className="text-[#999] uppercase tracking-widest block mb-4 md:mb-6 text-xl md:text-2xl font-bold" style={{ fontSize: '28px', letterSpacing: '0.25em' }}>
                 INTERNATIONAL OFFICE
               </span>
               <h2 className="text-3xl md:text-4xl lg:text-5xl text-[#21313c] mb-6" style={{ fontWeight: 600, lineHeight: 1.1 }}>
                 Where Learning{' '}
                 <span style={{ fontFamily: "'Times New Roman', serif", fontStyle: 'italic' }}>Knows No Borders</span>
               </h2>
-              <p className="text-gray-600 text-base md:text-lg leading-relaxed mb-8">
+              <p className="text-[#999] mb-8" style={{ fontFamily: 'Inter, sans-serif', fontSize: 'clamp(1.15rem, 1.8vw, 1.5rem)', lineHeight: 1.7, fontWeight: 400 }}>
                 JLU&apos;s International Office manages 45+ active MOUs across 14 countries, facilitating semester exchanges, credited electives, and joint research. As India Country Chair for the Association of Universities of Asia and the Pacific (AUAP), JLU plays a leadership role in shaping cross-border education.
               </p>
               <div className="grid grid-cols-2 gap-6 mb-8">
-                <div className="border-l-2 border-[#f4c950] pl-4">
+                <div className="border-l-2 border-[#027ea1] pl-4">
                   <p className="text-2xl md:text-3xl font-bold text-[#027ea1]">3</p>
                   <p className="text-gray-500 text-sm mt-1">Erasmus+ Projects</p>
                 </div>
-                <div className="border-l-2 border-[#f4c950] pl-4">
+                <div className="border-l-2 border-[#027ea1] pl-4">
                   <p className="text-2xl md:text-3xl font-bold text-[#027ea1]">14</p>
                   <p className="text-gray-500 text-sm mt-1">Partner Countries</p>
                 </div>
-                <div className="border-l-2 border-[#f4c950] pl-4">
+                <div className="border-l-2 border-[#027ea1] pl-4">
                   <p className="text-2xl md:text-3xl font-bold text-[#027ea1]">8</p>
                   <p className="text-gray-500 text-sm mt-1">Countries Represented</p>
                 </div>
-                <div className="border-l-2 border-[#f4c950] pl-4">
+                <div className="border-l-2 border-[#027ea1] pl-4">
                   <p className="text-2xl md:text-3xl font-bold text-[#027ea1]">27</p>
                   <p className="text-gray-500 text-sm mt-1">Indian States</p>
                 </div>
@@ -318,10 +318,10 @@ export default function GlobalNetworkPage() {
             {/* Right - Images */}
             <div className="relative">
               <div className="rounded-2xl overflow-hidden aspect-[4/5] md:w-full">
-                <img src="/about1.jpg" alt="JLU Campus - International Students" className="w-full h-full object-cover" loading="lazy" />
+                <img src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/about1.jpg" alt="JLU Campus - International Students" className="w-full h-full object-cover" loading="lazy" />
               </div>
               <div className="absolute -bottom-4 -left-4 w-40 h-40 md:-bottom-6 md:-left-6 md:w-56 md:h-56 rounded-2xl overflow-hidden shadow-2xl border-4 border-[#f6f7f0]">
-                <img src="/glob.jpg" alt="JLU Global Partners Map" className="w-full h-full object-cover" loading="lazy" />
+                <img src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/glob.jpg" alt="JLU Global Partners Map" className="w-full h-full object-cover" loading="lazy" />
               </div>
             </div>
           </div>
@@ -329,33 +329,33 @@ export default function GlobalNetworkPage() {
       </section>
 
       {/* CTA Section */}
-      <section className="relative overflow-hidden" style={{ background: '#f4c950' }}>
-        <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-12 py-14 md:py-20">
+      <section className="relative overflow-hidden mb-12 md:mb-20" style={{ background: '#1f3240' }}>
+        <div className="mx-auto px-5 sm:px-8 md:px-[120px] py-14 md:py-20">
           <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-8">
             <div className="max-w-xl">
-              <p className="text-xs mb-3" style={{ color: '#21313c', letterSpacing: '0.2em', textTransform: 'uppercase', opacity: 0.6 }}>
+              <p className="text-xs mb-3" style={{ color: 'white', letterSpacing: '0.2em', textTransform: 'uppercase', opacity: 0.6 }}>
                 ADMISSIONS OPEN 2025-26
               </p>
-              <h2 className="text-2xl md:text-3xl lg:text-4xl text-[#21313c] mb-4" style={{ fontWeight: 700, lineHeight: 1.15 }}>
+              <h2 className="text-2xl md:text-3xl lg:text-4xl text-white mb-4" style={{ fontWeight: 700, lineHeight: 1.15 }}>
                 Explore Global{' '}
                 <span style={{ fontFamily: "'Times New Roman', serif", fontStyle: 'italic', fontWeight: 400 }}>Opportunities</span>
               </h2>
-              <p className="text-[#21313c]/70 text-sm md:text-base leading-relaxed">
+              <p className="text-white/70 text-sm md:text-base leading-relaxed">
                 Connect with 45+ partner universities across 14 countries. Join 2,500+ students from 8 countries at Central India&apos;s only QS Diamond-rated university.
               </p>
             </div>
             <div className="flex flex-col sm:flex-row gap-3">
-              <a href="/apply" className="bg-[#21313c] text-white px-8 py-3.5 rounded-lg font-semibold text-sm hover:bg-[#1a2630] transition-all text-center">
+              <a href="/apply" className="bg-[#027ea1] text-white px-8 py-3.5 rounded-lg font-semibold text-sm hover:bg-[#025f7a] transition-all text-center">
                 Apply Now
               </a>
-              <a href="/broucher/JLU-Brochure-2026.pdf" download target="_blank" rel="noopener noreferrer" className="border-2 border-[#21313c] text-[#21313c] px-8 py-3.5 rounded-lg font-semibold text-sm hover:bg-[#21313c] hover:text-white transition-all text-center">
+              <a href="/broucher/JLU-Brochure-2026.pdf" download target="_blank" rel="noopener noreferrer" className="border-2 border-white/50 text-white px-8 py-3.5 rounded-lg font-semibold text-sm hover:bg-white/10 transition-all text-center">
                 Download Brochure
               </a>
             </div>
           </div>
         </div>
-        <div className="absolute -right-20 -top-20 w-64 h-64 rounded-full opacity-10" style={{ background: '#21313c' }} />
-        <div className="absolute -left-10 -bottom-10 w-40 h-40 rounded-full opacity-10" style={{ background: '#21313c' }} />
+        <div className="absolute -right-20 -top-20 w-64 h-64 rounded-full opacity-10" style={{ background: 'white' }} />
+        <div className="absolute -left-10 -bottom-10 w-40 h-40 rounded-full opacity-10" style={{ background: 'white' }} />
       </section>
 
       <Footer />

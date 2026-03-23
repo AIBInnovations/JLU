@@ -23,7 +23,7 @@ const alumniData: Alumni[] = [
     id: '1',
     name: 'Mr. Sagar Agrawal',
     batch: '2025',
-    image: '/jlu-placement1.jpeg',
+    image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/jlu-placement1.jpeg',
     designation: 'JLU00505',
     company: 'BA.LLB Program',
     testimonial: 'Alumni Award Recipient 2025',
@@ -32,7 +32,7 @@ const alumniData: Alumni[] = [
     id: '2',
     name: 'Mr. Sanchit Shrivastava',
     batch: '2025',
-    image: '/jlu-placement2.jpeg',
+    image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/jlu-placement2.jpeg',
     designation: 'JLU04696',
     company: 'BAJMC Program',
     testimonial: 'Alumni Award Recipient 2025',
@@ -41,7 +41,7 @@ const alumniData: Alumni[] = [
     id: '3',
     name: 'Mr. Aman Verma',
     batch: '2024',
-    image: '/jlu-placement3.jpeg',
+    image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/jlu-placement3.jpeg',
     designation: 'JLU01216',
     company: 'BBA Program',
     testimonial: 'Alumni Award Recipient 2024',
@@ -50,7 +50,7 @@ const alumniData: Alumni[] = [
     id: '4',
     name: 'Mr. Ugyen Rhuntsho Rabgay',
     batch: '2024',
-    image: '/jlu-insta1.jpg',
+    image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/jlu-insta1.jpg',
     designation: 'JLU00927',
     company: 'BAJMC Program',
     testimonial: 'Alumni Award Recipient 2024',
@@ -59,7 +59,7 @@ const alumniData: Alumni[] = [
     id: '5',
     name: 'Mr. Namgay Dorji',
     batch: '2024',
-    image: '/jlu-insta2.jpg',
+    image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/jlu-insta2.jpg',
     designation: 'JLU00402',
     company: 'BBA.LLB Program',
     testimonial: 'Alumni Award Recipient 2024',
@@ -68,7 +68,7 @@ const alumniData: Alumni[] = [
     id: '6',
     name: 'Mr. Sajal Jain',
     batch: '2023',
-    image: '/jlu-insta3.jpg',
+    image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/jlu-insta3.jpg',
     designation: 'JLU02151',
     company: 'B.Com Program',
     testimonial: 'Alumni Award Recipient 2023',
@@ -77,7 +77,7 @@ const alumniData: Alumni[] = [
     id: '7',
     name: 'Ms. Urvashi Mathur',
     batch: '2023',
-    image: '/jlu-placement1.jpeg',
+    image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/jlu-placement1.jpeg',
     designation: 'JLU02531',
     company: 'B.Sc. (Hospitality & Hotel Administration) Program',
     testimonial: 'Alumni Award Recipient 2023',
@@ -86,7 +86,7 @@ const alumniData: Alumni[] = [
     id: '8',
     name: 'Ms. Sumaira Yasin',
     batch: '2023',
-    image: '/jlu-placement2.jpeg',
+    image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/jlu-placement2.jpeg',
     designation: 'JLU00922',
     company: 'BAJMC Program',
     testimonial: 'Alumni Award Recipient 2023',
@@ -246,15 +246,15 @@ export const AlumniSection = () => {
           >
             {/* Section Title */}
             <div className="mb-6 md:mb-8">
-              <h2
-                className="text-[#21313c]"
-                style={{ fontSize: 'clamp(3rem, 6vw, 5rem)', fontWeight: 600, lineHeight: 1.1, letterSpacing: '-0.03em' }}
+              <h1
+                className="text-[#21313c] text-3xl md:text-4xl lg:text-5xl"
+                style={{ fontWeight: 600, lineHeight: 1.1 }}
               >
                 Alumni{' '}
-                <span style={{ fontFamily: "'Times New Roman', serif", fontStyle: 'italic', fontWeight: 400 }}>
+                <span style={{ fontFamily: "'Times New Roman', serif", fontStyle: 'italic' }}>
                   Award
                 </span>
-              </h2>
+              </h1>
               <p className="text-[#999] text-base sm:text-lg md:text-xl mt-3" style={{ letterSpacing: '0.05em' }}>
                 Recipients — Last 3 Years
               </p>
@@ -452,7 +452,7 @@ export const AlumniSection = () => {
 
                 {/* Batch Badge */}
                 <span
-                  className="absolute top-4 right-4 px-3 py-1 bg-[#f0c14b] text-[#21313c] font-semibold rounded-full"
+                  className="absolute top-4 right-4 px-3 py-1 bg-[#f0c14b] text-[#21313c] font-bold rounded-full"
                   style={{ fontSize: '12px' }}
                 >
                   {topAlumni.batch}
@@ -460,7 +460,7 @@ export const AlumniSection = () => {
 
                 {/* Content */}
                 <div className="absolute bottom-0 left-0 right-0 p-5">
-                  <h4 className="text-white font-semibold text-lg mb-0.5">{topAlumni.name}</h4>
+                  <h4 className="text-white font-bold text-lg mb-0.5">{topAlumni.name}</h4>
                   <p className="text-white/80 text-base">{topAlumni.designation}</p>
                   <p className="text-[#f0c14b] text-base font-medium">{topAlumni.company}</p>
                 </div>
@@ -486,7 +486,7 @@ export const AlumniSection = () => {
 
                 {/* Batch Badge */}
                 <span
-                  className="absolute top-4 right-4 px-3 py-1 bg-[#f0c14b] text-[#21313c] font-semibold rounded-full"
+                  className="absolute top-4 right-4 px-3 py-1 bg-[#f0c14b] text-[#21313c] font-bold rounded-full"
                   style={{ fontSize: '12px' }}
                 >
                   {bottomAlumni.batch}
@@ -494,7 +494,7 @@ export const AlumniSection = () => {
 
                 {/* Content */}
                 <div className="absolute bottom-0 left-0 right-0 p-5">
-                  <h4 className="text-white font-semibold text-lg mb-0.5">{bottomAlumni.name}</h4>
+                  <h4 className="text-white font-bold text-lg mb-0.5">{bottomAlumni.name}</h4>
                   <p className="text-white/80 text-base">{bottomAlumni.designation}</p>
                   <p className="text-[#f0c14b] text-base font-medium">{bottomAlumni.company}</p>
                 </div>
@@ -518,13 +518,13 @@ export const AlumniSection = () => {
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-[#21313c] via-[#21313c]/20 to-transparent" />
                   <span
-                    className="absolute top-3 right-3 px-2 py-0.5 bg-[#f0c14b] text-[#21313c] font-semibold rounded-full"
+                    className="absolute top-3 right-3 px-2 py-0.5 bg-[#f0c14b] text-[#21313c] font-bold rounded-full"
                     style={{ fontSize: '12px' }}
                   >
                     {topAlumni.batch}
                   </span>
                   <div className="absolute bottom-0 left-0 right-0 p-3">
-                    <h4 className="text-white font-semibold text-sm">{topAlumni.name}</h4>
+                    <h4 className="text-white font-bold text-sm">{topAlumni.name}</h4>
                     <p className="text-white/80 text-sm">{topAlumni.designation}</p>
                     <p className="text-[#f0c14b] text-sm font-medium">{topAlumni.company}</p>
                   </div>
@@ -541,13 +541,13 @@ export const AlumniSection = () => {
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-[#21313c] via-[#21313c]/20 to-transparent" />
                   <span
-                    className="absolute top-3 right-3 px-2 py-0.5 bg-[#f0c14b] text-[#21313c] font-semibold rounded-full"
+                    className="absolute top-3 right-3 px-2 py-0.5 bg-[#f0c14b] text-[#21313c] font-bold rounded-full"
                     style={{ fontSize: '12px' }}
                   >
                     {bottomAlumni.batch}
                   </span>
                   <div className="absolute bottom-0 left-0 right-0 p-3">
-                    <h4 className="text-white font-semibold text-sm">{bottomAlumni.name}</h4>
+                    <h4 className="text-white font-bold text-sm">{bottomAlumni.name}</h4>
                     <p className="text-white/80 text-sm">{bottomAlumni.designation}</p>
                     <p className="text-[#f0c14b] text-sm font-medium">{bottomAlumni.company}</p>
                   </div>

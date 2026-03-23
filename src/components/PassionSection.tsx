@@ -22,9 +22,9 @@ export const PassionSection = () => {
 
   // Section data
   const sections = [
-    { video: '/JLu%20events/videos/Jfss(2).mp4', text: 'PASSION' },
-    { video: '/jlu%20ignited%20mind%20Award/JLU%20Foundationday%20day.mp4', text: 'STUDY' },
-    { video: '/ss.mp4', text: 'SUCCESS' },
+    { video: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/JLu%20events/videos/Jfss(2).mp4', text: 'PASSION' },
+    { video: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/jlu%20ignited%20mind%20Award/JLU%20Foundationday%20day.mp4', text: 'STUDY' },
+    { video: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/JLU-Dynamic-Campus-Experience.mp4', text: 'SUCCESS' },
   ];
 
   // Wait for mount
@@ -189,7 +189,7 @@ export const PassionSection = () => {
         >
           <video
             ref={(el) => addVideoRef(el, 0)}
-            src="/JLu%20events/videos/Jfss(2).mp4"
+            src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/JLu%20events/videos/Jfss(2).mp4"
             className="absolute inset-0 w-full h-full object-cover"
             style={{ transform: 'scale(1.1)' }}
             autoPlay
@@ -208,7 +208,7 @@ export const PassionSection = () => {
         >
           <video
             ref={(el) => addVideoRef(el, 1)}
-            src="/jlu%20ignited%20mind%20Award/JLU%20Foundationday%20day.mp4"
+            src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/jlu%20ignited%20mind%20Award/JLU%20Foundationday%20day.mp4"
             className="absolute inset-0 w-full h-full object-cover"
             style={{ transform: 'scale(1.1)' }}
             autoPlay
@@ -227,7 +227,7 @@ export const PassionSection = () => {
         >
           <video
             ref={(el) => addVideoRef(el, 2)}
-            src="/ss.mp4"
+            src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/JLU-Dynamic-Campus-Experience.mp4"
             className="absolute inset-0 w-full h-full object-cover"
             style={{ transform: 'scale(1.1)' }}
             autoPlay

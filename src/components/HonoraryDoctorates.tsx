@@ -12,7 +12,7 @@ const doctorates = [
     designation: 'Founder of Infosys Foundation and Chairperson of the Murthy Trust. Educationist, Philanthropist and Author.',
     honour: 'Padma Bhushan',
     convocation: '2023',
-    image: '/sudha-murty-jlu.jpg',
+    image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/sudha-murty-jlu.jpg',
     objectPosition: '25% center',
   },
   {
@@ -20,7 +20,7 @@ const doctorates = [
     designation: 'Chairman of Global Creative & Executive Chairman, Ogilvy India. An extraordinary leader, passionate man of big ideas and an innovator with a focus on the indigenous in the world of advertising.',
     honour: 'Padma Shri',
     convocation: '2023',
-    image: '/8th-convo-jlu.jpg',
+    image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/8th-convo-jlu.jpg',
     objectPosition: 'center center',
   },
   {
@@ -28,7 +28,7 @@ const doctorates = [
     designation: 'President of Lyceum of the Philippines University, Batangas & Laguna campuses. Former President of AUAP and PACU. Author, poet and founder of cultural, educational and peace research institutions.',
     honour: 'International Academic Leader',
     convocation: '2024',
-    image: '/7th-convo-jlu.jpeg',
+    image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/7th-convo-jlu.jpeg',
     objectPosition: 'center 30%',
   },
   {
@@ -36,7 +36,7 @@ const doctorates = [
     designation: 'An extraordinary designer, noted internationally for his innovative contribution to preserving and celebrating the subcontinent\'s rich cultural heritage. Has designed and curated award-winning exhibitions in Asia, Europe, Canada and America.',
     honour: 'Padma Bhushan',
     convocation: '2024',
-    image: '/adille-jlu-full.jpg',
+    image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/adille-jlu-full.jpg',
     objectPosition: 'center 20%',
   },
   {
@@ -44,7 +44,7 @@ const doctorates = [
     designation: 'A legendary figure in the Indian Legal Community, often referred to as the \'M&A King of India\'. Consistently ranked as \'Eminent Practitioner\' in India by Chambers Global.',
     honour: 'Legal Luminary',
     convocation: '2024',
-    image: '/jlu-mgt-award.jpg',
+    image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/jlu-mgt-award.jpg',
     objectPosition: 'center center',
   },
   {
@@ -52,7 +52,7 @@ const doctorates = [
     designation: 'Chairman of the Fashion Design Council of India (FDCI). An eminent industry leader, visionary entrepreneur, and one of India\'s foremost champions of fashion, handloom and the creative industries.',
     honour: 'Industry Leader',
     convocation: '2025',
-    image: '/6th-convo-jlu.jpg',
+    image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/6th-convo-jlu.jpg',
     objectPosition: '80% center',
   },
 ];
@@ -72,40 +72,30 @@ const HonoraryDoctorates = () => {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, ease: customEase }}
           viewport={{ once: true }}
-          className="flex flex-col md:flex-row md:justify-between md:items-start mb-8 md:mb-16 pb-6 md:pb-10"
+          className="flex flex-col items-center text-center mb-8 md:mb-16 pb-6 md:pb-10"
           style={{ borderBottom: '1px solid #e5e5e5' }}
         >
-          <div className="mb-6 md:mb-0">
-            <span
-              className="text-[#999] uppercase tracking-widest block text-xl md:text-2xl font-bold mb-3 md:mb-4"
-              style={{ letterSpacing: '0.2em' }}
-            >
-              Recognition
+          <span
+            className="text-[#999] uppercase tracking-widest block text-xl md:text-2xl font-bold mb-3 md:mb-4"
+            style={{ letterSpacing: '0.2em' }}
+          >
+            Recognition
+          </span>
+          <h1
+            className="text-[#21313c] text-3xl md:text-4xl lg:text-5xl"
+            style={{
+              fontWeight: 600,
+              lineHeight: 1.1,
+            }}
+          >
+            Honorary{' '}
+            <span style={{ fontFamily: "'Times New Roman', serif", fontStyle: 'italic' }}>
+              Doctorate
             </span>
-            <h2
-              className="text-[#21313c] text-2xl sm:text-3xl md:text-[clamp(2.5rem,5vw,4rem)]"
-              style={{
-                fontWeight: 600,
-                lineHeight: 1,
-                letterSpacing: '-0.02em',
-              }}
-            >
-              Honorary{' '}
-              <span style={{ fontFamily: "'Times New Roman', serif", fontStyle: 'italic' }}>
-                Doctorate
-              </span>
-              {' '}
-              <span className="text-base sm:text-lg md:text-xl text-[#999]" style={{ fontWeight: 400 }}>
-                (Honoris Causa)
-              </span>
-            </h2>
-            <p className="text-[#999] text-xs sm:text-sm mt-2" style={{ letterSpacing: '0.05em' }}>
-              Recipients — Last 3 Years
-            </p>
-          </div>
+          </h1>
           <p
-            className="text-[#666] text-sm md:text-base max-w-full md:max-w-[400px]"
-            style={{ lineHeight: 1.7 }}
+            className="text-[#666] text-sm sm:text-base md:text-[clamp(1.15rem,1.8vw,1.5rem)] max-w-full mt-4"
+            style={{ lineHeight: 1.7, fontWeight: 400 }}
           >
             Jagran Lakecity University has conferred Honorary Doctorates (Honoris Causa) upon distinguished individuals who have made exceptional contributions to their fields and to society.
           </p>

@@ -96,7 +96,7 @@ const Academics = () => {
         >
           <motion.div className="absolute inset-0" style={{ y }}>
             <Image
-              src="/academics-hero.jpg"
+              src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/acedemics/acedemics%20landing%20page.JPG"
               alt="Students in academic session at JLU"
               fill
               className="object-cover scale-110"
@@ -124,12 +124,12 @@ const Academics = () => {
               fontSize: 'clamp(1.75rem, 4vw, 2.5rem)',
             }}
           >
-            LEARNING SHAPED BY <span style={{ fontFamily: "'Times New Roman', serif", fontStyle: 'italic', color: '#f0c14b', textShadow: '2px 2px 4px rgba(0,0,0,0.5)' }}>curiosity</span>, <span style={{ fontFamily: "'Times New Roman', serif", fontStyle: 'italic', color: '#f0c14b', textShadow: '2px 2px 4px rgba(0,0,0,0.5)' }}>practice</span>, and <span style={{ fontFamily: "'Times New Roman', serif", fontStyle: 'italic', color: '#f0c14b', textShadow: '2px 2px 4px rgba(0,0,0,0.5)' }}>people</span>
+            LEARNING SHAPED BY <span style={{ fontFamily: "'Times New Roman', serif", fontStyle: 'italic', color: '#027ea1', textShadow: '2px 2px 4px rgba(0,0,0,0.5)' }}>curiosity</span>, <span style={{ fontFamily: "'Times New Roman', serif", fontStyle: 'italic', color: '#027ea1', textShadow: '2px 2px 4px rgba(0,0,0,0.5)' }}>practice</span>, and <span style={{ fontFamily: "'Times New Roman', serif", fontStyle: 'italic', color: '#027ea1', textShadow: '2px 2px 4px rgba(0,0,0,0.5)' }}>people</span>
           </h2>
           <p
-            className="text-white/90 font-medium leading-relaxed"
+            className="text-white"
             style={{
-              fontSize: 'clamp(1rem, 1.8vw, 1.35rem)',
+              fontWeight: 600, lineHeight: 1.5, fontSize: 'clamp(1rem, 2vw, 1.5rem)',
             }}
           >
             <span className="hidden md:inline">Academics at JLU are designed to help students build<br />clarity of thought, depth of understanding, and confidence<br />in application. Across faculties and schools, learning is guided<br />by conversation, experience, and exposure to the real world.</span>
@@ -148,9 +148,9 @@ const Academics = () => {
           }}
         >
           <p
-            className="text-white/85 font-medium leading-relaxed"
+            className="text-white"
             style={{
-              fontSize: 'clamp(1rem, 2.5vw, 1.25rem)',
+              fontWeight: 600, lineHeight: 1.5, fontSize: 'clamp(1rem, 2vw, 1.5rem)',
             }}
           >
             <span className="hidden md:inline">Students engage with ideas inside classrooms and test them beyond,<br />
@@ -220,13 +220,13 @@ const Academics = () => {
           >
             <div>
               <span
-                className="text-[#999] uppercase tracking-widest block mb-4 text-xl md:text-2xl font-bold"
+                className="text-[#999] uppercase tracking-widest block mb-4 md:mb-6 text-xl md:text-2xl font-bold"
                 style={{ letterSpacing: '0.2em' }}
               >
                 What We Offer
               </span>
               <h2
-                className="text-[#21313c] text-2xl sm:text-3xl md:text-[clamp(2.5rem,5vw,4rem)]"
+                className="text-[#21313c] text-2xl sm:text-3xl md:text-4xl lg:text-5xl"
                 style={{
                   fontWeight: 600,
                   lineHeight: 1.1,
@@ -240,7 +240,7 @@ const Academics = () => {
               </h2>
             </div>
             <p
-              className="text-[#666] text-sm md:text-base max-w-full md:max-w-[380px]"
+              className="text-[#666] text-sm md:text-[17px] max-w-full md:max-w-[420px]"
               style={{ lineHeight: 1.7 }}
             >
               52+ programs across 7 faculties, designed to shape future-ready professionals with industry-relevant skills.
@@ -254,21 +254,21 @@ const Academics = () => {
                 label: 'Undergraduate',
                 tag: 'UG',
                 count: '29',
-                image: '/p1.jpg',
+                image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/p1.jpg',
                 color: '#c3fd7a',
               },
               {
                 label: 'Postgraduate',
                 tag: 'PG',
                 count: '10',
-                image: '/p2.jpg',
-                color: '#f0c14b',
+                image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/p2.jpg',
+                color: '#027ea1',
               },
               {
                 label: 'Doctoral',
                 tag: 'PhD',
                 count: '10',
-                image: '/p3.jpg',
+                image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/p3.jpg',
                 color: '#8bc34a',
               },
             ].map((cat, i) => (
@@ -295,7 +295,7 @@ const Academics = () => {
                   {/* Tag */}
                   <div className="absolute top-3 left-3 md:top-4 md:left-4">
                     <span
-                      className="text-xl md:text-2xl font-bold font-bold uppercase tracking-wider px-3 py-1 rounded-full"
+                      className="text-[10px] md:text-xs font-semibold uppercase tracking-wider px-3 py-1 rounded-full"
                       style={{ backgroundColor: cat.color, color: '#21313c' }}
                     >
                       {cat.tag}
@@ -310,7 +310,7 @@ const Academics = () => {
                     >
                       {cat.count}
                     </span>
-                    <span className="text-white/50 text-xl md:text-2xl font-bold uppercase tracking-wider block mb-2">
+                    <span className="text-white/50 text-xs md:text-sm font-semibold uppercase tracking-wider block mb-2">
                       Programs
                     </span>
                     <h3 className="text-white text-sm md:text-lg font-semibold" style={{ lineHeight: 1.2 }}>
@@ -405,7 +405,7 @@ const Academics = () => {
                 Academic Structure
               </span>
               <h2
-                className="text-white text-2xl sm:text-3xl md:text-[clamp(2.5rem,5vw,4rem)]"
+                className="text-white text-2xl sm:text-3xl md:text-4xl lg:text-5xl"
                 style={{
                   fontWeight: 600,
                   lineHeight: 1.1,
@@ -413,13 +413,13 @@ const Academics = () => {
                 }}
               >
                 Faculties &{' '}
-                <span style={{ fontFamily: "'Times New Roman', serif", fontStyle: 'italic', fontWeight: 400, color: '#f0c14b' }}>
+                <span style={{ fontFamily: "'Times New Roman', serif", fontStyle: 'italic', fontWeight: 400, color: '#027ea1' }}>
                   Schools
                 </span>
               </h2>
             </div>
             <p
-              className="text-[#999] text-sm md:text-base max-w-full md:max-w-[400px]"
+              className="text-[#999] text-sm md:text-[17px] max-w-full md:max-w-[420px]"
               style={{ lineHeight: 1.7 }}
             >
               Seven faculties, each housing specialized schools that shape focused paths of learning and industry readiness.
@@ -489,7 +489,7 @@ const Academics = () => {
                   )}
 
                   <p
-                    className="text-[#999] text-sm md:text-base"
+                    className="text-[#999] text-sm md:text-[17px]"
                     style={{ lineHeight: 1.7 }}
                   >
                     {activeFaculty.description}
@@ -504,12 +504,12 @@ const Academics = () => {
                       initial={{ opacity: 0, scale: 0.9 }}
                       animate={{ opacity: 1, scale: 1 }}
                       transition={{ duration: 0.35, delay: 0.1 + i * 0.07 }}
-                      className="bg-[#2d3f4a] rounded-xl p-2.5 md:p-4 text-center"
+                      className="bg-[#2d3f4a] rounded-xl p-4 md:p-6 text-center"
                     >
-                      <span className="text-[#f0c14b] text-base md:text-xl font-bold block mb-0.5">
+                      <span className="text-[#027ea1] text-base md:text-xl font-bold block mb-0.5">
                         {stat.value}
                       </span>
-                      <span className="text-[#999] text-xl md:text-2xl font-bold uppercase tracking-wider">
+                      <span className="text-[#999] text-[10px] md:text-xs font-medium uppercase tracking-wider">
                         {stat.label}
                       </span>
                     </motion.div>
@@ -608,7 +608,7 @@ const Academics = () => {
               className="max-w-full md:max-w-[580px]"
             >
               <h2
-                className="text-[#21313c] mb-6 md:mb-12 text-2xl sm:text-3xl md:text-[clamp(2rem,4vw,3rem)]"
+                className="text-[#21313c] mb-6 md:mb-12 text-2xl sm:text-3xl md:text-4xl lg:text-5xl"
                 style={{
                   fontWeight: 600,
                   lineHeight: 1.2,
@@ -627,7 +627,7 @@ const Academics = () => {
               {/* Image below text */}
               <div className="relative w-full overflow-hidden mt-6 md:mt-10 h-45 sm:h-60 md:h-70 rounded-xl md:rounded-none">
                 <Image
-                  src="/interdisciplinary/lab.jpg"
+                  src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/interdisciplinary/lab.jpg"
                   alt="Students in computer lab at JLU"
                   fill
                   className="object-cover"
@@ -699,7 +699,7 @@ const Academics = () => {
                 Perspectives
               </span>
               <h2
-                className="text-[#21313c] text-2xl sm:text-3xl md:text-[clamp(2.5rem,5vw,4rem)]"
+                className="text-[#21313c] text-2xl sm:text-3xl md:text-4xl lg:text-5xl"
                 style={{
                   fontWeight: 600,
                   lineHeight: 1.1,

@@ -21,28 +21,28 @@ const events: PageEvent[] = [
     title: 'Photo Exhibition',
     venue: 'Art Gallery, Shri Gurudev Gupta Media Studios',
     category: 'Arts & Culture',
-    image: '/e1.jpg',
+    image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/e1.jpg',
   },
   {
     date: '17 Sep 2025',
     title: 'Pinning Ceremony',
     venue: 'A-Block Auditorium',
     category: 'Student Leadership',
-    image: '/e2.jpg',
+    image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/e2.jpg',
   },
   {
     date: '12 Sep 2025',
     title: 'Inter School Debate Competition',
     venue: 'Main Campus',
     category: 'Academic Competition',
-    image: '/e3.jpg',
+    image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/e3.jpg',
   },
   {
     date: '22 Jul 2025',
     title: 'Ignited Mind Awards 2025',
     venue: 'Football Ground',
     category: 'Awards & Recognition',
-    image: '/e4.jpg',
+    image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/e4.jpg',
   },
 ];
 
@@ -67,12 +67,12 @@ export const PageEventsSection = () => {
             <span className="text-[#21313c] text-xs font-bold block leading-tight">
               {event.date.split(' ')[0]}
             </span>
-            <span className="text-[#999] text-xl md:text-2xl font-bold uppercase tracking-wider">
+            <span className="text-[#999] text-[10px] md:text-xs font-medium uppercase tracking-wider">
               {event.date.split(' ').slice(1).join(' ')}
             </span>
           </div>
           <div className="absolute bottom-3 left-3">
-            <span className="text-white/90 text-xl md:text-2xl font-bold uppercase tracking-wider bg-white/15 px-2.5 py-1 rounded-full">
+            <span className="text-white/90 text-[10px] md:text-xs font-medium uppercase tracking-wider bg-white/15 px-2.5 py-1 rounded-full">
               {event.category}
             </span>
           </div>
@@ -107,12 +107,12 @@ export const PageEventsSection = () => {
           className="flex items-end justify-between mb-8 md:mb-16"
         >
           <div>
-            <span className="text-[#999] text-xl md:text-2xl font-bold tracking-[0.3em] uppercase block mb-2 md:mb-4">
+            <span className="text-[#999] uppercase tracking-widest block mb-4 md:mb-6 text-xl md:text-2xl font-bold" style={{ letterSpacing: '0.2em' }}>
               What&apos;s Happening
             </span>
             <h2
-              className="text-[#21313c] text-xl md:text-5xl lg:text-6xl font-semibold"
-              style={{ letterSpacing: '-0.03em', lineHeight: 1.05 }}
+              className="text-[#21313c] text-2xl sm:text-3xl md:text-4xl lg:text-5xl"
+              style={{ fontWeight: 600, letterSpacing: '-0.03em', lineHeight: 1.1 }}
             >
               Upcoming{' '}
               <span style={{ fontFamily: "'Times New Roman', serif", fontStyle: 'italic', fontWeight: 400 }}>

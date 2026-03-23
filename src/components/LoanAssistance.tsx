@@ -162,7 +162,7 @@ const LoanAssistance = () => {
       <div className="relative overflow-hidden">
         <div className="absolute inset-0 z-0">
           <img
-            src="/campus/smart-classroom.jpg"
+            src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/campus/computer%20lab.JPG"
             alt="JLU Education Loan"
             className="w-full h-full object-cover"
           />
@@ -186,7 +186,7 @@ const LoanAssistance = () => {
               <h1
                 className="text-white mb-4"
                 style={{
-                  fontSize: 'clamp(2.5rem, 5vw, 4rem)',
+                  fontSize: 'clamp(2.25rem, 4vw, 3rem)',
                   fontWeight: 600,
                   lineHeight: 1.1,
                   letterSpacing: '-0.03em',

@@ -179,7 +179,7 @@ export const Hero = () => {
           >
             <img
               ref={backgroundRef}
-              src="/onlybg.png"
+              src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/onlybg.png"
               alt="Background"
               className={`absolute inset-0 w-full h-full object-cover ${isMobile ? '' : 'scale-110'}`}
               style={{
@@ -197,7 +197,7 @@ export const Hero = () => {
             className="absolute inset-0 flex flex-col items-center justify-center"
             style={{
               zIndex: 2,
-              paddingBottom: isMobile ? '50%' : '22%',
+              paddingBottom: isMobile ? '55%' : '22%',
               opacity: 0,
             }}
           >
@@ -206,9 +206,9 @@ export const Hero = () => {
               className="text-center uppercase tracking-widest select-none"
               style={{
                 fontFamily: "'Humane', sans-serif",
-                fontSize: isMobile ? 'clamp(2.5rem, 12vw, 4.5rem)' : 'clamp(5.5rem, 9vw, 11rem)',
+                fontSize: isMobile ? 'clamp(2.5rem, 11vw, 4.5rem)' : 'clamp(7rem, 11vw, 14rem)',
                 fontWeight: 700,
-                lineHeight: 1.0,
+                lineHeight: 0.95,
                 letterSpacing: '0.05em',
                 whiteSpace: 'nowrap',
                 backgroundImage: isMobile
@@ -220,35 +220,14 @@ export const Hero = () => {
                 textShadow: 'none',
               }}
             >
-              Central India&apos;s
-            </h1>
-            <h1
-              className="text-center uppercase tracking-widest select-none"
-              style={{
-                fontFamily: "'Humane', sans-serif",
-                fontSize: isMobile ? 'clamp(3.5rem, 15vw, 6rem)' : 'clamp(8rem, 13vw, 16rem)',
-                fontWeight: 700,
-                lineHeight: 0.85,
-                marginTop: isMobile ? '-4px' : '-8px',
-                letterSpacing: '0.05em',
-                whiteSpace: 'nowrap',
-                backgroundImage: isMobile
-                  ? 'linear-gradient(to bottom, rgba(255,255,255,0.85) 0%, rgba(255,255,255,0.7) 50%, rgba(255,255,255,0.4) 100%)'
-                  : 'linear-gradient(to bottom, rgba(255,255,255,0.85) 0%, rgba(255,255,255,0.7) 50%, rgba(255,255,255,0.4) 90%)',
-                WebkitBackgroundClip: 'text',
-                backgroundClip: 'text',
-                WebkitTextFillColor: 'transparent',
-                textShadow: 'none',
-              }}
-            >
-              Global University
+              Central India&apos;s Global University
             </h1>
           </div>
 
           {/* Layer 3: Building/Foreground Image (z-index: 3) */}
           <img
             ref={buildingRef}
-            src="/hero.png"
+            src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/hero.png"
             alt="JLU Building"
             className="absolute"
             style={{
@@ -367,7 +346,7 @@ export const Hero = () => {
                       </button>
                       <video
                         className="w-full h-full object-cover"
-                        src="/video.mp4"
+                        src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/JLU-Dynamic-Campus-Experience.mp4"
                         autoPlay
                         playsInline
                         onEnded={() => setIsVideoOpen(false)}
@@ -419,7 +398,7 @@ export const Hero = () => {
                       </button>
                       <video
                         className="w-full h-full object-cover"
-                        src="/video.mp4"
+                        src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/JLU-Dynamic-Campus-Experience.mp4"
                         autoPlay
                         playsInline
                         onEnded={() => setIsVideoOpen(false)}
@@ -518,12 +497,10 @@ export const Hero = () => {
         <div className="mx-auto flex max-w-[1800px] flex-col gap-4 sm:gap-6">
           <div>
             <h2
-              className="max-w-4xl leading-tight text-[#21313c]"
+              className="max-w-4xl text-[#21313c] text-3xl md:text-4xl lg:text-5xl"
               style={{
-                fontFamily: 'Inter, sans-serif',
-                fontSize: isMobile ? 'clamp(1.5rem, 7vw, 2rem)' : 'clamp(2rem, 4vw, 3.5rem)',
                 fontWeight: 600,
-                letterSpacing: '-0.03em',
+                lineHeight: 1.1,
               }}
             >
               A university with a{' '}
@@ -545,10 +522,10 @@ export const Hero = () => {
               Jagran Lakecity University is not defined by buildings alone. It is defined by the rhythm of daily life, the exchange of ideas, and the quiet confidence of people who belong here.
             </p>
             <p
-              className="flex-1 text-[#999]"
+              className="flex-1 text-[#999] text-right mt-10"
               style={{
                 fontFamily: 'Inter, sans-serif',
-                fontSize: isMobile ? '20px' : 'clamp(1.25rem, 2vw, 1.75rem)',
+                fontSize: isMobile ? '18px' : 'clamp(1.15rem, 1.8vw, 1.5rem)',
                 lineHeight: 1.7,
                 fontWeight: 400,
               }}
@@ -567,9 +544,9 @@ export const Hero = () => {
             style={{ gap: isMobile ? '12px' : '16px' }}
           >
             {[
-              { src: '/about-us.jpg', alt: 'JLU Campus', height: 550, mobileHeight: 280, label: 'About Us', href: '/about' },
-              { src: '/admissions.jpg', alt: 'Admissions', height: 500, mobileHeight: 260, label: 'Admissions', href: '/admissions' },
-              { src: '/student-clubs.jpg', alt: 'Student Clubs', height: 530, mobileHeight: 270, label: 'Student Clubs', href: '/student-clubs' },
+              { src: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/about-us.jpg', alt: 'JLU Campus', height: 550, mobileHeight: 280, label: 'About Us', href: '/about' },
+              { src: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/admissions.jpg', alt: 'Admissions', height: 500, mobileHeight: 260, label: 'Admissions', href: '/admissions' },
+              { src: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/student-clubs.jpg', alt: 'Student Clubs', height: 530, mobileHeight: 270, label: 'Student Clubs', href: '/student-clubs' },
             ].map((img, index) => (
               <div
                 key={img.src}
@@ -706,7 +683,7 @@ export const Hero = () => {
                 style={{ zIndex: 9998, overflow: 'hidden' }}
               >
                 <motion.img
-                  src={['/about-us.jpg', '/admissions.jpg', '/student-clubs.jpg'][expandingCard]}
+                  src={['https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/about-us.jpg', 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/admissions.jpg', 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/student-clubs.jpg'][expandingCard]}
                   alt="Expanding"
                   className="w-full h-full object-cover"
                   initial={{ scale: 1 }}

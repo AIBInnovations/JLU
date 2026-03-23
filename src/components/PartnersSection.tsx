@@ -63,13 +63,13 @@ export const PartnersSection = () => {
         >
           COLLABORATIONS
         </p>
-        <h2
-          className="text-4xl md:text-5xl lg:text-6xl text-[#21313c] mb-4"
-          style={{ fontWeight: 600, lineHeight: 1 }}
+        <h1
+          className="text-3xl md:text-4xl lg:text-5xl text-[#21313c] mb-4"
+          style={{ fontWeight: 600, lineHeight: 1.1 }}
         >
           Global{' '}
           <span style={{ fontFamily: "'Times New Roman', serif", fontStyle: 'italic' }}>Partnerships</span>
-        </h2>
+        </h1>
         <div className="mx-auto mt-6" style={{ width: '274px', height: '0px', border: '4px solid #027ea1' }} />
       </div>
 
@@ -105,44 +105,44 @@ export const PartnersSection = () => {
 
           {/* First Row - 2 boxes */}
           <div>
-            <p className="text-base text-gray-500 mb-2 tracking-wide uppercase font-semibold">Academic Partners</p>
+            <p className="text-base text-gray-500 mb-2 tracking-wide uppercase font-bold">Academic Partners</p>
             <div className="flex">
               <div
                 className="border border-gray-300 flex items-center justify-center"
                 style={{ width: 'calc(50vw - 6px)', height: '80px' }}
               >
-                <img src="/mid.png" alt="Middlesex University" style={{ maxHeight: '40px' }} className="object-contain" />
+                <img src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/mid.png" alt="Middlesex University" style={{ maxHeight: '40px' }} className="object-contain" />
               </div>
               <div
                 className="border border-l-0 border-gray-300 flex items-center justify-center"
                 style={{ width: 'calc(50vw - 6px)', height: '80px' }}
               >
-                <img src="/king.png" alt="King's College London" style={{ maxHeight: '40px' }} className="object-contain" />
+                <img src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/king.png" alt="King's College London" style={{ maxHeight: '40px' }} className="object-contain" />
               </div>
             </div>
           </div>
 
           {/* Second + Third Row - 3 boxes each */}
           <div className="mt-3">
-            <p className="text-base text-gray-500 mb-2 tracking-wide uppercase font-semibold">Industry & Institutional Partners</p>
+            <p className="text-base text-gray-500 mb-2 tracking-wide uppercase font-bold">Industry & Institutional Partners</p>
             <div className="flex">
               <div
                 className="border border-gray-300 flex items-center justify-center"
                 style={{ width: 'calc(33.33vw - 4px)', height: '70px' }}
               >
-                <img src="/nus.png" alt="NUS" style={{ maxHeight: '50px' }} className="object-contain" />
+                <img src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/nus.png" alt="NUS" style={{ maxHeight: '50px' }} className="object-contain" />
               </div>
               <div
                 className="border border-l-0 border-gray-300 flex items-center justify-center"
                 style={{ width: 'calc(33.33vw - 4px)', height: '70px' }}
               >
-                <img src="/c11.png" alt="CII" style={{ maxHeight: '32px' }} className="object-contain" />
+                <img src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/c11.png" alt="CII" style={{ maxHeight: '32px' }} className="object-contain" />
               </div>
               <div
                 className="border border-l-0 border-gray-300 flex items-center justify-center"
                 style={{ width: 'calc(33.33vw - 4px)', height: '70px' }}
               >
-                <img src="/ficci.png" alt="FICCI" style={{ maxHeight: '32px' }} className="object-contain" />
+                <img src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/ficci.png" alt="FICCI" style={{ maxHeight: '32px' }} className="object-contain" />
               </div>
             </div>
 
@@ -151,7 +151,7 @@ export const PartnersSection = () => {
                 className="border border-t-0 border-gray-300 flex items-center justify-center"
                 style={{ width: 'calc(33.33vw - 4px)', height: '70px' }}
               >
-                <img src="/gt.png" alt="Grant Thornton" style={{ maxHeight: '26px' }} className="object-contain" />
+                <img src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/gt.png" alt="Grant Thornton" style={{ maxHeight: '26px' }} className="object-contain" />
               </div>
               <div
                 className="border border-t-0 border-l-0 border-gray-300 flex items-center justify-center"
@@ -165,7 +165,7 @@ export const PartnersSection = () => {
                 className="border border-t-0 border-l-0 border-gray-300 flex items-center justify-center"
                 style={{ width: 'calc(33.33vw - 4px)', height: '70px' }}
               >
-                <img src="/era.png" alt="ERA" className="object-cover w-full h-full" />
+                <img src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/era.png" alt="ERA" className="object-cover w-full h-full" />
               </div>
             </div>
           </div>
@@ -175,14 +175,14 @@ export const PartnersSection = () => {
         <div className="px-4 lg:px-16 xl:px-20 2xl:px-32">
           {/* First Row - 2 boxes + animated text on right */}
           <div>
-            <p className="text-lg text-gray-500 mb-4 tracking-wide uppercase font-semibold">Academic Partners</p>
+            <p className="text-lg text-gray-500 mb-4 tracking-wide uppercase font-bold">Academic Partners</p>
             <div className="flex">
               <div
                 className="border border-gray-300 flex items-center justify-center"
                 style={{ flex: '0 0 33.333%', height: 'clamp(180px, 15vw, 300px)' }}
               >
                 <img
-                  src="/mid.png"
+                  src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/mid.png"
                   alt="Middlesex University"
                   className="max-h-28 object-contain"
                 />
@@ -192,7 +192,7 @@ export const PartnersSection = () => {
                 style={{ flex: '0 0 33.333%', height: 'clamp(180px, 15vw, 300px)' }}
               >
                 <img
-                  src="/king.png"
+                  src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/king.png"
                   alt="King's College London"
                   className="max-h-28 object-contain"
                 />
@@ -236,7 +236,7 @@ export const PartnersSection = () => {
 
           {/* Bottom boxes - 6 boxes */}
           <div className="mt-6">
-            <p className="text-lg text-gray-500 mb-4 tracking-wide uppercase font-semibold">Industry & Institutional Partners</p>
+            <p className="text-lg text-gray-500 mb-4 tracking-wide uppercase font-bold">Industry & Institutional Partners</p>
 
             {/* Second Row - 3 boxes */}
             <div className="flex">
@@ -245,7 +245,7 @@ export const PartnersSection = () => {
                 style={{ flex: '0 0 33.333%', height: 'clamp(160px, 13vw, 260px)' }}
               >
                 <img
-                  src="/nus.png"
+                  src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/nus.png"
                   alt="NUS"
                   className="max-h-36 object-contain"
                 />
@@ -255,7 +255,7 @@ export const PartnersSection = () => {
                 style={{ flex: '0 0 33.333%', height: 'clamp(160px, 13vw, 260px)' }}
               >
                 <img
-                  src="/c11.png"
+                  src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/c11.png"
                   alt="CII"
                   className="max-h-24 object-contain"
                 />
@@ -265,7 +265,7 @@ export const PartnersSection = () => {
                 style={{ flex: '0 0 33.334%', height: 'clamp(160px, 13vw, 260px)' }}
               >
                 <img
-                  src="/ficci.png"
+                  src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/ficci.png"
                   alt="FICCI"
                   className="max-h-24 object-contain"
                 />
@@ -279,7 +279,7 @@ export const PartnersSection = () => {
                 style={{ flex: '0 0 33.333%', height: 'clamp(160px, 13vw, 260px)' }}
               >
                 <img
-                  src="/gt.png"
+                  src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/gt.png"
                   alt="Grant Thornton"
                   className="max-h-16 object-contain"
                 />
@@ -304,7 +304,7 @@ export const PartnersSection = () => {
                 style={{ flex: '0 0 33.334%', height: 'clamp(160px, 13vw, 260px)' }}
               >
                 <img
-                  src="/era.png"
+                  src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/era.png"
                   alt="ERA"
                   className="object-cover w-full h-full"
                 />

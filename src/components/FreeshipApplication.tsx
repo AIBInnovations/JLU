@@ -153,7 +153,7 @@ const FreeshipApplication = () => {
       <div className="relative overflow-hidden">
         <div className="absolute inset-0 z-0">
           <img
-            src="/campus/gallery-3.jpg"
+            src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/campus/gallery-3.jpg"
             alt="JLU Chancellor Freeship"
             className="w-full h-full object-cover"
           />
@@ -177,14 +177,14 @@ const FreeshipApplication = () => {
               <h1
                 className="text-white mb-4"
                 style={{
-                  fontSize: 'clamp(2.5rem, 5vw, 4rem)',
+                  fontSize: 'clamp(2.25rem, 4vw, 3rem)',
                   fontWeight: 600,
                   lineHeight: 1.1,
                   letterSpacing: '-0.03em',
                 }}
               >
                 Apply for{' '}
-                <span style={{ fontFamily: "'Times New Roman', serif", fontStyle: 'italic', fontWeight: 400, color: '#f0c14b' }}>
+                <span style={{ fontFamily: "'Times New Roman', serif", fontStyle: 'italic', fontWeight: 400, color: '#027ea1' }}>
                   Chancellor Freeship
                 </span>
               </h1>

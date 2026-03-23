@@ -47,10 +47,11 @@ const Programs = () => {
           <h2
             className="text-white font-semibold leading-tight mb-3 sm:mb-4 md:mb-5 text-2xl sm:text-3xl md:text-[clamp(1.5rem,3vw,2.5rem)]"
           >
-            PATHS SHAPED BY <span style={{ fontFamily: "'Times New Roman', serif", fontStyle: 'italic', color: '#f0c14b', textShadow: '2px 2px 4px rgba(0,0,0,0.5)' }}>curiosity</span>
+            PATHS SHAPED BY <span style={{ fontFamily: "'Times New Roman', serif", fontStyle: 'italic', color: '#027ea1', textShadow: '2px 2px 4px rgba(0,0,0,0.5)' }}>curiosity</span>
           </h2>
           <p
-            className="text-white font-semibold leading-tight text-xl sm:text-2xl md:text-[clamp(1.25rem,2.5vw,2rem)]"
+            className="text-white"
+            style={{ fontWeight: 600, lineHeight: 1.5, fontSize: 'clamp(1rem, 2vw, 1.5rem)' }}
           >
             At JLU, programs are not defined only by subjects. They are defined by intent, direction, and the kind of future a learner wants to shape.
           </p>
@@ -153,7 +154,7 @@ const Programs = () => {
                 <span className="hidden md:inline">Continuum</span>
               </div>
               <h3
-                className="text-[#21313c] mb-2 sm:mb-4 md:mb-6 text-lg sm:text-2xl md:text-[clamp(2rem,4vw,3rem)]"
+                className="text-[#21313c] mb-2 sm:mb-4 md:mb-6 text-lg sm:text-2xl md:text-4xl lg:text-5xl"
                 style={{
                   fontWeight: 600,
                   lineHeight: 1.1,

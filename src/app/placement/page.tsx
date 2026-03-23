@@ -19,13 +19,13 @@ const customEase: [number, number, number, number] = [0.22, 1, 0.36, 1];
 
 // Gallery images for the multi-image showcase - placement-themed images
 const galleryImages = [
-  { id: 1, src: '/JLu%20events/photos/Convocation/DSC_5604.JPG', position: 'top-[5%] left-[2%]', size: 'w-[85px] h-[115px] md:w-[180px] md:h-[260px]', opacity: 0.7 },
-  { id: 2, src: '/jlu-placement1.jpeg', position: 'top-[2%] left-[30%]', size: 'w-[65px] h-[85px] md:w-[130px] md:h-[170px]', opacity: 0.5 },
-  { id: 3, src: '/JLu%20events/photos/Convocation/DSC_4625.JPG', position: '', size: 'w-[140px] h-[190px] md:w-[260px] md:h-[360px]', isCenter: true, opacity: 1 },
-  { id: 4, src: '/jlu-placement2.jpeg', position: 'top-[3%] right-[2%]', size: 'w-[75px] h-[100px] md:w-[160px] md:h-[220px]', opacity: 0.6 },
-  { id: 5, src: '/JLu%20events/photos/Convocation/DSC_1357.JPG', position: 'top-[22%] right-[1%]', size: 'w-[55px] h-[75px] md:w-[120px] md:h-[160px]', opacity: 0.4 },
-  { id: 6, src: '/jlu-placement3.jpeg', position: 'bottom-[8%] left-[2%]', size: 'w-[70px] h-[95px] md:w-[150px] md:h-[200px]', opacity: 0.5 },
-  { id: 7, src: '/JLu%20events/photos/Convocation/DSC_5026.JPG', position: 'bottom-[5%] right-[2%]', size: 'w-[80px] h-[105px] md:w-[170px] md:h-[230px]', opacity: 0.6 },
+  { id: 1, src: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/JLu%20events/photos/Convocation/DSC_5604.JPG', position: 'top-[5%] left-[2%]', size: 'w-[85px] h-[115px] md:w-[180px] md:h-[260px]', opacity: 0.7 },
+  { id: 2, src: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/jlu-placement1.jpeg', position: 'top-[2%] left-[30%]', size: 'w-[65px] h-[85px] md:w-[130px] md:h-[170px]', opacity: 0.5 },
+  { id: 3, src: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/JLu%20events/photos/Convocation/DSC_4625.JPG', position: '', size: 'w-[140px] h-[190px] md:w-[260px] md:h-[360px]', isCenter: true, opacity: 1 },
+  { id: 4, src: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/jlu-placement2.jpeg', position: 'top-[3%] right-[2%]', size: 'w-[75px] h-[100px] md:w-[160px] md:h-[220px]', opacity: 0.6 },
+  { id: 5, src: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/JLu%20events/photos/Convocation/DSC_1357.JPG', position: 'top-[22%] right-[1%]', size: 'w-[55px] h-[75px] md:w-[120px] md:h-[160px]', opacity: 0.4 },
+  { id: 6, src: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/jlu-placement3.jpeg', position: 'bottom-[8%] left-[2%]', size: 'w-[70px] h-[95px] md:w-[150px] md:h-[200px]', opacity: 0.5 },
+  { id: 7, src: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/JLu%20events/photos/Convocation/DSC_5026.JPG', position: 'bottom-[5%] right-[2%]', size: 'w-[80px] h-[105px] md:w-[170px] md:h-[230px]', opacity: 0.6 },
 ];
 
 
@@ -316,7 +316,7 @@ export default function PlacementPage() {
         >
           <motion.div className="absolute inset-0" style={{ y: heroY }}>
             <img
-              src="/JLu%20events/photos/Convocation/DSC_5604.JPG"
+              src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/JLu%20events/photos/Convocation/DSC_5604.JPG"
               alt="JLU Students Celebrating Placements"
               className="w-full h-full object-cover scale-110"
             />
@@ -336,7 +336,7 @@ export default function PlacementPage() {
             className="text-white font-semibold leading-tight mb-3 sm:mb-4 md:mb-5 text-xl sm:text-2xl md:text-[clamp(1.5rem,3vw,2.5rem)]"
           >
             CAREER{' '}
-            <span style={{ fontFamily: "'Times New Roman', serif", fontStyle: 'italic', color: '#f0c14b', textShadow: '2px 2px 4px rgba(0,0,0,0.5)' }}>
+            <span style={{ fontFamily: "'Times New Roman', serif", fontStyle: 'italic', color: '#027ea1', textShadow: '2px 2px 4px rgba(0,0,0,0.5)' }}>
               Excellence
             </span>
           </motion.h2>
@@ -344,7 +344,8 @@ export default function PlacementPage() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.8, delay: 0.8 }}
-            className="text-white font-semibold leading-tight text-base sm:text-lg md:text-[clamp(1.25rem,2.5vw,2rem)]"
+            className="text-white"
+            style={{ fontWeight: 600, lineHeight: 1.5, fontSize: 'clamp(1rem, 2vw, 1.5rem)' }}
           >
             Bridging exceptional talent with industry-leading opportunities. Where academic excellence meets professional success through strategic partnerships and dedicated mentorship.
           </motion.p>
@@ -452,25 +453,25 @@ export default function PlacementPage() {
                     {/* Multiple changing description texts */}
                     <div className="scroll-desc-1 absolute bottom-[10%] left-8 md:left-12 max-w-xl z-10 opacity-0">
                       <p className="text-white text-lg lg:text-xl leading-relaxed">
-                        JLU maintains a <span className="text-[#f0c14b] font-semibold">consistent 80%+ placement rate</span> year after year, with dedicated pre-placement training, industry mentorship, and comprehensive career development programs ensuring student success.
+                        JLU maintains a <span className="text-[#027ea1] font-semibold">consistent 80%+ placement rate</span> year after year, with dedicated pre-placement training, industry mentorship, and comprehensive career development programs ensuring student success.
                       </p>
                     </div>
 
                     <div className="scroll-desc-2 absolute bottom-[10%] left-8 md:left-12 max-w-xl z-10 opacity-0">
                       <p className="text-white text-lg lg:text-xl leading-relaxed">
-                        Over <span className="text-[#f0c14b] font-semibold">500+ top-tier companies including Infosys, TCS, Deloitte, Amazon, and HDFC Bank</span> actively recruit from JLU, conducting 200+ campus drives annually across diverse sectors.
+                        Over <span className="text-[#027ea1] font-semibold">500+ top-tier companies including Infosys, TCS, Deloitte, Amazon, and HDFC Bank</span> actively recruit from JLU, conducting 200+ campus drives annually across diverse sectors.
                       </p>
                     </div>
 
                     <div className="scroll-desc-3 absolute bottom-[10%] left-8 md:left-12 max-w-xl z-10 opacity-0">
                       <p className="text-white text-lg lg:text-xl leading-relaxed">
-                        Our Career Development Centre offers <span className="text-[#f0c14b] font-semibold">rigorous pre-placement training including aptitude tests, coding bootcamps, mock interviews, and soft skills development</span> — preparing students for every stage of the recruitment process.
+                        Our Career Development Centre offers <span className="text-[#027ea1] font-semibold">rigorous pre-placement training including aptitude tests, coding bootcamps, mock interviews, and soft skills development</span> — preparing students for every stage of the recruitment process.
                       </p>
                     </div>
 
                     <div className="scroll-desc-4 absolute bottom-[10%] left-8 md:left-12 max-w-xl z-10 opacity-0">
                       <p className="text-white text-lg lg:text-xl leading-relaxed">
-                        With <span className="text-[#f0c14b] font-semibold">highest packages reaching 15 LPA and strong alumni networks in 15+ countries</span>, JLU graduates secure positions in Fortune 500 companies, innovative startups, and global corporations worldwide.
+                        With <span className="text-[#027ea1] font-semibold">highest packages reaching 15 LPA and strong alumni networks in 15+ countries</span>, JLU graduates secure positions in Fortune 500 companies, innovative startups, and global corporations worldwide.
                       </p>
                     </div>
                   </div>
@@ -495,12 +496,12 @@ export default function PlacementPage() {
             transition={{ duration: 0.8, ease: customEase }}
             className="text-center mb-10 md:mb-16"
           >
-            <span className="text-[#f0c14b] text-xs tracking-[0.3em] uppercase block mb-5">
+            <span className="text-[#999] uppercase tracking-widest block mb-4 md:mb-6 text-xl md:text-2xl font-bold">
               Placement Highlights
             </span>
-            <h2 className="text-white text-3xl md:text-5xl lg:text-6xl font-semibold" style={{ letterSpacing: '-0.03em', lineHeight: 1.1 }}>
+            <h2 className="text-white text-3xl md:text-4xl lg:text-5xl font-semibold" style={{ letterSpacing: '-0.03em', lineHeight: 1.1 }}>
               Numbers That{' '}
-              <span style={{ fontFamily: "'Times New Roman', serif", fontStyle: 'italic', fontWeight: 400, color: '#f0c14b' }}>
+              <span style={{ fontFamily: "'Times New Roman', serif", fontStyle: 'italic', fontWeight: 400, color: '#027ea1' }}>
                 Speak
               </span>
             </h2>
@@ -521,7 +522,7 @@ export default function PlacementPage() {
             ].map((stat, i, arr) => (
               <div key={stat.label} className="flex items-center">
                 <div className="text-center px-2 md:px-8">
-                  <span className="text-[#f0c14b] text-xl sm:text-2xl md:text-4xl lg:text-5xl font-bold block mb-1" style={{ letterSpacing: '-0.02em' }}>
+                  <span className="text-[#027ea1] text-xl sm:text-2xl md:text-4xl lg:text-5xl font-bold block mb-1" style={{ letterSpacing: '-0.02em' }}>
                     {stat.number}
                   </span>
                   <span className="text-white/60 text-xs sm:text-xs md:text-sm">
@@ -549,10 +550,10 @@ export default function PlacementPage() {
             transition={{ duration: 0.8, ease: customEase }}
             className="mb-12 md:mb-20"
           >
-            <span className="text-[#999] text-xs tracking-[0.3em] uppercase block mb-4">
+            <span className="text-[#999] uppercase tracking-widest block mb-4 md:mb-6 text-xl md:text-2xl font-bold">
               What Sets Us Apart
             </span>
-            <h2 className="text-[#21313c] text-3xl md:text-5xl lg:text-6xl font-semibold" style={{ letterSpacing: '-0.03em', lineHeight: 1.1 }}>
+            <h2 className="text-[#21313c] text-3xl md:text-4xl lg:text-5xl font-semibold" style={{ letterSpacing: '-0.03em', lineHeight: 1.1 }}>
               Career Readiness{' '}
               <span style={{ fontFamily: "'Times New Roman', serif", fontStyle: 'italic', fontWeight: 400 }}>
                 Pillars
@@ -568,12 +569,12 @@ export default function PlacementPage() {
                 {
                   title: 'Industry-Ready Curriculum',
                   description: 'Programs co-designed with industry leaders, ensuring skills align with market demands.',
-                  image: '/JLu%20events/photos/Convocation/DSC_0858.JPG',
+                  image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/JLu%20events/photos/Convocation/DSC_0858.JPG',
                 },
                 {
                   title: 'Dedicated Training & Development',
                   description: 'Pre-placement training including aptitude, technical skills & communication workshops.',
-                  image: '/JLu%20events/photos/Convocation/DSC_5604.JPG',
+                  image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/JLu%20events/photos/Convocation/DSC_5604.JPG',
                 },
               ].map((card, i) => (
                 <motion.div
@@ -610,12 +611,12 @@ export default function PlacementPage() {
                 {
                   title: 'Mock Interviews & Soft Skills',
                   description: 'Rigorous mock interviews, group discussions & personality development sessions.',
-                  image: '/JLu%20events/photos/Convocation/DSC_0885.JPG',
+                  image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/JLu%20events/photos/Convocation/DSC_0885.JPG',
                 },
                 {
                   title: 'Global Career Network',
                   description: 'International placement partnerships & alumni network spanning Fortune 500 companies.',
-                  image: '/JLu%20events/photos/Convocation/DSC_4625.JPG',
+                  image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/JLu%20events/photos/Convocation/DSC_4625.JPG',
                 },
               ].map((card, i) => (
                 <motion.div
@@ -654,28 +655,28 @@ export default function PlacementPage() {
               {
                 title: 'Industry-Ready Curriculum',
                 description: 'Programs co-designed with industry leaders, ensuring skills align with market demands and emerging technologies.',
-                image: '/JLu%20events/photos/Convocation/DSC_0858.JPG',
+                image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/JLu%20events/photos/Convocation/DSC_0858.JPG',
                 accent: '#c3fd7a',
                 darkText: true,
               },
               {
                 title: 'Dedicated Training & Development',
                 description: 'Pre-placement training programs including aptitude, technical skills, and professional communication workshops.',
-                image: '/JLu%20events/photos/Convocation/DSC_5604.JPG',
+                image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/JLu%20events/photos/Convocation/DSC_5604.JPG',
                 accent: '#027ea1',
                 darkText: false,
               },
               {
                 title: 'Mock Interviews & Soft Skills',
                 description: 'Rigorous mock interviews, group discussions, and personality development sessions with industry professionals.',
-                image: '/JLu%20events/photos/Convocation/DSC_0885.JPG',
+                image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/JLu%20events/photos/Convocation/DSC_0885.JPG',
                 accent: '#e85a71',
                 darkText: false,
               },
               {
                 title: 'Global Career Network',
                 description: 'International placement partnerships and alumni network spanning Fortune 500 companies across 15+ countries.',
-                image: '/JLu%20events/photos/Convocation/DSC_4625.JPG',
+                image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/JLu%20events/photos/Convocation/DSC_4625.JPG',
                 accent: '#f4c950',
                 darkText: true,
               },
@@ -733,10 +734,10 @@ export default function PlacementPage() {
             transition={{ duration: 0.8, ease: customEase }}
             className="text-center mb-16 md:mb-24"
           >
-            <span className="text-[#999] text-xs tracking-[0.3em] uppercase block mb-5">
+            <span className="text-[#999] uppercase tracking-widest block mb-4 md:mb-6 text-xl md:text-2xl font-bold">
               Step By Step
             </span>
-            <h2 className="text-[#21313c] text-3xl md:text-5xl lg:text-6xl font-semibold" style={{ letterSpacing: '-0.03em', lineHeight: 1.1 }}>
+            <h2 className="text-[#21313c] text-3xl md:text-4xl lg:text-5xl font-semibold" style={{ letterSpacing: '-0.03em', lineHeight: 1.1 }}>
               The JLU Placement{' '}
               <span style={{ fontFamily: "'Times New Roman', serif", fontStyle: 'italic', fontWeight: 400 }}>
                 Journey
@@ -746,10 +747,10 @@ export default function PlacementPage() {
 
           <div ref={journeyScrollRef} className="flex flex-row overflow-x-auto md:overflow-visible gap-4 md:gap-0 pb-4 md:pb-0 md:grid md:grid-cols-5 relative scrollbar-hide" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
             {/* Connecting line (desktop only) */}
-            <div className="hidden md:block absolute top-[40px] left-[10%] right-[10%] h-px bg-gradient-to-r from-transparent via-[#f0c14b] to-transparent" />
+            <div className="hidden md:block absolute top-[40px] left-[10%] right-[10%] h-px bg-gradient-to-r from-transparent via-[#027ea1] to-transparent" />
 
             {/* Connecting line (mobile) - animated on scroll */}
-            <div ref={journeyLineRef} className="md:hidden absolute top-[24px] left-[5%] h-px bg-[#f0c14b] z-0" style={{ width: '0%' }} />
+            <div ref={journeyLineRef} className="md:hidden absolute top-[24px] left-[5%] h-px bg-[#027ea1] z-0" style={{ width: '0%' }} />
 
             {[
               { step: '01', title: 'Pre-Placement Training', desc: 'Aptitude tests, coding bootcamps & communication workshops' },
@@ -766,7 +767,7 @@ export default function PlacementPage() {
                 transition={{ duration: 0.6, delay: i * 0.12, ease: customEase }}
                 className="text-center relative flex-shrink-0 w-[110px] md:w-auto"
               >
-                <div className="w-12 h-12 md:w-20 md:h-20 rounded-full bg-[#f0c14b] flex items-center justify-center mx-auto mb-3 md:mb-5 relative z-10 shadow-lg shadow-[#f0c14b]/20">
+                <div className="w-12 h-12 md:w-20 md:h-20 rounded-full bg-[#027ea1] flex items-center justify-center mx-auto mb-3 md:mb-5 relative z-10 shadow-lg shadow-[#027ea1]/20">
                   <span className="text-[#21313c] text-sm md:text-xl font-bold">{step.step}</span>
                 </div>
                 <h4 className="text-[#21313c] font-semibold text-[0.65rem] md:text-base mb-1 md:mb-2 leading-tight">{step.title}</h4>
@@ -795,12 +796,12 @@ export default function PlacementPage() {
             transition={{ duration: 0.8, ease: customEase }}
             className="text-center"
           >
-            <span className="text-[#f0c14b] text-xs tracking-[0.3em] uppercase block mb-5">
+            <span className="text-[#999] uppercase tracking-widest block mb-4 md:mb-6 text-xl md:text-2xl font-bold">
               Our Recruiting Partners
             </span>
             <h2 className="text-white text-3xl md:text-5xl font-semibold" style={{ letterSpacing: '-0.03em', lineHeight: 1.1 }}>
               Trusted By{' '}
-              <span style={{ fontFamily: "'Times New Roman', serif", fontStyle: 'italic', fontWeight: 400, color: '#f0c14b' }}>
+              <span style={{ fontFamily: "'Times New Roman', serif", fontStyle: 'italic', fontWeight: 400, color: '#027ea1' }}>
                 Industry Leaders
               </span>
             </h2>
@@ -851,10 +852,10 @@ export default function PlacementPage() {
             className="flex flex-col md:flex-row md:justify-between md:items-end mb-12 md:mb-20"
           >
             <div>
-              <span className="text-[#999] text-xs tracking-[0.3em] uppercase block mb-4">
+              <span className="text-[#999] uppercase tracking-widest block mb-4 md:mb-6 text-xl md:text-2xl font-bold">
                 Success Stories
               </span>
-              <h2 className="text-[#21313c] text-3xl md:text-5xl lg:text-6xl font-semibold" style={{ letterSpacing: '-0.03em', lineHeight: 1.1 }}>
+              <h2 className="text-[#21313c] text-3xl md:text-4xl lg:text-5xl font-semibold" style={{ letterSpacing: '-0.03em', lineHeight: 1.1 }}>
                 Where Dreams{' '}
                 <span style={{ fontFamily: "'Times New Roman', serif", fontStyle: 'italic', fontWeight: 400 }}>
                   Take Flight
@@ -876,14 +877,14 @@ export default function PlacementPage() {
               className="col-span-2 row-span-2 group relative overflow-hidden rounded-2xl min-h-[280px] md:min-h-[600px]"
             >
               <img
-                src="/JLu%20events/photos/Convocation/DSC_1357.JPG"
+                src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/JLu%20events/photos/Convocation/DSC_1357.JPG"
                 alt="Corporate Success"
                 loading="lazy"
                 className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent" />
               <div className="absolute bottom-0 left-0 right-0 p-3 md:p-10">
-                <span className="text-[#f0c14b] text-[0.55rem] md:text-xs tracking-[0.2em] uppercase block mb-1 md:mb-3">Corporate Excellence</span>
+                <span className="text-[#999] uppercase tracking-widest block mb-1 md:mb-3 text-xl md:text-2xl font-bold">Corporate Excellence</span>
                 <h3 className="text-white text-sm md:text-3xl lg:text-4xl font-semibold mb-1 md:mb-3" style={{ lineHeight: 1.2 }}>
                   Building Careers That{' '}
                   <span style={{ fontFamily: "'Times New Roman', serif", fontStyle: 'italic', fontWeight: 400 }}>Matter</span>
@@ -903,14 +904,14 @@ export default function PlacementPage() {
               className="group relative overflow-hidden rounded-2xl min-h-[180px] md:min-h-[280px]"
             >
               <img
-                src="/JLu%20events/photos/Convocation/DSC_5026.JPG"
+                src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/JLu%20events/photos/Convocation/DSC_5026.JPG"
                 alt="Professional Growth"
                 loading="lazy"
                 className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-[#21313c]/90 to-transparent" />
               <div className="absolute bottom-0 left-0 right-0 p-2.5 md:p-6">
-                <span className="text-xl md:text-4xl font-bold text-[#f0c14b] block mb-0.5 md:mb-1">95%</span>
+                <span className="text-xl md:text-4xl font-bold text-[#027ea1] block mb-0.5 md:mb-1">95%</span>
                 <span className="text-white text-[0.6rem] md:text-sm font-semibold block leading-tight">Students Placed Before Graduation</span>
                 <span className="text-white/50 text-[0.5rem] md:text-xs">2024-25 Batch</span>
               </div>
@@ -925,7 +926,7 @@ export default function PlacementPage() {
               className="group relative overflow-hidden rounded-2xl min-h-[180px] md:min-h-[280px]"
             >
               <img
-                src="/JLu%20events/photos/Convocation/DSC_1020.JPG"
+                src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/JLu%20events/photos/Convocation/DSC_1020.JPG"
                 alt="Industry Connections"
                 loading="lazy"
                 className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
@@ -953,10 +954,10 @@ export default function PlacementPage() {
             transition={{ duration: 0.8, ease: customEase }}
             className="text-center mb-16 md:mb-24"
           >
-            <span className="text-[#999] text-xs tracking-[0.3em] uppercase block mb-5">
+            <span className="text-[#999] uppercase tracking-widest block mb-4 md:mb-6 text-xl md:text-2xl font-bold">
               From Our Students
             </span>
-            <h2 className="text-[#21313c] text-3xl md:text-5xl lg:text-6xl font-semibold" style={{ letterSpacing: '-0.03em', lineHeight: 1.1 }}>
+            <h2 className="text-[#21313c] text-3xl md:text-4xl lg:text-5xl font-semibold" style={{ letterSpacing: '-0.03em', lineHeight: 1.1 }}>
               Voices of{' '}
               <span style={{ fontFamily: "'Times New Roman', serif", fontStyle: 'italic', fontWeight: 400 }}>
                 Success
@@ -971,27 +972,27 @@ export default function PlacementPage() {
                 name: 'Mann Saxena',
                 role: 'Placed at AML RightSource',
                 batch: 'MBA (Business Analytics), Batch 2025',
-                image: '/jlu-placement1.jpeg',
+                image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/jlu-placement1.jpeg',
               },
               {
                 quote: "JLU's structured placement process and dedicated training programs gave me the confidence to perform well in interviews. The career guidance was truly transformative.",
                 name: 'Neha Patkar',
                 role: 'Placed at AML RightSource',
                 batch: 'MBA (Business Analytics), Batch 2025',
-                image: '/jlu-placement2.jpeg',
+                image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/jlu-placement2.jpeg',
               },
               {
                 quote: 'The placement cell at JLU connected me with top legal firms. The exposure through internships and moot courts prepared me for a successful career in legal consulting.',
                 name: 'Shubham Rawat',
                 role: 'Consultant - Legal, Elevate',
                 batch: 'LLM, Batch 2025',
-                image: '/jlu-placement3.jpeg',
+                image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/jlu-placement3.jpeg',
               },
             ];
 
             const renderCard = (testimonial: typeof testimonials[0]) => (
-              <div className="bg-[#f6f7f0] rounded-2xl p-6 md:p-8 flex flex-col group hover:shadow-xl transition-shadow duration-300">
-                <svg className="w-8 h-8 text-[#f0c14b] mb-5 shrink-0" viewBox="0 0 24 24" fill="currentColor">
+              <div className="bg-[#f6f7f0] rounded-2xl p-6 md:p-8 flex flex-col group hover:shadow-xl transition-shadow duration-300 h-full">
+                <svg className="w-8 h-8 text-[#027ea1] mb-5 shrink-0" viewBox="0 0 24 24" fill="currentColor">
                   <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z" />
                 </svg>
                 <p className="text-[#21313c] text-sm md:text-base flex-1 mb-6" style={{ lineHeight: 1.8 }}>
@@ -1001,7 +1002,7 @@ export default function PlacementPage() {
                   <img src={testimonial.image} alt={testimonial.name} loading="lazy" className="w-12 h-12 rounded-full object-cover" />
                   <div>
                     <span className="text-[#21313c] font-semibold text-sm block">{testimonial.name}</span>
-                    <span className="text-[#f0c14b] text-xs font-medium block">{testimonial.role}</span>
+                    <span className="text-[#027ea1] text-xs font-medium block">{testimonial.role}</span>
                     <span className="text-[#999] text-xs">{testimonial.batch}</span>
                   </div>
                 </div>
@@ -1036,7 +1037,7 @@ export default function PlacementPage() {
                       {testimonials.map((_, idx) => (
                         <div
                           key={idx}
-                          className={`w-2 h-2 rounded-full transition-colors duration-300 ${idx === activeTestimonial ? 'bg-[#f0c14b]' : 'bg-[#21313c]/15'}`}
+                          className={`w-2 h-2 rounded-full transition-colors duration-300 ${idx === activeTestimonial ? 'bg-[#027ea1]' : 'bg-[#21313c]/15'}`}
                         />
                       ))}
                     </div>
@@ -1078,15 +1079,15 @@ export default function PlacementPage() {
       <section className="py-6 md:py-14 px-3 sm:px-6 lg:px-12 bg-[#21313c] relative overflow-hidden">
         <div className="max-w-[900px] mx-auto relative z-10">
           <div className="text-center">
-            <span className="text-[#efc04b] text-[0.6rem] md:text-xs tracking-[0.2em] uppercase block mb-2 md:mb-3">
+            <span className="text-[#999] uppercase tracking-widest block mb-4 md:mb-6 text-xl md:text-2xl font-bold">
               Get Started
             </span>
             <h2
-              className="text-lg md:text-3xl font-semibold text-white mb-2 md:mb-3"
+              className="text-xl md:text-4xl lg:text-5xl font-semibold text-white mb-2 md:mb-3"
               style={{ fontFamily: 'Inter, sans-serif', letterSpacing: '-0.02em' }}
             >
               Ready to Hire{' '}
-              <span style={{ fontFamily: "'Times New Roman', serif", fontStyle: 'italic', fontWeight: 400, color: '#efc04b' }}>
+              <span style={{ fontFamily: "'Times New Roman', serif", fontStyle: 'italic', fontWeight: 400, color: '#027ea1' }}>
                 JLU Talent?
               </span>
             </h2>
@@ -1097,7 +1098,7 @@ export default function PlacementPage() {
             <div className="flex flex-row gap-2 md:gap-3 justify-center mb-5 md:mb-8">
               <a
                 href="mailto:placements@jlu.edu.in"
-                className="bg-[#efc04b] text-[#21313c] px-3 md:px-6 py-2 md:py-2.5 rounded-lg font-semibold text-[0.65rem] md:text-sm hover:bg-[#d4a93d] transition-all shadow-lg inline-flex items-center justify-center gap-1.5 md:gap-2"
+                className="bg-[#027ea1] text-white px-3 md:px-6 py-2 md:py-2.5 rounded-lg font-semibold text-[0.65rem] md:text-sm hover:bg-[#025f7a] transition-all shadow-lg inline-flex items-center justify-center gap-1.5 md:gap-2"
               >
                 Contact Career Development Centre
                 <svg className="w-3 h-3 md:w-4 md:h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -1119,7 +1120,7 @@ export default function PlacementPage() {
           {/* Contact Info */}
           <div className="grid grid-cols-3 gap-3 md:gap-6 text-center">
             <div>
-              <div className="w-8 h-8 md:w-10 md:h-10 rounded-full bg-[#efc04b] flex items-center justify-center mx-auto mb-1.5 md:mb-2">
+              <div className="w-8 h-8 md:w-10 md:h-10 rounded-full bg-[#027ea1] flex items-center justify-center mx-auto mb-1.5 md:mb-2">
                 <svg className="w-3.5 h-3.5 md:w-4 md:h-4 text-[#21313c]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                 </svg>
@@ -1128,7 +1129,7 @@ export default function PlacementPage() {
               <p className="text-white font-medium text-[0.6rem] md:text-sm">placements@jlu.edu.in</p>
             </div>
             <div>
-              <div className="w-8 h-8 md:w-10 md:h-10 rounded-full bg-[#efc04b] flex items-center justify-center mx-auto mb-1.5 md:mb-2">
+              <div className="w-8 h-8 md:w-10 md:h-10 rounded-full bg-[#027ea1] flex items-center justify-center mx-auto mb-1.5 md:mb-2">
                 <svg className="w-3.5 h-3.5 md:w-4 md:h-4 text-[#21313c]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
                 </svg>
@@ -1137,7 +1138,7 @@ export default function PlacementPage() {
               <p className="text-white font-medium text-[0.6rem] md:text-sm">0755-6611152</p>
             </div>
             <div>
-              <div className="w-8 h-8 md:w-10 md:h-10 rounded-full bg-[#efc04b] flex items-center justify-center mx-auto mb-1.5 md:mb-2">
+              <div className="w-8 h-8 md:w-10 md:h-10 rounded-full bg-[#027ea1] flex items-center justify-center mx-auto mb-1.5 md:mb-2">
                 <svg className="w-3.5 h-3.5 md:w-4 md:h-4 text-[#21313c]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />

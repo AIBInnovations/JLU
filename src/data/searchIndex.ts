@@ -66,6 +66,9 @@ const facultyPages: SearchItem[] = [
   { title: 'Faculty of Humanities', description: 'Humanities, arts and social sciences', href: '/faculty/humanities', category: 'Faculty' },
   { title: 'Faculty of Media and Social Sciences', description: 'Journalism and mass communication', href: '/faculty/journalism', category: 'Faculty' },
   { title: 'Faculty of Pharmacy', description: 'Pharmacy education and research', href: '/faculty/pharmacy', category: 'Faculty' },
+  { title: 'Faculty of Business', description: 'Business, hotel management and sports management programs', href: '/faculty/business', category: 'Faculty' },
+  { title: 'Faculty of Liberal Arts', description: 'Psychology, economics, English literature and public policy', href: '/faculty/liberal-arts', category: 'Faculty' },
+  { title: 'Faculty of Architecture', description: 'COA-approved B.Arch and design programs', href: '/faculty/architecture', category: 'Faculty' },
 ];
 
 // Build dynamic items from data

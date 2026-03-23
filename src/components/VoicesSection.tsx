@@ -10,12 +10,12 @@ interface Voice {
 }
 
 const voices: Voice[] = [
-  { color: 'bg-pink-400', image: '/a.jpg' },
-  { color: 'bg-cyan-400', image: '/b.jpg' },
-  { color: 'bg-yellow-400', image: '/c.jpg' },
-  { color: 'bg-lime-400', image: '/d.jpg' },
-  { color: 'bg-orange-400', image: '/e.jpg' },
-  { color: 'bg-purple-400', image: '/f.jpg' },
+  { color: 'bg-pink-400', image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/a.jpg' },
+  { color: 'bg-cyan-400', image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/b.jpg' },
+  { color: 'bg-yellow-400', image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/c.jpg' },
+  { color: 'bg-lime-400', image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/d.jpg' },
+  { color: 'bg-orange-400', image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/e.jpg' },
+  { color: 'bg-purple-400', image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/f.jpg' },
 ];
 
 export const VoicesSection = () => {

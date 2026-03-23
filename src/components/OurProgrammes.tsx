@@ -7,9 +7,9 @@ export const OurProgrammes = () => {
   const isMobile = useIsMobile();
 
   const programmes = [
-    { image: '/p1.jpg', title: 'Undergraduate', subtitle: 'Programmes', width: 461, height: 520, href: '/programs?tab=UG' },
-    { image: '/p2.jpg', title: 'Postgraduate', subtitle: 'Programmes', width: 461, height: 520, href: '/programs?tab=PG' },
-    { image: '/p3.jpg', title: 'Ph.D.', subtitle: 'Programmes', width: 461, height: 520, href: '/programs?tab=PhD' },
+    { image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/p1.jpg', title: 'Undergraduate', subtitle: 'Programmes', width: 461, height: 520, href: '/programs?tab=UG' },
+    { image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/p2.jpg', title: 'Postgraduate', subtitle: 'Programmes', width: 461, height: 520, href: '/programs?tab=PG' },
+    { image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/p3.jpg', title: 'Ph.D.', subtitle: 'Programmes', width: 461, height: 520, href: '/programs?tab=PhD' },
   ];
 
 
@@ -30,19 +30,14 @@ export const OurProgrammes = () => {
         >
           ACADEMIC PROGRAMMES
         </span>
-        <h2
-          className="text-[#21313c] mb-4 md:mb-6"
-          style={{
-            fontSize: 'clamp(3rem, 6vw, 5rem)',
-            fontWeight: 600,
-            lineHeight: 1.1,
-            letterSpacing: '-0.03em',
-          }}
+        <h1
+          className="text-[#21313c] text-3xl md:text-4xl lg:text-5xl mb-4 md:mb-6"
+          style={{ fontWeight: 600, lineHeight: 1.1 }}
         >
           Learning,{' '}
-          <span style={{ fontFamily: "'Times New Roman', serif", fontStyle: 'italic', fontWeight: 400 }}>Unbounded</span>
-        </h2>
-        <p className="text-lg sm:text-xl md:text-[clamp(1.25rem,2vw,1.75rem)] max-w-[1000px] mx-auto" style={{ color: '#666', lineHeight: 1.8 }}>
+          <span style={{ fontFamily: "'Times New Roman', serif", fontStyle: 'italic' }}>Unbounded</span>
+        </h1>
+        <p className="text-sm sm:text-base md:text-[clamp(1.15rem,1.8vw,1.5rem)] max-w-[1000px] mx-auto" style={{ color: '#666', lineHeight: 1.7, fontWeight: 400 }}>
           Education here resists confinement. It takes shape in studios and libraries, in late conversations and early ideas, through collaboration as much as quiet contemplation.
         </p>
         <div className="mx-auto mt-6" style={{ width: '274px', height: '0px', border: '4px solid #027ea1' }} />
@@ -146,7 +141,7 @@ export const OurProgrammes = () => {
       <div className="flex justify-center mt-4 md:mt-8">
         <a
           href="/programs"
-          className="flex items-center bg-[#027ea1] text-white rounded-full font-semibold hover:bg-[#026a88] transition-colors"
+          className="flex items-center bg-[#027ea1] text-white rounded-full font-bold hover:bg-[#026a88] transition-colors"
           style={{
             gap: isMobile ? '6px' : '8px',
             padding: isMobile ? '8px 18px' : '12px 24px',
@@ -185,10 +180,10 @@ export const OurProgrammes = () => {
             Learning at JLU is not limited to schedules or spaces. It evolves through experience, interaction, and reflection.
           </p>
           <p
-            className="flex-1 text-[#999]"
+            className="flex-1 text-[#999] text-right mt-10"
             style={{
               fontFamily: 'Inter, sans-serif',
-              fontSize: isMobile ? '24px' : '30px',
+              fontSize: isMobile ? '16px' : 'clamp(1.15rem, 1.8vw, 1.5rem)',
               lineHeight: 1.7,
               fontWeight: 400,
             }}
@@ -242,7 +237,7 @@ export const OurProgrammes = () => {
             }}
           >
             <img
-              src="/campus/campus-life-group.jpg"
+              src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/campus/campus-life-group.jpg"
               alt="Students on Campus"
               className="w-full h-full object-cover rounded-t-2xl transition-transform duration-500 group-hover:scale-110"
             />
@@ -257,7 +252,7 @@ export const OurProgrammes = () => {
             }}
           >
             <img
-              src="/campus/campus-life-hero.jpg"
+              src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/campus%20life%20/Landng%20photo.JPG"
               alt="Campus Life"
               className="w-full h-full object-cover rounded-t-2xl transition-transform duration-500 group-hover:scale-110"
             />
@@ -271,7 +266,7 @@ export const OurProgrammes = () => {
             }}
           >
             <img
-              src="/campus/beyond-classroom.jpg"
+              src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/beyond%20the%20class%20room/DSC09084.JPG"
               alt="Students Beyond the Classroom"
               className="w-full h-full object-cover rounded-t-2xl transition-transform duration-500 group-hover:scale-110"
             />

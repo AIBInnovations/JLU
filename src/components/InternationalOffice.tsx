@@ -60,35 +60,35 @@ const journeySteps = [
     number: '01',
     title: 'Choose program',
     description: 'Explore our wide range of undergraduate and postgraduate courses.',
-    image: '/interdisciplinary/classroom.jpg',
+    image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/interdisciplinary/classroom.jpg',
   },
   {
     id: 2,
     number: '02',
     title: 'Submit application',
     description: 'Complete the online form and upload required documents.',
-    image: '/campus/gallery-11.jpg',
+    image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/campus/gallery-11.jpg',
   },
   {
     id: 3,
     number: '03',
     title: 'Receive offer letter',
     description: 'Successful applicants will receive an offer via email.',
-    image: '/campus/gallery-15.jpg',
+    image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/campus/gallery-15.jpg',
   },
   {
     id: 4,
     number: '04',
     title: 'Apply for visa',
     description: 'Use your offer letter to start your student visa application.',
-    image: '/campus/gallery-8.jpg',
+    image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/campus/gallery-8.jpg',
   },
   {
     id: 5,
     number: '05',
     title: 'Arrive on campus',
     description: 'Book your travel and join us for orientation week.',
-    image: '/interdisciplinary/campus-drone.jpg',
+    image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/interdisciplinary/campus-drone.jpg',
   },
 ];
 
@@ -811,7 +811,7 @@ const InternationalOffice = () => {
         >
           <motion.div className="absolute inset-0" style={{ y }}>
             <Image
-              src="/campus/hero-events.jpg"
+              src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/campus/hero-events.jpg"
               alt="International Office - Global Students at JLU"
               fill
               className="object-cover scale-110"
@@ -837,7 +837,7 @@ const InternationalOffice = () => {
           <motion.h2
             className="text-white font-semibold leading-tight mb-5"
             style={{
-              fontSize: 'clamp(1.5rem, 3vw, 2.5rem)',
+              fontSize: 'clamp(1.5rem, 2.5vw, 2rem)',
             }}
           >
             YOUR{' '}
@@ -845,7 +845,7 @@ const InternationalOffice = () => {
               style={{
                 fontFamily: "'Times New Roman', serif",
                 fontStyle: 'italic',
-                color: '#f0c14b',
+                color: '#027ea1',
                 textShadow: '2px 2px 4px rgba(0,0,0,0.5)',
               }}
             >
@@ -857,9 +857,9 @@ const InternationalOffice = () => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.8, delay: 0.8 }}
-            className="text-white font-semibold leading-relaxed"
+            className="text-white"
             style={{
-              fontSize: 'clamp(1.1rem, 2vw, 1.5rem)',
+              fontWeight: 600, lineHeight: 1.5, fontSize: 'clamp(1rem, 2vw, 1.5rem)',
             }}
           >
             The International Office supports students from across the world —<br />
@@ -882,7 +882,7 @@ const InternationalOffice = () => {
             className="font-normal select-none"
             style={{
               fontFamily: "system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif",
-              fontSize: 'clamp(5rem, 12vw, 12rem)',
+              fontSize: 'clamp(5.5rem, 15vw, 16rem)',
               lineHeight: 0.85,
               letterSpacing: '-0.02em',
               background:
@@ -924,7 +924,7 @@ const InternationalOffice = () => {
               <h2
                 className="text-[#21313c] mb-6 md:mb-8"
                 style={{
-                  fontSize: 'clamp(2rem, 4vw, 3.5rem)',
+                  fontSize: 'clamp(2.25rem, 4vw, 3rem)',
                   fontWeight: 600,
                   lineHeight: 1.1,
                   letterSpacing: '-0.03em',
@@ -1034,7 +1034,7 @@ const InternationalOffice = () => {
             <h2
               className="text-[#21313c]"
               style={{
-                fontSize: 'clamp(2rem, 4vw, 3.5rem)',
+                fontSize: 'clamp(2.25rem, 4vw, 3rem)',
                 fontWeight: 600,
                 lineHeight: 1.1,
                 letterSpacing: '-0.03em',
@@ -1062,7 +1062,7 @@ const InternationalOffice = () => {
                 transition={{ duration: 0.8, ease: customEase }}
               >
                 <Image
-                  src="/campus/gallery-4.jpg"
+                  src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/campus/gallery-4.jpg"
                   alt="Pathway Programs"
                   fill
                   className="object-cover"
@@ -1170,7 +1170,7 @@ const InternationalOffice = () => {
               }}
             >
               Summer schools that{' '}
-              <span style={{ fontFamily: "'Times New Roman', serif", fontStyle: 'italic', fontWeight: 400, color: '#f0c14b' }}>
+              <span style={{ fontFamily: "'Times New Roman', serif", fontStyle: 'italic', fontWeight: 400, color: '#027ea1' }}>
                 connect cultures
               </span>
             </h2>
@@ -1406,7 +1406,7 @@ const InternationalOffice = () => {
                 transition={{ duration: 0.8, ease: customEase }}
               >
                 <Image
-                  src="/campus/gallery-6.jpg"
+                  src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/campus/gallery-6.jpg"
                   alt="Student filling application"
                   fill
                   className="object-cover"
@@ -1560,7 +1560,7 @@ const InternationalOffice = () => {
               <h2
                 className="text-[#21313c] mb-6 md:mb-8"
                 style={{
-                  fontSize: 'clamp(2rem, 4vw, 3.5rem)',
+                  fontSize: 'clamp(2.25rem, 4vw, 3rem)',
                   fontWeight: 600,
                   lineHeight: 1.1,
                   letterSpacing: '-0.03em',
@@ -1672,7 +1672,7 @@ const InternationalOffice = () => {
               <h2
                 className="text-[#21313c] mb-6 md:mb-8"
                 style={{
-                  fontSize: 'clamp(2rem, 4vw, 3.5rem)',
+                  fontSize: 'clamp(2.25rem, 4vw, 3rem)',
                   fontWeight: 600,
                   lineHeight: 1.1,
                   letterSpacing: '-0.03em',
@@ -1738,7 +1738,7 @@ const InternationalOffice = () => {
                 transition={{ duration: 0.8, ease: customEase }}
               >
                 <Image
-                  src="/campus/gallery-14.jpg"
+                  src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/campus/gallery-14.jpg"
                   alt="Life in Bhopal"
                   fill
                   className="object-cover"

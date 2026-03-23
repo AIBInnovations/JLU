@@ -9,7 +9,7 @@ const leadershipData = [
   {
     title: "CHANCELLOR'S MESSAGE",
     name: 'Mr. Hari Mohan Gupta',
-    image: '/leadership/chancellor.jpg',
+    image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/leadership/chancellor.jpg',
     linkedin: 'https://in.linkedin.com/in/hari-mohan-gupta-318960153',
     messages: [
       'At JLU, education begins with people. The purpose of a university is not only to teach knowledge, but also to nurture understanding, empathy and resilience. Every voice here matters, students, teachers and staff, because together they shape the character of this institution.',
@@ -19,7 +19,7 @@ const leadershipData = [
   {
     title: "PRO CHANCELLOR'S MESSAGE",
     name: 'Mr. Abhishek Mohan Gupta',
-    image: '/leadership/pro-chancellor.jpg',
+    image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/leadership/pro-chancellor.jpg',
     linkedin: 'https://in.linkedin.com/in/abhishekmgupta',
     messages: [
       'Education is a dialogue, not a monologue. It thrives on diversity of thought, openness to experience and the courage to challenge conventions. At JLU, students are encouraged to question, reflect and expand their horizons.',
@@ -29,51 +29,11 @@ const leadershipData = [
   {
     title: "VICE CHANCELLOR'S MESSAGE",
     name: 'Prof. Dr. Nilanjan Chattopadhyay',
-    image: '/leadership/vice-chancellor.webp',
+    image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/leadership/vice-chancellor.webp',
     linkedin: 'https://www.linkedin.com/in/nchattopadhyay/',
     messages: [
       'A university is shaped by its academic spirit, the curiosity of its learners and the guidance of its educators. At JLU, classrooms are spaces of conversation, collaboration and creation.',
       'Our approach to education is rooted in real world relevance, critical thinking and human values. Every student is encouraged to think independently, work collaboratively and emerge not only career ready, but life ready.',
-    ],
-  },
-  {
-    title: "REGISTRAR'S MESSAGE",
-    name: 'Mr. Pankaj Das',
-    image: '/leadership/registrar.jpg',
-    linkedin: '',
-    messages: [
-      'The Office of the Registrar serves as the administrative backbone of Jagran Lakecity University, ensuring that academic processes, governance frameworks and institutional standards operate with efficiency and integrity.',
-      'Our commitment is to provide seamless support to students, faculty and stakeholders alike, upholding the values of transparency, accountability and excellence that define JLU.',
-    ],
-  },
-  {
-    title: "CHIEF FINANCE AND ACCOUNTS OFFICER'S MESSAGE",
-    name: 'CA Archana Jain',
-    image: '/leadership/cfo.jpg',
-    linkedin: 'https://www.linkedin.com/in/archana-jain-33189397/',
-    messages: [
-      'Sound financial stewardship is essential to the long-term sustainability and growth of any institution. At JLU, we are committed to maintaining the highest standards of fiscal responsibility, transparency and accountability.',
-      'Our goal is to ensure that every resource is optimally utilized to support the university\'s academic mission, infrastructure development and student welfare initiatives.',
-    ],
-  },
-  {
-    title: "PRO VICE CHANCELLOR (STUDENT WELFARE)'S MESSAGE",
-    name: 'Dr. Vivek Khare',
-    image: '/leadership/pvc-student-welfare.jpg',
-    linkedin: 'https://in.linkedin.com/in/dr-vivek-khare-8666a61a',
-    messages: [
-      'Student welfare is at the heart of everything we do at JLU. Our endeavour is to create a supportive, inclusive and enriching environment where every student can thrive academically, socially and personally.',
-      'From mentorship programs to wellness initiatives, we are dedicated to ensuring that each student\'s journey at JLU is fulfilling and transformative.',
-    ],
-  },
-  {
-    title: "PRO VICE CHANCELLOR (SCIENCE AND TECHNOLOGY)'S MESSAGE",
-    name: 'Dr. Prasheel Suryawanshi',
-    image: '/leadership/pvc-science-tech.png',
-    linkedin: 'https://www.linkedin.com/in/prasheel-suryawanshi-8b368b21/',
-    messages: [
-      'Science and technology are the driving forces of progress. At JLU, we are committed to fostering innovation, research excellence and technological advancement through cutting-edge programs and industry collaboration.',
-      'Our vision is to prepare students who can lead the next wave of scientific discovery and technological transformation, contributing meaningfully to society and the global knowledge economy.',
     ],
   },
 ];
@@ -99,19 +59,15 @@ const LeadershipMessages = () => {
           >
             Leadership
           </span>
-          <h2
-            className="text-[#21313c] text-2xl sm:text-3xl md:text-[clamp(2.5rem,5vw,4rem)]"
-            style={{
-              fontWeight: 600,
-              lineHeight: 1,
-              letterSpacing: '-0.02em',
-            }}
+          <h1
+            className="text-[#21313c] text-3xl md:text-4xl lg:text-5xl"
+            style={{ fontWeight: 600, lineHeight: 1.1 }}
           >
             Leadership{' '}
-            <span style={{ fontFamily: "'Times New Roman', serif", fontStyle: 'italic' }}>
+            <span style={{ fontFamily: "'Times New Roman', serif", fontStyle: 'italic', fontWeight: 700 }}>
               Messages
             </span>
-          </h2>
+          </h1>
         </motion.div>
 
         {/* Leadership Items */}
@@ -160,7 +116,7 @@ const LeadershipMessages = () => {
                     {leader.title}
                   </span>
                   <div className="flex items-center gap-2">
-                    <h3 className="text-[#21313c] font-semibold text-base">
+                    <h3 className="text-[#21313c] font-bold text-base">
                       {leader.name}
                     </h3>
                     {leader.linkedin && (
@@ -175,7 +131,7 @@ const LeadershipMessages = () => {
                   {leader.messages.map((message, msgIndex) => (
                     <p
                       key={msgIndex}
-                      className="text-[#666] text-xs leading-relaxed"
+                      className="text-[#666] text-sm leading-relaxed"
                       style={{ lineHeight: 1.7 }}
                     >
                       {message}
@@ -251,7 +207,7 @@ const LeadershipMessages = () => {
                     {leader.messages.map((message, msgIndex) => (
                       <p
                         key={msgIndex}
-                        className="text-[#666] text-[15px]"
+                        className="text-[#666] text-lg"
                         style={{ lineHeight: 1.7 }}
                       >
                         {message}

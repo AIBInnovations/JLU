@@ -503,7 +503,7 @@ const MenuOverlay = ({ isOpen, onClose, menuButtonRef }: MenuOverlayProps) => {
                   style={{ zIndex: 59 }}
                 >
                   <Image
-                    src="/menuu.png"
+                    src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/menuu.png"
                     alt="Menu decoration"
                     width={1800}
                     height={900}
@@ -819,7 +819,7 @@ const MenuOverlay = ({ isOpen, onClose, menuButtonRef }: MenuOverlayProps) => {
                   style={{ bottom: '50px', left: '100px' }}
                 >
                   <Image
-                    src="/menuu.png"
+                    src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/menuu.png"
                     alt="Menu decoration"
                     width={1200}
                     height={1200}
@@ -924,10 +924,10 @@ export const Header = () => {
       const currentScrollY = window.scrollY;
 
       // Show header when scrolling up or at the top
-      if (currentScrollY < lastScrollY || currentScrollY < 50) {
+      if (currentScrollY < lastScrollY || currentScrollY < 20) {
         setIsVisible(true);
-      } else if (currentScrollY > lastScrollY && currentScrollY > 100) {
-        // Hide header when scrolling down (after 100px)
+      } else if (currentScrollY > lastScrollY && currentScrollY > 30) {
+        // Hide header quickly when scrolling down
         setIsVisible(false);
       }
 
@@ -942,8 +942,8 @@ export const Header = () => {
     <motion.div
       className="fixed top-0 left-0 right-0 z-50"
       initial={{ y: 0 }}
-      animate={{ y: isVisible || isMenuOpen ? 0 : -100 }}
-      transition={{ duration: 0.3, ease: 'easeInOut' }}
+      animate={{ y: isVisible || isMenuOpen ? 0 : -150 }}
+      transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
     >
       {/* Search Overlay */}
       <SearchOverlay isOpen={isSearchOpen} onClose={() => setIsSearchOpen(false)} />
@@ -981,6 +981,7 @@ export const Header = () => {
           }}
           className="absolute left-1/2 -translate-x-1/2"
           style={{
+            top: '32px',
             opacity: isMenuOpen && isMobile ? 0 : 1,
             visibility: isMenuOpen && isMobile ? 'hidden' : 'visible',
             pointerEvents: isMenuOpen && isMobile ? 'none' : 'auto',
@@ -988,10 +989,10 @@ export const Header = () => {
         >
           <Link href="/">
             <img
-              src="/jlulogo.png"
+              src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/jlulogo.png"
               alt="Jagran Lakecity University logo"
               className={`w-auto object-contain drop-shadow-lg cursor-pointer ${
-                isMobile ? 'h-16' : 'h-20 sm:h-24 lg:h-28'
+                isMobile ? 'h-14' : 'h-18 sm:h-20 lg:h-24'
               }`}
             />
           </Link>

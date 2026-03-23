@@ -23,7 +23,7 @@ const upcomingEvents: Event[] = [
     description: 'Jagran Lakecity University will celebrate International Women\'s Day to recognize and appreciate the achievements, strength, and contributions of women in society. The celebration will include engaging activities and discussions aimed at promoting gender equality, empowerment, and respect for women.',
     venue: 'Jagran Lakecity University, Bhopal Campus',
     category: 'Arts & Culture',
-    image: '/JLu%20events/photos/Lehar/IMG_9025.JPG',
+    image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/JLu%20events/photos/Lehar/IMG_9025.JPG',
   },
   {
     id: 2,
@@ -32,7 +32,7 @@ const upcomingEvents: Event[] = [
     description: 'JLU\'s Got Talent is a vibrant platform for students to showcase their diverse talents, including singing, dancing, acting, and other creative performances. The event encourages students to express themselves, celebrate creativity, and engage with the university community through entertainment and artistic expression.',
     venue: 'JLU Main Auditorium, Bhopal Campus',
     category: 'Arts & Culture',
-    image: '/JLu%20events/photos/Lehar/IMG_8971.JPG',
+    image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/JLu%20events/photos/Lehar/IMG_8971.JPG',
   },
   {
     id: 3,
@@ -41,7 +41,7 @@ const upcomingEvents: Event[] = [
     description: 'The Foundation Day of Jagran Lakecity University commemorates the establishment of the university and celebrates its journey of academic excellence, innovation, and growth. The occasion reflects on the institution\'s achievements and its continued commitment to shaping future leaders and professionals.',
     venue: 'Jagran Lakecity University, Bhopal Campus',
     category: 'Awards & Recognition',
-    image: '/JLu%20events/photos/Convocation/DSC_0823.JPG',
+    image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/JLu%20events/photos/Convocation/DSC_0823.JPG',
   },
   {
     id: 4,
@@ -50,7 +50,7 @@ const upcomingEvents: Event[] = [
     description: 'Jagran Lakecity University will organize an Orientation Programme for newly admitted students to help them smoothly transition into university life. The session will introduce students to the university\'s academic structure, campus facilities, values, and opportunities. It will also provide an opportunity for students to interact with faculty and fellow students.',
     venue: 'Jagran Lakecity University, Bhopal Campus',
     category: 'Student Leadership',
-    image: '/JLu%20events/photos/JAgran%20%20of%20Social%20science/DSC08858.JPG',
+    image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/JLu%20events/photos/JAgran%20of%20Social%20science/DSC08858.JPG',
   },
 ];
 
@@ -62,7 +62,7 @@ const pastEvents: Event[] = [
     description: "Honoring Late Shri Gurudev Gupta Ji's 106th birth anniversary",
     venue: 'Shri Gurudev Gupta Media Studios',
     category: 'Commemoration',
-    image: '/JLu%20events/photos/Convocation/DSC_0885.JPG',
+    image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/JLu%20events/photos/Convocation/DSC_0885.JPG',
   },
   {
     id: 6,
@@ -71,7 +71,7 @@ const pastEvents: Event[] = [
     description: 'Gateway to reconnect with the JLU family',
     venue: 'Jagran Lakecity University SEH',
     category: 'Launch Event',
-    image: '/JLu%20events/photos/Convocation/DSC_1020.JPG',
+    image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/JLu%20events/photos/Convocation/DSC_1020.JPG',
   },
   {
     id: 7,
@@ -80,7 +80,7 @@ const pastEvents: Event[] = [
     description: 'JLU celebrates 11 years of establishment with awards and recognition',
     venue: 'Main Auditorium',
     category: 'Anniversary',
-    image: '/jlu%20ignited%20mind%20Award/photos/Copy%20of%20DSC_4398.JPG',
+    image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/jlu%20ignited%20mind%20Award/photos/Copy%20of%20DSC_4398.JPG',
   },
   {
     id: 8,
@@ -89,7 +89,7 @@ const pastEvents: Event[] = [
     description: 'Annual hackathon bringing together tech enthusiasts and innovators',
     venue: 'Faculty of Science and Technology',
     category: 'Technology',
-    image: '/JLu%20events/photos/Anti%20Ragging%20WEEK/IMG_2091.JPG',
+    image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/JLu%20events/photos/Anti%20Ragging%20WEEK/IMG_2091.JPG',
   },
   {
     id: 9,
@@ -98,7 +98,7 @@ const pastEvents: Event[] = [
     description: 'Expert-led session on data science and inclusive design practices',
     venue: 'Conference Hall',
     category: 'Workshop',
-    image: '/JLu%20events/photos/Mental%20Health%20week/IMG_7856.JPG',
+    image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/JLu%20events/photos/Mental%20Health%20week/IMG_7856.JPG',
   },
   {
     id: 10,
@@ -107,7 +107,7 @@ const pastEvents: Event[] = [
     description: 'Professional development workshop on communication skills',
     venue: 'Faculty of Management',
     category: 'Workshop',
-    image: '/JLu%20events/photos/JAgran%20%20of%20Social%20science/DSC08874.JPG',
+    image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/JLu%20events/photos/JAgran%20of%20Social%20science/DSC08874.JPG',
   },
   {
     id: 11,
@@ -116,7 +116,7 @@ const pastEvents: Event[] = [
     description: 'Comprehensive faculty development initiative for academic excellence',
     venue: 'Academic Block',
     category: 'Faculty Development',
-    image: '/JLu%20events/photos/Lehar/IMG_9060.JPG',
+    image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/JLu%20events/photos/Lehar/IMG_9060.JPG',
   },
 ];
 
@@ -179,7 +179,7 @@ const Events = () => {
         >
           <motion.div className="absolute inset-0" style={{ y }}>
             <Image
-              src="/JLu%20events/photos/Lehar/IMG_9067.JPG"
+              src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/JLu%20events/photos/Lehar/IMG_9067.JPG"
               alt="Events at JLU"
               fill
               className="object-cover scale-110"
@@ -200,10 +200,11 @@ const Events = () => {
           <h2
             className="text-white font-semibold leading-tight mb-3 sm:mb-4 md:mb-5 text-2xl sm:text-3xl md:text-[clamp(1.5rem,3vw,2.5rem)]"
           >
-            ALWAYS IN <span style={{ fontFamily: "'Times New Roman', serif", fontStyle: 'italic', color: '#f0c14b', textShadow: '2px 2px 4px rgba(0,0,0,0.5)' }}>Motion</span>
+            ALWAYS IN <span style={{ fontFamily: "'Times New Roman', serif", fontStyle: 'italic', color: '#027ea1', textShadow: '2px 2px 4px rgba(0,0,0,0.5)' }}>Motion</span>
           </h2>
           <p
-            className="text-white font-semibold leading-tight text-xl sm:text-2xl md:text-[clamp(1.25rem,2.5vw,2rem)]"
+            className="text-white"
+            style={{ fontWeight: 600, lineHeight: 1.5, fontSize: 'clamp(1rem, 2vw, 1.5rem)' }}
           >
             Something is always unfolding. Conversations, gatherings, ideas, celebrations. Small moments and larger milestones. All part of the everyday rhythm.
           </p>
@@ -239,10 +240,10 @@ const Events = () => {
           {/* Section Header */}
           <div className="flex flex-row justify-between items-end mb-4 md:mb-12 pb-3 md:pb-8" style={{ borderBottom: '1px solid #e5e5e5' }}>
             <div>
-              <span className="text-[#999] uppercase tracking-widest block text-[8px] md:text-xs mb-2 md:mb-4" style={{ letterSpacing: '0.2em' }}>
+              <span className="text-[#999] uppercase tracking-widest block text-xl md:text-2xl font-bold mb-2 md:mb-4" style={{ letterSpacing: '0.2em' }}>
                 What's Coming Up
               </span>
-              <h2 className="text-[#21313c] text-sm md:text-[clamp(2rem,4vw,3rem)]" style={{ fontWeight: 600, lineHeight: 1, letterSpacing: '-0.02em' }}>
+              <h2 className="text-[#21313c] text-sm md:text-4xl lg:text-5xl" style={{ fontWeight: 600, lineHeight: 1, letterSpacing: '-0.02em' }}>
                 Upcoming{' '}
                 <span style={{ fontFamily: "'Times New Roman', serif", fontStyle: 'italic', fontWeight: 400 }}>Events</span>
               </h2>
@@ -280,7 +281,7 @@ const Events = () => {
                 {/* Image */}
                 <div className="relative h-24 md:h-48 overflow-hidden">
                   <Image
-                    src={event.image || '/e1.jpg'}
+                    src={event.image || 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/e1.jpg'}
                     alt={event.title}
                     fill
                     className="object-cover group-hover:scale-105 transition-transform duration-500"
@@ -330,13 +331,13 @@ const Events = () => {
           <div className="flex flex-row justify-between items-end mb-8 md:mb-16 pb-4 md:pb-10" style={{ borderBottom: '1px solid #e5e5e5' }}>
             <div>
               <span
-                className="text-[#999] uppercase tracking-widest block text-[8px] md:text-xs mb-2 md:mb-4"
+                className="text-[#999] uppercase tracking-widest block text-xl md:text-2xl font-bold mb-2 md:mb-4"
                 style={{ letterSpacing: '0.2em' }}
               >
                 Archive
               </span>
               <h2
-                className="text-[#21313c] text-sm md:text-[clamp(2.5rem,5vw,4rem)]"
+                className="text-[#21313c] text-sm md:text-4xl lg:text-5xl"
                 style={{
                   fontWeight: 600,
                   lineHeight: 1,
@@ -519,13 +520,13 @@ const Events = () => {
           <div className="flex flex-row justify-between items-end mb-4 md:mb-16">
             <div className="max-w-[55%] md:max-w-[500px]">
               <span
-                className="text-[#999] uppercase tracking-widest block text-[8px] md:text-xs mb-2 md:mb-4"
+                className="text-[#999] uppercase tracking-widest block text-xl md:text-2xl font-bold mb-2 md:mb-4"
                 style={{ letterSpacing: '0.2em' }}
               >
                 Experience
               </span>
               <h2
-                className="text-[#21313c] text-sm md:text-[clamp(2rem,4vw,3rem)]"
+                className="text-[#21313c] text-sm md:text-4xl lg:text-5xl"
                 style={{
                   fontWeight: 600,
                   lineHeight: 1.1,
@@ -554,7 +555,7 @@ const Events = () => {
               className="group relative overflow-hidden cursor-pointer min-h-[200px] md:min-h-[520px] rounded-xl md:rounded-none"
             >
               <Image
-                src="/JLu%20events/photos/Convocation/DSC_1357.JPG"
+                src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/JLu%20events/photos/Convocation/DSC_1357.JPG"
                 alt="Signature Events"
                 fill
                 className="object-cover transition-transform duration-700 group-hover:scale-105"
@@ -596,7 +597,7 @@ const Events = () => {
               className="group relative overflow-hidden cursor-pointer min-h-[200px] md:min-h-[520px] rounded-xl md:rounded-none"
             >
               <Image
-                src="/student%20council/IMG_7510.JPG"
+                src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/student%20council/IMG_7510.JPG"
                 alt="Learning & Leadership"
                 fill
                 className="object-cover transition-transform duration-700 group-hover:scale-105"
@@ -653,7 +654,7 @@ const Events = () => {
               Stay Connected
             </span>
             <h2
-              className="text-[#21313c] text-base md:text-[clamp(2.5rem,5vw,4rem)]"
+              className="text-[#21313c] text-base md:text-4xl lg:text-5xl"
               style={{
                 fontWeight: 600,
                 lineHeight: 1.1,
@@ -845,8 +846,8 @@ const Events = () => {
               <div className="relative h-[200px] sm:h-[260px] md:h-[300px] shrink-0 rounded-t-2xl overflow-hidden">
                 <Image
                   src={activeModal === 'signature'
-                    ? '/JLu%20events/photos/Convocation/DSC_1357.JPG'
-                    : '/student%20council/IMG_7510.JPG'
+                    ? 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/JLu%20events/photos/Convocation/DSC_1357.JPG'
+                    : 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/student%20council/IMG_7510.JPG'
                   }
                   alt={activeModal === 'signature' ? 'Signature Events' : 'Learning & Leadership'}
                   fill

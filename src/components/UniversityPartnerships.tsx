@@ -28,22 +28,21 @@ const UniversityPartnerships = () => {
             >
               Global Network
             </span>
-            <h2
-              className="text-[#21313c] text-2xl sm:text-3xl md:text-[clamp(2.5rem,5vw,4rem)] mb-4 md:mb-6"
+            <h1
+              className="text-[#21313c] text-3xl md:text-4xl lg:text-5xl mb-4 md:mb-6"
               style={{
                 fontWeight: 600,
-                lineHeight: 1,
-                letterSpacing: '-0.02em',
+                lineHeight: 1.1,
               }}
             >
               University{' '}
               <span style={{ fontFamily: "'Times New Roman', serif", fontStyle: 'italic' }}>
                 Partnerships
               </span>
-            </h2>
+            </h1>
             <p
-              className="text-[#666] text-sm md:text-[15px]"
-              style={{ lineHeight: 1.7 }}
+              className="text-[#666] text-sm sm:text-base md:text-[clamp(1.15rem,1.8vw,1.5rem)]"
+              style={{ lineHeight: 1.7, fontWeight: 400 }}
             >
               Global partnerships form an integral part of JLU's academic ecosystem. Collaborations with universities and institutions across the world bring international learning environments, diverse perspectives and shared academic practices into the classroom.
             </p>
@@ -58,7 +57,7 @@ const UniversityPartnerships = () => {
             className="relative w-full h-[250px] sm:h-[320px] md:h-[400px] rounded-xl overflow-hidden"
           >
             <Image
-              src="/glob.jpg"
+              src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/glob.jpg"
               alt="University Partnerships - Global Network"
               fill
               className="object-cover"
