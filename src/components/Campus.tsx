@@ -876,7 +876,7 @@ const Campus = () => {
           {/* Healthcare Tabs - Interactive panel switcher */}
           <div className="flex flex-col md:flex-row gap-6 md:gap-0">
             {/* Tab buttons - vertical on desktop */}
-            <div className="flex md:flex-col gap-2 md:gap-0 md:w-[280px] md:shrink-0 overflow-x-auto md:overflow-visible">
+            <div className="flex md:flex-col gap-0 md:gap-0 md:w-[280px] md:shrink-0 overflow-x-auto md:overflow-visible">
               {healthcareItems.map((item, index) => (
                 <motion.button
                   key={index}
@@ -885,18 +885,18 @@ const Campus = () => {
                   transition={{ duration: 0.5, delay: index * 0.1 }}
                   viewport={{ once: true }}
                   onClick={() => setActiveHealthcare(index)}
-                  className={`text-left px-4 py-4 md:px-6 md:py-6 border-l-2 md:border-l-[3px] transition-all duration-300 whitespace-nowrap md:whitespace-normal ${
+                  className={`text-left px-3 py-3 md:px-6 md:py-6 border-l-2 md:border-l-[3px] transition-all duration-300 whitespace-nowrap md:whitespace-normal flex-shrink-0 ${
                     activeHealthcare === index
                       ? 'border-[#f0c14b] bg-white/5'
                       : 'border-white/10 hover:border-white/30'
                   }`}
                 >
-                  <span className={`block text-xs md:text-sm font-semibold transition-colors duration-300 ${
+                  <span className={`block text-[10px] md:text-sm font-semibold transition-colors duration-300 ${
                     activeHealthcare === index ? 'text-[#f0c14b]' : 'text-white/50'
                   }`}>
                     {item.subtitle}
                   </span>
-                  <span className={`block text-base md:text-lg font-medium transition-colors duration-300 mt-0.5 ${
+                  <span className={`block text-sm md:text-lg font-medium transition-colors duration-300 mt-0.5 ${
                     activeHealthcare === index ? 'text-white' : 'text-white/70'
                   }`}>
                     {item.title}

@@ -28,7 +28,7 @@ export const Footer = () => {
   return (
     <footer
       ref={footerRef}
-      className={`relative bg-[#027ea1] text-white overflow-hidden min-h-screen`}
+      className={`relative bg-[#027ea1] text-white ${isMobile ? 'overflow-visible' : 'overflow-hidden'} min-h-screen`}
       style={{ zIndex: 30 }}
     >
       {isMobile ? (
@@ -52,15 +52,15 @@ export const Footer = () => {
           <div className="px-6 pt-3 pb-0 flex flex-col flex-1">
 
           {/* Header Section */}
-          <div className="mb-4">
-            <h2 className="text-xl font-normal leading-tight mb-4 text-[#d4e4a0]">
+          <div className="mb-4 flex items-center justify-between">
+            <h2 className="text-xl font-normal leading-tight text-[#d4e4a0]">
               Central India's
               <br />
               <span className="italic font-serif">Global University</span>
             </h2>
             <a
               href="/apply"
-              className="inline-flex items-center gap-2 border border-[#d4e4a0] text-[#d4e4a0] px-4 py-2 text-xs hover:bg-[#d4e4a0] hover:text-[#027ea1] transition-colors"
+              className="inline-flex items-center gap-2 border border-[#d4e4a0] text-[#d4e4a0] px-4 py-2 text-xs hover:bg-[#d4e4a0] hover:text-[#027ea1] transition-colors rounded-full shrink-0"
             >
               SEND INQUIRY
               <span className="text-base">↗</span>
@@ -71,14 +71,20 @@ export const Footer = () => {
           <div className="border-t border-white/20 my-4" />
 
           {/* Contact Info */}
-          <div className="mb-4">
-            <a href="mailto:admission@jlu.edu.in" className="text-lg font-light mb-1 text-[#d4e4a0] block hover:text-white transition-colors">admission@jlu.edu.in</a>
-            <a href="tel:+917471110101" className="text-lg font-light mb-1 text-[#d4e4a0] block hover:text-white transition-colors">+91 7471110101</a>
-            <a href="tel:+917471110103" className="text-lg font-light mb-2 text-[#d4e4a0] block hover:text-white transition-colors">+91 7471110103</a>
-            <address className="not-italic text-gray-300 text-xs leading-relaxed">
-              Jagran Lakecity University,
-              <br />
-              Mugaliyachap, Near Ratibad, Bhopal – 462044
+          <div className="mb-3">
+            <div className="flex gap-3 items-center">
+              <div className="flex-1" style={{ fontSize: '1.1rem', lineHeight: 1.3 }}>
+                <a href="tel:+917471110101" className="font-light text-[#d4e4a0] hover:text-white transition-colors">+91 7471110101</a><br/>
+                <a href="tel:+917471110103" className="font-light text-[#d4e4a0] hover:text-white transition-colors">+91 7471110103</a><br/>
+                <a href="mailto:admission@jlu.edu.in" className="font-light text-[#d4e4a0] hover:text-white transition-colors">admission@jlu.edu.in</a>
+              </div>
+              <a href="tel:+917471110101" className="inline-flex items-center gap-2 border border-[#d4e4a0] text-[#d4e4a0] px-4 py-2 text-xs hover:bg-[#d4e4a0] hover:text-[#027ea1] transition-colors shrink-0" style={{ marginRight: '8px' }}>
+                CONTACT US
+                <span className="text-sm">↗</span>
+              </a>
+            </div>
+            <address className="not-italic text-gray-300 text-xs leading-relaxed mt-2">
+              Jagran Lakecity University, Mugaliyachap, Near Ratibad, Bhopal – 462044
             </address>
           </div>
 
@@ -108,6 +114,16 @@ export const Footer = () => {
             </div>
           </div>
 
+          {/* Social Links */}
+          <div className="mb-4">
+            <h3 className="font-semibold text-xs mb-2 text-white">Social</h3>
+            <div className="flex gap-4">
+              <a href="https://www.facebook.com/JLUBhopal" target="_blank" rel="noopener noreferrer" className="text-gray-300 text-xs hover:text-white transition-colors">Facebook</a>
+              <a href="https://www.instagram.com/jaborejlu/" target="_blank" rel="noopener noreferrer" className="text-gray-300 text-xs hover:text-white transition-colors">Instagram</a>
+              <a href="https://twitter.com/JLUBhopal" target="_blank" rel="noopener noreferrer" className="text-gray-300 text-xs hover:text-white transition-colors">Twitter/X</a>
+            </div>
+          </div>
+
           {/* Bottom Section */}
           <div className="flex justify-between items-end mt-auto">
             <div>
@@ -123,7 +139,7 @@ export const Footer = () => {
 
           {/* Large Jagran Lakecity Text */}
           <motion.div
-            className="-mx-6 -mb-10 overflow-hidden mt-4"
+            className="-mx-6 mb-4 overflow-visible mt-4"
             style={{ y: jluY }}
           >
             <h2
@@ -147,10 +163,7 @@ export const Footer = () => {
               <span
                 style={{
                   display: 'block',
-                  background: 'linear-gradient(to bottom, rgba(255,255,255,1) 0%, rgba(255,255,255,1) 60%, rgba(255,255,255,0) 100%)',
-                  WebkitBackgroundClip: 'text',
-                  backgroundClip: 'text',
-                  WebkitTextFillColor: 'transparent',
+                  color: '#ffffff',
                 }}
               >
                 Lakecity

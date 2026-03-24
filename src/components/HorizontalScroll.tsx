@@ -32,7 +32,7 @@ export const HorizontalScroll = () => {
       width: 800,
       height: 500,
       mobileWidth: 340,
-      mobileHeight: 400,
+      mobileHeight: 260,
       bg: 'bg-[#f6f7f0]',
       hasText: true,
       isTextCard: true,
@@ -193,13 +193,13 @@ export const HorizontalScroll = () => {
       ) : null}
       {card.isTextCard ? (
         <div className={`relative ${card.image ? 'bg-white/85 backdrop-blur-sm rounded-lg p-4 md:p-6' : ''} text-left flex flex-col justify-center h-full w-full`}>
-          <h1 className={`${isMobile ? 'text-base' : 'text-4xl lg:text-5xl'} ${card.textColor ?? 'text-[#21313c]'} ${isMobile ? 'mb-2' : 'mb-6'} drop-shadow-sm`} style={{ fontWeight: 600, lineHeight: 1.1 }}>
+          <h1 className={`${card.textColor ?? 'text-[#21313c]'} ${isMobile ? 'mb-1' : 'mb-6'} drop-shadow-sm`} style={{ fontSize: isMobile ? 'clamp(1.5rem, 6vw, 2.5rem)' : 'clamp(2.5rem, 4vw, 3.5rem)', fontWeight: 600, lineHeight: 1.1 }}>
             {card.title === 'Excellence in Education' ? (
               <>Excellence in <span style={{ fontFamily: "'Times New Roman', serif", fontStyle: 'italic', fontWeight: 700 }}>Education</span></>
             ) : card.title}
           </h1>
-          <div className={`${card.textColor ?? 'text-[#21313c]'} ${isMobile ? 'text-[13px]' : 'text-[clamp(1.15rem,1.8vw,1.5rem)]'} whitespace-pre-line drop-shadow-sm`} style={{ lineHeight: isMobile ? 1.5 : 1.7 }}>
-            {isMobile ? card.content : card.content}
+          <div className={`${card.textColor ?? 'text-[#21313c]'} ${isMobile ? 'text-[13px] overflow-hidden' : 'text-[clamp(1.15rem,1.8vw,1.5rem)]'} whitespace-pre-line drop-shadow-sm`} style={{ lineHeight: isMobile ? 1.5 : 1.7 }}>
+            {isMobile ? card.content?.split('\n\n')[0] : card.content}
           </div>
         </div>
       ) : card.hasText ? (
@@ -268,10 +268,10 @@ export const HorizontalScroll = () => {
     >
       {isMobile ? (
         // Mobile: Three rows layout
-        <div className="py-8 space-y-4">
+        <div className="py-2" style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
           {/* Row 1 */}
           <div className="overflow-hidden">
-            <div ref={row1Ref} className="flex pl-4 items-center" style={{ gap: '12px' }}>
+            <div ref={row1Ref} className="flex pl-4" style={{ gap: '12px' }}>
               {row1Cards.map((card, index) => renderCard(card, index))}
             </div>
           </div>

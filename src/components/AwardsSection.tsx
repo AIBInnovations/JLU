@@ -97,8 +97,8 @@ export const AwardsSection = () => {
       ease: 'none',
       scrollTrigger: {
         trigger: middleCard,
-        start: 'top 60%',
-        end: 'top 40%',
+        start: isMobile ? 'top 90%' : 'top 60%',
+        end: isMobile ? 'top 70%' : 'top 40%',
         scrub: 1,
       },
     });
@@ -257,7 +257,7 @@ export const AwardsSection = () => {
                     style={{ width: '100%', height: '100%', objectFit: 'contain' }}
                   />
                 </div>
-                <div style={{ marginTop: '10px', textAlign: award.center ? 'center' : 'left' }}>
+                <div style={{ marginTop: '10px', textAlign: index % 2 === 0 ? 'left' : 'right' }}>
                   <p style={{ color: '#027ea1', fontSize: '0.85rem', fontWeight: 600, letterSpacing: '0.1em', textTransform: 'uppercase', marginBottom: '4px' }}>{award.year}</p>
                   <p style={{ color: '#21313c', fontSize: '1.05rem', fontWeight: 600, lineHeight: 1.3, marginBottom: '4px' }}>
                     {award.title}

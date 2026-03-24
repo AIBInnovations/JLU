@@ -45,16 +45,16 @@ export const OurProgrammes = () => {
 
       {/* Programme Cards */}
       {isMobile ? (
-        /* Mobile: 2x2 Grid Layout */
+        /* Mobile: 3 in one row */
         <div className="px-4">
-          <div className="grid grid-cols-2 gap-3">
+          <div className="flex gap-2">
             {programmes.map((programme, index) => (
               <a
                 key={index}
                 href={programme.href}
-                className="relative overflow-hidden cursor-pointer rounded-2xl block"
+                className="relative overflow-hidden cursor-pointer rounded-2xl block flex-1"
                 style={{
-                  height: '240px',
+                  height: '200px',
                 }}
               >
                 <img
@@ -62,7 +62,7 @@ export const OurProgrammes = () => {
                   alt={programme.title}
                   className="absolute inset-0 w-full h-full object-cover transition-transform duration-300 hover:scale-105"
                 />
-                <div className="absolute inset-0 bg-black/20" />
+                <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/20 to-black/10" />
                 <div
                   className="absolute text-white"
                   style={{

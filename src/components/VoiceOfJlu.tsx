@@ -146,7 +146,8 @@ export const VoiceOfJlu = () => {
             <div
               className="flex gap-2 transition-transform duration-300"
               style={{
-                transform: `translateX(-${mobileIndex * 72}px)`,
+                transform: `translateX(-${mobileIndex * 112}px)`,
+                paddingRight: '150px',
               }}
             >
               {voices.map((voice, index) => (
@@ -248,8 +249,8 @@ export const VoiceOfJlu = () => {
               </svg>
             </button>
             <button
-              onClick={() => handleNextCard(voices.length - 4)}
-              disabled={mobileIndex >= voices.length - 4}
+              onClick={() => handleNextCard(voices.length - 1)}
+              disabled={mobileIndex >= voices.length - 1}
               className="w-10 h-10 rounded-full border-2 border-gray-300 flex items-center justify-center text-gray-500 hover:border-gray-400 hover:text-gray-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
             >
               <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -376,8 +377,8 @@ export const VoiceOfJlu = () => {
         <div ref={leadershipScrollRef}>
           {/* Top Row - 3 leaders with scroll marquee behind */}
           <div className="relative mb-4 md:mb-8 lg:mb-10">
-            {/* Scroll-driven marquee - breaks out of padding, full viewport width */}
-            <div className="absolute top-0 bottom-0 left-[50%] w-[100vw] -translate-x-[50%] flex items-center overflow-visible pointer-events-none z-0">
+            {/* Scroll-driven marquee - breaks out of padding, full viewport width (desktop only) */}
+            <div className="absolute top-0 bottom-0 left-[50%] w-[100vw] -translate-x-[50%] hidden md:flex items-center overflow-visible pointer-events-none z-0">
               <motion.div
                 className="whitespace-nowrap"
                 style={{ x: marqueeTopX }}
@@ -400,7 +401,7 @@ export const VoiceOfJlu = () => {
               variants={leadershipStagger}
               initial="hidden"
               animate={isInView ? 'visible' : 'hidden'}
-              className="grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-8 lg:gap-10 md:max-w-[900px] lg:max-w-[1100px] mx-auto relative z-10"
+              className="hidden md:grid grid-cols-3 gap-4 md:gap-8 lg:gap-10 md:max-w-[900px] lg:max-w-[1100px] mx-auto relative z-10"
             >
               {faculty.slice(0, 3).map((member, index) => (
                 <motion.div
@@ -448,8 +449,8 @@ export const VoiceOfJlu = () => {
 
           {/* Bottom Row - 4 leaders with opposite scroll marquee */}
           <div className="relative">
-            {/* Scroll-driven marquee - breaks out of padding, opposite direction */}
-            <div className="absolute top-0 bottom-0 left-[50%] w-[100vw] -translate-x-[50%] flex items-center overflow-visible pointer-events-none z-0">
+            {/* Scroll-driven marquee - breaks out of padding, opposite direction (desktop only) */}
+            <div className="absolute top-0 bottom-0 left-[50%] w-[100vw] -translate-x-[50%] hidden md:flex items-center overflow-visible pointer-events-none z-0">
               <motion.div
                 className="whitespace-nowrap"
                 style={{ x: marqueeBottomX }}
@@ -472,7 +473,7 @@ export const VoiceOfJlu = () => {
               variants={leadershipStagger}
               initial="hidden"
               animate={isInView ? 'visible' : 'hidden'}
-              className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-8 lg:gap-10 md:max-w-[1200px] lg:max-w-[1400px] mx-auto relative z-10"
+              className="hidden md:grid grid-cols-4 gap-4 md:gap-8 lg:gap-10 md:max-w-[1200px] lg:max-w-[1400px] mx-auto relative z-10"
             >
               {faculty.slice(3).map((member, index) => (
                 <motion.div
@@ -510,6 +511,58 @@ export const VoiceOfJlu = () => {
                     {member.linkedin && (
                       <a href={member.linkedin} target="_blank" rel="noopener noreferrer" className="text-[#0077b5] hover:text-[#005582] transition-colors mt-1 shrink-0 ml-2">
                         <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+                      </a>
+                    )}
+                  </div>
+                </motion.div>
+              ))}
+            </motion.div>
+          </div>
+
+          {/* Mobile-only: All 7 leaders - 1 big on top, then 2-2-2 */}
+          <div className="md:hidden relative z-10">
+            {/* Chancellor - big card */}
+            <motion.div
+              variants={leadershipCardVariant}
+              initial="hidden"
+              animate={isInView ? 'visible' : 'hidden'}
+              className="group relative max-w-[70%] mx-auto mb-4"
+            >
+              <div className="relative overflow-hidden rounded-2xl" style={{ aspectRatio: '3/4' }}>
+                <motion.img src={faculty[0].image} alt={faculty[0].name} className="w-full h-full object-cover" />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+              </div>
+              <div className="mt-3 text-center">
+                <h3 className="text-[#21313c] font-bold text-base leading-tight">{faculty[0].name}</h3>
+                <p className="text-[#999] text-xs mt-1">{faculty[0].title}</p>
+              </div>
+            </motion.div>
+
+            {/* Remaining 6 in 2-column grid */}
+            <motion.div
+              variants={leadershipStagger}
+              initial="hidden"
+              animate={isInView ? 'visible' : 'hidden'}
+              className="grid grid-cols-2 gap-3"
+            >
+                {faculty.slice(1).map((member, index) => (
+                <motion.div
+                  key={index + 1}
+                  variants={leadershipCardVariant}
+                  className="group relative"
+                >
+                  <div className="relative overflow-hidden rounded-2xl" style={{ aspectRatio: '3/4' }}>
+                    <motion.img src={member.image} alt={member.name} className="w-full h-full object-cover" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                  </div>
+                  <div className="mt-2 flex items-start justify-between">
+                    <div>
+                      <h3 className="text-[#21313c] font-bold text-xs leading-tight">{member.name}</h3>
+                      <p className="text-[#999] text-[10px] mt-0.5">{member.title}</p>
+                    </div>
+                    {member.linkedin && (
+                      <a href={member.linkedin} target="_blank" rel="noopener noreferrer" className="text-[#0077b5] shrink-0 ml-1">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
                       </a>
                     )}
                   </div>

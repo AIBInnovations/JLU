@@ -275,8 +275,8 @@ export default function PlacementPage() {
           const { scrollLeft, scrollWidth, clientWidth } = scrollContainer;
           const maxScroll = scrollWidth - clientWidth;
           const progress = maxScroll > 0 ? scrollLeft / maxScroll : 0;
-          // Map from 0% to full scrollWidth so line reaches step 05
-          const lineWidth = 5 + progress * (scrollWidth - 10);
+          // Map from 0% to full width so line reaches step 05
+          const lineWidth = 5 + progress * (scrollWidth * 0.9);
           line.style.width = `${lineWidth}px`;
         };
         scrollContainer.addEventListener('scroll', onScroll, { passive: true });
@@ -745,7 +745,7 @@ export default function PlacementPage() {
             </h2>
           </motion.div>
 
-          <div ref={journeyScrollRef} className="flex flex-row overflow-x-auto md:overflow-visible gap-4 md:gap-0 pb-4 md:pb-0 md:grid md:grid-cols-5 relative scrollbar-hide" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
+          <div ref={journeyScrollRef} className="flex flex-row overflow-x-auto md:overflow-visible gap-4 md:gap-0 pb-4 md:pb-0 md:grid md:grid-cols-5 relative scrollbar-hide snap-x snap-mandatory" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
             {/* Connecting line (desktop only) */}
             <div className="hidden md:block absolute top-[40px] left-[10%] right-[10%] h-px bg-gradient-to-r from-transparent via-[#027ea1] to-transparent" />
 
@@ -765,7 +765,7 @@ export default function PlacementPage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: i * 0.12, ease: customEase }}
-                className="text-center relative flex-shrink-0 w-[110px] md:w-auto"
+                className="text-center relative flex-shrink-0 w-[110px] md:w-auto snap-center"
               >
                 <div className="w-12 h-12 md:w-20 md:h-20 rounded-full bg-[#027ea1] flex items-center justify-center mx-auto mb-3 md:mb-5 relative z-10 shadow-lg shadow-[#027ea1]/20">
                   <span className="text-[#21313c] text-sm md:text-xl font-bold">{step.step}</span>

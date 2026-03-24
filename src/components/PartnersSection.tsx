@@ -157,7 +157,7 @@ export const PartnersSection = () => {
                 className="border border-t-0 border-l-0 border-gray-300 flex items-center justify-center"
                 style={{ width: 'calc(33.33vw - 4px)', height: '70px' }}
               >
-                <button onClick={() => setOrbOpen(true)} className="text-[#027ea1] font-bold text-2xl">
+                <button onClick={() => setOrbOpen(true)} className="text-[#027ea1] font-bold text-[10px] md:text-2xl">
                   See More →
                 </button>
               </div>

@@ -103,7 +103,7 @@ export const WhyJlu = () => {
     // Blur only background images as cards scroll up (desktop only)
     const bgImagesEl = bgImagesRef.current;
     let blurTrigger: ScrollTrigger | undefined;
-    if (bgImagesEl && !isMobile) {
+    if (bgImagesEl) {
       blurTrigger = ScrollTrigger.create({
         trigger: wrapper,
         start: '20% top',
@@ -252,7 +252,7 @@ export const WhyJlu = () => {
       style={{
         position: 'relative',
         height: shouldUseMobileLayout ? 'auto' : '140vh',
-        minHeight: shouldUseMobileLayout ? '100vh' : 'auto',
+        minHeight: '100vh',
         background: 'transparent',
         overflow: 'hidden',
         paddingBottom: shouldUseMobileLayout ? '40px' : '0',
@@ -271,13 +271,11 @@ export const WhyJlu = () => {
           alignItems: 'center',
           justifyContent: 'center',
           zIndex: 10,
-          background: shouldUseMobileLayout
-            ? 'transparent'
-            : '#f6f7f0',
+          background: '#f6f7f0',
         }}
       >
-        {/* Scattered background images (desktop only) */}
-        {!shouldUseMobileLayout && (
+        {/* Scattered background images */}
+        {(
           <div
             ref={bgImagesRef}
             style={{
@@ -295,7 +293,7 @@ export const WhyJlu = () => {
                   position: 'absolute',
                   top: img.top,
                   left: img.left,
-                  width: img.width,
+                  width: shouldUseMobileLayout ? img.width * 0.55 : img.width,
                   transform: `rotate(${img.rotate}deg)`,
                   borderRadius: '10px',
                   overflow: 'hidden',
@@ -343,7 +341,7 @@ export const WhyJlu = () => {
         <div
           style={{
             position: 'relative',
-            marginTop: '60vh',
+            marginTop: '100vh',
             width: '100%',
             zIndex: 20,
             background: 'linear-gradient(to bottom, transparent 10%, #f6f7f0 12%)',
