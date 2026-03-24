@@ -197,7 +197,7 @@ export const Hero = () => {
             className="absolute inset-0 flex flex-col items-center justify-center"
             style={{
               zIndex: 2,
-              paddingBottom: isMobile ? '55%' : '22%',
+              paddingBottom: isMobile ? '35%' : '22%',
               opacity: 0,
             }}
           >
@@ -206,11 +206,12 @@ export const Hero = () => {
               className="text-center uppercase tracking-widest select-none"
               style={{
                 fontFamily: "'Humane', sans-serif",
-                fontSize: isMobile ? 'clamp(2.5rem, 11vw, 4.5rem)' : 'clamp(7rem, 11vw, 14rem)',
+                fontSize: isMobile ? 'clamp(4.5rem, 20vw, 8rem)' : 'clamp(7rem, 11vw, 14rem)',
                 fontWeight: 700,
-                lineHeight: 0.95,
+                lineHeight: isMobile ? 0.9 : 0.95,
                 letterSpacing: '0.05em',
-                whiteSpace: 'nowrap',
+                whiteSpace: isMobile ? 'normal' : 'nowrap',
+                textAlign: 'center' as const,
                 backgroundImage: isMobile
                   ? 'linear-gradient(to bottom, rgba(255,255,255,0.85) 0%, rgba(255,255,255,0.7) 50%, rgba(255,255,255,0.4) 100%)'
                   : 'linear-gradient(to bottom, rgba(255,255,255,0.85) 0%, rgba(255,255,255,0.7) 50%, rgba(255,255,255,0.4) 90%)',
@@ -220,7 +221,7 @@ export const Hero = () => {
                 textShadow: 'none',
               }}
             >
-              Central India&apos;s Global University
+              {isMobile ? (<>Central India&apos;s<br />Global University</>) : 'Central India\u0027s Global University'}
             </h1>
           </div>
 

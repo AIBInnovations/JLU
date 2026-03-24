@@ -31,8 +31,8 @@ export const HorizontalScroll = () => {
     {
       width: 800,
       height: 500,
-      mobileWidth: 280,
-      mobileHeight: 260,
+      mobileWidth: 340,
+      mobileHeight: 400,
       bg: 'bg-[#f6f7f0]',
       hasText: true,
       isTextCard: true,
@@ -192,14 +192,14 @@ export const HorizontalScroll = () => {
         />
       ) : null}
       {card.isTextCard ? (
-        <div className={`relative ${card.image ? 'bg-white/85 backdrop-blur-sm rounded-lg p-4 md:p-6' : ''} text-left flex flex-col justify-center h-full`}>
-          <h1 className={`text-xl md:text-4xl lg:text-5xl ${card.textColor ?? 'text-[#21313c]'} mb-3 md:mb-6 drop-shadow-sm`} style={{ fontWeight: 600, lineHeight: 1.1 }}>
+        <div className={`relative ${card.image ? 'bg-white/85 backdrop-blur-sm rounded-lg p-4 md:p-6' : ''} text-left flex flex-col justify-center h-full w-full`}>
+          <h1 className={`${isMobile ? 'text-base' : 'text-4xl lg:text-5xl'} ${card.textColor ?? 'text-[#21313c]'} ${isMobile ? 'mb-2' : 'mb-6'} drop-shadow-sm`} style={{ fontWeight: 600, lineHeight: 1.1 }}>
             {card.title === 'Excellence in Education' ? (
               <>Excellence in <span style={{ fontFamily: "'Times New Roman', serif", fontStyle: 'italic', fontWeight: 700 }}>Education</span></>
             ) : card.title}
           </h1>
-          <div className={`${card.textColor ?? 'text-[#21313c]'} text-xs md:text-[clamp(1.15rem,1.8vw,1.5rem)] whitespace-pre-line drop-shadow-sm`} style={{ lineHeight: 1.7 }}>
-            {isMobile ? card.content?.substring(0, 120) + '...' : card.content}
+          <div className={`${card.textColor ?? 'text-[#21313c]'} ${isMobile ? 'text-[10px]' : 'text-[clamp(1.15rem,1.8vw,1.5rem)]'} whitespace-pre-line drop-shadow-sm`} style={{ lineHeight: isMobile ? 1.4 : 1.7 }}>
+            {isMobile ? card.content : card.content}
           </div>
         </div>
       ) : card.hasText ? (
@@ -271,7 +271,7 @@ export const HorizontalScroll = () => {
         <div className="py-8 space-y-4">
           {/* Row 1 */}
           <div className="overflow-hidden">
-            <div ref={row1Ref} className="flex pl-4" style={{ gap: '12px' }}>
+            <div ref={row1Ref} className="flex pl-4 items-center" style={{ gap: '12px' }}>
               {row1Cards.map((card, index) => renderCard(card, index))}
             </div>
           </div>

@@ -967,8 +967,25 @@ export const Header = () => {
         className="relative flex items-center justify-between px-6 pt-8 sm:pt-10 sm:px-10 lg:px-16 xl:px-20 2xl:px-32"
         style={{ zIndex: 60 }}
       >
-        {/* Empty spacer for left */}
-        <div className="flex-1" />
+        {/* Left side - Search on mobile, spacer on desktop */}
+        <div className="flex-1">
+          {isMobile && (
+            <button
+              onClick={() => setIsSearchOpen(true)}
+              aria-label="Open search"
+              className="flex items-center justify-center bg-white text-slate-800 shadow-lg shadow-black/5 h-6 w-6 rounded-md"
+              style={{
+                opacity: isMenuOpen ? 0 : 1,
+                visibility: isMenuOpen ? 'hidden' : 'visible',
+                pointerEvents: isMenuOpen ? 'none' : 'auto',
+              }}
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="h-3.5 w-3.5">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" />
+              </svg>
+            </button>
+          )}
+        </div>
 
         {/* Logo centered */}
         <motion.div
@@ -981,7 +998,7 @@ export const Header = () => {
           }}
           className="absolute left-1/2 -translate-x-1/2"
           style={{
-            top: '32px',
+            top: isMobile ? '22.5px' : '32px',
             opacity: isMenuOpen && isMobile ? 0 : 1,
             visibility: isMenuOpen && isMobile ? 'hidden' : 'visible',
             pointerEvents: isMenuOpen && isMobile ? 'none' : 'auto',
@@ -992,7 +1009,7 @@ export const Header = () => {
               src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/jlulogo.png"
               alt="Jagran Lakecity University logo"
               className={`w-auto object-contain drop-shadow-lg cursor-pointer ${
-                isMobile ? 'h-14' : 'h-18 sm:h-20 lg:h-24'
+                isMobile ? 'h-20' : 'h-18 sm:h-20 lg:h-24'
               }`}
             />
           </Link>
@@ -1000,12 +1017,12 @@ export const Header = () => {
 
         {/* Right side - Search and Menu */}
         <div className="flex items-center gap-3 sm:gap-4">
-          {/* Search button */}
+          {/* Search button - desktop only (mobile search is on left) */}
           <button
             onClick={() => setIsSearchOpen(true)}
             aria-label="Open search"
             className={`flex items-center justify-center bg-white text-slate-800 shadow-lg shadow-black/5 transition-all hover:shadow-xl hover:shadow-black/10 ${
-              isMobile ? 'h-6 w-6 rounded-md' : 'h-12 w-12 rounded-xl'
+              isMobile ? 'hidden' : 'h-12 w-12 rounded-xl'
             }`}
             style={{
               opacity: isMenuOpen && isMobile ? 0 : 1,
