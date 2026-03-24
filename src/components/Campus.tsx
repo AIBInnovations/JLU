@@ -1026,8 +1026,8 @@ const Campus = () => {
               whileInView={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8, delay: 0.3 }}
               viewport={{ once: true }}
-              className="text-[#666] text-sm md:text-base md:max-w-[400px]"
-              style={{ lineHeight: 1.7 }}
+              className="text-[#666] md:max-w-[600px]"
+              style={{ fontSize: 'clamp(1.15rem, 1.8vw, 1.5rem)', lineHeight: 1.7, fontWeight: 400 }}
             >
               Our campus is a masterwork of modern design, featuring state-of-the-art facilities that foster innovation and collaboration.
             </motion.p>
@@ -1460,7 +1460,7 @@ const Campus = () => {
                 </span>
               </h2>
             </div>
-            <p className="text-[#666] md:max-w-[420px]" style={{ fontSize: 'clamp(1.15rem, 1.8vw, 1.5rem)', lineHeight: 1.7, fontWeight: 400 }}>
+            <p className="text-[#666] md:max-w-[600px]" style={{ fontSize: 'clamp(1.15rem, 1.8vw, 1.5rem)', lineHeight: 1.7, fontWeight: 400 }}>
               World-class sports facilities including an Olympic-standard pool, multiple playing fields, and a modern recreation center.
             </p>
           </motion.div>
@@ -1895,91 +1895,66 @@ const Campus = () => {
       </div>
 
       {/* ===== 360 VIRTUAL TOUR CTA SECTION ===== */}
-      <div className="w-full bg-[#21313c] relative overflow-hidden">
-        <div
-          className="mx-auto px-5 py-16 sm:px-8 sm:py-20 md:px-[120px] md:py-[100px] relative z-10"
-          style={{ maxWidth: '1440px' }}
-        >
-          <div className="flex flex-col md:flex-row items-center justify-between gap-8 md:gap-16">
-            {/* Left content */}
-            <motion.div
-              initial={{ opacity: 0, x: -40 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8, ease: customEase }}
-              viewport={{ once: true }}
-              className="flex-1"
-            >
-              <span
-                className="text-[#f0c14b] uppercase tracking-widest block mb-4 text-xl md:text-2xl font-bold"
-                style={{ letterSpacing: '0.25em' }}
-              >
-                Virtual Experience
-              </span>
-              <h2
-                className="text-white text-2xl sm:text-3xl md:text-4xl lg:text-5xl mb-4 md:mb-6"
-                style={{ fontWeight: 600, lineHeight: 1.1, letterSpacing: '-0.02em' }}
-              >
-                Explore our campus{' '}
-                <span style={{ fontFamily: "'Times New Roman', serif", fontStyle: 'italic', fontWeight: 400, color: '#027ea1' }}>
-                  from anywhere
-                </span>
-              </h2>
-              <p className="text-[#999] text-sm md:text-base max-w-[500px] mb-6 md:mb-8" style={{ lineHeight: 1.7 }}>
-                Take an immersive 360-degree virtual tour of our 232-acre campus. Walk through academic blocks, explore sports facilities, and experience student life — all from the comfort of your screen.
-              </p>
-              <motion.a
-                href="https://panel123.s3.ap-south-1.amazonaws.com/360JLU/index.html"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-3 bg-[#f0c14b] text-[#21313c] font-semibold px-6 py-3 md:px-8 md:py-4 rounded-full text-sm md:text-base"
-                whileHover={{ scale: 1.05, boxShadow: '0 10px 30px rgba(240,193,75,0.3)' }}
-                whileTap={{ scale: 0.98 }}
-              >
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                  <circle cx="12" cy="12" r="10" />
-                  <path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" />
-                </svg>
-                Start 360° Campus Tour
-                <span>→</span>
-              </motion.a>
-            </motion.div>
+      <div className="w-full px-3 pb-8 md:px-6 md:pb-14 lg:px-10 lg:pb-20 pt-8 md:pt-14">
+        <div className="mx-auto flex flex-col items-center justify-center bg-[#20323d] px-4 py-6 md:px-10 md:py-10 lg:px-20 lg:py-14 rounded-xl md:rounded-3xl lg:rounded-4xl relative overflow-hidden" style={{ maxWidth: '1400px' }}>
+          <motion.div
+            className="text-center mb-6 md:mb-10 lg:mb-12 relative z-10"
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, ease: customEase }}
+            viewport={{ once: true }}
+          >
+            <span className="text-[#999] uppercase tracking-widest block mb-4 md:mb-6 text-xl md:text-2xl font-bold" style={{ letterSpacing: '0.2em' }}>
+              Virtual Experience
+            </span>
+            <h2 className="text-white" style={{ fontSize: 'clamp(2.25rem, 4vw, 3rem)', fontWeight: 600, lineHeight: 1.1, letterSpacing: '-0.03em' }}>
+              Explore our campus{' '}
+              <span style={{ fontFamily: "'Times New Roman', serif", fontStyle: 'italic', fontWeight: 400 }}>from anywhere</span>
+            </h2>
+            <p className="text-white/60 text-sm md:text-base leading-relaxed mt-4 max-w-2xl mx-auto">
+              Take an immersive 360-degree virtual tour of our 232-acre campus. Walk through academic blocks, explore sports facilities, and experience student life — all from the comfort of your screen.
+            </p>
+          </motion.div>
 
-            {/* Right - decorative stats */}
-            <motion.div
-              initial={{ opacity: 0, x: 40 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8, delay: 0.2, ease: customEase }}
-              viewport={{ once: true }}
-              className="grid grid-cols-2 gap-4 md:gap-6"
+          <div className="flex flex-col sm:flex-row items-center gap-4 md:gap-6 w-full sm:w-auto mb-10 relative z-10">
+            <motion.a
+              href="https://panel123.s3.ap-south-1.amazonaws.com/360JLU/index.html"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="px-8 md:px-10 py-3 md:py-4 bg-[#027ea1] text-white font-semibold flex items-center justify-center gap-3 w-full sm:w-auto rounded-full"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.98 }}
             >
-              {[
-                { value: '232', unit: 'acres', desc: 'Campus Area' },
-                { value: '14', unit: 'blocks', desc: 'Academic Blocks' },
-                { value: '50+', unit: 'labs', desc: 'Specialized Labs' },
-                { value: '6', unit: 'lanes', desc: 'Olympic Pool' },
-              ].map((item, index) => (
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5, delay: 0.3 + index * 0.1 }}
-                  viewport={{ once: true }}
-                  className="bg-white/5 border border-white/10 p-4 md:p-6 rounded-xl text-center"
-                >
-                  <p className="text-[#f0c14b] text-2xl md:text-3xl font-bold">{item.value}</p>
-                  <p className="text-white/40 text-[10px] md:text-xs uppercase tracking-wider">{item.unit}</p>
-                  <p className="text-white/70 text-xs md:text-sm mt-1">{item.desc}</p>
-                </motion.div>
-              ))}
-            </motion.div>
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <circle cx="12" cy="12" r="10" />
+                <path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" />
+              </svg>
+              Start 360° Campus Tour
+              <span>→</span>
+            </motion.a>
           </div>
-        </div>
 
-        {/* Decorative background circles */}
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] opacity-5 pointer-events-none">
-          <div className="absolute inset-0 border border-white rounded-full" />
-          <div className="absolute inset-[80px] border border-white rounded-full" />
-          <div className="absolute inset-[160px] border border-white rounded-full" />
+          {/* Stats */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.2, ease: customEase }}
+            viewport={{ once: true }}
+            className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 w-full relative z-10"
+          >
+            {[
+              { value: '232', unit: 'acres', desc: 'Campus Area' },
+              { value: '14', unit: 'blocks', desc: 'Academic Blocks' },
+              { value: '50+', unit: 'labs', desc: 'Specialized Labs' },
+              { value: '6', unit: 'lanes', desc: 'Olympic Pool' },
+            ].map((item, index) => (
+              <div key={index} className="bg-white/5 border border-white/10 p-4 md:p-6 rounded-xl text-center">
+                <p className="text-[#027ea1] text-2xl md:text-3xl font-bold">{item.value}</p>
+                <p className="text-white/40 text-[10px] md:text-xs uppercase tracking-wider">{item.unit}</p>
+                <p className="text-white/70 text-xs md:text-sm mt-1">{item.desc}</p>
+              </div>
+            ))}
+          </motion.div>
         </div>
       </div>
 
