@@ -1450,11 +1450,11 @@ const Admissions = () => {
               transition={{ duration: 0.7, ease: customEase }}
               viewport={{ once: true }}
               className="group relative rounded-3xl overflow-hidden"
-              style={{ background: 'linear-gradient(165deg, #21313c 0%, #027ea1 100%)' }}
+              style={{ background: 'linear-gradient(165deg, #f0c14b 0%, #d4a832 100%)' }}
             >
               {/* Decorative element */}
-              <div className="absolute -top-20 -right-20 w-56 h-56 rounded-full opacity-[0.06]" style={{ background: '#027ea1' }} />
-              <div className="absolute -bottom-16 -left-16 w-44 h-44 rounded-full opacity-[0.06]" style={{ background: '#027ea1' }} />
+              <div className="absolute -top-20 -right-20 w-56 h-56 rounded-full opacity-[0.08]" style={{ background: '#fff' }} />
+              <div className="absolute -bottom-16 -left-16 w-44 h-44 rounded-full opacity-[0.08]" style={{ background: '#fff' }} />
 
               {/* Image header */}
               <div className="relative overflow-hidden" style={{ height: isMobile ? '160px' : '192px' }}>
@@ -1464,16 +1464,16 @@ const Admissions = () => {
                   fill
                   className="object-cover group-hover:scale-105 transition-transform duration-700"
                 />
-                <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-[#21313c]" />
+                <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-[#f0c14b]" />
                 <div className="absolute top-5 left-6">
-                  <span className="text-[#027ea1] text-xs uppercase tracking-widest font-medium" style={{ letterSpacing: '0.2em' }}>
+                  <span className="text-[#21313c] text-xs uppercase tracking-widest font-bold" style={{ letterSpacing: '0.2em' }}>
                     Programs
                   </span>
                 </div>
               </div>
 
               <div className="relative z-10 -mt-4" style={{ padding: isMobile ? '0 16px 20px' : '0 28px 32px' }}>
-                <h3 className="text-white text-2xl md:text-[28px] font-bold mb-8" style={{ letterSpacing: '-0.02em', lineHeight: 1.2 }}>
+                <h3 className="text-[#21313c] text-2xl md:text-[28px] font-bold mb-8" style={{ letterSpacing: '-0.02em', lineHeight: 1.2 }}>
                   Academic{' '}
                   <span style={{ fontFamily: "'Times New Roman', serif", fontStyle: 'italic', fontWeight: 400 }}>
                     Programs
@@ -1490,14 +1490,14 @@ const Admissions = () => {
                   ].map((item, i) => {
                     const inner = (
                       <>
-                        <div className="shrink-0 w-8 h-8 rounded-lg bg-[#027ea1]/15 flex items-center justify-center mt-0.5">
-                          <span className="text-[#027ea1] text-xs font-bold">{String(i + 1).padStart(2, '0')}</span>
+                        <div className="shrink-0 w-8 h-8 rounded-lg bg-[#21313c]/15 flex items-center justify-center mt-0.5">
+                          <span className="text-[#21313c] text-xs font-bold">{String(i + 1).padStart(2, '0')}</span>
                         </div>
                         <div>
-                          <h4 className="text-white font-semibold text-[15px] mb-0.5 group-hover/item:text-[#027ea1] transition-colors">{item.title}</h4>
-                          <p className="text-white/40 text-xs">{item.desc}</p>
+                          <h4 className="text-[#21313c] font-semibold text-[15px] mb-0.5 group-hover/item:text-[#21313c]/70 transition-colors">{item.title}</h4>
+                          <p className="text-[#21313c]/50 text-xs">{item.desc}</p>
                         </div>
-                        <span className="ml-auto text-white/20 group-hover/item:text-[#027ea1] group-hover/item:translate-x-1 transition-all text-sm mt-1">&rarr;</span>
+                        <span className="ml-auto text-[#21313c]/30 group-hover/item:text-[#21313c] group-hover/item:translate-x-1 transition-all text-sm mt-1">&rarr;</span>
                       </>
                     );
                     return (
@@ -1509,12 +1509,12 @@ const Admissions = () => {
                         viewport={{ once: true }}
                       >
                         {'href' in item && item.href ? (
-                          <Link href={item.href} className="flex items-start gap-4 rounded-xl hover:bg-white/[0.07] transition-colors duration-300 cursor-pointer group/item" style={{ padding: isMobile ? '10px' : '16px' }}>
+                          <Link href={item.href} className="flex items-start gap-4 rounded-xl hover:bg-[#21313c]/[0.07] transition-colors duration-300 cursor-pointer group/item" style={{ padding: isMobile ? '10px' : '16px' }}>
                             {inner}
                           </Link>
                         ) : (
                           <div
-                            className="flex items-start gap-4 rounded-xl hover:bg-white/[0.07] transition-colors duration-300 cursor-pointer group/item"
+                            className="flex items-start gap-4 rounded-xl hover:bg-[#21313c]/[0.07] transition-colors duration-300 cursor-pointer group/item"
                             style={{ padding: isMobile ? '10px' : '16px' }}
                             onClick={() => 'beyondIdx' in item && item.beyondIdx !== undefined && setSelectedBeyondDegree(beyondDegrees[item.beyondIdx])}
                           >
@@ -1618,7 +1618,7 @@ const Admissions = () => {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, delay: 0.3, ease: customEase }}
               viewport={{ once: true }}
-              className="group relative rounded-3xl overflow-hidden"
+              className="group relative rounded-3xl overflow-hidden flex flex-col"
               style={{ background: '#027ea1' }}
             >
               {/* Image header */}
@@ -1637,8 +1637,8 @@ const Admissions = () => {
                 </div>
               </div>
 
-              <div className="relative z-10 -mt-4" style={{ padding: isMobile ? '0 16px 20px' : '0 28px 32px' }}>
-                <h3 className="text-[#21313c] text-2xl md:text-[28px] font-bold mb-8" style={{ letterSpacing: '-0.02em', lineHeight: 1.2 }}>
+              <div className="relative z-10 -mt-4 flex flex-col flex-1" style={{ padding: isMobile ? '0 16px 20px' : '0 28px 32px' }}>
+                <h3 className="text-white text-2xl md:text-[28px] font-bold mb-8" style={{ letterSpacing: '-0.02em', lineHeight: 1.2 }}>
                   Financial{' '}
                   <span style={{ fontFamily: "'Times New Roman', serif", fontStyle: 'italic', fontWeight: 400 }}>
                     Support
@@ -1662,31 +1662,31 @@ const Admissions = () => {
                       style={{ padding: isMobile ? '10px' : '16px' }}
                       onClick={() => setSelectedFinancialOption(financialOptions[item.idx])}
                     >
-                      <div className="shrink-0 w-10 h-10 rounded-xl bg-[#21313c]/10 flex items-center justify-center">
-                        <span className="text-[#21313c] text-xs font-bold">{String(i + 1).padStart(2, '0')}</span>
+                      <div className="shrink-0 w-10 h-10 rounded-xl bg-white/15 flex items-center justify-center">
+                        <span className="text-white text-xs font-bold">{String(i + 1).padStart(2, '0')}</span>
                       </div>
                       <div className="flex-1">
-                        <h4 className="text-[#21313c] font-semibold text-[15px] mb-0.5">{item.title}</h4>
-                        <p className="text-[#21313c]/50 text-xs">{item.desc}</p>
+                        <h4 className="text-white font-semibold text-[15px] mb-0.5">{item.title}</h4>
+                        <p className="text-white/50 text-xs">{item.desc}</p>
                       </div>
-                      <span className="text-[#21313c]/30 group-hover/item:text-[#21313c] group-hover/item:translate-x-1 transition-all text-sm mt-1">&rarr;</span>
+                      <span className="text-white/30 group-hover/item:text-white group-hover/item:translate-x-1 transition-all text-sm mt-1">&rarr;</span>
                     </motion.div>
                   ))}
                 </div>
 
                 {/* Fee Details Link */}
-                <div className="mt-8 pt-6 border-t border-[#21313c]/10">
-                  <div className="flex items-center justify-center">
-                    <motion.button
-                      className="px-5 py-2.5 bg-[#21313c] text-white font-medium text-sm rounded-full flex items-center gap-2"
-                      whileHover={{ scale: 1.05 }}
-                      whileTap={{ scale: 0.98 }}
-                      onClick={() => handleTabChange('fees')}
-                    >
-                      View All Fees
-                      <span>&rarr;</span>
-                    </motion.button>
-                  </div>
+                <div className="mt-auto pt-8">
+                  <motion.button
+                    className="w-full py-4 bg-white text-[#027ea1] font-semibold rounded-xl text-center flex items-center justify-center gap-3 hover:bg-white/90 transition-colors cursor-pointer"
+                    whileHover={{ scale: 1.01 }}
+                    whileTap={{ scale: 0.99 }}
+                    onClick={() => handleTabChange('fees')}
+                  >
+                    View All Fees
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                      <path d="M5 12h14M12 5l7 7-7 7" strokeLinecap="round" strokeLinejoin="round"/>
+                    </svg>
+                  </motion.button>
                 </div>
               </div>
             </motion.div>
@@ -1761,7 +1761,7 @@ const Admissions = () => {
                 <a
                   href="/broucher/Fee-Structure-2026-27.pdf"
                   download="JLU-Fee-Structure-2026-27.pdf"
-                  className="w-full flex items-center justify-center gap-2 px-5 py-4 border border-[#027ea1] text-[#027ea1] rounded-xl font-medium transition-all duration-300 text-sm cursor-pointer no-underline"
+                  className="w-full flex items-center justify-center gap-2 px-5 py-4 bg-white text-[#21313c] rounded-xl font-semibold transition-all duration-300 text-sm cursor-pointer no-underline hover:bg-white/90"
                 >
                   <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                     <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" strokeLinecap="round" strokeLinejoin="round"/>
