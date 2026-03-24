@@ -198,7 +198,7 @@ export const HorizontalScroll = () => {
               <>Excellence in <span style={{ fontFamily: "'Times New Roman', serif", fontStyle: 'italic', fontWeight: 700 }}>Education</span></>
             ) : card.title}
           </h1>
-          <div className={`${card.textColor ?? 'text-[#21313c]'} ${isMobile ? 'text-[10px]' : 'text-[clamp(1.15rem,1.8vw,1.5rem)]'} whitespace-pre-line drop-shadow-sm`} style={{ lineHeight: isMobile ? 1.4 : 1.7 }}>
+          <div className={`${card.textColor ?? 'text-[#21313c]'} ${isMobile ? 'text-[13px]' : 'text-[clamp(1.15rem,1.8vw,1.5rem)]'} whitespace-pre-line drop-shadow-sm`} style={{ lineHeight: isMobile ? 1.5 : 1.7 }}>
             {isMobile ? card.content : card.content}
           </div>
         </div>
