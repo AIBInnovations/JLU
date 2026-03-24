@@ -336,30 +336,30 @@ export default function FacultiesPage() {
       </section>
 
       {/* CTA Section */}
-      <section className="relative py-8 md:py-16 px-4 sm:px-10 lg:px-16 bg-[#21313c] overflow-hidden">
-        <div className="mx-auto max-w-[1200px] text-center">
-          <h2 className="text-lg md:text-4xl font-bold text-white mb-3 md:mb-6 break-words">
-            Ready to Begin Your Journey?
-          </h2>
-          <p className="text-xs md:text-lg text-white/90 mb-4 md:mb-8 max-w-2xl mx-auto">
-            Choose your faculty and take the first step towards a successful career with JLU.
-          </p>
-          <div className="flex gap-3 md:gap-4 justify-center">
-            <a
-              href="/apply"
-              className="bg-[#027ea1] text-white font-semibold py-2 px-5 md:py-3 md:px-8 rounded-lg hover:bg-[#025f7a] transition-all shadow-md hover:shadow-lg text-xs md:text-base"
-            >
-              Apply Now
+      <div className="w-full px-3 pb-8 md:px-6 md:pb-14 lg:px-10 lg:pb-20">
+        <div className="mx-auto flex flex-col items-center justify-center bg-[#20323d] px-4 py-6 md:px-10 md:py-10 lg:px-20 lg:py-14 rounded-xl md:rounded-3xl lg:rounded-4xl" style={{ maxWidth: '1400px' }}>
+          <div className="text-center mb-6 md:mb-10 lg:mb-12">
+            <span className="text-[#999] uppercase tracking-widest block mb-4 md:mb-6 text-xl md:text-2xl font-bold" style={{ letterSpacing: '0.2em' }}>
+              Start Your Journey
+            </span>
+            <h2 className="text-white" style={{ fontSize: 'clamp(2.25rem, 4vw, 3rem)', fontWeight: 600, lineHeight: 1.1, letterSpacing: '-0.03em' }}>
+              Ready to Begin{' '}
+              <span style={{ fontFamily: "'Times New Roman', serif", fontStyle: 'italic', fontWeight: 400 }}>Your Journey?</span>
+            </h2>
+            <p className="text-white/60 text-sm md:text-base leading-relaxed mt-4 max-w-2xl mx-auto">
+              Choose your faculty and take the first step towards a successful career with JLU.
+            </p>
+          </div>
+          <div className="flex flex-col sm:flex-row items-center gap-4 md:gap-6 w-full sm:w-auto">
+            <a href="/apply" className="px-8 md:px-10 py-3 md:py-4 bg-[#027ea1] text-white font-semibold flex items-center justify-center gap-3 w-full sm:w-auto rounded-full">
+              Apply Now <span>→</span>
             </a>
-            <a
-              href="/admissions"
-              className="border-2 border-white text-white font-semibold py-2 px-5 md:py-3 md:px-8 rounded-lg hover:bg-white hover:text-[#21313c] transition-all text-xs md:text-base"
-            >
+            <a href="/admissions" className="px-8 md:px-10 py-3 md:py-4 bg-transparent border border-white/50 text-white font-medium w-full sm:w-auto rounded-full text-center">
               Learn More
             </a>
           </div>
         </div>
-      </section>
+      </div>
 
       <Footer />
     </div>

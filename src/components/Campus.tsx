@@ -544,7 +544,7 @@ const FacilityModal = ({ isOpen, onClose, data }: FacilityModalProps) => {
                       transition={{ delay: 0.3 + index * 0.05 }}
                       className="bg-[#f6f7f0] px-4 py-3 rounded-lg flex-1 min-w-[100px]"
                     >
-                      <p className="text-[#21313c] text-xl md:text-2xl font-bold">{stat.value}</p>
+                      <p className="text-[#21313c] text-lg md:text-xl font-bold">{stat.value}</p>
                       <p className="text-[#666] text-xs">{stat.label}</p>
                     </motion.div>
                   ))}
@@ -769,17 +769,17 @@ const Campus = () => {
                   <div className="flex items-center justify-between gap-4">
                     <div>
                       <p className="text-[#21313c] text-2xl md:text-4xl font-bold">125+</p>
-                      <p className="text-[#666] text-xl md:text-2xl font-bold uppercase tracking-wider">Smart Classrooms</p>
+                      <p className="text-[#666] text-[10px] md:text-xs uppercase tracking-wider">Smart Classrooms</p>
                     </div>
                     <div className="w-px h-10 bg-gray-200" />
                     <div>
                       <p className="text-[#21313c] text-2xl md:text-4xl font-bold">9</p>
-                      <p className="text-[#666] text-xl md:text-2xl font-bold uppercase tracking-wider">Academic Blocks</p>
+                      <p className="text-[#666] text-[10px] md:text-xs uppercase tracking-wider">Academic Blocks</p>
                     </div>
                     <div className="w-px h-10 bg-gray-200" />
                     <div>
                       <p className="text-[#21313c] text-2xl md:text-4xl font-bold">100%</p>
-                      <p className="text-[#666] text-xl md:text-2xl font-bold uppercase tracking-wider">Tech Enabled</p>
+                      <p className="text-[#666] text-[10px] md:text-xs uppercase tracking-wider">Tech Enabled</p>
                     </div>
                   </div>
                 </motion.div>
@@ -896,7 +896,7 @@ const Campus = () => {
                   }`}>
                     {item.subtitle}
                   </span>
-                  <span className={`block text-xl md:text-2xl font-bold transition-colors duration-300 mt-0.5 ${
+                  <span className={`block text-base md:text-lg font-medium transition-colors duration-300 mt-0.5 ${
                     activeHealthcare === index ? 'text-white' : 'text-white/70'
                   }`}>
                     {item.title}
@@ -940,7 +940,7 @@ const Campus = () => {
                           className="bg-white/95 backdrop-blur-sm px-4 py-3 rounded-lg"
                         >
                           <p className="text-[#21313c] text-lg md:text-2xl font-bold">{stat.value}</p>
-                          <p className="text-[#666] text-xl md:text-2xl font-bold">{stat.label}</p>
+                          <p className="text-[#666] text-[10px] md:text-xs">{stat.label}</p>
                         </motion.div>
                       ))}
                     </div>
@@ -1251,7 +1251,7 @@ const Campus = () => {
                   whileHover={{ scale: 1.1, rotate: 10 }}
                   transition={{ duration: 0.3 }}
                 >
-                  <span className="text-[#21313c] font-semibold text-xl md:text-2xl font-bold md:text-sm">01</span>
+                  <span className="text-[#21313c] font-semibold text-[10px] sm:text-xs md:text-sm">01</span>
                 </motion.div>
                 <div className="absolute bottom-0 left-0 right-0 p-2 sm:p-4 md:p-8">
                   <h4 className="text-white font-semibold mb-0 md:mb-2 text-[11px] sm:text-base md:text-2xl leading-tight">
@@ -1264,7 +1264,7 @@ const Campus = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.2 }}
                 viewport={{ once: true }}
-                className="text-[#ccc] mb-2 md:mb-6 text-xl md:text-2xl font-bold md:text-base hidden sm:block"
+                className="text-[#ccc] mb-2 md:mb-6 text-[10px] sm:text-xs md:text-base hidden sm:block"
                 style={{ lineHeight: 1.7 }}
               >
                 A professional studio environment for media production and hands on learning.
@@ -1300,7 +1300,7 @@ const Campus = () => {
                   whileHover={{ scale: 1.1, rotate: 10 }}
                   transition={{ duration: 0.3 }}
                 >
-                  <span className="text-[#21313c] font-semibold text-xl md:text-2xl font-bold md:text-sm">02</span>
+                  <span className="text-[#21313c] font-semibold text-[10px] sm:text-xs md:text-sm">02</span>
                 </motion.div>
                 <div className="absolute bottom-0 left-0 right-0 p-2 sm:p-4 md:p-8">
                   <h4 className="text-white font-semibold mb-0 md:mb-2 text-[11px] sm:text-base md:text-2xl leading-tight">
@@ -1313,7 +1313,7 @@ const Campus = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.2 }}
                 viewport={{ once: true }}
-                className="text-[#ccc] mb-2 md:mb-6 text-xl md:text-2xl font-bold md:text-base hidden sm:block"
+                className="text-[#ccc] mb-2 md:mb-6 text-[10px] sm:text-xs md:text-base hidden sm:block"
                 style={{ lineHeight: 1.7 }}
               >
                 Industry standard kitchens designed for hospitality and culinary training.
@@ -1349,7 +1349,7 @@ const Campus = () => {
                   whileHover={{ scale: 1.1, rotate: 10 }}
                   transition={{ duration: 0.3 }}
                 >
-                  <span className="text-[#21313c] font-semibold text-xl md:text-2xl font-bold md:text-sm">03</span>
+                  <span className="text-[#21313c] font-semibold text-[10px] sm:text-xs md:text-sm">03</span>
                 </motion.div>
                 <div className="absolute bottom-0 left-0 right-0 p-2 sm:p-4 md:p-8">
                   <h4 className="text-white font-semibold mb-0 md:mb-2 text-[11px] sm:text-base md:text-2xl leading-tight">
@@ -1362,7 +1362,7 @@ const Campus = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.2 }}
                 viewport={{ once: true }}
-                className="text-[#ccc] mb-2 md:mb-6 text-xl md:text-2xl font-bold md:text-base hidden sm:block"
+                className="text-[#ccc] mb-2 md:mb-6 text-[10px] sm:text-xs md:text-base hidden sm:block"
                 style={{ lineHeight: 1.7 }}
               >
                 Well equipped labs supporting engineering, computing, and applied sciences.
@@ -1398,7 +1398,7 @@ const Campus = () => {
                   whileHover={{ scale: 1.1, rotate: 10 }}
                   transition={{ duration: 0.3 }}
                 >
-                  <span className="text-[#21313c] font-semibold text-xl md:text-2xl font-bold md:text-sm">04</span>
+                  <span className="text-[#21313c] font-semibold text-[10px] sm:text-xs md:text-sm">04</span>
                 </motion.div>
                 <div className="absolute bottom-0 left-0 right-0 p-2 sm:p-4 md:p-8">
                   <h4 className="text-white font-semibold mb-0 md:mb-2 text-[11px] sm:text-base md:text-2xl leading-tight">
@@ -1411,7 +1411,7 @@ const Campus = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.2 }}
                 viewport={{ once: true }}
-                className="text-[#ccc] mb-2 md:mb-6 text-xl md:text-2xl font-bold md:text-base hidden sm:block"
+                className="text-[#ccc] mb-2 md:mb-6 text-[10px] sm:text-xs md:text-base hidden sm:block"
                 style={{ lineHeight: 1.7 }}
               >
                 A dedicated space for legal practice, debates, and mock trials.
@@ -1460,7 +1460,7 @@ const Campus = () => {
                 </span>
               </h2>
             </div>
-            <p className="text-[#666] text-sm md:text-base md:max-w-[360px]" style={{ lineHeight: 1.7 }}>
+            <p className="text-[#666] md:max-w-[420px]" style={{ fontSize: 'clamp(1.15rem, 1.8vw, 1.5rem)', lineHeight: 1.7, fontWeight: 400 }}>
               World-class sports facilities including an Olympic-standard pool, multiple playing fields, and a modern recreation center.
             </p>
           </motion.div>
@@ -1499,7 +1499,7 @@ const Campus = () => {
                     viewport={{ once: true }}
                     className="self-start bg-[#f0c14b] px-3 py-1.5 md:px-4 md:py-2 rounded-full"
                   >
-                    <span className="text-[#21313c] font-semibold text-xl md:text-2xl font-bold">Olympic Standard</span>
+                    <span className="text-[#21313c] font-semibold text-[10px] md:text-xs">Olympic Standard</span>
                   </motion.div>
                   <div>
                     <motion.h4
@@ -1967,7 +1967,7 @@ const Campus = () => {
                   className="bg-white/5 border border-white/10 p-4 md:p-6 rounded-xl text-center"
                 >
                   <p className="text-[#f0c14b] text-2xl md:text-3xl font-bold">{item.value}</p>
-                  <p className="text-white/40 text-xl md:text-2xl font-bold uppercase tracking-wider">{item.unit}</p>
+                  <p className="text-white/40 text-[10px] md:text-xs uppercase tracking-wider">{item.unit}</p>
                   <p className="text-white/70 text-xs md:text-sm mt-1">{item.desc}</p>
                 </motion.div>
               ))}

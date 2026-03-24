@@ -508,48 +508,37 @@ export default function JLUxPage() {
       </section>
 
       {/* CTA Section */}
-      <section className="relative py-20 md:py-28 px-4 sm:px-6 md:px-16 bg-[#21313c] overflow-hidden">
-        <div className="absolute inset-0 opacity-10">
-          <div className="absolute top-0 right-0 w-[500px] h-[500px] rounded-full bg-[#f4c950] blur-[200px]" />
-          <div className="absolute bottom-0 left-0 w-[400px] h-[400px] rounded-full bg-[#027ea1] blur-[200px]" />
-        </div>
-        <div className="relative mx-auto max-w-[800px] text-center">
+      <div className="w-full px-3 pb-8 md:px-6 md:pb-14 lg:px-10 lg:pb-20">
+        <div className="mx-auto flex flex-col items-center justify-center bg-[#20323d] px-4 py-6 md:px-10 md:py-10 lg:px-20 lg:py-14 rounded-xl md:rounded-3xl lg:rounded-4xl" style={{ maxWidth: '1400px' }}>
           <motion.div
+            className="text-center mb-6 md:mb-10 lg:mb-12"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, ease: customEase }}
             viewport={{ once: true }}
           >
-            <span className="inline-block bg-[#f4c950]/20 text-[#f4c950] text-[12px] sm:text-xs font-bold uppercase tracking-[0.2em] px-4 py-2 rounded-full mb-6">
+            <span className="text-[#999] uppercase tracking-widest block mb-4 md:mb-6 text-xl md:text-2xl font-bold" style={{ letterSpacing: '0.2em' }}>
               Applications Open
             </span>
-            <h2 className="text-white text-3xl sm:text-4xl md:text-5xl font-bold leading-tight mb-6">
+            <h2 className="text-white" style={{ fontSize: 'clamp(2.25rem, 4vw, 3rem)', fontWeight: 600, lineHeight: 1.1, letterSpacing: '-0.03em' }}>
               Ready to Lead{' '}
-              <span style={{ fontFamily: "'Times New Roman', serif", fontStyle: 'italic', color: '#f4c950' }}>
-                Before
-              </span>{' '}
+              <span style={{ fontFamily: "'Times New Roman', serif", fontStyle: 'italic', fontWeight: 400 }}>Before</span>{' '}
               University?
             </h2>
-            <p className="text-white/70 text-base md:text-lg leading-relaxed mb-10 max-w-[600px] mx-auto">
+            <p className="text-white/60 text-sm md:text-base leading-relaxed mt-4 max-w-2xl mx-auto">
               Join the next cohort of JLUx and discover your leadership potential. Limited seats available for the upcoming session.
             </p>
-            <div className="flex gap-4 justify-center flex-wrap">
-              <a
-                href="/apply"
-                className="bg-[#027ea1] text-white font-semibold py-4 px-10 rounded-xl hover:bg-[#025f7a] transition-all shadow-lg hover:shadow-xl text-base"
-              >
-                Apply Now
-              </a>
-              <a
-                href="/admissions"
-                className="border-2 border-white/30 text-white font-semibold py-4 px-10 rounded-xl hover:bg-white/10 transition-all text-base"
-              >
-                Learn More
-              </a>
-            </div>
           </motion.div>
+          <div className="flex flex-col sm:flex-row items-center gap-4 md:gap-6 w-full sm:w-auto">
+            <a href="/apply" className="px-8 md:px-10 py-3 md:py-4 bg-[#027ea1] text-white font-semibold flex items-center justify-center gap-3 w-full sm:w-auto rounded-full">
+              Apply Now <span>→</span>
+            </a>
+            <a href="/admissions" className="px-8 md:px-10 py-3 md:py-4 bg-transparent border border-white/50 text-white font-medium w-full sm:w-auto rounded-full text-center">
+              Learn More
+            </a>
+          </div>
         </div>
-      </section>
+      </div>
 
       <Footer />
     </div>

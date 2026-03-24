@@ -1,63 +1,76 @@
 'use client';
 
+import { motion } from 'framer-motion';
+
 export const CtaBanner = () => {
   return (
-    <section className="relative overflow-hidden" style={{ background: '#f4c950' }}>
-      <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-12 py-10 md:py-20">
-        <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-8">
-          {/* Left - Text */}
-          <div className="max-w-xl">
-            <p
-              className="text-xl md:text-2xl font-bold mb-3"
-              style={{ color: '#21313c', letterSpacing: '0.2em', textTransform: 'uppercase', opacity: 0.6 }}
-            >
-              ADMISSIONS OPEN 2026-27
-            </p>
-            <h1
-              className="text-3xl md:text-4xl lg:text-5xl text-[#21313c] mb-4"
-              style={{ fontWeight: 600, lineHeight: 1.1 }}
-            >
-              Your Future Starts{' '}
-              <span style={{ fontFamily: "'Times New Roman', serif", fontStyle: 'italic' }}>
-                Here
-              </span>
-            </h1>
-            <p className="text-[#21313c]/70 text-base md:text-lg leading-relaxed">
-              Join 2,500+ students from 27 states and 8 countries at Central India&apos;s only QS Diamond-rated university.
-              50+ programs, 42+ global partnerships, and 80%+ placement rate.
-            </p>
-          </div>
+    <div className="w-full px-3 pb-8 md:px-6 md:pb-14 lg:px-10 lg:pb-20">
+      <div
+        className="mx-auto flex flex-col items-center justify-center bg-[#20323d] px-4 py-6 md:px-10 md:py-10 lg:px-20 lg:py-14 rounded-xl md:rounded-3xl lg:rounded-4xl"
+        style={{ maxWidth: '1400px' }}
+      >
+        <motion.div
+          className="text-center mb-6 md:mb-10 lg:mb-12"
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8 }}
+        >
+          <span
+            className="text-[#999] uppercase tracking-widest block mb-4 md:mb-6 text-xl md:text-2xl font-bold"
+            style={{ letterSpacing: '0.2em' }}
+          >
+            ADMISSIONS OPEN 2026-27
+          </span>
+          <h2
+            className="text-white"
+            style={{
+              fontSize: 'clamp(2.25rem, 4vw, 3rem)',
+              fontWeight: 600,
+              lineHeight: 1.1,
+              letterSpacing: '-0.03em',
+            }}
+          >
+            Your Future Starts{' '}
+            <span style={{ fontFamily: "'Times New Roman', serif", fontStyle: 'italic', fontWeight: 400 }}>
+              Here
+            </span>
+          </h2>
+          <p className="text-white/60 text-sm md:text-base leading-relaxed mt-4 max-w-2xl mx-auto">
+            Join 2,500+ students from 27 states and 8 countries at Central India&apos;s only QS Diamond-rated university.
+            50+ programs, 42+ global partnerships, and 80%+ placement rate.
+          </p>
+        </motion.div>
 
-          {/* Right - Buttons */}
-          <div className="flex flex-col sm:flex-row gap-3">
-            <a
-              href="/apply"
-              className="bg-[#027ea1] text-white px-8 py-3.5 rounded-lg font-bold text-sm hover:bg-[#026a88] transition-all text-center"
-            >
-              Apply Now
-            </a>
-            <a
-              href="/broucher/JLU-Brochure-2026.pdf"
-              download
-              target="_blank"
-              rel="noopener noreferrer"
-              className="border-2 border-[#027ea1] text-[#027ea1] px-8 py-3.5 rounded-lg font-bold text-sm hover:bg-[#027ea1] hover:text-white transition-all text-center"
-            >
-              Download Brochure
-            </a>
-          </div>
-        </div>
+        <motion.div
+          className="flex flex-col sm:flex-row items-center gap-4 md:gap-6 w-full sm:w-auto"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, delay: 0.3 }}
+        >
+          <motion.a
+            href="/apply"
+            className="px-8 md:px-10 py-3 md:py-4 bg-[#027ea1] text-white font-semibold flex items-center justify-center gap-3 w-full sm:w-auto rounded-full"
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.98 }}
+          >
+            Apply Now
+            <span>→</span>
+          </motion.a>
+          <motion.a
+            href="/broucher/JLU-Brochure-2026.pdf"
+            download
+            target="_blank"
+            rel="noopener noreferrer"
+            className="px-8 md:px-10 py-3 md:py-4 bg-transparent border border-white/50 text-white font-medium w-full sm:w-auto rounded-full text-center"
+            whileHover={{ scale: 1.05, borderColor: '#ffffff' }}
+            whileTap={{ scale: 0.98 }}
+          >
+            Download Brochure
+          </motion.a>
+        </motion.div>
       </div>
-
-      {/* Decorative element */}
-      <div
-        className="absolute -right-20 -top-20 w-64 h-64 rounded-full opacity-10"
-        style={{ background: '#21313c' }}
-      />
-      <div
-        className="absolute -left-10 -bottom-10 w-40 h-40 rounded-full opacity-10"
-        style={{ background: '#21313c' }}
-      />
-    </section>
+    </div>
   );
 };

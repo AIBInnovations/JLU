@@ -329,34 +329,30 @@ export default function IndustryInterventionPage() {
       </section>
 
       {/* CTA Section */}
-      <section className="relative overflow-hidden mb-12 md:mb-20" style={{ background: '#1f3240' }}>
-        <div className="mx-auto px-5 sm:px-8 md:px-[120px] py-14 md:py-20">
-          <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-8">
-            <div className="max-w-xl">
-              <p className="text-xs mb-3" style={{ color: 'white', letterSpacing: '0.2em', textTransform: 'uppercase', opacity: 0.6 }}>
-                ADMISSIONS OPEN 2025-26
-              </p>
-              <h2 className="text-2xl md:text-3xl lg:text-4xl text-white mb-4" style={{ fontWeight: 700, lineHeight: 1.15 }}>
-                Launch Your Industry{' '}
-                <span style={{ fontFamily: "'Times New Roman', serif", fontStyle: 'italic', fontWeight: 400 }}>Career</span>
-              </h2>
-              <p className="text-white/70 text-sm md:text-base leading-relaxed">
-                Partner with EY, KPMG, Amazon, Deloitte and 40+ top companies. 80%+ placement rate with packages up to ₹24 LPA at Central India&apos;s only QS Diamond-rated university.
-              </p>
-            </div>
-            <div className="flex flex-col sm:flex-row gap-3">
-              <a href="/apply" className="bg-[#027ea1] text-white px-8 py-3.5 rounded-lg font-semibold text-sm hover:bg-[#025f7a] transition-all text-center">
-                Apply Now
-              </a>
-              <a href="/broucher/JLU-Brochure-2026.pdf" download target="_blank" rel="noopener noreferrer" className="border-2 border-white/50 text-white px-8 py-3.5 rounded-lg font-semibold text-sm hover:bg-white/10 transition-all text-center">
-                Download Brochure
-              </a>
-            </div>
+      <div className="w-full px-3 pb-8 md:px-6 md:pb-14 lg:px-10 lg:pb-20">
+        <div className="mx-auto flex flex-col items-center justify-center bg-[#20323d] px-4 py-6 md:px-10 md:py-10 lg:px-20 lg:py-14 rounded-xl md:rounded-3xl lg:rounded-4xl" style={{ maxWidth: '1400px' }}>
+          <div className="text-center mb-6 md:mb-10 lg:mb-12">
+            <span className="text-[#999] uppercase tracking-widest block mb-4 md:mb-6 text-xl md:text-2xl font-bold" style={{ letterSpacing: '0.2em' }}>
+              ADMISSIONS OPEN 2025-26
+            </span>
+            <h2 className="text-white" style={{ fontSize: 'clamp(2.25rem, 4vw, 3rem)', fontWeight: 600, lineHeight: 1.1, letterSpacing: '-0.03em' }}>
+              Launch Your Industry{' '}
+              <span style={{ fontFamily: "'Times New Roman', serif", fontStyle: 'italic', fontWeight: 400 }}>Career</span>
+            </h2>
+            <p className="text-white/60 text-sm md:text-base leading-relaxed mt-4 max-w-2xl mx-auto">
+              Partner with EY, KPMG, Amazon, Deloitte and 40+ top companies. 80%+ placement rate with packages up to ₹24 LPA at Central India&apos;s only QS Diamond-rated university.
+            </p>
+          </div>
+          <div className="flex flex-col sm:flex-row items-center gap-4 md:gap-6 w-full sm:w-auto">
+            <a href="/apply" className="px-8 md:px-10 py-3 md:py-4 bg-[#027ea1] text-white font-semibold flex items-center justify-center gap-3 w-full sm:w-auto rounded-full">
+              Apply Now <span>→</span>
+            </a>
+            <a href="/broucher/JLU-Brochure-2026.pdf" download target="_blank" rel="noopener noreferrer" className="px-8 md:px-10 py-3 md:py-4 bg-transparent border border-white/50 text-white font-medium w-full sm:w-auto rounded-full text-center">
+              Download Brochure
+            </a>
           </div>
         </div>
-        <div className="absolute -right-20 -top-20 w-64 h-64 rounded-full opacity-10" style={{ background: 'white' }} />
-        <div className="absolute -left-10 -bottom-10 w-40 h-40 rounded-full opacity-10" style={{ background: 'white' }} />
-      </section>
+      </div>
 
       <Footer />
     </div>

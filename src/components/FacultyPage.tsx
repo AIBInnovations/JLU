@@ -841,47 +841,30 @@ export const FacultyPage = ({
       <PageEventsSection />
 
       {/* CTA Section */}
-      <section className="py-10 md:py-32 px-4 md:px-16 xl:px-24 bg-[#f6f7f0]">
-        <div className="max-w-4xl mx-auto text-center">
-          <p
-            className="text-[0.6rem] md:text-xs mb-2 md:mb-4 font-bold"
-            style={{ color: '#999', letterSpacing: '0.2em', textTransform: 'uppercase' }}
-          >
-            START YOUR JOURNEY
-          </p>
-          <h2
-            className="text-[#21313c] mb-4 md:mb-8"
-            style={{
-              fontSize: isMobile ? 'clamp(1.3rem, 6vw, 2rem)' : 'clamp(2rem, 5vw, 4rem)',
-              fontWeight: 600,
-              lineHeight: 1.2,
-              letterSpacing: '-0.02em',
-            }}
-          >
-            Ready to Shape Your{' '}
-            <span style={{ fontFamily: "'Times New Roman', serif", fontStyle: 'italic' }}>Future?</span>
-          </h2>
-          <p style={{ color: '#666', fontSize: isMobile ? '0.8rem' : '1.125rem', lineHeight: 1.7, marginBottom: isMobile ? '1.25rem' : '2rem' }}>
-            Take the first step towards an extraordinary education. Apply now and become part of our
-            vibrant academic community.
-          </p>
-          <div className="flex flex-row gap-3 md:gap-4 justify-center">
-            <a
-              href="/apply"
-              className="px-5 md:px-8 py-2.5 md:py-4 rounded-full font-semibold hover:scale-105 transition-transform bg-[#21313c] text-white text-xs md:text-base"
-            >
-              Apply Now
+      <div className="w-full px-3 pb-8 md:px-6 md:pb-14 lg:px-10 lg:pb-20">
+        <div className="mx-auto flex flex-col items-center justify-center bg-[#20323d] px-4 py-6 md:px-10 md:py-10 lg:px-20 lg:py-14 rounded-xl md:rounded-3xl lg:rounded-4xl" style={{ maxWidth: '1400px' }}>
+          <div className="text-center mb-6 md:mb-10 lg:mb-12">
+            <span className="text-[#999] uppercase tracking-widest block mb-4 md:mb-6 text-xl md:text-2xl font-bold" style={{ letterSpacing: '0.2em' }}>
+              Start Your Journey
+            </span>
+            <h2 className="text-white" style={{ fontSize: 'clamp(2.25rem, 4vw, 3rem)', fontWeight: 600, lineHeight: 1.1, letterSpacing: '-0.03em' }}>
+              Ready to Shape Your{' '}
+              <span style={{ fontFamily: "'Times New Roman', serif", fontStyle: 'italic', fontWeight: 400 }}>Future?</span>
+            </h2>
+            <p className="text-white/60 text-sm md:text-base leading-relaxed mt-4 max-w-2xl mx-auto">
+              Take the first step towards an extraordinary education. Apply now and become part of our vibrant academic community.
+            </p>
+          </div>
+          <div className="flex flex-col sm:flex-row items-center gap-4 md:gap-6 w-full sm:w-auto">
+            <a href="/apply" className="px-8 md:px-10 py-3 md:py-4 bg-[#027ea1] text-white font-semibold flex items-center justify-center gap-3 w-full sm:w-auto rounded-full">
+              Apply Now <span>→</span>
             </a>
-            <a
-              href="/contact"
-              className="px-5 md:px-8 py-2.5 md:py-4 rounded-full font-semibold border md:border-2 hover:bg-[#21313c] hover:text-white transition-colors text-xs md:text-base"
-              style={{ borderColor: '#21313c', color: '#21313c' }}
-            >
+            <a href="/contact" className="px-8 md:px-10 py-3 md:py-4 bg-transparent border border-white/50 text-white font-medium w-full sm:w-auto rounded-full text-center">
               Contact Us
             </a>
           </div>
         </div>
-      </section>
+      </div>
     </div>
   );
 };

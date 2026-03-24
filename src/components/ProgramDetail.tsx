@@ -741,44 +741,34 @@ export const ProgramDetail = ({ program }: ProgramDetailProps) => {
       )}
 
       {/* CTA Section */}
-      <div className="w-full bg-[#21313c]">
-        <div
-          className="mx-auto px-4 py-10 md:px-[120px] md:py-24"
-          style={{ maxWidth: '1440px' }}
-        >
+      <div className="w-full px-3 pb-8 md:px-6 md:pb-14 lg:px-10 lg:pb-20">
+        <div className="mx-auto flex flex-col items-center justify-center bg-[#20323d] px-4 py-6 md:px-10 md:py-10 lg:px-20 lg:py-14 rounded-xl md:rounded-3xl lg:rounded-4xl" style={{ maxWidth: '1400px' }}>
           <motion.div
+            className="text-center mb-6 md:mb-10 lg:mb-12"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
-            className="text-center"
           >
-            <h2 className="text-white font-semibold mb-3 md:mb-4" style={{ fontSize: isMobile ? '18px' : '36px' }}>
-              Ready to Begin Your <span style={{ fontFamily: "'Times New Roman', serif", fontStyle: 'italic', color: '#027ea1' }}>Journey?</span>
+            <span className="text-[#999] uppercase tracking-widest block mb-4 md:mb-6 text-xl md:text-2xl font-bold" style={{ letterSpacing: '0.2em' }}>
+              Start Your Journey
+            </span>
+            <h2 className="text-white" style={{ fontSize: 'clamp(2.25rem, 4vw, 3rem)', fontWeight: 600, lineHeight: 1.1, letterSpacing: '-0.03em' }}>
+              Ready to Begin Your{' '}
+              <span style={{ fontFamily: "'Times New Roman', serif", fontStyle: 'italic', fontWeight: 400 }}>Journey?</span>
             </h2>
-            <p className="text-white/70 mb-5 md:mb-8 max-w-xl mx-auto" style={{ fontSize: isMobile ? '11px' : '16px' }}>
+            <p className="text-white/60 text-sm md:text-base leading-relaxed mt-4 max-w-2xl mx-auto">
               Take the first step towards your future. Apply now and join thousands of students shaping their tomorrow at JLU.
             </p>
-            <div className="flex flex-row items-center justify-center gap-3 md:gap-4">
-              <Link
-                href="/apply"
-                className="bg-[#027ea1] text-white font-semibold rounded-full hover:bg-[#025f7a] transition-colors flex items-center gap-1.5 md:gap-2"
-                style={{ padding: isMobile ? '8px 16px' : '16px 32px', fontSize: isMobile ? '11px' : '16px' }}
-              >
-                Apply Now
-                <svg className="w-3.5 h-3.5 md:w-4 md:h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                </svg>
-              </Link>
-              <Link
-                href="/programs"
-                className="bg-transparent border border-white/30 text-white font-medium rounded-full hover:bg-white/10 transition-colors"
-                style={{ padding: isMobile ? '8px 16px' : '16px 32px', fontSize: isMobile ? '11px' : '16px' }}
-              >
-                Explore More Programs
-              </Link>
-            </div>
           </motion.div>
+          <div className="flex flex-col sm:flex-row items-center gap-4 md:gap-6 w-full sm:w-auto">
+            <Link href="/apply" className="px-8 md:px-10 py-3 md:py-4 bg-[#027ea1] text-white font-semibold flex items-center justify-center gap-3 w-full sm:w-auto rounded-full">
+              Apply Now <span>→</span>
+            </Link>
+            <Link href="/programs" className="px-8 md:px-10 py-3 md:py-4 bg-transparent border border-white/50 text-white font-medium w-full sm:w-auto rounded-full text-center">
+              Explore More Programs
+            </Link>
+          </div>
         </div>
       </div>
     </section>
