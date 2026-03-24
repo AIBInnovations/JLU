@@ -114,7 +114,6 @@ export const FacultyPage = ({
   void _highlights;
   void _features;
   const heroRef = useRef<HTMLDivElement>(null);
-  const heroImageRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress: heroScrollProgress } = useScroll({
     target: heroRef,
     offset: ['start start', 'end start'],
