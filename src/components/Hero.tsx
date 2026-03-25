@@ -108,7 +108,8 @@ export const Hero = () => {
     });
     gsap.set(textRef.current, {
       opacity: 0,
-      y: isMobile ? 200 : 400,
+      y: 0,
+      force3D: true,
     });
     gsap.set(exploreButtonRef.current, {
       opacity: 0,
@@ -142,13 +143,13 @@ export const Hero = () => {
           duration: 1.2,
           ease: 'power2.out',
         }, '-=0.4')
-        // 4. Text slides up and fades in (after building appears)
+        // 4. Text fades in (no movement, just opacity)
         .to(textRef.current, {
           opacity: 1,
-          y: 0,
-          duration: isMobile ? 1.4 : 1.2,
-          ease: 'power2.out',
-        }, '-=0.2');
+          duration: 0.8,
+          ease: 'none',
+          force3D: true,
+        }, '-=0.3');
         // 4b. Globe fades in with text
         if (globeContainerRef.current) {
           tl.to(globeContainerRef.current, {
@@ -177,7 +178,7 @@ export const Hero = () => {
     <div className="bg-[#f6f7f0]">
       {/* Cinematic Hero Section */}
       <section
-        className="relative w-full overflow-hidden"
+        className="relative w-full overflow-hidden bg-[#f6f7f0]"
         style={{ height: isMobile ? 'calc(100vh - 16px)' : 'calc(100vh - 4px)', padding: isMobile ? '16px' : '24px' }}
       >
         <div
