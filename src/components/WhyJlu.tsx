@@ -45,7 +45,8 @@ export const WhyJlu = () => {
       description: '45+ international collaborations across 14 countries with universities like Cambridge, UCL, RMIT & more.',
       textColor: '#21313c',
       image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/glob.jpg',
-      href: '/why-jlu/global-network'
+      href: '/why-jlu/global-network',
+      pillarIcon: '/morenew/pillars/4.png',
     },
     {
       bg: '#027ea1',
@@ -54,7 +55,8 @@ export const WhyJlu = () => {
       description: '42+ industry tie-ups with EY, KPMG, Deloitte, Amazon & TCS powering real-world placements.',
       textColor: '#ffffff',
       image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/ex1.jpg',
-      href: '/why-jlu/industry-intervention'
+      href: '/why-jlu/industry-intervention',
+      pillarIcon: '/morenew/pillars/5.png',
     },
     {
       bg: '#e85a71',
@@ -63,7 +65,8 @@ export const WhyJlu = () => {
       description: '50+ programs across 6 faculties blending law, tech, design, media & management.',
       textColor: '#ffffff',
       image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/ev3.jpg',
-      href: '/why-jlu/interdisciplinary-degrees'
+      href: '/why-jlu/interdisciplinary-degrees',
+      pillarIcon: '/morenew/pillars/1.png',
     },
     {
       bg: '#f4c950',
@@ -72,7 +75,8 @@ export const WhyJlu = () => {
       description: 'Experiential learning with 1-on-1 mentoring, 45+ labs & hands-on projects from day one.',
       textColor: '#21313c',
       image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/comm.jpg',
-      href: '/why-jlu/student-approach'
+      href: '/why-jlu/student-approach',
+      pillarIcon: '/morenew/pillars/3.png',
     }
   ];
 
@@ -156,71 +160,60 @@ export const WhyJlu = () => {
         textDecoration: 'none',
         cursor: 'pointer',
         transition: 'transform 0.3s ease, box-shadow 0.3s ease',
-        overflow: 'hidden',
+        overflow: 'visible',
       }}
       onMouseEnter={(e) => {
         e.currentTarget.style.transform = 'translateY(-4px)';
-        e.currentTarget.style.boxShadow = '0 12px 24px rgba(0,0,0,0.2)';
-        const overlay = e.currentTarget.querySelector('.card-overlay') as HTMLElement;
-        if (overlay) overlay.style.background = 'linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.4) 50%, rgba(0,0,0,0.15) 100%)';
+        e.currentTarget.style.boxShadow = '0 12px 24px rgba(0,0,0,0.15)';
       }}
       onMouseLeave={(e) => {
         e.currentTarget.style.transform = 'translateY(0)';
         e.currentTarget.style.boxShadow = 'none';
-        const overlay = e.currentTarget.querySelector('.card-overlay') as HTMLElement;
-        if (overlay) overlay.style.background = 'linear-gradient(to top, rgba(0,0,0,0.75) 0%, rgba(0,0,0,0.3) 50%, rgba(0,0,0,0.05) 100%)';
       }}
     >
-      {/* Full background image */}
-      <img
-        src={card.image}
-        alt={card.title}
-        style={{
-          position: 'absolute',
-          top: 0,
-          left: 0,
-          width: '100%',
-          height: '100%',
-          objectFit: 'cover',
-        }}
-        loading="lazy"
-      />
+      {/* Colored background with pillar icon */}
+      <div style={{
+        position: 'absolute',
+        top: 0,
+        left: 0,
+        width: '100%',
+        height: '100%',
+        background: card.bg,
+        borderRadius: mounted && isMobile ? '12px' : '16px',
+      }} />
 
-      {/* Black gradient overlay */}
-      <div
-        className="card-overlay"
-        style={{
+      {/* Pillar icon as background watermark */}
+      {card.pillarIcon && (
+        <div style={{
           position: 'absolute',
-          top: 0,
-          left: 0,
-          width: '100%',
-          height: '100%',
-          background: 'linear-gradient(to top, rgba(0,0,0,0.75) 0%, rgba(0,0,0,0.3) 50%, rgba(0,0,0,0.05) 100%)',
-          transition: 'background 0.3s ease',
-        }}
-      />
+          top: '50%',
+          left: '50%',
+          transform: mounted && isMobile ? 'translate(-50%, -65%)' : 'translate(-50%, -55%)',
+          zIndex: 1,
+          opacity: 1,
+        }}>
+          <img
+            src={card.pillarIcon}
+            alt=""
+            style={{
+              width: mounted && isMobile ? '150px' : '320px',
+              maxWidth: 'none',
+              height: 'auto',
+              filter: 'brightness(0) invert(1)',
+            }}
+          />
+        </div>
+      )}
 
-      {/* Text content over overlay */}
+      {/* Text content */}
       <div style={{ position: 'relative', zIndex: 2 }}>
-        <span
-          style={{
-            fontSize: mounted && isMobile ? '1rem' : 'clamp(1.5rem, 3vw, 2rem)',
-            fontWeight: 'bold',
-            color: '#ffffff',
-            lineHeight: 1.2,
-            display: 'block',
-            marginBottom: mounted && isMobile ? '6px' : '10px',
-          }}
-        >
-          {card.title}
-        </span>
         <p
           style={{
             fontSize: mounted && isMobile ? '0.7rem' : 'clamp(0.7rem, 0.85vw, 0.8rem)',
-            color: '#ffffff',
+            color: card.textColor,
             marginBottom: mounted && isMobile ? '6px' : '8px',
             lineHeight: 1.4,
-            opacity: 0.85,
+            opacity: 0.7,
           }}
         >
           {card.description}
@@ -231,13 +224,13 @@ export const WhyJlu = () => {
             alignItems: 'center',
             gap: '4px',
             fontSize: mounted && isMobile ? '0.75rem' : 'clamp(0.7rem, 0.85vw, 0.8rem)',
-            color: '#ffffff',
+            color: card.textColor,
             fontWeight: 600,
             opacity: 0.8,
           }}
         >
           <span>Explore</span>
-          <span style={{ fontSize: mounted && isMobile ? '0.75rem' : '0.75rem' }}>→</span>
+          <span>→</span>
         </div>
       </div>
     </a>

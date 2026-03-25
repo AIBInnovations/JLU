@@ -290,7 +290,7 @@ export const PartnersSection = () => {
               >
                 <button
                   onClick={() => setOrbOpen(true)}
-                  className="inline-flex items-center gap-3 text-[#027ea1] font-bold text-3xl cursor-pointer"
+                  className="inline-flex items-center gap-3 text-[#027ea1] font-bold text-sm md:text-3xl cursor-pointer"
                 >
                   See More
                   <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">

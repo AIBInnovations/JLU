@@ -1,15 +1,18 @@
 'use client';
 
-import { useRef, useState, useEffect } from 'react';
+import { useRef, useState, useEffect, lazy, Suspense } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { gsap } from 'gsap';
 import { useIsMobile } from '../hooks/useIsMobile';
+
+const Globe3D = lazy(() => import('./Globe3D'));
 
 // ============================================
 // HERO COMPONENT
 // ============================================
 export const Hero = () => {
   const heroRef = useRef<HTMLDivElement>(null);
+  const globeContainerRef = useRef<HTMLDivElement>(null);
   const exploreButtonRef = useRef<HTMLButtonElement>(null);
   const [isVideoOpen, setIsVideoOpen] = useState(false);
   const [videoButtonPos, setVideoButtonPos] = useState({ left: 0, top: 0, width: 0, height: 0, centerX: 0, centerY: 0 });
@@ -38,8 +41,8 @@ export const Hero = () => {
       const scrollY = window.scrollY;
       // Parallax speed - adjust this value to control the effect intensity
       const backgroundSpeed = isMobile ? 0.3 : 0.5;
-      const buildingSpeed = isMobile ? 0 : -0.15; // Disabled on mobile to prevent bottom cutoff
-      const maxParallax = -50; // Maximum upward movement (stop earlier)
+      const buildingSpeed = isMobile ? 0 : -0.07; // Subtle parallax on foreground
+      const maxParallax = -25; // Maximum upward movement (stop earlier)
 
       setParallaxOffset(scrollY * backgroundSpeed);
       // Limit the building parallax to stop at maxParallax
@@ -145,7 +148,16 @@ export const Hero = () => {
           y: 0,
           duration: isMobile ? 1.4 : 1.2,
           ease: 'power2.out',
-        }, '-=0.2')
+        }, '-=0.2');
+        // 4b. Globe fades in with text
+        if (globeContainerRef.current) {
+          tl.to(globeContainerRef.current, {
+            opacity: 1,
+            duration: 1.2,
+            ease: 'power2.out',
+          }, '-=1.0');
+        }
+        tl
         // 5. Explore button fades in
         .to(exploreButtonRef.current, {
           opacity: 1,
@@ -179,7 +191,7 @@ export const Hero = () => {
           >
             <img
               ref={backgroundRef}
-              src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/onlybg.png"
+              src="/herobg-new.jpg"
               alt="Background"
               className={`absolute inset-0 w-full h-full object-cover ${isMobile ? '' : 'scale-110'}`}
               style={{
@@ -189,52 +201,185 @@ export const Hero = () => {
                 transition: 'transform 0.1s ease-out',
               }}
             />
+            <div className="absolute inset-0 bg-black/30" style={{ zIndex: 1 }} />
           </div>
 
-          {/* Layer 2: Text - JAGRAN LAKECITY UNIVERSITY (z-index: 2) */}
+          {/* Layer 2: Text (z-index: 2) */}
           <div
             ref={textRef}
-            className="absolute inset-0 flex flex-col items-center justify-center"
+            className="absolute inset-0 flex items-center justify-center"
             style={{
               zIndex: 2,
-              paddingBottom: isMobile ? '35%' : '22%',
+              paddingBottom: isMobile ? '35%' : '15%',
               opacity: 0,
             }}
           >
-            {/* Central India's Global University */}
-            <h1
-              className="text-center uppercase tracking-widest select-none"
-              style={{
-                fontFamily: "'Humane', sans-serif",
-                fontSize: isMobile ? 'clamp(4.5rem, 20vw, 8rem)' : 'clamp(7rem, 11vw, 14rem)',
-                fontWeight: 700,
-                lineHeight: isMobile ? 0.9 : 0.95,
-                letterSpacing: '0.05em',
-                whiteSpace: isMobile ? 'normal' : 'nowrap',
-                textAlign: 'center' as const,
-                backgroundImage: isMobile
-                  ? 'linear-gradient(to bottom, rgba(255,255,255,0.85) 0%, rgba(255,255,255,0.7) 50%, rgba(255,255,255,0.4) 100%)'
-                  : 'linear-gradient(to bottom, rgba(255,255,255,0.85) 0%, rgba(255,255,255,0.7) 50%, rgba(255,255,255,0.4) 90%)',
-                WebkitBackgroundClip: 'text',
-                backgroundClip: 'text',
-                WebkitTextFillColor: 'transparent',
-                textShadow: 'none',
-              }}
-            >
-              {isMobile ? (<>Central India&apos;s<br />Global University</>) : 'Central India\u0027s Global University'}
-            </h1>
+            {isMobile ? (
+              <div className="relative select-none" style={{ width: '100%', height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                {/* CENTRAL INDIA'S - above globe */}
+                <span
+                  className="absolute uppercase tracking-widest whitespace-nowrap"
+                  style={{
+                    fontFamily: "'Humane', sans-serif",
+                    fontSize: 'clamp(4.5rem, 20vw, 9rem)',
+                    fontWeight: 700,
+                    lineHeight: 1,
+                    letterSpacing: '0.05em',
+                    color: '#3bd0eb',
+                    textShadow: '0 0 20px rgba(0,0,0,0.6), 0 0 40px rgba(0,0,0,0.3), 0 2px 4px rgba(0,0,0,0.5)',
+                    top: '50%',
+                    left: '50%',
+                    transform: 'translate(-50%, calc(-50% - 120px))',
+                    zIndex: 5,
+                  }}
+                >
+                  Central India&apos;s
+                </span>
+                {/* GLOBAL - inside globe center */}
+                <span
+                  className="absolute uppercase tracking-widest"
+                  style={{
+                    fontFamily: "'Humane', sans-serif",
+                    fontSize: 'clamp(4rem, 18vw, 8rem)',
+                    fontWeight: 700,
+                    lineHeight: 1,
+                    letterSpacing: '0.05em',
+                    color: '#3bd0eb',
+                    textShadow: '0 0 20px rgba(0,0,0,0.6), 0 0 40px rgba(0,0,0,0.3), 0 2px 4px rgba(0,0,0,0.5)',
+                    top: '50%',
+                    left: '50%',
+                    transform: 'translate(-50%, -50%)',
+                    zIndex: 5,
+                  }}
+                >
+                  Global
+                </span>
+                {/* UNIVERSITY - below globe */}
+                <span
+                  className="absolute uppercase tracking-widest"
+                  style={{
+                    fontFamily: "'Humane', sans-serif",
+                    fontSize: 'clamp(4.5rem, 20vw, 9rem)',
+                    fontWeight: 700,
+                    lineHeight: 1,
+                    letterSpacing: '0.05em',
+                    color: '#3bd0eb',
+                    textShadow: '0 0 20px rgba(0,0,0,0.6), 0 0 40px rgba(0,0,0,0.3), 0 2px 4px rgba(0,0,0,0.5)',
+                    top: '50%',
+                    left: '50%',
+                    transform: 'translate(-50%, calc(-50% + 120px))',
+                    zIndex: 5,
+                  }}
+                >
+                  University
+                </span>
+              </div>
+            ) : (
+              <div className="relative select-none" style={{ width: '100%', height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                {/* Top-left: CENTRAL */}
+                <span
+                  className="absolute uppercase tracking-widest"
+                  style={{
+                    fontFamily: "'Humane', sans-serif",
+                    fontSize: 'clamp(7rem, 10vw, 14rem)',
+                    fontWeight: 700,
+                    lineHeight: 1,
+                    letterSpacing: '0.05em',
+                    color: '#3bd0eb',
+                    textShadow: '0 0 20px rgba(0,0,0,0.6), 0 0 40px rgba(0,0,0,0.3), 0 2px 4px rgba(0,0,0,0.5)',
+                    top: '50%',
+                    left: '50%',
+                    transform: 'translate(calc(-50% - 280px), calc(-50% - 85px))',
+                  }}
+                >
+                  Central
+                </span>
+                {/* Bottom-left: INDIA'S */}
+                <span
+                  className="absolute uppercase tracking-widest"
+                  style={{
+                    fontFamily: "'Humane', sans-serif",
+                    fontSize: 'clamp(7rem, 10vw, 14rem)',
+                    fontWeight: 700,
+                    lineHeight: 1,
+                    letterSpacing: '0.05em',
+                    color: '#3bd0eb',
+                    textShadow: '0 0 20px rgba(0,0,0,0.6), 0 0 40px rgba(0,0,0,0.3), 0 2px 4px rgba(0,0,0,0.5)',
+                    top: '50%',
+                    left: '50%',
+                    transform: 'translate(calc(-50% - 280px), calc(-50% + 40px))',
+                  }}
+                >
+                  India&apos;s
+                </span>
+                {/* Top-right: GLOBAL */}
+                <span
+                  className="absolute uppercase tracking-widest"
+                  style={{
+                    fontFamily: "'Humane', sans-serif",
+                    fontSize: 'clamp(7rem, 10vw, 14rem)',
+                    fontWeight: 700,
+                    lineHeight: 1,
+                    letterSpacing: '0.05em',
+                    color: '#3bd0eb',
+                    textShadow: '0 0 20px rgba(0,0,0,0.6), 0 0 40px rgba(0,0,0,0.3), 0 2px 4px rgba(0,0,0,0.5)',
+                    top: '50%',
+                    right: '50%',
+                    transform: 'translate(calc(50% + 280px), calc(-50% + 10px))',
+                  }}
+                >
+                  Global
+                </span>
+                {/* Bottom-right: UNIVERSITY */}
+                <span
+                  className="absolute uppercase tracking-widest"
+                  style={{
+                    fontFamily: "'Humane', sans-serif",
+                    fontSize: 'clamp(7rem, 10vw, 14rem)',
+                    fontWeight: 700,
+                    lineHeight: 1,
+                    letterSpacing: '0.05em',
+                    color: '#3bd0eb',
+                    textShadow: '0 0 20px rgba(0,0,0,0.6), 0 0 40px rgba(0,0,0,0.3), 0 2px 4px rgba(0,0,0,0.5)',
+                    top: '50%',
+                    right: '50%',
+                    transform: 'translate(calc(50% + 340px), calc(-50% + 135px))',
+                  }}
+                >
+                  University
+                </span>
+              </div>
+            )}
+          </div>
+
+          {/* Layer 2.5: 3D Globe - centered, above foreground (z-index: 4) */}
+          <div
+            ref={globeContainerRef}
+            className="absolute flex items-center justify-center"
+            style={{
+              zIndex: 4,
+              top: isMobile ? '42%' : '38%',
+              left: '50%',
+              transform: 'translate(-50%, -50%)',
+              pointerEvents: 'auto',
+              opacity: 0,
+            }}
+          >
+            <Suspense fallback={<div style={{ width: isMobile ? 200 : 350, height: isMobile ? 200 : 350 }} />}>
+              <Globe3D size={isMobile ? 200 : 350} />
+            </Suspense>
           </div>
 
           {/* Layer 3: Building/Foreground Image (z-index: 3) */}
           <img
             ref={buildingRef}
-            src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/hero.png"
+            src="/heronew.png"
             alt="JLU Building"
             className="absolute"
             style={{
               zIndex: 3,
               width: '100%',
-              height: isMobile ? '65%' : '100%',
+              height: isMobile ? '75%' : '110%',
               bottom: isMobile ? '-30px' : '-50px',
               left: 0,
               right: 0,
