@@ -2416,10 +2416,10 @@ const Admissions = () => {
                       <Image
                         src={
                           index === 0
-                            ? "https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/p1.jpg"
+                            ? "https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/learning-ug.jpg"
                             : index === 1
-                            ? "https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/p2.jpg"
-                            : "https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/p3.jpg"
+                            ? "https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/learning-phd.jpg"
+                            : "https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/learning-pg.jpg"
                         }
                         alt={path.title}
                         fill

@@ -191,7 +191,7 @@ export const Hero = () => {
           >
             <img
               ref={backgroundRef}
-              src="/herobg-new.jpg"
+              src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/herobg-new.jpg"
               alt="Background"
               className={`absolute inset-0 w-full h-full object-cover ${isMobile ? '' : 'scale-110'}`}
               style={{
@@ -373,7 +373,7 @@ export const Hero = () => {
           {/* Layer 3: Building/Foreground Image (z-index: 3) */}
           <img
             ref={buildingRef}
-            src="/heronew.png"
+            src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/heronew.png"
             alt="JLU Building"
             className="absolute"
             style={{

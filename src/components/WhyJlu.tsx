@@ -12,7 +12,7 @@ gsap.registerPlugin(ScrollTrigger);
 const bgImages = [
   { src: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/a1.jpeg', top: '8%', left: '5%', width: 130, rotate: -8 },
   { src: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/ev2.jpg', top: '15%', left: '78%', width: 140, rotate: 6 },
-  { src: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/p2.jpg', top: '55%', left: '8%', width: 120, rotate: 4 },
+  { src: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/learning-phd.jpg', top: '55%', left: '8%', width: 120, rotate: 4 },
   { src: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/jlu-insta2.jpg', top: '62%', left: '82%', width: 135, rotate: -5 },
   { src: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/posthero1.jpg', top: '30%', left: '88%', width: 110, rotate: 10 },
   { src: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/e3.jpg', top: '72%', left: '25%', width: 115, rotate: -12 },
@@ -46,7 +46,7 @@ export const WhyJlu = () => {
       textColor: '#21313c',
       image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/glob.jpg',
       href: '/why-jlu/global-network',
-      pillarIcon: '/morenew/pillars/4.png',
+      pillarIcon: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/morenew/pillars/4.png',
     },
     {
       bg: '#027ea1',
@@ -56,7 +56,7 @@ export const WhyJlu = () => {
       textColor: '#ffffff',
       image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/ex1.jpg',
       href: '/why-jlu/industry-intervention',
-      pillarIcon: '/morenew/pillars/5.png',
+      pillarIcon: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/morenew/pillars/5.png',
     },
     {
       bg: '#e85a71',
@@ -66,7 +66,7 @@ export const WhyJlu = () => {
       textColor: '#ffffff',
       image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/ev3.jpg',
       href: '/why-jlu/interdisciplinary-degrees',
-      pillarIcon: '/morenew/pillars/1.png',
+      pillarIcon: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/morenew/pillars/1.png',
     },
     {
       bg: '#f4c950',
@@ -76,7 +76,7 @@ export const WhyJlu = () => {
       textColor: '#21313c',
       image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/comm.jpg',
       href: '/why-jlu/student-approach',
-      pillarIcon: '/morenew/pillars/3.png',
+      pillarIcon: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/morenew/pillars/3.png',
     }
   ];
 

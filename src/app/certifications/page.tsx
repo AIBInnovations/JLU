@@ -16,7 +16,7 @@ const professionalCertificates = [
     subtitle: 'Professional Certification',
     duration: '4 months',
     fee: '₹21,500',
-    image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/campus/computer%20lab.JPG',
+    image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/cert-powerbi.jpg',
     gradient: 'from-[#027ea1] to-[#015d7a]',
     features: ['Basic to Expert', 'Real Projects', 'Industry Certificate'],
   },
@@ -26,7 +26,7 @@ const professionalCertificates = [
     subtitle: 'Healthcare Certificate',
     duration: 'Self-paced',
     fee: 'Contact Admissions',
-    image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/campus/gallery-1.jpg',
+    image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/cert-cbt.jpg',
     gradient: 'from-[#27ae60] to-[#1a7a42]',
     features: ['Online Learning', 'Expert Faculty', 'Professional Cert'],
   },
@@ -36,7 +36,7 @@ const professionalCertificates = [
     subtitle: 'Masterclass Series',
     duration: '6 Sessions',
     fee: 'Free',
-    image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/campus/gallery-3.jpg',
+    image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/cert-law.jpg',
     gradient: 'from-[#8e44ad] to-[#5f2c7a]',
     features: ['Expert Sessions', 'Case Studies', 'Research Focus'],
   },
@@ -46,7 +46,7 @@ const professionalCertificates = [
     subtitle: 'Professional Development',
     duration: 'Semester',
     fee: 'Contact Faculty',
-    image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/campus/gallery-5.jpg',
+    image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/cert-teaching.jpg',
     gradient: 'from-[#e67e22] to-[#a85919]',
     features: ['Modern Tools', 'Research Training', 'Practical Approach'],
   },
@@ -73,7 +73,7 @@ export default function CertificationsPage() {
         >
           <motion.div className="absolute inset-0" style={{ y }}>
             <Image
-              src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/campus/gallery-7.jpg"
+              src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/cert-skills.jpg"
               alt="Certifications"
               fill
               className="object-cover scale-110"
@@ -111,7 +111,7 @@ export default function CertificationsPage() {
               initial={{ opacity: 0, y: 100 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 1.2, delay: 0.2, ease: customEase }}
-              className="font-bold select-none text-[5rem] md:text-[clamp(7rem,14vw,14rem)] leading-[0.85] tracking-[-0.02em]"
+              className="font-bold select-none text-[3rem] sm:text-[5rem] md:text-[clamp(7rem,14vw,14rem)] leading-[0.85] tracking-[-0.02em]"
               style={{
                 background: 'linear-gradient(to bottom, rgba(255,255,255,1) 0%, rgba(255,255,255,0.7) 50%, rgba(255,255,255,0) 85%)',
                 WebkitBackgroundClip: 'text',
@@ -185,22 +185,22 @@ export default function CertificationsPage() {
 
                 {/* Content Section */}
                 <div className="p-6">
-                  <div className="flex items-center gap-3 mb-4">
+                  <div className="flex flex-wrap items-center gap-2 md:gap-3 mb-4">
                     {cert.features.map((feature, idx) => (
-                      <span key={idx} className="text-xs bg-[#f6f7f0] text-[#666] px-3 py-1 rounded-full">
+                      <span key={idx} className="text-[10px] md:text-xs bg-[#f6f7f0] text-[#666] px-2 md:px-3 py-1 rounded-full">
                         {feature}
                       </span>
                     ))}
                   </div>
 
-                  <div className="flex items-center justify-between">
+                  <div className="flex items-center justify-between gap-3">
                     <div>
-                      <p className="text-sm text-[#999] mb-1">Investment</p>
-                      <p className="text-2xl font-bold text-[#21313c]">{cert.fee}</p>
+                      <p className="text-xs md:text-sm text-[#999] mb-1">Investment</p>
+                      <p className="text-lg md:text-2xl font-bold text-[#21313c]">{cert.fee}</p>
                     </div>
                     <Link
                       href="/admissions"
-                      className="inline-flex items-center gap-2 bg-[#21313c] text-white px-5 py-3 rounded-lg font-medium hover:bg-[#f0c14b] hover:text-[#21313c] transition-colors"
+                      className="inline-flex items-center gap-2 bg-[#21313c] text-white px-3 md:px-5 py-2 md:py-3 rounded-lg text-sm md:text-base font-medium hover:bg-[#f0c14b] hover:text-[#21313c] transition-colors shrink-0"
                     >
                       Apply Now
                       <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -218,7 +218,7 @@ export default function CertificationsPage() {
       {/* Stats Bar */}
       <section className="bg-[#21313c] py-12 md:py-16">
         <div className="max-w-7xl mx-auto px-5 md:px-10">
-          <div className="grid grid-cols-3 gap-8">
+          <div className="grid grid-cols-3 gap-4 md:gap-8">
             {[
               { value: '42+', label: 'Industry Partners' },
               { value: '15+', label: 'Programs' },
@@ -232,8 +232,8 @@ export default function CertificationsPage() {
                 viewport={{ once: true }}
                 className="text-center"
               >
-                <div className="text-[#c3fd7a] text-4xl md:text-5xl font-bold mb-2">{stat.value}</div>
-                <p className="text-white/70 text-sm">{stat.label}</p>
+                <div className="text-[#c3fd7a] text-2xl md:text-5xl font-bold mb-1 md:mb-2">{stat.value}</div>
+                <p className="text-white/70 text-xs md:text-sm">{stat.label}</p>
               </motion.div>
             ))}
           </div>
@@ -244,7 +244,7 @@ export default function CertificationsPage() {
       <section className="relative py-20 md:py-32 overflow-hidden">
         <div className="absolute inset-0">
           <Image
-            src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/campus/gallery-9.jpg"
+            src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/cert-teaching.jpg"
             alt="Partnerships"
             fill
             className="object-cover"
@@ -343,10 +343,10 @@ export default function CertificationsPage() {
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, ease: customEase }}
-              className="relative h-96 rounded-2xl overflow-hidden"
+              className="relative h-64 md:h-96 rounded-2xl overflow-hidden"
             >
               <Image
-                src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/campus/gallery-11.jpg"
+                src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/cert-harvard.jpg"
                 alt="Harvard Business School"
                 fill
                 className="object-cover"
@@ -376,7 +376,7 @@ export default function CertificationsPage() {
             </h2>
           </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div className="grid grid-cols-2 md:grid-cols-3 gap-3 md:gap-6">
             {[
               { title: 'Industry Recognition', desc: 'Globally recognized certifications' },
               { title: 'Career Growth', desc: 'Fast-track your professional journey' },
@@ -387,10 +387,10 @@ export default function CertificationsPage() {
             ].map((benefit) => (
               <div
                 key={benefit.title}
-                className="group bg-white rounded-2xl p-8 hover:shadow-xl transition-all hover:-translate-y-1"
+                className="group bg-white rounded-xl md:rounded-2xl p-4 md:p-8 hover:shadow-xl transition-all hover:-translate-y-1"
               >
-                <h3 className="text-[#21313c] text-xl font-bold mb-2">{benefit.title}</h3>
-                <p className="text-[#666] text-sm">{benefit.desc}</p>
+                <h3 className="text-[#21313c] text-sm md:text-xl font-bold mb-1 md:mb-2">{benefit.title}</h3>
+                <p className="text-[#666] text-xs md:text-sm">{benefit.desc}</p>
               </div>
             ))}
           </div>
@@ -406,10 +406,10 @@ export default function CertificationsPage() {
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, ease: customEase }}
-              className="relative h-96 rounded-2xl overflow-hidden order-2 md:order-1"
+              className="relative h-64 md:h-96 rounded-2xl overflow-hidden order-2 md:order-1"
             >
               <Image
-                src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/campus/gallery-13.jpg"
+                src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/cert-skills.jpg"
                 alt="Skills Development"
                 fill
                 className="object-cover"

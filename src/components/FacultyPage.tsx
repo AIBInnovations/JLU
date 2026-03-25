@@ -455,17 +455,17 @@ export const FacultyPage = ({
         style={{ minHeight: '100vh' }}
       >
         <div className="max-w-[1440px] mx-auto w-full min-h-full flex items-center">
-          <div ref={facultyCardsRef} className="flex items-center justify-between w-full gap-3 md:gap-8 lg:gap-12" style={{ willChange: 'transform' }}>
+          <div ref={facultyCardsRef} className="flex items-center justify-between w-full gap-1 md:gap-8 lg:gap-12" style={{ willChange: 'transform' }}>
             {/* Left Side - 3 Faculty Cards */}
-            <div className="flex flex-col gap-2 md:gap-4">
+            <div className="flex flex-col gap-2 md:gap-4 shrink-0">
               {facultyMembers.slice(0, 3).map((member, index) => (
                 <div
                   key={index}
                   className="overflow-hidden rounded-lg md:rounded-xl"
                   style={{
-                    width: isMobile ? '100px' : '200px',
-                    height: isMobile ? '130px' : '260px',
-                    marginLeft: index === 1 ? (isMobile ? '15px' : '50px') : '0',
+                    width: isMobile ? '80px' : '200px',
+                    height: isMobile ? '105px' : '260px',
+                    marginLeft: index === 1 ? (isMobile ? '10px' : '50px') : '0',
                   }}
                 >
                   <div
@@ -499,7 +499,7 @@ export const FacultyPage = ({
                   style={{
                     fontFamily: 'Inter, Arial Black, sans-serif',
                     fontWeight: 900,
-                    fontSize: isMobile ? '20px' : '38px',
+                    fontSize: isMobile ? '16px' : '38px',
                     lineHeight: '1.2',
                     letterSpacing: '-0.02em',
                   }}
@@ -530,15 +530,15 @@ export const FacultyPage = ({
             </div>
 
             {/* Right Side - 3 Faculty Cards */}
-            <div className="flex flex-col gap-2 md:gap-4 items-end">
+            <div className="flex flex-col gap-2 md:gap-4 items-end shrink-0">
               {facultyMembers.slice(3, 6).map((member, index) => (
                 <div
                   key={index + 3}
                   className="overflow-hidden rounded-lg md:rounded-xl"
                   style={{
-                    width: isMobile ? '100px' : '200px',
-                    height: isMobile ? '130px' : '260px',
-                    marginRight: index === 1 ? (isMobile ? '15px' : '50px') : '0',
+                    width: isMobile ? '80px' : '200px',
+                    height: isMobile ? '105px' : '260px',
+                    marginRight: index === 1 ? (isMobile ? '10px' : '50px') : '0',
                   }}
                 >
                   <div

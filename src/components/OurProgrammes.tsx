@@ -7,9 +7,9 @@ export const OurProgrammes = () => {
   const isMobile = useIsMobile();
 
   const programmes = [
-    { image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/p1.jpg', title: 'Undergraduate', subtitle: 'Programmes', width: 461, height: 520, href: '/programs?tab=UG' },
-    { image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/p2.jpg', title: 'Postgraduate', subtitle: 'Programmes', width: 461, height: 520, href: '/programs?tab=PG' },
-    { image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/p3.jpg', title: 'Ph.D.', subtitle: 'Programmes', width: 461, height: 520, href: '/programs?tab=PhD' },
+    { image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/learning-ug.jpg', title: 'Undergraduate', subtitle: 'Programmes', width: 461, height: 520, href: '/programs?tab=UG' },
+    { image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/learning-phd.jpg', title: 'Postgraduate', subtitle: 'Programmes', width: 461, height: 520, href: '/programs?tab=PG' },
+    { image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/learning-pg.jpg', title: 'Ph.D.', subtitle: 'Programmes', width: 461, height: 520, href: '/programs?tab=PhD' },
   ];
 
 

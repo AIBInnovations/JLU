@@ -3,7 +3,8 @@
 import { useRef, useEffect, useState } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { motion, useScroll, useTransform } from 'framer-motion';
+import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion';
+import Image from 'next/image';
 import { Footer } from '@/components';
 
 // Register GSAP plugins
@@ -11,6 +12,173 @@ gsap.registerPlugin(ScrollTrigger);
 
 // Custom easing for smooth animations
 const customEase: [number, number, number, number] = [0.22, 1, 0.36, 1];
+
+// Career Readiness Pillars Data
+const careerPillars = [
+  {
+    title: 'Industry-Ready Curriculum',
+    description: 'Programs co-designed with industry leaders, ensuring skills align with market demands and emerging technologies.',
+    image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/JLu%20events/photos/Convocation/DSC_0858.JPG',
+    accent: '#c3fd7a',
+    darkText: true,
+    modalContent: {
+      overview: 'Our curriculum is continuously updated in collaboration with industry partners like EY, KPMG, Deloitte, Amazon, and TCS. Every program integrates real-world case studies, live projects, and industry certifications.',
+      features: [
+        'Curriculum co-designed with 42+ industry partners',
+        'Embedded industry certifications (Google, AWS, Microsoft)',
+        'Live projects with real companies every semester',
+        'Industry-relevant electives updated annually',
+        'Capstone projects solving actual business problems',
+      ],
+      stats: [
+        { label: 'Industry Partners', value: '42+' },
+        { label: 'Certifications', value: '15+' },
+        { label: 'Live Projects/Year', value: '200+' },
+      ],
+    },
+  },
+  {
+    title: 'Dedicated Training & Development',
+    description: 'Pre-placement training programs including aptitude, technical skills, and professional communication workshops.',
+    image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/JLu%20events/photos/Convocation/DSC_5604.JPG',
+    accent: '#027ea1',
+    darkText: false,
+    modalContent: {
+      overview: 'The Career Development Centre runs a comprehensive training program from Year 1. Students undergo structured aptitude training, domain-specific technical workshops, and professional development sessions.',
+      features: [
+        'Aptitude & reasoning training from Year 1',
+        'Domain-specific technical skill workshops',
+        'Professional communication & business writing',
+        'Resume building & LinkedIn optimization',
+        'Corporate etiquette & presentation skills',
+      ],
+      stats: [
+        { label: 'Training Hours/Year', value: '200+' },
+        { label: 'Expert Trainers', value: '25+' },
+        { label: 'Workshop Sessions', value: '100+' },
+      ],
+    },
+  },
+  {
+    title: 'Mock Interviews & Soft Skills',
+    description: 'Rigorous mock interviews, group discussions, and personality development sessions with industry professionals.',
+    image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/JLu%20events/photos/Convocation/DSC_0885.JPG',
+    accent: '#e85a71',
+    darkText: false,
+    modalContent: {
+      overview: 'Students participate in intensive mock interview rounds conducted by HR professionals from top companies. Group discussions, stress interviews, and technical rounds prepare students for every scenario.',
+      features: [
+        'Mock interviews with real HR professionals',
+        'Group discussion practice sessions weekly',
+        'Personality development & confidence building',
+        'Stress interview preparation',
+        'Video interview training for remote placements',
+      ],
+      stats: [
+        { label: 'Mock Interviews/Year', value: '500+' },
+        { label: 'HR Professionals', value: '30+' },
+        { label: 'Success Rate', value: '92%' },
+      ],
+    },
+  },
+  {
+    title: 'Global Career Network',
+    description: 'International placement partnerships and alumni network spanning Fortune 500 companies across 15+ countries.',
+    image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/JLu%20events/photos/Convocation/DSC_4625.JPG',
+    accent: '#f4c950',
+    darkText: true,
+    modalContent: {
+      overview: 'JLU\'s global network connects students with opportunities across borders. Our alumni are placed in Fortune 500 companies worldwide, and international collaborations open doors to global careers.',
+      features: [
+        'Placements in Fortune 500 companies',
+        'International internship opportunities',
+        'Alumni mentorship from global professionals',
+        'Cross-border recruitment drives',
+        'Global industry exposure through exchange programs',
+      ],
+      stats: [
+        { label: 'Countries', value: '15+' },
+        { label: 'Alumni Network', value: '5,000+' },
+        { label: 'Recruiters', value: '350+' },
+      ],
+    },
+  },
+];
+
+// Career Pillar Modal Component
+const PillarModal = ({ isOpen, onClose, data }: { isOpen: boolean; onClose: () => void; data: typeof careerPillars[0] | null }) => {
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = 'hidden';
+    }
+    return () => { document.body.style.overflow = ''; };
+  }, [isOpen]);
+
+  if (!data) return null;
+
+  return (
+    <AnimatePresence>
+      {isOpen && (
+        <>
+          <motion.div
+            className="fixed inset-0 bg-black/50 backdrop-blur-sm z-[9998]"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onClick={onClose}
+          />
+          <motion.div
+            className="fixed z-[9999] bg-white flex flex-col shadow-2xl top-0 right-0 bottom-0 w-full md:w-[540px] md:rounded-l-3xl"
+            initial={{ x: '100%' }}
+            animate={{ x: 0 }}
+            exit={{ x: '100%' }}
+            transition={{ duration: 0.5, ease: [0.32, 0.72, 0, 1] }}
+          >
+            {/* Header image */}
+            <div className="relative h-[200px] md:h-[260px] shrink-0 overflow-hidden">
+              <Image src={data.image} alt={data.title} fill className="object-cover" />
+              <div className="absolute inset-0" style={{ background: `linear-gradient(to top, ${data.accent}ee 0%, transparent 60%)` }} />
+              <button onClick={onClose} className="absolute top-4 right-4 w-10 h-10 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center hover:bg-white/30 transition-colors">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2"><line x1="18" y1="6" x2="6" y2="18" strokeLinecap="round"/><line x1="6" y1="6" x2="18" y2="18" strokeLinecap="round"/></svg>
+              </button>
+              <div className="absolute bottom-6 left-6 right-6">
+                <h2 className={`text-xl md:text-2xl font-semibold ${data.darkText ? 'text-[#21313c]' : 'text-white'}`}>{data.title}</h2>
+              </div>
+            </div>
+
+            {/* Content */}
+            <div className="p-6 overflow-y-auto flex-1">
+              <p className="text-[#666] text-sm md:text-[15px] mb-6" style={{ lineHeight: 1.7 }}>{data.modalContent.overview}</p>
+
+              {/* Stats */}
+              <div className="flex flex-wrap gap-4 mb-6">
+                {data.modalContent.stats.map((stat, i) => (
+                  <motion.div key={i} initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.3 + i * 0.05 }} className="bg-[#f6f7f0] px-4 py-3 rounded-lg flex-1 min-w-[100px]">
+                    <p className="text-[#21313c] text-lg md:text-xl font-bold">{stat.value}</p>
+                    <p className="text-[#666] text-xs">{stat.label}</p>
+                  </motion.div>
+                ))}
+              </div>
+
+              {/* Features */}
+              <h3 className="text-[#21313c] font-semibold text-sm uppercase tracking-wider mb-4">Key Features</h3>
+              <div className="space-y-3">
+                {data.modalContent.features.map((feature, i) => (
+                  <motion.div key={i} initial={{ opacity: 0, x: -10 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 0.35 + i * 0.05 }} className="flex items-start gap-3">
+                    <svg className="w-5 h-5 rounded-full p-1 shrink-0 mt-0.5 text-white" style={{ backgroundColor: data.accent }} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
+                    </svg>
+                    <span className="text-[#444] text-sm" style={{ lineHeight: 1.5 }}>{feature}</span>
+                  </motion.div>
+                ))}
+              </div>
+            </div>
+          </motion.div>
+        </>
+      )}
+    </AnimatePresence>
+  );
+};
 
 // ============================================
 // DATA
@@ -35,6 +203,7 @@ const galleryImages = [
 export default function PlacementPage() {
   const [mounted, setMounted] = useState(false);
   const [activeTestimonial, setActiveTestimonial] = useState(0);
+  const [selectedPillar, setSelectedPillar] = useState<typeof careerPillars[0] | null>(null);
 
   // Refs for GSAP animations
   const containerRef = useRef<HTMLDivElement>(null);
@@ -561,22 +730,11 @@ export default function PlacementPage() {
             </h2>
           </motion.div>
 
-          {/* Mobile: 2x2 staggered grid like WhyJlu */}
+          {/* Mobile: 2x2 staggered grid */}
           <div className="md:hidden">
             {/* Row 1 */}
             <div className="flex flex-row gap-3">
-              {[
-                {
-                  title: 'Industry-Ready Curriculum',
-                  description: 'Programs co-designed with industry leaders, ensuring skills align with market demands.',
-                  image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/JLu%20events/photos/Convocation/DSC_0858.JPG',
-                },
-                {
-                  title: 'Dedicated Training & Development',
-                  description: 'Pre-placement training including aptitude, technical skills & communication workshops.',
-                  image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/JLu%20events/photos/Convocation/DSC_5604.JPG',
-                },
-              ].map((card, i) => (
+              {careerPillars.slice(0, 2).map((card, i) => (
                 <motion.div
                   key={card.title}
                   initial={{ opacity: 0, y: 40 }}
@@ -591,15 +749,15 @@ export default function PlacementPage() {
                     marginBottom: i === 0 ? '24px' : '0',
                     transition: 'transform 0.3s ease, box-shadow 0.3s ease',
                   }}
+                  onClick={() => setSelectedPillar(card)}
                 >
                   <img src={card.image} alt={card.title} loading="lazy" className="absolute inset-0 w-full h-full object-cover" />
-                  <div className="card-overlay absolute inset-0" style={{ background: 'linear-gradient(to top, rgba(0,0,0,0.75) 0%, rgba(0,0,0,0.3) 50%, rgba(0,0,0,0.05) 100%)', transition: 'background 0.3s ease' }} />
+                  <div className="card-overlay absolute inset-0" style={{ background: 'linear-gradient(to top, rgba(0,0,0,0.75) 0%, rgba(0,0,0,0.3) 50%, rgba(0,0,0,0.05) 100%)' }} />
                   <div className="absolute bottom-0 left-0 right-0 p-3.5 z-10">
                     <h3 className="text-white text-base font-bold mb-1.5" style={{ lineHeight: 1.2 }}>{card.title}</h3>
                     <p className="text-white/85 text-[0.7rem] leading-relaxed mb-1.5">{card.description}</p>
                     <div className="flex items-center gap-1 text-white/80 text-xs font-semibold">
-                      <span>Explore</span>
-                      <span className="text-xs">→</span>
+                      <span>Explore</span><span className="text-xs">→</span>
                     </div>
                   </div>
                 </motion.div>
@@ -607,18 +765,7 @@ export default function PlacementPage() {
             </div>
             {/* Row 2 */}
             <div className="flex flex-row gap-3 mt-3">
-              {[
-                {
-                  title: 'Mock Interviews & Soft Skills',
-                  description: 'Rigorous mock interviews, group discussions & personality development sessions.',
-                  image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/JLu%20events/photos/Convocation/DSC_0885.JPG',
-                },
-                {
-                  title: 'Global Career Network',
-                  description: 'International placement partnerships & alumni network spanning Fortune 500 companies.',
-                  image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/JLu%20events/photos/Convocation/DSC_4625.JPG',
-                },
-              ].map((card, i) => (
+              {careerPillars.slice(2, 4).map((card, i) => (
                 <motion.div
                   key={card.title}
                   initial={{ opacity: 0, y: 40 }}
@@ -633,15 +780,15 @@ export default function PlacementPage() {
                     marginBottom: i === 0 ? '24px' : '0',
                     transition: 'transform 0.3s ease, box-shadow 0.3s ease',
                   }}
+                  onClick={() => setSelectedPillar(card)}
                 >
                   <img src={card.image} alt={card.title} loading="lazy" className="absolute inset-0 w-full h-full object-cover" />
-                  <div className="card-overlay absolute inset-0" style={{ background: 'linear-gradient(to top, rgba(0,0,0,0.75) 0%, rgba(0,0,0,0.3) 50%, rgba(0,0,0,0.05) 100%)', transition: 'background 0.3s ease' }} />
+                  <div className="card-overlay absolute inset-0" style={{ background: 'linear-gradient(to top, rgba(0,0,0,0.75) 0%, rgba(0,0,0,0.3) 50%, rgba(0,0,0,0.05) 100%)' }} />
                   <div className="absolute bottom-0 left-0 right-0 p-3.5 z-10">
                     <h3 className="text-white text-base font-bold mb-1.5" style={{ lineHeight: 1.2 }}>{card.title}</h3>
                     <p className="text-white/85 text-[0.7rem] leading-relaxed mb-1.5">{card.description}</p>
                     <div className="flex items-center gap-1 text-white/80 text-xs font-semibold">
-                      <span>Explore</span>
-                      <span className="text-xs">→</span>
+                      <span>Explore</span><span className="text-xs">→</span>
                     </div>
                   </div>
                 </motion.div>
@@ -649,38 +796,9 @@ export default function PlacementPage() {
             </div>
           </div>
 
-          {/* Desktop: Original 4-column grid (unchanged) */}
+          {/* Desktop: Original 4-column grid */}
           <div className="hidden md:grid grid-cols-4 gap-5">
-            {[
-              {
-                title: 'Industry-Ready Curriculum',
-                description: 'Programs co-designed with industry leaders, ensuring skills align with market demands and emerging technologies.',
-                image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/JLu%20events/photos/Convocation/DSC_0858.JPG',
-                accent: '#c3fd7a',
-                darkText: true,
-              },
-              {
-                title: 'Dedicated Training & Development',
-                description: 'Pre-placement training programs including aptitude, technical skills, and professional communication workshops.',
-                image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/JLu%20events/photos/Convocation/DSC_5604.JPG',
-                accent: '#027ea1',
-                darkText: false,
-              },
-              {
-                title: 'Mock Interviews & Soft Skills',
-                description: 'Rigorous mock interviews, group discussions, and personality development sessions with industry professionals.',
-                image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/JLu%20events/photos/Convocation/DSC_0885.JPG',
-                accent: '#e85a71',
-                darkText: false,
-              },
-              {
-                title: 'Global Career Network',
-                description: 'International placement partnerships and alumni network spanning Fortune 500 companies across 15+ countries.',
-                image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/JLu%20events/photos/Convocation/DSC_4625.JPG',
-                accent: '#f4c950',
-                darkText: true,
-              },
-            ].map((card, i) => (
+            {careerPillars.map((card, i) => (
               <motion.div
                 key={card.title}
                 initial={{ opacity: 0, y: 50 }}
@@ -689,6 +807,7 @@ export default function PlacementPage() {
                 transition={{ duration: 0.7, delay: i * 0.12, ease: customEase }}
                 className="group relative overflow-hidden rounded-2xl cursor-pointer"
                 style={{ aspectRatio: '1 / 1.2' }}
+                onClick={() => setSelectedPillar(card)}
               >
                 <img
                   src={card.image}
@@ -1150,6 +1269,9 @@ export default function PlacementPage() {
           </div>
         </div>
       </section>
+
+      {/* Career Pillar Modal */}
+      <PillarModal isOpen={selectedPillar !== null} onClose={() => setSelectedPillar(null)} data={selectedPillar} />
 
       {/* Footer */}
       <Footer />
