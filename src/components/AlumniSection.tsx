@@ -198,13 +198,12 @@ export const AlumniSection = () => {
 
 
             {/* CTA Link */}
-            {!isMobile && (
-              <div className="mt-10">
+              <div className="mt-6 md:mt-10">
                 <a
                   href="/alumni"
                   className="inline-flex items-center gap-3 group"
                   style={{
-                    fontSize: '28px',
+                    fontSize: isMobile ? '16px' : '28px',
                     fontWeight: 600,
                     color: '#21313c',
                     letterSpacing: '0.05em',
@@ -228,7 +227,6 @@ export const AlumniSection = () => {
                   </svg>
                 </a>
               </div>
-            )}
           </div>
 
           {/* Right Side - Cards in diagonal arrangement */}
