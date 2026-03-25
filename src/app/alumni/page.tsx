@@ -53,80 +53,6 @@ const services = [
   },
 ];
 
-const notableAlumni = [
-  {
-    id: '1',
-    name: 'Mr. Sagar Agrawal',
-    batch: '2025',
-    image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/jlu-placement1.jpeg',
-    designation: 'JLU00505',
-    company: 'BA.LLB Program',
-    achievement: 'Alumni Award Recipient 2025',
-  },
-  {
-    id: '2',
-    name: 'Mr. Sanchit Shrivastava',
-    batch: '2025',
-    image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/jlu-placement2.jpeg',
-    designation: 'JLU04696',
-    company: 'BAJMC Program',
-    achievement: 'Alumni Award Recipient 2025',
-  },
-  {
-    id: '3',
-    name: 'Mr. Aman Verma',
-    batch: '2024',
-    image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/jlu-placement3.jpeg',
-    designation: 'JLU01216',
-    company: 'BBA Program',
-    achievement: 'Alumni Award Recipient 2024',
-  },
-  {
-    id: '4',
-    name: 'Mr. Ugyen Rhuntsho Rabgay',
-    batch: '2024',
-    image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/jlu-insta1.jpg',
-    designation: 'JLU00927',
-    company: 'BAJMC Program',
-    achievement: 'Alumni Award Recipient 2024',
-  },
-  {
-    id: '5',
-    name: 'Mr. Namgay Dorji',
-    batch: '2024',
-    image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/jlu-insta2.jpg',
-    designation: 'JLU00402',
-    company: 'BBA.LLB Program',
-    achievement: 'Alumni Award Recipient 2024',
-  },
-  {
-    id: '6',
-    name: 'Mr. Sajal Jain',
-    batch: '2023',
-    image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/jlu-insta3.jpg',
-    designation: 'JLU02151',
-    company: 'B.Com Program',
-    achievement: 'Alumni Award Recipient 2023',
-  },
-  {
-    id: '7',
-    name: 'Ms. Urvashi Mathur',
-    batch: '2023',
-    image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/jlu-placement1.jpeg',
-    designation: 'JLU02531',
-    company: 'B.Sc. (Hospitality & Hotel Administration) Program',
-    achievement: 'Alumni Award Recipient 2023',
-  },
-  {
-    id: '8',
-    name: 'Ms. Sumaira Yasin',
-    batch: '2023',
-    image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/jlu-placement2.jpeg',
-    designation: 'JLU00922',
-    company: 'BAJMC Program',
-    achievement: 'Alumni Award Recipient 2023',
-  },
-];
 
 const testimonials = [
   {
@@ -159,10 +85,8 @@ export default function AlumniPage() {
   const isMobile = useIsMobile();
   const [mounted, setMounted] = useState(false);
   const [activeTestimonial, setActiveTestimonial] = useState(0);
-  const [activeAlumniIndex, setActiveAlumniIndex] = useState(0);
   const [activeServiceIndex, setActiveServiceIndex] = useState(0);
   const serviceContainerRef = useRef<HTMLDivElement>(null);
-  const alumniScrollRef = useRef<HTMLDivElement>(null);
   const heroRef = useRef<HTMLDivElement>(null);
   const textRef = useRef<HTMLDivElement>(null);
   const showcaseSectionRef = useRef<HTMLDivElement>(null);
@@ -300,17 +224,6 @@ export default function AlumniPage() {
   }, [mounted]);
 
 
-  const scrollToAlumni = (index: number) => {
-    if (alumniScrollRef.current) {
-      const cardWidth = isMobile ? 220 : 380;
-      const gap = 24;
-      alumniScrollRef.current.scrollTo({
-        left: index * (cardWidth + gap),
-        behavior: 'smooth',
-      });
-      setActiveAlumniIndex(index);
-    }
-  };
 
   if (!mounted) {
     return <div className="min-h-screen bg-[#f6f7f0]" />;
