@@ -21,82 +21,26 @@ interface Alumni {
 const alumniData: Alumni[] = [
   {
     id: '1',
-    name: 'Mr. Sagar Agrawal',
-    batch: '2025',
-    image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/jlu-placement1.jpeg',
-    designation: 'JLU00505',
-    company: 'BA.LLB Program',
-    testimonial: 'Alumni Award Recipient 2025',
-  },
-  {
-    id: '2',
-    name: 'Mr. Sanchit Shrivastava',
-    batch: '2025',
-    image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/jlu-placement2.jpeg',
-    designation: 'JLU04696',
-    company: 'BAJMC Program',
-    testimonial: 'Alumni Award Recipient 2025',
-  },
-  {
-    id: '3',
-    name: 'Mr. Aman Verma',
-    batch: '2024',
-    image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/jlu-placement3.jpeg',
-    designation: 'JLU01216',
-    company: 'BBA Program',
-    testimonial: 'Alumni Award Recipient 2024',
-  },
-  {
-    id: '4',
-    name: 'Mr. Ugyen Rhuntsho Rabgay',
-    batch: '2024',
-    image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/jlu-insta1.jpg',
-    designation: 'JLU00927',
-    company: 'BAJMC Program',
-    testimonial: 'Alumni Award Recipient 2024',
-  },
-  {
-    id: '5',
     name: 'Mr. Namgay Dorji',
     batch: '2024',
-    image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/jlu-insta2.jpg',
+    image: '/morenew/alumniawardee/namgay.jpg',
     designation: 'JLU00402',
     company: 'BBA.LLB Program',
     testimonial: 'Alumni Award Recipient 2024',
   },
   {
-    id: '6',
-    name: 'Mr. Sajal Jain',
-    batch: '2023',
-    image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/jlu-insta3.jpg',
-    designation: 'JLU02151',
-    company: 'B.Com Program',
-    testimonial: 'Alumni Award Recipient 2023',
-  },
-  {
-    id: '7',
-    name: 'Ms. Urvashi Mathur',
-    batch: '2023',
-    image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/jlu-placement1.jpeg',
-    designation: 'JLU02531',
-    company: 'B.Sc. (Hospitality & Hotel Administration) Program',
-    testimonial: 'Alumni Award Recipient 2023',
-  },
-  {
-    id: '8',
-    name: 'Ms. Sumaira Yasin',
-    batch: '2023',
-    image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/jlu-placement2.jpeg',
-    designation: 'JLU00922',
+    id: '2',
+    name: 'Mr. Sanchit Shrivastava',
+    batch: '2025',
+    image: '/morenew/alumniawardee/sanchit-clean.jpg',
+    designation: 'JLU04696',
     company: 'BAJMC Program',
-    testimonial: 'Alumni Award Recipient 2023',
+    testimonial: 'Alumni Award Recipient 2025',
   },
 ];
 
 export const AlumniSection = () => {
   const isMobile = useIsMobile();
-  const [currentPair, setCurrentPair] = useState(0);
-  const [isAnimating, setIsAnimating] = useState(false);
   const [mounted, setMounted] = useState(false);
 
   const sectionRef = useRef<HTMLDivElement>(null);
@@ -104,10 +48,8 @@ export const AlumniSection = () => {
   const topCardRef = useRef<HTMLDivElement>(null);
   const bottomCardRef = useRef<HTMLDivElement>(null);
 
-  // Calculate pairs (2 alumni per view)
-  const totalPairs = Math.ceil(alumniData.length / 2);
-  const topAlumni = alumniData[currentPair * 2];
-  const bottomAlumni = alumniData[currentPair * 2 + 1] || alumniData[0];
+  const topAlumni = alumniData[0];
+  const bottomAlumni = alumniData[1];
 
   useEffect(() => {
     setMounted(true);
@@ -156,64 +98,7 @@ export const AlumniSection = () => {
     };
   }, [mounted]);
 
-  const navigateCards = (direction: 'prev' | 'next') => {
-    if (isAnimating) return;
-    setIsAnimating(true);
-
-    const newPair = direction === 'next'
-      ? (currentPair + 1) % totalPairs
-      : (currentPair - 1 + totalPairs) % totalPairs;
-
-    // Animate cards out smoothly
-    const tl = gsap.timeline({
-      onComplete: () => {
-        setCurrentPair(newPair);
-        setIsAnimating(false);
-      },
-    });
-
-    if (topCardRef.current && bottomCardRef.current) {
-      // Top card exits up, bottom card exits down
-      tl.to(topCardRef.current, {
-        yPercent: -100,
-        duration: 0.4,
-        ease: 'power2.inOut',
-        force3D: true,
-      }, 0);
-      tl.to(bottomCardRef.current, {
-        yPercent: 100,
-        duration: 0.4,
-        ease: 'power2.inOut',
-        force3D: true,
-      }, 0);
-    }
-  };
-
-  // Animate cards in when pair changes (skip initial mount)
-  const isFirstRender = useRef(true);
-  useEffect(() => {
-    if (!mounted || !topCardRef.current || !bottomCardRef.current) return;
-
-    // Skip animation on first render - cards are already visible
-    if (isFirstRender.current) {
-      isFirstRender.current = false;
-      return;
-    }
-
-    gsap.killTweensOf([topCardRef.current, bottomCardRef.current]);
-
-    // Cards enter with smooth animation - no fade
-    gsap.fromTo(
-      topCardRef.current,
-      { yPercent: 100 },
-      { yPercent: 0, duration: 0.5, ease: 'power2.out', force3D: true }
-    );
-    gsap.fromTo(
-      bottomCardRef.current,
-      { yPercent: -100 },
-      { yPercent: 0, duration: 0.5, ease: 'power2.out', force3D: true, delay: 0.05 }
-    );
-  }, [currentPair, mounted]);
+  // No carousel needed - just 2 static cards
 
   if (!mounted) {
     return <div className="min-h-screen bg-[#f6f7f0]" />;
@@ -255,9 +140,6 @@ export const AlumniSection = () => {
                   Award
                 </span>
               </h1>
-              <p className="text-[#999] text-base sm:text-lg md:text-xl mt-3" style={{ letterSpacing: '0.05em' }}>
-                Recipients — Last 3 Years
-              </p>
             </div>
 
             <h3
@@ -314,90 +196,10 @@ export const AlumniSection = () => {
               </p>
             )}
 
-            {/* Mobile Navigation Arrows - centered */}
-            {isMobile && (
-              <div className="flex justify-center gap-3 mt-5">
-                <button
-                  onClick={() => navigateCards('prev')}
-                  disabled={isAnimating}
-                  className="w-9 h-9 rounded-full bg-[#21313c] text-white flex items-center justify-center shadow-lg disabled:opacity-50"
-                >
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                    <polyline points="15 18 9 12 15 6" strokeLinecap="round" strokeLinejoin="round" />
-                  </svg>
-                </button>
-                <button
-                  onClick={() => navigateCards('next')}
-                  disabled={isAnimating}
-                  className="w-9 h-9 rounded-full bg-[#21313c] text-white flex items-center justify-center shadow-lg disabled:opacity-50"
-                >
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                    <polyline points="9 18 15 12 9 6" strokeLinecap="round" strokeLinejoin="round" />
-                  </svg>
-                </button>
-              </div>
-            )}
 
-            {/* Navigation & CTA */}
-            {isMobile ? null : (
-              /* Desktop: arrows + dots + CTA */
-              <div className="mt-10 flex items-center gap-6">
-                <div className="flex items-center gap-3">
-                  <button
-                    onClick={() => navigateCards('prev')}
-                    disabled={isAnimating}
-                    className="w-14 h-14 rounded-full bg-[#21313c] text-white flex items-center justify-center shadow-xl hover:bg-[#2a3f4c] transition-all duration-300 hover:scale-110 disabled:opacity-50"
-                  >
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                      <polyline points="15 18 9 12 15 6" strokeLinecap="round" strokeLinejoin="round" />
-                    </svg>
-                  </button>
-                  <div className="flex items-center gap-1.5">
-                    {Array.from({ length: totalPairs }).map((_, index) => (
-                      <button
-                        key={index}
-                        onClick={() => {
-                          if (!isAnimating && index !== currentPair) {
-                            setIsAnimating(true);
-                            gsap.killTweensOf([topCardRef.current, bottomCardRef.current]);
-                            const tl = gsap.timeline({
-                              onComplete: () => {
-                                setCurrentPair(index);
-                                setIsAnimating(false);
-                              },
-                            });
-                            tl.to(topCardRef.current, {
-                              yPercent: -100,
-                              duration: 0.4,
-                              ease: 'power2.inOut',
-                              force3D: true,
-                            }, 0);
-                            tl.to(bottomCardRef.current, {
-                              yPercent: 100,
-                              duration: 0.4,
-                              ease: 'power2.inOut',
-                              force3D: true,
-                            }, 0);
-                          }
-                        }}
-                        className={`h-2 rounded-full transition-all duration-300 ${
-                          currentPair === index ? 'w-8 bg-[#21313c]' : 'w-2 bg-[#21313c]/20 hover:bg-[#21313c]/40'
-                        }`}
-                      />
-                    ))}
-                  </div>
-                  <button
-                    onClick={() => navigateCards('next')}
-                    disabled={isAnimating}
-                    className="w-14 h-14 rounded-full bg-[#21313c] text-white flex items-center justify-center shadow-xl hover:bg-[#2a3f4c] transition-all duration-300 hover:scale-110 disabled:opacity-50"
-                  >
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                      <polyline points="9 18 15 12 9 6" strokeLinecap="round" strokeLinejoin="round" />
-                    </svg>
-                  </button>
-                </div>
-
-                {/* CTA Link */}
+            {/* CTA Link */}
+            {!isMobile && (
+              <div className="mt-10">
                 <a
                   href="/alumni"
                   className="inline-flex items-center gap-3 group"

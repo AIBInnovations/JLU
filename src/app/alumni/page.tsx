@@ -637,84 +637,86 @@ export default function AlumniPage() {
               </p>
             </div>
 
-            {/* Navigation Arrows */}
-            <div className="flex gap-2 md:gap-3">
-                <button
-                  onClick={() => scrollToAlumni(Math.max(0, activeAlumniIndex - 1))}
-                  className="w-8 h-8 md:w-12 md:h-12 rounded-full border-2 border-[#21313c]/20 flex items-center justify-center text-[#21313c] hover:bg-[#21313c] hover:text-white transition-colors disabled:opacity-30"
-                  disabled={activeAlumniIndex === 0}
-                >
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="md:w-5 md:h-5">
-                    <polyline points="15 18 9 12 15 6" strokeLinecap="round" strokeLinejoin="round"/>
-                  </svg>
-                </button>
-                <button
-                  onClick={() => scrollToAlumni(Math.min(notableAlumni.length - 1, activeAlumniIndex + 1))}
-                  className="w-8 h-8 md:w-12 md:h-12 rounded-full border-2 border-[#21313c]/20 flex items-center justify-center text-[#21313c] hover:bg-[#21313c] hover:text-white transition-colors disabled:opacity-30"
-                  disabled={activeAlumniIndex === notableAlumni.length - 1}
-                >
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="md:w-5 md:h-5">
-                    <polyline points="9 18 15 12 9 6" strokeLinecap="round" strokeLinejoin="round"/>
-                  </svg>
-                </button>
-              </div>
           </motion.div>
 
-          {/* Alumni Cards Carousel */}
-          <div
-            ref={alumniScrollRef}
-            className="flex gap-3 md:gap-6 overflow-x-auto pb-6 scrollbar-hide"
-            style={{ scrollSnapType: 'x mandatory' }}
-          >
-            {notableAlumni.map((alumni) => (
-              <div
-                key={alumni.id}
-                className="flex-shrink-0 bg-[#f6f7f0] rounded-2xl overflow-hidden shadow-lg hover:-translate-y-2 transition-transform duration-300"
-                style={{
-                  width: isMobile ? '220px' : '380px',
-                  scrollSnapAlign: 'start',
-                }}
-              >
-                <div className="relative h-32 md:h-56 overflow-hidden">
-                  <img
-                    src={alumni.image}
-                    alt={alumni.name}
-                    className="w-full h-full object-cover"
-                  />
-                  <div className="absolute inset-0 bg-[#21313c]/50" />
-
-                  <span className="absolute top-2 right-2 md:top-4 md:right-4 px-2 py-0.5 md:px-3 md:py-1 bg-[#027ea1] text-white text-[11px] md:text-xs font-semibold rounded-full">
-                    Batch {alumni.batch}
-                  </span>
-
-                  <div className="absolute bottom-2 left-2 right-2 md:bottom-4 md:left-4 md:right-4">
-                    <h3 className="text-sm md:text-xl font-semibold text-white">{alumni.name}</h3>
-                    <p className="text-white/80 text-[12px] md:text-sm">{alumni.designation} at {alumni.company}</p>
+          {/* Alumni Names Grouped by Year */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-10">
+            {/* 2025 */}
+            <div>
+              <h3 className="text-[#21313c] text-lg md:text-xl font-semibold mb-4 pb-2 border-b-2 border-[#027ea1]">For the Year 2025</h3>
+              <div className="space-y-3">
+                <div className="flex items-start gap-3">
+                  <span className="text-[#027ea1] font-semibold text-sm mt-0.5">1.</span>
+                  <div>
+                    <p className="text-[#21313c] font-medium text-sm md:text-base">Mr. Sagar Agrawal</p>
+                    <p className="text-[#999] text-xs md:text-sm">JLU00505 — BA.LLB Program</p>
                   </div>
                 </div>
-
-                <div className="p-3 md:p-6">
-                  <p className="text-[#666] text-[12px] md:text-sm mb-2 md:mb-4">{alumni.achievement}</p>
-                  <div className="flex items-center justify-between">
-                    <a
-                      href="#"
-                      className="flex items-center gap-1 md:gap-2 text-[#027ea1] font-medium text-[12px] md:text-sm hover:text-[#21313c] transition-colors"
-                    >
-                      <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" className="md:w-4 md:h-4">
-                        <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
-                      </svg>
-                      Connect
-                    </a>
-                    <a
-                      href="#"
-                      className="text-[#21313c]/60 text-[12px] md:text-sm hover:text-[#21313c] transition-colors"
-                    >
-                      Read Story →
-                    </a>
+                <div className="flex items-start gap-3">
+                  <span className="text-[#027ea1] font-semibold text-sm mt-0.5">2.</span>
+                  <div>
+                    <p className="text-[#21313c] font-medium text-sm md:text-base">Mr. Sanchit Shrivastava</p>
+                    <p className="text-[#999] text-xs md:text-sm">JLU04696 — BAJMC Program</p>
                   </div>
                 </div>
               </div>
-            ))}
+            </div>
+
+            {/* 2024 */}
+            <div>
+              <h3 className="text-[#21313c] text-lg md:text-xl font-semibold mb-4 pb-2 border-b-2 border-[#027ea1]">For the Year 2024</h3>
+              <div className="space-y-3">
+                <div className="flex items-start gap-3">
+                  <span className="text-[#027ea1] font-semibold text-sm mt-0.5">1.</span>
+                  <div>
+                    <p className="text-[#21313c] font-medium text-sm md:text-base">Mr. Aman Verma</p>
+                    <p className="text-[#999] text-xs md:text-sm">JLU01216 — BBA Program</p>
+                  </div>
+                </div>
+                <div className="flex items-start gap-3">
+                  <span className="text-[#027ea1] font-semibold text-sm mt-0.5">2.</span>
+                  <div>
+                    <p className="text-[#21313c] font-medium text-sm md:text-base">Mr. Ugyen Rhuntsho Rabgay</p>
+                    <p className="text-[#999] text-xs md:text-sm">JLU00927 — BAJMC Program</p>
+                  </div>
+                </div>
+                <div className="flex items-start gap-3">
+                  <span className="text-[#027ea1] font-semibold text-sm mt-0.5">3.</span>
+                  <div>
+                    <p className="text-[#21313c] font-medium text-sm md:text-base">Mr. Namgay Dorji</p>
+                    <p className="text-[#999] text-xs md:text-sm">JLU00402 — BBA.LLB Program</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* 2023 */}
+            <div>
+              <h3 className="text-[#21313c] text-lg md:text-xl font-semibold mb-4 pb-2 border-b-2 border-[#027ea1]">For the Year 2023</h3>
+              <div className="space-y-3">
+                <div className="flex items-start gap-3">
+                  <span className="text-[#027ea1] font-semibold text-sm mt-0.5">1.</span>
+                  <div>
+                    <p className="text-[#21313c] font-medium text-sm md:text-base">Mr. Sajal Jain</p>
+                    <p className="text-[#999] text-xs md:text-sm">JLU02151 — B.Com Program</p>
+                  </div>
+                </div>
+                <div className="flex items-start gap-3">
+                  <span className="text-[#027ea1] font-semibold text-sm mt-0.5">2.</span>
+                  <div>
+                    <p className="text-[#21313c] font-medium text-sm md:text-base">Ms. Urvashi Mathur</p>
+                    <p className="text-[#999] text-xs md:text-sm">JLU02531 — B.Sc. (Hospitality &amp; Hotel Administration) Program</p>
+                  </div>
+                </div>
+                <div className="flex items-start gap-3">
+                  <span className="text-[#027ea1] font-semibold text-sm mt-0.5">3.</span>
+                  <div>
+                    <p className="text-[#21313c] font-medium text-sm md:text-base">Ms. Sumaira Yasin</p>
+                    <p className="text-[#999] text-xs md:text-sm">JLU00922 — BAJMC Program</p>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
 
 
