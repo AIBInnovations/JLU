@@ -168,50 +168,6 @@ const achievements = [
   },
 ];
 
-const institutionalAwards = [
-  { award: 'QS I-GAUGE Diamond Rating', detail: 'Top 25 Universities in India', accent: '#f0c14b', icon: 'diamond' },
-  { award: 'University of the Year', detail: 'MP Government (5 consecutive years)', accent: '#027ea1', icon: 'trophy' },
-  { award: 'Education World', detail: 'No. 1 Private University designation', accent: '#21313c', icon: 'globe' },
-  { award: 'Careers360 AAA Rated', detail: 'Top B-School recognition', accent: '#f0c14b', icon: 'star' },
-  { award: 'Global League Institution', detail: 'House of Commons, London (2015)', accent: '#027ea1', icon: 'award' },
-  { award: 'CIMA Recognition', detail: 'Most Innovative University', accent: '#21313c', icon: 'badge' },
-];
-
-const AwardIcon = ({ type, color }: { type: string; color: string }) => {
-  const icons: Record<string, React.ReactNode> = {
-    diamond: (
-      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-        <path d="M6 3h12l4 6-10 13L2 9z" /><path d="M2 9h20" /><path d="M12 22L6 9l3-6" /><path d="M12 22l6-13-3-6" />
-      </svg>
-    ),
-    trophy: (
-      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-        <path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6" /><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18" /><path d="M4 22h16" /><path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20 7 22" /><path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20 17 22" /><path d="M18 2H6v7a6 6 0 0 0 12 0V2Z" />
-      </svg>
-    ),
-    globe: (
-      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-        <circle cx="12" cy="12" r="10" /><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20" /><path d="M2 12h20" />
-      </svg>
-    ),
-    star: (
-      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-        <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
-      </svg>
-    ),
-    award: (
-      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-        <circle cx="12" cy="8" r="6" /><path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11" />
-      </svg>
-    ),
-    badge: (
-      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-        <path d="M3.85 8.62a4 4 0 0 1 4.78-4.77 4 4 0 0 1 6.74 0 4 4 0 0 1 4.78 4.78 4 4 0 0 1 0 6.74 4 4 0 0 1-4.77 4.78 4 4 0 0 1-6.75 0 4 4 0 0 1-4.78-4.77 4 4 0 0 1 0-6.76Z" /><path d="m9 12 2 2 4-4" />
-      </svg>
-    ),
-  };
-  return <>{icons[type] || icons.star}</>;
-};
 
 // ─── Corporate Relations Data ───
 const placementStats = [
