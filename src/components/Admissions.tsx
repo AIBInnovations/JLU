@@ -283,7 +283,7 @@ const financialOptions = [
         },
       ],
       cta: 'Download Full Policy',
-      ctaHref: '/broucher/Fee-Refund-Policy-2026.pdf',
+      ctaHref: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/broucher/Fee-Refund-Policy-2026.pdf',
       isDownload: true,
     },
   },
@@ -1759,7 +1759,7 @@ const Admissions = () => {
               {/* Download Button */}
               <div className="hidden lg:block mt-auto pt-8">
                 <a
-                  href="/broucher/Fee-Structure-2026-27.pdf"
+                  href="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/broucher/Fee-Structure-2026-27.pdf"
                   download="JLU-Fee-Structure-2026-27.pdf"
                   className="w-full flex items-center justify-center gap-2 px-5 py-4 bg-white text-[#21313c] rounded-xl font-semibold transition-all duration-300 text-sm cursor-pointer no-underline hover:bg-white/90"
                 >
@@ -2282,7 +2282,7 @@ const Admissions = () => {
                     </div>
 
                     <a
-                      href="/broucher/Hostel-Mess-Fee-Structure-2026-27.xlsx"
+                      href="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/broucher/Hostel-Mess-Fee-Structure-2026-27.xlsx"
                       download="JLU-Hostel-Mess-Fee-Structure-2026-27.xlsx"
                       className="inline-flex items-center gap-2 bg-[#21313c] text-white px-6 py-3 rounded-lg text-sm font-semibold hover:bg-[#2a4050] transition-colors"
                     >

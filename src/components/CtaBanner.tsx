@@ -59,7 +59,7 @@ export const CtaBanner = () => {
             <span>→</span>
           </motion.a>
           <motion.a
-            href="/broucher/JLU-Brochure-2026.pdf"
+            href="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/broucher/JLU-Brochure-2026.pdf"
             download
             target="_blank"
             rel="noopener noreferrer"

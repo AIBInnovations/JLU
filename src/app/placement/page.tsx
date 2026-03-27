@@ -1225,7 +1225,7 @@ export default function PlacementPage() {
                 </svg>
               </a>
               <a
-                href="/broucher/placement-brochure.pdf"
+                href="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/broucher/placement-brochure.pdf"
                 download
                 target="_blank"
                 rel="noopener noreferrer"

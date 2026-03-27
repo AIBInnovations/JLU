@@ -524,7 +524,7 @@ const CampusLife = () => {
               {['Sharks', 'Lions', 'Stallions', 'Hawks'].map((house) => (
                 <div key={house} className="border border-[#e5e5e5] rounded-xl p-4 md:p-5 hover:border-[#f0c14b] hover:shadow-sm transition-all duration-300">
                   <div className="flex flex-col items-center mb-4" style={isMobile ? { marginBottom: '10px' } : {}}>
-                    <img src={`/logo/${house.toLowerCase()}.png`} alt={house} className="w-14 h-14 md:w-20 md:h-20 object-contain mb-2" />
+                    <img src={`https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/logo/${house.toLowerCase()}.png`} alt={house} className="w-14 h-14 md:w-20 md:h-20 object-contain mb-2" />
                     <h4 className="text-[#21313c] font-semibold text-sm md:text-base" style={isMobile ? { fontSize: '13px' } : {}}>{house}</h4>
                   </div>
                   {houseCaptains.filter(c => c.house === house).map((member, j) => (

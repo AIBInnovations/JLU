@@ -1371,7 +1371,7 @@ const InternationalOffice = () => {
               * Fees are indicative and may vary by program. Scholarships available for eligible students.
             </p>
             <motion.a
-              href="/broucher/Fee-Structure-2026-27.pdf"
+              href="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/broucher/Fee-Structure-2026-27.pdf"
               download="JLU-Fee-Structure-2026-27.pdf"
               className="inline-flex items-center gap-3 text-[#21313c] font-medium group text-sm md:text-[15px] no-underline"
               whileHover={{ x: 5 }}
@@ -1501,7 +1501,7 @@ const InternationalOffice = () => {
                   <span>→</span>
                 </motion.button>
                 <motion.a
-                  href="/broucher/JLU-Brochure-2026.pdf"
+                  href="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/broucher/JLU-Brochure-2026.pdf"
                   download="JLU-International-Admission-Form.pdf"
                   className="inline-flex items-center justify-center gap-2 md:gap-3 px-6 py-3 md:px-8 md:py-4 border-2 border-[#21313c] text-[#21313c] font-medium text-sm md:text-base rounded-full hover:bg-[#21313c] hover:text-white transition-colors no-underline"
                   whileHover={{ scale: 1.02 }}

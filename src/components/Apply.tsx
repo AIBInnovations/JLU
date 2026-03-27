@@ -325,7 +325,7 @@ const Apply = () => {
                     View 360 Tour
                   </motion.a>
                   <motion.a
-                    href="/broucher/JLU-Brochure-2026.pdf" target="_blank" rel="noopener noreferrer"
+                    href="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/broucher/JLU-Brochure-2026.pdf" target="_blank" rel="noopener noreferrer"
                     className="flex items-center justify-center gap-3 px-8 py-4 bg-[#027ea1] text-white font-semibold rounded-full hover:bg-[#025f7a] transition-colors"
                     whileHover={{ scale: 1.02 }}
                     whileTap={{ scale: 0.98 }}
@@ -755,7 +755,7 @@ const Apply = () => {
 
               {/* Fee Structure Link */}
               <motion.a
-                href="/broucher/JLU-Brochure-2026.pdf" target="_blank" rel="noopener noreferrer"
+                href="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/broucher/JLU-Brochure-2026.pdf" target="_blank" rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 mt-10 text-[#c3fd7a] text-sm font-medium hover:underline"
                 whileHover={{ x: 4 }}
               >
