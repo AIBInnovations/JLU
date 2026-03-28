@@ -7,6 +7,7 @@ const customEase: [number, number, number, number] = [0.22, 1, 0.36, 1];
 
 const leadershipData = [
   {
+    id: 'chancellor-message',
     title: "CHANCELLOR'S MESSAGE",
     name: 'Mr. Hari Mohan Gupta',
     image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/leadership/chancellor.jpg',
@@ -17,6 +18,7 @@ const leadershipData = [
     ],
   },
   {
+    id: 'pro-chancellor-message',
     title: "PRO CHANCELLOR'S MESSAGE",
     name: 'Mr. Abhishek Mohan Gupta',
     image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/leadership/pro-chancellor.jpg',
@@ -27,6 +29,7 @@ const leadershipData = [
     ],
   },
   {
+    id: 'vice-chancellor-message',
     title: "VICE CHANCELLOR'S MESSAGE",
     name: 'Prof. Dr. Nilanjan Chattopadhyay',
     image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/leadership/vice-chancellor.webp',
@@ -75,6 +78,7 @@ const LeadershipMessages = () => {
           {leadershipData.map((leader, index) => (
             <motion.div
               key={leader.title}
+              id={leader.id}
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: index * 0.1, ease: customEase }}

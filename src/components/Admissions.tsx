@@ -1168,14 +1168,73 @@ const Admissions = () => {
   const trackLineRef = useRef<HTMLDivElement>(null);
   const stepRefs = useRef<(HTMLDivElement | null)[]>([]);
 
+  // Handle menu navigation
+  useEffect(() => {
+    const handleNavigate = (e: Event) => {
+      const slug = (e as CustomEvent).detail?.slug;
+      if (!slug) return;
+      // Map menu slugs to admission detail tabs
+      const tabMap: Record<string, string> = {
+        'admission-faqs': 'faqs',
+        'scholarships': 'scholarships',
+        'chancellor-freeships': 'scholarships',
+        'refund-policy': 'refund',
+        'education-loan': 'fees',
+        'application-process': 'procedure',
+      };
+      if (tabMap[slug]) {
+        setActiveTab(tabMap[slug]);
+        setTimeout(() => {
+          document.getElementById('admission-tabs')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }, 100);
+        return;
+      }
+      // Redirect degree items to academic path section
+      const degreeMap: Record<string, string> = {
+        'undergraduate-degree': 'ug-programs',
+        'postgraduate-degree': 'ug-programs',
+        'research-degree': 'ug-programs',
+      };
+      if (degreeMap[slug]) {
+        setTimeout(() => {
+          document.getElementById(degreeMap[slug])?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }, 100);
+        return;
+      }
+      // Default: scroll to element
+      setTimeout(() => {
+        const el = document.getElementById(slug);
+        if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }, 100);
+    };
+    window.addEventListener('navigate-section', handleNavigate);
+
+    // Handle hash changes (for cross-page navigation)
+    const handleHashChange = () => {
+      const hash = window.location.hash.replace('#', '');
+      if (hash) handleNavigate(new CustomEvent('navigate-section', { detail: { slug: hash } }));
+    };
+    window.addEventListener('hashchange', handleHashChange);
+
+    // Handle initial hash
+    const hash = window.location.hash.replace('#', '');
+    if (hash) {
+      setTimeout(() => {
+        handleNavigate(new CustomEvent('navigate-section', { detail: { slug: hash } }));
+      }, 500);
+    }
+
+    return () => {
+      window.removeEventListener('navigate-section', handleNavigate);
+      window.removeEventListener('hashchange', handleHashChange);
+    };
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   const handleTabChange = (tabId: string) => {
     setActiveTab(tabId);
     if (tabContentRef.current) {
       tabContentRef.current.scrollTo({ top: 0, behavior: 'smooth' });
-    }
-    // Scroll the page to the tabbed section so it's visible
-    if (tabSectionRef.current) {
-      tabSectionRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
   };
 
@@ -1399,17 +1458,6 @@ const Admissions = () => {
       {/* ═══════════════════════════════════════════════════════ */}
       {/* THREE-COLUMN SHOWCASE — Programs / Apply / Fee & Support */}
       {/* ═══════════════════════════════════════════════════════ */}
-      <div id="undergraduate-degree" />
-      <div id="postgraduate-degree" />
-      <div id="research-degree" />
-      <div id="centre-for-professional-skills" />
-      <div id="jlux-–-young-leadership-program" />
-      <div id="book-campus-visits" />
-      <div id="application-process" />
-      <div id="online-application-form" />
-      <div id="chancellor-freeships" />
-      <div id="education-loan" />
-      <div id="refund-policy" />
       <div id="ug-application-process" />
       <div id="eligibility-criteria" />
       <div id="entrance-exams" />
@@ -1439,6 +1487,11 @@ const Admissions = () => {
               Choose your program, apply with ease, and discover the financial support that makes your education possible.
             </p>
           </motion.div>
+
+          {/* Anchor IDs for menu navigation (only non-tab items) */}
+          <div id="centre-for-professional-skills" />
+          <div id="jlux-–-young-leadership-program" />
+          <div id="book-campus-visits" />
 
           {/* Three-Column Grid */}
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 md:gap-8">
@@ -1956,7 +2009,7 @@ const Admissions = () => {
                               data-label=""
                               className="font-bold"
                               style={{
-                                fontSize: '28px',
+                                fontSize: '12px',
                                 color: '#999',
                                 transition: 'color 0.35s',
                               }}
@@ -2763,12 +2816,11 @@ const Admissions = () => {
         </div>
       </div>
 
-      <div id="scholarships" />
       <div id="financial-aid" />
       <div id="fee-structure" />
 
       {/* CTA Section */}
-      <div id="admission-faqs" />
+      <div id="online-application-form" />
       <div id="contact-admissions" />
       <div className="w-full px-3 pb-8 md:px-6 md:pb-14 lg:px-10 lg:pb-20">
         <div

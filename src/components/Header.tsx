@@ -17,6 +17,8 @@ interface NavigationColumn {
 interface SectionItem {
   label: string;
   slug: string;
+  isGroupHeader?: boolean;
+  isGroupChild?: boolean;
 }
 
 interface NavigationItem {
@@ -33,9 +35,12 @@ const navigationItems: NavigationItem[] = [
     href: '/about',
     type: 'dropdown',
     sections: [
-      { label: 'About Us', slug: 'introduction' },
+      { label: 'Chancellor Message', slug: 'chancellor-message' },
+      { label: 'Pro Chancellor Message', slug: 'pro-chancellor-message' },
+      { label: 'Vice Chancellor Message', slug: 'vice-chancellor-message' },
+      { label: 'Promoting Body', slug: 'promoting-body' },
+      { label: 'JLU at a Glance', slug: 'jlu-at-a-glance' },
       { label: 'Governance', slug: 'governance' },
-      { label: 'JLU Leadership Structure', slug: 'leadership' },
       { label: 'Accreditations & Memberships', slug: 'accreditations' },
       { label: 'University Partnerships', slug: 'university-partnerships' },
       { label: 'Honorary Doctorates', slug: 'honorary-doctorates' },
@@ -50,12 +55,12 @@ const navigationItems: NavigationItem[] = [
     type: 'megamenu',
     columns: [
       {
-        title: 'Faculties & Schools',
+        title: 'Faculties',
         items: [
           'Faculty of Management',
-          'Faculty of Media and Social Sciences',
+          'Faculty of Journalism & Social Science',
           'Faculty of Fashion, Design & Arts',
-          'Faculty of Science and Technology',
+          'Faculty of Engineering & Technology',
           'Faculty of Pharmacy',
           'Faculty of Law',
           'IICA - Jagran Centre for Creative Skills',
@@ -65,13 +70,18 @@ const navigationItems: NavigationItem[] = [
         title: 'Schools',
         items: [
           'Jagran Lakecity Business School',
-          'Jagran School of Physical Education and Sports Science',
-          'Jagran School of Hospitality & Tourism',
+          'Jagran School of Sports Management',
+          'Jagran School of Hospitality & Aviation Management',
           'Jagran School of Journalism',
+          'Jagran School of Advertising and Public Relations',
+          'Jagran School of Events & Entertainment',
+          'Jagran School of Languages & Social Science',
           'Jagran School of Design',
           'Jagran School of Architecture',
+          'Jagran School of Fashion',
+          'Jagran School of Artificial Intelligence',
           'Jagran School of Engineering',
-          'Jagran School of AI',
+          'Jagran School of Computer Application',
         ]
       }
     ]
@@ -85,7 +95,7 @@ const navigationItems: NavigationItem[] = [
       { label: 'Student Accommodation', slug: 'student-accommodation' },
       { label: 'Dining Facilities', slug: 'dining-facilities' },
       { label: 'Academic Infrastructure', slug: 'academic-infrastructure' },
-      { label: 'Shri Gurudev Gupta Media Studio', slug: 'gurudev-gupta-media-studio' },
+      { label: 'Gurudev Gupta Media Studio', slug: 'gurudev-gupta-media-studio' },
       { label: 'M.S Gill Culinary Studios', slug: 'ms-gill-culinary-studios' },
       { label: 'Technology Labs', slug: 'technology-labs' },
       { label: 'Shri Cyril Shroff Moot Court', slug: 'shri-cyril-shroff-moot-court' },
@@ -211,18 +221,21 @@ const MenuOverlay = ({ isOpen, onClose, menuButtonRef }: MenuOverlayProps) => {
     onClose();
     const targetPath = href;
     const scrollToEl = () => {
-      const el = document.getElementById(slug);
-      if (el) {
-        el.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      }
+      // Always dispatch event first so components can expand accordions/tabs
+      window.dispatchEvent(new CustomEvent('navigate-section', { detail: { slug } }));
+      // Then try direct element ID scroll as fallback
+      setTimeout(() => {
+        const el = document.getElementById(slug);
+        if (el) {
+          el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      }, 150);
     };
     if (pathname === targetPath) {
-      // Already on the page — just scroll
       scrollToEl();
     } else {
-      // Navigate first, then scroll after page renders
       router.push(`${targetPath}#${slug}`);
-      setTimeout(scrollToEl, 600);
+      setTimeout(scrollToEl, 1000);
     }
   };
 
@@ -242,7 +255,7 @@ const MenuOverlay = ({ isOpen, onClose, menuButtonRef }: MenuOverlayProps) => {
   // Show hovered item's submenu, or fall back to active page's submenu
   const displayedNavItem = hoveredNavItem || activeNavItem;
 
-  const circleSize = isMobile ? 2000 : 1500;
+  const circleSize = isMobile ? 2000 : 1600;
   const buttonWidth = isMobile ? 24 : 168;
   const buttonHeight = isMobile ? 24 : 48;
 
@@ -614,7 +627,7 @@ const MenuOverlay = ({ isOpen, onClose, menuButtonRef }: MenuOverlayProps) => {
                 </motion.button>
 
                 {/* Navigation content */}
-                <div className="flex gap-6" style={{ marginTop: '440px', marginLeft: '-350px', height: '490px' }} onMouseLeave={() => setHoveredItem(null)}>
+                <div className="flex gap-6" style={{ marginTop: '440px', marginLeft: '-400px', height: '490px' }} onMouseLeave={() => setHoveredItem(null)}>
                   {/* Main navigation */}
                   <div className="flex flex-col" style={{ marginLeft: '-120px' }}>
                     <motion.p
@@ -657,12 +670,12 @@ const MenuOverlay = ({ isOpen, onClose, menuButtonRef }: MenuOverlayProps) => {
                   <div className="w-[1px] bg-gray-300 h-[400px] my-8" />
 
                   {/* Right side - Hovered item content + explore more links */}
-                  <div className="flex flex-col pt-8 w-130" style={{ marginLeft: '0px' }}>
-                    {/* Fixed-height container — always same size to prevent centering shifts */}
-                    <div className="min-h-70 relative">
+                  <div className="flex flex-col pt-8 w-130 h-full" style={{ marginLeft: '0px' }}>
+                    {/* Sub-content container */}
+                    <div className="flex-1">
                       {/* Sub-content: shown when hovering or when on active page */}
                       {displayedNavItem && (
-                        <div className="absolute inset-x-0 top-0 flex flex-col gap-2">
+                        <div className="flex flex-col gap-2">
                           <h3 className="text-lg font-semibold text-[#027ea1] mb-1">
                             {displayedNavItem.label}
                           </h3>
@@ -730,7 +743,7 @@ const MenuOverlay = ({ isOpen, onClose, menuButtonRef }: MenuOverlayProps) => {
                           <p className="text-xs text-gray-500 uppercase tracking-wider mb-3">
                             Explore More
                           </p>
-                          <div className="flex flex-col gap-2">
+                          <div className="flex flex-wrap gap-x-6 gap-y-2">
                             {bottomMenuItems.map((subItem) => (
                               <a
                                 key={subItem.label}
@@ -769,11 +782,11 @@ const MenuOverlay = ({ isOpen, onClose, menuButtonRef }: MenuOverlayProps) => {
                     {/* Explore More + Quick Actions below sub-content */}
                     {displayedNavItem && (
                       <>
-                        <div className="mt-20 pt-4 border-t border-gray-200">
+                        <div className="mt-auto pt-4 border-t border-gray-200">
                           <p className="text-xs text-gray-500 uppercase tracking-wider mb-3">
                             Explore More
                           </p>
-                          <div className="flex flex-col gap-2">
+                          <div className="flex flex-wrap gap-x-6 gap-y-2">
                             {bottomMenuItems.map((subItem) => (
                               <a
                                 key={subItem.label}

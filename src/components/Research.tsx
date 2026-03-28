@@ -2,7 +2,7 @@
 
 import Image from 'next/image';
 import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion';
-import { useState, useRef } from 'react';
+import { useState, useRef, useEffect } from 'react';
 
 const researchAreas = [
   { id: 1, name: 'Centres of Excellence', active: true },
@@ -234,6 +234,25 @@ const Research = () => {
   });
   const y = useTransform(scrollYProgress, [0, 1], ['0%', '30%']);
 
+  useEffect(() => {
+    const handleNavigate = (e: Event) => {
+      const slug = (e as CustomEvent).detail?.slug;
+      if (!slug) return;
+      setTimeout(() => {
+        const el = document.getElementById(slug);
+        if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }, 100);
+    };
+    window.addEventListener('navigate-section', handleNavigate);
+    const hash = window.location.hash.replace('#', '');
+    if (hash) {
+      setTimeout(() => {
+        handleNavigate(new CustomEvent('navigate-section', { detail: { slug: hash } }));
+      }, 500);
+    }
+    return () => window.removeEventListener('navigate-section', handleNavigate);
+  }, []);
+
   return (
     <section className="w-full m-0 p-0 overflow-x-hidden">
       {/* Hero Section with Image */}
@@ -316,88 +335,7 @@ const Research = () => {
         </div>
       </div>
 
-      {/* Research Ecosystem Section */}
-      <div id="research-centers" className="w-full bg-white">
-        <div
-          className="mx-auto px-5 py-12 md:px-10 md:py-16 lg:px-30 lg:py-20"
-          style={{
-            maxWidth: '1440px',
-          }}
-        >
-          <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-[#21313c] mb-8 md:mb-12 lg:mb-16">
-            Research Ecosystem
-          </h2>
-
-          <div className="flex flex-col lg:flex-row justify-between gap-8 lg:gap-16">
-            {/* Left Side - Content */}
-            <div className="w-full lg:max-w-145">
-              <p className="text-[#21313c] leading-relaxed text-base md:text-lg lg:text-xl" style={{ lineHeight: '1.6' }}>
-                Research at JLU is shaped by exploration rather than expectation.
-              </p>
-              <p className="text-[#21313c] leading-relaxed mt-3 md:mt-4 text-base md:text-lg lg:text-xl" style={{ lineHeight: '1.6' }}>
-                It grows from thoughtful questions, careful observation, and a willingness to look beyond the obvious.
-              </p>
-              <p className="text-[#21313c] leading-relaxed mt-3 md:mt-4 text-base md:text-lg lg:text-xl" style={{ lineHeight: '1.6' }}>
-                Across disciplines, faculty and students engage in work that seeks relevance, depth, and long-term value.
-              </p>
-              <p className="text-[#21313c] leading-relaxed mt-3 md:mt-4 text-base md:text-lg lg:text-xl" style={{ lineHeight: '1.6' }}>
-                Knowledge here is not only generated, it is examined, refined, and shared.
-              </p>
-            </div>
-
-            {/* Right Side - Research Areas */}
-            <div className="w-full lg:w-145">
-              {researchAreas.map((area) => (
-                <button
-                  key={area.id}
-                  onClick={() => {
-                    setActiveArea(area.id);
-                    setResearchModal(area.id);
-                  }}
-                  className="w-full flex items-center justify-between py-4 border-b border-gray-300 text-left cursor-pointer hover:bg-[#f6f7f0] transition-colors px-2 -mx-2 rounded"
-                >
-                  <span className={`text-lg text-[#21313c] ${activeArea === area.id ? 'font-medium' : ''}`}>
-                    {area.name}
-                  </span>
-                  <span className="text-[#21313c]">→</span>
-                </button>
-              ))}
-            </div>
-          </div>
-        </div>
-      </div>
-
-      {/* Stats Section */}
-      <div id="research-areas" className="w-full bg-[#e8e8e8]">
-        <div
-          className="mx-auto px-5 py-10 md:px-10 md:py-12 lg:px-30 lg:py-16"
-          style={{
-            maxWidth: '1440px',
-          }}
-        >
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 md:gap-4 lg:gap-0">
-            {statsData.map((stat) => (
-              <div
-                key={stat.id}
-                className="flex flex-col justify-center lg:border-r lg:last:border-r-0 border-[#c4c4c4] lg:pr-10 lg:mr-10 lg:last:pr-0 lg:last:mr-0"
-              >
-                <p className="text-xl sm:text-2xl md:text-3xl lg:text-5xl font-bold text-[#21313c] mb-1 md:mb-2">
-                  {stat.value}
-                </p>
-                <p className="text-xl md:text-2xl font-bold md:text-sm font-medium text-[#21313c] tracking-wider mb-1">
-                  {stat.label}
-                </p>
-                <p className="text-xl md:text-2xl font-bold md:text-sm text-[#21313c] hidden sm:block">
-                  {stat.description}
-                </p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </div>
-
       {/* Publications Section */}
-      <div id="patents" />
       <div id="publications" className="w-full bg-[#f6f7f0]">
         <div
           className="mx-auto px-5 py-12 md:px-10 md:py-16 lg:px-30 lg:py-20"
@@ -506,70 +444,9 @@ const Research = () => {
         </div>
       </div>
 
-      {/* Latest Publication Section */}
-      <div id="jlu-research-journal" />
-      <div id="research-projects" className="w-full bg-white">
-        <div
-          className="mx-auto px-5 py-12 md:px-10 md:py-16 lg:px-30 lg:py-20"
-          style={{
-            maxWidth: '1440px',
-          }}
-        >
-          <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-[#21313c] mb-8 md:mb-12">
-            Latest Publication
-          </h2>
-
-          <div className="flex flex-col-reverse lg:flex-row justify-between gap-8 lg:gap-16">
-            {/* Left Side - Journal Info */}
-            <div className="w-full lg:max-w-125 lg:mt-25">
-              <h3 className="text-xl md:text-2xl lg:text-3xl font-bold text-[#21313c] mb-3 md:mb-4">
-                JLU Research Journal
-              </h3>
-              <p className="text-sm md:text-base text-[#21313c] leading-relaxed mb-6 md:mb-8">
-                A peer-reviewed platform showcasing original research across disciplines, fostering dialogue between academia and industry.
-              </p>
-
-              {/* Categories */}
-              <div className="flex flex-col gap-3 md:gap-4 mb-6 md:mb-8">
-                {journalCategories.map((category, index) => (
-                  <div key={index} className="flex items-center gap-3 md:gap-4">
-                    <span className="text-[#21313c]">——</span>
-                    <span className={`text-sm md:text-base text-[#21313c] ${index === 0 ? 'font-medium' : ''}`}>
-                      {category}
-                    </span>
-                  </div>
-                ))}
-              </div>
-
-              <a href="/research#publications" className="inline-flex items-center gap-2 md:gap-3 text-sm md:text-base text-[#21313c] font-medium underline hover:no-underline">
-                Access the journal
-                <span>→</span>
-              </a>
-            </div>
-
-            {/* Right Side - Journal Card */}
-            <div
-              className="relative shrink-0 overflow-hidden rounded-lg w-full lg:w-145 h-52 sm:h-64 md:h-80 lg:h-125"
-            >
-              <Image
-                src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/JLu%20events/photos/JAgran%20of%20Social%20science/DSC08881.JPG"
-                alt="Research Journal"
-                fill
-                className="object-cover"
-              />
-              <div className="absolute inset-0 bg-black/40" />
-              {/* Publication Badge */}
-              <div className="absolute bottom-0 left-0 right-0 bg-white/90 flex flex-col items-center justify-center py-4 sm:py-5 gap-1 sm:gap-2">
-                <p className="text-base sm:text-xl font-bold text-[#21313c]">Academic Insights</p>
-                <p className="text-xs sm:text-sm text-[#21313c]">Vol. 12, No. 2, Spring 2026</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
       {/* Patents Section */}
-      <div id="collaborations" className="w-full bg-[#f6f7f0]">
+      <div id="patents" />
+      <div id="collaborations" className="w-full bg-white">
         <div
           className="mx-auto px-5 py-12 md:px-10 md:py-16 lg:px-30 lg:py-20"
           style={{
@@ -702,6 +579,144 @@ const Research = () => {
               View all Funded Projects
               <span>→</span>
             </a>
+          </div>
+        </div>
+      </div>
+
+      {/* JLU Research Journal Section */}
+      <div id="jlu-research-journal" />
+      <div className="w-full bg-[#f6f7f0]">
+        <div
+          className="mx-auto px-5 py-12 md:px-10 md:py-16 lg:px-30 lg:py-20"
+          style={{
+            maxWidth: '1440px',
+          }}
+        >
+          <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-[#21313c] mb-8 md:mb-12">
+            Latest Publication
+          </h2>
+
+          <div className="flex flex-col-reverse lg:flex-row justify-between gap-8 lg:gap-16">
+            {/* Left Side - Journal Info */}
+            <div className="w-full lg:max-w-125 lg:mt-25">
+              <h3 className="text-xl md:text-2xl lg:text-3xl font-bold text-[#21313c] mb-3 md:mb-4">
+                JLU Research Journal
+              </h3>
+              <p className="text-sm md:text-base text-[#21313c] leading-relaxed mb-6 md:mb-8">
+                A peer-reviewed platform showcasing original research across disciplines, fostering dialogue between academia and industry.
+              </p>
+
+              {/* Categories */}
+              <div className="flex flex-col gap-3 md:gap-4 mb-6 md:mb-8">
+                {journalCategories.map((category, index) => (
+                  <div key={index} className="flex items-center gap-3 md:gap-4">
+                    <span className="text-[#21313c]">——</span>
+                    <span className={`text-sm md:text-base text-[#21313c] ${index === 0 ? 'font-medium' : ''}`}>
+                      {category}
+                    </span>
+                  </div>
+                ))}
+              </div>
+
+            </div>
+
+            {/* Right Side - Journal Card */}
+            <div
+              className="relative shrink-0 overflow-hidden rounded-lg w-full lg:w-145 h-52 sm:h-64 md:h-80 lg:h-125"
+            >
+              <Image
+                src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/JLu%20events/photos/JAgran%20of%20Social%20science/DSC08881.JPG"
+                alt="Research Journal"
+                fill
+                className="object-cover"
+              />
+              <div className="absolute inset-0 bg-black/40" />
+              {/* Publication Badge */}
+              <div className="absolute bottom-0 left-0 right-0 bg-white/90 flex flex-col items-center justify-center py-4 sm:py-5 gap-1 sm:gap-2">
+                <p className="text-base sm:text-xl font-bold text-[#21313c]">Academic Insights</p>
+                <p className="text-xs sm:text-sm text-[#21313c]">Vol. 12, No. 2, Spring 2026</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Research Ecosystem Section */}
+      <div id="research-centers" className="w-full bg-white">
+        <div
+          className="mx-auto px-5 py-12 md:px-10 md:py-16 lg:px-30 lg:py-20"
+          style={{
+            maxWidth: '1440px',
+          }}
+        >
+          <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-[#21313c] mb-8 md:mb-12 lg:mb-16">
+            Research Ecosystem
+          </h2>
+
+          <div className="flex flex-col lg:flex-row justify-between gap-8 lg:gap-16">
+            {/* Left Side - Content */}
+            <div className="w-full lg:max-w-145">
+              <p className="text-[#21313c] leading-relaxed text-base md:text-lg lg:text-xl" style={{ lineHeight: '1.6' }}>
+                Research at JLU is shaped by exploration rather than expectation.
+              </p>
+              <p className="text-[#21313c] leading-relaxed mt-3 md:mt-4 text-base md:text-lg lg:text-xl" style={{ lineHeight: '1.6' }}>
+                It grows from thoughtful questions, careful observation, and a willingness to look beyond the obvious.
+              </p>
+              <p className="text-[#21313c] leading-relaxed mt-3 md:mt-4 text-base md:text-lg lg:text-xl" style={{ lineHeight: '1.6' }}>
+                Across disciplines, faculty and students engage in work that seeks relevance, depth, and long-term value.
+              </p>
+              <p className="text-[#21313c] leading-relaxed mt-3 md:mt-4 text-base md:text-lg lg:text-xl" style={{ lineHeight: '1.6' }}>
+                Knowledge here is not only generated, it is examined, refined, and shared.
+              </p>
+            </div>
+
+            {/* Right Side - Research Areas */}
+            <div className="w-full lg:w-145">
+              {researchAreas.map((area) => (
+                <button
+                  key={area.id}
+                  onClick={() => {
+                    setActiveArea(area.id);
+                    setResearchModal(area.id);
+                  }}
+                  className="w-full flex items-center justify-between py-4 border-b border-gray-300 text-left cursor-pointer hover:bg-[#f6f7f0] transition-colors px-2 -mx-2 rounded"
+                >
+                  <span className={`text-lg text-[#21313c] ${activeArea === area.id ? 'font-medium' : ''}`}>
+                    {area.name}
+                  </span>
+                  <span className="text-[#21313c]">→</span>
+                </button>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Stats Section */}
+      <div id="research-areas" className="w-full bg-[#e8e8e8]">
+        <div
+          className="mx-auto px-5 py-10 md:px-10 md:py-12 lg:px-30 lg:py-16"
+          style={{
+            maxWidth: '1440px',
+          }}
+        >
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 md:gap-4 lg:gap-0">
+            {statsData.map((stat) => (
+              <div
+                key={stat.id}
+                className="flex flex-col justify-center lg:border-r lg:last:border-r-0 border-[#c4c4c4] lg:pr-10 lg:mr-10 lg:last:pr-0 lg:last:mr-0"
+              >
+                <p className="text-xl sm:text-2xl md:text-3xl lg:text-5xl font-bold text-[#21313c] mb-1 md:mb-2">
+                  {stat.value}
+                </p>
+                <p className="text-xl md:text-2xl font-bold md:text-sm font-medium text-[#21313c] tracking-wider mb-1">
+                  {stat.label}
+                </p>
+                <p className="text-xl md:text-2xl font-bold md:text-sm text-[#21313c] hidden sm:block">
+                  {stat.description}
+                </p>
+              </div>
+            ))}
           </div>
         </div>
       </div>

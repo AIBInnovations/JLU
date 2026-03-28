@@ -51,13 +51,12 @@ export const faculties: Faculty[] = [
           'JLBS is among the top-ranked business schools in Central India, offering a true choice-based credit system with customized specializations. Students gain access to Harvard Business School online courses with digital certificates, Six Sigma courses designed by Ernst & Young, and AI-backed business simulations. Add-on certifications in CMA (IMA, USA) and ACCA (UK) set graduates apart globally.',
         head: 'Dr. Ankush Sharma',
         programs: [
-          { name: 'MBA', duration: '2 Years', degree: 'PG' },
-          { name: 'MBA (Finance / Marketing / HR)', duration: '2 Years', degree: 'PG' },
-          { name: 'Executive MBA', duration: '2 Years', degree: 'PG' },
-          { name: 'BBA', duration: '3 Years', degree: 'UG' },
-          { name: 'BBA Honours (Strategic Finance)', duration: '3 Years', degree: 'UG' },
-          { name: 'BMS', duration: '3 Years', degree: 'UG' },
-          { name: 'B.Com (Hons)', duration: '3 Years', degree: 'UG' },
+          { name: 'BBA*', duration: '3 Years', degree: 'UG' },
+          { name: 'B.Com*', duration: '3 Years', degree: 'UG' },
+          { name: 'BMS* (Marketing / Finance / HR / Risk Management / Business Analytics)', duration: '3 Years', degree: 'UG' },
+          { name: 'MBA (Marketing / Finance / HR / Logistics & Supply Chain)', duration: '2 Years', degree: 'PG' },
+          { name: 'MBA (Business Analytics)', duration: '2 Years', degree: 'PG' },
+          { name: 'MBA (Family Business)', duration: '2 Years', degree: 'PG' },
         ],
         highlights: [
           'Harvard Business School online courses with digital certificates',
@@ -71,13 +70,15 @@ export const faculties: Faculty[] = [
       },
       {
         id: 'sports-mgmt',
-        name: 'Jagran School of Sports Management',
+        name: 'Jagran School of Physical Education and Sports Science',
         shortName: 'Sports Management',
         tagline: 'Where the Business of Sports Meets Academic Rigour.',
         description:
           'Prepares students for the rapidly growing sports industry by combining management fundamentals with the dynamics of the sports ecosystem. Students learn sports marketing, event management, athlete management, and sports law alongside hands-on industry exposure.',
         programs: [
           { name: 'BBA Sports Management', duration: '3 Years', degree: 'UG' },
+          { name: 'Bachelor of Physical Education and Sports Science', duration: '3 Years', degree: 'UG' },
+          { name: 'Master of Physical Education and Sports Science', duration: '2 Years', degree: 'PG' },
         ],
         highlights: [
           'Elite Athlete Scholarships — up to 100% fee waiver',
@@ -89,17 +90,15 @@ export const faculties: Faculty[] = [
       },
       {
         id: 'hospitality',
-        name: 'Jagran School of Hospitality & Aviation Management',
+        name: 'Jagran School of Hospitality & Tourism',
         shortName: 'Hospitality & Aviation',
         tagline: 'Training for Global Service Excellence.',
         description:
           'Designed for global service industries with a focus on professionalism, operational excellence, and customer experience. Approximately 90% of hospitality students are placed in 3-star and 5-star hotels. Training kitchens, restaurant simulations, and international culinary modules provide hands-on industry readiness.',
         head: 'Dr. Nafees Haider Naqvi',
         programs: [
-          { name: 'B.Sc Hospitality & Hotel Administration', duration: '3 Years', degree: 'UG' },
-          { name: 'B.Sc Culinary Arts', duration: '3 Years', degree: 'UG' },
-          { name: 'BBA Aviation & Airport Management', duration: '3 Years', degree: 'UG' },
-          { name: 'MBA Aviation & Hospitality Management', duration: '2 Years', degree: 'PG' },
+          { name: 'B.Sc (Hospitality and Hotel Administration)', duration: '3 Years', degree: 'UG' },
+          { name: 'BBA (Aviation and Airport Management)', duration: '3 Years', degree: 'UG' },
         ],
         highlights: [
           '~90% students placed in 3-star and 5-star hotels',
@@ -131,10 +130,10 @@ export const faculties: Faculty[] = [
         shortName: 'Journalism',
         tagline: 'Part of Google News Lab University Network.',
         description:
-          'Trains journalists to report with integrity, context, and curiosity across all media platforms. The school operates a state-of-the-art 20,000 sq. ft. dedicated media production studio and is part of the Google News Lab University Network. Curriculum covers foundations through specialist journalism with mandatory newsroom apprenticeships.',
+          'Trains journalists to report with integrity, context, and curiosity across all media platforms. The school operates a state-of-the-art 20,000 sq. ft. dedicated media production studio and is part of the Google News Lab University Network.',
         programs: [
-          { name: 'BA Journalism & Mass Communication', duration: '3 Years', degree: 'UG' },
-          { name: 'MA Journalism & Mass Communication', duration: '2 Years', degree: 'PG' },
+          { name: 'BA Journalism and Mass Communication*', duration: '3 Years', degree: 'UG' },
+          { name: 'MA (Mass Communication)', duration: '2 Years', degree: 'PG' },
         ],
         highlights: [
           '20,000 sq. ft. dedicated media production studio',
@@ -151,11 +150,11 @@ export const faculties: Faculty[] = [
         shortName: 'Advertising & PR',
         tagline: 'Creative Strategy Meets Brand Communication.',
         description:
-          'Focuses on brand communication, creative strategy, and audience engagement in a rapidly evolving media world. Students learn consumer insights, advertising strategies, brand activation, reputation management, and the creator economy through agency apprenticeships and live projects.',
+          'Focuses on brand communication, creative strategy, and audience engagement in a rapidly evolving media world.',
         head: 'Dr. Rushit Prabodhchandra Dubal',
         programs: [
-          { name: 'BBA Advertising & Public Relations', duration: '3 Years', degree: 'UG' },
-          { name: 'MA Advertising & Public Relations', duration: '2 Years', degree: 'PG' },
+          { name: 'BBA Advertising and PR', duration: '3 Years', degree: 'UG' },
+          { name: 'MBA Advertising and PR', duration: '2 Years', degree: 'PG' },
         ],
         highlights: [
           'Brand activation and reputation management training',
@@ -167,13 +166,13 @@ export const faculties: Faculty[] = [
       },
       {
         id: 'events-entertainment',
-        name: 'Jagran School of Events & Entertainment',
+        name: 'Jagran School of Events and Entertainment',
         shortName: 'Events & Entertainment',
         tagline: 'Live Events. Real Experience. Industry Ready.',
         description:
-          'Prepares students for the dynamic fields of events, media, and entertainment through practical exposure. The curriculum emphasizes live event production, vendor management, and creative direction with hands-on portfolio building.',
+          'Prepares students for the dynamic fields of events, media, and entertainment through practical exposure.',
         programs: [
-          { name: 'BBA Events & Entertainment', duration: '3 Years', degree: 'UG' },
+          { name: 'BBA Events and Entertainment', duration: '3 Years', degree: 'UG' },
         ],
         highlights: [
           'Live event management and production experience',
@@ -189,14 +188,15 @@ export const faculties: Faculty[] = [
         shortName: 'Languages & Social Sciences',
         tagline: 'Critical Thinking Through Language and Culture.',
         description:
-          'Encourages cultural awareness, critical thinking, and communication through language and social inquiry. Programs foster deep analytical skills, creative expression, and understanding of human behaviour and society.',
+          'Encourages cultural awareness, critical thinking, and communication through language and social inquiry.',
         head: 'Dr. Rolii Ajay Khare',
         programs: [
-          { name: 'BA (Hons.) Psychology', duration: '3 Years', degree: 'UG' },
-          { name: 'BA English Literature', duration: '3 Years', degree: 'UG' },
-          { name: 'BA Public Policy', duration: '3 Years', degree: 'UG' },
-          { name: 'MA Psychology', duration: '2 Years', degree: 'PG' },
+          { name: 'BA English Literature*', duration: '3 Years', degree: 'UG' },
+          { name: 'BA Psychology*', duration: '3 Years', degree: 'UG' },
+          { name: 'BA Economics*', duration: '3 Years', degree: 'UG' },
+          { name: 'BA Public Policy*', duration: '3 Years', degree: 'UG' },
           { name: 'MA English Literature', duration: '2 Years', degree: 'PG' },
+          { name: 'MA Psychology', duration: '2 Years', degree: 'PG' },
         ],
         highlights: [
           'Psychology labs and counseling practicum',
@@ -213,7 +213,7 @@ export const faculties: Faculty[] = [
     name: 'Faculty of Fashion, Design & Arts',
     shortName: 'Design & Arts',
     description:
-      'Nurtures creativity, critical thinking, and cultural understanding through innovative programs in design, architecture, fashion, and the visual arts. Home to a 20,000 sq. ft. dedicated design facility.',
+      'Nurtures creativity, critical thinking, and cultural understanding through innovative programs in design, architecture, fashion, and the visual arts.',
     stats: [
       { label: 'Programs', value: '7+' },
       { label: 'Design Facility', value: '20,000 sq.ft' },
@@ -227,14 +227,13 @@ export const faculties: Faculty[] = [
         shortName: 'Design',
         tagline: 'Powered by ImaginXP. Partnered with NVIDIA.',
         description:
-          'Partners with ImaginXP — India\'s leading UX design organization that has trained 15,000+ professionals — to deliver industry-led design education. The school offers access to a state-of-the-art 20,000 sq. ft. dedicated facility with digital design, graphics, film, animation, and media production spaces. Industry partnerships with NVIDIA, ITC, KPIT, and Toshiba-Mitsubishi.',
+          'Partners with ImaginXP — India\'s leading UX design organization that has trained 15,000+ professionals — to deliver industry-led design education.',
         programs: [
-          { name: 'B.Des UI/UX Design', duration: '4 Years', degree: 'UG' },
-          { name: 'B.Des Graphic Design', duration: '4 Years', degree: 'UG' },
-          { name: 'B.Des Animation & Film Design', duration: '4 Years', degree: 'UG' },
-          { name: 'B.Des Fashion Communication', duration: '4 Years', degree: 'UG' },
-          { name: 'M.Des UI/UX Design', duration: '2 Years', degree: 'PG' },
-          { name: 'Bachelor of Visual Arts', duration: '3 Years', degree: 'UG' },
+          { name: 'B.Des (User Experience Design)', duration: '4 Years', degree: 'UG' },
+          { name: 'B.Des (Animation and Film Design)', duration: '4 Years', degree: 'UG' },
+          { name: 'B.Des (Graphic Design)', duration: '4 Years', degree: 'UG' },
+          { name: 'B.Des (Interior Architecture)', duration: '4 Years', degree: 'UG' },
+          { name: 'M.Des (User Experience Design)', duration: '2 Years', degree: 'PG' },
         ],
         highlights: [
           'Partnership with ImaginXP (trained 15,000+ design professionals)',
@@ -250,7 +249,7 @@ export const faculties: Faculty[] = [
         shortName: 'Architecture',
         tagline: 'Designing Spaces That Respond to People and Context.',
         description:
-          'Balances creativity with structure, preparing students to design spaces that respond to people and context. The 5-year program integrates design studios with site visits, CAD/BIM training, and mandatory internships with architecture firms.',
+          'Balances creativity with structure, preparing students to design spaces that respond to people and context.',
         programs: [
           { name: 'B.Arch', duration: '5 Years', degree: 'UG' },
         ],
@@ -268,10 +267,9 @@ export const faculties: Faculty[] = [
         shortName: 'Fashion',
         tagline: 'Where Culture, Creativity, and Industry Converge.',
         description:
-          'Explores fashion as culture, creativity, and industry — blending design sensibility with practical insight. Students participate in fashion shows, exhibitions, and industry collaborations while mastering textile design, pattern making, and fashion marketing.',
+          'Explores fashion as culture, creativity, and industry — blending design sensibility with practical insight.',
         programs: [
-          { name: 'B.Des Fashion Design', duration: '4 Years', degree: 'UG' },
-          { name: 'B.Des Interior Design', duration: '4 Years', degree: 'UG' },
+          { name: 'B.Des (Fashion Communication)', duration: '4 Years', degree: 'UG' },
         ],
         highlights: [
           'Annual fashion shows and design exhibitions',
@@ -303,12 +301,12 @@ export const faculties: Faculty[] = [
         shortName: 'AI',
         tagline: 'Data-Driven Thinking. Intelligent Systems.',
         description:
-          'Focused on emerging technologies, data-driven thinking, and intelligent systems. Students build expertise in AI, machine learning, data analytics, cybersecurity, and cloud computing through hands-on projects and industry mentorship.',
+          'Focused on emerging technologies, data-driven thinking, and intelligent systems.',
         programs: [
-          { name: 'B.Tech AI & Machine Learning', duration: '4 Years', degree: 'UG' },
-          { name: 'B.Tech Data Science', duration: '4 Years', degree: 'UG' },
-          { name: 'BCA Artificial Intelligence', duration: '3 Years', degree: 'UG' },
-          { name: 'BCA Data Science', duration: '3 Years', degree: 'UG' },
+          { name: 'B.Tech (Artificial Intelligence)', duration: '4 Years', degree: 'UG' },
+          { name: 'B.Tech (Data Science)', duration: '4 Years', degree: 'UG' },
+          { name: 'M.Tech (Artificial Intelligence)', duration: '2 Years', degree: 'PG' },
+          { name: 'M.Tech (Data Science)', duration: '2 Years', degree: 'PG' },
         ],
         highlights: [
           'Machine Learning & Data Science Lab',
@@ -324,13 +322,13 @@ export const faculties: Faculty[] = [
         shortName: 'Engineering',
         tagline: 'Strong Foundations. Industry Awareness.',
         description:
-          'Offers strong technical foundations combined with practical learning and industry awareness across mechanical, civil, electronics, and computer science disciplines. Nine specialized laboratories including a robotics lab in collaboration with a Singapore university provide real-world research experience.',
+          'Offers strong technical foundations combined with practical learning and industry awareness.',
         head: 'Dr. Dileep Kumar Singh',
         programs: [
-          { name: 'B.Tech Computer Science & Engineering', duration: '4 Years', degree: 'UG' },
-          { name: 'B.Tech Electronics & Communication', duration: '4 Years', degree: 'UG' },
-          { name: 'B.Tech Civil Engineering', duration: '4 Years', degree: 'UG' },
-          { name: 'B.Tech Mechanical Engineering', duration: '4 Years', degree: 'UG' },
+          { name: 'B.Tech (Computer Science and Engineering)', duration: '4 Years', degree: 'UG' },
+          { name: 'B.Tech (Robotics and Automation)', duration: '4 Years', degree: 'UG' },
+          { name: 'B.Tech (Sustainable Engineering)', duration: '4 Years', degree: 'UG' },
+          { name: 'M.Tech (Computer Science and Engineering)', duration: '2 Years', degree: 'PG' },
         ],
         highlights: [
           '9 specialized laboratories for hands-on training',
@@ -346,11 +344,13 @@ export const faculties: Faculty[] = [
         shortName: 'Computer Applications',
         tagline: 'Software. Computing. Digital Solutions.',
         description:
-          'Prepares students for careers in software development, computing, and digital solutions through hands-on learning. Core curriculum covers programming languages, database management, networking, and web technologies with electives in AI, ML, cybersecurity, and cloud computing.',
+          'Prepares students for careers in software development, computing, and digital solutions through hands-on learning.',
         programs: [
-          { name: 'BCA', duration: '3 Years', degree: 'UG' },
-          { name: 'MCA', duration: '2 Years', degree: 'PG' },
-          { name: 'B.Sc Computer Science', duration: '3 Years', degree: 'UG' },
+          { name: 'BCA* (General)', duration: '3 Years', degree: 'UG' },
+          { name: 'BCA* (Data Science)', duration: '3 Years', degree: 'UG' },
+          { name: 'BCA* (User Experience)', duration: '3 Years', degree: 'UG' },
+          { name: 'BCA* (Full Stack Development)', duration: '3 Years', degree: 'UG' },
+          { name: 'BCA* (Cloud Computing)', duration: '3 Years', degree: 'UG' },
         ],
         highlights: [
           'Full-stack web and mobile development training',
@@ -367,9 +367,9 @@ export const faculties: Faculty[] = [
     name: 'Faculty of Pharmacy',
     shortName: 'Pharmacy',
     description:
-      'Offers state-of-the-art pharmaceutical education emphasising both theoretical knowledge and practical skills. Students gain expertise through specialized laboratories, hospital training, and research opportunities in pharmaceutical sciences.',
+      'Offers state-of-the-art pharmaceutical education emphasising both theoretical knowledge and practical skills.',
     stats: [
-      { label: 'Programs', value: '2' },
+      { label: 'Programs', value: '1' },
       { label: 'Labs', value: 'Specialized' },
       { label: 'Duration', value: '4 Years' },
       { label: 'Training', value: 'Hospital' },
@@ -377,14 +377,13 @@ export const faculties: Faculty[] = [
     schools: [
       {
         id: 'pharmacy',
-        name: 'Jagran School of Pharmacy',
+        name: 'Faculty of Pharmacy',
         shortName: 'Pharmacy',
         tagline: 'Where Science Meets Healthcare.',
         description:
-          'Combines rigorous scientific learning with responsibility, preparing students for careers in healthcare, research, and pharmaceutical sciences. The program includes hospital pharmacy training, research opportunities, and industry internships alongside comprehensive lab work.',
+          'Combines rigorous scientific learning with responsibility, preparing students for careers in healthcare, research, and pharmaceutical sciences.',
         programs: [
           { name: 'B.Pharma', duration: '4 Years', degree: 'UG' },
-          { name: 'M.Pharma', duration: '2 Years', degree: 'PG' },
         ],
         highlights: [
           'State-of-the-art pharmaceutical laboratories',
@@ -401,10 +400,10 @@ export const faculties: Faculty[] = [
     name: 'Faculty of Law',
     shortName: 'Law',
     description:
-      'Develops legal professionals with clarity of thought, ethical grounding, and practical understanding of the law. All programs are mapped to European Teaching and Learning standards as part of the Tuning India project.',
+      'Develops legal professionals with clarity of thought, ethical grounding, and practical understanding of the law.',
     dean: 'Prof. (Dr.) Sachin Rastogi',
     stats: [
-      { label: 'Programs', value: '7+' },
+      { label: 'Programs', value: '8' },
       { label: 'Global Bodies', value: '10+' },
       { label: 'Moot Court', value: 'International' },
       { label: 'Library', value: '35,000+ Books' },
@@ -416,15 +415,17 @@ export const faculties: Faculty[] = [
         shortName: 'Law',
         tagline: 'International Moot Courts. Global Legal Partnerships.',
         description:
-          'Offers exceptional undergraduate, postgraduate, and research programs mapped to European Teaching and Learning standards. The faculty hosts the prestigious AUAP-JLU International Moot Court Competition and maintains partnerships with IALS, European Law Institute, World Bank\'s Global Forum on Law, and universities worldwide through EU Erasmus+ programs.',
+          'Offers exceptional undergraduate, postgraduate, and research programs mapped to European Teaching and Learning standards.',
         head: 'Prof. (Dr.) Sachin Rastogi',
         programs: [
-          { name: 'BA LLB (Hons.)', duration: '5 Years', degree: 'UG' },
-          { name: 'BBA LLB (Hons.)', duration: '5 Years', degree: 'UG' },
+          { name: 'BA LLB (Hons)', duration: '5 Years', degree: 'UG' },
+          { name: 'BBA LLB (Hons)', duration: '5 Years', degree: 'UG' },
+          { name: 'BBA Business and Law', duration: '3 Years', degree: 'UG' },
           { name: 'LLB', duration: '3 Years', degree: 'UG' },
-          { name: 'BBA Business & Law', duration: '3 Years', degree: 'UG' },
-          { name: 'LLM (Corporate / Criminal / Cyber / Taxation)', duration: '1 Year', degree: 'PG' },
-          { name: 'Ph.D. Law', duration: '3 Years', degree: 'PhD' },
+          { name: 'LLM (Corporate and IP Law)', duration: '1 Year', degree: 'PG' },
+          { name: 'LLM (Cyber Law and Cyber Security)', duration: '1 Year', degree: 'PG' },
+          { name: 'LLM (Criminal Law and Criminal Justice)', duration: '1 Year', degree: 'PG' },
+          { name: 'LLM (Constitutional Law)', duration: '1 Year', degree: 'PG' },
         ],
         highlights: [
           'AUAP-JLU International Moot Court Competition host',
@@ -442,7 +443,7 @@ export const faculties: Faculty[] = [
     name: 'IICA - Jagran Centre for Creative Skills',
     shortName: 'IICA Creative',
     description:
-      'India\'s first industry-led creative incubator in collaboration with NSDC Academy and the Ministry of Skill Development. Offers cutting-edge programs with mentorship from Oscar winners and Padma Shri awardees.',
+      'India\'s first industry-led creative incubator in collaboration with NSDC Academy and the Ministry of Skill Development.',
     stats: [
       { label: 'Mentors', value: 'Oscar Winners' },
       { label: 'Apprenticeship', value: 'Paid' },
@@ -456,21 +457,15 @@ export const faculties: Faculty[] = [
         shortName: 'JCCS',
         tagline: 'Mentored by Oscar Winners. Powered by NSDC.',
         description:
-          'India\'s first industry-led creative incubator offering future-ready careers in media and entertainment. All degree programs include 6–12 months of paid apprenticeship. Students receive mentorship from industry legends including Resul Pookutty (Oscar-winning Sound Designer), Shankar Mahadevan, and Padma Shri awardees. International partnerships with London Film School, NIPDB, and Toon Boom.',
+          'India\'s first industry-led creative incubator offering future-ready careers in media and entertainment.',
         programs: [
-          { name: 'B.Sc Immersive Media & Digital Experience Design', duration: '3 Years', degree: 'UG' },
-          { name: 'BA Acting & Performing Arts', duration: '3 Years', degree: 'UG' },
-          { name: 'BBA Events & Experiential Management', duration: '3 Years', degree: 'UG' },
-          { name: 'BA Digital Content Design & Monetisation', duration: '3 Years', degree: 'UG' },
-          { name: 'B.Sc Animation & Game Production', duration: '3 Years', degree: 'UG' },
-          { name: 'B.Sc Sound Design & Music Production', duration: '3 Years', degree: 'UG' },
+          { name: 'B.Sc. Animation & Game Production', duration: '3 Years', degree: 'UG' },
         ],
         highlights: [
           'Mentorship: Resul Pookutty (Oscar winner), Shankar Mahadevan, Padma Shri awardees',
           '6–12 months paid apprenticeship in every degree program',
           'International partnerships: London Film School, NIPDB, Toon Boom',
           'IP creation focus with real-world project-based learning',
-          'Certification courses in Makeup & Prosthetics, DJ/VJ, AI Photography',
         ],
         image: 'https://images.unsplash.com/photo-1513364776144-60967b0f800f?w=800&q=80',
       },

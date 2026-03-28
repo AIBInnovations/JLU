@@ -395,6 +395,25 @@ const NewsAndEvents = () => {
     return () => window.removeEventListener('resize', calculateScale);
   }, []);
 
+  useEffect(() => {
+    const handleNavigate = (e: Event) => {
+      const slug = (e as CustomEvent).detail?.slug;
+      if (!slug) return;
+      setTimeout(() => {
+        const el = document.getElementById(slug);
+        if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }, 100);
+    };
+    window.addEventListener('navigate-section', handleNavigate);
+    const hash = window.location.hash.replace('#', '');
+    if (hash) {
+      setTimeout(() => {
+        handleNavigate(new CustomEvent('navigate-section', { detail: { slug: hash } }));
+      }, 500);
+    }
+    return () => window.removeEventListener('navigate-section', handleNavigate);
+  }, []);
+
   const handlePrev = () => {
     setCurrentSlide((prev) => Math.max(0, prev - 1));
   };

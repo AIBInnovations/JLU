@@ -2,7 +2,7 @@
 
 import Image from 'next/image';
 import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion';
-import { useState, useRef } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { useIsMobile } from '../hooks/useIsMobile';
 // Custom easing for smooth animations
 const customEase: [number, number, number, number] = [0.22, 1, 0.36, 1];
@@ -344,6 +344,25 @@ const CampusLife = () => {
   const [mobileClubModal, setMobileClubModal] = useState<number | null>(null);
   const [activeRecruiterCategory, setActiveRecruiterCategory] = useState<string>('IT & Technology');
   const [expandedAchievement, setExpandedAchievement] = useState<number | null>(null);
+
+  useEffect(() => {
+    const handleNavigate = (e: Event) => {
+      const slug = (e as CustomEvent).detail?.slug;
+      if (!slug) return;
+      setTimeout(() => {
+        const el = document.getElementById(slug);
+        if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }, 100);
+    };
+    window.addEventListener('navigate-section', handleNavigate);
+    const hash = window.location.hash.replace('#', '');
+    if (hash) {
+      setTimeout(() => {
+        handleNavigate(new CustomEvent('navigate-section', { detail: { slug: hash } }));
+      }, 500);
+    }
+    return () => window.removeEventListener('navigate-section', handleNavigate);
+  }, []);
 
   return (
     <section className="w-screen m-0 p-0 overflow-x-hidden">

@@ -55,6 +55,7 @@ const infrastructureItems = [
         'Modern architectural design across 14 blocks',
         'Accessible pathways throughout campus',
         'Dedicated zones for academics, sports, and recreation',
+        '24/7 medical clinic with ambulance services',
       ],
       highlight: '14 academic blocks housing state-of-the-art classrooms and facilities',
     },
@@ -71,6 +72,7 @@ const infrastructureItems = [
         'Wi-Fi enabled rooms across all hostel blocks',
         '24/7 security with CCTV surveillance',
         'Common rooms, laundry, and recreation areas for students',
+        'State-of-the-art fitness center with 50+ equipment',
       ],
       highlight: '4-block hostel (A, B, C & D) with warden supervision',
     },
@@ -170,6 +172,8 @@ const sportsFacilities = [
   'Athletic Track',
   'Table Tennis',
   'Badminton Courts',
+  '6-Lane Olympic Swimming Pool',
+  'Fitness Center (5,000 sq. ft.)',
 ];
 
 // Facility Cards Data
@@ -598,7 +602,6 @@ const FacilityModal = ({ isOpen, onClose, data }: FacilityModalProps) => {
 const Campus = () => {
   const [activeInfrastructure, setActiveInfrastructure] = useState(1);
   const [selectedFacility, setSelectedFacility] = useState<FacilityData | null>(null);
-  const [activeHealthcare, setActiveHealthcare] = useState(0);
   const heroRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
     target: heroRef,
@@ -606,6 +609,50 @@ const Campus = () => {
   });
   const y = useTransform(scrollYProgress, [0, 1], ['0%', '30%']);
   const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
+
+  // Map menu slugs to expandable sections
+  const slugToAccordion: Record<string, number> = {
+    'university-campus': 1,
+    'student-accommodation': 2,
+    'dining-facilities': 3,
+  };
+
+  const navigateToSection = (slug: string) => {
+    // Expand accordion if slug maps to one
+    if (slugToAccordion[slug]) {
+      setActiveInfrastructure(slugToAccordion[slug]);
+    }
+    // For accordion items, scroll to the accordion section instead
+    const accordionScrollTarget = slugToAccordion[slug] ? 'facilities' : null;
+    // Scroll to the element
+    setTimeout(() => {
+      const targetId = accordionScrollTarget || slug;
+      const el = document.getElementById(targetId);
+      if (el) {
+        el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    }, 100);
+  };
+
+  useEffect(() => {
+    // Handle navigate-section custom events from Header menu
+    const handleNavigate = (e: Event) => {
+      const slug = (e as CustomEvent).detail?.slug;
+      if (slug) navigateToSection(slug);
+    };
+    window.addEventListener('navigate-section', handleNavigate);
+
+    // Handle initial hash in URL
+    const hash = window.location.hash.replace('#', '');
+    if (hash) {
+      setTimeout(() => navigateToSection(hash), 800);
+    }
+
+    return () => {
+      window.removeEventListener('navigate-section', handleNavigate);
+    };
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <section className="w-screen m-0 p-0 overflow-x-hidden">
@@ -680,7 +727,6 @@ const Campus = () => {
 
       {/* ===== CAMPUS STATS SECTION ===== */}
       <div id="university-campus" />
-      <div id="academic-infrastructure" />
       <div id="infrastructure" className="w-full bg-[#f6f7f0] py-16 md:py-24">
         <div className="mx-auto px-5 sm:px-8 md:px-[120px]" style={{ maxWidth: '1440px' }}>
           <motion.div
@@ -694,15 +740,15 @@ const Campus = () => {
               className="text-[#999] uppercase tracking-widest block mb-4 text-xl md:text-2xl font-bold"
               style={{ fontSize: '28px', letterSpacing: '0.25em' }}
             >
-              CAMPUS AT A GLANCE
+              University Campus
             </span>
             <h2
               className="text-[#21313c]"
               style={{ fontSize: 'clamp(1.75rem, 4vw, 3rem)', fontWeight: 600, lineHeight: 1.1 }}
             >
-              World-class{' '}
+              University{' '}
               <span style={{ fontFamily: "'Times New Roman', serif", fontStyle: 'italic', fontWeight: 400 }}>
-                infrastructure
+                Campus
               </span>
             </h2>
           </motion.div>
@@ -733,256 +779,6 @@ const Campus = () => {
         </div>
       </div>
 
-      {/* ===== TECHNOLOGY-BASED CLASSROOMS SECTION ===== */}
-      <div id="technology-labs" />
-      <div id="gurudev-gupta-media-studio" />
-      <div id="ms-gill-culinary-studios" />
-      <div id="shri-cyril-shroff-moot-court" />
-      <div id="laboratories" className="w-full bg-white">
-        <div className="mx-auto px-5 py-12 sm:px-8 sm:py-16 md:px-[120px] md:py-[140px]" style={{ maxWidth: '1440px' }}>
-          <div className="grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-16 items-start">
-            {/* Left - Large Image with floating overlay */}
-            <motion.div
-              initial={{ opacity: 0, x: -60 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 1, ease: customEase }}
-              viewport={{ once: true }}
-              className="md:col-span-7 relative"
-            >
-              <div className="relative h-[300px] sm:h-[450px] md:h-[620px] overflow-hidden">
-                <Image
-                  src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/campus/computer%20lab.JPG"
-                  alt="Technology-Based Classrooms"
-                  fill
-                  className="object-cover"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
-
-                {/* Floating stats strip at bottom */}
-                <motion.div
-                  initial={{ opacity: 0, y: 30 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: 0.5 }}
-                  viewport={{ once: true }}
-                  className="absolute bottom-0 left-0 right-0 bg-white/95 backdrop-blur-sm p-4 md:p-6"
-                >
-                  <div className="flex items-center justify-between gap-4">
-                    <div>
-                      <p className="text-[#21313c] text-2xl md:text-4xl font-bold">125+</p>
-                      <p className="text-[#666] text-[10px] md:text-xs uppercase tracking-wider">Smart Classrooms</p>
-                    </div>
-                    <div className="w-px h-10 bg-gray-200" />
-                    <div>
-                      <p className="text-[#21313c] text-2xl md:text-4xl font-bold">9</p>
-                      <p className="text-[#666] text-[10px] md:text-xs uppercase tracking-wider">Academic Blocks</p>
-                    </div>
-                    <div className="w-px h-10 bg-gray-200" />
-                    <div>
-                      <p className="text-[#21313c] text-2xl md:text-4xl font-bold">100%</p>
-                      <p className="text-[#666] text-[10px] md:text-xs uppercase tracking-wider">Tech Enabled</p>
-                    </div>
-                  </div>
-                </motion.div>
-              </div>
-            </motion.div>
-
-            {/* Right - Content */}
-            <motion.div
-              initial={{ opacity: 0, x: 60 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 1, delay: 0.2, ease: customEase }}
-              viewport={{ once: true }}
-              className="md:col-span-5 md:pt-8"
-            >
-              <span
-                className="text-[#999] uppercase tracking-widest block mb-4 text-xl md:text-2xl font-bold"
-                style={{ letterSpacing: '0.2em' }}
-              >
-                Smart Learning Spaces
-              </span>
-              <h2
-                className="text-[#21313c] text-2xl sm:text-3xl md:text-4xl lg:text-5xl mb-4 md:mb-6"
-                style={{ fontWeight: 600, lineHeight: 1.1, letterSpacing: '-0.02em' }}
-              >
-                Technology-Based{' '}
-                <span style={{ fontFamily: "'Times New Roman', serif", fontStyle: 'italic', fontWeight: 400 }}>
-                  Classrooms
-                </span>
-              </h2>
-              <p className="text-[#666] text-sm md:text-base mb-8 md:mb-10" style={{ lineHeight: 1.7 }}>
-                Our 125+ classrooms across 9 academic blocks are designed with ergonomic precision and acoustic optimization, ensuring every lecture is delivered in an environment that maximizes learning and eliminates distractions.
-              </p>
-
-              {/* Feature Items - Staggered vertical list */}
-              <motion.div
-                variants={staggerContainer}
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true }}
-                className="space-y-5 md:space-y-6"
-              >
-                {classroomFeatures.map((feature, index) => (
-                  <motion.div
-                    key={index}
-                    variants={staggerItem}
-                    className="flex items-start gap-4 group"
-                  >
-                    <div className="w-11 h-11 md:w-14 md:h-14 bg-[#f6f7f0] rounded-xl flex items-center justify-center shrink-0 group-hover:bg-[#21313c] group-hover:text-white text-[#21313c] transition-colors duration-300">
-                      <feature.icon />
-                    </div>
-                    <div>
-                      <h4 className="text-[#21313c] font-semibold text-sm md:text-base mb-1">{feature.title}</h4>
-                      <p className="text-[#666] text-xs md:text-sm" style={{ lineHeight: 1.6 }}>{feature.desc}</p>
-                    </div>
-                  </motion.div>
-                ))}
-              </motion.div>
-            </motion.div>
-          </div>
-        </div>
-      </div>
-
-      {/* ===== HEALTHCARE & WELLNESS SECTION ===== */}
-      <div id="medical-center" className="w-full bg-[#21313c]">
-        <div className="mx-auto px-5 py-12 sm:px-8 sm:py-16 md:px-[120px] md:py-[140px]" style={{ maxWidth: '1440px' }}>
-          {/* Section Header */}
-          <motion.div
-            initial={{ opacity: 0, y: 40 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, ease: customEase }}
-            viewport={{ once: true }}
-            className="mb-10 md:mb-16"
-          >
-            <span
-              className="text-[#999] uppercase tracking-widest block mb-4 md:mb-6 text-xl md:text-2xl font-bold"
-              style={{ letterSpacing: '0.2em' }}
-            >
-              Healthcare & Safety
-            </span>
-            <h2
-              className="text-white text-2xl sm:text-3xl md:text-4xl lg:text-5xl mb-4"
-              style={{ fontWeight: 600, lineHeight: 1.1, letterSpacing: '-0.02em' }}
-            >
-              Your well-being,{' '}
-              <span style={{ fontFamily: "'Times New Roman', serif", fontStyle: 'italic', fontWeight: 400, color: '#027ea1' }}>
-                our priority
-              </span>
-            </h2>
-            <p className="text-[#999] text-sm md:text-base max-w-[600px]" style={{ lineHeight: 1.7 }}>
-              From 24/7 medical care to Olympic-standard fitness facilities, JLU ensures every student has access to world-class healthcare and wellness infrastructure.
-            </p>
-          </motion.div>
-
-          {/* Healthcare Tabs - Interactive panel switcher */}
-          <div className="flex flex-col md:flex-row gap-6 md:gap-0">
-            {/* Tab buttons - vertical on desktop */}
-            <div className="flex md:flex-col gap-0 md:gap-0 md:w-[280px] md:shrink-0 overflow-x-auto md:overflow-visible">
-              {healthcareItems.map((item, index) => (
-                <motion.button
-                  key={index}
-                  initial={{ opacity: 0, x: -20 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  transition={{ duration: 0.5, delay: index * 0.1 }}
-                  viewport={{ once: true }}
-                  onClick={() => setActiveHealthcare(index)}
-                  className={`text-left px-3 py-3 md:px-6 md:py-6 border-l-2 md:border-l-[3px] transition-all duration-300 whitespace-nowrap md:whitespace-normal flex-shrink-0 ${
-                    activeHealthcare === index
-                      ? 'border-[#f0c14b] bg-white/5'
-                      : 'border-white/10 hover:border-white/30'
-                  }`}
-                >
-                  <span className={`block text-[10px] md:text-sm font-semibold transition-colors duration-300 ${
-                    activeHealthcare === index ? 'text-[#f0c14b]' : 'text-white/50'
-                  }`}>
-                    {item.subtitle}
-                  </span>
-                  <span className={`block text-sm md:text-lg font-medium transition-colors duration-300 mt-0.5 ${
-                    activeHealthcare === index ? 'text-white' : 'text-white/70'
-                  }`}>
-                    {item.title}
-                  </span>
-                </motion.button>
-              ))}
-            </div>
-
-            {/* Active panel content */}
-            <div className="flex-1 md:pl-10">
-              <AnimatePresence mode="wait">
-                <motion.div
-                  key={activeHealthcare}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -20 }}
-                  transition={{ duration: 0.4, ease: customEase }}
-                  className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-10"
-                >
-                  {/* Image */}
-                  <div
-                    className="relative h-[250px] sm:h-[300px] md:h-[400px] overflow-hidden rounded-xl cursor-pointer group/health"
-                    onClick={() => setSelectedFacility(healthcareModalData[activeHealthcare] || null)}
-                  >
-                    <Image
-                      src={healthcareItems[activeHealthcare].image}
-                      alt={healthcareItems[activeHealthcare].title}
-                      fill
-                      className="object-cover group-hover/health:scale-105 transition-transform duration-700"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
-
-                    {/* Stats overlay */}
-                    <div className="absolute bottom-4 left-4 right-4 flex gap-4">
-                      {healthcareItems[activeHealthcare].stats.map((stat, idx) => (
-                        <motion.div
-                          key={idx}
-                          initial={{ opacity: 0, y: 10 }}
-                          animate={{ opacity: 1, y: 0 }}
-                          transition={{ delay: 0.2 + idx * 0.1 }}
-                          className="bg-white/95 backdrop-blur-sm px-4 py-3 rounded-lg"
-                        >
-                          <p className="text-[#21313c] text-lg md:text-2xl font-bold">{stat.value}</p>
-                          <p className="text-[#666] text-[10px] md:text-xs">{stat.label}</p>
-                        </motion.div>
-                      ))}
-                    </div>
-                  </div>
-
-                  {/* Content */}
-                  <div className="flex flex-col justify-center">
-                    <p className="text-[#999] text-sm md:text-base mb-6" style={{ lineHeight: 1.8 }}>
-                      {healthcareItems[activeHealthcare].description}
-                    </p>
-                    <div className="space-y-3 mb-6">
-                      {healthcareItems[activeHealthcare].features.map((feature, idx) => (
-                        <motion.div
-                          key={idx}
-                          initial={{ opacity: 0, x: -10 }}
-                          animate={{ opacity: 1, x: 0 }}
-                          transition={{ delay: 0.3 + idx * 0.08 }}
-                          className="flex items-center gap-3"
-                        >
-                          <span className="w-2 h-2 bg-[#f0c14b] rounded-full shrink-0" />
-                          <span className="text-white/80 text-sm md:text-base">{feature}</span>
-                        </motion.div>
-                      ))}
-                    </div>
-                    <motion.button
-                      initial={{ opacity: 0 }}
-                      animate={{ opacity: 1 }}
-                      transition={{ delay: 0.5 }}
-                      onClick={() => setSelectedFacility(healthcareModalData[activeHealthcare] || null)}
-                      className="self-start inline-flex items-center gap-2 text-[#f0c14b] text-sm font-medium hover:gap-3 transition-all cursor-pointer"
-                    >
-                      View Details
-                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
-                    </motion.button>
-                  </div>
-                </motion.div>
-              </AnimatePresence>
-            </div>
-          </div>
-        </div>
-      </div>
-
       {/* ===== CAMPUS INFRASTRUCTURE (Hostel & Dining) SECTION ===== */}
       <div id="student-accommodation" />
       <div id="dining-facilities" />
@@ -1009,7 +805,7 @@ const Campus = () => {
                 className="text-[#999] uppercase tracking-widest block mb-4 md:mb-6 text-xl md:text-2xl font-bold"
                 style={{ letterSpacing: '0.2em' }}
               >
-                Facilities
+                Student Accommodation
               </motion.span>
               <h2
                 className="text-[#21313c] text-3xl sm:text-4xl md:text-4xl lg:text-5xl"
@@ -1196,7 +992,117 @@ const Campus = () => {
         </div>
       </div>
 
+      {/* ===== TECHNOLOGY-BASED CLASSROOMS SECTION ===== */}
+      <div id="laboratories" className="w-full bg-white">
+        <div className="mx-auto px-5 py-12 sm:px-8 sm:py-16 md:px-[120px] md:py-[140px]" style={{ maxWidth: '1440px' }}>
+          <div className="grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-16 items-start">
+            {/* Left - Large Image with floating overlay */}
+            <motion.div
+              initial={{ opacity: 0, x: -60 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 1, ease: customEase }}
+              viewport={{ once: true }}
+              className="md:col-span-7 relative"
+            >
+              <div className="relative h-[300px] sm:h-[450px] md:h-[620px] overflow-hidden">
+                <Image
+                  src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/campus/computer%20lab.JPG"
+                  alt="Technology-Based Classrooms"
+                  fill
+                  className="object-cover"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
+
+                {/* Floating stats strip at bottom */}
+                <motion.div
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6, delay: 0.5 }}
+                  viewport={{ once: true }}
+                  className="absolute bottom-0 left-0 right-0 bg-white/95 backdrop-blur-sm p-4 md:p-6"
+                >
+                  <div className="flex items-center justify-between gap-4">
+                    <div>
+                      <p className="text-[#21313c] text-2xl md:text-4xl font-bold">125+</p>
+                      <p className="text-[#666] text-[10px] md:text-xs uppercase tracking-wider">Smart Classrooms</p>
+                    </div>
+                    <div className="w-px h-10 bg-gray-200" />
+                    <div>
+                      <p className="text-[#21313c] text-2xl md:text-4xl font-bold">9</p>
+                      <p className="text-[#666] text-[10px] md:text-xs uppercase tracking-wider">Academic Blocks</p>
+                    </div>
+                    <div className="w-px h-10 bg-gray-200" />
+                    <div>
+                      <p className="text-[#21313c] text-2xl md:text-4xl font-bold">100%</p>
+                      <p className="text-[#666] text-[10px] md:text-xs uppercase tracking-wider">Tech Enabled</p>
+                    </div>
+                  </div>
+                </motion.div>
+              </div>
+            </motion.div>
+
+            {/* Right - Content */}
+            <motion.div
+              initial={{ opacity: 0, x: 60 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 1, delay: 0.2, ease: customEase }}
+              viewport={{ once: true }}
+              className="md:col-span-5 md:pt-8"
+            >
+              <span
+                className="text-[#999] uppercase tracking-widest block mb-4 text-xl md:text-2xl font-bold"
+                style={{ letterSpacing: '0.2em' }}
+              >
+                Facilities
+              </span>
+              <h2
+                className="text-[#21313c] text-2xl sm:text-3xl md:text-4xl lg:text-5xl mb-4 md:mb-6"
+                style={{ fontWeight: 600, lineHeight: 1.1, letterSpacing: '-0.02em' }}
+              >
+                Technology-Based{' '}
+                <span style={{ fontFamily: "'Times New Roman', serif", fontStyle: 'italic', fontWeight: 400 }}>
+                  Classrooms
+                </span>
+              </h2>
+              <p className="text-[#666] text-sm md:text-base mb-8 md:mb-10" style={{ lineHeight: 1.7 }}>
+                Our 125+ classrooms across 9 academic blocks are designed with ergonomic precision and acoustic optimization, ensuring every lecture is delivered in an environment that maximizes learning and eliminates distractions.
+              </p>
+
+              {/* Feature Items - Staggered vertical list */}
+              <motion.div
+                variants={staggerContainer}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true }}
+                className="space-y-5 md:space-y-6"
+              >
+                {classroomFeatures.map((feature, index) => (
+                  <motion.div
+                    key={index}
+                    variants={staggerItem}
+                    className="flex items-start gap-4 group"
+                  >
+                    <div className="w-11 h-11 md:w-14 md:h-14 bg-[#f6f7f0] rounded-xl flex items-center justify-center shrink-0 group-hover:bg-[#21313c] group-hover:text-white text-[#21313c] transition-colors duration-300">
+                      <feature.icon />
+                    </div>
+                    <div>
+                      <h4 className="text-[#21313c] font-semibold text-sm md:text-base mb-1">{feature.title}</h4>
+                      <p className="text-[#666] text-xs md:text-sm" style={{ lineHeight: 1.6 }}>{feature.desc}</p>
+                    </div>
+                  </motion.div>
+                ))}
+              </motion.div>
+            </motion.div>
+          </div>
+        </div>
+      </div>
+
       {/* ===== ACADEMIC INFRASTRUCTURE SECTION ===== */}
+      <div id="academic-infrastructure" />
+      <div id="technology-labs" />
+      <div id="gurudev-gupta-media-studio" />
+      <div id="ms-gill-culinary-studios" />
+      <div id="shri-cyril-shroff-moot-court" />
       <div className="w-full bg-[#21313c]">
         <div
           className="mx-auto px-5 py-12 sm:px-8 sm:py-16 md:px-[120px] md:py-[140px]"
@@ -1423,7 +1329,6 @@ const Campus = () => {
 
       {/* ===== SPORTS & LEISURE SECTION ===== */}
       <div id="sports-facilities" />
-      <div id="indoor-multipurpose-hall" />
       <div id="sports-complex" className="w-full bg-[#f6f7f0]">
         <div
           className="mx-auto px-5 py-12 sm:px-8 sm:py-16 md:px-[120px] md:py-[140px]"
@@ -1442,7 +1347,7 @@ const Campus = () => {
                 className="text-[#999] uppercase tracking-widest block mb-4 text-xl md:text-2xl font-bold"
                 style={{ letterSpacing: '0.2em' }}
               >
-                Sports & Leisure
+                Sports Facilities
               </span>
               <h2
                 className="text-[#21313c] text-3xl sm:text-4xl md:text-5xl"
@@ -1553,7 +1458,7 @@ const Campus = () => {
                 className="group cursor-pointer"
                 onClick={() => setSelectedFacility(sportsModalData[1])}
               >
-                <div className="relative overflow-hidden h-[118px] sm:h-[190px] md:h-[280px]">
+                <div className="relative overflow-hidden h-[250px] sm:h-[400px] md:h-[580px]">
                   <motion.div
                     className="absolute inset-0"
                     whileHover={{ scale: 1.05 }}
@@ -1578,39 +1483,6 @@ const Campus = () => {
                 </div>
               </motion.div>
 
-              {/* Indoor Multipurpose Hall */}
-              <motion.div
-                initial={{ opacity: 0, y: 60 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: 0.2, ease: customEase }}
-                viewport={{ once: true }}
-                className="group cursor-pointer"
-                onClick={() => setSelectedFacility(sportsModalData[2])}
-              >
-                <div className="relative overflow-hidden h-[118px] sm:h-[190px] md:h-[280px]">
-                  <motion.div
-                    className="absolute inset-0"
-                    whileHover={{ scale: 1.05 }}
-                    transition={{ duration: 0.8, ease: customEase }}
-                  >
-                    <Image
-                      src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/campus/sports.jpg"
-                      alt="Indoor Multipurpose Hall"
-                      fill
-                      className="object-cover"
-                    />
-                  </motion.div>
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent" />
-                  <div className="absolute bottom-0 left-0 right-0 p-2 sm:p-4 md:p-8">
-                    <h4 className="text-white font-semibold mb-0.5 sm:mb-1 md:mb-2 text-[10px] sm:text-base md:text-[22px]">
-                      Indoor Multipurpose Hall
-                    </h4>
-                    <p className="text-white/80 text-[8px] sm:text-xs md:text-sm hidden sm:block" style={{ lineHeight: 1.6 }}>
-                      A 15,000 sq. ft. climate-controlled venue for sports, events, and gatherings.
-                    </p>
-                  </div>
-                </div>
-              </motion.div>
             </div>
           </div>
 
@@ -1686,7 +1558,7 @@ const Campus = () => {
                 className="text-[#999] uppercase tracking-widest block mb-4 text-xl md:text-2xl font-bold"
                 style={{ letterSpacing: '0.2em' }}
               >
-                Knowledge Hub
+                The Pyramid – University Library
               </span>
               <h2
                 className="text-[#21313c] text-2xl sm:text-3xl md:text-4xl lg:text-5xl mb-4 md:mb-6"
@@ -1744,6 +1616,114 @@ const Campus = () => {
                   </motion.div>
                 ))}
               </div>
+            </motion.div>
+          </div>
+        </div>
+      </div>
+
+      {/* ===== INDOOR MULTIPURPOSE HALL SECTION ===== */}
+      <div id="indoor-multipurpose-hall" />
+      <div className="w-full bg-[#f6f7f0]">
+        <div
+          className="mx-auto px-5 py-12 sm:px-8 sm:py-16 md:px-[120px] md:py-[120px]"
+          style={{ maxWidth: '1440px' }}
+        >
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-16 items-center">
+            {/* Left - Content */}
+            <motion.div
+              initial={{ opacity: 0, x: -50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8, ease: customEase }}
+              viewport={{ once: true }}
+            >
+              <span
+                className="text-[#999] uppercase tracking-widest block mb-4 text-xl md:text-2xl font-bold"
+                style={{ letterSpacing: '0.2em' }}
+              >
+                Indoor Multipurpose Hall
+              </span>
+              <h2
+                className="text-[#21313c] text-2xl sm:text-3xl md:text-4xl lg:text-5xl mb-4 md:mb-6"
+                style={{ fontWeight: 600, lineHeight: 1.1, letterSpacing: '-0.02em' }}
+              >
+                A space for{' '}
+                <span style={{ fontFamily: "'Times New Roman', serif", fontStyle: 'italic', fontWeight: 400 }}>
+                  every occasion
+                </span>
+              </h2>
+              <p className="text-[#666] text-sm md:text-base mb-6 md:mb-8" style={{ lineHeight: 1.7 }}>
+                A 15,000 sq. ft. climate-controlled venue for indoor sports, cultural events, conferences, and large gatherings. Equipped with professional lighting and sound systems, the hall serves as a versatile space for the entire university community.
+              </p>
+
+              <div className="grid grid-cols-2 gap-4 md:gap-6 mb-6 md:mb-8">
+                {[
+                  { title: '15,000', desc: 'sq. ft. Area' },
+                  { title: '500+', desc: 'Seating Capacity' },
+                  { title: '50+', desc: 'Events per Year' },
+                  { title: 'Multi-Sport', desc: 'Flooring' },
+                ].map((item, index) => (
+                  <motion.div
+                    key={index}
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.4, delay: 0.3 + index * 0.1 }}
+                    viewport={{ once: true }}
+                    className="bg-white p-4 rounded-lg"
+                  >
+                    <p className="text-[#21313c] font-semibold text-lg md:text-xl">{item.title}</p>
+                    <p className="text-[#666] text-xs md:text-sm">{item.desc}</p>
+                  </motion.div>
+                ))}
+              </div>
+
+              <div className="space-y-3">
+                {[
+                  'Climate-controlled indoor environment',
+                  'Indoor badminton and table tennis',
+                  'Professional lighting and sound system',
+                  'Multi-sport flooring for various activities',
+                  'Seating arrangements for large events',
+                ].map((highlight, index) => (
+                  <motion.div
+                    key={index}
+                    initial={{ opacity: 0, x: -20 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    transition={{ duration: 0.4, delay: 0.5 + index * 0.1 }}
+                    viewport={{ once: true }}
+                    className="flex items-center gap-3"
+                  >
+                    <span className="w-1.5 h-1.5 bg-[#f0c14b] rounded-full" />
+                    <span className="text-[#444] text-sm md:text-base">{highlight}</span>
+                  </motion.div>
+                ))}
+              </div>
+            </motion.div>
+
+            {/* Right - Image */}
+            <motion.div
+              initial={{ opacity: 0, x: 50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8, delay: 0.2, ease: customEase }}
+              viewport={{ once: true }}
+              className="relative h-[300px] sm:h-[400px] md:h-[550px] overflow-hidden rounded-xl cursor-pointer"
+              onClick={() => setSelectedFacility(sportsModalData[2])}
+            >
+              <Image
+                src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/campus/sports.jpg"
+                alt="Indoor Multipurpose Hall"
+                fill
+                className="object-cover"
+              />
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.4 }}
+                viewport={{ once: true }}
+                className="absolute bottom-4 right-4 md:bottom-8 md:right-8 bg-white p-4 md:p-6 rounded-xl shadow-lg"
+              >
+                <p className="text-[#21313c] text-2xl md:text-4xl font-bold mb-1">15,000</p>
+                <p className="text-[#666] text-xs md:text-sm">sq. ft. Multipurpose Space</p>
+              </motion.div>
             </motion.div>
           </div>
         </div>

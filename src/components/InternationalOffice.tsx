@@ -795,6 +795,25 @@ const InternationalOffice = () => {
   const y = useTransform(scrollYProgress, [0, 1], ['0%', '30%']);
   const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
 
+  useEffect(() => {
+    const handleNavigate = (e: Event) => {
+      const slug = (e as CustomEvent).detail?.slug;
+      if (!slug) return;
+      setTimeout(() => {
+        const el = document.getElementById(slug);
+        if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }, 100);
+    };
+    window.addEventListener('navigate-section', handleNavigate);
+    const hash = window.location.hash.replace('#', '');
+    if (hash) {
+      setTimeout(() => {
+        handleNavigate(new CustomEvent('navigate-section', { detail: { slug: hash } }));
+      }, 500);
+    }
+    return () => window.removeEventListener('navigate-section', handleNavigate);
+  }, []);
+
   return (
     <section className="w-screen m-0 p-0 overflow-x-hidden">
       {/* Hero Section with Image */}
@@ -899,7 +918,7 @@ const InternationalOffice = () => {
 
       {/* Global Partnerships Section */}
       <div id="university-partner" />
-      <div id="global-partnerships" className="w-full bg-white">
+      <div className="w-full bg-white">
         <div
           className="mx-auto px-5 py-16 md:px-10 md:py-20 lg:px-30 lg:py-35"
           style={{
@@ -919,7 +938,7 @@ const InternationalOffice = () => {
                 className="text-[#999] uppercase tracking-widest block mb-4 md:mb-6 text-xl md:text-2xl font-bold"
                 style={{ letterSpacing: '0.2em' }}
               >
-                Global Network
+                University Partner
               </span>
               <h2
                 className="text-[#21313c] mb-6 md:mb-8"
@@ -1010,8 +1029,7 @@ const InternationalOffice = () => {
 
       {/* Foundation & Prep Section */}
       <div id="pathway-programs" />
-      <div id="summer-schools" />
-      <div id="exchange-programs" className="w-full bg-[#f6f7f0]">
+      <div className="w-full bg-[#f6f7f0]">
         <div
           className="mx-auto px-5 py-16 md:px-10 md:py-20 lg:px-30 lg:py-35"
           style={{
@@ -1029,7 +1047,7 @@ const InternationalOffice = () => {
               className="text-[#999] uppercase tracking-widest block mb-4 md:mb-6 text-xl md:text-2xl font-bold"
               style={{ letterSpacing: '0.2em' }}
             >
-              Programs
+              Pathway Programs
             </span>
             <h2
               className="text-[#21313c]"
@@ -1136,10 +1154,9 @@ const InternationalOffice = () => {
       </div>
 
       {/* Summer Schools Section */}
-      <div id="international-admissions" />
-      <div id="student-application-process" />
-      <div id="international-faq" />
-      <div id="international-students" className="w-full bg-[#21313c]">
+      <div id="summer-schools" />
+      <div id="exchange-programs" />
+      <div className="w-full bg-[#21313c]">
         <div
           className="mx-auto flex flex-col items-center justify-center px-5 py-16 md:px-10 md:py-20 lg:px-30 lg:py-30"
           style={{
@@ -1158,7 +1175,7 @@ const InternationalOffice = () => {
               className="text-white/50 uppercase tracking-widest block mb-6 md:mb-8 text-xl md:text-2xl font-bold"
               style={{ letterSpacing: '0.3em' }}
             >
-              Summer Programs
+              Summer Schools
             </span>
             <h2
               className="text-white mb-6 md:mb-8"
@@ -1194,96 +1211,128 @@ const InternationalOffice = () => {
       </div>
 
       {/* Your Journey Section - Awwwards-style Animated Timeline */}
-      <div id="study-abroad">
+      <div id="international-admissions" />
+      <div id="study-abroad" />
+      <div id="international-students">
         <JourneySection steps={journeySteps} onApplyClick={() => setShowApplyModal(true)} />
       </div>
 
-      {/* Visa & Immigration Support Section */}
-      <div id="fee-structure" />
-      <div id="application-form" />
-      <div id="immigration-and-visa" />
-      <div id="living-in-bhopal" />
-      <div id="visa-assistance" className="w-full bg-white">
+      {/* International FAQ Section */}
+      <div id="international-faq" />
+      <div className="w-full bg-[#f6f7f0]">
         <div
           className="mx-auto px-5 py-16 md:px-10 md:py-20 lg:px-30 lg:py-35"
           style={{
             maxWidth: '1440px',
           }}
         >
-          <motion.div
-            className="text-center mb-10 md:mb-16 lg:mb-20"
-            initial={{ opacity: 0, y: 40 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, ease: customEase }}
-            viewport={{ once: true }}
-          >
-            <span
-              className="text-[#999] uppercase tracking-widest block mb-4 md:mb-6 text-xl md:text-2xl font-bold"
-              style={{ letterSpacing: '0.2em' }}
+          <div className="flex flex-col lg:flex-row gap-10 md:gap-12 lg:gap-20">
+            {/* Left Side - Header */}
+            <motion.div
+              className="w-full lg:max-w-100 lg:sticky lg:top-32 lg:self-start"
+              initial={{ opacity: 0, x: -50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8, ease: customEase }}
+              viewport={{ once: true }}
             >
-              Support Services
-            </span>
-            <h2
-              className="text-[#21313c] mb-4 md:mb-6"
-              style={{
-                fontSize: 'clamp(1.75rem, 4vw, 3.5rem)',
-                fontWeight: 600,
-                lineHeight: 1.1,
-                letterSpacing: '-0.03em',
-              }}
-            >
-              Visa & immigration support{' '}
-              <span style={{ fontFamily: "'Times New Roman', serif", fontStyle: 'italic', fontWeight: 400 }}>
-                you can rely on
-              </span>
-            </h2>
-            <p
-              className="text-[#666] max-w-2xl mx-auto text-sm md:text-base lg:text-lg"
-              style={{ lineHeight: 1.8 }}
-            >
-              Navigating immigration can be complex. Our dedicated team is here to guide you every step of the way, ensuring legal compliance and peace of mind.
-            </p>
-          </motion.div>
-
-          {/* Support Cards */}
-          <motion.div
-            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6"
-            variants={staggerContainer}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-          >
-            {visaSupport.map((item, index) => (
-              <motion.div
-                key={item.id}
-                variants={staggerItem}
-                className="bg-[#f6f7f0] p-6 md:p-8 group cursor-pointer rounded-2xl"
-                whileHover={{ y: -8, transition: { duration: 0.3 } }}
-                onClick={() => setVisaModal(item)}
+              <span
+                className="text-[#999] uppercase tracking-widest block mb-4 md:mb-6 text-xl md:text-2xl font-bold"
+                style={{ letterSpacing: '0.2em' }}
               >
-                {/* Number */}
-                <div
-                  className="text-[#f0c14b] font-bold mb-4 md:mb-6 text-4xl md:text-5xl"
-                  style={{ lineHeight: 1 }}
+                International FAQ
+              </span>
+              <h2
+                className="text-[#21313c] mb-6 md:mb-8"
+                style={{
+                  fontSize: 'clamp(2.25rem, 4vw, 3rem)',
+                  fontWeight: 600,
+                  lineHeight: 1.1,
+                  letterSpacing: '-0.03em',
+                }}
+              >
+                International{' '}
+                <span style={{ fontFamily: "'Times New Roman', serif", fontStyle: 'italic', fontWeight: 400 }}>
+                  FAQ
+                </span>
+              </h2>
+              <p
+                className="text-[#666] mb-8 text-base md:text-lg"
+                style={{ lineHeight: 1.8 }}
+              >
+                Find answers to common questions about studying at JLU as an international student.
+              </p>
+              <motion.button
+                onClick={() => { setShowContactForm(true); setContactSubmitted(false); setContactForm({ name: '', email: '', country: '', phone: '', message: '' }); }}
+                className="inline-flex items-center gap-3 px-6 py-3 md:px-8 md:py-4 bg-[#21313c] text-white font-medium text-sm md:text-base rounded-full cursor-pointer border-none"
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+              >
+                Contact International Office
+                <span>→</span>
+              </motion.button>
+            </motion.div>
+
+            {/* Right Side - FAQ Accordion */}
+            <motion.div
+              className="flex-1"
+              variants={staggerContainer}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
+            >
+              {faqData.map((faq, index) => (
+                <motion.div
+                  key={faq.id}
+                  variants={staggerItem}
+                  className="border-b border-gray-200"
                 >
-                  0{index + 1}
-                </div>
-                <h3
-                  className="text-[#21313c] mb-3 md:mb-4 group-hover:text-[#f0c14b] transition-colors text-lg md:text-xl font-semibold"
-                >
-                  {item.title}
-                </h3>
-                <p className="text-[#666] text-sm md:text-[15px]" style={{ lineHeight: 1.7 }}>
-                  {item.description}
-                </p>
-              </motion.div>
-            ))}
-          </motion.div>
+                  <button
+                    onClick={() => setOpenFaq(openFaq === faq.id ? null : faq.id)}
+                    className="w-full flex items-start gap-4 py-6 md:py-8 cursor-pointer bg-transparent border-none text-left"
+                  >
+                    <span className="text-[#f0c14b] font-bold text-xl md:text-2xl">
+                      {String(index + 1).padStart(2, '0')}
+                    </span>
+                    <div className="flex-1">
+                      <div className="flex items-center justify-between">
+                        <h3 className="text-[#21313c] font-semibold text-base md:text-lg pr-4">
+                          {faq.question}
+                        </h3>
+                        <motion.span
+                          animate={{ rotate: openFaq === faq.id ? 45 : 0 }}
+                          transition={{ duration: 0.2 }}
+                          className="text-[#21313c] text-xl flex-shrink-0"
+                        >
+                          +
+                        </motion.span>
+                      </div>
+                    </div>
+                  </button>
+                  <AnimatePresence>
+                    {openFaq === faq.id && (
+                      <motion.div
+                        initial={{ height: 0, opacity: 0 }}
+                        animate={{ height: 'auto', opacity: 1 }}
+                        exit={{ height: 0, opacity: 0 }}
+                        transition={{ duration: 0.3 }}
+                        className="overflow-hidden"
+                      >
+                        <p className="text-[#666] text-sm md:text-[15px] pl-12 md:pl-14 pb-6 md:pb-8" style={{ lineHeight: 1.8 }}>
+                          {faq.answer}
+                        </p>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </motion.div>
+              ))}
+            </motion.div>
+          </div>
         </div>
       </div>
 
       {/* Fee Structure Section */}
-      <div className="w-full bg-[#f6f7f0]">
+      <div id="fee-structure" />
+      <div className="w-full bg-white">
         <div
           className="mx-auto px-5 py-16 md:px-10 md:py-20 lg:px-30 lg:py-35"
           style={{
@@ -1301,7 +1350,7 @@ const InternationalOffice = () => {
               className="text-[#999] uppercase tracking-widest block mb-4 md:mb-6 text-xl md:text-2xl font-bold"
               style={{ letterSpacing: '0.2em' }}
             >
-              Investment
+              Fee Structure
             </span>
             <h2
               className="text-[#21313c] mb-4 md:mb-6"
@@ -1337,7 +1386,7 @@ const InternationalOffice = () => {
               <motion.div
                 key={fee.id}
                 variants={staggerItem}
-                className="bg-white p-6 md:p-8 rounded-2xl border border-gray-100 hover:shadow-xl transition-shadow"
+                className="bg-[#f6f7f0] p-6 md:p-8 rounded-2xl border border-gray-100 hover:shadow-xl transition-shadow"
               >
                 <h3 className="text-[#21313c] font-semibold text-lg md:text-xl mb-2">
                   {fee.program}
@@ -1384,7 +1433,9 @@ const InternationalOffice = () => {
       </div>
 
       {/* Application Form Section */}
-      <div id="international-faculty" className="w-full bg-white">
+      <div id="student-application-process" />
+      <div id="application-form" />
+      <div id="international-faculty" className="w-full bg-[#f6f7f0]">
         <div
           className="mx-auto px-5 py-16 md:px-10 md:py-20 lg:px-30 lg:py-35"
           style={{
@@ -1432,7 +1483,7 @@ const InternationalOffice = () => {
                 className="text-[#999] uppercase tracking-widest block mb-4 md:mb-6 text-xl md:text-2xl font-bold"
                 style={{ letterSpacing: '0.2em' }}
               >
-                Apply Now
+                Application Form
               </span>
               <h2
                 className="text-[#21313c] mb-4 md:mb-6"
@@ -1534,119 +1585,89 @@ const InternationalOffice = () => {
         </div>
       </div>
 
-      {/* International FAQ Section */}
-      <div className="w-full bg-[#f6f7f0]">
+      {/* Visa & Immigration Support Section */}
+      <div id="immigration-and-visa" />
+      <div id="visa-assistance" className="w-full bg-white">
         <div
           className="mx-auto px-5 py-16 md:px-10 md:py-20 lg:px-30 lg:py-35"
           style={{
             maxWidth: '1440px',
           }}
         >
-          <div className="flex flex-col lg:flex-row gap-10 md:gap-12 lg:gap-20">
-            {/* Left Side - Header */}
-            <motion.div
-              className="w-full lg:max-w-100 lg:sticky lg:top-32 lg:self-start"
-              initial={{ opacity: 0, x: -50 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8, ease: customEase }}
-              viewport={{ once: true }}
+          <motion.div
+            className="text-center mb-10 md:mb-16 lg:mb-20"
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, ease: customEase }}
+            viewport={{ once: true }}
+          >
+            <span
+              className="text-[#999] uppercase tracking-widest block mb-4 md:mb-6 text-xl md:text-2xl font-bold"
+              style={{ letterSpacing: '0.2em' }}
             >
-              <span
-                className="text-[#999] uppercase tracking-widest block mb-4 md:mb-6 text-xl md:text-2xl font-bold"
-                style={{ letterSpacing: '0.2em' }}
-              >
-                Help Center
+              Immigration & Visa
+            </span>
+            <h2
+              className="text-[#21313c] mb-4 md:mb-6"
+              style={{
+                fontSize: 'clamp(1.75rem, 4vw, 3.5rem)',
+                fontWeight: 600,
+                lineHeight: 1.1,
+                letterSpacing: '-0.03em',
+              }}
+            >
+              Visa & immigration support{' '}
+              <span style={{ fontFamily: "'Times New Roman', serif", fontStyle: 'italic', fontWeight: 400 }}>
+                you can rely on
               </span>
-              <h2
-                className="text-[#21313c] mb-6 md:mb-8"
-                style={{
-                  fontSize: 'clamp(2.25rem, 4vw, 3rem)',
-                  fontWeight: 600,
-                  lineHeight: 1.1,
-                  letterSpacing: '-0.03em',
-                }}
-              >
-                International{' '}
-                <span style={{ fontFamily: "'Times New Roman', serif", fontStyle: 'italic', fontWeight: 400 }}>
-                  FAQ
-                </span>
-              </h2>
-              <p
-                className="text-[#666] mb-8 text-base md:text-lg"
-                style={{ lineHeight: 1.8 }}
-              >
-                Find answers to common questions about studying at JLU as an international student.
-              </p>
-              <motion.button
-                onClick={() => { setShowContactForm(true); setContactSubmitted(false); setContactForm({ name: '', email: '', country: '', phone: '', message: '' }); }}
-                className="inline-flex items-center gap-3 px-6 py-3 md:px-8 md:py-4 bg-[#21313c] text-white font-medium text-sm md:text-base rounded-full cursor-pointer border-none"
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
-              >
-                Contact International Office
-                <span>→</span>
-              </motion.button>
-            </motion.div>
-
-            {/* Right Side - FAQ Accordion */}
-            <motion.div
-              className="flex-1"
-              variants={staggerContainer}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true }}
+            </h2>
+            <p
+              className="text-[#666] max-w-2xl mx-auto text-sm md:text-base lg:text-lg"
+              style={{ lineHeight: 1.8 }}
             >
-              {faqData.map((faq, index) => (
-                <motion.div
-                  key={faq.id}
-                  variants={staggerItem}
-                  className="border-b border-gray-200"
+              Navigating immigration can be complex. Our dedicated team is here to guide you every step of the way, ensuring legal compliance and peace of mind.
+            </p>
+          </motion.div>
+
+          {/* Support Cards */}
+          <motion.div
+            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6"
+            variants={staggerContainer}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+          >
+            {visaSupport.map((item, index) => (
+              <motion.div
+                key={item.id}
+                variants={staggerItem}
+                className="bg-[#f6f7f0] p-6 md:p-8 group cursor-pointer rounded-2xl"
+                whileHover={{ y: -8, transition: { duration: 0.3 } }}
+                onClick={() => setVisaModal(item)}
+              >
+                {/* Number */}
+                <div
+                  className="text-[#f0c14b] font-bold mb-4 md:mb-6 text-4xl md:text-5xl"
+                  style={{ lineHeight: 1 }}
                 >
-                  <button
-                    onClick={() => setOpenFaq(openFaq === faq.id ? null : faq.id)}
-                    className="w-full flex items-start gap-4 py-6 md:py-8 cursor-pointer bg-transparent border-none text-left"
-                  >
-                    <span className="text-[#f0c14b] font-bold text-xl md:text-2xl">
-                      {String(index + 1).padStart(2, '0')}
-                    </span>
-                    <div className="flex-1">
-                      <div className="flex items-center justify-between">
-                        <h3 className="text-[#21313c] font-semibold text-base md:text-lg pr-4">
-                          {faq.question}
-                        </h3>
-                        <motion.span
-                          animate={{ rotate: openFaq === faq.id ? 45 : 0 }}
-                          transition={{ duration: 0.2 }}
-                          className="text-[#21313c] text-xl flex-shrink-0"
-                        >
-                          +
-                        </motion.span>
-                      </div>
-                    </div>
-                  </button>
-                  <AnimatePresence>
-                    {openFaq === faq.id && (
-                      <motion.div
-                        initial={{ height: 0, opacity: 0 }}
-                        animate={{ height: 'auto', opacity: 1 }}
-                        exit={{ height: 0, opacity: 0 }}
-                        transition={{ duration: 0.3 }}
-                        className="overflow-hidden"
-                      >
-                        <p className="text-[#666] text-sm md:text-[15px] pl-12 md:pl-14 pb-6 md:pb-8" style={{ lineHeight: 1.8 }}>
-                          {faq.answer}
-                        </p>
-                      </motion.div>
-                    )}
-                  </AnimatePresence>
-                </motion.div>
-              ))}
-            </motion.div>
-          </div>
+                  0{index + 1}
+                </div>
+                <h3
+                  className="text-[#21313c] mb-3 md:mb-4 group-hover:text-[#f0c14b] transition-colors text-lg md:text-xl font-semibold"
+                >
+                  {item.title}
+                </h3>
+                <p className="text-[#666] text-sm md:text-[15px]" style={{ lineHeight: 1.7 }}>
+                  {item.description}
+                </p>
+              </motion.div>
+            ))}
+          </motion.div>
         </div>
       </div>
 
       {/* Life in Bhopal Section */}
+      <div id="living-in-bhopal" />
       <div className="w-full bg-[#f6f7f0]">
         <div
           className="mx-auto px-5 py-16 md:px-10 md:py-20 lg:px-30 lg:py-35"
@@ -1667,7 +1688,7 @@ const InternationalOffice = () => {
                 className="text-[#999] uppercase tracking-widest block mb-4 md:mb-6 text-xl md:text-2xl font-bold"
                 style={{ letterSpacing: '0.2em' }}
               >
-                City of Lakes
+                Living in Bhopal
               </span>
               <h2
                 className="text-[#21313c] mb-6 md:mb-8"

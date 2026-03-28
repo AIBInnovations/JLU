@@ -62,6 +62,59 @@ const Academics = () => {
   const tabsRef = useRef<HTMLDivElement>(null);
   const isMobile = useIsMobile();
 
+  const slugToFaculty: Record<string, string> = {
+    'faculty-of-management': 'management',
+    'faculty-of-journalism-and-social-science': 'journalism',
+    'faculty-of-journalism-and-social-science': 'journalism',
+    'faculty-of-fashion-design-and-arts': 'design',
+    'faculty-of-fashion,-design-and-arts': 'design',
+    'faculty-of-engineering-and-technology': 'engineering',
+    'faculty-of-pharmacy': 'pharmacy',
+    'faculty-of-law': 'law',
+    'iica---jagran-centre-for-creative-skills': 'iica',
+    'iica-jagran-centre-for-creative-skills': 'iica',
+    'jagran-lakecity-business-school': 'management',
+    'jagran-school-of-sports-management': 'management',
+    'jagran-school-of-hospitality-and-aviation-management': 'management',
+    'jagran-school-of-journalism': 'journalism',
+    'jagran-school-of-advertising-and-public-relations': 'journalism',
+    'jagran-school-of-events-and-entertainment': 'journalism',
+    'jagran-school-of-languages-and-social-science': 'journalism',
+    'jagran-school-of-design': 'design',
+    'jagran-school-of-architecture': 'design',
+    'jagran-school-of-fashion': 'design',
+    'jagran-school-of-artificial-intelligence': 'engineering',
+    'jagran-school-of-engineering': 'engineering',
+    'jagran-school-of-computer-application': 'engineering',
+  };
+
+  const activateFromSlug = (slug: string) => {
+    const facultyId = slugToFaculty[slug];
+    if (facultyId) {
+      setActiveFacultyId(facultyId);
+      setTimeout(() => {
+        const el = document.getElementById('faculty-explorer');
+        if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }, 300);
+    }
+  };
+
+  // Handle hash on initial load
+  useEffect(() => {
+    const hash = window.location.hash.replace('#', '');
+    if (hash) activateFromSlug(hash);
+  }, []);
+
+  // Listen for custom navigation events (when already on the page)
+  useEffect(() => {
+    const handler = (e: Event) => {
+      const detail = (e as CustomEvent).detail;
+      if (detail?.slug) activateFromSlug(detail.slug);
+    };
+    window.addEventListener('navigate-section', handler);
+    return () => window.removeEventListener('navigate-section', handler);
+  }, []);
+
   useEffect(() => {
     if (selectedSchool) {
       document.body.style.overflow = 'hidden';
@@ -187,21 +240,6 @@ const Academics = () => {
       {/* ═══════════════════════════════════════════════════════════ */}
       {/* PROGRAMS SHOWCASE — Visual category cards linking to /programs */}
       {/* ═══════════════════════════════════════════════════════════ */}
-      <div id="faculty-of-management" />
-      <div id="faculty-of-journalism-and-social-science" />
-      <div id="faculty-of-fashion,-design-and-arts" />
-      <div id="faculty-of-engineering-and-technology" />
-      <div id="faculty-of-pharmacy" />
-      <div id="faculty-of-law" />
-      <div id="iica---jagran-centre-for-creative-skills" />
-      <div id="jagran-lakecity-business-school" />
-      <div id="jagran-school-of-sports-management" />
-      <div id="jagran-school-of-hospitality-and-aviation" />
-      <div id="jagran-school-of-journalism" />
-      <div id="jagran-school-of-design" />
-      <div id="jagran-school-of-architecture" />
-      <div id="jagran-school-of-engineering" />
-      <div id="jagran-school-of-ai" />
       <div id="undergraduate-programs" />
       <div id="postgraduate-programs" />
       <div id="doctoral-programs" />
@@ -377,6 +415,7 @@ const Academics = () => {
       {/* ═══════════════════════════════════════════════════════════ */}
       {/* FACULTY EXPLORER — Interactive Tabs + School Cards + Modal */}
       {/* ═══════════════════════════════════════════════════════════ */}
+      <div id="faculty-explorer" />
       <div id="school-of-engineering" />
       <div id="school-of-business" />
       <div id="school-of-law" />
