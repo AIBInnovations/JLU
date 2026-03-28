@@ -396,7 +396,7 @@ const MenuOverlay = ({ isOpen, onClose, menuButtonRef }: MenuOverlayProps) => {
                                                 onClick={onClose}
                                                 className="text-sm text-[#027ea1]/60 block py-1.5"
                                               >
-                                                {subItem}
+                                                <span className="text-[#027ea1]/30 mr-2">•</span>{subItem}
                                               </Link>
                                             );
                                           }
@@ -406,7 +406,7 @@ const MenuOverlay = ({ isOpen, onClose, menuButtonRef }: MenuOverlayProps) => {
                                               onClick={() => handleSectionClick(item.href, slug)}
                                               className="text-sm text-[#027ea1]/60 block py-1.5 text-left"
                                             >
-                                              {subItem}
+                                              <span className="text-[#027ea1]/30 mr-2">•</span>{subItem}
                                             </button>
                                           );
                                         })}
@@ -424,7 +424,7 @@ const MenuOverlay = ({ isOpen, onClose, menuButtonRef }: MenuOverlayProps) => {
                                           onClick={() => handleSectionClick(item.href, slug)}
                                           className="text-sm text-[#027ea1]/60 block py-1.5 text-left"
                                         >
-                                          {label}
+                                          <span className="text-[#027ea1]/30 mr-2">•</span>{label}
                                         </button>
                                       );
                                     })
@@ -687,7 +687,7 @@ const MenuOverlay = ({ isOpen, onClose, menuButtonRef }: MenuOverlayProps) => {
                                           onClick={onClose}
                                           className="text-sm text-[#027ea1]/60 hover:text-[#027ea1] cursor-pointer transition-colors"
                                         >
-                                          {item}
+                                          <span className="text-[#027ea1]/30 mr-2">•</span>{item}
                                         </Link>
                                       );
                                     }
@@ -697,7 +697,7 @@ const MenuOverlay = ({ isOpen, onClose, menuButtonRef }: MenuOverlayProps) => {
                                         onClick={() => handleSectionClick(displayedNavItem.href, slug)}
                                         className="text-sm text-[#027ea1]/60 hover:text-[#027ea1] cursor-pointer transition-colors block text-left"
                                       >
-                                        {item}
+                                        <span className="text-[#027ea1]/30 mr-2">•</span>{item}
                                       </button>
                                     );
                                   })}
@@ -716,7 +716,7 @@ const MenuOverlay = ({ isOpen, onClose, menuButtonRef }: MenuOverlayProps) => {
                                   onClick={() => handleSectionClick(displayedNavItem.href, slug)}
                                   className="text-sm text-[#027ea1]/60 hover:text-[#027ea1] cursor-pointer transition-colors block text-left"
                                 >
-                                  {label}
+                                  <span className="text-[#027ea1]/30 mr-2">•</span>{label}
                                 </button>
                               );
                             })
