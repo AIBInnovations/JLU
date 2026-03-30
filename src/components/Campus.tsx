@@ -502,7 +502,6 @@ const FacilityModal = ({ isOpen, onClose, data }: FacilityModalProps) => {
 };
 
 const Campus = () => {
-  const [activeInfrastructure, setActiveInfrastructure] = useState(1);
   const [selectedFacility, setSelectedFacility] = useState<FacilityData | null>(null);
   const heroRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
@@ -512,24 +511,28 @@ const Campus = () => {
   const y = useTransform(scrollYProgress, [0, 1], ['0%', '30%']);
   const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
 
-  // Map menu slugs to expandable sections
-  const slugToAccordion: Record<string, number> = {
-    'university-campus': 1,
-    'student-accommodation': 2,
-    'dining-facilities': 3,
+  // Map menu slugs to facility modal data
+  const slugToModal: Record<string, () => FacilityData | null> = {
+    'gurudev-gupta-media-studio': () => facilityCards.find(f => f.id === 'media-studio') || null,
+    'ms-gill-culinary-studios': () => facilityCards.find(f => f.id === 'culinary-studio') || null,
+    'technology-labs': () => facilityCards.find(f => f.id === 'tech-labs') || null,
+    'shri-cyril-shroff-moot-court': () => facilityCards.find(f => f.id === 'moot-court') || null,
+    'sports-facilities': () => sportsModalData[0] || null,
   };
 
   const navigateToSection = (slug: string) => {
-    // Expand accordion if slug maps to one
-    if (slugToAccordion[slug]) {
-      setActiveInfrastructure(slugToAccordion[slug]);
+    // Open modal if slug maps to a facility
+    const modalGetter = slugToModal[slug];
+    if (modalGetter) {
+      setTimeout(() => {
+        const data = modalGetter();
+        if (data) setSelectedFacility(data);
+      }, 400);
     }
-    // For accordion items, scroll to the accordion section instead
-    const accordionScrollTarget = slugToAccordion[slug] ? 'facilities' : null;
+
     // Scroll to the element
     setTimeout(() => {
-      const targetId = accordionScrollTarget || slug;
-      const el = document.getElementById(targetId);
+      const el = document.getElementById(slug);
       if (el) {
         el.scrollIntoView({ behavior: 'smooth', block: 'start' });
       }
@@ -628,7 +631,6 @@ const Campus = () => {
       </div>
 
       {/* ===== CAMPUS STATS SECTION ===== */}
-      <div id="university-campus" />
       <div id="infrastructure" className="w-full bg-[#f6f7f0] py-16 md:py-24">
         <div className="mx-auto px-5 sm:px-8 md:px-10 lg:px-[120px]" style={{ maxWidth: '1440px' }}>
           <motion.div
@@ -640,17 +642,17 @@ const Campus = () => {
           >
             <span
               className="text-[#999] uppercase tracking-widest block mb-4 text-xl md:text-2xl font-bold"
-              style={{ fontSize: '28px', letterSpacing: '0.25em' }}
+              style={{ letterSpacing: '0.25em' }}
             >
-              University Campus
+              Campus at a Glance
             </span>
             <h2
               className="text-[#21313c]"
               style={{ fontSize: 'clamp(1.75rem, 4vw, 3rem)', fontWeight: 600, lineHeight: 1.1 }}
             >
-              University{' '}
+              World-class{' '}
               <span style={{ fontFamily: "'Times New Roman', serif", fontStyle: 'italic', fontWeight: 400 }}>
-                Campus
+                infrastructure
               </span>
             </h2>
           </motion.div>
@@ -681,22 +683,18 @@ const Campus = () => {
         </div>
       </div>
 
-      {/* ===== CAMPUS INFRASTRUCTURE (Hostel & Dining) SECTION ===== */}
-      <div id="student-accommodation" />
-      <div id="dining-facilities" />
-      <div id="dining-services" />
-      <div id="facilities" className="w-full bg-white">
+      {/* ===== CAMPUS INFRASTRUCTURE — Section Header ===== */}
+      <div className="w-full bg-white">
         <div
-          className="mx-auto px-5 py-12 sm:px-8 sm:py-16 md:px-10 md:py-20 lg:px-[120px] lg:py-[140px]"
+          className="mx-auto px-5 pt-12 sm:px-8 sm:pt-16 md:px-[120px] md:pt-[140px] md:pb-10"
           style={{ maxWidth: '1440px' }}
         >
-          {/* Section Header */}
           <motion.div
             initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, ease: customEase }}
             viewport={{ once: true, margin: '-100px' }}
-            className="flex flex-col md:flex-row md:justify-between md:items-end mb-10 md:mb-20 gap-4 md:gap-8"
+            className="flex flex-col md:flex-row md:justify-between md:items-end gap-4 md:gap-8"
           >
             <div>
               <motion.span
@@ -707,7 +705,7 @@ const Campus = () => {
                 className="text-[#999] uppercase tracking-widest block mb-4 md:mb-6 text-xl md:text-2xl font-bold"
                 style={{ letterSpacing: '0.2em' }}
               >
-                Student Accommodation
+                Facilities
               </motion.span>
               <h2
                 className="text-[#21313c] text-3xl sm:text-4xl md:text-4xl lg:text-5xl"
@@ -730,274 +728,116 @@ const Campus = () => {
               Our campus is a masterwork of modern design, featuring state-of-the-art facilities that foster innovation and collaboration.
             </motion.p>
           </motion.div>
+        </div>
+      </div>
 
-          <div className="flex flex-col md:flex-row md:justify-between gap-8 md:gap-10 lg:gap-20">
-            {/* Left Side - Accordion */}
-            <motion.div
-              initial={{ opacity: 0, x: -50 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8, ease: customEase }}
-              viewport={{ once: true }}
-              className="w-full md:max-w-[520px] pt-0 md:pt-10"
+      {/* ===== 3 Separate Facility Sections ===== */}
+      {infrastructureItems.map((item, index) => {
+        const modalId = item.id === 1 ? 'university-campus' : item.id === 2 ? 'student-accommodation' : 'dining-facilities';
+        const sectionId = item.id === 1 ? 'university-campus' : item.id === 2 ? 'student-accommodation' : 'dining-facilities';
+        const isReversed = index % 2 === 1;
+        return (
+          <div key={item.id} id={sectionId} className={`w-full ${index % 2 === 0 ? 'bg-white' : 'bg-[#f6f7f0]'}`}>
+            <div
+              className="mx-auto px-5 py-12 sm:px-8 sm:py-16 md:px-[120px] md:py-[120px]"
+              style={{ maxWidth: '1440px' }}
             >
-              <motion.div
-                className="flex flex-col"
-                variants={staggerContainer}
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true }}
-              >
-                {infrastructureItems.map((item) => (
-                  <motion.div
-                    key={item.id}
-                    variants={staggerItem}
-                    className="border-b border-[#e5e5e5]"
-                  >
-                    <button
-                      onClick={() => setActiveInfrastructure(activeInfrastructure === item.id ? 0 : item.id)}
-                      className="group w-full flex items-center justify-between py-5 md:py-6 text-left transition-all duration-300"
-                    >
-                      <span className="flex items-center gap-3 md:gap-5">
-                        <span
-                          className={`font-medium transition-colors duration-300 text-xs md:text-sm ${
-                            activeInfrastructure === item.id ? 'text-[#f0c14b]' : 'text-[#ccc]'
-                          }`}
-                          style={{ minWidth: '24px' }}
-                        >
-                          {String(item.id).padStart(2, '0')}
-                        </span>
-                        <span
-                          className={`transition-all duration-300 text-base md:text-xl ${
-                            activeInfrastructure === item.id ? 'text-[#21313c]' : 'text-[#666] group-hover:text-[#21313c]'
-                          }`}
-                          style={{ fontWeight: activeInfrastructure === item.id ? 600 : 400 }}
-                        >
-                          {item.label}
-                        </span>
-                      </span>
-                      <motion.span
-                        animate={{ rotate: activeInfrastructure === item.id ? 45 : 0 }}
-                        transition={{ duration: 0.3 }}
-                        className={`text-xl md:text-2xl font-light transition-colors ${
-                          activeInfrastructure === item.id ? 'text-[#21313c]' : 'text-[#999]'
-                        }`}
-                      >
-                        +
-                      </motion.span>
-                    </button>
-                    <AnimatePresence initial={false}>
-                      {activeInfrastructure === item.id && (
-                        <motion.div
-                          initial={{ height: 0, opacity: 0 }}
-                          animate={{ height: 'auto', opacity: 1 }}
-                          exit={{ height: 0, opacity: 0 }}
-                          transition={{ duration: 0.4, ease: customEase }}
-                          className="overflow-hidden"
-                        >
-                          <div className="pb-6 pl-9 md:pl-14 pr-4">
-                            <p className="text-[#666] text-sm md:text-[15px] mb-4" style={{ lineHeight: 1.7 }}>
-                              {item.details.overview}
-                            </p>
-                            <div className="space-y-2 mb-4">
-                              {item.details.features.map((feature, index) => (
-                                <motion.div
-                                  key={index}
-                                  initial={{ opacity: 0, x: -10 }}
-                                  animate={{ opacity: 1, x: 0 }}
-                                  transition={{ delay: index * 0.05 }}
-                                  className="flex items-start gap-2"
-                                >
-                                  <span className="text-[#f0c14b] mt-1">•</span>
-                                  <span className="text-[#444] text-sm" style={{ lineHeight: 1.5 }}>{feature}</span>
-                                </motion.div>
-                              ))}
-                            </div>
-                            <div className="flex items-center gap-3 flex-wrap">
-                              <motion.div
-                                initial={{ opacity: 0, y: 10 }}
-                                animate={{ opacity: 1, y: 0 }}
-                                transition={{ delay: 0.2 }}
-                                className="inline-flex items-center gap-2 bg-[#f6f7f0] px-4 py-2 rounded-lg"
-                              >
-                                <span className="w-2 h-2 bg-[#027ea1] rounded-full" />
-                                <span className="text-[#21313c] text-xs md:text-sm font-medium">{item.details.highlight}</span>
-                              </motion.div>
-                              <motion.button
-                                initial={{ opacity: 0, y: 10 }}
-                                animate={{ opacity: 1, y: 0 }}
-                                transition={{ delay: 0.3 }}
-                                onClick={(e) => {
-                                  e.stopPropagation();
-                                  setSelectedFacility(infrastructureModalData.find(f => f.id === (item.id === 1 ? 'university-campus' : item.id === 2 ? 'student-accommodation' : 'dining-facilities')) || null);
-                                }}
-                                className="inline-flex items-center gap-1.5 text-[#027ea1] text-xs md:text-sm font-medium hover:underline cursor-pointer"
-                              >
-                                Learn More
-                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
-                              </motion.button>
-                            </div>
-                          </div>
-                        </motion.div>
-                      )}
-                    </AnimatePresence>
-                  </motion.div>
-                ))}
-              </motion.div>
-            </motion.div>
-
-            {/* Right Side - Image */}
-            <motion.div
-              initial={{ opacity: 0, x: 50, scale: 0.95 }}
-              whileInView={{ opacity: 1, x: 0, scale: 1 }}
-              transition={{ duration: 1, delay: 0.2, ease: customEase }}
-              viewport={{ once: true }}
-              className="relative shrink-0 overflow-hidden w-full h-[300px] sm:h-[400px] md:w-[45%] md:h-[500px] lg:w-[580px] lg:h-[650px] cursor-pointer"
-              onClick={() => {
-                const id = activeInfrastructure === 1 ? 'university-campus' : activeInfrastructure === 2 ? 'student-accommodation' : 'dining-facilities';
-                setSelectedFacility(infrastructureModalData.find(f => f.id === id) || null);
-              }}
-            >
-              <AnimatePresence mode="wait">
+              <div className={`grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-16 items-center ${isReversed ? 'md:[direction:rtl]' : ''}`}>
+                {/* Image */}
                 <motion.div
-                  key={activeInfrastructure}
-                  initial={{ opacity: 0, scale: 1.1 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  exit={{ opacity: 0, scale: 0.95 }}
-                  transition={{ duration: 0.6, ease: customEase }}
-                  className="absolute inset-0"
-                  whileHover={{ scale: 1.03 }}
+                  initial={{ opacity: 0, x: isReversed ? 50 : -50 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.8, ease: customEase }}
+                  viewport={{ once: true }}
+                  className="relative z-20 h-[300px] sm:h-[400px] md:h-[500px] overflow-hidden rounded-xl md:[direction:ltr]"
                 >
                   <Image
-                    src={infrastructureItems.find(i => i.id === activeInfrastructure)?.image || infrastructureItems[0].image}
-                    alt={infrastructureItems.find(i => i.id === activeInfrastructure)?.label || 'Campus Infrastructure'}
+                    src={item.image}
+                    alt={item.label}
                     fill
                     className="object-cover"
                   />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent" />
+                  {/* Number badge */}
+                  <div className="absolute top-4 left-4 md:top-6 md:left-6 w-10 h-10 md:w-12 md:h-12 bg-[#f0c14b] rounded-full flex items-center justify-center">
+                    <span className="text-[#21313c] font-bold text-sm md:text-base">{String(item.id).padStart(2, '0')}</span>
+                  </div>
                 </motion.div>
-              </AnimatePresence>
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.5 }}
-                viewport={{ once: true }}
-                className="absolute bottom-4 left-4 md:bottom-8 md:left-8 bg-white px-4 py-3 md:px-6 md:py-4 max-w-[200px] md:max-w-[280px]"
-              >
-                <span className="text-[#999] uppercase tracking-wider block mb-1 md:mb-2 text-[9px] md:text-[11px]">
-                  Featured
-                </span>
-                <span className="text-[#21313c] font-semibold text-sm md:text-base">
-                  {infrastructureItems.find(i => i.id === activeInfrastructure)?.label}
-                </span>
-              </motion.div>
-            </motion.div>
-          </div>
-        </div>
-      </div>
 
-      {/* ===== TECHNOLOGY-BASED CLASSROOMS SECTION ===== */}
-      <div id="laboratories" className="w-full bg-white">
-        <div className="mx-auto px-5 py-12 sm:px-8 sm:py-16 md:px-10 md:py-20 lg:px-[120px] lg:py-[140px]" style={{ maxWidth: '1440px' }}>
-          <div className="grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-8 lg:gap-16 items-start">
-            {/* Left - Large Image with floating overlay */}
-            <motion.div
-              initial={{ opacity: 0, x: -60 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 1, ease: customEase }}
-              viewport={{ once: true }}
-              className="md:col-span-7 relative"
-            >
-              <div className="relative h-[300px] sm:h-[450px] md:h-[620px] overflow-hidden">
-                <Image
-                  src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/campus/computer%20lab.JPG"
-                  alt="Technology-Based Classrooms"
-                  fill
-                  className="object-cover"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
-
-                {/* Floating stats strip at bottom */}
+                {/* Content */}
                 <motion.div
-                  initial={{ opacity: 0, y: 30 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: 0.5 }}
+                  initial={{ opacity: 0, x: isReversed ? -50 : 50 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.8, delay: 0.2, ease: customEase }}
                   viewport={{ once: true }}
-                  className="absolute bottom-0 left-0 right-0 bg-white/95 backdrop-blur-sm p-4 md:p-6"
+                  className="md:[direction:ltr]"
                 >
-                  <div className="flex items-center justify-between gap-4">
-                    <div>
-                      <p className="text-[#21313c] text-2xl md:text-4xl font-bold">125+</p>
-                      <p className="text-[#666] text-[10px] md:text-xs uppercase tracking-wider">Smart Classrooms</p>
+                  <span
+                    className="text-[#999] uppercase tracking-widest block mb-3 md:mb-4 text-[10px] md:text-xs"
+                    style={{ letterSpacing: '0.2em' }}
+                  >
+                    Facilities
+                  </span>
+                  <h2
+                    className="text-[#21313c] text-2xl sm:text-3xl md:text-[clamp(2rem,4vw,3rem)] mb-4 md:mb-6"
+                    style={{ fontWeight: 600, lineHeight: 1.1, letterSpacing: '-0.02em' }}
+                  >
+                    {item.label}
+                  </h2>
+                  <p className="text-[#666] text-sm md:text-base mb-6 md:mb-8" style={{ lineHeight: 1.7 }}>
+                    {item.details.overview}
+                  </p>
+
+                  {/* Feature cards carousel — extends behind image */}
+                  <div className="relative z-10 overflow-visible" style={{ marginLeft: isReversed ? '0' : '-60%', marginRight: isReversed ? '-60%' : '0' }}>
+                    {/* Blur fade on left */}
+                    <div
+                      className="absolute left-0 top-0 bottom-0 w-16 md:w-24 z-10 pointer-events-none"
+                      style={{ background: `linear-gradient(to right, ${index % 2 === 0 ? '#ffffff' : '#f6f7f0'}, transparent)` }}
+                    />
+                    {/* Blur fade on right */}
+                    <div
+                      className="absolute right-0 top-0 bottom-0 w-16 md:w-24 z-10 pointer-events-none"
+                      style={{ background: `linear-gradient(to left, ${index % 2 === 0 ? '#ffffff' : '#f6f7f0'}, transparent)` }}
+                    />
+                    <style>{`
+                      @keyframes scrollCards${item.id} {
+                        0% { transform: translateX(${isReversed ? '-50%' : '0'}); }
+                        100% { transform: translateX(${isReversed ? '0' : '-50%'}); }
+                      }
+                    `}</style>
+                    <div className="overflow-hidden">
+                      <div
+                        className="flex gap-3 md:gap-4"
+                        style={{
+                          animation: `scrollCards${item.id} ${12 + index * 2}s linear infinite`,
+                          width: 'max-content',
+                        }}
+                      >
+                        {[...item.details.features, ...item.details.features].map((feature, fi) => (
+                          <div
+                            key={fi}
+                            className="shrink-0 w-[180px] md:w-[220px] bg-white/90 backdrop-blur-sm border border-[#e5e5e5] rounded-xl p-4 md:p-5 shadow-sm"
+                          >
+                            <span className="w-2 h-2 bg-[#027ea1] rounded-full block mb-3" />
+                            <span className="text-[#21313c] text-xs md:text-sm font-medium" style={{ lineHeight: 1.5 }}>{feature}</span>
+                          </div>
+                        ))}
+                      </div>
                     </div>
-                    <div className="w-px h-10 bg-gray-200" />
-                    <div>
-                      <p className="text-[#21313c] text-2xl md:text-4xl font-bold">9</p>
-                      <p className="text-[#666] text-[10px] md:text-xs uppercase tracking-wider">Academic Blocks</p>
-                    </div>
-                    <div className="w-px h-10 bg-gray-200" />
-                    <div>
-                      <p className="text-[#21313c] text-2xl md:text-4xl font-bold">100%</p>
-                      <p className="text-[#666] text-[10px] md:text-xs uppercase tracking-wider">Tech Enabled</p>
-                    </div>
+                  </div>
+
+                  {/* Highlight */}
+                  <div className="inline-flex items-center gap-2 bg-[#f6f7f0] px-4 py-2.5 rounded-lg border border-[#e5e5e5] mt-6">
+                    <span className="w-2 h-2 bg-[#027ea1] rounded-full" />
+                    <span className="text-[#21313c] text-xs md:text-sm font-medium">{item.details.highlight}</span>
                   </div>
                 </motion.div>
               </div>
-            </motion.div>
-
-            {/* Right - Content */}
-            <motion.div
-              initial={{ opacity: 0, x: 60 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 1, delay: 0.2, ease: customEase }}
-              viewport={{ once: true }}
-              className="md:col-span-5 md:pt-8"
-            >
-              <span
-                className="text-[#999] uppercase tracking-widest block mb-4 text-xl md:text-2xl font-bold"
-                style={{ letterSpacing: '0.2em' }}
-              >
-                Facilities
-              </span>
-              <h2
-                className="text-[#21313c] text-2xl sm:text-3xl md:text-4xl lg:text-5xl mb-4 md:mb-6"
-                style={{ fontWeight: 600, lineHeight: 1.1, letterSpacing: '-0.02em' }}
-              >
-                Technology-Based{' '}
-                <span style={{ fontFamily: "'Times New Roman', serif", fontStyle: 'italic', fontWeight: 400 }}>
-                  Classrooms
-                </span>
-              </h2>
-              <p className="text-[#666] text-sm md:text-base mb-8 md:mb-10" style={{ lineHeight: 1.7 }}>
-                Our 125+ classrooms across 9 academic blocks are designed with ergonomic precision and acoustic optimization, ensuring every lecture is delivered in an environment that maximizes learning and eliminates distractions.
-              </p>
-
-              {/* Feature Items - Staggered vertical list */}
-              <motion.div
-                variants={staggerContainer}
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true }}
-                className="space-y-5 md:space-y-6"
-              >
-                {classroomFeatures.map((feature, index) => (
-                  <motion.div
-                    key={index}
-                    variants={staggerItem}
-                    className="flex items-start gap-4 group"
-                  >
-                    <div className="w-11 h-11 md:w-14 md:h-14 bg-[#f6f7f0] rounded-xl flex items-center justify-center shrink-0 group-hover:bg-[#21313c] group-hover:text-white text-[#21313c] transition-colors duration-300">
-                      <feature.icon />
-                    </div>
-                    <div>
-                      <h4 className="text-[#21313c] font-semibold text-sm md:text-base mb-1">{feature.title}</h4>
-                      <p className="text-[#666] text-xs md:text-sm" style={{ lineHeight: 1.6 }}>{feature.desc}</p>
-                    </div>
-                  </motion.div>
-                ))}
-              </motion.div>
-            </motion.div>
+            </div>
           </div>
-        </div>
-      </div>
+        );
+      })}
 
       {/* ===== ACADEMIC INFRASTRUCTURE SECTION ===== */}
       <div id="academic-infrastructure" />
@@ -1007,42 +847,54 @@ const Campus = () => {
       <div id="shri-cyril-shroff-moot-court" />
       <div className="w-full bg-[#21313c]">
         <div
-          className="mx-auto px-5 py-12 sm:px-8 sm:py-16 md:px-10 md:py-20 lg:px-[120px] lg:py-[140px]"
+          className="mx-auto px-5 py-12 sm:px-8 sm:py-16 md:px-[120px] md:py-[140px]"
           style={{ maxWidth: '1440px' }}
         >
+          {/* Section Header */}
           <motion.div
-            initial={{ opacity: 0, y: 50 }}
+            initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, ease: customEase }}
+            transition={{ duration: 0.8, ease: customEase }}
             viewport={{ once: true }}
-            className="mb-8 md:mb-20"
+            className="flex flex-col md:flex-row md:justify-between md:items-end mb-10 md:mb-16 gap-4"
           >
-            <motion.span
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-              viewport={{ once: true }}
-              className="text-[#999] uppercase tracking-widest block mb-4 md:mb-6 text-xl md:text-2xl font-bold"
-              style={{ letterSpacing: '0.2em' }}
-            >
-              Academic Infrastructure
-            </motion.span>
+            <div>
+              <span
+                className="text-[#999] uppercase tracking-widest block mb-4 md:mb-6 text-xl md:text-2xl font-bold"
+                style={{ letterSpacing: '0.2em' }}
+              >
+                Academic Infrastructure
+              </span>
+              <h2
+                className="text-white text-3xl sm:text-4xl md:text-5xl"
+                style={{ fontWeight: 600, lineHeight: 1.1 }}
+              >
+                Spaces that{' '}
+                <span style={{ fontFamily: "'Times New Roman', serif", fontStyle: 'italic', fontWeight: 400, color: '#f0c14b' }}>
+                  inspire
+                </span>
+              </h2>
+            </div>
+            <p className="text-[#999] md:max-w-[600px]" style={{ fontSize: 'clamp(1.15rem, 1.8vw, 1.5rem)', lineHeight: 1.7, fontWeight: 400 }}>
+              Purpose-built facilities that bring learning to life through hands-on experience and industry-standard environments.
+            </p>
           </motion.div>
 
-          <div className="grid grid-cols-2 gap-3 md:gap-8">
-            {/* Shri Gurudev Gupta Media Studio Card */}
+          {/* Bento Grid — 1 large hero card + 3 cards below */}
+          <div className="grid grid-cols-12 gap-3 md:gap-6">
+            {/* Hero Card — Media Studio (spans 7 cols) */}
             <motion.div
               initial={{ opacity: 0, y: 60 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, ease: customEase }}
               viewport={{ once: true }}
               onClick={() => setSelectedFacility(facilityCards.find(f => f.id === 'media-studio') || null)}
-              className="group cursor-pointer"
+              className="col-span-12 md:col-span-7 group cursor-pointer"
             >
-              <div className="relative overflow-hidden mb-2 md:mb-8 h-[300px] sm:h-[400px] md:h-[480px]">
+              <div className="relative overflow-hidden rounded-2xl h-[280px] sm:h-[380px] md:h-[520px]">
                 <motion.div
                   className="absolute inset-0"
-                  whileHover={{ scale: 1.05 }}
+                  whileHover={{ scale: 1.04 }}
                   transition={{ duration: 0.8, ease: customEase }}
                 >
                   <Image
@@ -1052,46 +904,41 @@ const Campus = () => {
                     className="object-cover"
                   />
                 </motion.div>
-                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent" />
-                <motion.div
-                  className="absolute top-2 left-2 sm:top-3 sm:left-3 md:top-6 md:left-6 w-7 h-7 sm:w-9 sm:h-9 md:w-12 md:h-12 bg-[#f0c14b] flex items-center justify-center"
-                  style={{ borderRadius: '50%' }}
-                  whileHover={{ scale: 1.1, rotate: 10 }}
-                  transition={{ duration: 0.3 }}
-                >
-                  <span className="text-[#21313c] font-semibold text-[10px] sm:text-xs md:text-sm">01</span>
-                </motion.div>
-                <div className="absolute bottom-0 left-0 right-0 p-2 sm:p-4 md:p-8">
-                  <h4 className="text-white font-semibold mb-0 md:mb-2 text-[11px] sm:text-base md:text-2xl leading-tight">
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
+                {/* Number + Badge */}
+                <div className="absolute top-4 left-4 md:top-6 md:left-6 flex items-center gap-3">
+                  <span className="w-10 h-10 md:w-12 md:h-12 bg-[#f0c14b] rounded-full flex items-center justify-center text-[#21313c] font-bold text-sm">01</span>
+                  <span className="bg-white/10 backdrop-blur-sm text-white/80 text-xs px-3 py-1.5 rounded-full hidden md:block">Media Production</span>
+                </div>
+                {/* Content */}
+                <div className="absolute bottom-0 left-0 right-0 p-4 sm:p-6 md:p-10">
+                  <h4 className="text-white font-semibold text-lg sm:text-2xl md:text-3xl mb-2 md:mb-3" style={{ lineHeight: 1.2 }}>
                     Shri Gurudev Gupta Media Studio
                   </h4>
+                  <p className="text-white/60 text-sm md:text-base max-w-[500px] hidden sm:block" style={{ lineHeight: 1.6 }}>
+                    A professional studio environment for media production and hands-on learning.
+                  </p>
+                  <div className="mt-3 md:mt-5 flex items-center gap-2 text-[#f0c14b] text-sm font-medium opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    <span>View Details</span>
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                  </div>
                 </div>
               </div>
-              <motion.p
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.2 }}
-                viewport={{ once: true }}
-                className="text-[#ccc] mb-2 md:mb-6 text-[10px] sm:text-xs md:text-base hidden sm:block"
-                style={{ lineHeight: 1.7 }}
-              >
-                A professional studio environment for media production and hands on learning.
-              </motion.p>
             </motion.div>
 
-            {/* M S Gill Culinary Studios Card */}
+            {/* Culinary Studios (spans 5 cols) */}
             <motion.div
               initial={{ opacity: 0, y: 60 }}
               whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.15, ease: customEase }}
+              transition={{ duration: 0.8, delay: 0.1, ease: customEase }}
               viewport={{ once: true }}
               onClick={() => setSelectedFacility(facilityCards.find(f => f.id === 'culinary-studio') || null)}
-              className="group cursor-pointer mt-8 sm:mt-12 md:mt-20"
+              className="col-span-12 md:col-span-5 group cursor-pointer"
             >
-              <div className="relative overflow-hidden mb-2 md:mb-8 h-[300px] sm:h-[400px] md:h-[480px]">
+              <div className="relative overflow-hidden rounded-2xl h-[280px] sm:h-[380px] md:h-[520px]">
                 <motion.div
                   className="absolute inset-0"
-                  whileHover={{ scale: 1.05 }}
+                  whileHover={{ scale: 1.04 }}
                   transition={{ duration: 0.8, ease: customEase }}
                 >
                   <Image
@@ -1101,46 +948,39 @@ const Campus = () => {
                     className="object-cover"
                   />
                 </motion.div>
-                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent" />
-                <motion.div
-                  className="absolute top-2 left-2 sm:top-3 sm:left-3 md:top-6 md:left-6 w-7 h-7 sm:w-9 sm:h-9 md:w-12 md:h-12 bg-[#f0c14b] flex items-center justify-center"
-                  style={{ borderRadius: '50%' }}
-                  whileHover={{ scale: 1.1, rotate: 10 }}
-                  transition={{ duration: 0.3 }}
-                >
-                  <span className="text-[#21313c] font-semibold text-[10px] sm:text-xs md:text-sm">02</span>
-                </motion.div>
-                <div className="absolute bottom-0 left-0 right-0 p-2 sm:p-4 md:p-8">
-                  <h4 className="text-white font-semibold mb-0 md:mb-2 text-[11px] sm:text-base md:text-2xl leading-tight">
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
+                <div className="absolute top-4 left-4 md:top-6 md:left-6 flex items-center gap-3">
+                  <span className="w-10 h-10 md:w-12 md:h-12 bg-[#f0c14b] rounded-full flex items-center justify-center text-[#21313c] font-bold text-sm">02</span>
+                  <span className="bg-white/10 backdrop-blur-sm text-white/80 text-xs px-3 py-1.5 rounded-full hidden md:block">Culinary Arts</span>
+                </div>
+                <div className="absolute bottom-0 left-0 right-0 p-4 sm:p-6 md:p-10">
+                  <h4 className="text-white font-semibold text-lg sm:text-xl md:text-2xl mb-2" style={{ lineHeight: 1.2 }}>
                     M S Gill Culinary Studios
                   </h4>
+                  <p className="text-white/60 text-sm md:text-base hidden sm:block" style={{ lineHeight: 1.6 }}>
+                    Industry standard kitchens designed for hospitality and culinary training.
+                  </p>
+                  <div className="mt-3 md:mt-5 flex items-center gap-2 text-[#f0c14b] text-sm font-medium opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    <span>View Details</span>
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                  </div>
                 </div>
               </div>
-              <motion.p
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.2 }}
-                viewport={{ once: true }}
-                className="text-[#ccc] mb-2 md:mb-6 text-[10px] sm:text-xs md:text-base hidden sm:block"
-                style={{ lineHeight: 1.7 }}
-              >
-                Industry standard kitchens designed for hospitality and culinary training.
-              </motion.p>
             </motion.div>
 
-            {/* Technology Labs Card */}
+            {/* Technology Labs (spans 5 cols) */}
             <motion.div
               initial={{ opacity: 0, y: 60 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.2, ease: customEase }}
               viewport={{ once: true }}
               onClick={() => setSelectedFacility(facilityCards.find(f => f.id === 'tech-labs') || null)}
-              className="group cursor-pointer"
+              className="col-span-12 md:col-span-5 group cursor-pointer"
             >
-              <div className="relative overflow-hidden mb-2 md:mb-8 h-[300px] sm:h-[400px] md:h-[480px]">
+              <div className="relative overflow-hidden rounded-2xl h-[280px] sm:h-[380px] md:h-[420px]">
                 <motion.div
                   className="absolute inset-0"
-                  whileHover={{ scale: 1.05 }}
+                  whileHover={{ scale: 1.04 }}
                   transition={{ duration: 0.8, ease: customEase }}
                 >
                   <Image
@@ -1150,46 +990,39 @@ const Campus = () => {
                     className="object-cover"
                   />
                 </motion.div>
-                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent" />
-                <motion.div
-                  className="absolute top-2 left-2 sm:top-3 sm:left-3 md:top-6 md:left-6 w-7 h-7 sm:w-9 sm:h-9 md:w-12 md:h-12 bg-[#f0c14b] flex items-center justify-center"
-                  style={{ borderRadius: '50%' }}
-                  whileHover={{ scale: 1.1, rotate: 10 }}
-                  transition={{ duration: 0.3 }}
-                >
-                  <span className="text-[#21313c] font-semibold text-[10px] sm:text-xs md:text-sm">03</span>
-                </motion.div>
-                <div className="absolute bottom-0 left-0 right-0 p-2 sm:p-4 md:p-8">
-                  <h4 className="text-white font-semibold mb-0 md:mb-2 text-[11px] sm:text-base md:text-2xl leading-tight">
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
+                <div className="absolute top-4 left-4 md:top-6 md:left-6 flex items-center gap-3">
+                  <span className="w-10 h-10 md:w-12 md:h-12 bg-[#f0c14b] rounded-full flex items-center justify-center text-[#21313c] font-bold text-sm">03</span>
+                  <span className="bg-white/10 backdrop-blur-sm text-white/80 text-xs px-3 py-1.5 rounded-full hidden md:block">Engineering & Computing</span>
+                </div>
+                <div className="absolute bottom-0 left-0 right-0 p-4 sm:p-6 md:p-8">
+                  <h4 className="text-white font-semibold text-lg sm:text-xl md:text-2xl mb-2" style={{ lineHeight: 1.2 }}>
                     Technology Labs
                   </h4>
+                  <p className="text-white/60 text-sm md:text-base hidden sm:block" style={{ lineHeight: 1.6 }}>
+                    Well equipped labs supporting engineering, computing, and applied sciences.
+                  </p>
+                  <div className="mt-3 md:mt-4 flex items-center gap-2 text-[#f0c14b] text-sm font-medium opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    <span>View Details</span>
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                  </div>
                 </div>
               </div>
-              <motion.p
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.2 }}
-                viewport={{ once: true }}
-                className="text-[#ccc] mb-2 md:mb-6 text-[10px] sm:text-xs md:text-base hidden sm:block"
-                style={{ lineHeight: 1.7 }}
-              >
-                Well equipped labs supporting engineering, computing, and applied sciences.
-              </motion.p>
             </motion.div>
 
-            {/* Shri Cyril Shroff Moot Court Card */}
+            {/* Moot Court (spans 7 cols) */}
             <motion.div
               initial={{ opacity: 0, y: 60 }}
               whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.25, ease: customEase }}
+              transition={{ duration: 0.8, delay: 0.3, ease: customEase }}
               viewport={{ once: true }}
               onClick={() => setSelectedFacility(facilityCards.find(f => f.id === 'moot-court') || null)}
-              className="group cursor-pointer mt-8 sm:mt-12 md:mt-20"
+              className="col-span-12 md:col-span-7 group cursor-pointer"
             >
-              <div className="relative overflow-hidden mb-2 md:mb-8 h-[300px] sm:h-[400px] md:h-[480px]">
+              <div className="relative overflow-hidden rounded-2xl h-[280px] sm:h-[380px] md:h-[420px]">
                 <motion.div
                   className="absolute inset-0"
-                  whileHover={{ scale: 1.05 }}
+                  whileHover={{ scale: 1.04 }}
                   transition={{ duration: 0.8, ease: customEase }}
                 >
                   <Image
@@ -1199,31 +1032,24 @@ const Campus = () => {
                     className="object-cover"
                   />
                 </motion.div>
-                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent" />
-                <motion.div
-                  className="absolute top-2 left-2 sm:top-3 sm:left-3 md:top-6 md:left-6 w-7 h-7 sm:w-9 sm:h-9 md:w-12 md:h-12 bg-[#f0c14b] flex items-center justify-center"
-                  style={{ borderRadius: '50%' }}
-                  whileHover={{ scale: 1.1, rotate: 10 }}
-                  transition={{ duration: 0.3 }}
-                >
-                  <span className="text-[#21313c] font-semibold text-[10px] sm:text-xs md:text-sm">04</span>
-                </motion.div>
-                <div className="absolute bottom-0 left-0 right-0 p-2 sm:p-4 md:p-8">
-                  <h4 className="text-white font-semibold mb-0 md:mb-2 text-[11px] sm:text-base md:text-2xl leading-tight">
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
+                <div className="absolute top-4 left-4 md:top-6 md:left-6 flex items-center gap-3">
+                  <span className="w-10 h-10 md:w-12 md:h-12 bg-[#f0c14b] rounded-full flex items-center justify-center text-[#21313c] font-bold text-sm">04</span>
+                  <span className="bg-white/10 backdrop-blur-sm text-white/80 text-xs px-3 py-1.5 rounded-full hidden md:block">Legal Practice</span>
+                </div>
+                <div className="absolute bottom-0 left-0 right-0 p-4 sm:p-6 md:p-8">
+                  <h4 className="text-white font-semibold text-lg sm:text-xl md:text-2xl mb-2" style={{ lineHeight: 1.2 }}>
                     Shri Cyril Shroff Moot Court
                   </h4>
+                  <p className="text-white/60 text-sm md:text-base hidden sm:block" style={{ lineHeight: 1.6 }}>
+                    A dedicated space for legal practice, debates, and mock trials.
+                  </p>
+                  <div className="mt-3 md:mt-4 flex items-center gap-2 text-[#f0c14b] text-sm font-medium opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    <span>View Details</span>
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                  </div>
                 </div>
               </div>
-              <motion.p
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.2 }}
-                viewport={{ once: true }}
-                className="text-[#ccc] mb-2 md:mb-6 text-[10px] sm:text-xs md:text-base hidden sm:block"
-                style={{ lineHeight: 1.7 }}
-              >
-                A dedicated space for legal practice, debates, and mock trials.
-              </motion.p>
             </motion.div>
           </div>
         </div>

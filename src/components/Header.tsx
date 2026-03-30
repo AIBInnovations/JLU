@@ -41,6 +41,8 @@ const navigationItems: NavigationItem[] = [
       { label: 'Promoting Body', slug: 'promoting-body' },
       { label: 'JLU at a Glance', slug: 'jlu-at-a-glance' },
       { label: 'Governance', slug: 'governance' },
+      { label: 'Governing Body : Board of Management : Academic Council', slug: 'governance', isGroupChild: true },
+      { label: 'JLU Leadership Structure', slug: 'leadership' },
       { label: 'Accreditations & Memberships', slug: 'accreditations' },
       { label: 'University Partnerships', slug: 'university-partnerships' },
       { label: 'Honorary Doctorates', slug: 'honorary-doctorates' },
@@ -52,38 +54,28 @@ const navigationItems: NavigationItem[] = [
   {
     label: 'ACADEMICS',
     href: '/academics',
-    type: 'megamenu',
-    columns: [
-      {
-        title: 'Faculties',
-        items: [
-          'Faculty of Management',
-          'Faculty of Journalism & Social Science',
-          'Faculty of Fashion, Design & Arts',
-          'Faculty of Engineering & Technology',
-          'Faculty of Pharmacy',
-          'Faculty of Law',
-          'IICA - Jagran Centre for Creative Skills',
-        ]
-      },
-      {
-        title: 'Schools',
-        items: [
-          'Jagran Lakecity Business School',
-          'Jagran School of Sports Management',
-          'Jagran School of Hospitality & Aviation Management',
-          'Jagran School of Journalism',
-          'Jagran School of Advertising and Public Relations',
-          'Jagran School of Events & Entertainment',
-          'Jagran School of Languages & Social Science',
-          'Jagran School of Design',
-          'Jagran School of Architecture',
-          'Jagran School of Fashion',
-          'Jagran School of Artificial Intelligence',
-          'Jagran School of Engineering',
-          'Jagran School of Computer Application',
-        ]
-      }
+    type: 'dropdown',
+    sections: [
+      { label: 'Faculty of Management', slug: 'faculty-of-management', isGroupHeader: true },
+      { label: 'Jagran Lakecity Business School', slug: 'jagran-lakecity-business-school', isGroupChild: true },
+      { label: 'Jagran School of Sports Management', slug: 'jagran-school-of-sports-management', isGroupChild: true },
+      { label: 'Jagran School of Hospitality & Aviation Management', slug: 'jagran-school-of-hospitality-and-aviation-management', isGroupChild: true },
+      { label: 'Faculty of Journalism & Social Science', slug: 'faculty-of-journalism-and-social-science', isGroupHeader: true },
+      { label: 'Jagran School of Journalism', slug: 'jagran-school-of-journalism', isGroupChild: true },
+      { label: 'Jagran School of Advertising and Public Relations', slug: 'jagran-school-of-advertising-and-public-relations', isGroupChild: true },
+      { label: 'Jagran School of Events & Entertainment', slug: 'jagran-school-of-events-and-entertainment', isGroupChild: true },
+      { label: 'Jagran School of Languages & Social Science', slug: 'jagran-school-of-languages-and-social-science', isGroupChild: true },
+      { label: 'Faculty of Fashion, Design & Arts', slug: 'faculty-of-fashion-design-and-arts', isGroupHeader: true },
+      { label: 'Jagran School of Design', slug: 'jagran-school-of-design', isGroupChild: true },
+      { label: 'Jagran School of Architecture', slug: 'jagran-school-of-architecture', isGroupChild: true },
+      { label: 'Jagran School of Fashion', slug: 'jagran-school-of-fashion', isGroupChild: true },
+      { label: 'Faculty of Engineering & Technology', slug: 'faculty-of-engineering-and-technology', isGroupHeader: true },
+      { label: 'Jagran School of Artificial Intelligence', slug: 'jagran-school-of-artificial-intelligence', isGroupChild: true },
+      { label: 'Jagran School of Engineering', slug: 'jagran-school-of-engineering', isGroupChild: true },
+      { label: 'Jagran School of Computer Application', slug: 'jagran-school-of-computer-application', isGroupChild: true },
+      { label: 'Faculty of Pharmacy', slug: 'faculty-of-pharmacy' },
+      { label: 'Faculty of Law', slug: 'faculty-of-law' },
+      { label: 'IICA - Jagran Centre for Creative Skills', slug: 'iica-jagran-centre-for-creative-skills' },
     ]
   },
   {
@@ -95,10 +87,10 @@ const navigationItems: NavigationItem[] = [
       { label: 'Student Accommodation', slug: 'student-accommodation' },
       { label: 'Dining Facilities', slug: 'dining-facilities' },
       { label: 'Academic Infrastructure', slug: 'academic-infrastructure' },
-      { label: 'Gurudev Gupta Media Studio', slug: 'gurudev-gupta-media-studio' },
-      { label: 'M.S Gill Culinary Studios', slug: 'ms-gill-culinary-studios' },
-      { label: 'Technology Labs', slug: 'technology-labs' },
-      { label: 'Shri Cyril Shroff Moot Court', slug: 'shri-cyril-shroff-moot-court' },
+      { label: 'Gurudev Gupta Media Studio', slug: 'gurudev-gupta-media-studio', isGroupChild: true },
+      { label: 'M.S Gill Culinary Studios', slug: 'ms-gill-culinary-studios', isGroupChild: true },
+      { label: 'Technology Labs', slug: 'technology-labs', isGroupChild: true },
+      { label: 'Shri Cyril Shroff Moot Court', slug: 'shri-cyril-shroff-moot-court', isGroupChild: true },
       { label: 'Sports Facilities', slug: 'sports-facilities' },
       { label: 'The Pyramid – University Library', slug: 'the-pyramid-university-library' },
       { label: 'Indoor Multipurpose Hall', slug: 'indoor-multipurpose-hall' },
@@ -172,11 +164,11 @@ const navigationItems: NavigationItem[] = [
       { label: 'Pathway Programs', slug: 'pathway-programs' },
       { label: 'Summer Schools', slug: 'summer-schools' },
       { label: 'International Admissions', slug: 'international-admissions' },
-      { label: 'Student Application Process', slug: 'student-application-process' },
-      { label: 'International FAQ', slug: 'international-faq' },
-      { label: 'Fee Structure', slug: 'fee-structure' },
-      { label: 'Application Form', slug: 'application-form' },
-      { label: 'Immigration & Visa', slug: 'immigration-and-visa' },
+      { label: 'Student Application Process', slug: 'student-application-process', isGroupChild: true },
+      { label: 'International FAQ', slug: 'international-faq', isGroupChild: true },
+      { label: 'Fee Structure', slug: 'fee-structure', isGroupChild: true },
+      { label: 'Application Form', slug: 'application-form', isGroupChild: true },
+      { label: 'Immigration & Visa', slug: 'immigration-and-visa', isGroupChild: true },
       { label: 'Living in Bhopal', slug: 'living-in-bhopal' },
     ]
   },
@@ -673,7 +665,7 @@ const MenuOverlay = ({ isOpen, onClose, menuButtonRef }: MenuOverlayProps) => {
                   <div className="w-[1px] bg-gray-300 h-[400px] my-8" />
 
                   {/* Right side - Hovered item content + explore more links */}
-                  <div className="flex flex-col pt-8 w-130 h-full" style={{ marginLeft: '0px' }}>
+                  <div className="flex flex-col pt-8 w-[550px] h-full" style={{ marginLeft: '0px' }}>
                     {/* Sub-content container */}
                     <div className="flex-1">
                       {/* Sub-content: shown when hovering or when on active page */}
@@ -721,21 +713,52 @@ const MenuOverlay = ({ isOpen, onClose, menuButtonRef }: MenuOverlayProps) => {
                               ))}
                             </div>
                           ) : displayedNavItem.sections ? (
-                            displayedNavItem.sections.map((section) => {
-                              const label = typeof section === 'string' ? section : section.label;
-                              const slug = typeof section === 'string'
-                                ? section.toLowerCase().replace(/\s+/g, '-').replace(/[&]/g, 'and')
-                                : section.slug;
-                              return (
-                                <button
-                                  key={label}
-                                  onClick={() => handleSectionClick(displayedNavItem.href, slug)}
-                                  className="text-sm text-[#027ea1]/60 hover:text-[#027ea1] cursor-pointer transition-colors block text-left"
-                                >
-                                  <span className="text-[#027ea1]/30 mr-2">•</span>{label}
-                                </button>
-                              );
-                            })
+                            (() => {
+                              const sections = displayedNavItem.sections;
+                              const hasGroups = sections.some(s => typeof s !== 'string' && (s.isGroupHeader || s.isGroupChild));
+                              const needsTwoColumns = sections.length > 12;
+
+                              const renderSection = (section: typeof sections[0], idx: number) => {
+                                const label = typeof section === 'string' ? section : section.label;
+                                const slug = typeof section === 'string'
+                                  ? section.toLowerCase().replace(/\s+/g, '-').replace(/[&]/g, 'and')
+                                  : section.slug;
+                                const isGroupHeader = typeof section !== 'string' && section.isGroupHeader;
+                                const isGroupChild = typeof section !== 'string' && section.isGroupChild;
+                                return (
+                                  <button
+                                    key={`${label}-${idx}`}
+                                    onClick={() => handleSectionClick(displayedNavItem.href, slug)}
+                                    className={`text-[13px] cursor-pointer transition-colors block text-left leading-relaxed ${
+                                      isGroupHeader
+                                        ? 'text-[#027ea1] font-semibold mt-2 first:mt-0'
+                                        : 'text-[#027ea1]/60 hover:text-[#027ea1]'
+                                    }`}
+                                    style={isGroupChild ? { paddingLeft: '18px' } : {}}
+                                  >
+                                    <span className={`mr-1.5 ${isGroupHeader ? 'text-[#027ea1]/40' : 'text-[#027ea1]/30'}`}>•</span>{label}
+                                  </button>
+                                );
+                              };
+
+                              if (needsTwoColumns && hasGroups) {
+                                let splitIdx = Math.ceil(sections.length / 2);
+                                for (let i = splitIdx; i < sections.length; i++) {
+                                  const s = sections[i];
+                                  if (typeof s !== 'string' && s.isGroupHeader) { splitIdx = i; break; }
+                                }
+                                const col1 = sections.slice(0, splitIdx);
+                                const col2 = sections.slice(splitIdx);
+                                return (
+                                  <div className="flex gap-8">
+                                    <div className="flex flex-col gap-0.5 flex-1">{col1.map((s, i) => renderSection(s, i))}</div>
+                                    <div className="flex flex-col gap-0.5 flex-1">{col2.map((s, i) => renderSection(s, i + splitIdx))}</div>
+                                  </div>
+                                );
+                              }
+
+                              return <div className="flex flex-col gap-0.5">{sections.map((s, i) => renderSection(s, i))}</div>;
+                            })()
                           ) : null}
                         </div>
                       )}

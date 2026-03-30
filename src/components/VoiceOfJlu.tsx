@@ -89,11 +89,11 @@ export const VoiceOfJlu = () => {
   const faculty = [
     { image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/leadership/chancellor.jpg', name: 'Mr. Hari Mohan Gupta', title: 'Chancellor', linkedin: 'https://in.linkedin.com/in/hari-mohan-gupta-318960153' },
     { image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/leadership/pro-chancellor.jpg', name: 'Mr. Abhishek Mohan Gupta', title: 'Pro Chancellor', linkedin: 'https://in.linkedin.com/in/abhishekmgupta' },
-    { image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/leadership/vice-chancellor.webp', name: 'Prof. Dr. Nilanjan Chattopadhyay', title: 'Vice Chancellor', linkedin: 'https://www.linkedin.com/in/nchattopadhyay/' },
-    { image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/leadership/registrar.jpg', name: 'Mr. Pankaj Das', title: 'Registrar', linkedin: '' },
-    { image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/leadership/cfo.jpg', name: 'CA Archana Jain', title: 'Chief Finance and Accounts Officer', linkedin: 'https://www.linkedin.com/in/archana-jain-33189397/' },
-    { image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/leadership/pvc-student-welfare.jpg', name: 'Dr. Vivek Khare', title: 'Pro Vice Chancellor (Student Welfare)', linkedin: 'https://in.linkedin.com/in/dr-vivek-khare-8666a61a' },
-    { image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/leadership/pvc-science-tech.png', name: 'Dr. Prasheel Suryawanshi', title: 'Pro Vice Chancellor (Science and Technology)', linkedin: 'https://www.linkedin.com/in/prasheel-suryawanshi-8b368b21/' },
+    { image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/leadership/vice-chancellor-new.JPG', name: 'Prof. Dr. Nilanjan Chattopadhyay', title: 'Vice Chancellor', linkedin: 'https://www.linkedin.com/in/nchattopadhyay/' },
+    { image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/leadership/registrar-new.JPG', name: 'Mr. Pankaj Das', title: 'Registrar', linkedin: '' },
+    { image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/leadership/cfo-new.JPG', name: 'CA Archana Jain', title: 'Chief Finance and Accounts Officer', linkedin: 'https://www.linkedin.com/in/archana-jain-33189397/', objectPosition: '60% center' },
+    { image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/leadership/pvc-student-welfare-new.JPG', name: 'Dr. Vivek Khare', title: 'Pro Vice Chancellor (Student Welfare)', linkedin: 'https://in.linkedin.com/in/dr-vivek-khare-8666a61a' },
+    { image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/leadership/pvc-science-tech-new.JPG', name: 'Dr. Prasheel Suryawanshi', title: 'Pro Vice Chancellor (Science and Technology)', linkedin: 'https://www.linkedin.com/in/prasheel-suryawanshi-8b368b21/' },
   ];
 
   return (
@@ -552,7 +552,7 @@ export const VoiceOfJlu = () => {
                   className="group relative"
                 >
                   <div className="relative overflow-hidden rounded-2xl" style={{ aspectRatio: '3/4' }}>
-                    <motion.img src={member.image} alt={member.name} className="w-full h-full object-cover" />
+                    <motion.img src={member.image} alt={member.name} className="w-full h-full object-cover" style={member.objectPosition ? { objectPosition: member.objectPosition } : {}} />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                   </div>
                   <div className="mt-2 flex items-start justify-between">

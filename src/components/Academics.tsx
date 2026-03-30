@@ -87,10 +87,41 @@ const Academics = () => {
     'jagran-school-of-computer-application': 'engineering',
   };
 
+  // Map school slugs to school IDs for opening modals
+  const slugToSchoolId: Record<string, string> = {
+    'jagran-lakecity-business-school': 'jlbs',
+    'jagran-school-of-sports-management': 'sports-mgmt',
+    'jagran-school-of-hospitality-and-aviation-management': 'hospitality',
+    'jagran-school-of-journalism': 'journalism',
+    'jagran-school-of-advertising-and-public-relations': 'advertising-pr',
+    'jagran-school-of-events-and-entertainment': 'events-entertainment',
+    'jagran-school-of-languages-and-social-science': 'languages-social',
+    'jagran-school-of-design': 'design',
+    'jagran-school-of-architecture': 'architecture',
+    'jagran-school-of-fashion': 'fashion',
+    'jagran-school-of-artificial-intelligence': 'ai',
+    'jagran-school-of-engineering': 'engineering',
+    'jagran-school-of-computer-application': 'computer-application',
+    'iica-jagran-centre-for-creative-skills': 'iica-creative',
+    'faculty-of-pharmacy': 'pharmacy',
+    'faculty-of-law': 'law',
+  };
+
   const activateFromSlug = (slug: string) => {
     const facultyId = slugToFaculty[slug];
     if (facultyId) {
       setActiveFacultyId(facultyId);
+
+      // If it's a school slug, also open its modal
+      const schoolId = slugToSchoolId[slug];
+      if (schoolId) {
+        setTimeout(() => {
+          const faculty = faculties.find(f => f.id === facultyId);
+          const school = faculty?.schools.find(s => s.id === schoolId);
+          if (school) setSelectedSchool(school);
+        }, 400);
+      }
+
       setTimeout(() => {
         const el = document.getElementById('faculty-explorer');
         if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
