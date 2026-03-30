@@ -560,7 +560,7 @@ const NewsAndEvents = () => {
           <div className="flex flex-col lg:flex-row lg:items-center gap-6 md:gap-8">
             {/* Featured Story - Large Card */}
             <motion.div
-              className="relative overflow-hidden group cursor-pointer w-full lg:w-1/2 h-80 md:h-125 rounded-2xl"
+              className="relative overflow-hidden group cursor-pointer w-full lg:w-1/2 h-80 md:h-96 lg:h-125 rounded-2xl"
               initial={{ opacity: 0, x: -40 }}
               whileInView={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8, ease: customEase }}
@@ -793,13 +793,13 @@ const NewsAndEvents = () => {
           <div className="overflow-hidden -mx-5 px-5 md:mx-0 md:px-0">
             <motion.div
               className="flex gap-4 md:gap-8"
-              animate={{ x: -currentSlide * (typeof window !== 'undefined' && window.innerWidth < 768 ? 280 : 432) }}
+              animate={{ x: -currentSlide * (typeof window !== 'undefined' ? (window.innerWidth < 768 ? 280 : window.innerWidth < 1024 ? 352 : 432) : 432) }}
               transition={{ duration: 0.6, ease: customEase }}
             >
               {pastEventsData.map((event, index) => (
                 <motion.div
                   key={event.id}
-                  className="shrink-0 group cursor-pointer w-64 md:w-100"
+                  className="shrink-0 group cursor-pointer w-64 md:w-80 lg:w-100"
                   initial={{ opacity: 0, y: 40 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.6, delay: index * 0.1, ease: customEase }}
@@ -808,7 +808,7 @@ const NewsAndEvents = () => {
                 >
                   {/* Card Image */}
                   <motion.div
-                    className="relative overflow-hidden w-64 h-80 md:w-100 md:h-125 rounded-2xl"
+                    className="relative overflow-hidden w-64 h-80 md:w-80 md:h-96 lg:w-100 lg:h-125 rounded-2xl"
                     whileHover={{ scale: 1.02 }}
                     transition={{ duration: 0.4 }}
                   >

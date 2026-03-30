@@ -1751,7 +1751,7 @@ const InternationalOffice = () => {
               whileInView={{ opacity: 1, x: 0, scale: 1 }}
               transition={{ duration: 1, ease: customEase }}
               viewport={{ once: true }}
-              className="relative shrink-0 overflow-hidden group cursor-pointer w-full h-80 md:h-125 lg:w-145 lg:h-170 rounded-2xl"
+              className="relative shrink-0 overflow-hidden group cursor-pointer w-full h-80 md:h-96 lg:w-145 lg:h-170 rounded-2xl"
             >
               <motion.div
                 className="absolute inset-0"

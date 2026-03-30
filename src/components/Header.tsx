@@ -214,6 +214,7 @@ const MenuOverlay = ({ isOpen, onClose, menuButtonRef }: MenuOverlayProps) => {
   const pathname = usePathname();
   const router = useRouter();
   const isMobile = useIsMobile();
+  const isTablet = useIsMobile(1024);
   const [hoveredItem, setHoveredItem] = useState<string | null>(null);
   const [expandedMobileItem, setExpandedMobileItem] = useState<string | null>(null);
 
@@ -255,9 +256,11 @@ const MenuOverlay = ({ isOpen, onClose, menuButtonRef }: MenuOverlayProps) => {
   // Show hovered item's submenu, or fall back to active page's submenu
   const displayedNavItem = hoveredNavItem || activeNavItem;
 
-  const circleSize = isMobile ? 2000 : 1600;
-  const buttonWidth = isMobile ? 24 : 168;
-  const buttonHeight = isMobile ? 24 : 48;
+  // Tablets (768-1024px) use the mobile-style fullscreen overlay for better usability
+  const useMobileOverlay = isMobile || (isTablet && !isMobile);
+  const circleSize = useMobileOverlay ? 2000 : 1600;
+  const buttonWidth = useMobileOverlay ? 24 : 168;
+  const buttonHeight = useMobileOverlay ? 24 : 48;
 
   const getButtonPosition = () => {
     if (menuButtonRef.current) {
@@ -280,17 +283,17 @@ const MenuOverlay = ({ isOpen, onClose, menuButtonRef }: MenuOverlayProps) => {
     <AnimatePresence>
       {isOpen && (
         <>
-          {/* Mobile: Square-to-fullscreen expanding overlay */}
-          {isMobile ? (
+          {/* Mobile/Tablet: Square-to-fullscreen expanding overlay */}
+          {useMobileOverlay ? (
             <>
               {/* Expanding square background - starts exactly from menu button */}
               <motion.div
                 initial={{
-                  width: 24,
-                  height: 24,
+                  width: isMobile ? 24 : 32,
+                  height: isMobile ? 24 : 32,
                   borderRadius: '6px',
-                  left: buttonPos.left + 16,
-                  top: buttonPos.top + 6,
+                  left: isMobile ? buttonPos.left + 16 : buttonPos.left,
+                  top: isMobile ? buttonPos.top + 6 : buttonPos.top,
                 }}
                 animate={{
                   width: '100vw',
@@ -300,11 +303,11 @@ const MenuOverlay = ({ isOpen, onClose, menuButtonRef }: MenuOverlayProps) => {
                   top: 0,
                 }}
                 exit={{
-                  width: 24,
-                  height: 24,
+                  width: isMobile ? 24 : 32,
+                  height: isMobile ? 24 : 32,
                   borderRadius: '6px',
-                  left: buttonPos.left + 16,
-                  top: buttonPos.top + 6,
+                  left: isMobile ? buttonPos.left + 16 : buttonPos.left,
+                  top: isMobile ? buttonPos.top + 6 : buttonPos.top,
                 }}
                 transition={{
                   duration: 1,
@@ -324,8 +327,8 @@ const MenuOverlay = ({ isOpen, onClose, menuButtonRef }: MenuOverlayProps) => {
                 className="fixed inset-0 overflow-y-auto"
                 style={{ zIndex: 59, overscrollBehavior: 'contain' }}
               >
-                {/* Mobile Navigation content - full-width stacked layout */}
-                <div className="flex flex-col px-6 pt-20 pb-48">
+                {/* Mobile/Tablet Navigation content - full-width stacked layout */}
+                <div className={`flex flex-col pt-20 pb-48 ${isTablet && !isMobile ? 'px-12' : 'px-6'}`}>
                   {/* Main navigation */}
                   <div>
                     <motion.p
@@ -352,7 +355,7 @@ const MenuOverlay = ({ isOpen, onClose, menuButtonRef }: MenuOverlayProps) => {
                                 : 'text-[#027ea1]/70'
                             }`}
                           >
-                            <span className="text-lg font-medium flex items-center gap-2.5">
+                            <span className={`${isTablet && !isMobile ? 'text-xl' : 'text-lg'} font-medium flex items-center gap-2.5`}>
                               {isActive(item.href) && (
                                 <span className="w-2 h-2 rounded-full bg-[#027ea1]" />
                               )}
@@ -462,7 +465,7 @@ const MenuOverlay = ({ isOpen, onClose, menuButtonRef }: MenuOverlayProps) => {
                     >
                       Explore More
                     </motion.p>
-                    <div className="flex gap-3 mb-6 overflow-x-auto">
+                    <div className={`flex gap-3 mb-6 ${isTablet && !isMobile ? 'flex-wrap gap-4' : 'overflow-x-auto'}`}>
                       {bottomMenuItems.map((subItem, index) => (
                         <motion.a
                           key={subItem.label}
@@ -471,7 +474,7 @@ const MenuOverlay = ({ isOpen, onClose, menuButtonRef }: MenuOverlayProps) => {
                           initial={{ opacity: 0, y: 6 }}
                           animate={{ opacity: 1, y: 0 }}
                           transition={{ delay: 0.7 + index * 0.04, duration: 0.3 }}
-                          className="text-xs text-[#027ea1]/70 transition-colors whitespace-nowrap shrink-0"
+                          className={`${isTablet && !isMobile ? 'text-sm' : 'text-xs'} text-[#027ea1]/70 transition-colors whitespace-nowrap shrink-0`}
                         >
                           {subItem.label}
                         </motion.a>
@@ -479,7 +482,7 @@ const MenuOverlay = ({ isOpen, onClose, menuButtonRef }: MenuOverlayProps) => {
                     </div>
 
                     {/* Quick Actions */}
-                    <div className="grid grid-cols-2 gap-3">
+                    <div className={`grid gap-3 ${isTablet && !isMobile ? 'grid-cols-3' : 'grid-cols-2'}`}>
                       <Link href="/apply" onClick={onClose}>
                         <motion.div
                           initial={{ opacity: 0, y: 8 }}
@@ -858,6 +861,7 @@ interface MenuButtonProps {
 
 const MenuButton = ({ onClick, buttonRef, isOpen }: MenuButtonProps) => {
   const isMobile = useIsMobile();
+  const isTablet = useIsMobile(1024);
 
   return (
     <button
@@ -865,31 +869,31 @@ const MenuButton = ({ onClick, buttonRef, isOpen }: MenuButtonProps) => {
       onClick={onClick}
       aria-label={isOpen ? "Close menu" : "Open menu"}
       className={`relative flex items-center justify-center shadow-lg shadow-black/5 transition-all hover:shadow-xl hover:shadow-black/10 ${
-        isMobile ? 'h-6 w-6 rounded-md' : 'h-[42px] w-[150px] rounded-md'
-      } ${isOpen && isMobile ? 'bg-[#027ea1]' : 'bg-white'}`}
+        isMobile ? 'h-6 w-6 rounded-md' : isTablet ? 'h-8 w-8 rounded-md' : 'h-[42px] w-[150px] rounded-md'
+      } ${isOpen && (isMobile || isTablet) ? 'bg-[#027ea1]' : 'bg-white'}`}
       style={{ zIndex: 10000 }}
     >
       {/* Desktop: Show Menu text and divider (only when not open) */}
-      {!isMobile && !isOpen && (
+      {!isTablet && !isOpen && (
         <>
           <span className="text-sm font-medium tracking-wide pl-4 mr-auto text-[#0c3b5f]">Menu</span>
           <div className="h-[32px] w-px bg-gray-300 mx-5" />
         </>
       )}
 
-      {/* Mobile: Show X when open, hamburger when closed */}
-      {isMobile ? (
+      {/* Mobile/Tablet: Show X when open, hamburger when closed */}
+      {isMobile || isTablet ? (
         isOpen ? (
           // X icon for close
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <svg width={isMobile ? "14" : "16"} height={isMobile ? "14" : "16"} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
             <line x1="5" y1="5" x2="19" y2="19" stroke="white" strokeWidth="2" strokeLinecap="round" />
             <line x1="19" y1="5" x2="5" y2="19" stroke="white" strokeWidth="2" strokeLinecap="round" />
           </svg>
         ) : (
           // Hamburger icon
           <div className="flex flex-col gap-[4px]">
-            <span className="h-[2px] bg-[#0c3b5f] w-[14px]" />
-            <span className="h-[2px] bg-[#0c3b5f] w-[14px]" />
+            <span className={`h-[2px] bg-[#0c3b5f] ${isMobile ? 'w-[14px]' : 'w-[18px]'}`} />
+            <span className={`h-[2px] bg-[#0c3b5f] ${isMobile ? 'w-[14px]' : 'w-[18px]'}`} />
           </div>
         )
       ) : (
@@ -911,6 +915,7 @@ export const Header = () => {
   const [isVisible, setIsVisible] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
   const isMobile = useIsMobile();
+  const isTablet = useIsMobile(1024);
   const pathname = usePathname();
 
   // Check if we're on the homepage
@@ -977,23 +982,23 @@ export const Header = () => {
           delay: isHomepage ? 2.8 : 0.2,
           ease: [0.25, 0.1, 0.25, 1]
         }}
-        className="relative flex items-center justify-between px-6 pt-8 sm:pt-10 sm:px-10 lg:px-16 xl:px-20 2xl:px-32"
+        className="relative flex items-center justify-between px-6 pt-8 sm:pt-10 sm:px-10 md:px-12 lg:px-16 xl:px-20 2xl:px-32"
         style={{ zIndex: 60 }}
       >
-        {/* Left side - Search on mobile, spacer on desktop */}
+        {/* Left side - Search on mobile/tablet, spacer on desktop */}
         <div className="flex-1">
-          {isMobile && (
+          {(isMobile || isTablet) && (
             <button
               onClick={() => setIsSearchOpen(true)}
               aria-label="Open search"
-              className="flex items-center justify-center bg-white text-slate-800 shadow-lg shadow-black/5 h-6 w-6 rounded-md"
+              className={`flex items-center justify-center bg-white text-slate-800 shadow-lg shadow-black/5 rounded-md ${isMobile ? 'h-6 w-6' : 'h-8 w-8'}`}
               style={{
                 opacity: isMenuOpen ? 0 : 1,
                 visibility: isMenuOpen ? 'hidden' : 'visible',
                 pointerEvents: isMenuOpen ? 'none' : 'auto',
               }}
             >
-              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="h-3.5 w-3.5">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className={isMobile ? 'h-3.5 w-3.5' : 'h-4 w-4'}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" />
               </svg>
             </button>
@@ -1011,10 +1016,10 @@ export const Header = () => {
           }}
           className="absolute left-1/2 -translate-x-1/2"
           style={{
-            top: isMobile ? '22.5px' : '32px',
-            opacity: isMenuOpen && isMobile ? 0 : 1,
-            visibility: isMenuOpen && isMobile ? 'hidden' : 'visible',
-            pointerEvents: isMenuOpen && isMobile ? 'none' : 'auto',
+            top: isMobile ? '22.5px' : isTablet ? '28px' : '32px',
+            opacity: isMenuOpen && (isMobile || isTablet) ? 0 : 1,
+            visibility: isMenuOpen && (isMobile || isTablet) ? 'hidden' : 'visible',
+            pointerEvents: isMenuOpen && (isMobile || isTablet) ? 'none' : 'auto',
           }}
         >
           <Link href="/">
@@ -1022,7 +1027,7 @@ export const Header = () => {
               src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/jlulogo.png"
               alt="Jagran Lakecity University logo"
               className={`w-auto object-contain drop-shadow-lg cursor-pointer ${
-                isMobile ? 'h-20' : 'h-18 sm:h-20 lg:h-24'
+                isMobile ? 'h-20' : isTablet ? 'h-20' : 'h-18 sm:h-20 lg:h-24'
               }`}
             />
           </Link>
@@ -1030,12 +1035,12 @@ export const Header = () => {
 
         {/* Right side - Search and Menu */}
         <div className="flex items-center gap-3 sm:gap-4">
-          {/* Search button - desktop only (mobile search is on left) */}
+          {/* Search button - desktop only (mobile/tablet search is on left) */}
           <button
             onClick={() => setIsSearchOpen(true)}
             aria-label="Open search"
             className={`flex items-center justify-center bg-white text-slate-800 shadow-lg shadow-black/5 transition-all hover:shadow-xl hover:shadow-black/10 ${
-              isMobile ? 'hidden' : 'h-12 w-12 rounded-xl'
+              isMobile || isTablet ? 'hidden' : 'h-12 w-12 rounded-xl'
             }`}
             style={{
               opacity: isMenuOpen && isMobile ? 0 : 1,

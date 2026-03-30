@@ -447,7 +447,7 @@ const CampusLife = () => {
       {/* 1. STUDENT COUNCIL — Image + Text Split with Parallax */}
       {/* ═══════════════════════════════════════════════════════ */}
       <div id="student-council" className="w-full bg-white">
-        <div className="mx-auto px-5 sm:px-8 md:px-[120px] py-20 md:py-32" style={{ maxWidth: '1440px', ...(isMobile ? { paddingTop: '40px', paddingBottom: '40px' } : {}) }}>
+        <div className="mx-auto px-5 sm:px-8 md:px-10 lg:px-[120px] py-20 md:py-20 lg:py-32" style={{ maxWidth: '1440px', ...(isMobile ? { paddingTop: '40px', paddingBottom: '40px' } : {}) }}>
           {/* Top: Image banner with parallax + heading overlay */}
           <div ref={councilImgRef} className="relative w-full h-[300px] md:h-[420px] rounded-2xl overflow-hidden mb-16" style={isMobile ? { height: '200px', marginBottom: '24px' } : {}}>
             <motion.div className="absolute inset-0" style={{ y: councilImgY }}>
@@ -539,7 +539,7 @@ const CampusLife = () => {
             <h3 className="text-[#21313c] text-xl md:text-2xl font-semibold mb-8" style={{ letterSpacing: '-0.02em', ...(isMobile ? { fontSize: '16px', marginBottom: '16px' } : {}) }}>
               House Captains & Vice-Captains
             </h3>
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-5">
+            <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-3 md:gap-5">
               {['Sharks', 'Lions', 'Stallions', 'Hawks'].map((house) => (
                 <div key={house} className="border border-[#e5e5e5] rounded-xl p-4 md:p-5 hover:border-[#f0c14b] hover:shadow-sm transition-all duration-300">
                   <div className="flex flex-col items-center mb-4" style={isMobile ? { marginBottom: '10px' } : {}}>
@@ -608,7 +608,7 @@ const CampusLife = () => {
             transition={{ duration: 0.8, ease: customEase }}
             viewport={{ once: true }}
           >
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
               {/* Editorial Board */}
               <div className="border border-[#e5e5e5] rounded-xl p-5 md:p-6 hover:border-[#f0c14b] hover:shadow-sm transition-all duration-300">
                 <h4 className="text-[#21313c] font-semibold text-sm md:text-base mb-4" style={isMobile ? { fontSize: '13px', marginBottom: '10px' } : {}}>Editorial Board</h4>
@@ -650,7 +650,7 @@ const CampusLife = () => {
       {/* 2. STUDENT CLUBS — Image Card + List Selector */}
       {/* ═══════════════════════════════════════════════════════ */}
       <div id="student-clubs" className="w-full" style={{ backgroundColor: '#f6f7f0' }}>
-        <div className="mx-auto px-5 sm:px-8 md:px-[120px] py-20 md:py-32" style={{ maxWidth: '1440px', ...(isMobile ? { paddingTop: '40px', paddingBottom: '40px' } : {}) }}>
+        <div className="mx-auto px-5 sm:px-8 md:px-10 lg:px-[120px] py-20 md:py-20 lg:py-32" style={{ maxWidth: '1440px', ...(isMobile ? { paddingTop: '40px', paddingBottom: '40px' } : {}) }}>
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -850,7 +850,7 @@ const CampusLife = () => {
       {/* ═══════════════════════════════════════════════════════ */}
       <div id="student-achievements" />
       <div id="cultural-activities" className="w-full bg-white">
-        <div className="mx-auto px-5 sm:px-8 md:px-[120px] py-20 md:py-32" style={{ maxWidth: '1440px', ...(isMobile ? { paddingTop: '40px', paddingBottom: '40px' } : {}) }}>
+        <div className="mx-auto px-5 sm:px-8 md:px-10 lg:px-[120px] py-20 md:py-20 lg:py-32" style={{ maxWidth: '1440px', ...(isMobile ? { paddingTop: '40px', paddingBottom: '40px' } : {}) }}>
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -1041,7 +1041,7 @@ const CampusLife = () => {
       </div>
 
       <div id="events-and-festivals" className="w-full" style={{ backgroundColor: '#21313c' }}>
-        <div className="mx-auto px-5 sm:px-8 md:px-[120px] py-20 md:py-28" style={{ maxWidth: '1440px', ...(isMobile ? { paddingTop: '30px', paddingBottom: '30px' } : {}) }}>
+        <div className="mx-auto px-5 sm:px-8 md:px-10 lg:px-[120px] py-20 md:py-20 lg:py-28" style={{ maxWidth: '1440px', ...(isMobile ? { paddingTop: '30px', paddingBottom: '30px' } : {}) }}>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -1055,7 +1055,7 @@ const CampusLife = () => {
 
           {/* Placement Stats */}
           <motion.div
-            className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-20"
+            className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-20"
             style={isMobile ? { gap: '12px', marginBottom: '24px' } : {}}
             variants={staggerContainer}
             initial="hidden"
@@ -1164,7 +1164,7 @@ const CampusLife = () => {
       {/* ═══════════════════════════════════════════════════════ */}
       <div id="ignitox-incubation-hub" />
       <div id="community-service" className="w-full bg-white">
-        <div className="mx-auto px-5 sm:px-8 md:px-[120px] py-20 md:py-32" style={{ maxWidth: '1440px', ...(isMobile ? { paddingTop: '40px', paddingBottom: '40px' } : {}) }}>
+        <div className="mx-auto px-5 sm:px-8 md:px-10 lg:px-[120px] py-20 md:py-20 lg:py-32" style={{ maxWidth: '1440px', ...(isMobile ? { paddingTop: '40px', paddingBottom: '40px' } : {}) }}>
           <div className="flex flex-col lg:flex-row gap-12 lg:gap-20" style={isMobile ? { gap: '20px' } : {}}>
             {/* Left - Content */}
             <motion.div
@@ -1306,7 +1306,7 @@ const CampusLife = () => {
       </div>
 
       <div className="w-full" style={{ backgroundColor: '#f6f7f0' }}>
-        <div className="mx-auto px-5 sm:px-8 md:px-[120px] py-20 md:py-28" style={{ maxWidth: '1440px', ...(isMobile ? { paddingTop: '30px', paddingBottom: '30px' } : {}) }}>
+        <div className="mx-auto px-5 sm:px-8 md:px-10 lg:px-[120px] py-20 md:py-20 lg:py-28" style={{ maxWidth: '1440px', ...(isMobile ? { paddingTop: '30px', paddingBottom: '30px' } : {}) }}>
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}

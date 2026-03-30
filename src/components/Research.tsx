@@ -700,7 +700,7 @@ const Research = () => {
             maxWidth: '1440px',
           }}
         >
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 md:gap-4 lg:gap-0">
+          <div className="grid grid-cols-2 md:grid-cols-3 gap-4 sm:gap-6 md:gap-4 lg:gap-0">
             {statsData.map((stat) => (
               <div
                 key={stat.id}

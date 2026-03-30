@@ -728,7 +728,7 @@ const Campus = () => {
       {/* ===== CAMPUS STATS SECTION ===== */}
       <div id="university-campus" />
       <div id="infrastructure" className="w-full bg-[#f6f7f0] py-16 md:py-24">
-        <div className="mx-auto px-5 sm:px-8 md:px-[120px]" style={{ maxWidth: '1440px' }}>
+        <div className="mx-auto px-5 sm:px-8 md:px-10 lg:px-[120px]" style={{ maxWidth: '1440px' }}>
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -753,7 +753,7 @@ const Campus = () => {
             </h2>
           </motion.div>
 
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6">
             {campusStats.map((stat, index) => (
               <motion.div
                 key={index}
@@ -785,7 +785,7 @@ const Campus = () => {
       <div id="dining-services" />
       <div id="facilities" className="w-full bg-white">
         <div
-          className="mx-auto px-5 py-12 sm:px-8 sm:py-16 md:px-[120px] md:py-[140px]"
+          className="mx-auto px-5 py-12 sm:px-8 sm:py-16 md:px-10 md:py-20 lg:px-[120px] lg:py-[140px]"
           style={{ maxWidth: '1440px' }}
         >
           {/* Section Header */}
@@ -829,7 +829,7 @@ const Campus = () => {
             </motion.p>
           </motion.div>
 
-          <div className="flex flex-col md:flex-row md:justify-between gap-8 md:gap-20">
+          <div className="flex flex-col md:flex-row md:justify-between gap-8 md:gap-10 lg:gap-20">
             {/* Left Side - Accordion */}
             <motion.div
               initial={{ opacity: 0, x: -50 }}
@@ -949,7 +949,7 @@ const Campus = () => {
               whileInView={{ opacity: 1, x: 0, scale: 1 }}
               transition={{ duration: 1, delay: 0.2, ease: customEase }}
               viewport={{ once: true }}
-              className="relative shrink-0 overflow-hidden w-full h-[300px] sm:h-[400px] md:w-[580px] md:h-[650px] cursor-pointer"
+              className="relative shrink-0 overflow-hidden w-full h-[300px] sm:h-[400px] md:w-[45%] md:h-[500px] lg:w-[580px] lg:h-[650px] cursor-pointer"
               onClick={() => {
                 const id = activeInfrastructure === 1 ? 'university-campus' : activeInfrastructure === 2 ? 'student-accommodation' : 'dining-facilities';
                 setSelectedFacility(infrastructureModalData.find(f => f.id === id) || null);
@@ -994,8 +994,8 @@ const Campus = () => {
 
       {/* ===== TECHNOLOGY-BASED CLASSROOMS SECTION ===== */}
       <div id="laboratories" className="w-full bg-white">
-        <div className="mx-auto px-5 py-12 sm:px-8 sm:py-16 md:px-[120px] md:py-[140px]" style={{ maxWidth: '1440px' }}>
-          <div className="grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-16 items-start">
+        <div className="mx-auto px-5 py-12 sm:px-8 sm:py-16 md:px-10 md:py-20 lg:px-[120px] lg:py-[140px]" style={{ maxWidth: '1440px' }}>
+          <div className="grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-8 lg:gap-16 items-start">
             {/* Left - Large Image with floating overlay */}
             <motion.div
               initial={{ opacity: 0, x: -60 }}
@@ -1105,7 +1105,7 @@ const Campus = () => {
       <div id="shri-cyril-shroff-moot-court" />
       <div className="w-full bg-[#21313c]">
         <div
-          className="mx-auto px-5 py-12 sm:px-8 sm:py-16 md:px-[120px] md:py-[140px]"
+          className="mx-auto px-5 py-12 sm:px-8 sm:py-16 md:px-10 md:py-20 lg:px-[120px] lg:py-[140px]"
           style={{ maxWidth: '1440px' }}
         >
           <motion.div
@@ -1331,7 +1331,7 @@ const Campus = () => {
       <div id="sports-facilities" />
       <div id="sports-complex" className="w-full bg-[#f6f7f0]">
         <div
-          className="mx-auto px-5 py-12 sm:px-8 sm:py-16 md:px-[120px] md:py-[140px]"
+          className="mx-auto px-5 py-12 sm:px-8 sm:py-16 md:px-10 md:py-20 lg:px-[120px] lg:py-[140px]"
           style={{ maxWidth: '1440px' }}
         >
           {/* Section Header */}
@@ -1350,7 +1350,7 @@ const Campus = () => {
                 Sports Facilities
               </span>
               <h2
-                className="text-[#21313c] text-3xl sm:text-4xl md:text-5xl"
+                className="text-[#21313c] text-3xl sm:text-4xl md:text-4xl lg:text-5xl"
                 style={{ fontWeight: 700, lineHeight: 1.1 }}
               >
                 Cultivating balance,
@@ -1517,10 +1517,10 @@ const Campus = () => {
       <div id="the-pyramid-university-library" />
       <div id="library" className="w-full bg-white">
         <div
-          className="mx-auto px-5 py-12 sm:px-8 sm:py-16 md:px-[120px] md:py-[120px]"
+          className="mx-auto px-5 py-12 sm:px-8 sm:py-16 md:px-10 md:py-20 lg:px-[120px] lg:py-[120px]"
           style={{ maxWidth: '1440px' }}
         >
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-16 items-center">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-10 lg:gap-16 items-center">
             {/* Left - Image */}
             <motion.div
               initial={{ opacity: 0, x: -50 }}
@@ -1625,10 +1625,10 @@ const Campus = () => {
       <div id="indoor-multipurpose-hall" />
       <div className="w-full bg-[#f6f7f0]">
         <div
-          className="mx-auto px-5 py-12 sm:px-8 sm:py-16 md:px-[120px] md:py-[120px]"
+          className="mx-auto px-5 py-12 sm:px-8 sm:py-16 md:px-10 md:py-20 lg:px-[120px] lg:py-[120px]"
           style={{ maxWidth: '1440px' }}
         >
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-16 items-center">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-10 lg:gap-16 items-center">
             {/* Left - Content */}
             <motion.div
               initial={{ opacity: 0, x: -50 }}
@@ -1730,7 +1730,7 @@ const Campus = () => {
       </div>
 
       {/* ===== CAMPUS GALLERY SECTION ===== */}
-      <div className="w-full bg-white pb-12 md:pb-[120px]">
+      <div className="w-full bg-white pb-12 md:pb-16 lg:pb-[120px]">
         <div
           className="relative mx-auto overflow-hidden h-[500px] sm:h-[700px] md:h-[1000px]"
           style={{ maxWidth: '1440px' }}
@@ -1920,7 +1920,7 @@ const Campus = () => {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2, ease: customEase }}
             viewport={{ once: true }}
-            className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 w-full relative z-10"
+            className="grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6 w-full relative z-10"
           >
             {[
               { value: '232', unit: 'acres', desc: 'Campus Area' },

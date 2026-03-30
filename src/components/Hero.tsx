@@ -7,6 +7,17 @@ import { useIsMobile } from '../hooks/useIsMobile';
 
 const Globe3D = lazy(() => import('./Globe3D'));
 
+const useIsTablet = () => {
+  const [isTablet, setIsTablet] = useState(false);
+  useEffect(() => {
+    const check = () => setIsTablet(window.innerWidth >= 768 && window.innerWidth < 1024);
+    check();
+    window.addEventListener('resize', check);
+    return () => window.removeEventListener('resize', check);
+  }, []);
+  return isTablet;
+};
+
 // ============================================
 // HERO COMPONENT
 // ============================================
@@ -21,6 +32,7 @@ export const Hero = () => {
   const [viewportSize, setViewportSize] = useState({ width: 0, height: 0 });
   const cardRefs = useRef<(HTMLDivElement | null)[]>([]);
   const isMobile = useIsMobile();
+  const isTablet = useIsTablet();
 
 
   // Refs for GSAP animation
@@ -179,7 +191,7 @@ export const Hero = () => {
       {/* Cinematic Hero Section */}
       <section
         className="relative w-full overflow-hidden bg-[#f6f7f0]"
-        style={{ height: isMobile ? 'calc(100vh - 16px)' : 'calc(100vh - 4px)', padding: isMobile ? '16px' : '24px' }}
+        style={{ height: isMobile ? 'calc(100vh - 16px)' : 'calc(100vh - 4px)', padding: isMobile ? '16px' : isTablet ? '16px' : '24px' }}
       >
         <div
           ref={heroRef}
@@ -211,7 +223,7 @@ export const Hero = () => {
             className="absolute inset-0 flex items-center justify-center"
             style={{
               zIndex: 2,
-              paddingBottom: isMobile ? '35%' : '15%',
+              paddingBottom: isMobile ? '35%' : isTablet ? '20%' : '15%',
               opacity: 0,
             }}
           >
@@ -282,7 +294,7 @@ export const Hero = () => {
                   className="absolute uppercase tracking-widest"
                   style={{
                     fontFamily: "'Humane', sans-serif",
-                    fontSize: 'clamp(7rem, 10vw, 14rem)',
+                    fontSize: isTablet ? 'clamp(5rem, 9vw, 8rem)' : 'clamp(7rem, 10vw, 14rem)',
                     fontWeight: 700,
                     lineHeight: 1,
                     letterSpacing: '0.05em',
@@ -290,7 +302,9 @@ export const Hero = () => {
                     textShadow: '0 0 20px rgba(0,0,0,0.6), 0 0 40px rgba(0,0,0,0.3), 0 2px 4px rgba(0,0,0,0.5)',
                     top: '50%',
                     left: '50%',
-                    transform: 'translate(calc(-50% - 280px), calc(-50% - 85px))',
+                    transform: isTablet
+                      ? 'translate(calc(-50% - 180px), calc(-50% - 60px))'
+                      : 'translate(calc(-50% - 280px), calc(-50% - 85px))',
                   }}
                 >
                   Central
@@ -300,7 +314,7 @@ export const Hero = () => {
                   className="absolute uppercase tracking-widest"
                   style={{
                     fontFamily: "'Humane', sans-serif",
-                    fontSize: 'clamp(7rem, 10vw, 14rem)',
+                    fontSize: isTablet ? 'clamp(5rem, 9vw, 8rem)' : 'clamp(7rem, 10vw, 14rem)',
                     fontWeight: 700,
                     lineHeight: 1,
                     letterSpacing: '0.05em',
@@ -308,7 +322,9 @@ export const Hero = () => {
                     textShadow: '0 0 20px rgba(0,0,0,0.6), 0 0 40px rgba(0,0,0,0.3), 0 2px 4px rgba(0,0,0,0.5)',
                     top: '50%',
                     left: '50%',
-                    transform: 'translate(calc(-50% - 280px), calc(-50% + 40px))',
+                    transform: isTablet
+                      ? 'translate(calc(-50% - 180px), calc(-50% + 30px))'
+                      : 'translate(calc(-50% - 280px), calc(-50% + 40px))',
                   }}
                 >
                   India&apos;s
@@ -318,7 +334,7 @@ export const Hero = () => {
                   className="absolute uppercase tracking-widest"
                   style={{
                     fontFamily: "'Humane', sans-serif",
-                    fontSize: 'clamp(7rem, 10vw, 14rem)',
+                    fontSize: isTablet ? 'clamp(5rem, 9vw, 8rem)' : 'clamp(7rem, 10vw, 14rem)',
                     fontWeight: 700,
                     lineHeight: 1,
                     letterSpacing: '0.05em',
@@ -326,7 +342,9 @@ export const Hero = () => {
                     textShadow: '0 0 20px rgba(0,0,0,0.6), 0 0 40px rgba(0,0,0,0.3), 0 2px 4px rgba(0,0,0,0.5)',
                     top: '50%',
                     right: '50%',
-                    transform: 'translate(calc(50% + 280px), calc(-50% + 10px))',
+                    transform: isTablet
+                      ? 'translate(calc(50% + 180px), calc(-50% + 5px))'
+                      : 'translate(calc(50% + 280px), calc(-50% + 10px))',
                   }}
                 >
                   Global
@@ -336,7 +354,7 @@ export const Hero = () => {
                   className="absolute uppercase tracking-widest"
                   style={{
                     fontFamily: "'Humane', sans-serif",
-                    fontSize: 'clamp(7rem, 10vw, 14rem)',
+                    fontSize: isTablet ? 'clamp(5rem, 9vw, 8rem)' : 'clamp(7rem, 10vw, 14rem)',
                     fontWeight: 700,
                     lineHeight: 1,
                     letterSpacing: '0.05em',
@@ -344,7 +362,9 @@ export const Hero = () => {
                     textShadow: '0 0 20px rgba(0,0,0,0.6), 0 0 40px rgba(0,0,0,0.3), 0 2px 4px rgba(0,0,0,0.5)',
                     top: '50%',
                     right: '50%',
-                    transform: 'translate(calc(50% + 340px), calc(-50% + 135px))',
+                    transform: isTablet
+                      ? 'translate(calc(50% + 220px), calc(-50% + 95px))'
+                      : 'translate(calc(50% + 340px), calc(-50% + 135px))',
                   }}
                 >
                   University
@@ -366,8 +386,8 @@ export const Hero = () => {
               opacity: 0,
             }}
           >
-            <Suspense fallback={<div style={{ width: isMobile ? 200 : 350, height: isMobile ? 200 : 350 }} />}>
-              <Globe3D size={isMobile ? 200 : 350} />
+            <Suspense fallback={<div style={{ width: isMobile ? 200 : isTablet ? 260 : 350, height: isMobile ? 200 : isTablet ? 260 : 350 }} />}>
+              <Globe3D size={isMobile ? 200 : isTablet ? 260 : 350} />
             </Suspense>
           </div>
 
@@ -380,8 +400,8 @@ export const Hero = () => {
             style={{
               zIndex: 3,
               width: '100%',
-              height: isMobile ? '75%' : '110%',
-              bottom: isMobile ? '-30px' : '-50px',
+              height: isMobile ? '75%' : isTablet ? '90%' : '110%',
+              bottom: isMobile ? '-30px' : isTablet ? '-30px' : '-50px',
               left: 0,
               right: 0,
               objectFit: 'cover',
@@ -425,9 +445,9 @@ export const Hero = () => {
             className="absolute bottom-8 right-8 sm:bottom-12 sm:right-12 lg:bottom-16 lg:right-16 bg-white text-[#21313c] font-semibold cursor-pointer"
             style={{
               zIndex: 40,
-              padding: isMobile ? '12px 24px' : '16px 32px',
+              padding: isMobile ? '12px 24px' : isTablet ? '12px 24px' : '16px 32px',
               borderRadius: '8px',
-              fontSize: isMobile ? '14px' : '16px',
+              fontSize: isMobile ? '14px' : isTablet ? '14px' : '16px',
               visibility: isVideoOpen ? 'hidden' : 'visible',
               pointerEvents: isVideoOpen ? 'none' : 'auto',
               opacity: 0,
@@ -563,7 +583,7 @@ export const Hero = () => {
       {/* Awards and Accreditations Banner */}
       <section className="relative bg-[#f6f7f0] py-4 sm:py-6 overflow-hidden">
         <div className="mx-auto max-w-[1800px] px-4 sm:px-10 lg:px-16">
-          <div className={`flex items-center ${isMobile ? 'gap-1.5 overflow-x-auto pb-2 -mx-4 px-4 scrollbar-hide' : 'justify-center gap-8 flex-wrap'}`} style={isMobile ? { WebkitOverflowScrolling: 'touch', scrollbarWidth: 'none', msOverflowStyle: 'none' } : undefined}>
+          <div className={`flex items-center ${isMobile ? 'gap-1.5 overflow-x-auto pb-2 -mx-4 px-4 scrollbar-hide' : isTablet ? 'justify-center gap-4 flex-wrap' : 'justify-center gap-8 flex-wrap'}`} style={isMobile ? { WebkitOverflowScrolling: 'touch', scrollbarWidth: 'none', msOverflowStyle: 'none' } : undefined}>
             {/* UGC Approved */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -644,7 +664,7 @@ export const Hero = () => {
         <div className="mx-auto flex max-w-[1800px] flex-col gap-4 sm:gap-6">
           <div>
             <h2
-              className="max-w-4xl text-[#21313c] text-3xl md:text-4xl lg:text-5xl"
+              className="max-w-4xl text-[#21313c] text-3xl md:text-[2.1rem] lg:text-5xl"
               style={{
                 fontWeight: 600,
                 lineHeight: 1.1,
@@ -656,12 +676,12 @@ export const Hero = () => {
               </span>
             </h2>
           </div>
-          <div className={`flex w-full ${isMobile ? 'flex-col gap-4' : 'flex-row gap-20'} items-start`}>
+          <div className={`flex w-full ${isMobile ? 'flex-col gap-4' : isTablet ? 'flex-col gap-6' : 'flex-row gap-20'} items-start`}>
             <p
               className="flex-1 text-[#666]"
               style={{
                 fontFamily: 'Inter, sans-serif',
-                fontSize: isMobile ? '20px' : 'clamp(1.25rem, 2vw, 1.75rem)',
+                fontSize: isMobile ? '20px' : isTablet ? '18px' : 'clamp(1.25rem, 2vw, 1.75rem)',
                 lineHeight: 1.7,
                 fontWeight: 400,
               }}
@@ -669,10 +689,10 @@ export const Hero = () => {
               Jagran Lakecity University is not defined by buildings alone. It is defined by the rhythm of daily life, the exchange of ideas, and the quiet confidence of people who belong here.
             </p>
             <p
-              className="flex-1 text-[#999] text-right mt-10"
+              className={`flex-1 text-[#999] ${isTablet ? 'text-left mt-0' : 'text-right mt-10'}`}
               style={{
                 fontFamily: 'Inter, sans-serif',
-                fontSize: isMobile ? '18px' : 'clamp(1.15rem, 1.8vw, 1.5rem)',
+                fontSize: isMobile ? '18px' : isTablet ? '16px' : 'clamp(1.15rem, 1.8vw, 1.5rem)',
                 lineHeight: 1.7,
                 fontWeight: 400,
               }}
@@ -684,7 +704,7 @@ export const Hero = () => {
       </section>
 
       {/* Image grid section */}
-      <section className="relative px-0 pb-12 md:pb-20 bg-[#f6f7f0] overflow-hidden">
+      <section className="relative px-0 pb-12 md:pb-14 lg:pb-20 bg-[#f6f7f0] overflow-hidden">
         <div className="relative mx-auto max-w-[1800px]" style={{ paddingLeft: isMobile ? '12px' : '16px', paddingRight: isMobile ? '12px' : '16px' }}>
           <div
             className="flex w-full items-end justify-center"
@@ -743,7 +763,7 @@ export const Hero = () => {
                     alt={img.alt}
                     className="block w-full object-cover"
                     style={{
-                      height: isMobile ? `${img.mobileHeight}px` : `${img.height}px`,
+                      height: isMobile ? `${img.mobileHeight}px` : isTablet ? `${Math.round(img.height * 0.65)}px` : `${img.height}px`,
                       borderTopLeftRadius: isMobile ? '12px' : '16px',
                       borderTopRightRadius: isMobile ? '12px' : '16px',
                       borderBottomLeftRadius: 0,
@@ -777,7 +797,7 @@ export const Hero = () => {
                       className={`font-bold uppercase tracking-wider select-none ${isMobile ? '' : 'transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500'}`}
                       style={{
                         fontFamily: "'Humane', sans-serif",
-                        fontSize: isMobile ? 'clamp(3.5rem, 14vw, 5.5rem)' : 'clamp(4.5rem, 8vw, 8rem)',
+                        fontSize: isMobile ? 'clamp(3.5rem, 14vw, 5.5rem)' : isTablet ? 'clamp(3rem, 6vw, 5rem)' : 'clamp(4.5rem, 8vw, 8rem)',
                         lineHeight: 1.0,
                         letterSpacing: isMobile ? '0' : '0.01em',
                         ...(isMobile ? {

@@ -1462,7 +1462,7 @@ const Admissions = () => {
       <div id="eligibility-criteria" />
       <div id="entrance-exams" />
       <div className="w-full bg-white">
-        <div className="mx-auto px-5 py-20 md:px-10 md:py-28 lg:px-30 lg:py-36" style={{ maxWidth: '1440px' }}>
+        <div className="mx-auto px-5 py-20 md:px-10 md:py-20 lg:px-30 lg:py-36" style={{ maxWidth: '1440px' }}>
           {/* Section Header */}
           <motion.div
             initial={{ opacity: 0, y: 40 }}
@@ -1872,7 +1872,7 @@ const Admissions = () => {
                     </div>
 
                     {/* Fee Table Header Row */}
-                    <div className="hidden md:grid grid-cols-12 gap-2 px-4 py-3 bg-[#21313c] text-white rounded-t-xl text-xs font-semibold">
+                    <div className="hidden lg:grid grid-cols-12 gap-2 px-4 py-3 bg-[#21313c] text-white rounded-t-xl text-xs font-semibold">
                       <div className="col-span-3">Program</div>
                       <div className="col-span-1 text-center">Duration</div>
                       <div className="col-span-2">School</div>
@@ -1885,11 +1885,11 @@ const Admissions = () => {
                     </div>
 
                     {/* Fee Table Rows */}
-                    <div className="divide-y divide-gray-200 bg-white rounded-b-xl md:rounded-b-xl rounded-xl md:rounded-t-none overflow-hidden">
+                    <div className="divide-y divide-gray-200 bg-white rounded-b-xl lg:rounded-b-xl rounded-xl lg:rounded-t-none overflow-hidden">
                       {(feeSearch ? searchCourses(feeSearch) : courseFees).map((program) => (
                         <div key={program.id}>
                           {/* Desktop Row */}
-                          <div className="hidden md:grid grid-cols-12 gap-2 px-4 py-3 text-xs">
+                          <div className="hidden lg:grid grid-cols-12 gap-2 px-4 py-3 text-xs">
                             <div className="col-span-3 text-[#21313c] font-medium">{program.name}</div>
                             <div className="col-span-1 text-[#666] text-center">{program.duration}</div>
                             <div className="col-span-2 text-[#666] truncate" title={program.school}>{program.school}</div>
@@ -1901,7 +1901,7 @@ const Admissions = () => {
                             <div className="col-span-1 text-[#21313c] font-bold text-right">₹{program.totalFeesPerYear.toLocaleString('en-IN')}</div>
                           </div>
                           {/* Mobile Card */}
-                          <div className="md:hidden p-4">
+                          <div className="lg:hidden p-4">
                             <div className="flex justify-between items-start mb-2">
                               <h4 className="text-[#21313c] font-semibold text-sm">{program.name}</h4>
                               <span className="text-[#21313c] font-bold text-sm">₹{program.totalFeesPerYear.toLocaleString('en-IN')}</span>
@@ -2413,7 +2413,7 @@ const Admissions = () => {
       <div id="pg-programs" />
       <div className="w-full bg-white">
         <div
-          className="mx-auto relative px-5 py-16 md:px-10 md:py-20 lg:px-30 lg:py-35"
+          className="mx-auto relative px-5 py-16 md:px-10 md:py-16 lg:px-30 lg:py-35"
           style={{
             maxWidth: '1440px',
           }}
@@ -2584,7 +2584,7 @@ const Admissions = () => {
                 </div>
 
                 {/* Content Half */}
-                <div className={`bg-[#2a3f4c] flex flex-col justify-center ${isMobile ? 'w-full p-5' : 'w-1/2 p-4 md:p-8 lg:p-16'}`}>
+                <div className={`bg-[#2a3f4c] flex flex-col justify-center ${isMobile ? 'w-full p-5' : 'w-1/2 p-4 md:p-6 lg:p-16'}`}>
                   <span
                     className="text-[#027ea1] font-medium mb-2 md:mb-4 text-xs md:text-sm"
                   >
@@ -2624,7 +2624,7 @@ const Admissions = () => {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
-            className="flex flex-col md:flex-row md:justify-between md:items-end mb-10 md:mb-16 lg:mb-20 gap-4 md:gap-0"
+            className="flex flex-col lg:flex-row lg:justify-between lg:items-end mb-10 md:mb-16 lg:mb-20 gap-4 lg:gap-0"
           >
             <div>
               <span
