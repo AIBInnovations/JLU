@@ -65,7 +65,6 @@ const Academics = () => {
   const slugToFaculty: Record<string, string> = {
     'faculty-of-management': 'management',
     'faculty-of-journalism-and-social-science': 'journalism',
-    'faculty-of-journalism-and-social-science': 'journalism',
     'faculty-of-fashion-design-and-arts': 'design',
     'faculty-of-fashion,-design-and-arts': 'design',
     'faculty-of-engineering-and-technology': 'engineering',
