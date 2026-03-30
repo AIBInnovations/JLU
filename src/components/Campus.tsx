@@ -8,26 +8,6 @@ import { useIsMobile } from '../hooks/useIsMobile';
 // Custom easing for smooth animations
 const customEase: [number, number, number, number] = [0.22, 1, 0.36, 1];
 
-// Stagger animation variants
-const staggerContainer = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.1,
-      delayChildren: 0.2,
-    },
-  },
-};
-
-const staggerItem = {
-  hidden: { opacity: 0, y: 30 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.8, ease: customEase },
-  },
-};
 
 // Campus Stats Data
 const campusStats = [
@@ -95,35 +75,6 @@ const infrastructureItems = [
   },
 ];
 
-// SVG icon components for classroom features
-const ErgonomicIcon = () => (
-  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-    <circle cx="12" cy="12" r="10" /><path d="M12 8v4l3 3" />
-  </svg>
-);
-const AcousticIcon = () => (
-  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-    <path d="M11 5L6 9H2v6h4l5 4V5z" /><line x1="23" y1="9" x2="17" y2="15" /><line x1="17" y1="9" x2="23" y2="15" />
-  </svg>
-);
-const SmartTechIcon = () => (
-  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-    <rect x="2" y="3" width="20" height="14" rx="2" /><line x1="8" y1="21" x2="16" y2="21" /><line x1="12" y1="17" x2="12" y2="21" />
-  </svg>
-);
-const LightingIcon = () => (
-  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-    <line x1="12" y1="1" x2="12" y2="3" /><line x1="12" y1="21" x2="12" y2="23" /><line x1="4.22" y1="4.22" x2="5.64" y2="5.64" /><line x1="18.36" y1="18.36" x2="19.78" y2="19.78" /><line x1="1" y1="12" x2="3" y2="12" /><line x1="21" y1="12" x2="23" y2="12" /><line x1="4.22" y1="19.78" x2="5.64" y2="18.36" /><line x1="18.36" y1="5.64" x2="19.78" y2="4.22" /><circle cx="12" cy="12" r="5" />
-  </svg>
-);
-
-// Classroom features
-const classroomFeatures = [
-  { icon: ErgonomicIcon, title: 'Ergonomic Design', desc: 'Furniture and layouts crafted for extended study sessions' },
-  { icon: AcousticIcon, title: 'Acoustic Optimization', desc: 'Soundproofing that eliminates external noise completely' },
-  { icon: SmartTechIcon, title: 'Smart Technology', desc: 'Interactive boards, projectors, and high-speed Wi-Fi' },
-  { icon: LightingIcon, title: 'Optimal Lighting', desc: 'Natural and LED lighting designed for focus and clarity' },
-];
 
 // Sports facilities
 const sportsFacilities = [
@@ -231,65 +182,6 @@ const facilityCards: FacilityData[] = [
 ];
 
 // Infrastructure modal data (for accordion items)
-const infrastructureModalData: FacilityData[] = [
-  {
-    id: 'university-campus',
-    title: 'University Campus',
-    category: 'Campus Infrastructure',
-    image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/interdisciplinary/campus-drone.jpg',
-    description: 'Spread across 232 acres, the JLU campus is designed to inspire learning and foster community. Every corner reflects a balance between modern infrastructure and natural surroundings, with 9 academic blocks housing world-class facilities.',
-    features: [
-      'Landscaped gardens and green spaces',
-      'Modern architectural design across 14 blocks',
-      'Accessible pathways throughout campus',
-      'Dedicated zones for academics, sports, and recreation',
-      'Wi-Fi enabled campus with complete connectivity',
-    ],
-    stats: [
-      { label: 'Campus Area', value: '232 Acres' },
-      { label: 'Academic Blocks', value: '14' },
-      { label: 'Green Cover', value: '60%' },
-    ],
-  },
-  {
-    id: 'student-accommodation',
-    title: 'Student Accommodation',
-    category: 'Campus Infrastructure',
-    image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/campus/hostel.jpg',
-    description: 'Our modern 4-block hostel (A, B, C & D) provides students with a comfortable and secure living environment, truly offering a home away from home. The hostels offer single, double, and triple occupancy options, along with facilities that support both academic focus and relaxation.',
-    features: [
-      'Single, double & triple occupancy options',
-      'Wi-Fi enabled rooms across all hostel blocks',
-      '24/7 security with CCTV surveillance',
-      'Common rooms, laundry, and recreation areas for students',
-      'In-house mess and dining facilities',
-    ],
-    stats: [
-      { label: 'Hostel Blocks', value: '4' },
-      { label: 'Floors', value: '14' },
-      { label: 'Capacity', value: '400+' },
-    ],
-  },
-  {
-    id: 'dining-facilities',
-    title: 'Dining Facilities',
-    category: 'Campus Infrastructure',
-    image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/campus/%20m%20s%20gill%20studio.JPG',
-    description: 'From a hygienic mess dining hall with 180-person capacity to the APPETITE food court featuring 5 outlets offering global cuisines, students have access to diverse food options throughout the day.',
-    features: [
-      'APPETITE food court with 5 global cuisine outlets',
-      'Mess dining hall with 180 person capacity',
-      'Hygienic food preparation standards',
-      'Vegetarian and non-vegetarian options daily',
-      'Cafeterias in every academic block',
-    ],
-    stats: [
-      { label: 'Food Outlets', value: '6' },
-      { label: 'Mess Capacity', value: '180' },
-      { label: 'Cuisines', value: '5+' },
-    ],
-  },
-];
 
 // Sports modal data
 const sportsModalData: FacilityData[] = [
@@ -734,7 +626,6 @@ const Campus = () => {
 
       {/* ===== 3 Separate Facility Sections ===== */}
       {infrastructureItems.map((item, index) => {
-        const modalId = item.id === 1 ? 'university-campus' : item.id === 2 ? 'student-accommodation' : 'dining-facilities';
         const sectionId = item.id === 1 ? 'university-campus' : item.id === 2 ? 'student-accommodation' : 'dining-facilities';
         const isReversed = index % 2 === 1;
         return (

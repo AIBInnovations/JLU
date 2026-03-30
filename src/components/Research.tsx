@@ -3,7 +3,7 @@
 import Image from 'next/image';
 import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion';
 import { useState, useRef, useEffect } from 'react';
-import { patentsData, publicationsData, conferenceData, booksData, bookChaptersData, researchProjectsData } from '../data/researchData';
+import { patentsData, publicationsData, researchProjectsData } from '../data/researchData';
 
 const statsData = [
   { id: 1, value: '121+', label: 'PUBLICATIONS', description: 'Papers, conferences, books & chapters' },
