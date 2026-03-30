@@ -70,8 +70,8 @@ const clubs: Club[] = [
   },
   {
     id: 6,
-    name: 'Literary Club',
-    shortName: 'Literary',
+    name: 'Editorial Board',
+    shortName: 'Editorial',
     description: 'Promotes creative writing skills and what it takes to be a writer and poet. Discuss books, share writings, critique each other\'s work. Activities include discussions, lectures, poetry writing and reading, short story writing, quiz competitions, and interactive sessions.',
     image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/JLu%20events/photos/Anti%20Ragging%20WEEK/IMG_2091.JPG',
     logo: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/logo/editorial-board.png',
@@ -104,8 +104,8 @@ const clubs: Club[] = [
   },
   {
     id: 10,
-    name: 'Start-up & Entrepreneurship Club',
-    shortName: 'Startup & Entrepreneurship',
+    name: 'Industry & Entrepreneurship Club',
+    shortName: 'Industry & Entrepreneurship',
     description: 'A learning-by-doing environment to cultivate entrepreneurship skills. Participate in business development through lectures, bootcamps with resources and mentoring from experienced entrepreneurs. Connect with JLU Foundation for Innovation and Entrepreneurship ecosystem.',
     image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/student%20council/IMG_7649.JPG',
     logo: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/logo/industry-entrepreneurship.png',

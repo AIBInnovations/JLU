@@ -503,6 +503,7 @@ const FacilityModal = ({ isOpen, onClose, data }: FacilityModalProps) => {
 
 const Campus = () => {
   const [selectedFacility, setSelectedFacility] = useState<FacilityData | null>(null);
+  const [showFeeModal, setShowFeeModal] = useState(false);
   const heroRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
     target: heroRef,
@@ -828,9 +829,31 @@ const Campus = () => {
                   </div>
 
                   {/* Highlight */}
-                  <div className="inline-flex items-center gap-2 bg-[#f6f7f0] px-4 py-2.5 rounded-lg border border-[#e5e5e5] mt-6">
-                    <span className="w-2 h-2 bg-[#027ea1] rounded-full" />
-                    <span className="text-[#21313c] text-xs md:text-sm font-medium">{item.details.highlight}</span>
+                  <div className="flex items-center gap-3 flex-wrap mt-6">
+                    <div className="inline-flex items-center gap-2 bg-[#f6f7f0] px-4 py-2.5 rounded-lg border border-[#e5e5e5]">
+                      <span className="w-2 h-2 bg-[#027ea1] rounded-full" />
+                      <span className="text-[#21313c] text-xs md:text-sm font-medium">{item.details.highlight}</span>
+                    </div>
+                    {item.id === 2 && (
+                      <>
+                        <button
+                          onClick={() => setShowFeeModal(true)}
+                          className="inline-flex items-center gap-2 bg-[#027ea1] text-white px-4 py-2.5 rounded-lg text-xs md:text-sm font-medium hover:bg-[#026a88] transition-colors cursor-pointer"
+                        >
+                          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+                          View Fee Structure
+                        </button>
+                        <a
+                          href="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/broucher/Hostel-Mess-Fee-Structure-2026-27.xlsx"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-flex items-center gap-2 border border-[#027ea1] text-[#027ea1] px-4 py-2.5 rounded-lg text-xs md:text-sm font-medium hover:bg-[#027ea1] hover:text-white transition-colors"
+                        >
+                          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                          Download
+                        </a>
+                      </>
+                    )}
                   </div>
                 </motion.div>
               </div>
@@ -1665,6 +1688,110 @@ const Campus = () => {
           </motion.div>
         </div>
       </div>
+
+      {/* Hostel & Mess Fee Structure Modal */}
+      <AnimatePresence>
+        {showFeeModal && (
+          <>
+            <motion.div
+              className="fixed inset-0 bg-black/50 backdrop-blur-sm z-[9998]"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={() => setShowFeeModal(false)}
+            />
+            <motion.div
+              className="fixed z-[9999] bg-white flex flex-col shadow-2xl"
+              style={{
+                top: 0, right: 0, bottom: 0,
+                width: '100%', maxWidth: '540px',
+                borderTopLeftRadius: '24px', borderBottomLeftRadius: '24px',
+              }}
+              initial={{ x: '100%' }}
+              animate={{ x: 0 }}
+              exit={{ x: '100%' }}
+              transition={{ duration: 0.5, ease: [0.32, 0.72, 0, 1] }}
+            >
+              {/* Header */}
+              <div className="bg-[#21313c] p-6 md:p-8 shrink-0" style={{ borderTopLeftRadius: '24px' }}>
+                <button
+                  onClick={() => setShowFeeModal(false)}
+                  className="absolute top-4 right-4 w-10 h-10 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center hover:bg-white/30 transition-colors"
+                >
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2">
+                    <line x1="18" y1="6" x2="6" y2="18" strokeLinecap="round"/>
+                    <line x1="6" y1="6" x2="18" y2="18" strokeLinecap="round"/>
+                  </svg>
+                </button>
+                <span className="text-[#f0c14b] text-xs uppercase tracking-widest block mb-2">Student Accommodation</span>
+                <h2 className="text-white text-xl md:text-2xl font-semibold">Fee Structure 2026-27</h2>
+              </div>
+
+              {/* Content */}
+              <div className="p-6 md:p-8 overflow-y-auto flex-1" style={{ overscrollBehavior: 'contain' }}>
+                {/* Hostel Fees */}
+                <div className="mb-8">
+                  <h3 className="text-[#21313c] font-semibold text-lg mb-4 flex items-center gap-2">
+                    <span className="w-3 h-3 bg-[#027ea1] rounded-full" />
+                    Hostel Fees
+                  </h3>
+                  <div className="space-y-3">
+                    {[
+                      { type: 'AC Single Room', fee: '₹1,20,000', period: '/year' },
+                      { type: 'AC Double Sharing', fee: '₹90,000', period: '/year' },
+                      { type: 'Non-AC Triple Sharing', fee: '₹70,000', period: '/year' },
+                      { type: 'Non-AC Quad Sharing', fee: '₹60,000', period: '/year' },
+                    ].map((item, i) => (
+                      <div key={i} className="flex items-center justify-between bg-[#f6f7f0] px-4 py-3 rounded-lg">
+                        <span className="text-[#21313c] text-sm font-medium">{item.type}</span>
+                        <span className="text-[#027ea1] text-sm font-bold">{item.fee}<span className="text-[#999] font-normal text-xs">{item.period}</span></span>
+                      </div>
+                    ))}
+                    <div className="flex items-center justify-between bg-[#f0c14b]/10 px-4 py-3 rounded-lg border border-[#f0c14b]/30">
+                      <span className="text-[#21313c] text-sm font-medium">Security Deposit (Refundable)</span>
+                      <span className="text-[#21313c] text-sm font-bold">₹10,000</span>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Mess Fees */}
+                <div className="mb-8">
+                  <h3 className="text-[#21313c] font-semibold text-lg mb-4 flex items-center gap-2">
+                    <span className="w-3 h-3 bg-[#f0c14b] rounded-full" />
+                    Mess Fees
+                  </h3>
+                  <div className="space-y-3">
+                    <div className="flex items-center justify-between bg-[#f6f7f0] px-4 py-3 rounded-lg">
+                      <span className="text-[#21313c] text-sm font-medium">Annual Mess Fee</span>
+                      <span className="text-[#027ea1] text-sm font-bold">₹50,000<span className="text-[#999] font-normal text-xs">/year</span></span>
+                    </div>
+                    <div className="flex items-center justify-between bg-[#f6f7f0] px-4 py-3 rounded-lg">
+                      <span className="text-[#21313c] text-sm font-medium">Monthly Equivalent</span>
+                      <span className="text-[#027ea1] text-sm font-bold">₹4,500<span className="text-[#999] font-normal text-xs">/month</span></span>
+                    </div>
+                  </div>
+                  <div className="mt-4 p-4 bg-[#21313c]/5 rounded-lg">
+                    <p className="text-[#666] text-xs" style={{ lineHeight: 1.6 }}>
+                      Includes breakfast, lunch, evening snacks, and dinner. Both vegetarian and non-vegetarian options available. Special meals served during festivals and occasions.
+                    </p>
+                  </div>
+                </div>
+
+                {/* Download Button */}
+                <a
+                  href="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/broucher/Hostel-Mess-Fee-Structure-2026-27.xlsx"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-full inline-flex items-center justify-center gap-2 bg-[#027ea1] text-white px-6 py-3 rounded-lg text-sm font-medium hover:bg-[#026a88] transition-colors"
+                >
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                  Download Complete Fee Structure
+                </a>
+              </div>
+            </motion.div>
+          </>
+        )}
+      </AnimatePresence>
 
       {/* Facility Modal */}
       <FacilityModal

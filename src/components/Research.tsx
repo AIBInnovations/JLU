@@ -3,231 +3,60 @@
 import Image from 'next/image';
 import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion';
 import { useState, useRef, useEffect } from 'react';
-
-const researchAreas = [
-  { id: 1, name: 'Centres of Excellence', active: true },
-  { id: 2, name: 'Faculty Research Areas', active: false },
-  { id: 3, name: 'Interdisciplinary Labs', active: false },
-  { id: 4, name: 'Graduate Research', active: false },
-];
-
-const researchModalData: Record<number, { title: string; description: string; highlights: string[] }> = {
-  1: {
-    title: 'Centres of Excellence',
-    description: 'JLU has established dedicated Centres of Excellence that bring together faculty, researchers, and industry partners to address complex challenges. These centres serve as hubs for advanced research, innovation, and knowledge creation across priority areas.',
-    highlights: [
-      'Centre for AI & Machine Learning — Driving research in intelligent systems, NLP, and computer vision',
-      'Centre for Sustainable Development — Focused on environmental solutions, green energy, and climate resilience',
-      'Centre for Drug Discovery & Development — Advancing pharmaceutical research and novel drug delivery systems',
-      'Centre for Digital Media & Communication — Exploring the intersection of technology, journalism, and media innovation',
-      'Centre for Entrepreneurship & Innovation — Supporting startup incubation and industry-academia collaboration',
-    ],
-  },
-  2: {
-    title: 'Faculty Research Areas',
-    description: 'JLU faculty members are actively engaged in cutting-edge research across a wide spectrum of disciplines. Their work spans fundamental science, applied technology, social sciences, and humanities — contributing to peer-reviewed publications, patents, and policy frameworks.',
-    highlights: [
-      'Artificial Intelligence, IoT, and Cybersecurity in Computer Science & Engineering',
-      'Nanotechnology and Novel Drug Delivery in Pharmaceutical Sciences',
-      'Sustainable Agriculture and Biodiversity Conservation in Life Sciences',
-      'Media Ethics, Digital Journalism, and Communication Studies',
-      'Business Analytics, Behavioural Economics, and Supply Chain Innovation in Management',
-    ],
-  },
-  3: {
-    title: 'Interdisciplinary Labs',
-    description: 'JLU\'s interdisciplinary laboratories are designed to break silos between departments and foster collaborative research. These labs provide shared infrastructure, equipment, and mentorship for projects that span multiple fields of study.',
-    highlights: [
-      'Biotech-Pharma Integration Lab — Bridging biotechnology and pharmaceutical research',
-      'Smart Systems Lab — Combining electronics, computing, and mechanical engineering for IoT solutions',
-      'Media Innovation Lab — Merging design, technology, and storytelling for next-generation media',
-      'Environmental Analytics Lab — Using data science for environmental monitoring and sustainability',
-      'Health Informatics Lab — Applying AI and data analytics to healthcare challenges',
-    ],
-  },
-  4: {
-    title: 'Graduate Research',
-    description: 'JLU offers a robust doctoral and graduate research programme that nurtures the next generation of scholars. With dedicated supervisors, funding support, and access to state-of-the-art facilities, graduate students are empowered to pursue meaningful and impactful research.',
-    highlights: [
-      'Ph.D. programmes available across all schools with interdisciplinary options',
-      'Research fellowships and assistantships for full-time doctoral scholars',
-      'Annual Research Symposium for graduate students to present and publish their work',
-      'Collaboration opportunities with national and international research institutions',
-      'Dedicated research methodology workshops and academic writing support',
-    ],
-  },
-};
+import { patentsData, publicationsData, conferenceData, booksData, bookChaptersData, researchProjectsData } from '../data/researchData';
 
 const statsData = [
-  { id: 1, value: '2.4k+', label: 'PUBLICATIONS', description: 'Peer-reviewed journals & global indexing' },
-  { id: 2, value: '142', label: 'PATENTS', description: 'Innovation-driven intellectual property' },
-  { id: 3, value: 'Global', label: 'OUTCOMES', description: 'Policy, industry & social impact' },
+  { id: 1, value: '121+', label: 'PUBLICATIONS', description: 'Papers, conferences, books & chapters' },
+  { id: 2, value: '44', label: 'PATENTS', description: 'Published & granted IPR' },
+  { id: 3, value: '9', label: 'FUNDED PROJECTS', description: 'Government, industry & international' },
 ];
 
-const publicationsData = [
-  {
-    id: 1,
-    title: 'Formulation and Evaluation of Sustained Release Matrix Tablets Using Natural Polymers',
-    authors: 'Dr. Vandana Rathore, Dr. Meera Gupta',
-    journal: 'International Journal of Pharmaceutical Sciences',
-    year: '2024',
-    citations: 38,
-    category: 'Pharmacy',
-    doi: '10.1016/j.ijps.2024.0142',
-  },
-  {
-    id: 2,
-    title: 'Deep Learning Approaches for Real-Time Object Detection in Autonomous Systems',
-    authors: 'Dr. Priyanka Nema, Dr. Vikram Joshi',
-    journal: 'IEEE Transactions on Neural Networks',
-    year: '2024',
-    citations: 24,
-    category: 'Computer Science',
-    doi: '10.1109/TNN.2024.3287654',
-  },
-  {
-    id: 3,
-    title: 'Blockchain-Enabled Supply Chain Management: A Systematic Review',
-    authors: 'Dr. Sachin Rastogi, Sweta Gupta',
-    journal: 'Journal of Business Research',
-    year: '2023',
-    citations: 52,
-    category: 'Management',
-    doi: '10.1016/j.jbusres.2023.1087',
-  },
-  {
-    id: 4,
-    title: 'CRISPR-Based Gene Editing for Crop Improvement in Central Indian Soils',
-    authors: 'Dr. Deepak Saxena, Dr. Ramesh Chandra',
-    journal: 'Nature Biotechnology Letters',
-    year: '2024',
-    citations: 19,
-    category: 'Biotechnology',
-    doi: '10.1038/nbt.2024.0056',
-  },
-  {
-    id: 5,
-    title: 'Impact of Industrial Effluents on Groundwater Quality in Madhya Pradesh',
-    authors: 'Dr. Ankita Sharma, Dr. Anil Kumar Sharma',
-    journal: 'Environmental Science & Technology',
-    year: '2023',
-    citations: 31,
-    category: 'Environmental Science',
-    doi: '10.1021/es.2023.5431',
-  },
-  {
-    id: 6,
-    title: 'Media Framing of Climate Change in Indian Print Journalism: A Discourse Analysis',
-    authors: 'Dr. Ritu Sharma, Prof. Anand Mishra',
-    journal: 'Asian Journal of Communication',
-    year: '2024',
-    citations: 15,
-    category: 'Journalism',
-    doi: '10.1080/ajc.2024.2298',
-  },
-];
+// Helper to format amount as Indian currency
+const formatIndianCurrency = (amount: number): string => {
+  if (amount === 0) return '—';
+  const str = amount.toString();
+  let result = '';
+  let count = 0;
+  for (let i = str.length - 1; i >= 0; i--) {
+    if (count === 3 || (count > 3 && (count - 3) % 2 === 0)) {
+      result = ',' + result;
+    }
+    result = str[i] + result;
+    count++;
+  }
+  return '\u20B9' + result;
+};
 
-const publicationFilters = ['All', 'Computer Science', 'Pharmacy', 'Management', 'Biotechnology', 'Environmental Science', 'Journalism'];
+// Get unique departments from publications data for filter tabs
+const publicationDepts = ['All', ...Array.from(new Set(publicationsData.map(p => p.dept))).sort()];
 
-const journalCategories = [
-  'Centres of Excellence',
-  'Faculty Research Areas',
-  'Interdisciplinary Labs',
-];
+// Get unique faculties from patents data for filter tabs
+const patentFaculties = ['All', ...Array.from(new Set(patentsData.map(p => p.faculty))).sort()];
 
+// Hook to detect mobile
+const useIsMobile = () => {
+  const [isMobile, setIsMobile] = useState(false);
+  useEffect(() => {
+    const check = () => setIsMobile(window.innerWidth < 768);
+    check();
+    window.addEventListener('resize', check);
+    return () => window.removeEventListener('resize', check);
+  }, []);
+  return isMobile;
+};
 
-const patentsData = [
-  {
-    id: 1,
-    title: 'AI-Based Smart Irrigation System for Precision Agriculture',
-    inventors: 'Dr. Rajesh Kumar, Dr. Priya Sharma',
-    patentNo: 'IN202341045678',
-    year: '2023',
-    status: 'Granted',
-    department: 'School of Engineering',
-  },
-  {
-    id: 2,
-    title: 'Biodegradable Polymer Composite from Agricultural Waste',
-    inventors: 'Dr. Amit Verma, Dr. Sneha Patel',
-    patentNo: 'IN202241032456',
-    year: '2022',
-    status: 'Granted',
-    department: 'School of Sciences',
-  },
-  {
-    id: 3,
-    title: 'Novel Drug Delivery System Using Nanotechnology',
-    inventors: 'Dr. Meera Gupta, Dr. Rahul Singh',
-    patentNo: 'IN202441012345',
-    year: '2024',
-    status: 'Published',
-    department: 'School of Pharmacy',
-  },
-  {
-    id: 4,
-    title: 'Blockchain-Based Secure Voting System',
-    inventors: 'Dr. Vikram Joshi, Dr. Neha Agarwal',
-    patentNo: 'IN202341078901',
-    year: '2023',
-    status: 'Granted',
-    department: 'School of Computer Science',
-  },
-];
-
-const fundedProjectsData = [
-  {
-    id: 1,
-    title: 'Development of Sustainable Energy Solutions for Rural India',
-    fundingAgency: 'Department of Science & Technology (DST)',
-    amount: '₹2.5 Crore',
-    duration: '2023-2026',
-    pi: 'Dr. Anil Kumar Sharma',
-    status: 'Ongoing',
-  },
-  {
-    id: 2,
-    title: 'Machine Learning Applications in Healthcare Diagnostics',
-    fundingAgency: 'Indian Council of Medical Research (ICMR)',
-    amount: '₹1.8 Crore',
-    duration: '2022-2025',
-    pi: 'Dr. Sunita Verma',
-    status: 'Ongoing',
-  },
-  {
-    id: 3,
-    title: 'Indigenous Knowledge Systems and Biodiversity Conservation',
-    fundingAgency: 'University Grants Commission (UGC)',
-    amount: '₹85 Lakhs',
-    duration: '2021-2024',
-    pi: 'Dr. Ramesh Chandra',
-    status: 'Completed',
-  },
-  {
-    id: 4,
-    title: 'Smart City Infrastructure Using IoT Technologies',
-    fundingAgency: 'Ministry of Electronics & IT (MeitY)',
-    amount: '₹3.2 Crore',
-    duration: '2024-2027',
-    pi: 'Dr. Priya Mehta',
-    status: 'Ongoing',
-  },
-  {
-    id: 5,
-    title: 'Advanced Materials for Water Purification',
-    fundingAgency: 'Council of Scientific & Industrial Research (CSIR)',
-    amount: '₹1.2 Crore',
-    duration: '2023-2026',
-    pi: 'Dr. Manish Gupta',
-    status: 'Ongoing',
-  },
-];
+// Patent detail type
+type PatentDetail = typeof patentsData[number] | null;
 
 const Research = () => {
-  const [activeArea, setActiveArea] = useState(1);
   const [activeFilter, setActiveFilter] = useState('All');
-  const [researchModal, setResearchModal] = useState<number | null>(null);
+  const [patentFilter, setPatentFilter] = useState('All');
+  const [showAllPatents, setShowAllPatents] = useState(false);
+  const [showAllPubs, setShowAllPubs] = useState(false);
+  const [selectedPatent, setSelectedPatent] = useState<PatentDetail>(null);
+  const [selectedPub, setSelectedPub] = useState<typeof publicationsData[0] | null>(null);
   const heroRef = useRef<HTMLDivElement>(null);
+  const isMobile = useIsMobile();
   const { scrollYProgress } = useScroll({
     target: heroRef,
     offset: ['start start', 'end start'],
@@ -252,6 +81,18 @@ const Research = () => {
     }
     return () => window.removeEventListener('navigate-section', handleNavigate);
   }, []);
+
+  // Lock body scroll when patent detail panel is open
+  useEffect(() => {
+    if (selectedPatent) {
+      document.body.style.overflow = 'hidden';
+      document.documentElement.style.overflow = 'hidden';
+    }
+    return () => {
+      document.body.style.overflow = '';
+      document.documentElement.style.overflow = '';
+    };
+  }, [selectedPatent]);
 
   return (
     <section className="w-full m-0 p-0 overflow-x-hidden">
@@ -354,17 +195,17 @@ const Research = () => {
               </p>
             </div>
             <div className="flex items-center gap-2 bg-[#027ea1] text-white px-3 sm:px-4 py-1.5 sm:py-2 rounded-full">
-              <span className="text-xl sm:text-2xl md:text-3xl font-bold">2.4k+</span>
+              <span className="text-xl sm:text-2xl md:text-3xl font-bold">538+</span>
               <span className="text-xs sm:text-sm">Published Papers</span>
             </div>
           </div>
 
-          {/* Filters */}
+          {/* Filters by department */}
           <div className="flex gap-2 md:gap-3 mb-8 md:mb-12 overflow-x-auto pb-2 sm:pb-0 sm:flex-wrap scrollbar-hide">
-            {publicationFilters.map((filter) => (
+            {publicationDepts.map((filter) => (
               <button
                 key={filter}
-                onClick={() => setActiveFilter(filter)}
+                onClick={() => { setActiveFilter(filter); setShowAllPubs(false); }}
                 className={`px-3 py-1.5 sm:px-4 sm:py-2 md:px-5 md:py-2.5 rounded-full text-[11px] sm:text-xs md:text-sm font-medium transition-all whitespace-nowrap shrink-0 sm:shrink ${
                   activeFilter === filter
                     ? 'bg-[#21313c] text-white'
@@ -377,70 +218,70 @@ const Research = () => {
           </div>
 
           {/* Publications Grid */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5 md:gap-6">
-            {publicationsData
-              .filter(pub => activeFilter === 'All' || pub.category === activeFilter)
-              .map((pub) => (
-              <div
-                key={pub.id}
-                className="bg-white p-5 md:p-7 rounded-xl border border-gray-100 hover:shadow-lg transition-shadow group"
-              >
-                {/* Category Tag */}
-                <div className="flex items-center justify-between mb-4">
-                  <span className="px-3 py-1 bg-[#e0f2f7] text-[#027ea1] text-xl md:text-2xl font-bold font-medium rounded-full">
-                    {pub.category}
-                  </span>
-                  <span className="text-xs text-gray-400">{pub.year}</span>
+          {(() => {
+            const filtered = publicationsData.filter(pub => activeFilter === 'All' || pub.dept === activeFilter);
+            const visible = showAllPubs ? filtered : filtered.slice(0, 9);
+            return (
+              <>
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5 md:gap-6">
+                  {visible.map((pub) => (
+                    <div
+                      key={pub.id}
+                      onClick={() => setSelectedPub(pub)}
+                      className="bg-white p-5 md:p-7 rounded-xl border border-gray-100 hover:shadow-lg transition-shadow group cursor-pointer"
+                    >
+                      {/* Department Tag */}
+                      <div className="flex items-center justify-between mb-4">
+                        <span className="px-3 py-1 bg-[#e0f2f7] text-[#027ea1] text-xs font-medium rounded-full">
+                          {pub.dept}
+                        </span>
+                        {pub.indexing && (
+                          <span className="text-xs text-gray-400">{typeof pub.indexing === 'string' && pub.indexing.length > 10 ? pub.indexing.slice(0, 4) : pub.indexing}</span>
+                        )}
+                      </div>
+
+                      {/* Title */}
+                      <h3 className="text-[#21313c] font-semibold text-sm md:text-base leading-snug mb-3 group-hover:text-[#027ea1] transition-colors line-clamp-3">
+                        {pub.title}
+                      </h3>
+
+                      {/* Faculty */}
+                      <p className="text-xs md:text-sm text-gray-500 mb-3">
+                        {pub.faculty}
+                      </p>
+
+                      {/* Journal */}
+                      <p className="text-xs text-gray-400 italic mb-4 line-clamp-2">
+                        {pub.journal}
+                      </p>
+
+                      {/* Footer */}
+                      <div className="flex items-center justify-between pt-4 border-t border-gray-100">
+                        <span className="text-xs text-gray-500">{pub.school}</span>
+                        {pub.year && (
+                          <span className="text-xs text-[#027ea1] font-medium">
+                            pp. {pub.year}
+                          </span>
+                        )}
+                      </div>
+                    </div>
+                  ))}
                 </div>
 
-                {/* Title */}
-                <h3 className="text-[#21313c] font-semibold text-sm md:text-base leading-snug mb-3 group-hover:text-[#027ea1] transition-colors line-clamp-3">
-                  {pub.title}
-                </h3>
-
-                {/* Authors */}
-                <p className="text-xs md:text-sm text-gray-500 mb-3">
-                  {pub.authors}
-                </p>
-
-                {/* Journal */}
-                <p className="text-xs text-gray-400 italic mb-4">
-                  {pub.journal}
-                </p>
-
-                {/* Footer */}
-                <div className="flex items-center justify-between pt-4 border-t border-gray-100">
-                  <div className="flex items-center gap-1.5">
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#999" strokeWidth="2">
-                      <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20" strokeLinecap="round" strokeLinejoin="round"/>
-                      <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z" strokeLinecap="round" strokeLinejoin="round"/>
-                    </svg>
-                    <span className="text-xs text-gray-500">{pub.citations} citations</span>
+                {filtered.length > 9 && (
+                  <div className="mt-8 md:mt-12 text-center">
+                    <button
+                      onClick={() => setShowAllPubs(!showAllPubs)}
+                      className="inline-flex items-center gap-2 text-[#21313c] font-medium underline hover:no-underline cursor-pointer"
+                    >
+                      {showAllPubs ? 'Show Less' : `View All ${filtered.length} Publications`}
+                      <span>{showAllPubs ? '\u2191' : '\u2193'}</span>
+                    </button>
                   </div>
-                  <a
-                    href={`https://doi.org/${pub.doi}`}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-xs text-[#027ea1] font-medium hover:underline flex items-center gap-1"
-                  >
-                    DOI
-                    <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                      <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" strokeLinecap="round" strokeLinejoin="round"/>
-                      <polyline points="15 3 21 3 21 9" strokeLinecap="round" strokeLinejoin="round"/>
-                      <line x1="10" y1="14" x2="21" y2="3" strokeLinecap="round"/>
-                    </svg>
-                  </a>
-                </div>
-              </div>
-            ))}
-          </div>
-
-          <div className="mt-8 md:mt-12 text-center">
-            <a href="/research#publications" className="inline-flex items-center gap-2 text-[#21313c] font-medium underline hover:no-underline">
-              Browse all publications
-              <span>→</span>
-            </a>
-          </div>
+                )}
+              </>
+            );
+          })()}
         </div>
       </div>
 
@@ -464,22 +305,45 @@ const Research = () => {
               </p>
             </div>
             <div className="flex items-center gap-2 bg-[#21313c] text-white px-3 sm:px-4 py-1.5 sm:py-2 rounded-full">
-              <span className="text-xl sm:text-2xl md:text-3xl font-bold">142+</span>
+              <span className="text-xl sm:text-2xl md:text-3xl font-bold">44</span>
               <span className="text-xs sm:text-sm">Patents Filed</span>
             </div>
           </div>
 
+          {/* Patent Filters */}
+          <div className="flex gap-2 md:gap-3 mb-8 md:mb-12 overflow-x-auto pb-2 sm:pb-0 sm:flex-wrap scrollbar-hide">
+            {patentFaculties.map((filter) => (
+              <button
+                key={filter}
+                onClick={() => { setPatentFilter(filter); setShowAllPatents(false); }}
+                className={`px-3 py-1.5 sm:px-4 sm:py-2 md:px-5 md:py-2.5 rounded-full text-[11px] sm:text-xs md:text-sm font-medium transition-all whitespace-nowrap shrink-0 sm:shrink ${
+                  patentFilter === filter
+                    ? 'bg-[#21313c] text-white'
+                    : 'bg-white text-[#21313c] border border-gray-200 hover:border-[#21313c]'
+                }`}
+              >
+                {filter}
+              </button>
+            ))}
+          </div>
+
           {/* Patents Grid */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
-            {patentsData.map((patent) => (
+            {(() => {
+              const filtered = patentsData.filter(p => patentFilter === 'All' || p.faculty === patentFilter);
+              const visible = showAllPatents ? filtered : filtered.slice(0, 8);
+              return visible.map((patent) => (
               <div
                 key={patent.id}
-                className="bg-white p-5 sm:p-6 md:p-8 rounded-lg border border-gray-200 hover:shadow-lg transition-shadow"
+                onClick={() => setSelectedPatent(patent)}
+                className="bg-white p-5 sm:p-6 md:p-8 rounded-lg border border-gray-200 hover:shadow-lg transition-shadow cursor-pointer"
               >
                 <div className="flex justify-between items-start mb-4">
                   <span className={`px-3 py-1 rounded-full text-xs font-medium ${
                     patent.status === 'Granted'
                       ? 'bg-[#e0f2f7] text-[#027ea1]'
+                      : patent.status === 'Copy Right'
+                      ? 'bg-purple-100 text-purple-800'
                       : 'bg-yellow-100 text-yellow-800'
                   }`}>
                     {patent.status}
@@ -490,24 +354,36 @@ const Research = () => {
                   {patent.title}
                 </h3>
                 <p className="text-sm text-gray-600 mb-2">
-                  <span className="font-medium">Inventors:</span> {patent.inventors}
+                  <span className="font-medium">Faculty:</span> {patent.facultyMember}
                 </p>
                 <p className="text-sm text-gray-600 mb-2">
-                  <span className="font-medium">Patent No:</span> {patent.patentNo}
+                  <span className="font-medium">Application No:</span> {patent.applicationNo}
                 </p>
                 <p className="text-sm text-gray-500">
-                  {patent.department}
+                  {patent.school}
                 </p>
               </div>
-            ))}
+              ));
+            })()}
           </div>
 
-          <div className="mt-8 text-center">
-            <a href="/research#collaborations" className="inline-flex items-center gap-2 text-[#21313c] font-medium underline hover:no-underline">
-              View all Patents
-              <span>→</span>
-            </a>
-          </div>
+          {(() => {
+            const filtered = patentsData.filter(p => patentFilter === 'All' || p.faculty === patentFilter);
+            if (filtered.length > 8) {
+              return (
+                <div className="mt-8 text-center">
+                  <button
+                    onClick={() => setShowAllPatents(!showAllPatents)}
+                    className="inline-flex items-center gap-2 text-[#21313c] font-medium underline hover:no-underline cursor-pointer"
+                  >
+                    {showAllPatents ? 'Show Less' : `View All ${filtered.length} Patents`}
+                    <span>{showAllPatents ? '\u2191' : '\u2193'}</span>
+                  </button>
+                </div>
+              );
+            }
+            return null;
+          })()}
         </div>
       </div>
 
@@ -531,8 +407,8 @@ const Research = () => {
               </p>
             </div>
             <div className="flex items-center gap-2 bg-[#027ea1] text-white px-3 sm:px-4 py-1.5 sm:py-2 rounded-full">
-              <span className="text-xl sm:text-2xl md:text-3xl font-bold">₹85M+</span>
-              <span className="text-xs sm:text-sm">Total Funding</span>
+              <span className="text-xl sm:text-2xl md:text-3xl font-bold">9</span>
+              <span className="text-xs sm:text-sm">Funded Projects</span>
             </div>
           </div>
 
@@ -549,24 +425,33 @@ const Research = () => {
                 </tr>
               </thead>
               <tbody>
-                {fundedProjectsData.map((project) => (
+                {researchProjectsData.map((project) => (
                   <tr key={project.id} className="border-b border-gray-200 hover:bg-gray-50 transition-colors">
                     <td className="py-3 sm:py-4 px-1 sm:px-2">
                       <p className="text-xs sm:text-sm md:text-base font-medium text-[#21313c]">{project.title}</p>
-                      <p className="text-xl md:text-2xl font-bold text-gray-500 mt-1">PI: {project.pi}</p>
-                      <p className="text-xl md:text-2xl font-bold text-gray-500 md:hidden mt-1">{project.fundingAgency}</p>
+                      <p className="text-xs text-gray-500 mt-1">PI: {project.pi}</p>
+                      <p className="text-xs text-gray-500 md:hidden mt-1">{project.agency}</p>
                     </td>
-                    <td className="py-3 sm:py-4 px-1 sm:px-2 text-sm text-gray-600 hidden md:table-cell">{project.fundingAgency}</td>
-                    <td className="py-3 sm:py-4 px-1 sm:px-2 text-xs sm:text-xl md:text-2xl font-bold text-[#027ea1]">{project.amount}</td>
+                    <td className="py-3 sm:py-4 px-1 sm:px-2 text-xs sm:text-sm text-gray-600 hidden md:table-cell">{project.agency}</td>
+                    <td className="py-3 sm:py-4 px-1 sm:px-2 text-xs sm:text-sm font-bold text-[#027ea1] whitespace-nowrap">{formatIndianCurrency(project.amount)}</td>
                     <td className="py-3 sm:py-4 px-1 sm:px-2 text-sm text-gray-600 hidden lg:table-cell">{project.duration}</td>
                     <td className="py-3 sm:py-4 px-1 sm:px-2">
-                      <span className={`px-3 py-1 rounded-full text-xs font-medium ${
-                        project.status === 'Ongoing'
-                          ? 'bg-blue-100 text-blue-800'
-                          : 'bg-[#e0f2f7] text-[#027ea1]'
-                      }`}>
-                        {project.status}
-                      </span>
+                      <div className="flex flex-col gap-1">
+                        <span className={`px-2 py-0.5 rounded-full text-[10px] font-medium inline-block w-fit ${
+                          project.status === 'Funded'
+                            ? 'bg-[#e0f2f7] text-[#027ea1]'
+                            : 'bg-green-100 text-green-800'
+                        }`}>
+                          {project.status}
+                        </span>
+                        <span className={`px-2 py-0.5 rounded-full text-[10px] font-medium inline-block w-fit ${
+                          project.type.includes('Government') ? 'bg-blue-50 text-blue-700'
+                            : project.type.includes('International') ? 'bg-purple-50 text-purple-700'
+                            : 'bg-orange-50 text-orange-700'
+                        }`}>
+                          {project.type}
+                        </span>
+                      </div>
                     </td>
                   </tr>
                 ))}
@@ -577,120 +462,14 @@ const Research = () => {
           <div className="mt-8 text-center">
             <a href="/research#research-funding" className="inline-flex items-center gap-2 text-[#21313c] font-medium underline hover:no-underline">
               View all Funded Projects
-              <span>→</span>
+              <span>{'\u2192'}</span>
             </a>
           </div>
         </div>
       </div>
 
-      {/* JLU Research Journal Section */}
       <div id="jlu-research-journal" />
-      <div className="w-full bg-[#f6f7f0]">
-        <div
-          className="mx-auto px-5 py-12 md:px-10 md:py-16 lg:px-30 lg:py-20"
-          style={{
-            maxWidth: '1440px',
-          }}
-        >
-          <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-[#21313c] mb-8 md:mb-12">
-            Latest Publication
-          </h2>
-
-          <div className="flex flex-col-reverse lg:flex-row justify-between gap-8 lg:gap-16">
-            {/* Left Side - Journal Info */}
-            <div className="w-full lg:max-w-125 lg:mt-25">
-              <h3 className="text-xl md:text-2xl lg:text-3xl font-bold text-[#21313c] mb-3 md:mb-4">
-                JLU Research Journal
-              </h3>
-              <p className="text-sm md:text-base text-[#21313c] leading-relaxed mb-6 md:mb-8">
-                A peer-reviewed platform showcasing original research across disciplines, fostering dialogue between academia and industry.
-              </p>
-
-              {/* Categories */}
-              <div className="flex flex-col gap-3 md:gap-4 mb-6 md:mb-8">
-                {journalCategories.map((category, index) => (
-                  <div key={index} className="flex items-center gap-3 md:gap-4">
-                    <span className="text-[#21313c]">——</span>
-                    <span className={`text-sm md:text-base text-[#21313c] ${index === 0 ? 'font-medium' : ''}`}>
-                      {category}
-                    </span>
-                  </div>
-                ))}
-              </div>
-
-            </div>
-
-            {/* Right Side - Journal Card */}
-            <div
-              className="relative shrink-0 overflow-hidden rounded-lg w-full lg:w-145 h-52 sm:h-64 md:h-80 lg:h-125"
-            >
-              <Image
-                src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/JLu%20events/photos/JAgran%20of%20Social%20science/DSC08881.JPG"
-                alt="Research Journal"
-                fill
-                className="object-cover"
-              />
-              <div className="absolute inset-0 bg-black/40" />
-              {/* Publication Badge */}
-              <div className="absolute bottom-0 left-0 right-0 bg-white/90 flex flex-col items-center justify-center py-4 sm:py-5 gap-1 sm:gap-2">
-                <p className="text-base sm:text-xl font-bold text-[#21313c]">Academic Insights</p>
-                <p className="text-xs sm:text-sm text-[#21313c]">Vol. 12, No. 2, Spring 2026</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      {/* Research Ecosystem Section */}
-      <div id="research-centers" className="w-full bg-white">
-        <div
-          className="mx-auto px-5 py-12 md:px-10 md:py-16 lg:px-30 lg:py-20"
-          style={{
-            maxWidth: '1440px',
-          }}
-        >
-          <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-[#21313c] mb-8 md:mb-12 lg:mb-16">
-            Research Ecosystem
-          </h2>
-
-          <div className="flex flex-col lg:flex-row justify-between gap-8 lg:gap-16">
-            {/* Left Side - Content */}
-            <div className="w-full lg:max-w-145">
-              <p className="text-[#21313c] leading-relaxed text-base md:text-lg lg:text-xl" style={{ lineHeight: '1.6' }}>
-                Research at JLU is shaped by exploration rather than expectation.
-              </p>
-              <p className="text-[#21313c] leading-relaxed mt-3 md:mt-4 text-base md:text-lg lg:text-xl" style={{ lineHeight: '1.6' }}>
-                It grows from thoughtful questions, careful observation, and a willingness to look beyond the obvious.
-              </p>
-              <p className="text-[#21313c] leading-relaxed mt-3 md:mt-4 text-base md:text-lg lg:text-xl" style={{ lineHeight: '1.6' }}>
-                Across disciplines, faculty and students engage in work that seeks relevance, depth, and long-term value.
-              </p>
-              <p className="text-[#21313c] leading-relaxed mt-3 md:mt-4 text-base md:text-lg lg:text-xl" style={{ lineHeight: '1.6' }}>
-                Knowledge here is not only generated, it is examined, refined, and shared.
-              </p>
-            </div>
-
-            {/* Right Side - Research Areas */}
-            <div className="w-full lg:w-145">
-              {researchAreas.map((area) => (
-                <button
-                  key={area.id}
-                  onClick={() => {
-                    setActiveArea(area.id);
-                    setResearchModal(area.id);
-                  }}
-                  className="w-full flex items-center justify-between py-4 border-b border-gray-300 text-left cursor-pointer hover:bg-[#f6f7f0] transition-colors px-2 -mx-2 rounded"
-                >
-                  <span className={`text-lg text-[#21313c] ${activeArea === area.id ? 'font-medium' : ''}`}>
-                    {area.name}
-                  </span>
-                  <span className="text-[#21313c]">→</span>
-                </button>
-              ))}
-            </div>
-          </div>
-        </div>
-      </div>
+      <div id="research-centers" />
 
       {/* Stats Section */}
       <div id="research-areas" className="w-full bg-[#e8e8e8]">
@@ -721,65 +500,232 @@ const Research = () => {
         </div>
       </div>
 
-      {/* Research Area Modal */}
+      {/* Patent Detail Slide-in Panel */}
       <AnimatePresence>
-        {researchModal !== null && researchModalData[researchModal] && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            className="fixed inset-0 z-[9999] flex items-center justify-center p-4"
-            onClick={() => setResearchModal(null)}
-          >
-            <div className="absolute inset-0 bg-black/60 backdrop-blur-sm" />
+        {selectedPatent && (
+          <>
             <motion.div
-              initial={{ opacity: 0, scale: 0.95, y: 20 }}
-              animate={{ opacity: 1, scale: 1, y: 0 }}
-              exit={{ opacity: 0, scale: 0.95, y: 20 }}
-              transition={{ duration: 0.3 }}
-              className="relative bg-white rounded-2xl overflow-hidden max-w-2xl w-full max-h-[90vh] overflow-y-auto"
-              onClick={(e) => e.stopPropagation()}
+              className="fixed inset-0 bg-black/50 backdrop-blur-sm z-[9998]"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.4, ease: [0.32, 0.72, 0, 1] }}
+              onClick={() => setSelectedPatent(null)}
+              onWheel={(e) => e.stopPropagation()}
+            />
+            <motion.div
+              className="fixed z-[9999] bg-white flex flex-col shadow-2xl"
+              style={{
+                ...(isMobile
+                  ? { inset: 0, borderRadius: 0 }
+                  : {
+                      top: 0,
+                      right: 0,
+                      bottom: 0,
+                      width: '540px',
+                      borderTopLeftRadius: '24px',
+                      borderBottomLeftRadius: '24px',
+                    }),
+              }}
+              onWheel={(e) => e.stopPropagation()}
+              initial={{ x: '100%' }}
+              animate={{ x: 0 }}
+              exit={{ x: '100%' }}
+              transition={{ duration: 0.5, ease: [0.32, 0.72, 0, 1] }}
             >
               {/* Header */}
-              <div className="bg-[#21313c] px-6 py-8 md:px-8 md:py-10 relative">
+              <div className="bg-[#21313c] px-6 py-8 md:px-8 md:py-10 relative shrink-0">
                 <button
-                  onClick={() => setResearchModal(null)}
-                  className="absolute top-4 right-4 w-10 h-10 rounded-full bg-white/10 flex items-center justify-center text-white cursor-pointer border-none hover:bg-white/20 transition-colors"
+                  onClick={() => setSelectedPatent(null)}
+                  className="absolute top-4 right-4 w-10 h-10 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center hover:bg-white/30 transition-colors"
                 >
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                    <line x1="18" y1="6" x2="6" y2="18" strokeLinecap="round" />
-                    <line x1="6" y1="6" x2="18" y2="18" strokeLinecap="round" />
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2">
+                    <line x1="18" y1="6" x2="6" y2="18" strokeLinecap="round"/>
+                    <line x1="6" y1="6" x2="18" y2="18" strokeLinecap="round"/>
                   </svg>
                 </button>
-                <span className="text-white/50 uppercase tracking-widest text-xl md:text-2xl font-bold block mb-3" style={{ letterSpacing: '0.2em' }}>
-                  Research Ecosystem
-                </span>
-                <h3 className="text-white font-semibold text-xl md:text-2xl">
-                  {researchModalData[researchModal].title}
+                <div className="flex items-center gap-2 mb-3">
+                  <span className={`px-3 py-1 rounded-full text-xs font-medium ${
+                    selectedPatent.status === 'Granted'
+                      ? 'bg-[#e0f2f7] text-[#027ea1]'
+                      : selectedPatent.status === 'Copy Right'
+                      ? 'bg-purple-100 text-purple-800'
+                      : 'bg-yellow-100 text-yellow-800'
+                  }`}>
+                    {selectedPatent.status}
+                  </span>
+                  <span className="text-white/60 text-sm">{selectedPatent.year}</span>
+                </div>
+                <h3 className="text-white font-semibold text-lg md:text-xl leading-snug">
+                  {selectedPatent.title}
                 </h3>
               </div>
 
               {/* Content */}
-              <div className="p-6 md:p-8">
-                <p className="text-[#666] text-sm md:text-base mb-6" style={{ lineHeight: 1.8 }}>
-                  {researchModalData[researchModal].description}
-                </p>
-
-                <div className="space-y-3">
-                  {researchModalData[researchModal].highlights.map((item, idx) => (
-                    <div key={idx} className="flex gap-3 items-start">
-                      <div className="flex-shrink-0 w-6 h-6 rounded-full bg-[#f6f7f0] flex items-center justify-center mt-0.5">
-                        <span className="text-[#21313c] text-xs font-semibold">{idx + 1}</span>
-                      </div>
-                      <p className="text-[#444] text-sm" style={{ lineHeight: 1.7 }}>
-                        {item}
-                      </p>
+              <motion.div
+                className="p-6 overflow-y-auto flex-1 min-h-0"
+                style={{ overscrollBehavior: 'contain' }}
+                initial={{ opacity: 0, x: 50 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.45, delay: 0.25, ease: [0.32, 0.72, 0, 1] }}
+              >
+                <div className="space-y-5">
+                  <div>
+                    <p className="text-xs text-gray-400 uppercase tracking-wider mb-1">Faculty Member</p>
+                    <p className="text-sm font-medium text-[#21313c]">{selectedPatent.facultyMember}</p>
+                  </div>
+                  <div>
+                    <p className="text-xs text-gray-400 uppercase tracking-wider mb-1">Faculty / School</p>
+                    <p className="text-sm text-[#21313c]">{selectedPatent.faculty} &mdash; {selectedPatent.school}</p>
+                  </div>
+                  <div className="border-t border-gray-100 pt-5">
+                    <p className="text-xs text-gray-400 uppercase tracking-wider mb-1">Application No.</p>
+                    <p className="text-sm font-mono text-[#21313c]">{selectedPatent.applicationNo}</p>
+                  </div>
+                  <div className="grid grid-cols-2 gap-4">
+                    <div>
+                      <p className="text-xs text-gray-400 uppercase tracking-wider mb-1">Filing Date</p>
+                      <p className="text-sm text-[#21313c]">{selectedPatent.filingDate}</p>
                     </div>
-                  ))}
+                    <div>
+                      <p className="text-xs text-gray-400 uppercase tracking-wider mb-1">Publication Date</p>
+                      <p className="text-sm text-[#21313c]">{selectedPatent.pubDate}</p>
+                    </div>
+                  </div>
+                  {selectedPatent.journalNo && selectedPatent.journalNo !== '--' && (
+                    <div>
+                      <p className="text-xs text-gray-400 uppercase tracking-wider mb-1">Journal No.</p>
+                      <p className="text-sm text-[#21313c]">{selectedPatent.journalNo}</p>
+                    </div>
+                  )}
+                  <div className="border-t border-gray-100 pt-5">
+                    <p className="text-xs text-gray-400 uppercase tracking-wider mb-1">Inventors</p>
+                    <p className="text-sm text-[#21313c] leading-relaxed">{selectedPatent.inventors}</p>
+                  </div>
+                  <div>
+                    <p className="text-xs text-gray-400 uppercase tracking-wider mb-1">Applicants</p>
+                    <p className="text-sm text-[#21313c] leading-relaxed">{selectedPatent.applicants}</p>
+                  </div>
+                  {selectedPatent.assignee && selectedPatent.assignee !== '--' && (
+                    <div>
+                      <p className="text-xs text-gray-400 uppercase tracking-wider mb-1">Assignee</p>
+                      <p className="text-sm text-[#21313c]">{selectedPatent.assignee}</p>
+                    </div>
+                  )}
+                  {selectedPatent.proofUrl && selectedPatent.proofUrl.startsWith('http') && (
+                    <div className="border-t border-gray-100 pt-5">
+                      <a
+                        href={selectedPatent.proofUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-2 text-sm text-[#027ea1] font-medium hover:underline"
+                      >
+                        View Patent Proof
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                          <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" strokeLinecap="round" strokeLinejoin="round"/>
+                          <polyline points="15 3 21 3 21 9" strokeLinecap="round" strokeLinejoin="round"/>
+                          <line x1="10" y1="14" x2="21" y2="3" strokeLinecap="round"/>
+                        </svg>
+                      </a>
+                    </div>
+                  )}
                 </div>
+              </motion.div>
+            </motion.div>
+          </>
+        )}
+      </AnimatePresence>
+
+      {/* Publication Detail Slide-in Panel */}
+      <AnimatePresence>
+        {selectedPub && (
+          <>
+            <motion.div
+              className="fixed inset-0 bg-black/50 backdrop-blur-sm z-[9998]"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={() => setSelectedPub(null)}
+            />
+            <motion.div
+              className="fixed z-[9999] bg-white flex flex-col shadow-2xl"
+              style={{
+                top: 0, right: 0, bottom: 0,
+                width: isMobile ? '100%' : '540px',
+                borderTopLeftRadius: isMobile ? 0 : '24px',
+                borderBottomLeftRadius: isMobile ? 0 : '24px',
+              }}
+              initial={{ x: '100%' }}
+              animate={{ x: 0 }}
+              exit={{ x: '100%' }}
+              transition={{ duration: 0.5, ease: [0.32, 0.72, 0, 1] }}
+            >
+              {/* Header */}
+              <div className="bg-[#21313c] p-6 md:p-8 shrink-0" style={{ borderTopLeftRadius: isMobile ? 0 : '24px' }}>
+                <button
+                  onClick={() => setSelectedPub(null)}
+                  className="absolute top-4 right-4 w-10 h-10 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center hover:bg-white/30 transition-colors"
+                >
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2">
+                    <line x1="18" y1="6" x2="6" y2="18" strokeLinecap="round"/>
+                    <line x1="6" y1="6" x2="18" y2="18" strokeLinecap="round"/>
+                  </svg>
+                </button>
+                <div className="flex items-center gap-2 mb-3">
+                  <span className="px-3 py-1 bg-[#027ea1] text-white text-xs font-medium rounded-full">
+                    {selectedPub.dept}
+                  </span>
+                  {selectedPub.indexing && (
+                    <span className="px-3 py-1 bg-white/10 text-white/70 text-xs font-medium rounded-full">
+                      {selectedPub.indexing}
+                    </span>
+                  )}
+                </div>
+                <h2 className="text-white text-lg md:text-xl font-semibold leading-snug">
+                  {selectedPub.title}
+                </h2>
+              </div>
+
+              {/* Content */}
+              <div className="p-6 md:p-8 overflow-y-auto flex-1" style={{ overscrollBehavior: 'contain' }}>
+                {/* Faculty */}
+                <div className="mb-5 pb-5 border-b border-gray-100">
+                  <p className="text-xs text-gray-400 uppercase tracking-wider mb-1">Faculty Member</p>
+                  <p className="text-sm font-medium text-[#21313c]">{selectedPub.faculty}</p>
+                </div>
+
+                {/* Department & School */}
+                <div className="mb-5 pb-5 border-b border-gray-100">
+                  <p className="text-xs text-gray-400 uppercase tracking-wider mb-1">Department & School</p>
+                  <p className="text-sm text-[#21313c]">{selectedPub.dept} — {selectedPub.school}</p>
+                </div>
+
+                {/* Journal */}
+                {selectedPub.journal && (
+                  <div className="mb-5 pb-5 border-b border-gray-100">
+                    <p className="text-xs text-gray-400 uppercase tracking-wider mb-1">Published In</p>
+                    <p className="text-sm text-[#21313c] italic leading-relaxed">{selectedPub.journal}</p>
+                  </div>
+                )}
+
+                {/* Year / Pages */}
+                {selectedPub.year && (
+                  <div className="mb-5 pb-5 border-b border-gray-100">
+                    <p className="text-xs text-gray-400 uppercase tracking-wider mb-1">Year / Pages</p>
+                    <p className="text-sm text-[#21313c]">{selectedPub.year}</p>
+                  </div>
+                )}
+
+                {/* Indexing */}
+                {selectedPub.indexing && (
+                  <div className="mb-5">
+                    <p className="text-xs text-gray-400 uppercase tracking-wider mb-1">Indexing</p>
+                    <p className="text-sm text-[#21313c]">{selectedPub.indexing}</p>
+                  </div>
+                )}
               </div>
             </motion.div>
-          </motion.div>
+          </>
         )}
       </AnimatePresence>
     </section>

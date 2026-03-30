@@ -120,8 +120,9 @@ export const Footer = () => {
             <h3 className="font-semibold text-xs mb-2 text-white">Social</h3>
             <div className="flex gap-4">
               <a href="https://www.facebook.com/JLUBhopal" target="_blank" rel="noopener noreferrer" className="text-gray-300 text-xs hover:text-white transition-colors">Facebook</a>
-              <a href="https://www.instagram.com/jaborejlu/" target="_blank" rel="noopener noreferrer" className="text-gray-300 text-xs hover:text-white transition-colors">Instagram</a>
+              <a href="https://www.instagram.com/jlubhopal/" target="_blank" rel="noopener noreferrer" className="text-gray-300 text-xs hover:text-white transition-colors">Instagram</a>
               <a href="https://twitter.com/JLUBhopal" target="_blank" rel="noopener noreferrer" className="text-gray-300 text-xs hover:text-white transition-colors">Twitter/X</a>
+              <a href="https://www.linkedin.com/school/jagran-lakecity-university/" target="_blank" rel="noopener noreferrer" className="text-gray-300 text-xs hover:text-white transition-colors">LinkedIn</a>
             </div>
           </div>
 
@@ -257,8 +258,9 @@ export const Footer = () => {
                 <h3 className="font-semibold text-sm mb-3 text-white">Social</h3>
                 <ul className="space-y-2">
                   <li><a href="https://www.facebook.com/JLUBhopal" target="_blank" rel="noopener noreferrer" className="text-gray-300 text-sm hover:text-white transition-colors">Facebook</a></li>
-                  <li><a href="https://www.instagram.com/jaborejlu/" target="_blank" rel="noopener noreferrer" className="text-gray-300 text-sm hover:text-white transition-colors">Instagram</a></li>
+                  <li><a href="https://www.instagram.com/jlubhopal/" target="_blank" rel="noopener noreferrer" className="text-gray-300 text-sm hover:text-white transition-colors">Instagram</a></li>
                   <li><a href="https://twitter.com/JLUBhopal" target="_blank" rel="noopener noreferrer" className="text-gray-300 text-sm hover:text-white transition-colors">Twitter/X</a></li>
+                  <li><a href="https://www.linkedin.com/school/jagran-lakecity-university/" target="_blank" rel="noopener noreferrer" className="text-gray-300 text-sm hover:text-white transition-colors">LinkedIn</a></li>
                 </ul>
               </div>
             </div>
@@ -398,8 +400,9 @@ export const Footer = () => {
                   <h3 className="font-semibold text-base mb-4 text-white">Social</h3>
                   <ul className="space-y-3">
                     <li><a href="https://www.facebook.com/JLUBhopal" target="_blank" rel="noopener noreferrer" className="text-gray-300 text-base hover:text-white transition-colors">Facebook</a></li>
-                    <li><a href="https://www.instagram.com/jaborejlu/" target="_blank" rel="noopener noreferrer" className="text-gray-300 text-base hover:text-white transition-colors">Instagram</a></li>
+                    <li><a href="https://www.instagram.com/jlubhopal/" target="_blank" rel="noopener noreferrer" className="text-gray-300 text-base hover:text-white transition-colors">Instagram</a></li>
                     <li><a href="https://twitter.com/JLUBhopal" target="_blank" rel="noopener noreferrer" className="text-gray-300 text-base hover:text-white transition-colors">Twitter/X</a></li>
+                    <li><a href="https://www.linkedin.com/school/jagran-lakecity-university/" target="_blank" rel="noopener noreferrer" className="text-gray-300 text-base hover:text-white transition-colors">LinkedIn</a></li>
                   </ul>
                 </div>
               </div>

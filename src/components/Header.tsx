@@ -139,7 +139,6 @@ const navigationItems: NavigationItem[] = [
       { label: 'Publications', slug: 'publications' },
       { label: 'Patents', slug: 'patents' },
       { label: 'Funded Projects', slug: 'funded-projects' },
-      { label: 'JLU Research Journal', slug: 'jlu-research-journal' },
     ]
   },
   {

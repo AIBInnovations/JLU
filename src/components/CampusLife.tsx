@@ -3,7 +3,11 @@
 import Image from 'next/image';
 import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion';
 import { useState, useRef, useEffect } from 'react';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { useIsMobile } from '../hooks/useIsMobile';
+
+gsap.registerPlugin(ScrollTrigger);
 // Custom easing for smooth animations
 const customEase: [number, number, number, number] = [0.22, 1, 0.36, 1];
 
@@ -47,12 +51,12 @@ const houseCaptains = [
 ];
 
 const councilClubs = [
-  { name: 'Cultural Club', secretary: 'Mr. Aaryan Baheti', deputySecretary: 'Ms. Lovely Motiyani', program: 'BMS', deputyProgram: 'BBA Events and Entertainment' },
-  { name: 'Community Service Club', secretary: 'Ms. Amna Aslam', deputySecretary: 'Ms. Aliza Khan', program: 'BA Liberal Studies', deputyProgram: 'BA Psychology' },
-  { name: 'MUN & Debating Club', secretary: 'Ms. Mavia Hasan', deputySecretary: 'Ms. Tamanna Shrivastava', program: 'BAJMC', deputyProgram: 'BAJMC' },
-  { name: 'Industry & Entrepreneurship Club', secretary: 'Ms. Mihika Sharma', deputySecretary: 'Mr. Lakshay Saxena', program: 'BCA Hons. Data Science', deputyProgram: 'BMS' },
-  { name: 'Photography Club', secretary: 'Mr. Atharv Joshi', deputySecretary: 'Mr. Dikshant Chaudhary', program: 'BCA Hons. UX', deputyProgram: 'BBA' },
-  { name: 'Sports Club', secretary: 'Mr. Samar Dwivedi', deputySecretary: 'Ms. Harshita Sharma', program: 'BA LLB Hons.', deputyProgram: 'BPES' },
+  { name: 'Cultural Club', secretary: 'Mr. Aaryan Baheti', deputySecretary: 'Ms. Lovely Motiyani', program: 'BMS', deputyProgram: 'BBA Events and Entertainment', logo: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/logo/cultural.png' },
+  { name: 'Community Service Club', secretary: 'Ms. Amna Aslam', deputySecretary: 'Ms. Aliza Khan', program: 'BA Liberal Studies', deputyProgram: 'BA Psychology', logo: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/logo/community-service.png' },
+  { name: 'MUN & Debating Club', secretary: 'Ms. Mavia Hasan', deputySecretary: 'Ms. Tamanna Shrivastava', program: 'BAJMC', deputyProgram: 'BAJMC', logo: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/logo/mun-debating.png' },
+  { name: 'Industry & Entrepreneurship Club', secretary: 'Ms. Mihika Sharma', deputySecretary: 'Mr. Lakshay Saxena', program: 'BCA Hons. Data Science', deputyProgram: 'BMS', logo: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/logo/industry-entrepreneurship.png' },
+  { name: 'Photography Club', secretary: 'Mr. Atharv Joshi', deputySecretary: 'Mr. Dikshant Chaudhary', program: 'BCA Hons. UX', deputyProgram: 'BBA', logo: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/logo/photography.png' },
+  { name: 'Sports Club', secretary: 'Mr. Samar Dwivedi', deputySecretary: 'Ms. Harshita Sharma', program: 'BA LLB Hons.', deputyProgram: 'BPES', logo: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/logo/sports-adventure.png' },
 ];
 
 const editorialBoard = [
@@ -101,8 +105,8 @@ const studentClubs = [
     image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/campus%20life%20/dance%20club.JPG', logo: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/logo/cultural.png',
   },
   {
-    name: 'Literary Club',
-    description: 'Book discussions, poetry reading & writing, short story creation, and literary competitions to develop writing skills.',
+    name: 'Editorial Board',
+    description: 'Content creation, newsletter publishing, campus journalism, and editorial management to develop communication skills.',
     icon: 'book',
     color: '#1A5276',
     image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/pro1.jpg', logo: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/logo/editorial-board.png',
@@ -129,7 +133,7 @@ const studentClubs = [
     image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/campus%20life%20/communit%20service%20club.JPG', logo: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/logo/community-service.png',
   },
   {
-    name: 'Start-up & Entrepreneurship Club',
+    name: 'Industry & Entrepreneurship Club',
     description: 'Business development mentorship, potential funding through JLU\'s innovation ecosystem, and networking opportunities.',
     icon: 'startup',
     color: '#D4AC0D',
@@ -329,6 +333,29 @@ const CampusLife = () => {
   });
   const ignitingY = useTransform(ignitingProgress, [0, 1], ['0%', '20%']);
 
+  // Council text line-by-line reveal (same as alumni section)
+  const councilTextRef = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    if (isMobile || !councilTextRef.current) return;
+    const lines = councilTextRef.current.querySelectorAll('.council-text-line > span');
+    gsap.set(lines, { y: '100%' });
+    lines.forEach((line, index) => {
+      const startPercent = 95 - (index * 3);
+      const endPercent = 50 - (index * 3);
+      gsap.to(line, {
+        y: '0%',
+        ease: 'none',
+        scrollTrigger: {
+          trigger: councilTextRef.current,
+          start: `top ${startPercent}%`,
+          end: `top ${Math.max(endPercent, 10)}%`,
+          scrub: 3,
+        },
+      });
+    });
+    return () => { ScrollTrigger.getAll().forEach(t => t.kill()); };
+  }, [isMobile]);
+
   // Community section scroll animations
   const communityRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress: communityProgress } = useScroll({
@@ -481,16 +508,140 @@ const CampusLife = () => {
             </motion.div>
           </div>
 
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
+          {isMobile && (
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
+              viewport={{ once: true }}
+              className="text-[#666] mb-6"
+              style={{ fontSize: '14px', lineHeight: 1.8 }}
+            >
+              The Student Council serves as an elected body facilitating student expression and contribution to university affairs, nurturing leadership opportunities and strengthening student-faculty relations.
+            </motion.p>
+          )}
+
+          {/* Student Welfare Leadership with side text */}
+          <motion.div
+            ref={councilTextRef}
+            initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
+            transition={{ duration: 0.8, ease: customEase }}
             viewport={{ once: true }}
-            className="text-[#666] text-base md:text-lg max-w-3xl mb-16"
-            style={{ lineHeight: 1.8, ...(isMobile ? { fontSize: '13px', marginBottom: '24px' } : {}) }}
+            className="mb-16"
+            style={isMobile ? { marginBottom: '24px' } : {}}
           >
-            The Student Council serves as an elected body facilitating student expression and contribution to university affairs, nurturing leadership opportunities and strengthening student-faculty relations.
-          </motion.p>
+            <div className="flex flex-col md:flex-row gap-4 md:gap-0 justify-center items-center">
+              {/* Left text — alumni-style reveal */}
+              {!isMobile && (
+                <div className="flex-1 text-right pr-10 max-w-[280px] self-start mt-10">
+                  <h3
+                    className="text-[#21313c]"
+                    style={{ fontFamily: 'Inter, Arial Black, sans-serif', fontWeight: 900, fontSize: '22px', lineHeight: 1.3, letterSpacing: '-0.02em' }}
+                  >
+                    <span className="council-text-line block overflow-hidden">
+                      <span className="inline-block">The Student Council</span>
+                    </span>
+                    <span className="council-text-line block overflow-hidden">
+                      <span className="inline-block">serves as an elected</span>
+                    </span>
+                    <span className="council-text-line block overflow-hidden">
+                      <span className="inline-block">body facilitating</span>
+                    </span>
+                    <span className="council-text-line block overflow-hidden">
+                      <span className="inline-block">student expression</span>
+                    </span>
+                    <span className="council-text-line block overflow-hidden">
+                      <span className="inline-block">and contribution to</span>
+                    </span>
+                    <span className="council-text-line block overflow-hidden">
+                      <span className="inline-block">university affairs,</span>
+                    </span>
+                  </h3>
+                </div>
+              )}
+
+              {/* Cards */}
+              <div className="flex flex-col sm:flex-row gap-4 md:gap-6 shrink-0">
+                {[
+                  {
+                    name: 'Prof. Dr. Vivek Khare',
+                    title: 'Pro Vice Chancellor (Student Welfare)',
+                    image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/leadership/pvc-student-welfare-new.JPG',
+                    linkedin: 'https://in.linkedin.com/in/dr-vivek-khare-8666a61a',
+                    quote: 'Student welfare is at the heart of everything we do at JLU.',
+                  },
+                  {
+                    name: 'Ms. Ladli Goyal',
+                    title: 'Head, Communication & Student Welfare',
+                    image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/leadership/ladli-goyal.jpeg',
+                    linkedin: '',
+                    quote: 'Building a supportive and inclusive campus community.',
+                    objectPosition: 'center 20%',
+                  },
+                ].map((leader, i) => (
+                  <motion.div
+                    key={i}
+                    initial={{ opacity: 0, y: 30 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.6, delay: i * 0.15, ease: customEase }}
+                    viewport={{ once: true }}
+                    className="relative overflow-hidden rounded-2xl group"
+                    style={{ aspectRatio: '3/4', width: isMobile ? '100%' : '280px' }}
+                  >
+                    <Image
+                      src={leader.image}
+                      alt={leader.name}
+                      fill
+                      className="object-cover"
+                      style={{ objectPosition: leader.objectPosition || 'center top' }}
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#21313c]/80 via-transparent to-transparent" />
+                    <div className="absolute bottom-0 left-0 right-0 p-4 md:p-6">
+                      <p className="text-white/50 text-[10px] md:text-xs italic mb-2 md:mb-3 hidden sm:block">&ldquo;{leader.quote}&rdquo;</p>
+                      <div className="flex items-end justify-between">
+                        <div>
+                          <h3 className="text-white font-bold text-sm md:text-lg mb-0.5">{leader.name}</h3>
+                          <p className="text-[#f0c14b] text-[10px] md:text-sm font-medium">{leader.title}</p>
+                        </div>
+                        {leader.linkedin && (
+                          <a href={leader.linkedin} target="_blank" rel="noopener noreferrer" className="text-white/50 hover:text-[#0077b5] transition-colors shrink-0 ml-3">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+                          </a>
+                        )}
+                      </div>
+                    </div>
+                  </motion.div>
+                ))}
+              </div>
+
+              {/* Right text — alumni-style reveal */}
+              {!isMobile && (
+                <div className="flex-1 text-left pl-10 max-w-[280px] self-end mb-10">
+                  <h3
+                    className="text-[#21313c]"
+                    style={{ fontFamily: 'Inter, Arial Black, sans-serif', fontWeight: 900, fontSize: '22px', lineHeight: 1.3, letterSpacing: '-0.02em' }}
+                  >
+                    <span className="council-text-line block overflow-hidden">
+                      <span className="inline-block">nurturing leadership</span>
+                    </span>
+                    <span className="council-text-line block overflow-hidden">
+                      <span className="inline-block">opportunities and</span>
+                    </span>
+                    <span className="council-text-line block overflow-hidden">
+                      <span className="inline-block">strengthening</span>
+                    </span>
+                    <span className="council-text-line block overflow-hidden">
+                      <span className="inline-block">student-faculty</span>
+                    </span>
+                    <span className="council-text-line block overflow-hidden">
+                      <span className="inline-block">relations.</span>
+                    </span>
+                  </h3>
+                </div>
+              )}
+            </div>
+          </motion.div>
 
           {/* Council Leadership Cards — with background image strips */}
           <motion.div
@@ -585,16 +736,24 @@ const CampusLife = () => {
                 {[...councilClubs, ...councilClubs].map((club, i) => (
                   <div
                     key={i}
-                    className="shrink-0 border border-[#e5e5e5] rounded-xl px-5 py-4 hover:border-[#f0c14b] hover:shadow-sm transition-all duration-300"
-                    style={{ minWidth: isMobile ? '220px' : '280px', ...(isMobile ? { padding: '8px 12px' } : {}) }}
+                    className="shrink-0 border border-[#e5e5e5] rounded-xl px-5 py-4 hover:border-[#f0c14b] hover:shadow-sm transition-all duration-300 flex items-center gap-4"
+                    style={{ minWidth: isMobile ? '260px' : '340px', ...(isMobile ? { padding: '8px 12px', gap: '10px' } : {}) }}
                   >
-                    <h4 className="text-[#21313c] font-medium text-sm md:text-base mb-2 whitespace-nowrap" >{club.name}</h4>
-                    <p className="text-[#999] text-xs md:text-sm whitespace-nowrap" >
-                      Secretary: {club.secretary} ({club.program})
-                    </p>
-                    <p className="text-[#999] text-xs md:text-sm whitespace-nowrap" >
-                      Dy. Secretary: {club.deputySecretary} ({club.deputyProgram})
-                    </p>
+                    <img
+                      src={club.logo}
+                      alt={club.name}
+                      className="w-20 h-20 md:w-28 md:h-28 object-contain shrink-0 rounded-lg"
+                      style={{ mixBlendMode: 'multiply' }}
+                    />
+                    <div>
+                      <h4 className="text-[#21313c] font-medium text-sm md:text-base mb-1 whitespace-nowrap">{club.name}</h4>
+                      <p className="text-[#999] text-xs md:text-sm whitespace-nowrap">
+                        Secretary: {club.secretary} ({club.program})
+                      </p>
+                      <p className="text-[#999] text-xs md:text-sm whitespace-nowrap">
+                        Dy. Secretary: {club.deputySecretary} ({club.deputyProgram})
+                      </p>
+                    </div>
                   </div>
                 ))}
               </motion.div>
