@@ -125,43 +125,6 @@ const classroomFeatures = [
   { icon: LightingIcon, title: 'Optimal Lighting', desc: 'Natural and LED lighting designed for focus and clarity' },
 ];
 
-// Healthcare items
-const healthcareItems = [
-  {
-    title: 'Medical Clinic',
-    subtitle: '24/7 Healthcare',
-    description: 'A fully equipped medical clinic with qualified staff, sanitized equipment, and ambulance services available round the clock for emergencies.',
-    stats: [
-      { value: '24/7', label: 'Availability' },
-      { value: '2', label: 'Ambulances' },
-    ],
-    image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/interdisciplinary/campus-building.jpg',
-    features: ['Qualified medical staff on campus', 'Sanitized medical equipment', 'Emergency ambulance services', 'First-aid facilities in every block'],
-  },
-  {
-    title: 'Fitness Center',
-    subtitle: 'State-of-the-Art Gym',
-    description: 'A modern fitness center featuring cardiovascular machines, weight training equipment, and dedicated areas for yoga and functional training.',
-    stats: [
-      { value: '5,000', label: 'sq. ft. Area' },
-      { value: '50+', label: 'Equipment' },
-    ],
-    image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/campus/gym-new.jpg',
-    features: ['Cardiovascular training zone', 'Free weights & resistance machines', 'Yoga and meditation space', 'Professional trainers available'],
-  },
-  {
-    title: 'Swimming Pool',
-    subtitle: 'Olympic Standard',
-    description: 'A 6-lane Olympic standard swimming pool with trained lifeguards, temperature control, and dedicated lanes for competitive practice.',
-    stats: [
-      { value: '6', label: 'Lanes' },
-      { value: 'Olympic', label: 'Standard' },
-    ],
-    image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/campus/pool-olympic.jpg',
-    features: ['Olympic standard dimensions', 'Temperature-controlled water', 'Trained lifeguards on duty', 'Competition-ready timing system'],
-  },
-];
-
 // Sports facilities
 const sportsFacilities = [
   'Cricket Ground with Practice Nets',
@@ -324,67 +287,6 @@ const infrastructureModalData: FacilityData[] = [
       { label: 'Food Outlets', value: '6' },
       { label: 'Mess Capacity', value: '180' },
       { label: 'Cuisines', value: '5+' },
-    ],
-  },
-];
-
-// Healthcare modal data
-const healthcareModalData: FacilityData[] = [
-  {
-    id: 'medical-clinic',
-    title: 'Medical Clinic',
-    category: 'Healthcare & Wellness',
-    image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/interdisciplinary/campus-building.jpg',
-    description: 'A fully equipped medical clinic with qualified staff, sanitized equipment, and ambulance services available round the clock for emergencies.',
-    features: [
-      'Qualified medical staff on campus',
-      'Sanitized medical equipment',
-      'Emergency ambulance services',
-      'First-aid facilities in every block',
-      'Regular health check-up camps',
-    ],
-    stats: [
-      { label: 'Availability', value: '24/7' },
-      { label: 'Ambulances', value: '2' },
-      { label: 'First Aid Points', value: '14' },
-    ],
-  },
-  {
-    id: 'fitness-center',
-    title: 'Fitness Center',
-    category: 'Healthcare & Wellness',
-    image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/campus/gym-new.jpg',
-    description: 'A modern fitness center featuring cardiovascular machines, weight training equipment, and dedicated areas for yoga and functional training.',
-    features: [
-      'Cardiovascular training zone',
-      'Free weights & resistance machines',
-      'Yoga and meditation space',
-      'Professional trainers available',
-      'Functional training area',
-    ],
-    stats: [
-      { label: 'Area', value: '5,000 sq.ft.' },
-      { label: 'Equipment', value: '50+' },
-      { label: 'Trainers', value: '4' },
-    ],
-  },
-  {
-    id: 'swimming-pool',
-    title: 'Swimming Pool',
-    category: 'Healthcare & Wellness',
-    image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/campus/pool-olympic.jpg',
-    description: 'A 6-lane Olympic standard swimming pool with trained lifeguards, temperature control, and dedicated lanes for competitive practice.',
-    features: [
-      'Olympic standard dimensions',
-      'Temperature-controlled water',
-      'Trained lifeguards on duty',
-      'Competition-ready timing system',
-      'Separate training sessions available',
-    ],
-    stats: [
-      { label: 'Lanes', value: '6' },
-      { label: 'Standard', value: 'Olympic' },
-      { label: 'Length', value: '25m' },
     ],
   },
 ];
