@@ -267,7 +267,7 @@ export const EventsSection = () => {
         </div>
 
         {/* Text Content - Positioned Independently - Hidden on Mobile */}
-        <div className="absolute text-left hidden lg:block z-10" style={{ top: '52%', right: '35%', maxWidth: '380px' }}>
+        <div className="absolute text-left hidden lg:block z-10" style={{ top: '52%', right: '32%', maxWidth: '380px' }}>
           <h3
             className="text-3xl md:text-4xl lg:text-5xl text-[#21313c] mb-2 leading-[1.1]"
             style={{ fontWeight: 600 }}

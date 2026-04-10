@@ -1,6 +1,5 @@
 'use client';
 
-import Image from 'next/image';
 import { motion } from 'framer-motion';
 
 // Custom easing for smooth animations (same as Events page)
@@ -16,6 +15,8 @@ const Accreditations = () => {
     { src: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/Untitled design/6.png', name: 'AFS Intercultural Programs India', shortName: 'AFS' },
     { src: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/Untitled design/7.png', name: 'Tuning India', shortName: 'Tuning India' },
     { src: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/Untitled design/8.png', name: 'International Association of Law Schools', shortName: 'IALS' },
+    { src: '/badges/pci-logo.png', name: 'Pharmacy Council of India', shortName: 'PCI' },
+    { src: '/badges/coa-logo.png', name: 'Council of Architecture', shortName: 'COA' },
   ];
 
   return (
@@ -60,7 +61,7 @@ const Accreditations = () => {
         </motion.div>
 
         {/* Grid of 8 boxes */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-6">
+        <div className="grid grid-cols-2 md:grid-cols-5 gap-3 md:gap-6">
           {accreditations.map((item, index) => (
             <motion.div
               key={index}
@@ -70,12 +71,11 @@ const Accreditations = () => {
               viewport={{ once: true }}
               className="group flex flex-col items-center"
             >
-              <div className="relative overflow-hidden aspect-square w-full rounded-xl bg-white border border-[#e5e5e5]">
-                <Image
+              <div className="aspect-square w-full rounded-xl bg-white border border-[#e5e5e5] flex items-center justify-center overflow-hidden">
+                <img
                   src={item.src}
                   alt={item.name}
-                  fill
-                  className="object-contain p-4 md:p-6 transition-transform duration-700 group-hover:scale-105"
+                  className="w-full h-full object-contain p-4 md:p-6 transition-transform duration-700 group-hover:scale-105"
                 />
               </div>
               <div className="mt-3 text-center">

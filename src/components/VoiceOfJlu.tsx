@@ -1,7 +1,6 @@
 'use client';
 
 import { useState, useEffect, useRef } from 'react';
-import { motion, useScroll, useTransform } from 'framer-motion';
 import { useInView } from 'framer-motion';
 import { useIsMobile } from '../hooks/useIsMobile';
 
@@ -13,16 +12,9 @@ export const VoiceOfJlu = () => {
   const [mutedVideo, setMutedVideo] = useState<Record<number, boolean>>({});
   const [hasAutoPlayed, setHasAutoPlayed] = useState(false);
   const facultyRef = useRef(null);
-  const leadershipScrollRef = useRef(null);
   const voicesRef = useRef(null);
   const videoRefs = useRef<Record<number, HTMLVideoElement | null>>({});
   const isInView = useInView(facultyRef, { once: true, amount: 0.3 });
-  const { scrollYProgress: leadershipScrollProgress } = useScroll({
-    target: leadershipScrollRef,
-    offset: ['start end', 'end start'],
-  });
-  const marqueeTopX = useTransform(leadershipScrollProgress, [0, 1], ['30%', '-60%']);
-  const marqueeBottomX = useTransform(leadershipScrollProgress, [0, 1], ['-60%', '30%']);
   const voicesInView = useInView(voicesRef, { once: true, amount: 0.3 });
 
   // Pause all videos except the given index
@@ -47,27 +39,6 @@ export const VoiceOfJlu = () => {
       setHasAutoPlayed(true);
     }
   }, [voicesInView, hasAutoPlayed, isMobile]);
-
-  const leadershipStagger = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.12,
-        delayChildren: 0.1,
-      },
-    },
-  };
-
-  const leadershipCardVariant = {
-    hidden: { opacity: 0, y: 50, scale: 0.96 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      scale: 1,
-      transition: { duration: 0.9, ease: [0.22, 1, 0.36, 1] as const },
-    },
-  };
 
   const handlePrevCard = () => {
     setMobileIndex((prev) => Math.max(0, prev - 1));
@@ -99,13 +70,9 @@ export const VoiceOfJlu = () => {
   return (
     <section className="bg-[#f6f7f0] pt-16 md:pt-48 pb-12 md:pb-24 overflow-x-clip">
       {/* Header */}
-      <motion.div
+      <div
         className="mb-12 md:mb-20 px-4 sm:px-10 lg:px-16"
         style={{ maxWidth: '1800px', marginLeft: 'auto', marginRight: 'auto' }}
-        initial={{ opacity: 0, y: 30 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
       >
         {/* Centered heading */}
         <div className="text-center mb-4 md:mb-6 mt-6 md:mt-10">
@@ -134,7 +101,7 @@ export const VoiceOfJlu = () => {
         <p className="text-xl md:text-2xl text-center mt-6 md:mt-10" style={{ color: '#999', fontStyle: 'italic', lineHeight: 1.7 }}>
           This is the university as it is lived, not just described.
         </p>
-      </motion.div>
+      </div>
 
       {/* Cards Container */}
       <div ref={voicesRef} />
@@ -176,22 +143,15 @@ export const VoiceOfJlu = () => {
                     }
                   }}
                 >
-                  {/* Thumbnail overlay when not playing */}
-                  {voice.thumbnail && playingVideo !== index && (
-                    <img
-                      src={voice.thumbnail}
-                      alt={voice.name}
-                      className="absolute inset-0 w-full h-full object-cover z-[1]"
-                    />
-                  )}
-                  {/* Video - always present, plays when active */}
+                  {/* Video with poster as thumbnail — preload=none so no data loads until played */}
                   <video
                     ref={(el) => { videoRefs.current[index] = el; }}
-                    src={`${voice.video}#t=0.5`}
+                    src={!voice.thumbnail && activeCard === index ? `${voice.video}#t=0.5` : voice.video}
+                    poster={voice.thumbnail || undefined}
                     autoPlay={playingVideo === index}
                     muted={mutedVideo[index] !== false}
                     playsInline
-                    preload="metadata"
+                    preload={!voice.thumbnail && activeCard === index ? "metadata" : "none"}
                     className="absolute inset-0 w-full h-full object-cover"
                     style={{ borderRadius: 'inherit' }}
                     onEnded={() => { setPlayingVideo(null); setActiveCard(null); }}
@@ -288,23 +248,15 @@ export const VoiceOfJlu = () => {
                 }
               }}
             >
-              {/* Thumbnail overlay when not playing */}
-              {voice.thumbnail && playingVideo !== index && (
-                <img
-                  src={voice.thumbnail}
-                  alt={voice.name}
-                  className="absolute inset-0 w-full h-full object-cover z-[1]"
-                  style={{ borderRadius: 'inherit' }}
-                />
-              )}
-              {/* Video - always present, plays when active */}
+              {/* Video with poster as thumbnail — preload=none so no data loads until played */}
               <video
                 ref={(el) => { videoRefs.current[100 + index] = el; }}
-                src={`${voice.video}#t=0.5`}
+                src={!voice.thumbnail && activeCard === index ? `${voice.video}#t=0.5` : voice.video}
+                poster={voice.thumbnail || undefined}
                 autoPlay={playingVideo === index}
                 muted={mutedVideo[index] !== false}
                 playsInline
-                preload="metadata"
+                preload={!voice.thumbnail && activeCard === index ? "metadata" : "none"}
                 className="absolute inset-0 w-full h-full object-cover"
                 style={{ borderRadius: 'inherit' }}
                 onEnded={() => { setPlayingVideo(null); setActiveCard(null); }}
@@ -353,11 +305,9 @@ export const VoiceOfJlu = () => {
       {/* Our Faculty Section */}
       <div ref={facultyRef} className="mt-16 md:mt-32 lg:mt-40 px-4 sm:px-10 lg:px-16" style={{ maxWidth: '1800px', marginLeft: 'auto', marginRight: 'auto' }}>
         {/* Faculty Header */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+        <div
           className="text-center mb-12 md:mb-20"
+          style={{ opacity: isInView ? 1 : 0, transform: isInView ? 'none' : 'translateY(30px)', transition: 'opacity 0.8s ease, transform 0.8s ease' }}
         >
           <span
             className="text-[#999] uppercase tracking-widest block mb-4 md:mb-6 text-xl md:text-2xl font-bold"
@@ -372,50 +322,25 @@ export const VoiceOfJlu = () => {
             Leadership{' '}
             <span style={{ fontFamily: "'Times New Roman', serif", fontStyle: 'italic', fontWeight: 700 }}>Structure</span>
           </h1>
-        </motion.div>
+        </div>
 
-        <div ref={leadershipScrollRef}>
-          {/* Top Row - 3 leaders with scroll marquee behind */}
+        <div>
+          {/* Top Row - 3 leaders */}
           <div className="relative mb-4 md:mb-8 lg:mb-10">
-            {/* Scroll-driven marquee - breaks out of padding, full viewport width (desktop only) */}
-            <div className="absolute top-0 bottom-0 left-[50%] w-[100vw] -translate-x-[50%] hidden md:flex items-center overflow-visible pointer-events-none z-0">
-              <motion.div
-                className="whitespace-nowrap"
-                style={{ x: marqueeTopX }}
-              >
-                <span
-                  className="text-[50px] md:text-[100px] lg:text-[140px] font-bold uppercase select-none"
-                  style={{
-                    color: 'rgba(33,49,60,0.15)',
-                    letterSpacing: '0.04em',
-                    lineHeight: 1,
-                  }}
-                >
-                  Leadership &middot; Vision &middot; Excellence &middot; Leadership &middot; Vision &middot; Excellence
-                </span>
-              </motion.div>
-            </div>
-
             {/* Cards */}
-            <motion.div
-              variants={leadershipStagger}
-              initial="hidden"
-              animate={isInView ? 'visible' : 'hidden'}
-              className="hidden md:grid grid-cols-3 gap-4 md:gap-8 lg:gap-10 md:max-w-[900px] lg:max-w-[1100px] mx-auto relative z-10"
-            >
+            <div className="hidden md:grid grid-cols-3 gap-4 md:gap-8 lg:gap-10 md:max-w-[900px] lg:max-w-[1100px] mx-auto relative z-10">
               {faculty.slice(0, 3).map((member, index) => (
-                <motion.div
+                <div
                   key={index}
-                  variants={leadershipCardVariant}
                   className="group relative"
+                  style={{ opacity: isInView ? 1 : 0, transform: isInView ? 'none' : 'translateY(40px)', transition: `opacity 0.7s ease ${index * 0.12}s, transform 0.7s ease ${index * 0.12}s` }}
                 >
                   <div className="relative overflow-hidden rounded-2xl md:rounded-3xl" style={{ aspectRatio: '3/4' }}>
-                    <motion.img
+                    <img
                       src={member.image}
                       alt={member.name}
-                      className="w-full h-full object-cover"
-                      whileHover={{ scale: 1.05 }}
-                      transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+                      loading="lazy"
+                      className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                     <div className="absolute bottom-0 left-0 right-0 p-4 md:p-6 translate-y-4 group-hover:translate-y-0 opacity-0 group-hover:opacity-100 transition-all duration-500">
@@ -442,52 +367,27 @@ export const VoiceOfJlu = () => {
                       </a>
                     )}
                   </div>
-                </motion.div>
+                </div>
               ))}
-            </motion.div>
+            </div>
           </div>
 
-          {/* Bottom Row - 4 leaders with opposite scroll marquee */}
+          {/* Bottom Row - 4 leaders */}
           <div className="relative">
-            {/* Scroll-driven marquee - breaks out of padding, opposite direction (desktop only) */}
-            <div className="absolute top-0 bottom-0 left-[50%] w-[100vw] -translate-x-[50%] hidden md:flex items-center overflow-visible pointer-events-none z-0">
-              <motion.div
-                className="whitespace-nowrap"
-                style={{ x: marqueeBottomX }}
-              >
-                <span
-                  className="text-[50px] md:text-[100px] lg:text-[140px] font-bold uppercase select-none"
-                  style={{
-                    color: 'rgba(33,49,60,0.15)',
-                    letterSpacing: '0.04em',
-                    lineHeight: 1,
-                  }}
-                >
-                  Innovation &middot; Impact &middot; Legacy &middot; Innovation &middot; Impact &middot; Legacy
-                </span>
-              </motion.div>
-            </div>
-
             {/* Cards */}
-            <motion.div
-              variants={leadershipStagger}
-              initial="hidden"
-              animate={isInView ? 'visible' : 'hidden'}
-              className="hidden md:grid grid-cols-4 gap-4 md:gap-8 lg:gap-10 md:max-w-[1200px] lg:max-w-[1400px] mx-auto relative z-10"
-            >
+            <div className="hidden md:grid grid-cols-4 gap-4 md:gap-8 lg:gap-10 md:max-w-[1200px] lg:max-w-[1400px] mx-auto relative z-10">
               {faculty.slice(3).map((member, index) => (
-                <motion.div
+                <div
                   key={index + 3}
-                  variants={leadershipCardVariant}
                   className="group relative"
+                  style={{ opacity: isInView ? 1 : 0, transform: isInView ? 'none' : 'translateY(40px)', transition: `opacity 0.7s ease ${(index + 3) * 0.12}s, transform 0.7s ease ${(index + 3) * 0.12}s` }}
                 >
                   <div className="relative overflow-hidden rounded-2xl md:rounded-3xl" style={{ aspectRatio: '3/4' }}>
-                    <motion.img
+                    <img
                       src={member.image}
                       alt={member.name}
-                      className="w-full h-full object-cover"
-                      whileHover={{ scale: 1.05 }}
-                      transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+                      loading="lazy"
+                      className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                     <div className="absolute bottom-0 left-0 right-0 p-4 md:p-6 translate-y-4 group-hover:translate-y-0 opacity-0 group-hover:opacity-100 transition-all duration-500">
@@ -514,61 +414,38 @@ export const VoiceOfJlu = () => {
                       </a>
                     )}
                   </div>
-                </motion.div>
+                </div>
               ))}
-            </motion.div>
+            </div>
           </div>
 
-          {/* Mobile-only: All 7 leaders - 1 big on top, then 2-2-2 */}
+          {/* Mobile-only: All 7 leaders */}
           <div className="md:hidden relative z-10">
             {/* Chancellor - big card */}
-            <motion.div
-              variants={leadershipCardVariant}
-              initial="hidden"
-              animate={isInView ? 'visible' : 'hidden'}
-              className="group relative max-w-[70%] mx-auto mb-4"
-            >
+            <div className="group relative max-w-[70%] mx-auto mb-4">
               <div className="relative overflow-hidden rounded-2xl" style={{ aspectRatio: '3/4' }}>
-                <motion.img src={faculty[0].image} alt={faculty[0].name} className="w-full h-full object-cover" />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                <img src={faculty[0].image} alt={faculty[0].name} loading="lazy" className="w-full h-full object-cover" />
               </div>
               <div className="mt-3 text-center">
                 <h3 className="text-[#21313c] font-bold text-base leading-tight">{faculty[0].name}</h3>
                 <p className="text-[#999] text-xs mt-1">{faculty[0].title}</p>
               </div>
-            </motion.div>
+            </div>
 
             {/* Remaining 6 in 2-column grid */}
-            <motion.div
-              variants={leadershipStagger}
-              initial="hidden"
-              animate={isInView ? 'visible' : 'hidden'}
-              className="grid grid-cols-2 gap-3"
-            >
-                {faculty.slice(1).map((member, index) => (
-                <motion.div
-                  key={index + 1}
-                  variants={leadershipCardVariant}
-                  className="group relative"
-                >
+            <div className="grid grid-cols-2 gap-3">
+              {faculty.slice(1).map((member, index) => (
+                <div key={index + 1} className="group relative">
                   <div className="relative overflow-hidden rounded-2xl" style={{ aspectRatio: '3/4' }}>
-                    <motion.img src={member.image} alt={member.name} className="w-full h-full object-cover" style={member.objectPosition ? { objectPosition: member.objectPosition } : {}} />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                    <img src={member.image} alt={member.name} loading="lazy" className="w-full h-full object-cover" style={member.objectPosition ? { objectPosition: member.objectPosition } : {}} />
                   </div>
-                  <div className="mt-2 flex items-start justify-between">
-                    <div>
-                      <h3 className="text-[#21313c] font-bold text-xs leading-tight">{member.name}</h3>
-                      <p className="text-[#999] text-[10px] mt-0.5">{member.title}</p>
-                    </div>
-                    {member.linkedin && (
-                      <a href={member.linkedin} target="_blank" rel="noopener noreferrer" className="text-[#0077b5] shrink-0 ml-1">
-                        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
-                      </a>
-                    )}
+                  <div className="mt-2">
+                    <h3 className="text-[#21313c] font-bold text-xs leading-tight">{member.name}</h3>
+                    <p className="text-[#999] text-[10px] mt-0.5">{member.title}</p>
                   </div>
-                </motion.div>
+                </div>
               ))}
-            </motion.div>
+            </div>
           </div>
         </div>
       </div>

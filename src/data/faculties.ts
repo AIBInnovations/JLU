@@ -2,6 +2,16 @@ export interface SchoolProgram {
   name: string;
   duration: string;
   degree: string;
+  slug?: string;
+}
+
+export interface DeanContact {
+  name: string;
+  title: string;
+  phone?: string;
+  email?: string;
+  linkedin?: string;
+  image?: string;
 }
 
 export interface School {
@@ -11,6 +21,7 @@ export interface School {
   tagline: string;
   description: string;
   head?: string;
+  deanContact?: DeanContact;
   programs: SchoolProgram[];
   highlights: string[];
   image: string;
@@ -50,13 +61,20 @@ export const faculties: Faculty[] = [
         description:
           'JLBS is among the top-ranked business schools in Central India, offering a true choice-based credit system with customized specializations. Students gain access to Harvard Business School online courses with digital certificates, Six Sigma courses designed by Ernst & Young, and AI-backed business simulations. Add-on certifications in CMA (IMA, USA) and ACCA (UK) set graduates apart globally.',
         head: 'Dr. Ankush Sharma',
+        deanContact: {
+          name: 'Prof. (Dr.) Kishore Kumar Morya',
+          title: 'Dean, Faculty of Management',
+          phone: '7471110177',
+          linkedin: 'https://www.linkedin.com/in/kishorekumarmorya/',
+          image: '/kishore-kumar-morya.png',
+        },
         programs: [
-          { name: 'BBA*', duration: '3 Years', degree: 'UG' },
-          { name: 'B.Com*', duration: '3 Years', degree: 'UG' },
-          { name: 'BMS* (Marketing / Finance / HR / Risk Management / Business Analytics)', duration: '3 Years', degree: 'UG' },
-          { name: 'MBA (Marketing / Finance / HR / Logistics & Supply Chain)', duration: '2 Years', degree: 'PG' },
-          { name: 'MBA (Business Analytics)', duration: '2 Years', degree: 'PG' },
-          { name: 'MBA (Family Business)', duration: '2 Years', degree: 'PG' },
+          { name: 'BBA*', duration: '3 Years', degree: 'UG', slug: 'bachelor-of-business-administration' },
+          { name: 'B.Com*', duration: '3 Years', degree: 'UG', slug: 'bachelor-of-commerce' },
+          { name: 'BMS* (Marketing / Finance / HR / Risk Management / Business Analytics)', duration: '3 Years', degree: 'UG', slug: 'bms' },
+          { name: 'MBA (Marketing / Finance / HR / Logistics & Supply Chain)', duration: '2 Years', degree: 'PG', slug: 'master-of-business-administration' },
+          { name: 'MBA (Business Analytics)', duration: '2 Years', degree: 'PG', slug: 'mba-business-analytics' },
+          { name: 'MBA (Family Business)', duration: '2 Years', degree: 'PG', slug: 'mba-family-business' },
         ],
         highlights: [
           'Harvard Business School online courses with digital certificates',
@@ -75,10 +93,17 @@ export const faculties: Faculty[] = [
         tagline: 'Where the Business of Sports Meets Academic Rigour.',
         description:
           'Prepares students for the rapidly growing sports industry by combining management fundamentals with the dynamics of the sports ecosystem. Students learn sports marketing, event management, athlete management, and sports law alongside hands-on industry exposure.',
+        deanContact: {
+          name: 'Prof. (Dr.) Kishore Kumar Morya',
+          title: 'Dean, Faculty of Management',
+          phone: '7471110177',
+          linkedin: 'https://www.linkedin.com/in/kishorekumarmorya/',
+          image: '/kishore-kumar-morya.png',
+        },
         programs: [
-          { name: 'BBA Sports Management', duration: '3 Years', degree: 'UG' },
-          { name: 'Bachelor of Physical Education and Sports Science', duration: '3 Years', degree: 'UG' },
-          { name: 'Master of Physical Education and Sports Science', duration: '2 Years', degree: 'PG' },
+          { name: 'BBA Sports Management', duration: '3 Years', degree: 'UG', slug: 'bba-sports-management' },
+          { name: 'Bachelor of Physical Education and Sports Science', duration: '3 Years', degree: 'UG', slug: 'bachelor-of-physical-education-sports-science' },
+          { name: 'Master of Physical Education and Sports Science', duration: '2 Years', degree: 'PG', slug: 'master-of-physical-education-sports-science' },
         ],
         highlights: [
           'Elite Athlete Scholarships — up to 100% fee waiver',
@@ -96,9 +121,16 @@ export const faculties: Faculty[] = [
         description:
           'Designed for global service industries with a focus on professionalism, operational excellence, and customer experience. Approximately 90% of hospitality students are placed in 3-star and 5-star hotels. Training kitchens, restaurant simulations, and international culinary modules provide hands-on industry readiness.',
         head: 'Dr. Nafees Haider Naqvi',
+        deanContact: {
+          name: 'Prof. (Dr.) Kishore Kumar Morya',
+          title: 'Dean, Faculty of Management',
+          phone: '7471110177',
+          linkedin: 'https://www.linkedin.com/in/kishorekumarmorya/',
+          image: '/kishore-kumar-morya.png',
+        },
         programs: [
-          { name: 'B.Sc (Hospitality and Hotel Administration)', duration: '3 Years', degree: 'UG' },
-          { name: 'BBA (Aviation and Airport Management)', duration: '3 Years', degree: 'UG' },
+          { name: 'B.Sc (Hospitality and Hotel Administration)', duration: '3 Years', degree: 'UG', slug: 'bsc-hospitality-hotel-administration' },
+          { name: 'BBA (Aviation and Airport Management)', duration: '3 Years', degree: 'UG', slug: 'bba-aviation-airport-management' },
         ],
         highlights: [
           '~90% students placed in 3-star and 5-star hotels',
@@ -131,9 +163,16 @@ export const faculties: Faculty[] = [
         tagline: 'Part of Google News Lab University Network.',
         description:
           'Trains journalists to report with integrity, context, and curiosity across all media platforms. The school operates a state-of-the-art 20,000 sq. ft. dedicated media production studio and is part of the Google News Lab University Network.',
+        deanContact: {
+          name: 'Dr. Rushit Dubal',
+          title: 'Assistant Dean — Faculty of Journalism & Social Science',
+          phone: '+91 747 111 0122',
+          linkedin: 'https://www.linkedin.com/in/dr-rushit-dubal-9a802aa/',
+          image: '/dr-rushit-dubal.jpg',
+        },
         programs: [
-          { name: 'BA Journalism and Mass Communication*', duration: '3 Years', degree: 'UG' },
-          { name: 'MA (Mass Communication)', duration: '2 Years', degree: 'PG' },
+          { name: 'BA Journalism and Mass Communication*', duration: '3 Years', degree: 'UG', slug: 'bachelor-journalism-mass-communication' },
+          { name: 'MA (Mass Communication)', duration: '2 Years', degree: 'PG', slug: 'ma-journalism-mass-communication' },
         ],
         highlights: [
           '20,000 sq. ft. dedicated media production studio',
@@ -152,9 +191,16 @@ export const faculties: Faculty[] = [
         description:
           'Focuses on brand communication, creative strategy, and audience engagement in a rapidly evolving media world.',
         head: 'Dr. Rushit Prabodhchandra Dubal',
+        deanContact: {
+          name: 'Dr. Rushit Dubal',
+          title: 'Assistant Dean — Faculty of Journalism & Social Science',
+          phone: '+91 747 111 0122',
+          linkedin: 'https://www.linkedin.com/in/dr-rushit-dubal-9a802aa/',
+          image: '/dr-rushit-dubal.jpg',
+        },
         programs: [
-          { name: 'BBA Advertising and PR', duration: '3 Years', degree: 'UG' },
-          { name: 'MBA Advertising and PR', duration: '2 Years', degree: 'PG' },
+          { name: 'BBA Advertising and PR', duration: '3 Years', degree: 'UG', slug: 'bba-advertising-pr' },
+          { name: 'MBA Advertising and PR', duration: '2 Years', degree: 'PG', slug: 'mba-advertising-pr' },
         ],
         highlights: [
           'Brand activation and reputation management training',
@@ -172,7 +218,7 @@ export const faculties: Faculty[] = [
         description:
           'Prepares students for the dynamic fields of events, media, and entertainment through practical exposure.',
         programs: [
-          { name: 'BBA Events and Entertainment', duration: '3 Years', degree: 'UG' },
+          { name: 'BBA Events and Entertainment', duration: '3 Years', degree: 'UG', slug: 'bba-events-entertainment' },
         ],
         highlights: [
           'Live event management and production experience',
@@ -191,12 +237,12 @@ export const faculties: Faculty[] = [
           'Encourages cultural awareness, critical thinking, and communication through language and social inquiry.',
         head: 'Dr. Rolii Ajay Khare',
         programs: [
-          { name: 'BA English Literature*', duration: '3 Years', degree: 'UG' },
-          { name: 'BA Psychology*', duration: '3 Years', degree: 'UG' },
-          { name: 'BA Economics*', duration: '3 Years', degree: 'UG' },
-          { name: 'BA Public Policy*', duration: '3 Years', degree: 'UG' },
-          { name: 'MA English Literature', duration: '2 Years', degree: 'PG' },
-          { name: 'MA Psychology', duration: '2 Years', degree: 'PG' },
+          { name: 'BA English Literature*', duration: '3 Years', degree: 'UG', slug: 'ba-english' },
+          { name: 'BA Psychology*', duration: '3 Years', degree: 'UG', slug: 'ba-psychology' },
+          { name: 'BA Economics*', duration: '3 Years', degree: 'UG', slug: 'ba-economics' },
+          { name: 'BA Public Policy*', duration: '3 Years', degree: 'UG', slug: 'ba-public-policy' },
+          { name: 'MA English Literature', duration: '2 Years', degree: 'PG', slug: 'ma-english-literature' },
+          { name: 'MA Psychology', duration: '2 Years', degree: 'PG', slug: 'ma-psychology' },
         ],
         highlights: [
           'Psychology labs and counseling practicum',
@@ -228,12 +274,18 @@ export const faculties: Faculty[] = [
         tagline: 'Powered by ImaginXP. Partnered with NVIDIA.',
         description:
           'Partners with ImaginXP — India\'s leading UX design organization that has trained 15,000+ professionals — to deliver industry-led design education.',
+        deanContact: {
+          name: 'Dr. Manika Walia',
+          title: 'Dean, Faculty of Fashion, Design & Art',
+          linkedin: 'https://www.linkedin.com/in/manika-walia-77628a107',
+          image: '/manika-walia.png',
+        },
         programs: [
-          { name: 'B.Des (User Experience Design)', duration: '4 Years', degree: 'UG' },
-          { name: 'B.Des (Animation and Film Design)', duration: '4 Years', degree: 'UG' },
-          { name: 'B.Des (Graphic Design)', duration: '4 Years', degree: 'UG' },
-          { name: 'B.Des (Interior Architecture)', duration: '4 Years', degree: 'UG' },
-          { name: 'M.Des (User Experience Design)', duration: '2 Years', degree: 'PG' },
+          { name: 'B.Des (User Experience Design)', duration: '4 Years', degree: 'UG', slug: 'bdes-ui-ux-design' },
+          { name: 'B.Des (Animation and Film Design)', duration: '4 Years', degree: 'UG', slug: 'bdes-animation-film-design' },
+          { name: 'B.Des (Graphic Design)', duration: '4 Years', degree: 'UG', slug: 'bdes-graphic-design' },
+          { name: 'B.Des (Interior Architecture)', duration: '4 Years', degree: 'UG', slug: 'bdes-interior-design' },
+          { name: 'M.Des (User Experience Design)', duration: '2 Years', degree: 'PG', slug: 'mdes-ui-ux-design' },
         ],
         highlights: [
           'Partnership with ImaginXP (trained 15,000+ design professionals)',
@@ -250,8 +302,14 @@ export const faculties: Faculty[] = [
         tagline: 'Designing Spaces That Respond to People and Context.',
         description:
           'Balances creativity with structure, preparing students to design spaces that respond to people and context.',
+        deanContact: {
+          name: 'Dr. Manika Walia',
+          title: 'Dean, Faculty of Fashion, Design & Art',
+          linkedin: 'https://www.linkedin.com/in/manika-walia-77628a107',
+          image: '/manika-walia.png',
+        },
         programs: [
-          { name: 'B.Arch', duration: '5 Years', degree: 'UG' },
+          { name: 'B.Arch', duration: '5 Years', degree: 'UG', slug: 'bachelor-of-architecture' },
         ],
         highlights: [
           'Design studios led by expert faculty',
@@ -268,8 +326,14 @@ export const faculties: Faculty[] = [
         tagline: 'Where Culture, Creativity, and Industry Converge.',
         description:
           'Explores fashion as culture, creativity, and industry — blending design sensibility with practical insight.',
+        deanContact: {
+          name: 'Dr. Manika Walia',
+          title: 'Dean, Faculty of Fashion, Design & Art',
+          linkedin: 'https://www.linkedin.com/in/manika-walia-77628a107',
+          image: '/manika-walia.png',
+        },
         programs: [
-          { name: 'B.Des (Fashion Communication)', duration: '4 Years', degree: 'UG' },
+          { name: 'B.Des (Fashion Communication)', duration: '4 Years', degree: 'UG', slug: 'bdes-fashion-communication' },
         ],
         highlights: [
           'Annual fashion shows and design exhibitions',
@@ -303,10 +367,10 @@ export const faculties: Faculty[] = [
         description:
           'Focused on emerging technologies, data-driven thinking, and intelligent systems.',
         programs: [
-          { name: 'B.Tech (Artificial Intelligence)', duration: '4 Years', degree: 'UG' },
-          { name: 'B.Tech (Data Science)', duration: '4 Years', degree: 'UG' },
-          { name: 'M.Tech (Artificial Intelligence)', duration: '2 Years', degree: 'PG' },
-          { name: 'M.Tech (Data Science)', duration: '2 Years', degree: 'PG' },
+          { name: 'B.Tech (Artificial Intelligence)', duration: '4 Years', degree: 'UG', slug: 'btech-artificial-intelligence' },
+          { name: 'B.Tech (Data Science)', duration: '4 Years', degree: 'UG', slug: 'btech-data-science' },
+          { name: 'M.Tech (Artificial Intelligence)', duration: '2 Years', degree: 'PG', slug: 'mtech-artificial-intelligence' },
+          { name: 'M.Tech (Data Science)', duration: '2 Years', degree: 'PG', slug: 'mtech-data-science' },
         ],
         highlights: [
           'Machine Learning & Data Science Lab',
@@ -325,10 +389,10 @@ export const faculties: Faculty[] = [
           'Offers strong technical foundations combined with practical learning and industry awareness.',
         head: 'Dr. Dileep Kumar Singh',
         programs: [
-          { name: 'B.Tech (Computer Science and Engineering)', duration: '4 Years', degree: 'UG' },
-          { name: 'B.Tech (Robotics and Automation)', duration: '4 Years', degree: 'UG' },
-          { name: 'B.Tech (Sustainable Engineering)', duration: '4 Years', degree: 'UG' },
-          { name: 'M.Tech (Computer Science and Engineering)', duration: '2 Years', degree: 'PG' },
+          { name: 'B.Tech (Computer Science and Engineering)', duration: '4 Years', degree: 'UG', slug: 'btech-computer-science-engineering' },
+          { name: 'B.Tech (Robotics and Automation)', duration: '4 Years', degree: 'UG', slug: 'btech-robotics-automation' },
+          { name: 'B.Tech (Sustainable Engineering)', duration: '4 Years', degree: 'UG', slug: 'btech-sustainable-engineering' },
+          { name: 'M.Tech (Computer Science and Engineering)', duration: '2 Years', degree: 'PG', slug: 'mtech-computer-science-engineering' },
         ],
         highlights: [
           '9 specialized laboratories for hands-on training',
@@ -346,11 +410,11 @@ export const faculties: Faculty[] = [
         description:
           'Prepares students for careers in software development, computing, and digital solutions through hands-on learning.',
         programs: [
-          { name: 'BCA* (General)', duration: '3 Years', degree: 'UG' },
-          { name: 'BCA* (Data Science)', duration: '3 Years', degree: 'UG' },
-          { name: 'BCA* (User Experience)', duration: '3 Years', degree: 'UG' },
-          { name: 'BCA* (Full Stack Development)', duration: '3 Years', degree: 'UG' },
-          { name: 'BCA* (Cloud Computing)', duration: '3 Years', degree: 'UG' },
+          { name: 'BCA* (General)', duration: '3 Years', degree: 'UG', slug: 'bachelor-of-computer-application' },
+          { name: 'BCA* (Data Science)', duration: '3 Years', degree: 'UG', slug: 'bca-data-science' },
+          { name: 'BCA* (User Experience)', duration: '3 Years', degree: 'UG', slug: 'bca-user-experience' },
+          { name: 'BCA* (Full Stack Development)', duration: '3 Years', degree: 'UG', slug: 'bca-full-stack-development' },
+          { name: 'BCA* (Cloud Computing)', duration: '3 Years', degree: 'UG', slug: 'bca-cloud-computing' },
         ],
         highlights: [
           'Full-stack web and mobile development training',
@@ -383,7 +447,7 @@ export const faculties: Faculty[] = [
         description:
           'Combines rigorous scientific learning with responsibility, preparing students for careers in healthcare, research, and pharmaceutical sciences.',
         programs: [
-          { name: 'B.Pharma', duration: '4 Years', degree: 'UG' },
+          { name: 'B.Pharma', duration: '4 Years', degree: 'UG', slug: 'bachelor-of-pharmacy' },
         ],
         highlights: [
           'State-of-the-art pharmaceutical laboratories',
@@ -417,15 +481,23 @@ export const faculties: Faculty[] = [
         description:
           'Offers exceptional undergraduate, postgraduate, and research programs mapped to European Teaching and Learning standards.',
         head: 'Prof. (Dr.) Sachin Rastogi',
+        deanContact: {
+          name: 'Prof. (Dr.) Sachin Rastogi',
+          title: 'Dean, Faculty of Law',
+          phone: '08130810940',
+          email: 'drsachin.rastogi@jlu.edu.in',
+          linkedin: 'https://www.linkedin.com/in/dr-sachin-rastogi-6459a225/',
+          image: '/sachin-rastogi.jpg',
+        },
         programs: [
-          { name: 'BA LLB (Hons)', duration: '5 Years', degree: 'UG' },
-          { name: 'BBA LLB (Hons)', duration: '5 Years', degree: 'UG' },
-          { name: 'BBA Business and Law', duration: '3 Years', degree: 'UG' },
-          { name: 'LLB', duration: '3 Years', degree: 'UG' },
-          { name: 'LLM (Corporate and IP Law)', duration: '1 Year', degree: 'PG' },
-          { name: 'LLM (Cyber Law and Cyber Security)', duration: '1 Year', degree: 'PG' },
-          { name: 'LLM (Criminal Law and Criminal Justice)', duration: '1 Year', degree: 'PG' },
-          { name: 'LLM (Constitutional Law)', duration: '1 Year', degree: 'PG' },
+          { name: 'BA LLB (Hons)', duration: '5 Years', degree: 'UG', slug: 'ba-llb-integrated' },
+          { name: 'BBA LLB (Hons)', duration: '5 Years', degree: 'UG', slug: 'bba-llb-integrated' },
+          { name: 'BBA Business and Law', duration: '3 Years', degree: 'UG', slug: 'bba-business-and-law' },
+          { name: 'LLB', duration: '3 Years', degree: 'UG', slug: 'llb' },
+          { name: 'LLM (Corporate and IP Law)', duration: '1 Year', degree: 'PG', slug: 'master-of-laws' },
+          { name: 'LLM (Cyber Law and Cyber Security)', duration: '1 Year', degree: 'PG', slug: 'llm-cyber-law' },
+          { name: 'LLM (Criminal Law and Criminal Justice)', duration: '1 Year', degree: 'PG', slug: 'llm-criminal-law' },
+          { name: 'LLM (Constitutional Law)', duration: '1 Year', degree: 'PG', slug: 'llm-constitutional-law' },
         ],
         highlights: [
           'AUAP-JLU International Moot Court Competition host',
@@ -459,7 +531,7 @@ export const faculties: Faculty[] = [
         description:
           'India\'s first industry-led creative incubator offering future-ready careers in media and entertainment.',
         programs: [
-          { name: 'B.Sc. Animation & Game Production', duration: '3 Years', degree: 'UG' },
+          { name: 'B.Sc. Animation & Game Production', duration: '3 Years', degree: 'UG', slug: 'bsc-animation-game-production' },
         ],
         highlights: [
           'Mentorship: Resul Pookutty (Oscar winner), Shankar Mahadevan, Padma Shri awardees',

@@ -43,22 +43,29 @@ export const Hero = () => {
   // Track image loading state
   const [imagesLoaded, setImagesLoaded] = useState(false);
 
-  // Parallax state for background and building
-  const [parallaxOffset, setParallaxOffset] = useState(0);
-  const [buildingParallaxOffset, setBuildingParallaxOffset] = useState(0);
-
-  // Parallax effect for background and building
+  // Parallax — direct DOM mutation via GSAP quickSetter (no React re-renders)
   useEffect(() => {
-    const handleScroll = () => {
-      const scrollY = window.scrollY;
-      // Parallax speed - adjust this value to control the effect intensity
-      const backgroundSpeed = isMobile ? 0.3 : 0.5;
-      const buildingSpeed = isMobile ? 0 : -0.07; // Subtle parallax on foreground
-      const maxParallax = -25; // Maximum upward movement (stop earlier)
+    const backgroundSpeed = isMobile ? 0.3 : 0.5;
+    const buildingSpeed = isMobile ? 0 : -0.07;
+    const maxParallax = -25;
 
-      setParallaxOffset(scrollY * backgroundSpeed);
-      // Limit the building parallax to stop at maxParallax
-      setBuildingParallaxOffset(Math.max(scrollY * buildingSpeed, maxParallax));
+    const bgSetter = backgroundRef.current
+      ? gsap.quickSetter(backgroundRef.current, 'y', 'px')
+      : null;
+    const buildSetter = buildingRef.current
+      ? gsap.quickSetter(buildingRef.current, 'y', 'px')
+      : null;
+
+    let ticking = false;
+    const handleScroll = () => {
+      if (ticking) return;
+      ticking = true;
+      requestAnimationFrame(() => {
+        const scrollY = window.scrollY;
+        bgSetter?.(scrollY * backgroundSpeed);
+        buildSetter?.(Math.max(scrollY * buildingSpeed, maxParallax));
+        ticking = false;
+      });
     };
 
     window.addEventListener('scroll', handleScroll, { passive: true });
@@ -187,15 +194,16 @@ export const Hero = () => {
   }, [imagesLoaded, isMobile]);
 
   return (
-    <div className="bg-[#f6f7f0]">
+    <div style={{ backgroundColor: '#f6f7f0' }}>
       {/* Cinematic Hero Section */}
       <section
-        className="relative w-full overflow-hidden bg-[#f6f7f0]"
-        style={{ height: isMobile ? 'calc(100vh - 16px)' : 'calc(100vh - 4px)', padding: isMobile ? '16px' : isTablet ? '16px' : '24px' }}
+        className="relative w-full overflow-hidden"
+        style={{ backgroundColor: '#f6f7f0', height: isMobile ? 'calc(100vh - 16px)' : 'calc(100vh - 4px)', padding: isMobile ? '16px' : isTablet ? '16px' : '24px' }}
       >
         <div
           ref={heroRef}
           className="relative w-full h-full overflow-hidden rounded-3xl"
+          style={{ backgroundColor: '#f6f7f0' }}
         >
           {/* Layer 1: Background Image (z-index: 1) */}
           <div
@@ -210,11 +218,10 @@ export const Hero = () => {
               style={{
                 objectPosition: isMobile ? 'center center' : 'center top',
                 clipPath: 'polygon(0% 50%, 100% 50%, 100% 50%, 0% 50%)',
-                transform: `translateY(${parallaxOffset}px)`,
-                transition: 'transform 0.1s ease-out',
               }}
             />
-            <div className="absolute inset-0 bg-black/30" style={{ zIndex: 1 }} />
+            {/* opacity:0 initially — GSAP fades this in with the image so it never greys the background */}
+            <div className="absolute inset-0 bg-black/30" style={{ zIndex: 1, opacity: 0 }} />
           </div>
 
           {/* Layer 2: Text (z-index: 2) */}
@@ -408,8 +415,6 @@ export const Hero = () => {
               objectPosition: 'center bottom',
               clipPath: 'polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)',
               opacity: 0,
-              transform: `translateY(${buildingParallaxOffset}px)`,
-              transition: 'transform 0.1s ease-out',
             }}
           />
 

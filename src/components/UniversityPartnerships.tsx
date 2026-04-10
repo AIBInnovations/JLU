@@ -1,6 +1,7 @@
 'use client';
 
 import Image from 'next/image';
+import Link from 'next/link';
 import { motion } from 'framer-motion';
 
 // Custom easing for smooth animations (same as Events page)
@@ -41,11 +42,23 @@ const UniversityPartnerships = () => {
               </span>
             </h1>
             <p
-              className="text-[#666] text-sm sm:text-base md:text-[clamp(1.15rem,1.8vw,1.5rem)]"
+              className="text-[#666] text-sm sm:text-base md:text-[clamp(1.15rem,1.8vw,1.5rem)] mb-8"
               style={{ lineHeight: 1.7, fontWeight: 400 }}
             >
               Global partnerships form an integral part of JLU's academic ecosystem. Collaborations with universities and institutions across the world bring international learning environments, diverse perspectives and shared academic practices into the classroom.
             </p>
+
+            {/* Explore Partnerships Button */}
+            <Link
+              href="/university-partnerships"
+              className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-[#027ea1] text-white font-semibold text-sm hover:bg-[#025f7a] transition-all duration-300"
+            >
+              Explore Partnerships
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <line x1="5" y1="12" x2="19" y2="12" />
+                <polyline points="12,5 19,12 12,19" />
+              </svg>
+            </Link>
           </motion.div>
 
           {/* Right - Image */}

@@ -3,6 +3,7 @@
 import { useEffect, useState, useRef } from 'react';
 import { usePathname } from 'next/navigation';
 import Lenis from 'lenis';
+import { gsap } from 'gsap';
 
 export default function SmoothScroll() {
   const [isReady, setIsReady] = useState(false);
@@ -55,14 +56,14 @@ export default function SmoothScroll() {
       sessionStorage.removeItem('scrollPos_' + pathname);
     }
 
-    function raf(time: number) {
-      lenis.raf(time);
-      requestAnimationFrame(raf);
-    }
-
-    requestAnimationFrame(raf);
+    // Drive Lenis through GSAP's ticker — one shared RAF loop
+    gsap.ticker.add((time) => {
+      lenis.raf(time * 1000);
+    });
+    gsap.ticker.lagSmoothing(0);
 
     return () => {
+      gsap.ticker.remove((time) => lenis.raf(time * 1000));
       lenis.destroy();
       lenisRef.current = null;
     };

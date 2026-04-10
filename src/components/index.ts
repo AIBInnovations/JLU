@@ -14,6 +14,7 @@ export { InstitutionalOverview } from './InstitutionalOverview';
 export { Governance } from './Governance';
 export { Accreditations } from './Accreditations';
 export { UniversityPartnerships } from './UniversityPartnerships';
+export { UniversityPartnershipsPage } from './UniversityPartnershipsPage';
 export { JluStaff } from './JluStaff';
 export { RankingAndAwards } from './RankingAndAwards';
 export { HorizontalScroll } from './HorizontalScroll';

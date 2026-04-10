@@ -19,6 +19,7 @@ interface SectionItem {
   slug: string;
   isGroupHeader?: boolean;
   isGroupChild?: boolean;
+  pageHref?: string; // if set, clicking navigates to this route instead of parent#slug
 }
 
 interface NavigationItem {
@@ -44,7 +45,7 @@ const navigationItems: NavigationItem[] = [
       { label: 'Governing Body : Board of Management : Academic Council', slug: 'governance', isGroupChild: true },
       { label: 'JLU Leadership Structure', slug: 'leadership' },
       { label: 'Accreditations & Memberships', slug: 'accreditations' },
-      { label: 'University Partnerships', slug: 'university-partnerships' },
+      { label: 'University Partnerships', slug: 'university-partnerships', pageHref: '/university-partnerships' },
       { label: 'Honorary Doctorates', slug: 'honorary-doctorates' },
       { label: 'JLU Ignited Mind Awards', slug: 'ignited-mind-awards' },
       { label: 'JLU Staff', slug: 'jlu-staff' },
@@ -58,8 +59,8 @@ const navigationItems: NavigationItem[] = [
     sections: [
       { label: 'Faculty of Management', slug: 'faculty-of-management', isGroupHeader: true },
       { label: 'Jagran Lakecity Business School', slug: 'jagran-lakecity-business-school', isGroupChild: true },
-      { label: 'Jagran School of Sports Management', slug: 'jagran-school-of-sports-management', isGroupChild: true },
-      { label: 'Jagran School of Hospitality & Aviation Management', slug: 'jagran-school-of-hospitality-and-aviation-management', isGroupChild: true },
+      { label: 'Jagran School of Physical Education and Sports Science', slug: 'jagran-school-of-sports-management', isGroupChild: true },
+      { label: 'Jagran School of Hospitality & Tourism', slug: 'jagran-school-of-hospitality-and-aviation-management', isGroupChild: true },
       { label: 'Faculty of Journalism & Social Science', slug: 'faculty-of-journalism-and-social-science', isGroupHeader: true },
       { label: 'Jagran School of Journalism', slug: 'jagran-school-of-journalism', isGroupChild: true },
       { label: 'Jagran School of Advertising and Public Relations', slug: 'jagran-school-of-advertising-and-public-relations', isGroupChild: true },
@@ -73,9 +74,9 @@ const navigationItems: NavigationItem[] = [
       { label: 'Jagran School of Artificial Intelligence', slug: 'jagran-school-of-artificial-intelligence', isGroupChild: true },
       { label: 'Jagran School of Engineering', slug: 'jagran-school-of-engineering', isGroupChild: true },
       { label: 'Jagran School of Computer Application', slug: 'jagran-school-of-computer-application', isGroupChild: true },
-      { label: 'Faculty of Pharmacy', slug: 'faculty-of-pharmacy' },
-      { label: 'Faculty of Law', slug: 'faculty-of-law' },
-      { label: 'IICA - Jagran Centre for Creative Skills', slug: 'iica-jagran-centre-for-creative-skills' },
+      { label: 'Faculty of Pharmacy', slug: 'faculty-of-pharmacy', isGroupHeader: true },
+      { label: 'Faculty of Law', slug: 'faculty-of-law', isGroupHeader: true },
+      { label: 'IICA - Jagran Centre for Creative Skills', slug: 'iica-jagran-centre-for-creative-skills', isGroupHeader: true },
     ]
   },
   {
@@ -209,8 +210,13 @@ const MenuOverlay = ({ isOpen, onClose, menuButtonRef }: MenuOverlayProps) => {
   const [hoveredItem, setHoveredItem] = useState<string | null>(null);
   const [expandedMobileItem, setExpandedMobileItem] = useState<string | null>(null);
 
-  const handleSectionClick = (href: string, slug: string) => {
+  const handleSectionClick = (href: string, slug: string, pageHref?: string) => {
     onClose();
+    // If a dedicated page route exists for this section, navigate there directly
+    if (pageHref) {
+      router.push(pageHref);
+      return;
+    }
     const targetPath = href;
     const scrollToEl = () => {
       // Always dispatch event first so components can expand accordions/tabs
@@ -425,10 +431,11 @@ const MenuOverlay = ({ isOpen, onClose, menuButtonRef }: MenuOverlayProps) => {
                                       const slug = typeof section === 'string'
                                         ? section.toLowerCase().replace(/\s+/g, '-').replace(/[&]/g, 'and')
                                         : section.slug;
+                                      const pageHref = typeof section !== 'string' ? section.pageHref : undefined;
                                       return (
                                         <button
                                           key={label}
-                                          onClick={() => handleSectionClick(item.href, slug)}
+                                          onClick={() => handleSectionClick(item.href, slug, pageHref)}
                                           className="text-sm text-[#027ea1]/60 block py-1.5 text-left"
                                         >
                                           <span className="text-[#027ea1]/30 mr-2">•</span>{label}
@@ -724,10 +731,11 @@ const MenuOverlay = ({ isOpen, onClose, menuButtonRef }: MenuOverlayProps) => {
                                   : section.slug;
                                 const isGroupHeader = typeof section !== 'string' && section.isGroupHeader;
                                 const isGroupChild = typeof section !== 'string' && section.isGroupChild;
+                                const pageHref = typeof section !== 'string' ? section.pageHref : undefined;
                                 return (
                                   <button
                                     key={`${label}-${idx}`}
-                                    onClick={() => handleSectionClick(displayedNavItem.href, slug)}
+                                    onClick={() => handleSectionClick(displayedNavItem.href, slug, pageHref)}
                                     className={`text-[13px] cursor-pointer transition-colors block text-left leading-relaxed ${
                                       isGroupHeader
                                         ? 'text-[#027ea1] font-semibold mt-2 first:mt-0'

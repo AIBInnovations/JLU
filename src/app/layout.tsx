@@ -18,6 +18,8 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${inter.variable} ${anton.variable} ${humane.variable}`}>
       <head>
+        <meta name="color-scheme" content="light" />
+        <style dangerouslySetInnerHTML={{ __html: `html,body{background-color:#f6f7f0!important;color-scheme:light}` }} />
         <script
           dangerouslySetInnerHTML={{
             __html: `try{var s=sessionStorage.getItem('scrollPos_'+location.pathname);if(s&&+s>0){window.scrollTo(0,+s)}}catch(e){}`,

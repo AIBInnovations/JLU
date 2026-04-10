@@ -740,37 +740,6 @@ export const ProgramDetail = ({ program }: ProgramDetailProps) => {
         </div>
       )}
 
-      {/* CTA Section */}
-      <div className="w-full px-3 pb-8 md:px-6 md:pb-14 lg:px-10 lg:pb-20">
-        <div className="mx-auto flex flex-col items-center justify-center bg-[#20323d] px-4 py-6 md:px-10 md:py-10 lg:px-20 lg:py-14 rounded-xl md:rounded-3xl lg:rounded-4xl" style={{ maxWidth: '1400px' }}>
-          <motion.div
-            className="text-center mb-6 md:mb-10 lg:mb-12"
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            viewport={{ once: true }}
-          >
-            <span className="text-[#999] uppercase tracking-widest block mb-4 md:mb-6 text-xl md:text-2xl font-bold" style={{ letterSpacing: '0.2em' }}>
-              Start Your Journey
-            </span>
-            <h2 className="text-white" style={{ fontSize: 'clamp(2.25rem, 4vw, 3rem)', fontWeight: 600, lineHeight: 1.1, letterSpacing: '-0.03em' }}>
-              Ready to Begin Your{' '}
-              <span style={{ fontFamily: "'Times New Roman', serif", fontStyle: 'italic', fontWeight: 400 }}>Journey?</span>
-            </h2>
-            <p className="text-white/60 text-sm md:text-base leading-relaxed mt-4 max-w-2xl mx-auto">
-              Take the first step towards your future. Apply now and join thousands of students shaping their tomorrow at JLU.
-            </p>
-          </motion.div>
-          <div className="flex flex-col sm:flex-row items-center gap-4 md:gap-6 w-full sm:w-auto">
-            <Link href="/apply" className="px-8 md:px-10 py-3 md:py-4 bg-[#027ea1] text-white font-semibold flex items-center justify-center gap-3 w-full sm:w-auto rounded-full">
-              Apply Now <span>→</span>
-            </Link>
-            <Link href="/programs" className="px-8 md:px-10 py-3 md:py-4 bg-transparent border border-white/50 text-white font-medium w-full sm:w-auto rounded-full text-center">
-              Explore More Programs
-            </Link>
-          </div>
-        </div>
-      </div>
     </section>
   );
 };

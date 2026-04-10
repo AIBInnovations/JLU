@@ -1006,8 +1006,73 @@ const Academics = () => {
 
               {/* Content */}
               <div className="p-6 md:p-8">
-                {/* Head Badge */}
-                {selectedSchool.head && (
+                {/* Dean Contact Card */}
+                {selectedSchool.deanContact ? (
+                  <div className="mb-5 bg-[#f6f7f0] rounded-xl p-4">
+                    <div className="flex items-center gap-4">
+                      {/* Photo */}
+                      <div className="w-16 h-16 rounded-full overflow-hidden shrink-0 bg-[#e0e0d8] border-2 border-white shadow-md">
+                        {selectedSchool.deanContact.image ? (
+                          <Image
+                            src={selectedSchool.deanContact.image}
+                            alt={selectedSchool.deanContact.name}
+                            width={64}
+                            height={64}
+                            className="w-full h-full object-cover"
+                          />
+                        ) : (
+                          <div className="w-full h-full bg-[#027ea1] flex items-center justify-center">
+                            <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                            </svg>
+                          </div>
+                        )}
+                      </div>
+                      {/* Info */}
+                      <div className="flex-1 min-w-0">
+                        <p className="text-[#21313c] text-sm font-semibold leading-tight">{selectedSchool.deanContact.name}</p>
+                        <p className="text-[#027ea1] text-[11px] font-medium mt-0.5 leading-tight">{selectedSchool.deanContact.title}</p>
+                        <div className="flex flex-wrap items-center gap-3 mt-2">
+                          {selectedSchool.deanContact.phone && (
+                            <a
+                              href={`tel:${selectedSchool.deanContact.phone}`}
+                              className="flex items-center gap-1 text-[#666] text-[11px] hover:text-[#027ea1] transition-colors"
+                            >
+                              <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                              </svg>
+                              {selectedSchool.deanContact.phone}
+                            </a>
+                          )}
+                          {selectedSchool.deanContact.email && (
+                            <a
+                              href={`mailto:${selectedSchool.deanContact.email}`}
+                              className="flex items-center gap-1 text-[#666] text-[11px] hover:text-[#027ea1] transition-colors truncate"
+                            >
+                              <svg className="w-3 h-3 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                              </svg>
+                              {selectedSchool.deanContact.email}
+                            </a>
+                          )}
+                          {selectedSchool.deanContact.linkedin && (
+                            <a
+                              href={selectedSchool.deanContact.linkedin}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="flex items-center gap-1 text-[#0077b5] text-[11px] font-medium hover:underline"
+                            >
+                              <svg className="w-3 h-3" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
+                              </svg>
+                              LinkedIn
+                            </a>
+                          )}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                ) : selectedSchool.head && (
                   <div className="flex items-center gap-2 mb-5 bg-[#f6f7f0] rounded-lg px-4 py-3">
                     <div className="w-8 h-8 rounded-full bg-[#027ea1] flex items-center justify-center shrink-0">
                       <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -1020,11 +1085,6 @@ const Academics = () => {
                     </div>
                   </div>
                 )}
-
-                {/* Description */}
-                <p className="text-[#666] text-sm mb-6" style={{ lineHeight: 1.7 }}>
-                  {selectedSchool.description}
-                </p>
 
                 {/* Programs */}
                 <div className="mb-6">
@@ -1041,15 +1101,37 @@ const Academics = () => {
                         initial={{ opacity: 0, x: -10 }}
                         animate={{ opacity: 1, x: 0 }}
                         transition={{ duration: 0.3, delay: 0.1 + i * 0.05 }}
-                        className="flex items-center justify-between p-3 bg-[#f6f7f0] rounded-xl hover:bg-[#eef0e7] transition-colors"
                       >
-                        <div className="flex-1 min-w-0">
-                          <span className="text-[#21313c] text-sm font-medium block truncate">{program.name}</span>
-                          <span className="text-[#999] text-xs">{program.degree}</span>
-                        </div>
-                        <span className="text-[#027ea1] text-xs font-medium bg-[#027ea1]/10 px-3 py-1 rounded-full shrink-0 ml-3">
-                          {program.duration}
-                        </span>
+                        {program.slug ? (
+                          <Link
+                            href={`/programs/${program.slug}`}
+                            onClick={() => setSelectedSchool(null)}
+                            className="group flex items-center justify-between p-3 bg-[#f6f7f0] rounded-xl hover:bg-[#21313c] transition-colors duration-300"
+                          >
+                            <div className="flex-1 min-w-0">
+                              <span className="text-[#21313c] group-hover:text-white text-sm font-medium block transition-colors duration-300" style={{ lineHeight: 1.4 }}>{program.name.replace('*', '')}</span>
+                              <span className="text-[#999] group-hover:text-white/60 text-xs transition-colors duration-300">{program.degree}</span>
+                            </div>
+                            <div className="flex items-center gap-2 shrink-0 ml-3">
+                              <span className="text-[#027ea1] group-hover:text-[#7dd3f0] text-xs font-medium bg-[#027ea1]/10 group-hover:bg-white/10 px-3 py-1 rounded-full transition-colors duration-300">
+                                {program.duration}
+                              </span>
+                              <svg className="w-4 h-4 text-[#027ea1] group-hover:text-white opacity-0 group-hover:opacity-100 transition-all duration-300 translate-x-[-4px] group-hover:translate-x-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                              </svg>
+                            </div>
+                          </Link>
+                        ) : (
+                          <div className="flex items-center justify-between p-3 bg-[#f6f7f0] rounded-xl">
+                            <div className="flex-1 min-w-0">
+                              <span className="text-[#21313c] text-sm font-medium block" style={{ lineHeight: 1.4 }}>{program.name.replace('*', '')}</span>
+                              <span className="text-[#999] text-xs">{program.degree}</span>
+                            </div>
+                            <span className="text-[#027ea1] text-xs font-medium bg-[#027ea1]/10 px-3 py-1 rounded-full shrink-0 ml-3">
+                              {program.duration}
+                            </span>
+                          </div>
+                        )}
                       </motion.div>
                     ))}
                   </div>
