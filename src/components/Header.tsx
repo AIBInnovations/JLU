@@ -61,16 +61,16 @@ const navigationItems: NavigationItem[] = [
       { label: 'Jagran Lakecity Business School', slug: 'jagran-lakecity-business-school', isGroupChild: true },
       { label: 'Jagran School of Physical Education and Sports Science', slug: 'jagran-school-of-sports-management', isGroupChild: true },
       { label: 'Jagran School of Hospitality & Tourism', slug: 'jagran-school-of-hospitality-and-aviation-management', isGroupChild: true },
-      { label: 'Faculty of Journalism & Social Science', slug: 'faculty-of-journalism-and-social-science', isGroupHeader: true },
+      { label: 'Faculty of Media & Social Science', slug: 'faculty-of-journalism-and-social-science', isGroupHeader: true },
       { label: 'Jagran School of Journalism', slug: 'jagran-school-of-journalism', isGroupChild: true },
       { label: 'Jagran School of Advertising and Public Relations', slug: 'jagran-school-of-advertising-and-public-relations', isGroupChild: true },
       { label: 'Jagran School of Events & Entertainment', slug: 'jagran-school-of-events-and-entertainment', isGroupChild: true },
       { label: 'Jagran School of Languages & Social Science', slug: 'jagran-school-of-languages-and-social-science', isGroupChild: true },
       { label: 'Faculty of Fashion, Design & Arts', slug: 'faculty-of-fashion-design-and-arts', isGroupHeader: true },
-      { label: 'Jagran School of Design', slug: 'jagran-school-of-design', isGroupChild: true },
-      { label: 'Jagran School of Architecture', slug: 'jagran-school-of-architecture', isGroupChild: true },
-      { label: 'Jagran School of Fashion', slug: 'jagran-school-of-fashion', isGroupChild: true },
-      { label: 'Faculty of Engineering & Technology', slug: 'faculty-of-engineering-and-technology', isGroupHeader: true },
+      { label: 'School of Design', slug: 'jagran-school-of-design', isGroupChild: true },
+      { label: 'School of Architecture', slug: 'jagran-school-of-architecture', isGroupChild: true },
+      { label: 'School of Fashion', slug: 'jagran-school-of-fashion', isGroupChild: true },
+      { label: 'Faculty of Science & Technology', slug: 'faculty-of-engineering-and-technology', isGroupHeader: true },
       { label: 'Jagran School of Artificial Intelligence', slug: 'jagran-school-of-artificial-intelligence', isGroupChild: true },
       { label: 'Jagran School of Engineering', slug: 'jagran-school-of-engineering', isGroupChild: true },
       { label: 'Jagran School of Computer Application', slug: 'jagran-school-of-computer-application', isGroupChild: true },
@@ -499,7 +499,8 @@ const MenuOverlay = ({ isOpen, onClose, menuButtonRef }: MenuOverlayProps) => {
                         initial={{ opacity: 0, y: 8 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ delay: 1.0, duration: 0.3 }}
-                        className="border-2 border-[#027ea1] text-[#027ea1] font-semibold py-3 px-4 rounded-lg text-sm text-center"
+                        className="font-semibold py-3 px-4 rounded-lg text-sm text-center"
+                        style={{ backgroundColor: '#21313c', color: '#ffffff' }}
                       >
                         360° Tour
                       </motion.a>
@@ -673,7 +674,7 @@ const MenuOverlay = ({ isOpen, onClose, menuButtonRef }: MenuOverlayProps) => {
                   {/* Right side - Hovered item content + explore more links */}
                   <div className="flex flex-col pt-8 w-[550px] h-full" style={{ marginLeft: '0px' }}>
                     {/* Sub-content container */}
-                    <div className="flex-1">
+                    <div className="flex-1 relative">
                       {/* Sub-content: shown when hovering or when on active page */}
                       {displayedNavItem && (
                         <div className="flex flex-col gap-2">
@@ -802,7 +803,8 @@ const MenuOverlay = ({ isOpen, onClose, menuButtonRef }: MenuOverlayProps) => {
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 onClick={onClose}
-                                className="border border-[#027ea1] text-[#027ea1] font-normal py-2 px-4 rounded-md hover:bg-[#027ea1] hover:text-white transition-all text-center text-xs whitespace-nowrap"
+                                className="font-normal py-2 px-4 rounded-md transition-all shadow-sm hover:shadow-md text-center text-xs whitespace-nowrap"
+                                style={{ backgroundColor: '#21313c', color: '#ffffff' }}
                               >
                                 360° Tour
                               </a>
@@ -845,7 +847,8 @@ const MenuOverlay = ({ isOpen, onClose, menuButtonRef }: MenuOverlayProps) => {
                               target="_blank"
                               rel="noopener noreferrer"
                               onClick={onClose}
-                              className="border border-[#027ea1] text-[#027ea1] font-normal py-2 px-4 rounded-md hover:bg-[#027ea1] hover:text-white transition-all text-center text-xs whitespace-nowrap"
+                              className="font-normal py-2 px-4 rounded-md transition-all shadow-sm hover:shadow-md text-center text-xs whitespace-nowrap"
+                              style={{ backgroundColor: '#21313c', color: '#ffffff' }}
                             >
                               360° Tour
                             </a>

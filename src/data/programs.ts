@@ -1306,7 +1306,7 @@ export const programs: Program[] = [
     duration: '4 Years',
     type: 'Full Time',
     degree: 'B.Des',
-    school: 'Jagran School of Design',
+    school: 'School of Design',
     description: 'A professional design program integrating 2D/3D animation, motion design, visual storytelling, and film production. Powered by industry partnerships with NVIDIA and ImaginXP, students graduate with a strong portfolio and deep production-ready skills for the entertainment and media industry.',
     highlights: [
       'Industry-standard tools: Maya, After Effects, Toon Boom, Nuke',
@@ -1329,7 +1329,7 @@ export const programs: Program[] = [
     duration: '4 Years',
     type: 'Full Time',
     degree: 'B.Des',
-    school: 'Jagran School of Design',
+    school: 'School of Design',
     description: 'A four-year design program developing visual communication skills across branding, typography, editorial design, digital media, and packaging. Students work on real-world briefs and build a professional portfolio through industry collaborations and internships.',
     highlights: [
       '20,000 sq. ft. design studio with industry-standard software',
@@ -1352,7 +1352,7 @@ export const programs: Program[] = [
     duration: '4 Years',
     type: 'Full Time',
     degree: 'B.Des',
-    school: 'Jagran School of Fashion',
+    school: 'School of Fashion',
     description: 'An interdisciplinary fashion program blending design sensibility with communication strategies — covering fashion journalism, styling, visual merchandising, brand communication, and fashion photography. Students collaborate with fashion brands and participate in annual fashion shows.',
     highlights: [
       'Annual fashion shows and design exhibitions',

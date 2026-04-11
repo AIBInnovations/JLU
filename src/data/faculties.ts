@@ -144,7 +144,7 @@ export const faculties: Faculty[] = [
   },
   {
     id: 'journalism',
-    name: 'Faculty of Journalism & Social Science',
+    name: 'Faculty of Media & Social Science',
     shortName: 'Journalism',
     description:
       'Cultivates media excellence, creative prowess, and industry expertise. Ranked #1 in Madhya Pradesh and Top 15 in India for media education, preparing students for dynamic careers in journalism, advertising, and event management.',
@@ -165,7 +165,7 @@ export const faculties: Faculty[] = [
           'Trains journalists to report with integrity, context, and curiosity across all media platforms. The school operates a state-of-the-art 20,000 sq. ft. dedicated media production studio and is part of the Google News Lab University Network.',
         deanContact: {
           name: 'Dr. Rushit Dubal',
-          title: 'Assistant Dean — Faculty of Journalism & Social Science',
+          title: 'Assistant Dean — Faculty of Media & Social Science',
           phone: '+91 747 111 0122',
           linkedin: 'https://www.linkedin.com/in/dr-rushit-dubal-9a802aa/',
           image: '/dr-rushit-dubal.jpg',
@@ -193,7 +193,7 @@ export const faculties: Faculty[] = [
         head: 'Dr. Rushit Prabodhchandra Dubal',
         deanContact: {
           name: 'Dr. Rushit Dubal',
-          title: 'Assistant Dean — Faculty of Journalism & Social Science',
+          title: 'Assistant Dean — Faculty of Media & Social Science',
           phone: '+91 747 111 0122',
           linkedin: 'https://www.linkedin.com/in/dr-rushit-dubal-9a802aa/',
           image: '/dr-rushit-dubal.jpg',
@@ -269,7 +269,7 @@ export const faculties: Faculty[] = [
     schools: [
       {
         id: 'design',
-        name: 'Jagran School of Design',
+        name: 'School of Design',
         shortName: 'Design',
         tagline: 'Powered by ImaginXP. Partnered with NVIDIA.',
         description:
@@ -297,7 +297,7 @@ export const faculties: Faculty[] = [
       },
       {
         id: 'architecture',
-        name: 'Jagran School of Architecture',
+        name: 'School of Architecture',
         shortName: 'Architecture',
         tagline: 'Designing Spaces That Respond to People and Context.',
         description:
@@ -321,7 +321,7 @@ export const faculties: Faculty[] = [
       },
       {
         id: 'fashion',
-        name: 'Jagran School of Fashion',
+        name: 'School of Fashion',
         shortName: 'Fashion',
         tagline: 'Where Culture, Creativity, and Industry Converge.',
         description:
@@ -347,7 +347,7 @@ export const faculties: Faculty[] = [
   },
   {
     id: 'engineering',
-    name: 'Faculty of Engineering & Technology',
+    name: 'Faculty of Science & Technology',
     shortName: 'Engineering',
     description:
       'Advances innovation and technical expertise through cutting-edge programs with 9 specialized laboratories. Curriculum is revised yearly to stay current with emerging technologies in AI, blockchain, IoT, and robotics.',

@@ -344,14 +344,14 @@ export const courseFees: ProgramFees[] = [
     totalFeesPerYear: 75000,
   },
 
-  // Faculty of Fashion, Design & Arts - Jagran School of Fashion
+  // Faculty of Fashion, Design & Arts - School of Fashion
   {
     id: 'bdes-fashion',
     name: 'B.Des (Fashion Communication)',
     degree: 'Bachelor',
     duration: '4 Years',
     faculty: 'Faculty of Fashion, Design & Arts',
-    school: 'Jagran School of Fashion',
+    school: 'School of Fashion',
     admissionCharges: 30000,
     cautionMoney: 10000,
     alumniFund: 10000,
@@ -361,14 +361,14 @@ export const courseFees: ProgramFees[] = [
     totalFeesPerYear: 200000,
   },
 
-  // Jagran School of Design
+  // School of Design
   {
     id: 'bdes-ux',
     name: 'Bachelor of Design (User Experience Design)',
     degree: 'Bachelor',
     duration: '4 Years',
     faculty: 'Faculty of Fashion, Design & Arts',
-    school: 'Jagran School of Design',
+    school: 'School of Design',
     admissionCharges: 30000,
     cautionMoney: 10000,
     alumniFund: 10000,
@@ -383,7 +383,7 @@ export const courseFees: ProgramFees[] = [
     degree: 'Bachelor',
     duration: '4 Years',
     faculty: 'Faculty of Fashion, Design & Arts',
-    school: 'Jagran School of Design',
+    school: 'School of Design',
     admissionCharges: 30000,
     cautionMoney: 10000,
     alumniFund: 10000,
@@ -398,7 +398,7 @@ export const courseFees: ProgramFees[] = [
     degree: 'Bachelor',
     duration: '4 Years',
     faculty: 'Faculty of Fashion, Design & Arts',
-    school: 'Jagran School of Design',
+    school: 'School of Design',
     admissionCharges: 30000,
     cautionMoney: 10000,
     alumniFund: 10000,
@@ -413,7 +413,7 @@ export const courseFees: ProgramFees[] = [
     degree: 'Bachelor',
     duration: '4 Years',
     faculty: 'Faculty of Fashion, Design & Arts',
-    school: 'Jagran School of Design',
+    school: 'School of Design',
     admissionCharges: 30000,
     cautionMoney: 10000,
     alumniFund: 10000,
@@ -428,7 +428,7 @@ export const courseFees: ProgramFees[] = [
     degree: 'Bachelor',
     duration: '4 Years',
     faculty: 'Faculty of Fashion, Design & Arts',
-    school: 'Jagran School of Design',
+    school: 'School of Design',
     admissionCharges: 30000,
     cautionMoney: 10000,
     alumniFund: 10000,
@@ -443,7 +443,7 @@ export const courseFees: ProgramFees[] = [
     degree: 'Master',
     duration: '2 Years',
     faculty: 'Faculty of Fashion, Design & Arts',
-    school: 'Jagran School of Design',
+    school: 'School of Design',
     admissionCharges: 30000,
     cautionMoney: 10000,
     alumniFund: 10000,
@@ -453,14 +453,14 @@ export const courseFees: ProgramFees[] = [
     totalFeesPerYear: 200000,
   },
 
-  // Jagran School of Architecture
+  // School of Architecture
   {
     id: 'barch',
     name: 'Bachelor of Architecture',
     degree: 'Bachelor',
     duration: '5 Years',
     faculty: 'Faculty of Fashion, Design & Arts',
-    school: 'Jagran School of Architecture',
+    school: 'School of Architecture',
     admissionCharges: 30000,
     cautionMoney: 10000,
     alumniFund: 10000,

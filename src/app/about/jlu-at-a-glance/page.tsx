@@ -37,7 +37,7 @@ export default function JluAtAGlancePage() {
             <Link
               href="/about#jlu-at-a-glance"
               className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-widest mb-8 opacity-60 hover:opacity-100 transition-opacity"
-              style={{ color: '#c3fd7a', textDecoration: 'none', letterSpacing: '0.2em' }}
+              style={{ color: '#027ea1', textDecoration: 'none', letterSpacing: '0.2em' }}
             >
               <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
                 <path d="M11 7H3M7 3L3 7l4 4" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/>
@@ -47,7 +47,7 @@ export default function JluAtAGlancePage() {
 
             <h1 className="text-white mb-4" style={{ fontSize: 'clamp(2.5rem, 6vw, 4.5rem)', fontWeight: 800, lineHeight: 1.0 }}>
               JLU{' '}
-              <span style={{ fontFamily: "'Times New Roman', serif", fontStyle: 'italic', fontWeight: 400, color: '#c3fd7a' }}>
+              <span style={{ fontFamily: "'Times New Roman', serif", fontStyle: 'italic', fontWeight: 400, color: '#027ea1' }}>
                 at a Glance
               </span>
             </h1>
@@ -281,17 +281,17 @@ export default function JluAtAGlancePage() {
                 items: ['45+ university partnerships', '14 countries represented', 'EU Erasmus+ exchange programmes', 'Google News Lab member'],
               },
               {
-                title: 'Industry Connect', bg: '#c3fd7a', dark: false,
+                title: 'Industry Connect', bg: '#027ea1', dark: true,
                 items: ['42+ industry tie-ups', 'EY, KPMG, Amazon, Deloitte', '80%+ placement rate', 'Packages up to ₹24 LPA'],
               },
             ].map((col, i) => (
               <motion.div key={i} {...fadeUp(i * 0.1)} className="rounded-3xl p-8" style={{ background: col.bg }}>
-                <h3 className="text-xl font-bold mb-5" style={{ color: col.dark ? '#c3fd7a' : '#21313c' }}>{col.title}</h3>
+                <h3 className="text-xl font-bold mb-5" style={{ color: col.dark ? '#ffffff' : '#21313c' }}>{col.title}</h3>
                 <ul className="space-y-3">
                   {col.items.map((item, j) => (
                     <li key={j} className="flex items-start gap-3">
-                      <span className="mt-1.5 w-1.5 h-1.5 rounded-full flex-shrink-0" style={{ background: col.dark ? '#c3fd7a' : '#21313c' }}/>
-                      <span className="text-sm" style={{ color: col.dark ? 'rgba(255,255,255,0.75)' : '#444', lineHeight: 1.55 }}>{item}</span>
+                      <span className="mt-1.5 w-1.5 h-1.5 rounded-full flex-shrink-0" style={{ background: col.dark ? '#ffffff' : '#21313c' }}/>
+                      <span className="text-sm" style={{ color: col.dark ? 'rgba(255,255,255,0.85)' : '#444', lineHeight: 1.55 }}>{item}</span>
                     </li>
                   ))}
                 </ul>
@@ -305,7 +305,7 @@ export default function JluAtAGlancePage() {
           <span className="uppercase tracking-widest block mb-4 text-xl md:text-2xl font-bold" style={{ color: '#8899a6', letterSpacing: '0.2em' }}>Join Us</span>
           <h2 className="font-bold text-white mb-3" style={{ fontSize: 'clamp(1.8rem,3.5vw,2.8rem)', lineHeight: 1.1 }}>
             Be Part of{' '}
-            <span style={{ fontFamily: "'Times New Roman', serif", fontStyle: 'italic', fontWeight: 400, color: '#c3fd7a' }}>
+            <span style={{ fontFamily: "'Times New Roman', serif", fontStyle: 'italic', fontWeight: 400, color: '#027ea1' }}>
               JLU&apos;s Story
             </span>
           </h2>
@@ -313,7 +313,7 @@ export default function JluAtAGlancePage() {
             2,500+ students from 25+ states. 45+ global partners.<br/>One university built for the world of tomorrow.
           </p>
           <div className="flex flex-wrap gap-4 justify-center">
-            <Link href="/admissions" className="px-8 py-3.5 rounded-full text-sm font-bold hover:opacity-90 transition-opacity" style={{ background: '#c3fd7a', color: '#21313c', textDecoration: 'none' }}>
+            <Link href="/admissions" className="px-8 py-3.5 rounded-full text-sm font-bold hover:opacity-90 transition-opacity" style={{ background: '#027ea1', color: '#ffffff', textDecoration: 'none' }}>
               Apply Now
             </Link>
             <Link href="/programs" className="px-8 py-3.5 rounded-full text-sm font-bold border hover:opacity-90 transition-opacity" style={{ color: 'white', textDecoration: 'none', borderColor: 'rgba(255,255,255,0.2)' }}>

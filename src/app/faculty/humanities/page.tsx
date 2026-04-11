@@ -11,7 +11,7 @@ export const metadata: Metadata = {
 const humanitiesData = {
   name: 'Faculty of Humanities, Art & Design',
   tagline: 'A creative hub fostering interdisciplinary collaboration, artistic expression, and innovative design thinking.',
-  description: 'The faculty serves as a creative hub encompassing three schools: Jagran School of Design, Jagran School of Languages & Social Sciences, and Jagran School of Architecture. We emphasize interdisciplinary collaboration and integrate theoretical knowledge with practical application through workshops, studio sessions, and collaborative projects. Our programs develop creative thinkers and problem solvers with cultural awareness and critical inquiry skills.',
+  description: 'The faculty serves as a creative hub encompassing three schools: School of Design, Jagran School of Languages & Social Sciences, and School of Architecture. We emphasize interdisciplinary collaboration and integrate theoretical knowledge with practical application through workshops, studio sessions, and collaborative projects. Our programs develop creative thinkers and problem solvers with cultural awareness and critical inquiry skills.',
   heroImage: 'https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?w=1600&q=80',
   accentColor: '#ffffff',
   programs: [

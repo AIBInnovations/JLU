@@ -139,7 +139,7 @@ const InstitutionalOverview = () => {
               viewport={{ once: true }}
             >
               <span
-                className="text-[#999] uppercase tracking-widest block mb-4 text-base md:text-lg font-bold"
+                className="text-[#999] uppercase tracking-widest block mb-4 md:mb-6 text-xl md:text-2xl font-bold"
                 style={{ letterSpacing: '0.2em' }}
               >
                 JLU at a Glance
@@ -248,10 +248,10 @@ const InstitutionalOverview = () => {
                   <div key={i} className="flex items-center gap-3 rounded-xl px-4 py-2.5" style={{ background: '#f6f7f0', border: '1px solid #e8e8e0' }}>
                     <span
                       className="flex-shrink-0 w-5 h-5 rounded-full flex items-center justify-center"
-                      style={{ background: '#c3fd7a' }}
+                      style={{ background: '#027ea1' }}
                     >
                       <svg width="10" height="8" viewBox="0 0 10 8" fill="none">
-                        <path d="M1 4L3.5 6.5L9 1" stroke="#21313c" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
+                        <path d="M1 4L3.5 6.5L9 1" stroke="#ffffff" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
                       </svg>
                     </span>
                     <span className="text-[#444] text-xs md:text-sm" style={{ lineHeight: 1.5 }}>{item}</span>
@@ -268,12 +268,12 @@ const InstitutionalOverview = () => {
                   <div
                     key={i}
                     className="rounded-2xl px-5 py-4"
-                    style={{ background: stat.dark ? '#21313c' : '#c3fd7a' }}
+                    style={{ background: stat.dark ? '#027ea1' : '#e6f4f8' }}
                   >
-                    <p className="text-3xl font-bold mb-0.5" style={{ color: stat.dark ? '#c3fd7a' : '#21313c' }}>
+                    <p className="text-3xl font-bold mb-0.5" style={{ color: stat.dark ? '#ffffff' : '#027ea1' }}>
                       {stat.value}
                     </p>
-                    <p className="text-xs font-medium" style={{ color: stat.dark ? '#8899a6' : '#3a5a3a' }}>
+                    <p className="text-xs font-medium" style={{ color: stat.dark ? '#ffffff99' : '#027ea1cc' }}>
                       {stat.label}
                     </p>
                   </div>
@@ -293,7 +293,7 @@ const InstitutionalOverview = () => {
             <a
               href="/about/jlu-at-a-glance"
               className="inline-flex items-center gap-3 px-8 py-4 rounded-full text-sm font-semibold transition-all duration-300 group"
-              style={{ background: '#21313c', color: '#c3fd7a', textDecoration: 'none' }}
+              style={{ background: '#027ea1', color: '#ffffff', textDecoration: 'none' }}
             >
               View Full University Profile — Stats, Rankings & Awards
               <svg width="16" height="16" viewBox="0 0 16 16" fill="none" className="group-hover:translate-x-1 transition-transform duration-200">

@@ -52,7 +52,7 @@ const upcomingEventsData = [
   { date: '2026-12-20', title: 'Winter Cultural Night', venue: 'JLU Amphitheatre', category: 'Cultural' },
   { date: '2027-01-15', title: 'Republic Day Celebration', venue: 'JLU Main Ground', category: 'Cultural' },
   { date: '2027-01-28', title: 'National Law Fest', venue: 'Faculty of Law', category: 'Academic' },
-  { date: '2027-02-14', title: 'Design Exhibition & Showcase', venue: 'Jagran School of Design', category: 'Exhibition' },
+  { date: '2027-02-14', title: 'Design Exhibition & Showcase', venue: 'School of Design', category: 'Exhibition' },
   { date: '2027-02-28', title: 'Placement Drive - Season 2', venue: 'JLU Placement Cell', category: 'Placement' },
   { date: '2027-03-09', title: 'JLU International Festival of Media', venue: 'JLU Campus', category: 'Media' },
   { date: '2027-03-25', title: 'Annual Sports Day', venue: 'JLU Sports Complex', category: 'Sports' },
