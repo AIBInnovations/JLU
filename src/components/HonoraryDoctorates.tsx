@@ -1,64 +1,16 @@
 'use client';
 
 import Image from 'next/image';
+import Link from 'next/link';
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { honoraryDoctorates, HonoraryDoctorate } from '../data/honoraryDoctorates';
 
 const customEase: [number, number, number, number] = [0.22, 1, 0.36, 1];
 
-const doctorates = [
-  {
-    name: 'Padmabhushan Smt. Sudha Murty',
-    designation: 'Founder of Infosys Foundation and Chairperson of the Murthy Trust. Educationist, Philanthropist and Author.',
-    honour: 'Padma Bhushan',
-    convocation: '2023',
-    image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/sudha-murty-jlu.jpg',
-    objectPosition: '25% center',
-  },
-  {
-    name: 'Late Shri Piyush Pandey',
-    designation: 'Chairman of Global Creative & Executive Chairman, Ogilvy India. An extraordinary leader, passionate man of big ideas and an innovator with a focus on the indigenous in the world of advertising.',
-    honour: 'Padma Shri',
-    convocation: '2023',
-    image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/8th-convo-jlu.jpg',
-    objectPosition: 'center center',
-  },
-  {
-    name: 'Dr. Peter P. Laurel',
-    designation: 'President of Lyceum of the Philippines University, Batangas & Laguna campuses. Former President of AUAP and PACU. Author, poet and founder of cultural, educational and peace research institutions.',
-    honour: 'International Academic Leader',
-    convocation: '2024',
-    image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/7th-convo-jlu.jpeg',
-    objectPosition: 'center 30%',
-  },
-  {
-    name: 'Padmabhushan Shri Rajeev Sethi',
-    designation: 'An extraordinary designer, noted internationally for his innovative contribution to preserving and celebrating the subcontinent\'s rich cultural heritage. Has designed and curated award-winning exhibitions in Asia, Europe, Canada and America.',
-    honour: 'Padma Bhushan',
-    convocation: '2024',
-    image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/adille-jlu-full.jpg',
-    objectPosition: 'center 20%',
-  },
-  {
-    name: 'Mr. Cyril Shroff',
-    designation: 'A legendary figure in the Indian Legal Community, often referred to as the \'M&A King of India\'. Consistently ranked as \'Eminent Practitioner\' in India by Chambers Global.',
-    honour: 'Legal Luminary',
-    convocation: '2024',
-    image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/jlu-mgt-award.jpg',
-    objectPosition: 'center center',
-  },
-  {
-    name: 'Shri Sunil Sethi',
-    designation: 'Chairman of the Fashion Design Council of India (FDCI). An eminent industry leader, visionary entrepreneur, and one of India\'s foremost champions of fashion, handloom and the creative industries.',
-    honour: 'Industry Leader',
-    convocation: '2025',
-    image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/6th-convo-jlu.jpg',
-    objectPosition: '80% center',
-  },
-];
-
 const HonoraryDoctorates = () => {
-  const [selectedPerson, setSelectedPerson] = useState<typeof doctorates[0] | null>(null);
+  const [selectedPerson, setSelectedPerson] = useState<HonoraryDoctorate | null>(null);
+  const displayDoctorates = honoraryDoctorates.slice(0, 3);
 
   return (
     <section className="w-full bg-[#f6f7f0]">
@@ -101,9 +53,9 @@ const HonoraryDoctorates = () => {
           </p>
         </motion.div>
 
-        {/* Doctorates Grid */}
+        {/* Doctorates Grid — show only 3 */}
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 md:gap-6">
-          {doctorates.map((person, index) => (
+          {displayDoctorates.map((person, index) => (
             <motion.div
               key={person.name}
               initial={{ opacity: 0, y: 30 }}
@@ -114,20 +66,24 @@ const HonoraryDoctorates = () => {
               style={{ aspectRatio: '3 / 4' }}
               onClick={() => setSelectedPerson(person)}
             >
-              <Image
-                src={person.image}
-                alt={person.name}
-                fill
-                className="object-cover transition-transform duration-700 group-hover:scale-105"
-                style={{ objectPosition: person.objectPosition }}
-              />
+              {person.image ? (
+                <Image
+                  src={person.image}
+                  alt={person.name}
+                  fill
+                  className="object-cover transition-transform duration-700 group-hover:scale-105"
+                  style={{ objectPosition: person.objectPosition || 'center center' }}
+                />
+              ) : (
+                <div className="absolute inset-0 bg-[#21313c]" />
+              )}
               <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/30 to-transparent" />
               <div className="absolute bottom-0 left-0 right-0 p-4 sm:p-5 md:p-6">
                 <span
                   className="text-[#f4c950] text-[11px] sm:text-[12px] uppercase tracking-widest block mb-2"
                   style={{ letterSpacing: '0.15em' }}
                 >
-                  {person.convocation}
+                  {person.year}
                 </span>
                 <h3
                   className="text-white text-base sm:text-lg md:text-xl mb-1"
@@ -135,16 +91,33 @@ const HonoraryDoctorates = () => {
                 >
                   {person.name}
                 </h3>
-                <p className="text-white/50 text-xs sm:text-sm mb-2">
-                  {person.honour}
+                <p className="text-white/60 text-xs sm:text-sm line-clamp-2">
+                  {person.bio}
                 </p>
-                <span className="text-[#f4c950] text-xs sm:text-sm font-semibold group-hover:underline">
-                  Read More →
-                </span>
               </div>
             </motion.div>
           ))}
         </div>
+
+        {/* View More Button */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.3, ease: customEase }}
+          viewport={{ once: true }}
+          className="flex justify-center mt-8 md:mt-12"
+        >
+          <Link
+            href="/about/honorary-doctorates"
+            className="inline-flex items-center gap-2 px-8 py-4 rounded-full text-sm font-semibold transition-all duration-300 hover:opacity-90"
+            style={{ background: '#027ea1', color: '#ffffff', textDecoration: 'none' }}
+          >
+            View All {honoraryDoctorates.length} Recipients
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+              <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
+            </svg>
+          </Link>
+        </motion.div>
       </div>
 
       {/* Detail Modal */}
@@ -172,13 +145,17 @@ const HonoraryDoctorates = () => {
             >
               {/* Modal Image */}
               <div className="relative h-[280px] md:h-[340px] overflow-hidden shrink-0" style={{ borderTopLeftRadius: '24px' }}>
-                <Image
-                  src={selectedPerson.image}
-                  alt={selectedPerson.name}
-                  fill
-                  className="object-cover"
-                  style={{ objectPosition: selectedPerson.objectPosition }}
-                />
+                {selectedPerson.image ? (
+                  <Image
+                    src={selectedPerson.image}
+                    alt={selectedPerson.name}
+                    fill
+                    className="object-cover"
+                    style={{ objectPosition: selectedPerson.objectPosition || 'center center' }}
+                  />
+                ) : (
+                  <div className="absolute inset-0 bg-[#21313c]" />
+                )}
                 <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent" />
                 <button
                   onClick={() => setSelectedPerson(null)}
@@ -190,7 +167,7 @@ const HonoraryDoctorates = () => {
                   </svg>
                 </button>
                 <div className="absolute top-4 left-4 px-3 py-1.5 bg-[#f4c950] rounded-full">
-                  <span className="text-[#21313c] text-xs font-semibold">{selectedPerson.convocation}</span>
+                  <span className="text-[#21313c] text-xs font-semibold">{selectedPerson.year}</span>
                 </div>
                 <div className="absolute bottom-6 left-6 right-6">
                   <h2 className="text-white text-xl md:text-2xl font-semibold leading-tight">{selectedPerson.name}</h2>
@@ -198,11 +175,8 @@ const HonoraryDoctorates = () => {
               </div>
               {/* Modal Content */}
               <div className="p-6 md:p-8 overflow-y-auto flex-1">
-                <div className="inline-block bg-[#f6f7f0] px-3 py-1.5 rounded-full mb-4">
-                  <span className="text-[#21313c] text-sm font-semibold">{selectedPerson.honour}</span>
-                </div>
                 <p className="text-[#666] text-base md:text-lg" style={{ lineHeight: 1.8 }}>
-                  {selectedPerson.designation}
+                  {selectedPerson.bio}
                 </p>
               </div>
             </motion.div>

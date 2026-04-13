@@ -118,6 +118,18 @@ const InstitutionalOverview = () => {
               >
                 The Society&apos;s core mission: <em>&ldquo;To nurture minds, uplift communities, and empower every individual to realise their full potential — building a society where knowledge empowers, compassion uplifts, and opportunity is accessible to all.&rdquo;</em>
               </p>
+              <a
+                href="https://jsws.org.in/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 mt-6 px-6 py-3 rounded-full text-sm font-semibold transition-all duration-300 hover:opacity-90"
+                style={{ background: '#027ea1', color: '#ffffff', textDecoration: 'none' }}
+              >
+                Visit JSWS
+                <svg width="14" height="14" viewBox="0 0 16 16" fill="none">
+                  <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
+                </svg>
+              </a>
             </motion.div>
           </div>
         </div>

@@ -1,11 +1,9 @@
 'use client';
 
-import { useRef, useState, useEffect, lazy, Suspense } from 'react';
+import { useRef, useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { gsap } from 'gsap';
 import { useIsMobile } from '../hooks/useIsMobile';
-
-const Globe3D = lazy(() => import('./Globe3D'));
 
 const useIsTablet = () => {
   const [isTablet, setIsTablet] = useState(false);
@@ -23,7 +21,6 @@ const useIsTablet = () => {
 // ============================================
 export const Hero = () => {
   const heroRef = useRef<HTMLDivElement>(null);
-  const globeContainerRef = useRef<HTMLDivElement>(null);
   const exploreButtonRef = useRef<HTMLButtonElement>(null);
   const [isVideoOpen, setIsVideoOpen] = useState(false);
   const [videoButtonPos, setVideoButtonPos] = useState({ left: 0, top: 0, width: 0, height: 0, centerX: 0, centerY: 0 });
@@ -169,14 +166,7 @@ export const Hero = () => {
           ease: 'none',
           force3D: true,
         }, '-=0.3');
-        // 4b. Globe fades in with text
-        if (globeContainerRef.current) {
-          tl.to(globeContainerRef.current, {
-            opacity: 1,
-            duration: 1.2,
-            ease: 'power2.out',
-          }, '-=1.0');
-        }
+        // (Globe removed)
         tl
         // 5. Explore button fades in
         .to(exploreButtonRef.current, {
@@ -234,168 +224,38 @@ export const Hero = () => {
               opacity: 0,
             }}
           >
-            {isMobile ? (
-              <div className="relative select-none" style={{ width: '100%', height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                {/* CENTRAL INDIA'S - above globe */}
-                <span
-                  className="absolute uppercase tracking-widest whitespace-nowrap"
-                  style={{
-                    fontFamily: "'Humane', sans-serif",
-                    fontSize: 'clamp(4.5rem, 20vw, 9rem)',
-                    fontWeight: 700,
-                    lineHeight: 1,
-                    letterSpacing: '0.05em',
-                    color: '#3bd0eb',
-                    textShadow: '0 0 20px rgba(0,0,0,0.6), 0 0 40px rgba(0,0,0,0.3), 0 2px 4px rgba(0,0,0,0.5)',
-                    top: '50%',
-                    left: '50%',
-                    transform: 'translate(-50%, calc(-50% - 120px))',
-                    zIndex: 5,
-                  }}
-                >
-                  Central India&apos;s
-                </span>
-                {/* GLOBAL - inside globe center */}
-                <span
-                  className="absolute uppercase tracking-widest"
-                  style={{
-                    fontFamily: "'Humane', sans-serif",
-                    fontSize: 'clamp(4rem, 18vw, 8rem)',
-                    fontWeight: 700,
-                    lineHeight: 1,
-                    letterSpacing: '0.05em',
-                    color: '#3bd0eb',
-                    textShadow: '0 0 20px rgba(0,0,0,0.6), 0 0 40px rgba(0,0,0,0.3), 0 2px 4px rgba(0,0,0,0.5)',
-                    top: '50%',
-                    left: '50%',
-                    transform: 'translate(-50%, -50%)',
-                    zIndex: 5,
-                  }}
-                >
-                  Global
-                </span>
-                {/* UNIVERSITY - below globe */}
-                <span
-                  className="absolute uppercase tracking-widest"
-                  style={{
-                    fontFamily: "'Humane', sans-serif",
-                    fontSize: 'clamp(4.5rem, 20vw, 9rem)',
-                    fontWeight: 700,
-                    lineHeight: 1,
-                    letterSpacing: '0.05em',
-                    color: '#3bd0eb',
-                    textShadow: '0 0 20px rgba(0,0,0,0.6), 0 0 40px rgba(0,0,0,0.3), 0 2px 4px rgba(0,0,0,0.5)',
-                    top: '50%',
-                    left: '50%',
-                    transform: 'translate(-50%, calc(-50% + 120px))',
-                    zIndex: 5,
-                  }}
-                >
-                  University
-                </span>
-              </div>
-            ) : (
-              <div className="relative select-none" style={{ width: '100%', height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                {/* Top-left: CENTRAL */}
-                <span
-                  className="absolute uppercase tracking-widest"
-                  style={{
-                    fontFamily: "'Humane', sans-serif",
-                    fontSize: isTablet ? 'clamp(5rem, 9vw, 8rem)' : 'clamp(7rem, 10vw, 14rem)',
-                    fontWeight: 700,
-                    lineHeight: 1,
-                    letterSpacing: '0.05em',
-                    color: '#3bd0eb',
-                    textShadow: '0 0 20px rgba(0,0,0,0.6), 0 0 40px rgba(0,0,0,0.3), 0 2px 4px rgba(0,0,0,0.5)',
-                    top: '50%',
-                    left: '50%',
-                    transform: isTablet
-                      ? 'translate(calc(-50% - 180px), calc(-50% - 60px))'
-                      : 'translate(calc(-50% - 280px), calc(-50% - 85px))',
-                  }}
-                >
-                  Central
-                </span>
-                {/* Bottom-left: INDIA'S */}
-                <span
-                  className="absolute uppercase tracking-widest"
-                  style={{
-                    fontFamily: "'Humane', sans-serif",
-                    fontSize: isTablet ? 'clamp(5rem, 9vw, 8rem)' : 'clamp(7rem, 10vw, 14rem)',
-                    fontWeight: 700,
-                    lineHeight: 1,
-                    letterSpacing: '0.05em',
-                    color: '#3bd0eb',
-                    textShadow: '0 0 20px rgba(0,0,0,0.6), 0 0 40px rgba(0,0,0,0.3), 0 2px 4px rgba(0,0,0,0.5)',
-                    top: '50%',
-                    left: '50%',
-                    transform: isTablet
-                      ? 'translate(calc(-50% - 180px), calc(-50% + 30px))'
-                      : 'translate(calc(-50% - 280px), calc(-50% + 40px))',
-                  }}
-                >
-                  India&apos;s
-                </span>
-                {/* Top-right: GLOBAL */}
-                <span
-                  className="absolute uppercase tracking-widest"
-                  style={{
-                    fontFamily: "'Humane', sans-serif",
-                    fontSize: isTablet ? 'clamp(5rem, 9vw, 8rem)' : 'clamp(7rem, 10vw, 14rem)',
-                    fontWeight: 700,
-                    lineHeight: 1,
-                    letterSpacing: '0.05em',
-                    color: '#3bd0eb',
-                    textShadow: '0 0 20px rgba(0,0,0,0.6), 0 0 40px rgba(0,0,0,0.3), 0 2px 4px rgba(0,0,0,0.5)',
-                    top: '50%',
-                    right: '50%',
-                    transform: isTablet
-                      ? 'translate(calc(50% + 180px), calc(-50% + 5px))'
-                      : 'translate(calc(50% + 280px), calc(-50% + 10px))',
-                  }}
-                >
-                  Global
-                </span>
-                {/* Bottom-right: UNIVERSITY */}
-                <span
-                  className="absolute uppercase tracking-widest"
-                  style={{
-                    fontFamily: "'Humane', sans-serif",
-                    fontSize: isTablet ? 'clamp(5rem, 9vw, 8rem)' : 'clamp(7rem, 10vw, 14rem)',
-                    fontWeight: 700,
-                    lineHeight: 1,
-                    letterSpacing: '0.05em',
-                    color: '#3bd0eb',
-                    textShadow: '0 0 20px rgba(0,0,0,0.6), 0 0 40px rgba(0,0,0,0.3), 0 2px 4px rgba(0,0,0,0.5)',
-                    top: '50%',
-                    right: '50%',
-                    transform: isTablet
-                      ? 'translate(calc(50% + 220px), calc(-50% + 95px))'
-                      : 'translate(calc(50% + 340px), calc(-50% + 135px))',
-                  }}
-                >
-                  University
-                </span>
-              </div>
-            )}
-          </div>
-
-          {/* Layer 2.5: 3D Globe - centered, above foreground (z-index: 4) */}
-          <div
-            ref={globeContainerRef}
-            className="absolute flex items-center justify-center"
-            style={{
-              zIndex: 4,
-              top: isMobile ? '42%' : '38%',
-              left: '50%',
-              transform: 'translate(-50%, -50%)',
-              pointerEvents: 'auto',
-              opacity: 0,
-            }}
-          >
-            <Suspense fallback={<div style={{ width: isMobile ? 200 : isTablet ? 260 : 350, height: isMobile ? 200 : isTablet ? 260 : 350 }} />}>
-              <Globe3D size={isMobile ? 200 : isTablet ? 260 : 350} />
-            </Suspense>
+            <div className="select-none flex flex-col items-center justify-center" style={{ width: '100%', height: '100%' }}>
+              <span
+                className="uppercase tracking-widest text-center"
+                style={{
+                  fontFamily: "'Humane', sans-serif",
+                  fontSize: isMobile ? 'clamp(4.5rem, 20vw, 9rem)' : isTablet ? 'clamp(5rem, 9vw, 8rem)' : 'clamp(7rem, 10vw, 14rem)',
+                  fontWeight: 700,
+                  lineHeight: 0.9,
+                  letterSpacing: '0.05em',
+                  color: '#3bd0eb',
+                  textShadow: '0 0 20px rgba(0,0,0,0.6), 0 0 40px rgba(0,0,0,0.3), 0 2px 4px rgba(0,0,0,0.5)',
+                  zIndex: 5,
+                }}
+              >
+                Central India&apos;s
+              </span>
+              <span
+                className="uppercase tracking-widest text-center"
+                style={{
+                  fontFamily: "'Humane', sans-serif",
+                  fontSize: isMobile ? 'clamp(4.5rem, 20vw, 9rem)' : isTablet ? 'clamp(5rem, 9vw, 8rem)' : 'clamp(7rem, 10vw, 14rem)',
+                  fontWeight: 700,
+                  lineHeight: 0.9,
+                  letterSpacing: '0.05em',
+                  color: '#3bd0eb',
+                  textShadow: '0 0 20px rgba(0,0,0,0.6), 0 0 40px rgba(0,0,0,0.3), 0 2px 4px rgba(0,0,0,0.5)',
+                  zIndex: 5,
+                }}
+              >
+                Global University
+              </span>
+            </div>
           </div>
 
           {/* Layer 3: Building/Foreground Image (z-index: 3) */}

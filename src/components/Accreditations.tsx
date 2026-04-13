@@ -14,7 +14,6 @@ const Accreditations = () => {
     { src: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/Untitled design/5.png', name: 'Association of Indian Universities', shortName: 'AIU' },
     { src: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/Untitled design/6.png', name: 'AFS Intercultural Programs India', shortName: 'AFS' },
     { src: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/Untitled design/7.png', name: 'Tuning India', shortName: 'Tuning India' },
-    { src: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/Untitled design/8.png', name: 'International Association of Law Schools', shortName: 'IALS' },
     { src: '/badges/pci-logo.png', name: 'Pharmacy Council of India', shortName: 'PCI' },
     { src: '/badges/coa-logo.png', name: 'Council of Architecture', shortName: 'COA' },
   ];
@@ -60,9 +59,28 @@ const Accreditations = () => {
           </p>
         </motion.div>
 
-        {/* Grid of 8 boxes */}
-        <div className="grid grid-cols-2 md:grid-cols-5 gap-3 md:gap-6">
-          {accreditations.map((item, index) => (
+        {/* Mobile: 1 big on top + 2-column grid for rest. Desktop: 5+4 rows */}
+        {/* Big first card - mobile only */}
+        <div className="md:hidden flex justify-center mb-3">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, ease: customEase }}
+            viewport={{ once: true }}
+            className="group flex flex-col items-center w-[55%]"
+          >
+            <div className="aspect-square w-full rounded-xl bg-white border border-[#e5e5e5] flex items-center justify-center overflow-hidden">
+              <img src={accreditations[0].src} alt={accreditations[0].name} className="w-full h-full object-contain p-6 transition-transform duration-700 group-hover:scale-105" />
+            </div>
+            <div className="mt-3 text-center">
+              <p className="text-[#21313c] font-semibold text-sm">{accreditations[0].shortName}</p>
+              <p className="text-[#999] text-xs leading-snug mt-0.5">{accreditations[0].name}</p>
+            </div>
+          </motion.div>
+        </div>
+        {/* Mobile: remaining 8 in 2-column grid */}
+        <div className="grid grid-cols-2 gap-3 md:hidden">
+          {accreditations.slice(1).map((item, index) => (
             <motion.div
               key={index}
               initial={{ opacity: 0, y: 30 }}
@@ -72,15 +90,54 @@ const Accreditations = () => {
               className="group flex flex-col items-center"
             >
               <div className="aspect-square w-full rounded-xl bg-white border border-[#e5e5e5] flex items-center justify-center overflow-hidden">
-                <img
-                  src={item.src}
-                  alt={item.name}
-                  className="w-full h-full object-contain p-4 md:p-6 transition-transform duration-700 group-hover:scale-105"
-                />
+                <img src={item.src} alt={item.name} className="w-full h-full object-contain p-4 transition-transform duration-700 group-hover:scale-105" />
               </div>
               <div className="mt-3 text-center">
-                <p className="text-[#21313c] font-semibold text-sm md:text-base">{item.shortName}</p>
-                <p className="text-[#999] text-xs md:text-sm leading-snug mt-0.5">{item.name}</p>
+                <p className="text-[#21313c] font-semibold text-sm">{item.shortName}</p>
+                <p className="text-[#999] text-xs leading-snug mt-0.5">{item.name}</p>
+              </div>
+            </motion.div>
+          ))}
+        </div>
+
+        {/* Desktop: First row 5 items */}
+        <div className="hidden md:grid md:grid-cols-5 gap-6 mb-6">
+          {accreditations.slice(0, 5).map((item, index) => (
+            <motion.div
+              key={index}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: index * 0.05, ease: customEase }}
+              viewport={{ once: true }}
+              className="group flex flex-col items-center"
+            >
+              <div className="aspect-square w-full rounded-xl bg-white border border-[#e5e5e5] flex items-center justify-center overflow-hidden">
+                <img src={item.src} alt={item.name} className="w-full h-full object-contain p-6 transition-transform duration-700 group-hover:scale-105" />
+              </div>
+              <div className="mt-3 text-center">
+                <p className="text-[#21313c] font-semibold text-base">{item.shortName}</p>
+                <p className="text-[#999] text-sm leading-snug mt-0.5">{item.name}</p>
+              </div>
+            </motion.div>
+          ))}
+        </div>
+        {/* Desktop: Second row 4 items centered */}
+        <div className="hidden md:grid md:grid-cols-4 gap-6 max-w-[80%] mx-auto">
+          {accreditations.slice(5).map((item, index) => (
+            <motion.div
+              key={index}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: (index + 5) * 0.05, ease: customEase }}
+              viewport={{ once: true }}
+              className="group flex flex-col items-center"
+            >
+              <div className="aspect-square w-full rounded-xl bg-white border border-[#e5e5e5] flex items-center justify-center overflow-hidden">
+                <img src={item.src} alt={item.name} className="w-full h-full object-contain p-6 transition-transform duration-700 group-hover:scale-105" />
+              </div>
+              <div className="mt-3 text-center">
+                <p className="text-[#21313c] font-semibold text-base">{item.shortName}</p>
+                <p className="text-[#999] text-sm leading-snug mt-0.5">{item.name}</p>
               </div>
             </motion.div>
           ))}
