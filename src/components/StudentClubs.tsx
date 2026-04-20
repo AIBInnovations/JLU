@@ -5,6 +5,7 @@ import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { useIsMobile } from '../hooks/useIsMobile';
 import { motion, AnimatePresence, useScroll, useTransform } from 'framer-motion';
+import { submitForm } from '../lib/submitForm';
 
 // Register GSAP plugin
 gsap.registerPlugin(ScrollTrigger);
@@ -125,6 +126,8 @@ export const StudentClubs = () => {
   const [mounted, setMounted] = useState(false);
   const [registrationClub, setRegistrationClub] = useState<Club | null>(null);
   const [formSubmitted, setFormSubmitted] = useState(false);
+  const [registerError, setRegisterError] = useState<string | null>(null);
+  const [joinError, setJoinError] = useState<string | null>(null);
   const [showJoinModal, setShowJoinModal] = useState(false);
   const [joinFormSubmitted, setJoinFormSubmitted] = useState(false);
   const isMobile = useIsMobile();
@@ -607,11 +610,16 @@ export const StudentClubs = () => {
                 ) : (
                   <form
                     className="space-y-4"
-                    onSubmit={(e) => {
+                    onSubmit={async (e) => {
                       e.preventDefault();
+                      setRegisterError(null);
                       const formData = new FormData(e.currentTarget);
                       const data = Object.fromEntries(formData.entries());
-                      console.log('Registration submitted:', { club: registrationClub.name, ...data });
+                      const result = await submitForm('student-clubs', { club: registrationClub.name, formContext: 'event-registration', ...data });
+                      if (!result.ok) {
+                        setRegisterError(result.error);
+                        return;
+                      }
                       setFormSubmitted(true);
                     }}
                   >
@@ -704,6 +712,17 @@ export const StudentClubs = () => {
                         style={{ color: '#21313c' }}
                       />
                     </div>
+
+                    {registerError && (
+                      <div className="p-3 rounded-lg bg-red-50 border border-red-200 text-red-600 text-sm flex items-start gap-2">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="shrink-0 mt-0.5">
+                          <circle cx="12" cy="12" r="10" />
+                          <line x1="12" y1="8" x2="12" y2="12" strokeLinecap="round" />
+                          <line x1="12" y1="16" x2="12.01" y2="16" strokeLinecap="round" />
+                        </svg>
+                        <span>{registerError}</span>
+                      </div>
+                    )}
 
                     <button
                       type="submit"
@@ -800,11 +819,16 @@ export const StudentClubs = () => {
                 ) : (
                   <form
                     className="space-y-4"
-                    onSubmit={(e) => {
+                    onSubmit={async (e) => {
                       e.preventDefault();
+                      setJoinError(null);
                       const formData = new FormData(e.currentTarget);
                       const data = Object.fromEntries(formData.entries());
-                      console.log('Join club submitted:', data);
+                      const result = await submitForm('student-clubs', { formContext: 'join-club', ...data });
+                      if (!result.ok) {
+                        setJoinError(result.error);
+                        return;
+                      }
                       setJoinFormSubmitted(true);
                     }}
                   >
@@ -915,6 +939,17 @@ export const StudentClubs = () => {
                         style={{ color: '#21313c' }}
                       />
                     </div>
+
+                    {joinError && (
+                      <div className="p-3 rounded-lg bg-red-50 border border-red-200 text-red-600 text-sm flex items-start gap-2">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="shrink-0 mt-0.5">
+                          <circle cx="12" cy="12" r="10" />
+                          <line x1="12" y1="8" x2="12" y2="12" strokeLinecap="round" />
+                          <line x1="12" y1="16" x2="12.01" y2="16" strokeLinecap="round" />
+                        </svg>
+                        <span>{joinError}</span>
+                      </div>
+                    )}
 
                     <button
                       type="submit"

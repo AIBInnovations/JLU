@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion';
 import { useState, useRef, useEffect } from 'react';
 import { useIsMobile } from '../hooks/useIsMobile';
+import { submitForm } from '../lib/submitForm';
 import { courseFees, searchCourses } from '../data/courseFees';
 import { admissionSteps, requiredDocuments, eligibilityCriteria } from '../data/admissionProcedure';
 import { allScholarships, scholarshipApplicationProcess } from '../data/scholarships';
@@ -447,6 +448,7 @@ const CampusTourModal = ({ isOpen, onClose }: CampusTourModalProps) => {
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState<string | null>(null);
 
   const timeSlots = [
     '9:00 AM - 10:00 AM',
@@ -494,14 +496,19 @@ const CampusTourModal = ({ isOpen, onClose }: CampusTourModalProps) => {
     if (!validateForm()) return;
 
     setIsSubmitting(true);
+    setSubmitError(null);
 
-    // Simulate API call
-    await new Promise(resolve => setTimeout(resolve, 1500));
+    const result = await submitForm('campus-visit', formData);
 
     setIsSubmitting(false);
+
+    if (!result.ok) {
+      setSubmitError(result.error);
+      return;
+    }
+
     setIsSubmitted(true);
 
-    // Reset form after showing success
     setTimeout(() => {
       setFormData({ name: '', email: '', phone: '', preferredDate: '', preferredTime: '', numberOfVisitors: '1', message: '' });
       setIsSubmitted(false);
@@ -763,6 +770,17 @@ const CampusTourModal = ({ isOpen, onClose }: CampusTourModalProps) => {
                         placeholder="Any specific areas you'd like to explore?"
                       />
                     </div>
+
+                    {submitError && (
+                      <div className="p-4 rounded-xl bg-red-50 border border-red-200 text-red-600 text-sm flex items-start gap-2">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="shrink-0 mt-0.5">
+                          <circle cx="12" cy="12" r="10" />
+                          <line x1="12" y1="8" x2="12" y2="12" strokeLinecap="round" />
+                          <line x1="12" y1="16" x2="12.01" y2="16" strokeLinecap="round" />
+                        </svg>
+                        <span>{submitError}</span>
+                      </div>
+                    )}
 
                     {/* Submit Button */}
                     <motion.button

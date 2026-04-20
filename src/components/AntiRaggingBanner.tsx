@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useIsMobile } from '../hooks/useIsMobile';
+import { submitForm } from '../lib/submitForm';
 
 export const AntiRaggingBanner = () => {
   const isMobile = useIsMobile();
@@ -13,6 +14,8 @@ export const AntiRaggingBanner = () => {
     contact: '',
   });
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState<string | null>(null);
 
   useEffect(() => {
     if (isReportModalOpen) {
@@ -25,17 +28,26 @@ export const AntiRaggingBanner = () => {
     };
   }, [isReportModalOpen]);
 
-  const handleSubmitReport = (e: React.FormEvent) => {
+  const handleSubmitReport = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Simulate submission
+    setIsSubmitting(true);
+    setSubmitError(null);
+
+    const result = await submitForm('anti-ragging', reportData);
+
+    setIsSubmitting(false);
+
+    if (!result.ok) {
+      setSubmitError(result.error);
+      return;
+    }
+
+    setIsSubmitted(true);
     setTimeout(() => {
-      setIsSubmitted(true);
-      setTimeout(() => {
-        setIsReportModalOpen(false);
-        setIsSubmitted(false);
-        setReportData({ description: '', anonymous: true, contact: '' });
-      }, 2500);
-    }, 1000);
+      setIsReportModalOpen(false);
+      setIsSubmitted(false);
+      setReportData({ description: '', anonymous: true, contact: '' });
+    }, 2500);
   };
 
   return (
@@ -180,6 +192,12 @@ export const AntiRaggingBanner = () => {
                         Your report will be handled with strict confidentiality. All information is encrypted and only accessible to authorized committee members.
                       </p>
 
+                      {submitError && (
+                        <div className="p-3 rounded-xl bg-red-50 border border-red-200 text-red-600 text-sm">
+                          {submitError}
+                        </div>
+                      )}
+
                       {/* Description */}
                       <div>
                         <label className="block text-sm font-medium text-[#20323d] mb-2" style={{ fontFamily: 'Inter, sans-serif' }}>
@@ -235,13 +253,13 @@ export const AntiRaggingBanner = () => {
                       {/* Submit */}
                       <motion.button
                         type="submit"
-                        disabled={!reportData.description.trim()}
+                        disabled={!reportData.description.trim() || isSubmitting}
                         className="w-full py-4 bg-[#20323d] text-white font-semibold rounded-xl hover:bg-[#2d4050] transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
                         style={{ fontFamily: 'Inter, sans-serif' }}
                         whileHover={{ scale: 1.01 }}
                         whileTap={{ scale: 0.99 }}
                       >
-                        Submit Report
+                        {isSubmitting ? 'Submitting...' : 'Submit Report'}
                         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                           <path d="M22 2L11 13" strokeLinecap="round" strokeLinejoin="round"/>
                           <path d="M22 2L15 22 11 13 2 9 22 2z" strokeLinecap="round" strokeLinejoin="round"/>

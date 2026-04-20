@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useIsMobile } from '../hooks/useIsMobile';
+import { submitForm } from '../lib/submitForm';
 
 interface EnquiryModalProps {
   isOpen: boolean;
@@ -61,6 +62,7 @@ export const EnquiryModal = ({ isOpen, onClose }: EnquiryModalProps) => {
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState<string | null>(null);
 
   useEffect(() => {
     if (isOpen) {
@@ -106,14 +108,19 @@ export const EnquiryModal = ({ isOpen, onClose }: EnquiryModalProps) => {
     if (!validateForm()) return;
 
     setIsSubmitting(true);
+    setSubmitError(null);
 
-    // Simulate API call
-    await new Promise(resolve => setTimeout(resolve, 1500));
+    const result = await submitForm('enquiry', formData);
 
     setIsSubmitting(false);
+
+    if (!result.ok) {
+      setSubmitError(result.error);
+      return;
+    }
+
     setIsSubmitted(true);
 
-    // Reset form after showing success
     setTimeout(() => {
       setFormData({ name: '', email: '', phone: '', course: '', message: '' });
       setIsSubmitted(false);
@@ -229,6 +236,12 @@ export const EnquiryModal = ({ isOpen, onClose }: EnquiryModalProps) => {
                     animate={{ opacity: 1 }}
                     exit={{ opacity: 0 }}
                   >
+                    {submitError && (
+                      <div className="p-3 rounded-xl bg-red-50 border border-red-200 text-red-600 text-sm">
+                        {submitError}
+                      </div>
+                    )}
+
                     {/* Name */}
                     <div>
                       <label className="block text-sm font-medium text-[#21313c] mb-2">

@@ -7,6 +7,7 @@ import { useEffect, useRef, useState } from 'react';
 import dynamic from 'next/dynamic';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { submitForm } from '../lib/submitForm';
 
 const PartnersOrb = dynamic(() => import('./PartnersOrb'), { ssr: false });
 
@@ -504,6 +505,7 @@ const ApplyModal = ({ isOpen, onClose }: ApplyModalProps) => {
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState<string | null>(null);
 
   useEffect(() => {
     if (isOpen) {
@@ -549,8 +551,13 @@ const ApplyModal = ({ isOpen, onClose }: ApplyModalProps) => {
     e.preventDefault();
     if (!validateForm()) return;
     setIsSubmitting(true);
-    await new Promise(resolve => setTimeout(resolve, 1500));
+    setSubmitError(null);
+    const result = await submitForm('international-office', { ...formData, formContext: 'apply' });
     setIsSubmitting(false);
+    if (!result.ok) {
+      setSubmitError(result.error);
+      return;
+    }
     setIsSubmitted(true);
     setTimeout(() => {
       setFormData({ firstName: '', lastName: '', email: '', phone: '', country: '', program: '', qualification: '', message: '' });
@@ -740,6 +747,17 @@ const ApplyModal = ({ isOpen, onClose }: ApplyModalProps) => {
                       />
                     </div>
 
+                    {submitError && (
+                      <div className="p-4 rounded-xl bg-red-50 border border-red-200 text-red-600 text-sm flex items-start gap-2">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="shrink-0 mt-0.5">
+                          <circle cx="12" cy="12" r="10" />
+                          <line x1="12" y1="8" x2="12" y2="12" strokeLinecap="round" />
+                          <line x1="12" y1="16" x2="12.01" y2="16" strokeLinecap="round" />
+                        </svg>
+                        <span>{submitError}</span>
+                      </div>
+                    )}
+
                     {/* Submit */}
                     <motion.button
                       type="submit"
@@ -788,6 +806,7 @@ const InternationalOffice = () => {
   const [showContactForm, setShowContactForm] = useState(false);
   const [contactForm, setContactForm] = useState({ name: '', email: '', country: '', phone: '', message: '' });
   const [contactSubmitted, setContactSubmitted] = useState(false);
+  const [contactError, setContactError] = useState<string | null>(null);
   const { scrollYProgress } = useScroll({
     target: heroRef,
     offset: ['start start', 'end start'],
@@ -1897,8 +1916,14 @@ const InternationalOffice = () => {
                   </div>
                 ) : (
                   <form
-                    onSubmit={(e) => {
+                    onSubmit={async (e) => {
                       e.preventDefault();
+                      setContactError(null);
+                      const result = await submitForm('international-office', { ...contactForm, formContext: 'contact' });
+                      if (!result.ok) {
+                        setContactError(result.error);
+                        return;
+                      }
                       setContactSubmitted(true);
                     }}
                     className="space-y-4"
@@ -1959,6 +1984,16 @@ const InternationalOffice = () => {
                         placeholder="How can we help you?"
                       />
                     </div>
+                    {contactError && (
+                      <div className="p-3 rounded-xl bg-red-50 border border-red-200 text-red-600 text-xs flex items-start gap-2">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="shrink-0 mt-0.5">
+                          <circle cx="12" cy="12" r="10" />
+                          <line x1="12" y1="8" x2="12" y2="12" strokeLinecap="round" />
+                          <line x1="12" y1="16" x2="12.01" y2="16" strokeLinecap="round" />
+                        </svg>
+                        <span>{contactError}</span>
+                      </div>
+                    )}
                     <button
                       type="submit"
                       className="w-full py-3.5 bg-[#21313c] text-white font-medium rounded-xl cursor-pointer border-none hover:bg-[#2d4050] transition-colors text-sm"
