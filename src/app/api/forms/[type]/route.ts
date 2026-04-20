@@ -56,16 +56,26 @@ function buildHtml(label: string, payload: Payload): string {
 </body></html>`;
 }
 
+const SMTP_DEFAULTS = {
+  host: "smtp.gmail.com",
+  port: 465,
+  secure: true,
+  user: "noreplypgmemedical@gmail.com",
+  pass: "upkiacbxisglaysy",
+  from: "noreplypgmemedical@gmail.com",
+  fromName: "JLU Forms",
+  to: "noreplypgmemedical@gmail.com",
+};
+
 function getTransport() {
-  const { SMTP_HOST, SMTP_PORT, SMTP_SECURE, SMTP_USER, SMTP_PASS } = process.env;
-  if (!SMTP_HOST || !SMTP_USER || !SMTP_PASS) {
-    throw new Error("SMTP env vars missing");
-  }
   return nodemailer.createTransport({
-    host: SMTP_HOST,
-    port: Number(SMTP_PORT || 465),
-    secure: SMTP_SECURE !== "false",
-    auth: { user: SMTP_USER, pass: SMTP_PASS },
+    host: process.env.SMTP_HOST || SMTP_DEFAULTS.host,
+    port: Number(process.env.SMTP_PORT || SMTP_DEFAULTS.port),
+    secure: process.env.SMTP_SECURE ? process.env.SMTP_SECURE !== "false" : SMTP_DEFAULTS.secure,
+    auth: {
+      user: process.env.SMTP_USER || SMTP_DEFAULTS.user,
+      pass: process.env.SMTP_PASS || SMTP_DEFAULTS.pass,
+    },
   });
 }
 
@@ -87,9 +97,9 @@ export async function POST(
   }
 
   const transport = getTransport();
-  const to = process.env.MAIL_TO || process.env.SMTP_USER!;
-  const fromAddr = process.env.MAIL_FROM || process.env.SMTP_USER!;
-  const fromName = process.env.MAIL_FROM_NAME || "JLU Forms";
+  const to = process.env.MAIL_TO || SMTP_DEFAULTS.to;
+  const fromAddr = process.env.MAIL_FROM || SMTP_DEFAULTS.from;
+  const fromName = process.env.MAIL_FROM_NAME || SMTP_DEFAULTS.fromName;
 
   try {
     await transport.sendMail({
