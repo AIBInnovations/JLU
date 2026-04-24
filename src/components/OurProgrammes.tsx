@@ -15,7 +15,7 @@ export const OurProgrammes = () => {
 
 
   return (
-    <section className="bg-[#f6f7f0] py-8 md:py-12">
+    <section className="bg-[#f6f7f0] py-8 md:py-12 2xl:py-20">
       {/* Header */}
       <motion.div
         className="text-center mb-12 md:mb-16 px-4"
@@ -31,7 +31,7 @@ export const OurProgrammes = () => {
           ACADEMIC PROGRAMMES
         </span>
         <h1
-          className="text-[#21313c] text-3xl md:text-4xl lg:text-5xl mb-4 md:mb-6"
+          className="text-[#21313c] text-3xl md:text-4xl lg:text-5xl 2xl:text-6xl mb-4 md:mb-6"
           style={{ fontWeight: 600, lineHeight: 1.1 }}
         >
           Learning,{' '}
@@ -210,7 +210,7 @@ export const OurProgrammes = () => {
               CAMPUS LIFE
             </p>
             <h3
-              className="text-3xl md:text-4xl lg:text-5xl text-[#21313c]"
+              className="text-3xl md:text-4xl lg:text-5xl 2xl:text-6xl text-[#21313c]"
               style={{ fontWeight: 600, lineHeight: 1.1 }}
             >
               Beyond the{' '}

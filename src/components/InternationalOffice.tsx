@@ -1395,7 +1395,7 @@ const InternationalOffice = () => {
 
           {/* Fee Cards */}
           <motion.div
-            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6"
+            className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6"
             variants={staggerContainer}
             initial="hidden"
             whileInView="visible"
@@ -1650,7 +1650,7 @@ const InternationalOffice = () => {
 
           {/* Support Cards */}
           <motion.div
-            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6"
+            className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6"
             variants={staggerContainer}
             initial="hidden"
             whileInView="visible"

@@ -68,10 +68,10 @@ export const VoiceOfJlu = () => {
   ];
 
   return (
-    <section className="bg-[#f6f7f0] pt-16 md:pt-48 pb-12 md:pb-24 overflow-x-clip">
+    <section className="bg-[#f6f7f0] pt-16 md:pt-48 pb-12 md:pb-24 2xl:pt-60 2xl:pb-32 overflow-x-clip">
       {/* Header */}
       <div
-        className="mb-12 md:mb-20 px-4 sm:px-10 lg:px-16"
+        className="mb-12 md:mb-20 2xl:mb-28 px-4 sm:px-10 lg:px-16 2xl:px-24"
         style={{ maxWidth: '1800px', marginLeft: 'auto', marginRight: 'auto' }}
       >
         {/* Centered heading */}
@@ -83,7 +83,7 @@ export const VoiceOfJlu = () => {
             Student Testimonials
           </span>
           <h1
-            className="text-[#21313c] text-3xl md:text-4xl lg:text-5xl"
+            className="text-[#21313c] text-3xl md:text-4xl lg:text-5xl 2xl:text-6xl"
             style={{ fontWeight: 600, lineHeight: 1.1 }}
           >
             Voices of{' '}
@@ -316,7 +316,7 @@ export const VoiceOfJlu = () => {
             MEET OUR TEAM
           </span>
           <h1
-            className="text-3xl md:text-4xl lg:text-5xl text-[#21313c]"
+            className="text-3xl md:text-4xl lg:text-5xl 2xl:text-6xl text-[#21313c]"
             style={{ fontWeight: 600, lineHeight: 1.1 }}
           >
             Leadership{' '}

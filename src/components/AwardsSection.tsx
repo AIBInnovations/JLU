@@ -199,7 +199,7 @@ export const AwardsSection = () => {
               RECOGNITION
             </p>
             <h1
-              className="text-[#21313c] text-3xl md:text-4xl lg:text-5xl text-center"
+              className="text-[#21313c] text-3xl md:text-4xl lg:text-5xl 2xl:text-6xl text-center"
               style={{ fontWeight: 600, lineHeight: 1.1, padding: '0 1rem' }}
             >
               Awards & Achievements

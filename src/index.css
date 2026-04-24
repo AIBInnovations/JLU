@@ -61,8 +61,8 @@
     padding: 0;
   }
 
-  /* Smooth scrolling for touch devices */
-  @media (max-width: 768px) {
+  /* ===== Mobile (<= 767px) ===== */
+  @media (max-width: 767px) {
     html {
       scroll-behavior: smooth;
       -webkit-overflow-scrolling: touch;
@@ -84,6 +84,62 @@
     body {
       -webkit-text-size-adjust: 100%;
       text-size-adjust: 100%;
+    }
+
+    /* Prevent any long word/URL from blowing out narrow phone viewports */
+    p, h1, h2, h3, h4, li, span {
+      overflow-wrap: anywhere;
+    }
+
+    /* Images never overflow their wrapper on small screens */
+    img, video {
+      max-width: 100%;
+      height: auto;
+    }
+  }
+
+  /* ===== Small phones (<= 380px) — iPhone SE, Galaxy Fold outer ===== */
+  @media (max-width: 380px) {
+    /* Slightly tighter horizontal padding on any .px-4/.px-6 section so text doesn't crowd the edge */
+    body {
+      font-size: 15px;
+    }
+  }
+
+  /* ===== Tablet (768px–1279px) — covers iPad portrait/landscape and iPad Pro ===== */
+  @media (min-width: 768px) and (max-width: 1279px) {
+    /* Tap targets slightly larger than mouse defaults */
+    button, a[role="button"] {
+      min-height: 40px;
+    }
+
+    /* Prevent long words from overflowing card/text containers at tablet width */
+    h1, h2, h3 {
+      overflow-wrap: break-word;
+      word-break: normal;
+      hyphens: auto;
+    }
+
+    /* Touch-friendly scroll momentum */
+    html {
+      -webkit-overflow-scrolling: touch;
+    }
+  }
+
+  /* ===== Big screens (>= 1536px) ===== */
+  /* Many sections use inline style="max-width: 1440px". On 4K and ultrawide
+     this leaves huge side gutters. Lift the cap for those containers only. */
+  @media (min-width: 1536px) {
+    [style*="max-width: 1440px"],
+    [style*="maxWidth: 1440px"] {
+      max-width: 1680px !important;
+    }
+  }
+
+  @media (min-width: 1920px) {
+    [style*="max-width: 1440px"],
+    [style*="maxWidth: 1440px"] {
+      max-width: 1820px !important;
     }
   }
 }

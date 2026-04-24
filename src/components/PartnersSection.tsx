@@ -54,7 +54,7 @@ export const PartnersSection = () => {
   }, [mounted]);
 
   return (
-    <section ref={sectionRef} className="bg-[#f6f7f0] py-8 md:py-16">
+    <section ref={sectionRef} className="bg-[#f6f7f0] py-8 md:py-16 2xl:py-24">
       {/* Section Title */}
       <div className="text-center mb-8 md:mb-14 px-4">
         <p
@@ -64,7 +64,7 @@ export const PartnersSection = () => {
           COLLABORATIONS
         </p>
         <h1
-          className="text-3xl md:text-4xl lg:text-5xl text-[#21313c] mb-4"
+          className="text-3xl md:text-4xl lg:text-5xl 2xl:text-6xl text-[#21313c] mb-4"
           style={{ fontWeight: 600, lineHeight: 1.1 }}
         >
           Global{' '}

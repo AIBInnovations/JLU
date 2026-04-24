@@ -40,8 +40,8 @@ export const ImpactStats = () => {
   };
 
   return (
-    <section ref={ref} className="bg-[#f6f7f0] py-16 px-6 lg:px-12">
-      <div className="max-w-7xl mx-auto">
+    <section ref={ref} className="bg-[#f6f7f0] py-16 px-6 md:px-10 lg:px-12 2xl:px-20 2xl:py-24">
+      <div className="max-w-7xl 2xl:max-w-[1600px] mx-auto">
         <motion.div
           variants={containerVariants}
           initial="hidden"
@@ -55,7 +55,7 @@ export const ImpactStats = () => {
               className="text-center flex-1 min-w-[150px]"
             >
               <div
-                className="text-5xl sm:text-6xl lg:text-7xl font-bold"
+                className="text-5xl sm:text-6xl md:text-[4.5rem] lg:text-7xl 2xl:text-8xl font-bold"
                 style={{
                   color: 'transparent',
                   WebkitTextStroke: '2px #21313c',

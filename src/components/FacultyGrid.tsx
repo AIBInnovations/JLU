@@ -113,7 +113,7 @@ export const FacultyGrid = () => {
           variants={containerVariants}
           initial="hidden"
           animate={isInView ? 'visible' : 'hidden'}
-          className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5"
+          className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 2xl:grid-cols-5 gap-5 md:gap-6 2xl:gap-8"
         >
           {facultyMembers.map((member, index) => (
             <motion.div

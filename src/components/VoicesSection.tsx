@@ -44,8 +44,8 @@ export const VoicesSection = () => {
   };
 
   return (
-    <section ref={ref} className="bg-[#21313c] py-20 px-6 lg:px-12">
-      <div className="max-w-7xl mx-auto">
+    <section ref={ref} className="bg-[#21313c] py-20 px-6 md:px-10 lg:px-12 2xl:px-20 2xl:py-28">
+      <div className="max-w-7xl 2xl:max-w-[1600px] mx-auto">
         {/* Section Header */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -53,7 +53,7 @@ export const VoicesSection = () => {
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
-          <h2 className="text-white text-4xl lg:text-5xl font-bold mb-3">
+          <h2 className="text-white text-4xl md:text-[2.75rem] lg:text-5xl 2xl:text-6xl font-bold mb-3">
             VOICES OF JLU
           </h2>
           <div className="w-24 h-1 bg-[#c3fd7a] mx-auto" />
@@ -71,7 +71,7 @@ export const VoicesSection = () => {
               key={index}
               variants={pillVariants}
               whileHover={{ scale: 1.05, y: -10 }}
-              className={`${voice.color} w-28 sm:w-32 h-72 sm:h-80 rounded-full flex-shrink-0 relative overflow-hidden cursor-pointer`}
+              className={`${voice.color} w-28 sm:w-32 md:w-36 2xl:w-44 h-72 sm:h-80 md:h-96 2xl:h-[28rem] rounded-full flex-shrink-0 relative overflow-hidden cursor-pointer`}
             >
               <img
                 src={voice.image}

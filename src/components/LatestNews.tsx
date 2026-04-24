@@ -57,8 +57,8 @@ export const LatestNews = () => {
   const isMobile = useIsMobile();
 
   return (
-    <section className="relative py-12 md:py-24 bg-[#f6f7f0]">
-      <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-12">
+    <section className="relative py-12 md:py-24 2xl:py-32 bg-[#f6f7f0]">
+      <div className="max-w-[1400px] 2xl:max-w-[1700px] mx-auto px-4 sm:px-6 lg:px-12 2xl:px-20">
         {/* Section Header */}
         <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-4 md:gap-6 mb-8 md:mb-12">
           <div>
@@ -66,7 +66,7 @@ export const LatestNews = () => {
               Stay Updated
             </span>
             <h1
-              className="text-[#21313c] text-3xl md:text-4xl lg:text-5xl"
+              className="text-[#21313c] text-3xl md:text-4xl lg:text-5xl 2xl:text-6xl"
               style={{ fontWeight: 600, lineHeight: 1.1 }}
             >
               Latest News &{' '}

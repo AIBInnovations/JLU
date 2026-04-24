@@ -446,8 +446,8 @@ export const Hero = () => {
       </section>
 
       {/* Awards and Accreditations Banner */}
-      <section className="relative bg-[#f6f7f0] py-4 sm:py-6 overflow-hidden">
-        <div className="mx-auto max-w-[1800px] px-4 sm:px-10 lg:px-16">
+      <section className="relative bg-[#f6f7f0] py-4 sm:py-6 2xl:py-10 overflow-hidden">
+        <div className="mx-auto max-w-[1800px] px-4 sm:px-10 lg:px-16 2xl:px-24">
           <div className={`flex items-center ${isMobile ? 'gap-1.5 overflow-x-auto pb-2 -mx-4 px-4 scrollbar-hide' : isTablet ? 'justify-center gap-4 flex-wrap' : 'justify-center gap-8 flex-wrap'}`} style={isMobile ? { WebkitOverflowScrolling: 'touch', scrollbarWidth: 'none', msOverflowStyle: 'none' } : undefined}>
             {/* UGC Approved */}
             <motion.div
@@ -525,7 +525,7 @@ export const Hero = () => {
       </section>
 
       {/* Intro text section */}
-      <section className="relative px-4 pb-8 pt-10 sm:pb-12 sm:pt-14 sm:px-10 lg:px-16 bg-[#f6f7f0]">
+      <section className="relative px-4 pb-8 pt-10 sm:pb-12 sm:pt-14 sm:px-10 lg:px-16 2xl:px-24 2xl:pb-16 2xl:pt-20 bg-[#f6f7f0]">
         <div className="mx-auto flex max-w-[1800px] flex-col gap-4 sm:gap-6">
           <div>
             <h2
@@ -569,7 +569,7 @@ export const Hero = () => {
       </section>
 
       {/* Image grid section */}
-      <section className="relative px-0 pb-12 md:pb-14 lg:pb-20 bg-[#f6f7f0] overflow-hidden">
+      <section className="relative px-0 pb-12 md:pb-14 lg:pb-20 2xl:pb-28 bg-[#f6f7f0] overflow-hidden">
         <div className="relative mx-auto max-w-[1800px]" style={{ paddingLeft: isMobile ? '12px' : '16px', paddingRight: isMobile ? '12px' : '16px' }}>
           <div
             className="flex w-full items-end justify-center"

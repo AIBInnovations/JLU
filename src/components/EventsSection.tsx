@@ -83,7 +83,7 @@ export const EventsSection = () => {
             CAMPUS LIFE
           </span>
           <h1
-            className="text-[#21313c] text-3xl md:text-4xl lg:text-5xl mb-4 md:mb-6"
+            className="text-[#21313c] text-3xl md:text-4xl lg:text-5xl 2xl:text-6xl mb-4 md:mb-6"
             style={{ fontWeight: 600, lineHeight: 1.1 }}
           >
             Moments worth{' '}
@@ -269,7 +269,7 @@ export const EventsSection = () => {
         {/* Text Content - Positioned Independently - Hidden on Mobile */}
         <div className="absolute text-left hidden lg:block z-10" style={{ top: '52%', right: '32%', maxWidth: '380px' }}>
           <h3
-            className="text-3xl md:text-4xl lg:text-5xl text-[#21313c] mb-2 leading-[1.1]"
+            className="text-3xl md:text-4xl lg:text-5xl 2xl:text-6xl text-[#21313c] mb-2 leading-[1.1]"
             style={{ fontWeight: 600 }}
           >
             SEE WHAT&apos;S{' '}

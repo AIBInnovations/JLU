@@ -206,7 +206,7 @@ export const AlumniSection = () => {
         </div>
       </div>
 
-      <div className={`relative max-w-[1440px] mx-auto px-4 md:px-[120px] ${isMobile ? 'py-12' : 'py-[120px]'}`}>
+      <div className={`relative max-w-[1440px] 2xl:max-w-[1700px] mx-auto px-4 md:px-[120px] 2xl:px-[160px] ${isMobile ? 'py-12' : 'py-[120px]'}`}>
         {/* Main Layout Container */}
         <div className={`w-full ${isMobile ? 'flex flex-col gap-8' : 'flex items-center justify-between gap-12'}`}>
           {/* Left Side - Text Content */}

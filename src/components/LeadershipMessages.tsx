@@ -63,7 +63,7 @@ const LeadershipMessages = () => {
             Leadership
           </span>
           <h1
-            className="text-[#21313c] text-3xl md:text-4xl lg:text-5xl"
+            className="text-[#21313c] text-3xl md:text-4xl lg:text-5xl 2xl:text-6xl"
             style={{ fontWeight: 600, lineHeight: 1.1 }}
           >
             Leadership{' '}

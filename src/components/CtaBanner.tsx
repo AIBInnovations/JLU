@@ -4,9 +4,9 @@ import { motion } from 'framer-motion';
 
 export const CtaBanner = () => {
   return (
-    <div className="w-full px-3 pb-8 md:px-6 md:pb-14 lg:px-10 lg:pb-20">
+    <div className="w-full px-3 pb-8 md:px-6 md:pb-14 lg:px-10 lg:pb-20 2xl:px-16 2xl:pb-28">
       <div
-        className="mx-auto flex flex-col items-center justify-center bg-[#20323d] px-4 py-6 md:px-10 md:py-10 lg:px-20 lg:py-14 rounded-xl md:rounded-3xl lg:rounded-4xl"
+        className="mx-auto flex flex-col items-center justify-center bg-[#20323d] px-4 py-6 md:px-10 md:py-10 lg:px-20 lg:py-14 2xl:px-28 2xl:py-20 rounded-xl md:rounded-3xl lg:rounded-4xl"
         style={{ maxWidth: '1400px' }}
       >
         <motion.div

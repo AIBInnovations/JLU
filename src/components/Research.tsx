@@ -187,7 +187,7 @@ const Research = () => {
           {/* Header */}
           <div className="flex flex-col md:flex-row justify-between items-start gap-4 md:gap-0 mb-8 md:mb-12">
             <div>
-              <h2 className="text-2xl md:text-4xl lg:text-5xl font-bold text-[#21313c] mb-2 md:mb-4">
+              <h2 className="text-2xl md:text-3xl lg:text-5xl 2xl:text-6xl font-bold text-[#21313c] mb-2 md:mb-4">
                 Publications
               </h2>
               <p className="text-base md:text-lg lg:text-xl text-[#21313c]">
@@ -297,7 +297,7 @@ const Research = () => {
           {/* Header */}
           <div className="flex flex-col md:flex-row justify-between items-start gap-4 md:gap-0 mb-8 md:mb-12">
             <div>
-              <h2 className="text-2xl md:text-4xl lg:text-5xl font-bold text-[#21313c] mb-2 md:mb-4">
+              <h2 className="text-2xl md:text-3xl lg:text-5xl 2xl:text-6xl font-bold text-[#21313c] mb-2 md:mb-4">
                 Patents
               </h2>
               <p className="text-base md:text-lg lg:text-xl text-[#21313c]">
@@ -399,7 +399,7 @@ const Research = () => {
           {/* Header */}
           <div className="flex flex-col md:flex-row justify-between items-start gap-4 md:gap-0 mb-8 md:mb-12">
             <div>
-              <h2 className="text-2xl md:text-4xl lg:text-5xl font-bold text-[#21313c] mb-2 md:mb-4">
+              <h2 className="text-2xl md:text-3xl lg:text-5xl 2xl:text-6xl font-bold text-[#21313c] mb-2 md:mb-4">
                 Funded Projects
               </h2>
               <p className="text-base md:text-lg lg:text-xl text-[#21313c]">

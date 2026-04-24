@@ -13,7 +13,7 @@ export const CampusSection = () => {
             LIFE AT JLU
           </p>
           <h2
-            className="text-3xl md:text-4xl lg:text-5xl text-[#21313c] mb-4"
+            className="text-3xl md:text-4xl lg:text-5xl 2xl:text-6xl text-[#21313c] mb-4"
             style={{ fontWeight: 600, lineHeight: 1.1 }}
           >
             A Campus Built for{' '}
