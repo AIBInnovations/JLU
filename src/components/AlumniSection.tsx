@@ -59,67 +59,6 @@ export const AlumniSection = () => {
     if (!mounted) return;
 
     const ctx = gsap.context(() => {
-      // On mobile we skip ALL scrubs in this section — 8 simultaneously
-      // scrub-evaluating triggers on a Lenis-driven scroll budget was the
-      // single biggest source of jitter. Mobile gets a one-shot fade-in
-      // instead. Desktop keeps the original scroll-tied animations.
-      if (isMobile) {
-        if (textRef.current) {
-          const lines = textRef.current.querySelectorAll('.alumni-text-line > span');
-          gsap.fromTo(
-            lines,
-            { y: '100%' },
-            {
-              y: '0%',
-              duration: 0.7,
-              stagger: 0.05,
-              ease: 'power2.out',
-              scrollTrigger: {
-                trigger: sectionRef.current,
-                start: 'top 85%',
-                toggleActions: 'play none none none',
-              },
-            }
-          );
-        }
-        if (topCardRef.current) {
-          gsap.fromTo(
-            topCardRef.current,
-            { y: 30, opacity: 0 },
-            {
-              y: 0,
-              opacity: 1,
-              duration: 0.7,
-              ease: 'power2.out',
-              scrollTrigger: {
-                trigger: topCardRef.current,
-                start: 'top 90%',
-                toggleActions: 'play none none none',
-              },
-            }
-          );
-        }
-        if (bottomCardRef.current) {
-          gsap.fromTo(
-            bottomCardRef.current,
-            { y: 30, opacity: 0 },
-            {
-              y: 0,
-              opacity: 1,
-              duration: 0.7,
-              ease: 'power2.out',
-              scrollTrigger: {
-                trigger: bottomCardRef.current,
-                start: 'top 90%',
-                toggleActions: 'play none none none',
-              },
-            }
-          );
-        }
-        return;
-      }
-
-      // Desktop only — original scroll-tied animations.
       if (textRef.current) {
         const lines = textRef.current.querySelectorAll('.alumni-text-line > span');
         gsap.set(lines, { y: '100%' });

@@ -80,31 +80,28 @@ const RankingAndAwards = () => {
       ScrollTrigger.refresh();
     }, 100);
 
-    // Mobile: skip the header pin and the scrub fade — desktop only.
-    if (!isMobile) {
-      const headerPin = ScrollTrigger.create({
-        trigger: wrapper,
-        start: 'top top',
-        end: 'bottom bottom',
-        pin: headerSection,
-        pinSpacing: false,
-        anticipatePin: 1,
-      });
-      triggers.push(headerPin);
+    const headerPin = ScrollTrigger.create({
+      trigger: wrapper,
+      start: 'top top',
+      end: 'bottom bottom',
+      pin: headerSection,
+      pinSpacing: false,
+      anticipatePin: 1,
+    });
+    triggers.push(headerPin);
 
-      const fadeOutAnimation = gsap.to(textContent, {
-        opacity: 0,
-        ease: 'none',
-        scrollTrigger: {
-          trigger: middleCard,
-          start: 'top 60%',
-          end: 'top 40%',
-          scrub: 1,
-        },
-      });
-      if (fadeOutAnimation.scrollTrigger) {
-        triggers.push(fadeOutAnimation.scrollTrigger);
-      }
+    const fadeOutAnimation = gsap.to(textContent, {
+      opacity: 0,
+      ease: 'none',
+      scrollTrigger: {
+        trigger: middleCard,
+        start: 'top 60%',
+        end: 'top 40%',
+        scrub: 1,
+      },
+    });
+    if (fadeOutAnimation.scrollTrigger) {
+      triggers.push(fadeOutAnimation.scrollTrigger);
     }
 
     // Cleanup
@@ -122,22 +119,20 @@ const RankingAndAwards = () => {
       ref={wrapperRef}
       style={{
         position: 'relative',
-        minHeight: isMobile ? 'auto' : '300vh',
+        minHeight: isMobile ? '220vh' : '300vh',
         background: 'transparent',
         overflow: 'hidden',
       }}
     >
-      {/* Header — pinned only on desktop, in flow on mobile. */}
+      {/* Ranking and Awards - Pinned text */}
       <div
         ref={headerRef}
         style={{
-          position: isMobile ? 'relative' : 'absolute',
+          position: 'absolute',
           top: 0,
           left: 0,
           width: '100%',
-          height: isMobile ? 'auto' : '100vh',
-          minHeight: isMobile ? '70vh' : undefined,
-          padding: isMobile ? '40px 0' : undefined,
+          height: '100vh',
           display: 'flex',
           flexDirection: 'column',
           alignItems: 'center',
@@ -147,15 +142,13 @@ const RankingAndAwards = () => {
         }}
       >
         <div ref={textContentRef} style={{ position: 'relative', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-          {/* Circular rotating marquee text — desktop only. The continuous
-              CSS rotation forces repaints of a large SVG every frame, which
-              competes with scroll on mobile and produces visible jitter. */}
+          {/* Circular rotating marquee text */}
           <div
             style={{
               position: 'absolute',
               width: isMobile ? '400px' : '750px',
               height: isMobile ? '400px' : '750px',
-              animation: isMobile ? 'none' : 'ranking-spin 25s linear infinite',
+              animation: 'ranking-spin 25s linear infinite',
               pointerEvents: 'none',
             }}
           >
@@ -232,12 +225,11 @@ const RankingAndAwards = () => {
         </div>
       </div>
 
-      {/* Cards Container — stack normally on mobile, slide-over-pinned-header on desktop. */}
+      {/* Cards Container - in normal flow so it pushes the wrapper tall enough to fit. */}
       <div
         style={{
           position: 'relative',
-          marginTop: isMobile ? '0' : '120vh',
-          paddingTop: isMobile ? '20px' : '0',
+          marginTop: isMobile ? '70vh' : '120vh',
           paddingBottom: isMobile ? '8vh' : '12vh',
           width: '100%',
           zIndex: 20,

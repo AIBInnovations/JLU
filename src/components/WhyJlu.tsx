@@ -87,11 +87,6 @@ export const WhyJlu = () => {
   useEffect(() => {
     if (!mounted || !wrapperRef.current || !whyJluRef.current) return;
 
-    // Mobile: no pin, no scroll-tied filter — both eat frame budget for
-    // zero perceived gain on a small screen. Desktop keeps the pinned
-    // header + blur effect.
-    if (isMobile) return;
-
     const wrapper = wrapperRef.current;
     const whyJluSection = whyJluRef.current;
 
@@ -107,9 +102,12 @@ export const WhyJlu = () => {
       pinSpacing: false,
     });
 
+    // Mobile: skip the scroll-tied CSS filter:blur — it's the single most
+    // expensive thing this section does on a phone GPU and would tank the
+    // pinned scroll experience. Desktop keeps the blur transition.
     const bgImagesEl = bgImagesRef.current;
     let blurTrigger: ScrollTrigger | undefined;
-    if (bgImagesEl) {
+    if (bgImagesEl && !isMobile) {
       blurTrigger = ScrollTrigger.create({
         trigger: wrapper,
         start: '20% top',

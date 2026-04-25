@@ -337,13 +337,6 @@ export const EventsSection = () => {
         .animate-scroll {
           animation: scroll 14s linear infinite;
         }
-        /* Disable on mobile — continuous repaint of the marquee strip
-           competes with scroll on mid-range Android. */
-        @media (max-width: 767px) {
-          .animate-scroll {
-            animation: none;
-          }
-        }
       `}</style>
     </section>
   );
