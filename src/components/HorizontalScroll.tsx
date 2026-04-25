@@ -160,8 +160,7 @@ export const HorizontalScroll = () => {
         start: 'top top',
         end: () => `+=${row3ScrollDistance + window.innerHeight * 0.8}`,
         scrub: 0.5,
-        pin: true,
-        anticipatePin: 1,
+        pin: false,
         invalidateOnRefresh: true,
       },
     }));
