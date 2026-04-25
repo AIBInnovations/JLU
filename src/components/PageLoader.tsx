@@ -9,6 +9,7 @@ export default function PageLoader() {
       <div
         id="page-loader"
         aria-hidden="true"
+        suppressHydrationWarning
         style={{
           position: 'fixed',
           inset: 0,
@@ -60,6 +61,7 @@ export default function PageLoader() {
         >
           <div
             id="page-loader-bar"
+            suppressHydrationWarning
             style={{
               height: '100%',
               width: '100%',
