@@ -10,7 +10,7 @@ if (typeof window !== 'undefined') {
   gsap.registerPlugin(ScrollTrigger);
   // Stop ScrollTrigger from recalculating pins (and thus resetting scroll
   // position) every time the iOS Safari / Chrome Android URL bar hides or
-  // shows — that's why scroll was snapping back to the Hero.
+  // shows.
   ScrollTrigger.config({ ignoreMobileResize: true });
 }
 
@@ -23,27 +23,27 @@ export default function SmoothScroll() {
       history.scrollRestoration = 'manual';
     }
 
-    // Honor reduced-motion users — keep native scroll, no smoothing.
-    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    if (reducedMotion) return;
+    // Honor reduced-motion users.
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
 
-    // Lenis-driven smooth scroll on every device. syncTouch routes finger
-    // swipes through Lenis's interpolation so short flicks and long drags
-    // produce the same smooth motion. The per-tick main-thread cost of this
-    // is only manageable because the heavy mobile scrub animations have been
-    // dropped (see AlumniSection / PassionSection / PartnersSection).
+    // Mobile / any touch device: do NOT init Lenis. Native mobile scroll is
+    // hardware-accelerated 60fps by the OS — JS-driven smooth scroll on
+    // mobile cannot match it and only ever creates jitter, momentum
+    // overshoot ("teleport to bottom of page"), or laggy scroll. Lenis stays
+    // a desktop-wheel-only enhancement.
+    const isTouch =
+      'ontouchstart' in window ||
+      (navigator?.maxTouchPoints ?? 0) > 0 ||
+      window.matchMedia('(pointer: coarse)').matches;
+    if (isTouch) return;
+
     const lenis = new Lenis({
       lerp: 0.1,
       smoothWheel: true,
-      syncTouch: true,
-      syncTouchLerp: 0.075,
-      touchInertiaExponent: 1.8,
-      touchMultiplier: 1.5,
+      syncTouch: false,
     });
     lenisRef.current = lenis;
 
-    // Restore saved scroll immediately after Lenis init so refresh doesn't
-    // fight it.
     try {
       const saved = Number(sessionStorage.getItem('scrollPos_' + pathname) || '0');
       if (saved > 0) {
@@ -52,13 +52,8 @@ export default function SmoothScroll() {
       }
     } catch {}
 
-    // Tie GSAP ScrollTrigger to Lenis's scroll events so pinned/scrub
-    // animations stay in sync with Lenis's interpolated scroll position.
     lenis.on('scroll', ScrollTrigger.update);
 
-    // Drive Lenis through GSAP's ticker — one shared RAF loop. Capture the
-    // callback so the cleanup can actually remove it (the previous version
-    // passed a fresh arrow function to remove and silently leaked the loop).
     const tickerCb = (time: number) => {
       lenis.raf(time * 1000);
     };
@@ -73,7 +68,7 @@ export default function SmoothScroll() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  // Scroll to top only on actual route change
+  // Scroll to top only on actual route change.
   const prevPathname = useRef(pathname);
   useEffect(() => {
     if (prevPathname.current !== pathname) {
@@ -86,7 +81,7 @@ export default function SmoothScroll() {
     }
   }, [pathname]);
 
-  // Save scroll position before unload
+  // Save scroll position before unload.
   useEffect(() => {
     const handleBeforeUnload = () => {
       sessionStorage.setItem('scrollPos_' + pathname, String(window.scrollY));

@@ -80,30 +80,31 @@ const RankingAndAwards = () => {
       ScrollTrigger.refresh();
     }, 100);
 
-    // Pin "Ranking and Awards" text - it stays fixed while cards scroll over it
-    const headerPin = ScrollTrigger.create({
-      trigger: wrapper,
-      start: 'top top',
-      end: 'bottom bottom',
-      pin: headerSection,
-      pinSpacing: false,
-      anticipatePin: 1,
-    });
-    triggers.push(headerPin);
+    // Mobile: skip the header pin and the scrub fade — desktop only.
+    if (!isMobile) {
+      const headerPin = ScrollTrigger.create({
+        trigger: wrapper,
+        start: 'top top',
+        end: 'bottom bottom',
+        pin: headerSection,
+        pinSpacing: false,
+        anticipatePin: 1,
+      });
+      triggers.push(headerPin);
 
-    // Fade out only the text content when middle card reaches it
-    const fadeOutAnimation = gsap.to(textContent, {
-      opacity: 0,
-      ease: 'none',
-      scrollTrigger: {
-        trigger: middleCard,
-        start: 'top 60%',
-        end: 'top 40%',
-        scrub: 1,
-      },
-    });
-    if (fadeOutAnimation.scrollTrigger) {
-      triggers.push(fadeOutAnimation.scrollTrigger);
+      const fadeOutAnimation = gsap.to(textContent, {
+        opacity: 0,
+        ease: 'none',
+        scrollTrigger: {
+          trigger: middleCard,
+          start: 'top 60%',
+          end: 'top 40%',
+          scrub: 1,
+        },
+      });
+      if (fadeOutAnimation.scrollTrigger) {
+        triggers.push(fadeOutAnimation.scrollTrigger);
+      }
     }
 
     // Cleanup
@@ -121,20 +122,22 @@ const RankingAndAwards = () => {
       ref={wrapperRef}
       style={{
         position: 'relative',
-        minHeight: isMobile ? '220vh' : '300vh',
+        minHeight: isMobile ? 'auto' : '300vh',
         background: 'transparent',
         overflow: 'hidden',
       }}
     >
-      {/* Ranking and Awards - Pinned text */}
+      {/* Header — pinned only on desktop, in flow on mobile. */}
       <div
         ref={headerRef}
         style={{
-          position: 'absolute',
+          position: isMobile ? 'relative' : 'absolute',
           top: 0,
           left: 0,
           width: '100%',
-          height: '100vh',
+          height: isMobile ? 'auto' : '100vh',
+          minHeight: isMobile ? '70vh' : undefined,
+          padding: isMobile ? '40px 0' : undefined,
           display: 'flex',
           flexDirection: 'column',
           alignItems: 'center',
@@ -229,13 +232,12 @@ const RankingAndAwards = () => {
         </div>
       </div>
 
-      {/* Cards Container - in normal flow so it pushes the wrapper tall
-          enough to fit all cards (prevents the bottom row from being clipped
-          by overflow:hidden and the CTA banner crashing into it on mobile). */}
+      {/* Cards Container — stack normally on mobile, slide-over-pinned-header on desktop. */}
       <div
         style={{
           position: 'relative',
-          marginTop: isMobile ? '70vh' : '120vh',
+          marginTop: isMobile ? '0' : '120vh',
+          paddingTop: isMobile ? '20px' : '0',
           paddingBottom: isMobile ? '8vh' : '12vh',
           width: '100%',
           zIndex: 20,
