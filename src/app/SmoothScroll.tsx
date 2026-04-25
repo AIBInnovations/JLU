@@ -40,6 +40,15 @@ export default function SmoothScroll() {
   useEffect(() => {
     if (!isReady) return;
 
+    // Skip Lenis on touch devices and users who prefer reduced motion.
+    // On mobile, Lenis's RAF loop + `scroll-behavior: auto !important` (from lenis.css)
+    // forces scroll off the compositor thread and breaks native momentum, causing jitter.
+    const isTouch = typeof window !== 'undefined' && window.matchMedia('(pointer: coarse)').matches;
+    const reducedMotion = typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (isTouch || reducedMotion) {
+      return;
+    }
+
     const saved = getSavedScroll();
 
     const lenis = new Lenis({
