@@ -40,10 +40,15 @@ export const Hero = () => {
   // Track image loading state
   const [imagesLoaded, setImagesLoaded] = useState(false);
 
-  // Parallax — direct DOM mutation via GSAP quickSetter (no React re-renders)
+  // Parallax — desktop only. On mobile we skip it: the previous values were
+  // a barely-perceptible bg shift (0.3) and zero building movement, while the
+  // scroll listener still fired on every Lenis/native scroll tick and ran a
+  // separate rAF chain. Net cost > visual benefit on phones.
   useEffect(() => {
-    const backgroundSpeed = isMobile ? 0.3 : 0.5;
-    const buildingSpeed = isMobile ? 0 : -0.07;
+    if (isMobile) return;
+
+    const backgroundSpeed = 0.5;
+    const buildingSpeed = -0.07;
     const maxParallax = -25;
 
     const bgSetter = backgroundRef.current

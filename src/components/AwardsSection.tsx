@@ -144,13 +144,15 @@ export const AwardsSection = () => {
         }}
       >
         <div ref={textContentRef} style={{ position: 'relative', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-          {/* Circular rotating marquee text */}
+          {/* Circular rotating marquee text — desktop only. The continuous
+              CSS rotation forces repaints of a large SVG every frame, which
+              competes with scroll on mobile and produces visible jitter. */}
           <div
             style={{
               position: 'absolute',
               width: isMobile ? '400px' : '750px',
               height: isMobile ? '400px' : '750px',
-              animation: 'awards-spin 25s linear infinite',
+              animation: isMobile ? 'none' : 'awards-spin 25s linear infinite',
               pointerEvents: 'none',
             }}
           >

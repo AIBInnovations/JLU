@@ -27,18 +27,16 @@ export default function SmoothScroll() {
     const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     if (reducedMotion) return;
 
+    // Mobile = let native hardware scroll handle touch (Android Chrome and
+    // iOS Safari both have hardware-accelerated touch scrolling that beats
+    // any JS-driven scroll). Lenis stays loaded so ScrollTrigger animations
+    // still get scroll events, but it does NOT intercept touch — that's what
+    // was saturating the main thread on Android.
+    // Desktop = smooth wheel via Lenis.
     const lenis = new Lenis({
-      // lerp drives frame-based smoothing. Lower = more glide between frames,
-      // which feels smoother on mobile without going so low that scroll lags
-      // behind the finger.
-      lerp: 0.08,
+      lerp: 0.1,
       smoothWheel: true,
-      // syncTouch makes finger swipes feed Lenis instead of native scroll,
-      // so short and long swipes both produce one consistent smooth motion.
-      syncTouch: true,
-      syncTouchLerp: 0.05,
-      touchInertiaExponent: 1.9,
-      touchMultiplier: 1.4,
+      syncTouch: false,
     });
     lenisRef.current = lenis;
 
