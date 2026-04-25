@@ -485,8 +485,8 @@ export const ProgramDetail = ({ program }: ProgramDetailProps) => {
                   </div>
 
                   {/* Apply Button */}
-                  <Link
-                    href="/apply"
+                  <a
+                    href="https://apply.jlu.edu.in/"
                     className="mt-5 md:mt-8 w-full flex items-center justify-center gap-2 bg-[#027ea1] text-white font-semibold rounded-full hover:bg-[#025f7a] transition-colors"
                     style={{ padding: isMobile ? '10px 16px' : '16px 24px', fontSize: isMobile ? '12px' : '16px' }}
                   >
@@ -494,7 +494,7 @@ export const ProgramDetail = ({ program }: ProgramDetailProps) => {
                     <svg className="w-3.5 h-3.5 md:w-4 md:h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
                     </svg>
-                  </Link>
+                  </a>
 
                   {/* Download Brochure */}
                   <a

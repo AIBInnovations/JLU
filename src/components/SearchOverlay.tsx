@@ -209,7 +209,7 @@ export const SearchOverlay = ({ isOpen, onClose }: SearchOverlayProps) => {
     { title: 'Placements', href: '/placement' },
     { title: 'Scholarship', href: '/scholarship' },
     { title: 'Campus Life', href: '/campus-life' },
-    { title: 'Apply Now', href: '/apply' },
+    { title: 'Apply Now', href: 'https://apply.jlu.edu.in/' },
   ];
 
   return (

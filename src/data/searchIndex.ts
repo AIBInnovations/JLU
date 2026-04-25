@@ -24,7 +24,7 @@ const pages: SearchItem[] = [
   { title: 'Scholarship', description: 'Scholarship opportunities and financial aid', href: '/scholarship', category: 'Page' },
   { title: 'Freeship', description: 'Chancellor freeship and merit-based fee waivers', href: '/freeship', category: 'Page' },
   { title: 'Loan Assistance', description: 'Education loan support and guidance', href: '/loan-assistance', category: 'Page' },
-  { title: 'Apply Now', description: 'Start your application to JLU', href: '/apply', category: 'Page' },
+  { title: 'Apply Now', description: 'Start your application to JLU', href: 'https://apply.jlu.edu.in/', category: 'Page' },
   { title: 'Talk to Advisor', description: 'Connect with an admission advisor', href: '/talk-to-advisor', category: 'Page' },
   { title: 'Alumni', description: 'Alumni network and success stories', href: '/alumni', category: 'Page' },
   { title: 'Student Clubs', description: 'Explore student clubs and organizations', href: '/student-clubs', category: 'Page' },

@@ -481,7 +481,7 @@ const MenuOverlay = ({ isOpen, onClose, menuButtonRef }: MenuOverlayProps) => {
 
                     {/* Quick Actions */}
                     <div className={`grid gap-3 ${isTablet && !isMobile ? 'grid-cols-3' : 'grid-cols-2'}`}>
-                      <Link href="/apply" onClick={onClose}>
+                      <a href="https://apply.jlu.edu.in/" onClick={onClose}>
                         <motion.div
                           initial={{ opacity: 0, y: 8 }}
                           animate={{ opacity: 1, y: 0 }}
@@ -490,7 +490,7 @@ const MenuOverlay = ({ isOpen, onClose, menuButtonRef }: MenuOverlayProps) => {
                         >
                           Apply Now
                         </motion.div>
-                      </Link>
+                      </a>
                       <motion.a
                         href="https://panel123.s3.ap-south-1.amazonaws.com/360JLU/index.html"
                         target="_blank"
@@ -795,9 +795,9 @@ const MenuOverlay = ({ isOpen, onClose, menuButtonRef }: MenuOverlayProps) => {
                               Quick Actions
                             </p>
                             <div className="flex gap-2">
-                              <Link href="/apply" onClick={onClose} className="bg-[#027ea1] text-white font-normal py-2 px-4 rounded-md hover:bg-[#026a88] transition-all shadow-sm hover:shadow-md text-center text-xs cursor-pointer whitespace-nowrap">
+                              <a href="https://apply.jlu.edu.in/" onClick={onClose} className="bg-[#027ea1] text-white font-normal py-2 px-4 rounded-md hover:bg-[#026a88] transition-all shadow-sm hover:shadow-md text-center text-xs cursor-pointer whitespace-nowrap">
                                 Apply Now
-                              </Link>
+                              </a>
                               <a
                                 href="https://panel123.s3.ap-south-1.amazonaws.com/360JLU/index.html"
                                 target="_blank"
@@ -839,9 +839,9 @@ const MenuOverlay = ({ isOpen, onClose, menuButtonRef }: MenuOverlayProps) => {
                             Quick Actions
                           </p>
                           <div className="flex gap-2">
-                            <Link href="/apply" onClick={onClose} className="bg-[#027ea1] text-white font-normal py-2 px-4 rounded-md hover:bg-[#026a88] transition-all shadow-sm hover:shadow-md text-center text-xs cursor-pointer whitespace-nowrap">
+                            <a href="https://apply.jlu.edu.in/" onClick={onClose} className="bg-[#027ea1] text-white font-normal py-2 px-4 rounded-md hover:bg-[#026a88] transition-all shadow-sm hover:shadow-md text-center text-xs cursor-pointer whitespace-nowrap">
                               Apply Now
-                            </Link>
+                            </a>
                             <a
                               href="https://panel123.s3.ap-south-1.amazonaws.com/360JLU/index.html"
                               target="_blank"

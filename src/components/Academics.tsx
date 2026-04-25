@@ -1165,15 +1165,15 @@ const Academics = () => {
 
                 {/* CTA Buttons */}
                 <div className="space-y-3">
-                  <Link
-                    href="/apply"
+                  <a
+                    href="https://apply.jlu.edu.in/"
                     className="w-full flex items-center justify-center gap-2 px-6 py-4 bg-[#027ea1] text-white font-semibold rounded-full hover:bg-[#025f7a] transition-colors"
                   >
                     Apply Now
                     <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
                     </svg>
-                  </Link>
+                  </a>
                 </div>
               </div>
             </motion.div>

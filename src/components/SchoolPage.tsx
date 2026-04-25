@@ -619,13 +619,13 @@ export const SchoolPage = ({ school, faculty }: SchoolPageProps) => {
                 Join {school.name} and be part of a transformative educational experience that prepares you for the future.
               </p>
               <div className="flex flex-col sm:flex-row gap-3">
-                <Link
-                  href="/apply"
+                <a
+                  href="https://apply.jlu.edu.in/"
                   className="px-6 sm:px-8 py-3 sm:py-4 rounded-full font-semibold hover:scale-105 transition-transform text-sm text-center"
                   style={{ backgroundColor: '#21313c', color: '#ffffff' }}
                 >
                   Apply Now
-                </Link>
+                </a>
                 <Link
                   href="/admissions"
                   className="px-6 sm:px-8 py-3 sm:py-4 rounded-full font-semibold hover:scale-105 transition-transform text-sm text-center border-2 border-[#21313c]/30 hover:border-[#21313c]"

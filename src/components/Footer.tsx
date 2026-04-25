@@ -110,7 +110,7 @@ export const Footer = () => {
                 <li><a href="/international-office" className="text-gray-300 text-xs hover:text-white transition-colors">International Office</a></li>
                 <li><a href="/alumni" className="text-gray-300 text-xs hover:text-white transition-colors">Alumni</a></li>
                 <li><a href="/news-events" className="text-gray-300 text-xs hover:text-white transition-colors">News & Events</a></li>
-                <li><a href="/apply" className="text-gray-300 text-xs hover:text-white transition-colors">Apply Now</a></li>
+                <li><a href="https://apply.jlu.edu.in/" className="text-gray-300 text-xs hover:text-white transition-colors">Apply Now</a></li>
               </ul>
             </div>
           </div>
@@ -251,7 +251,7 @@ export const Footer = () => {
                   <li><a href="/international-office" className="text-gray-300 text-sm hover:text-white transition-colors">International Office</a></li>
                   <li><a href="/alumni" className="text-gray-300 text-sm hover:text-white transition-colors">Alumni</a></li>
                   <li><a href="/news-events" className="text-gray-300 text-sm hover:text-white transition-colors">News & Events</a></li>
-                  <li><a href="/apply" className="text-gray-300 text-sm hover:text-white transition-colors">Apply Now</a></li>
+                  <li><a href="https://apply.jlu.edu.in/" className="text-gray-300 text-sm hover:text-white transition-colors">Apply Now</a></li>
                 </ul>
               </div>
               <div>
@@ -393,7 +393,7 @@ export const Footer = () => {
                     <li><a href="/international-office" className="text-gray-300 text-base hover:text-white transition-colors">International Office</a></li>
                     <li><a href="/alumni" className="text-gray-300 text-base hover:text-white transition-colors">Alumni</a></li>
                     <li><a href="/news-events" className="text-gray-300 text-base hover:text-white transition-colors">News & Events</a></li>
-                    <li><a href="/apply" className="text-gray-300 text-base hover:text-white transition-colors">Apply Now</a></li>
+                    <li><a href="https://apply.jlu.edu.in/" className="text-gray-300 text-base hover:text-white transition-colors">Apply Now</a></li>
                   </ul>
                 </div>
                 <div>

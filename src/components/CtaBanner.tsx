@@ -50,7 +50,7 @@ export const CtaBanner = () => {
           transition={{ duration: 0.6, delay: 0.3 }}
         >
           <motion.a
-            href="/apply"
+            href="https://apply.jlu.edu.in/"
             className="px-8 md:px-10 py-3 md:py-4 bg-[#027ea1] text-white font-semibold flex items-center justify-center gap-3 w-full sm:w-auto rounded-full"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.98 }}

@@ -1429,7 +1429,7 @@ const Admissions = () => {
 
           {/* Apply Now Button */}
           <motion.a
-            href="/apply"
+            href="https://apply.jlu.edu.in/"
             className="inline-flex items-center gap-3 mt-8 px-8 py-4 bg-[#027ea1] text-white font-semibold rounded-full shadow-lg hover:bg-[#026a88] transition-colors"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -1668,7 +1668,7 @@ const Admissions = () => {
                 </div>
 
                 {/* Apply CTA — pushed to bottom */}
-                <Link href="/apply" className="block mt-auto pt-8">
+                <a href="https://apply.jlu.edu.in/" className="block mt-auto pt-8">
                   <motion.div
                     className="w-full py-4 bg-[#21313c] text-white font-semibold rounded-xl text-center flex items-center justify-center gap-3 hover:bg-[#2a3f4c] transition-colors cursor-pointer"
                     whileHover={{ scale: 1.01 }}
@@ -1679,7 +1679,7 @@ const Admissions = () => {
                       <path d="M5 12h14M12 5l7 7-7 7" strokeLinecap="round" strokeLinejoin="round"/>
                     </svg>
                   </motion.div>
-                </Link>
+                </a>
               </div>
             </motion.div>
 
@@ -2886,7 +2886,7 @@ const Admissions = () => {
             transition={{ duration: 0.6, delay: 0.3 }}
           >
             <motion.a
-              href="/apply"
+              href="https://apply.jlu.edu.in/"
               className="px-8 md:px-10 py-3 md:py-4 bg-[#027ea1] text-white font-semibold flex items-center justify-center gap-3 w-full sm:w-auto rounded-full"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.98 }}

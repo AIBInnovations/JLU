@@ -530,7 +530,7 @@ export default function JLUxPage() {
             </p>
           </motion.div>
           <div className="flex flex-col sm:flex-row items-center gap-4 md:gap-6 w-full sm:w-auto">
-            <a href="/apply" className="px-8 md:px-10 py-3 md:py-4 bg-[#027ea1] text-white font-semibold flex items-center justify-center gap-3 w-full sm:w-auto rounded-full">
+            <a href="https://apply.jlu.edu.in/" className="px-8 md:px-10 py-3 md:py-4 bg-[#027ea1] text-white font-semibold flex items-center justify-center gap-3 w-full sm:w-auto rounded-full">
               Apply Now <span>→</span>
             </a>
             <a href="/admissions" className="px-8 md:px-10 py-3 md:py-4 bg-transparent border border-white/50 text-white font-medium w-full sm:w-auto rounded-full text-center">

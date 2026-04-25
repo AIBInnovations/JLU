@@ -313,9 +313,9 @@ export default function JluAtAGlancePage() {
             2,500+ students from 25+ states. 45+ global partners.<br/>One university built for the world of tomorrow.
           </p>
           <div className="flex flex-wrap gap-4 justify-center">
-            <Link href="/admissions" className="px-8 py-3.5 rounded-full text-sm font-bold hover:opacity-90 transition-opacity" style={{ background: '#027ea1', color: '#ffffff', textDecoration: 'none' }}>
+            <a href="https://apply.jlu.edu.in/" className="px-8 py-3.5 rounded-full text-sm font-bold hover:opacity-90 transition-opacity" style={{ background: '#027ea1', color: '#ffffff', textDecoration: 'none' }}>
               Apply Now
-            </Link>
+            </a>
             <Link href="/programs" className="px-8 py-3.5 rounded-full text-sm font-bold border hover:opacity-90 transition-opacity" style={{ color: 'white', textDecoration: 'none', borderColor: 'rgba(255,255,255,0.2)' }}>
               Explore Programmes
             </Link>
