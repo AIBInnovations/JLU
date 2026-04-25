@@ -4,6 +4,15 @@ import { useEffect, useState, useRef } from 'react';
 import { usePathname } from 'next/navigation';
 import Lenis from 'lenis';
 import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+if (typeof window !== 'undefined') {
+  gsap.registerPlugin(ScrollTrigger);
+  // Stop ScrollTrigger from recalculating pins (and thus resetting scroll
+  // position) every time the iOS Safari / Chrome Android URL bar hides or
+  // shows — that's why scroll was snapping back to the Hero.
+  ScrollTrigger.config({ ignoreMobileResize: true });
+}
 
 export default function SmoothScroll() {
   const [isReady, setIsReady] = useState(false);
