@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState, useRef } from 'react';
+import { useEffect, useRef } from 'react';
 import { usePathname } from 'next/navigation';
 import Lenis from 'lenis';
 import { gsap } from 'gsap';
@@ -15,82 +15,62 @@ if (typeof window !== 'undefined') {
 }
 
 export default function SmoothScroll() {
-  const [isReady, setIsReady] = useState(false);
   const lenisRef = useRef<Lenis | null>(null);
   const pathname = usePathname();
 
-  // Get saved scroll position immediately
-  const getSavedScroll = () => {
-    try {
-      return Number(sessionStorage.getItem('scrollPos_' + pathname) || '0');
-    } catch {
-      return 0;
-    }
-  };
-
-  // On mount: set scroll position immediately before paint
   useEffect(() => {
     if ('scrollRestoration' in history) {
       history.scrollRestoration = 'manual';
     }
-    const saved = getSavedScroll();
-    if (saved > 0) {
-      window.scrollTo(0, saved);
-    }
 
-    const timer = setTimeout(() => {
-      setIsReady(true);
-    }, 100);
-
-    return () => clearTimeout(timer);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
-  useEffect(() => {
-    if (!isReady) return;
-
-    // Skip Lenis on any touch-capable / small-viewport device and reduced-motion users.
-    // Lenis's RAF + `scroll-behavior: auto !important` (from lenis.css) forces scroll
-    // off the compositor thread and breaks native momentum on mobile, freezing the page.
-    if (typeof window !== 'undefined') {
-      const coarsePointer = window.matchMedia('(pointer: coarse)').matches;
-      const hasTouch = 'ontouchstart' in window || (navigator?.maxTouchPoints ?? 0) > 0;
-      const smallViewport = window.matchMedia('(max-width: 1024px)').matches;
-      const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-      if (coarsePointer || hasTouch || smallViewport || reducedMotion) {
-        return;
-      }
-    }
-
-    const saved = getSavedScroll();
+    // Honor reduced-motion users — keep native scroll, no smoothing.
+    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (reducedMotion) return;
 
     const lenis = new Lenis({
-      duration: 1.2,
-      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+      // lerp drives frame-based smoothing — a single value works for both
+      // wheel and touch and keeps perceived motion at ~60fps.
+      lerp: 0.1,
       smoothWheel: true,
+      // syncTouch makes finger swipes feed Lenis instead of native scroll,
+      // so short and long swipes both produce one consistent smooth motion.
+      syncTouch: true,
+      syncTouchLerp: 0.075,
+      touchInertiaExponent: 1.7,
+      touchMultiplier: 1.5,
     });
-
     lenisRef.current = lenis;
 
-    // Restore scroll immediately after Lenis init
-    if (saved > 0) {
-      lenis.scrollTo(saved, { immediate: true });
-      sessionStorage.removeItem('scrollPos_' + pathname);
-    }
+    // Restore saved scroll immediately after Lenis init so refresh doesn't
+    // fight it.
+    try {
+      const saved = Number(sessionStorage.getItem('scrollPos_' + pathname) || '0');
+      if (saved > 0) {
+        lenis.scrollTo(saved, { immediate: true });
+        sessionStorage.removeItem('scrollPos_' + pathname);
+      }
+    } catch {}
 
-    // Drive Lenis through GSAP's ticker — one shared RAF loop
-    gsap.ticker.add((time) => {
+    // Tie GSAP ScrollTrigger to Lenis's scroll events so pinned/scrub
+    // animations stay in sync with Lenis's interpolated scroll position.
+    lenis.on('scroll', ScrollTrigger.update);
+
+    // Drive Lenis through GSAP's ticker — one shared RAF loop. Capture the
+    // callback so the cleanup can actually remove it (the previous version
+    // passed a fresh arrow function to remove and silently leaked the loop).
+    const tickerCb = (time: number) => {
       lenis.raf(time * 1000);
-    });
+    };
+    gsap.ticker.add(tickerCb);
     gsap.ticker.lagSmoothing(0);
 
     return () => {
-      gsap.ticker.remove((time) => lenis.raf(time * 1000));
+      gsap.ticker.remove(tickerCb);
       lenis.destroy();
       lenisRef.current = null;
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [isReady]);
+  }, []);
 
   // Scroll to top only on actual route change
   const prevPathname = useRef(pathname);
