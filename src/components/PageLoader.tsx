@@ -1,203 +1,137 @@
-'use client';
-
-import { useEffect, useRef, useState } from 'react';
-import { gsap } from 'gsap';
+// Server component — renders into the initial HTML so it shows BEFORE
+// React hydrates and BEFORE any below-fold content can flash.
+// Removed by an inline <script> when `window.load` fires (all assets loaded)
+// or after a hard 8s safety timeout, whichever comes first.
 
 export default function PageLoader() {
-  const [isComplete, setIsComplete] = useState(false);
-  const loaderRef = useRef<HTMLDivElement>(null);
-  const leftPanelRef = useRef<HTMLDivElement>(null);
-  const rightPanelRef = useRef<HTMLDivElement>(null);
-  const textContainerRef = useRef<HTMLDivElement>(null);
-  const titleRef = useRef<HTMLDivElement>(null);
-  const subtitleRef = useRef<HTMLDivElement>(null);
-  const lineRef = useRef<HTMLDivElement>(null);
-  const counterRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    if (isComplete) return;
-
-    const tl = gsap.timeline({
-      defaults: {
-        ease: 'cubic-bezier(0.77, 0, 0.175, 1)',
-      },
-      onComplete: () => {
-        setTimeout(() => setIsComplete(true), 300);
-      },
-    });
-
-    // Counter animation
-    const counter = { value: 0 };
-    tl.to(
-      counter,
-      {
-        value: 100,
-        duration: 2.5,
-        ease: 'power2.inOut',
-        onUpdate: function () {
-          if (counterRef.current) {
-            counterRef.current.textContent = Math.round(counter.value).toString().padStart(2, '0');
-          }
-        },
-      },
-      0
-    );
-
-    // Line expansion
-    tl.fromTo(
-      lineRef.current,
-      { scaleX: 0, transformOrigin: 'left' },
-      { scaleX: 1, duration: 2.5, ease: 'power2.inOut' },
-      0
-    );
-
-    // Title reveal - split text effect
-    tl.fromTo(
-      titleRef.current,
-      { y: 100, opacity: 0 },
-      { y: 0, opacity: 1, duration: 1.2, ease: 'power3.out' },
-      0.3
-    );
-
-    // Subtitle reveal
-    tl.fromTo(
-      subtitleRef.current,
-      { y: 30, opacity: 0 },
-      { y: 0, opacity: 1, duration: 1, ease: 'power2.out' },
-      0.6
-    );
-
-    // Hold for a moment
-    tl.to({}, { duration: 0.5 });
-
-    // Exit animation - split panels
-    tl.to(
-      textContainerRef.current,
-      {
-        opacity: 0,
-        y: -50,
-        duration: 0.8,
-        ease: 'power2.in',
-      },
-      '>'
-    );
-
-    tl.to(
-      [leftPanelRef.current, rightPanelRef.current],
-      {
-        scaleY: 0,
-        transformOrigin: 'top',
-        duration: 1.2,
-        stagger: 0.1,
-        ease: 'cubic-bezier(0.77, 0, 0.175, 1)',
-      },
-      '-=0.4'
-    );
-
-    return () => {
-      tl.kill();
-    };
-  }, [isComplete]);
-
-  if (isComplete) return null;
-
   return (
-    <div
-      ref={loaderRef}
-      className="fixed inset-0 z-99999 flex items-center justify-center"
-      style={{ fontFamily: "'Inter', 'Helvetica Neue', sans-serif" }}
-    >
-      {/* Left Panel */}
+    <>
       <div
-        ref={leftPanelRef}
-        className="absolute top-0 left-0 w-1/2 h-full bg-[#f5f5f0]"
-        style={{ transformOrigin: 'top' }}
-      />
-
-      {/* Right Panel */}
-      <div
-        ref={rightPanelRef}
-        className="absolute top-0 right-0 w-1/2 h-full bg-[#f5f5f0]"
-        style={{ transformOrigin: 'top' }}
-      />
-
-      {/* Content Container */}
-      <div
-        ref={textContainerRef}
-        className="relative z-10 flex flex-col items-center justify-center"
+        id="page-loader"
+        aria-hidden="true"
+        style={{
+          position: 'fixed',
+          inset: 0,
+          zIndex: 99999,
+          backgroundColor: '#f6f7f0',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          flexDirection: 'column',
+          transition: 'opacity 0.5s ease',
+          willChange: 'opacity',
+        }}
       >
-        {/* Counter */}
-        <div
-          ref={counterRef}
-          className="absolute -top-20 text-[14px] tracking-[0.3em] font-light"
-          style={{ color: '#999' }}
-        >
-          00
-        </div>
+        {/* Editorial corner ticks — matches the site's minimal vibe */}
+        <span style={{ position: 'absolute', top: 24, left: 24, width: 18, height: 18, borderTop: '1px solid #21313c', borderLeft: '1px solid #21313c', opacity: 0.4 }} />
+        <span style={{ position: 'absolute', top: 24, right: 24, width: 18, height: 18, borderTop: '1px solid #21313c', borderRight: '1px solid #21313c', opacity: 0.4 }} />
+        <span style={{ position: 'absolute', bottom: 24, left: 24, width: 18, height: 18, borderBottom: '1px solid #21313c', borderLeft: '1px solid #21313c', opacity: 0.4 }} />
+        <span style={{ position: 'absolute', bottom: 24, right: 24, width: 18, height: 18, borderBottom: '1px solid #21313c', borderRight: '1px solid #21313c', opacity: 0.4 }} />
 
-        {/* Main Title */}
-        <div className="overflow-hidden">
-          <div
-            ref={titleRef}
-            className="text-[clamp(48px,8vw,120px)] font-bold tracking-widest"
-            style={{
-              fontWeight: 700,
-              lineHeight: 1,
-              color: '#0a0a0a',
-            }}
-          >
-            JAGRAN LAKECITY
-          </div>
-        </div>
-
-        {/* Expanding Line */}
+        {/* Wordmark — matches site typography (Inter + italic Times Roman) */}
         <div
-          ref={lineRef}
-          className="w-75 h-0.5 bg-[#0a0a0a] my-8"
           style={{
-            transformOrigin: 'left',
+            color: '#21313c',
+            fontFamily: 'Inter, system-ui, sans-serif',
+            fontWeight: 600,
+            fontSize: 'clamp(1.5rem, 4vw, 2.75rem)',
+            letterSpacing: '0.01em',
+            lineHeight: 1.1,
+            textAlign: 'center',
+            padding: '0 1.5rem',
           }}
-        />
-
-        {/* Subtitle */}
-        <div className="overflow-hidden">
-          <div
-            ref={subtitleRef}
-            className="text-[clamp(14px,1.5vw,18px)] tracking-[0.3em] font-light uppercase"
-            style={{
-              color: '#0a0a0a',
-            }}
-          >
+        >
+          Jagran Lakecity{' '}
+          <span style={{ fontFamily: "'Times New Roman', serif", fontStyle: 'italic', fontWeight: 400 }}>
             University
-          </div>
+          </span>
+        </div>
+
+        {/* Hairline progress track */}
+        <div
+          style={{
+            width: 'min(220px, 50vw)',
+            height: 1,
+            backgroundColor: 'rgba(33, 49, 60, 0.15)',
+            marginTop: '2.25rem',
+            overflow: 'hidden',
+            position: 'relative',
+          }}
+        >
+          <div
+            id="page-loader-bar"
+            style={{
+              height: '100%',
+              width: '100%',
+              backgroundColor: '#027ea1',
+              transform: 'scaleX(0)',
+              transformOrigin: 'left center',
+              willChange: 'transform',
+            }}
+          />
+        </div>
+
+        {/* Bottom marker */}
+        <div
+          style={{
+            position: 'absolute',
+            bottom: '3rem',
+            color: '#999',
+            fontFamily: 'Inter, system-ui, sans-serif',
+            fontSize: 10,
+            letterSpacing: '0.3em',
+            textTransform: 'uppercase',
+            fontWeight: 500,
+          }}
+        >
+          Loading
         </div>
       </div>
 
-      {/* Corner Marks - Minimal editorial style */}
-      <div className="absolute top-8 left-8 w-8 h-8">
-        <div className="absolute top-0 left-0 w-full h-px bg-[#0a0a0a]" />
-        <div className="absolute top-0 left-0 w-px h-full bg-[#0a0a0a]" />
-      </div>
-      <div className="absolute top-8 right-8 w-8 h-8">
-        <div className="absolute top-0 right-0 w-full h-px bg-[#0a0a0a]" />
-        <div className="absolute top-0 right-0 w-px h-full bg-[#0a0a0a]" />
-      </div>
-      <div className="absolute bottom-8 left-8 w-8 h-8">
-        <div className="absolute bottom-0 left-0 w-full h-px bg-[#0a0a0a]" />
-        <div className="absolute bottom-0 left-0 w-px h-full bg-[#0a0a0a]" />
-      </div>
-      <div className="absolute bottom-8 right-8 w-8 h-8">
-        <div className="absolute bottom-0 right-0 w-full h-px bg-[#0a0a0a]" />
-        <div className="absolute bottom-0 right-0 w-px h-full bg-[#0a0a0a]" />
-      </div>
-
-      {/* Bottom text */}
-      <div
-        className="absolute bottom-12 text-[10px] tracking-[0.3em] font-light uppercase"
-        style={{ color: '#0a0a0a', mixBlendMode: 'difference' }}
-      >
-        Experience Excellence
-      </div>
-    </div>
+      {/* Inline removal script.
+         - Locks scroll while loader is up (`body.loading` + `overflow:hidden`).
+         - Animates a progress bar that eases toward 90% over 8s.
+         - Snaps to 100% and fades out when window.load fires (all assets ready).
+         - 8 s safety timeout so the loader can never get stuck. */}
+      <script
+        dangerouslySetInnerHTML={{
+          __html: `(function(){
+var L=document.getElementById('page-loader'),
+    B=document.getElementById('page-loader-bar'),
+    start=Date.now(),
+    done=false,
+    MIN=600,MAX=8000;
+document.body.classList.add('loading');
+function tick(){
+  if(done)return;
+  var e=Date.now()-start,
+      p=Math.min(1,e/MAX),
+      eased=1-Math.pow(1-p,2.2);
+  if(B)B.style.transform='scaleX('+Math.min(0.9,eased)+')';
+  requestAnimationFrame(tick);
+}
+requestAnimationFrame(tick);
+function exit(){
+  if(done)return;
+  done=true;
+  var wait=Math.max(0,MIN-(Date.now()-start));
+  setTimeout(function(){
+    if(B){B.style.transition='transform 0.35s ease-out';B.style.transform='scaleX(1)';}
+    setTimeout(function(){
+      if(L)L.style.opacity='0';
+      setTimeout(function(){
+        if(L&&L.parentNode)L.parentNode.removeChild(L);
+        document.body.classList.remove('loading');
+      },520);
+    },280);
+  },wait);
+}
+if(document.readyState==='complete')exit();
+else window.addEventListener('load',exit,{once:true});
+setTimeout(exit,MAX);
+})();`,
+        }}
+      />
+    </>
   );
 }

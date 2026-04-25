@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import { inter, anton, humane } from './fonts';
 import SmoothScroll from './SmoothScroll';
+import PageLoader from '../components/PageLoader';
 import { Header } from '../components/Header';
 import { GlobalWidgets } from '../components/GlobalWidgets';
 import '../index.css';
@@ -27,6 +28,7 @@ export default function RootLayout({
         />
       </head>
       <body className={inter.className}>
+        <PageLoader />
         <SmoothScroll />
         <Header />
         {children}
