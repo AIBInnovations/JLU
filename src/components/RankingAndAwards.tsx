@@ -121,7 +121,7 @@ const RankingAndAwards = () => {
       ref={wrapperRef}
       style={{
         position: 'relative',
-        height: isMobile ? '220vh' : '300vh',
+        minHeight: isMobile ? '220vh' : '300vh',
         background: 'transparent',
         overflow: 'hidden',
       }}
@@ -227,12 +227,14 @@ const RankingAndAwards = () => {
         </div>
       </div>
 
-      {/* Cards Container - Scrolls over */}
+      {/* Cards Container - in normal flow so it pushes the wrapper tall
+          enough to fit all cards (prevents the bottom row from being clipped
+          by overflow:hidden and the CTA banner crashing into it on mobile). */}
       <div
         style={{
-          position: 'absolute',
-          top: isMobile ? '70vh' : '120vh',
-          left: 0,
+          position: 'relative',
+          marginTop: isMobile ? '70vh' : '120vh',
+          paddingBottom: isMobile ? '8vh' : '12vh',
           width: '100%',
           zIndex: 20,
           background: 'transparent',

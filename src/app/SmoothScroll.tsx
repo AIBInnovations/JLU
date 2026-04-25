@@ -28,16 +28,17 @@ export default function SmoothScroll() {
     if (reducedMotion) return;
 
     const lenis = new Lenis({
-      // lerp drives frame-based smoothing — a single value works for both
-      // wheel and touch and keeps perceived motion at ~60fps.
-      lerp: 0.1,
+      // lerp drives frame-based smoothing. Lower = more glide between frames,
+      // which feels smoother on mobile without going so low that scroll lags
+      // behind the finger.
+      lerp: 0.08,
       smoothWheel: true,
       // syncTouch makes finger swipes feed Lenis instead of native scroll,
       // so short and long swipes both produce one consistent smooth motion.
       syncTouch: true,
-      syncTouchLerp: 0.075,
-      touchInertiaExponent: 1.7,
-      touchMultiplier: 1.5,
+      syncTouchLerp: 0.05,
+      touchInertiaExponent: 1.9,
+      touchMultiplier: 1.4,
     });
     lenisRef.current = lenis;
 
