@@ -66,6 +66,15 @@
     /* Lenis owns scroll on every device now. Don't fight it with
        scroll-behavior: smooth — Lenis already handles smoothing. */
 
+    /* backdrop-filter forces the GPU to re-rasterize what's behind the
+       element on every paint that affects its area, including every scroll
+       tick when the area moves. On mid-range mobile GPUs this costs more
+       than any visual benefit it provides — drop it on phones. */
+    *, *::before, *::after {
+      backdrop-filter: none !important;
+      -webkit-backdrop-filter: none !important;
+    }
+
     /* Hide scrollbar on mobile for cleaner look */
     ::-webkit-scrollbar {
       width: 0;

@@ -51,6 +51,22 @@ export const PassionSection = () => {
       }
     });
 
+    // Mobile: skip the pin + scrub-driven 3-panel reveal entirely. Pinning
+    // for 3 viewport heights with a scrub timeline driving clip-path
+    // animations was the main reason scroll felt stuck on phones. Mobile
+    // gets a simple auto-cycling reveal of all three panels instead — no
+    // pin, no scrub, native scroll glides past it.
+    if (isMobile) {
+      if (panel2Ref.current) gsap.set(panel2Ref.current, { clipPath: 'inset(0% 0 0 0)' });
+      if (panel3Ref.current) gsap.set(panel3Ref.current, { clipPath: 'inset(0% 0 0 0)' });
+      let i = 0;
+      const cycle = setInterval(() => {
+        i = (i + 1) % 3;
+        setCurrentText(i);
+      }, 3500);
+      return () => clearInterval(cycle);
+    }
+
     const container = containerRef.current;
 
     // Initial state - container is small and centered
@@ -174,7 +190,7 @@ export const PassionSection = () => {
     <div
       ref={wrapperRef}
       className="relative"
-      style={{ height: '400vh' }}
+      style={{ height: isMobile ? '100vh' : '400vh' }}
     >
       {/* Main container that scales and pins */}
       <div

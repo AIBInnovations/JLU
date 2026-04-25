@@ -28,6 +28,23 @@ export const PartnersSection = () => {
       const lines = textRef.current!.querySelectorAll('.partner-text-line > span');
       gsap.set(lines, { y: '100%' });
 
+      // Mobile: one fire-once stagger instead of 4 scrubs evaluating per
+      // scroll tick. Desktop keeps the original scroll-tied reveal.
+      if (isMobile) {
+        gsap.to(lines, {
+          y: '0%',
+          duration: 0.7,
+          stagger: 0.05,
+          ease: 'power2.out',
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: 'top 85%',
+            toggleActions: 'play none none none',
+          },
+        });
+        return;
+      }
+
       lines.forEach((line, index) => {
         const startPercent = 100 - (index * 3);
         const endPercent = 40 - (index * 3);
@@ -51,7 +68,7 @@ export const PartnersSection = () => {
       gsap.killTweensOf('*');
       ScrollTrigger.refresh();
     };
-  }, [mounted]);
+  }, [mounted, isMobile]);
 
   return (
     <section ref={sectionRef} className="bg-[#f6f7f0] py-8 md:py-16 2xl:py-24">

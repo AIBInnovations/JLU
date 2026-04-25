@@ -27,43 +27,20 @@ export default function SmoothScroll() {
     const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     if (reducedMotion) return;
 
-    // Mobile = let native hardware scroll handle touch (Android Chrome and
-    // iOS Safari both have hardware-accelerated touch scrolling that beats
-    // any JS-driven scroll). Lenis stays loaded so ScrollTrigger animations
-    // still get scroll events, but it does NOT intercept touch — that's what
-    // was saturating the main thread on Android.
-    // Desktop = smooth wheel via Lenis.
+    // Lenis-driven smooth scroll on every device. syncTouch routes finger
+    // swipes through Lenis's interpolation so short flicks and long drags
+    // produce the same smooth motion. The per-tick main-thread cost of this
+    // is only manageable because the heavy mobile scrub animations have been
+    // dropped (see AlumniSection / PassionSection / PartnersSection).
     const lenis = new Lenis({
       lerp: 0.1,
       smoothWheel: true,
-      syncTouch: false,
+      syncTouch: true,
+      syncTouchLerp: 0.075,
+      touchInertiaExponent: 1.8,
+      touchMultiplier: 1.5,
     });
     lenisRef.current = lenis;
-
-    // Diagnostic logging — gated by ?debug=1 so it never logs for real users.
-    // Remove once the mobile-stuck investigation is closed.
-    if (
-      typeof window !== 'undefined' &&
-      new URL(window.location.href).searchParams.get('debug') === '1'
-    ) {
-      // eslint-disable-next-line no-console
-      console.log('[SmoothScroll] Lenis init', {
-        userAgent: navigator.userAgent,
-        innerWidth: window.innerWidth,
-        innerHeight: window.innerHeight,
-        devicePixelRatio: window.devicePixelRatio,
-        touchPoints: navigator.maxTouchPoints,
-        pointerCoarse: window.matchMedia('(pointer: coarse)').matches,
-      });
-      lenis.on('scroll', (e: { scroll: number; velocity: number; direction: number }) => {
-        // eslint-disable-next-line no-console
-        console.log('[SmoothScroll] scroll', {
-          scrollY: Math.round(e.scroll),
-          velocity: e.velocity?.toFixed(2),
-          dir: e.direction,
-        });
-      });
-    }
 
     // Restore saved scroll immediately after Lenis init so refresh doesn't
     // fight it.
