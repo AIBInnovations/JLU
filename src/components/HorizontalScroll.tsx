@@ -112,66 +112,10 @@ export const HorizontalScroll = () => {
     };
   }, [mounted, isMobile]);
 
-  // Mobile: Three rows with horizontal scroll
-  useEffect(() => {
-    if (!mounted || !isMobile || !containerRef.current) return;
-    if (!row1Ref.current || !row2Ref.current || !row3Ref.current) return;
-
-    const section = containerRef.current;
-    const animations: gsap.core.Tween[] = [];
-
-    // Animate Row 1
-    const row1ScrollDistance = row1Ref.current.scrollWidth - window.innerWidth + 50;
-    animations.push(gsap.to(row1Ref.current, {
-      x: -row1ScrollDistance,
-      ease: 'none',
-      scrollTrigger: {
-        trigger: section,
-        start: 'top top',
-        end: () => `+=${row1ScrollDistance + window.innerHeight * 0.3}`,
-        scrub: true,
-        pin: false,
-        invalidateOnRefresh: true,
-      },
-    }));
-
-    // Animate Row 2
-    const row2ScrollDistance = row2Ref.current.scrollWidth - window.innerWidth + 50;
-    animations.push(gsap.to(row2Ref.current, {
-      x: -row2ScrollDistance,
-      ease: 'none',
-      scrollTrigger: {
-        trigger: section,
-        start: 'top top',
-        end: () => `+=${row2ScrollDistance + window.innerHeight * 0.6}`,
-        scrub: true,
-        pin: false,
-        invalidateOnRefresh: true,
-      },
-    }));
-
-    // Animate Row 3
-    const row3ScrollDistance = row3Ref.current.scrollWidth - window.innerWidth + 50;
-    animations.push(gsap.to(row3Ref.current, {
-      x: -row3ScrollDistance,
-      ease: 'none',
-      scrollTrigger: {
-        trigger: section,
-        start: 'top top',
-        end: () => `+=${row3ScrollDistance + window.innerHeight * 0.8}`,
-        scrub: true,
-        pin: false,
-        invalidateOnRefresh: true,
-      },
-    }));
-
-    return () => {
-      animations.forEach(anim => anim.scrollTrigger?.kill());
-      ScrollTrigger.getAll().forEach((t) => t.kill());
-      gsap.killTweensOf('*');
-      ScrollTrigger.refresh();
-    };
-  }, [mounted, isMobile]);
+  // Mobile: NO ScrollTrigger animations. The 3 rows are rendered as native
+  // overflow-x: auto strips — user can swipe each row horizontally on its
+  // own. Vertical page scroll is completely uninterrupted (no pins, no
+  // scrubs, no transforms tied to scrollY) so it stays at native 60fps.
 
   const renderCard = (card: typeof cards[0], index: number) => (
     <div
@@ -266,27 +210,53 @@ export const HorizontalScroll = () => {
       style={{ height: isMobile ? 'auto' : '100vh', minHeight: isMobile ? '100vh' : 'auto' }}
     >
       {isMobile ? (
-        // Mobile: Three rows layout
+        // Mobile: native horizontally-scrollable strips. Each row has
+        // overflow-x: auto so the user swipes left/right inside the row;
+        // vertical page scroll is never tied to anything in this section.
         <div className="py-2" style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
-          {/* Row 1 */}
-          <div className="overflow-hidden">
-            <div ref={row1Ref} className="flex pl-4" style={{ gap: '12px' }}>
-              {row1Cards.map((card, index) => renderCard(card, index))}
-            </div>
+          <div
+            ref={row1Ref}
+            data-lenis-prevent
+            className="flex pl-4 pr-4"
+            style={{
+              gap: '12px',
+              overflowX: 'auto',
+              overflowY: 'hidden',
+              scrollbarWidth: 'none',
+              WebkitOverflowScrolling: 'touch',
+            }}
+          >
+            {row1Cards.map((card, index) => renderCard(card, index))}
           </div>
 
-          {/* Row 2 */}
-          <div className="overflow-hidden">
-            <div ref={row2Ref} className="flex pl-4" style={{ gap: '12px' }}>
-              {row2Cards.map((card, index) => renderCard(card, index + 3))}
-            </div>
+          <div
+            ref={row2Ref}
+            data-lenis-prevent
+            className="flex pl-4 pr-4"
+            style={{
+              gap: '12px',
+              overflowX: 'auto',
+              overflowY: 'hidden',
+              scrollbarWidth: 'none',
+              WebkitOverflowScrolling: 'touch',
+            }}
+          >
+            {row2Cards.map((card, index) => renderCard(card, index + 3))}
           </div>
 
-          {/* Row 3 */}
-          <div className="overflow-hidden">
-            <div ref={row3Ref} className="flex pl-4" style={{ gap: '12px' }}>
-              {row3Cards.map((card, index) => renderCard(card, index + 6))}
-            </div>
+          <div
+            ref={row3Ref}
+            data-lenis-prevent
+            className="flex pl-4 pr-4"
+            style={{
+              gap: '12px',
+              overflowX: 'auto',
+              overflowY: 'hidden',
+              scrollbarWidth: 'none',
+              WebkitOverflowScrolling: 'touch',
+            }}
+          >
+            {row3Cards.map((card, index) => renderCard(card, index + 6))}
           </div>
         </div>
       ) : (

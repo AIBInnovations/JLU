@@ -26,22 +26,36 @@ export default function SmoothScroll() {
     // Honor reduced-motion users.
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
 
-    // Mobile / any touch device: do NOT init Lenis. Native mobile scroll is
-    // hardware-accelerated 60fps by the OS — JS-driven smooth scroll on
-    // mobile cannot match it and only ever creates jitter, momentum
-    // overshoot ("teleport to bottom of page"), or laggy scroll. Lenis stays
-    // a desktop-wheel-only enhancement.
     const isTouch =
       'ontouchstart' in window ||
       (navigator?.maxTouchPoints ?? 0) > 0 ||
       window.matchMedia('(pointer: coarse)').matches;
-    if (isTouch) return;
 
-    const lenis = new Lenis({
-      lerp: 0.1,
-      smoothWheel: true,
-      syncTouch: false,
-    });
+    // Lenis on every device. Mobile config is deliberately conservative:
+    // - lerp 0.1 = smooth without floaty lag
+    // - syncTouch true so finger swipes feed Lenis (smooth Lenis-feel)
+    // - touchMultiplier 1.0 (NOT amplified) prevents momentum overshoots
+    //   that were teleporting scroll to the bottom of the page
+    // - touchInertiaExponent 1.4 = short, controlled inertia
+    // The cost of syncTouch is only payable because every scroll-tied
+    // animation on the mobile homepage has been removed (no pins, no
+    // scrubs, no continuous animations, no backdrop-filters).
+    const lenis = new Lenis(
+      isTouch
+        ? {
+            lerp: 0.1,
+            smoothWheel: true,
+            syncTouch: true,
+            syncTouchLerp: 0.075,
+            touchInertiaExponent: 1.4,
+            touchMultiplier: 1.0,
+          }
+        : {
+            lerp: 0.1,
+            smoothWheel: true,
+            syncTouch: false,
+          },
+    );
     lenisRef.current = lenis;
 
     try {

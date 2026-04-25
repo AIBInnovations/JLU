@@ -87,15 +87,18 @@ export const WhyJlu = () => {
   useEffect(() => {
     if (!mounted || !wrapperRef.current || !whyJluRef.current) return;
 
+    // Mobile: no pin, no scroll-tied filter — both eat frame budget for
+    // zero perceived gain on a small screen. Desktop keeps the pinned
+    // header + blur effect.
+    if (isMobile) return;
+
     const wrapper = wrapperRef.current;
     const whyJluSection = whyJluRef.current;
 
-    // Small delay to ensure DOM is ready after mobile/desktop switch
     const timeout = setTimeout(() => {
       ScrollTrigger.refresh();
     }, 100);
 
-    // Pin "WHY JLU?" text - it stays fixed while cards scroll over it
     const whyJluPin = ScrollTrigger.create({
       trigger: wrapper,
       start: 'top top',
@@ -104,7 +107,6 @@ export const WhyJlu = () => {
       pinSpacing: false,
     });
 
-    // Blur only background images as cards scroll up (desktop only)
     const bgImagesEl = bgImagesRef.current;
     let blurTrigger: ScrollTrigger | undefined;
     if (bgImagesEl) {
@@ -122,7 +124,6 @@ export const WhyJlu = () => {
       });
     }
 
-    // Cleanup
     return () => {
       clearTimeout(timeout);
       whyJluPin.kill();
