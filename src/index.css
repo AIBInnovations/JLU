@@ -61,6 +61,22 @@
     padding: 0;
   }
 
+  /* ===== Hard guarantee: never let any leftover lenis class lock scroll on touch devices ===== */
+  @media (max-width: 1024px), (pointer: coarse) {
+    html.lenis,
+    html.lenis-smooth,
+    html.lenis.lenis-stopped,
+    body.lenis-stopped {
+      overflow: visible !important;
+      height: auto !important;
+      scroll-behavior: auto !important;
+    }
+    /* Re-enable native vertical pan + pinch-zoom in case any element disabled it globally */
+    html, body {
+      touch-action: pan-y pinch-zoom;
+    }
+  }
+
   /* ===== Mobile (<= 767px) ===== */
   @media (max-width: 767px) {
     html {
