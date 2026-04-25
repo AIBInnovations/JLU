@@ -40,6 +40,31 @@ export default function SmoothScroll() {
     });
     lenisRef.current = lenis;
 
+    // Diagnostic logging — gated by ?debug=1 so it never logs for real users.
+    // Remove once the mobile-stuck investigation is closed.
+    if (
+      typeof window !== 'undefined' &&
+      new URL(window.location.href).searchParams.get('debug') === '1'
+    ) {
+      // eslint-disable-next-line no-console
+      console.log('[SmoothScroll] Lenis init', {
+        userAgent: navigator.userAgent,
+        innerWidth: window.innerWidth,
+        innerHeight: window.innerHeight,
+        devicePixelRatio: window.devicePixelRatio,
+        touchPoints: navigator.maxTouchPoints,
+        pointerCoarse: window.matchMedia('(pointer: coarse)').matches,
+      });
+      lenis.on('scroll', (e: { scroll: number; velocity: number; direction: number }) => {
+        // eslint-disable-next-line no-console
+        console.log('[SmoothScroll] scroll', {
+          scrollY: Math.round(e.scroll),
+          velocity: e.velocity?.toFixed(2),
+          dir: e.direction,
+        });
+      });
+    }
+
     // Restore saved scroll immediately after Lenis init so refresh doesn't
     // fight it.
     try {

@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import { inter, anton, humane } from './fonts';
 import SmoothScroll from './SmoothScroll';
 import PageLoader from '../components/PageLoader';
+import ScrollDebug from '../components/ScrollDebug';
 import { Header } from '../components/Header';
 import { GlobalWidgets } from '../components/GlobalWidgets';
 import '../index.css';
@@ -47,6 +48,7 @@ export default function RootLayout({
         {/* End Google Tag Manager (noscript) */}
         <PageLoader />
         <SmoothScroll />
+        <ScrollDebug />
         <Header />
         {children}
         <GlobalWidgets />
