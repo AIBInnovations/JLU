@@ -23,19 +23,6 @@ const actionItems = [
     accentColor: '#c3fd7a',
   },
   {
-    id: 'enquire',
-    label: 'Enquire',
-    description: 'Get in touch',
-    icon: (
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
-        <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" strokeLinecap="round" strokeLinejoin="round"/>
-        <polyline points="22,6 12,13 2,6" strokeLinecap="round" strokeLinejoin="round"/>
-      </svg>
-    ),
-    action: 'enquire',
-    accentColor: '#0ea5e9',
-  },
-  {
     id: 'brochure',
     label: 'Brochure',
     description: 'Download PDF',
@@ -56,8 +43,8 @@ const actionItems = [
     description: '2026-27 PDF',
     icon: (
       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
-        <line x1="12" y1="1" x2="12" y2="23" strokeLinecap="round" strokeLinejoin="round"/>
-        <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" strokeLinecap="round" strokeLinejoin="round"/>
+        <path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z" strokeLinecap="round" strokeLinejoin="round"/>
+        <line x1="7" y1="7" x2="7.01" y2="7" strokeLinecap="round" strokeLinejoin="round"/>
       </svg>
     ),
     href: '/Fee-Structure-2026-27.pdf',
@@ -90,7 +77,7 @@ const actionItems = [
   },
 ];
 
-export const FloatingActionButton = ({ onEnquireClick }: FloatingActionButtonProps) => {
+export const FloatingActionButton = ({}: FloatingActionButtonProps) => {
   const [isExpanded, setIsExpanded] = useState(false);
   const [showContent, setShowContent] = useState(false);
   const [, setIsAnimating] = useState(false);
@@ -144,10 +131,7 @@ export const FloatingActionButton = ({ onEnquireClick }: FloatingActionButtonPro
   }, [isExpanded]);
 
   const handleItemClick = (item: typeof actionItems[0]) => {
-    if (item.action === 'enquire') {
-      onEnquireClick();
-      setIsExpanded(false);
-    } else if (item.href) {
+    if (item.href) {
       if (item.href.startsWith('#')) {
         const element = document.querySelector(item.href);
         if (element) {
