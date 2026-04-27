@@ -51,6 +51,19 @@ const actionItems = [
     accentColor: '#f59e0b',
   },
   {
+    id: 'fee-structure',
+    label: 'Fee Structure',
+    description: '2026-27 PDF',
+    icon: (
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+        <line x1="12" y1="1" x2="12" y2="23" strokeLinecap="round" strokeLinejoin="round"/>
+        <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" strokeLinecap="round" strokeLinejoin="round"/>
+      </svg>
+    ),
+    href: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/broucher/Fee-Structure-2026-27.pdf',
+    accentColor: '#10b981',
+  },
+  {
     id: 'tour',
     label: 'Virtual Tour',
     description: 'Explore campus',

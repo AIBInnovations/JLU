@@ -69,6 +69,17 @@ export const CtaBanner = () => {
           >
             Download Brochure
           </motion.a>
+          <motion.a
+            href="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/broucher/Fee-Structure-2026-27.pdf"
+            download="JLU-Fee-Structure-2026-27.pdf"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="px-8 md:px-10 py-3 md:py-4 bg-transparent border border-white/50 text-white font-medium w-full sm:w-auto rounded-full text-center"
+            whileHover={{ scale: 1.05, borderColor: '#ffffff' }}
+            whileTap={{ scale: 0.98 }}
+          >
+            Fee Structure 2026-27
+          </motion.a>
         </motion.div>
       </div>
     </div>

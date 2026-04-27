@@ -344,6 +344,21 @@ const Apply = () => {
                     </svg>
                     Download Brochure
                   </motion.a>
+                  <motion.a
+                    href="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/broucher/Fee-Structure-2026-27.pdf"
+                    download="JLU-Fee-Structure-2026-27.pdf"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center justify-center gap-3 px-8 py-4 bg-white text-[#21313c] font-semibold rounded-full border border-[#21313c]/20 hover:bg-[#f6f7f0] transition-colors"
+                    whileHover={{ scale: 1.02 }}
+                    whileTap={{ scale: 0.98 }}
+                  >
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                      <line x1="12" y1="1" x2="12" y2="23" strokeLinecap="round" strokeLinejoin="round"/>
+                      <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" strokeLinecap="round" strokeLinejoin="round"/>
+                    </svg>
+                    Fee Structure 2026-27
+                  </motion.a>
                 </div>
               </motion.div>
 
@@ -773,11 +788,14 @@ const Apply = () => {
 
               {/* Fee Structure Link */}
               <motion.a
-                href="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/broucher/JLU-Brochure-2026.pdf" target="_blank" rel="noopener noreferrer"
+                href="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/broucher/Fee-Structure-2026-27.pdf"
+                download="JLU-Fee-Structure-2026-27.pdf"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 mt-10 text-[#c3fd7a] text-sm font-medium hover:underline"
                 whileHover={{ x: 4 }}
               >
-                Download Fee Structure
+                Download Fee Structure 2026-27
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                   <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
                   <polyline points="7 10 12 15 17 10"/>

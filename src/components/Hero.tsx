@@ -386,6 +386,12 @@ export const Hero = () => {
                         src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/JLU-Dynamic-Campus-Experience.mp4"
                         autoPlay
                         playsInline
+                        onTimeUpdate={(e) => {
+                          const v = e.currentTarget;
+                          if (v.duration && Number.isFinite(v.duration) && v.currentTime >= v.duration - 5) {
+                            setIsVideoOpen(false);
+                          }
+                        }}
                         onEnded={() => setIsVideoOpen(false)}
                       />
                     </motion.div>
@@ -438,6 +444,12 @@ export const Hero = () => {
                         src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/JLU-Dynamic-Campus-Experience.mp4"
                         autoPlay
                         playsInline
+                        onTimeUpdate={(e) => {
+                          const v = e.currentTarget;
+                          if (v.duration && Number.isFinite(v.duration) && v.currentTime >= v.duration - 5) {
+                            setIsVideoOpen(false);
+                          }
+                        }}
                         onEnded={() => setIsVideoOpen(false)}
                       />
                     </motion.div>

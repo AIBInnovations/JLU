@@ -23,52 +23,52 @@ export default function FacultiesPage() {
 
   const faculties = [
     {
-      name: 'Faculty of Science and Technology',
-      description: 'The Faculty of Engineering is committed to exposing students to various perspectives of technological innovation and equipping them for contemporary challenges in engineering and applied sciences through cutting-edge research and industry collaboration.',
+      name: 'Faculty of Management',
+      description: 'Houses Jagran Lakecity Business School, Jagran School of Physical Education and Sports Science, and Jagran School of Hospitality & Tourism. Provides comprehensive education in business, hospitality, tourism, and sports management through industry-relevant syllabi and practice-based learning.',
+      image: 'https://images.unsplash.com/photo-1523240795612-9a054b0db644?w=800&q=80',
+      href: '/faculty/management',
+      side: 'left'
+    },
+    {
+      name: 'Faculty of Science & Technology',
+      description: 'Houses Jagran School of Artificial Intelligence, Jagran School of Engineering, and Jagran School of Computer Application. Equips students for contemporary challenges in engineering, AI, data science, and applied sciences through cutting-edge research and industry collaboration.',
       image: 'https://images.unsplash.com/photo-1677442136019-21780ecad995?w=800&q=80',
       href: '/faculty/engineering',
-      side: 'left'
-    },
-    {
-      name: 'Faculty of Business',
-      description: 'The Faculty of Business is committed to exposing students to various perspectives of global commerce and equipping them for contemporary challenges in business leadership, entrepreneurship, and strategic management in the modern marketplace.',
-      image: 'https://images.unsplash.com/photo-1523240795612-9a054b0db644?w=800&q=80',
-      href: '/faculty/business',
       side: 'right'
     },
     {
-      name: 'Faculty of Law',
-      description: 'The Faculty of Law is committed to exposing students to various perspectives of legal knowledge and equipping them for contemporary challenges in the legal field through rigorous training in jurisprudence, advocacy, and critical legal thinking.',
-      image: 'https://images.unsplash.com/photo-1589829545856-d10d557cf95f?w=800&q=80',
-      href: '/faculty/law',
-      side: 'left'
-    },
-    {
-      name: 'Faculty of Liberal Arts',
-      description: 'The Faculty of Liberal Arts is committed to exposing students to various perspectives of human culture and thought and equipping them for contemporary challenges in social sciences, humanities, and interdisciplinary research.',
-      image: 'https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?w=800&q=80',
-      href: '/faculty/liberal-arts',
-      side: 'right'
-    },
-    {
-      name: 'Faculty of Architecture',
-      description: 'The Faculty of Architecture is committed to exposing students to various perspectives of design thinking and equipping them for contemporary challenges in sustainable architecture, urban planning, and innovative built environments.',
-      image: 'https://images.unsplash.com/photo-1487958449943-2429e8be8625?w=800&q=80',
-      href: '/faculty/architecture',
+      name: 'Faculty of Media & Social Science',
+      description: 'Spans Jagran School of Journalism, Advertising and Public Relations, Events & Entertainment, and Languages & Social Science. Prepares students for contemporary challenges in digital journalism, mass communication, languages, and ethical storytelling.',
+      image: 'https://images.unsplash.com/photo-1495020689067-958852a7765e?w=800&q=80',
+      href: '/faculty/journalism',
       side: 'left'
     },
     {
       name: 'Faculty of Pharmacy',
-      description: 'The Faculty of Pharmacy is committed to exposing students to various perspectives of pharmaceutical sciences and equipping them for contemporary challenges in healthcare, drug development, and clinical practice.',
+      description: 'Committed to exposing students to various perspectives of pharmaceutical sciences and equipping them for contemporary challenges in healthcare, drug development, and clinical practice.',
       image: 'https://images.unsplash.com/photo-1585435557343-3b092031a831?w=800&q=80',
       href: '/faculty/pharmacy',
       side: 'right'
     },
     {
-      name: 'Faculty of Media and Social Sciences',
-      description: 'The Faculty of Journalism is committed to exposing students to various perspectives of media and communication and equipping them for contemporary challenges in digital journalism, mass communication, and ethical storytelling.',
-      image: 'https://images.unsplash.com/photo-1495020689067-958852a7765e?w=800&q=80',
-      href: '/faculty/journalism',
+      name: 'Faculty of Law',
+      description: 'Committed to exposing students to various perspectives of legal knowledge and equipping them for contemporary challenges in the legal field through rigorous training in jurisprudence, advocacy, and critical legal thinking.',
+      image: 'https://images.unsplash.com/photo-1589829545856-d10d557cf95f?w=800&q=80',
+      href: '/faculty/law',
+      side: 'left'
+    },
+    {
+      name: 'Faculty of Fashion, Design & Arts',
+      description: 'Houses School of Design, School of Architecture, and School of Fashion. Equips students for contemporary challenges in design thinking, sustainable architecture, fashion communication, and innovative built environments.',
+      image: 'https://images.unsplash.com/photo-1487958449943-2429e8be8625?w=800&q=80',
+      href: '/faculty/architecture',
+      side: 'right'
+    },
+    {
+      name: 'IICA - Jagran Centre for Creative Skills',
+      description: 'A unique initiative bridging traditional Indian arts with contemporary creative practices. Offers programs in animation, game production, and creative skills, in collaboration with the Indira Gandhi National Centre for the Arts.',
+      image: 'https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?w=800&q=80',
+      href: '/faculty/humanities',
       side: 'left'
     }
   ];
@@ -174,7 +174,7 @@ export default function FacultiesPage() {
         >
           <motion.div className="absolute inset-0" style={{ y }}>
             <Image
-              src="https://jlu.edu.in/wp-content/uploads/2024/05/faculty-members.webp"
+              src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/acedemics/acedemics%20landing%20page.JPG"
               alt="JLU Faculties"
               fill
               className="object-cover scale-110"

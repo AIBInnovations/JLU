@@ -1,11 +1,53 @@
 'use client';
 
 import Image from 'next/image';
-import { motion } from 'framer-motion';
 import Link from 'next/link';
+import { motion } from 'framer-motion';
 
-// Custom easing for smooth animations (same as Events page)
 const customEase: [number, number, number, number] = [0.22, 1, 0.36, 1];
+
+const facultyMembers = [
+  {
+    name: 'Prof. (Dr.) Manika Walia',
+    title: 'Dean, Faculty of Fashion, Design & Arts',
+    image: '/manika-walia.png',
+  },
+  {
+    name: 'Prof. (Dr.) Sachin Rastogi',
+    title: 'Dean, Faculty of Law',
+    image: '/sachin-rastogi.jpg',
+  },
+  {
+    name: 'Prof. (Dr.) Kishore Kumar Morya',
+    title: 'Dean, Faculty of Management',
+    image: '/kishore-kumar-morya.png',
+  },
+  {
+    name: 'Dr. Prasheel Suryawanshi',
+    title: 'Pro Vice Chancellor — Science & Technology',
+    image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/leadership/pvc-science-tech-new.JPG',
+  },
+  {
+    name: 'Prof. (Dr.) Vivek Khare',
+    title: 'Pro Vice Chancellor — Student Welfare',
+    image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/leadership/pvc-student-welfare-new.JPG',
+  },
+  {
+    name: 'Mr. Pankaj Kumar Das',
+    title: 'Registrar',
+    image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/leadership/registrar-new.JPG',
+  },
+  {
+    name: 'Dr. Rushit Dubal',
+    title: 'Assistant Dean, Faculty of Media & Social Science',
+    image: '/dr-rushit-dubal.jpg',
+  },
+  {
+    name: 'Ms. Ladli Goyal',
+    title: 'Chief Financial Officer',
+    image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/leadership/ladli-goyal.jpeg',
+  },
+];
 
 const JluStaff = () => {
   return (
@@ -31,10 +73,7 @@ const JluStaff = () => {
             </span>
             <h1
               className="text-[#21313c] text-3xl md:text-4xl lg:text-5xl"
-              style={{
-                fontWeight: 600,
-                lineHeight: 1.1,
-              }}
+              style={{ fontWeight: 600, lineHeight: 1.1 }}
             >
               JLU{' '}
               <span style={{ fontFamily: "'Times New Roman', serif", fontStyle: 'italic' }}>
@@ -43,47 +82,61 @@ const JluStaff = () => {
             </h1>
           </div>
           <p
-            className="text-[#666] text-sm sm:text-base md:text-[clamp(1.15rem,1.8vw,1.5rem)] text-right mt-10 ml-auto"
+            className="text-[#666] text-sm sm:text-base md:text-[clamp(1.15rem,1.8vw,1.5rem)] md:text-right mt-4 md:mt-10 md:ml-auto md:max-w-[520px]"
             style={{ lineHeight: 1.7, fontWeight: 400 }}
           >
-            Behind every classroom, event and initiative is a dedicated team that supports<br />the university&apos;s everyday functioning.
+            Behind every classroom, event and initiative is a dedicated team of academic and administrative leaders that supports the university&apos;s everyday functioning.
           </p>
         </motion.div>
 
-        {/* Staff Image - Single Card */}
-        <Link href="/faculties" className="block group">
-          <motion.div
-            initial={{ opacity: 0, y: 40 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, ease: customEase }}
-            viewport={{ once: true }}
-            className="relative w-full h-[250px] sm:h-[350px] md:h-[500px] rounded-xl overflow-hidden"
+        {/* Faculty/Staff Portrait Grid */}
+        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-4 md:gap-6">
+          {facultyMembers.map((member, idx) => (
+            <motion.div
+              key={member.name}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: idx * 0.06, ease: customEase }}
+              viewport={{ once: true }}
+              className="group relative overflow-hidden rounded-xl md:rounded-2xl bg-[#21313c]"
+              style={{ aspectRatio: '3/4' }}
+            >
+              <Image
+                src={member.image}
+                alt={member.name}
+                fill
+                sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
+                className="object-cover transition-transform duration-500 group-hover:scale-105"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/30 to-transparent" />
+              <div className="absolute bottom-0 left-0 right-0 p-3 md:p-5">
+                <p className="text-white font-semibold text-xs sm:text-sm md:text-base leading-tight">
+                  {member.name}
+                </p>
+                <p className="text-white/70 text-[10px] sm:text-xs md:text-sm mt-1 leading-snug">
+                  {member.title}
+                </p>
+              </div>
+            </motion.div>
+          ))}
+        </div>
+
+        {/* CTA */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.3, ease: customEase }}
+          viewport={{ once: true }}
+          className="mt-8 md:mt-12 flex justify-center"
+        >
+          <Link
+            href="/faculties"
+            className="inline-flex items-center gap-2 px-6 md:px-8 py-3 md:py-4 bg-[#21313c] hover:bg-[#2d3f4a] text-white font-semibold rounded-full text-sm md:text-base transition-colors"
           >
-            <Image
-              src="https://jlu.edu.in/wp-content/uploads/2024/05/faculty-members.webp"
-              alt="JLU Faculty & Staff"
-              fill
-              className="object-cover transition-transform duration-700 group-hover:scale-105"
-            />
-            {/* Default overlay */}
-            <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent transition-opacity duration-300 group-hover:opacity-0" />
-            {/* Hover overlay with View button */}
-            <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-all duration-300 flex items-center justify-center">
-              <span className="bg-white text-[#21313c] px-6 py-3 rounded-lg text-xl md:text-2xl font-bold tracking-wide translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
-                View Faculty
-              </span>
-            </div>
-            {/* Black overlay at bottom */}
-            <div className="absolute bottom-0 left-0 right-0 bg-black/70 p-5 sm:p-8 md:p-10 transition-opacity duration-300 group-hover:opacity-0">
-              <p
-                className="text-white text-base sm:text-lg md:text-xl max-w-[700px]"
-                style={{ lineHeight: 1.8 }}
-              >
-                Behind every classroom, event and initiative is a dedicated team<br />that supports the university&apos;s everyday functioning.
-              </p>
-            </div>
-          </motion.div>
-        </Link>
+            View All Faculties
+            <span>→</span>
+          </Link>
+        </motion.div>
       </div>
     </section>
   );
