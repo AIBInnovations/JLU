@@ -322,7 +322,12 @@ const MenuOverlay = ({ isOpen, onClose, menuButtonRef }: MenuOverlayProps) => {
                 animate={{ opacity: 1, transition: { duration: 0.4, delay: 0.6 } }}
                 exit={{ opacity: 0, transition: { duration: 0.2, delay: 0 } }}
                 className="fixed inset-0 overflow-y-auto"
-                style={{ zIndex: 59, overscrollBehavior: 'contain' }}
+                style={{
+                  zIndex: 59,
+                  overscrollBehavior: 'contain',
+                  WebkitOverflowScrolling: 'touch',
+                  touchAction: 'pan-y',
+                }}
               >
                 {/* Mobile/Tablet Navigation content - full-width stacked layout */}
                 <div className={`flex flex-col pt-20 pb-48 ${isTablet && !isMobile ? 'px-12' : 'px-6'}`}>
