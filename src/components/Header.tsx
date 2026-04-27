@@ -294,7 +294,7 @@ const MenuOverlay = ({ isOpen, onClose, menuButtonRef }: MenuOverlayProps) => {
                 }}
                 animate={{
                   width: '100vw',
-                  height: '100vh',
+                  height: '100dvh',
                   borderRadius: '0px',
                   left: 0,
                   top: 0,
@@ -321,9 +321,11 @@ const MenuOverlay = ({ isOpen, onClose, menuButtonRef }: MenuOverlayProps) => {
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1, transition: { duration: 0.4, delay: 0.6 } }}
                 exit={{ opacity: 0, transition: { duration: 0.2, delay: 0 } }}
-                className="fixed inset-0 overflow-y-auto"
+                className="fixed top-0 left-0 right-0 overflow-y-auto overflow-x-hidden"
                 style={{
                   zIndex: 59,
+                  height: '100dvh',
+                  maxHeight: '100dvh',
                   overscrollBehavior: 'contain',
                   WebkitOverflowScrolling: 'touch',
                   touchAction: 'pan-y',
