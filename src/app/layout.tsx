@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import Script from 'next/script';
 import { inter, anton, humane } from './fonts';
 import SmoothScroll from './SmoothScroll';
 import PageLoader from '../components/PageLoader';
@@ -54,11 +55,21 @@ export default function RootLayout({
         <div
           className="npf_ai_agents"
           data-w="3bda6f65de8448d9a5dc3b6d2d0faa37"
-          style={{ display: 'none' }}
         />
-        <script
+        <Script
+          id="npf-ai-agent"
+          strategy="afterInteractive"
+          src="https://o10qwyo06e.in6.agent.nopaperforms.com/en-gb/backend/agents/aiagentscpt.js/10a203f2852f41c18914147c42802132/3bda6f65de8448d9a5dc3b6d2d0faa37"
+        />
+        <style
           dangerouslySetInnerHTML={{
-            __html: `var s=document.createElement("script");s.type="text/javascript";s.async=true;s.src="https://o10qwyo06e.in6.agent.nopaperforms.com/en-gb/backend/agents/aiagentscpt.js/10a203f2852f41c18914147c42802132/3bda6f65de8448d9a5dc3b6d2d0faa37";document.body.appendChild(s);`,
+            __html: `
+              /* Force NPF chat widget to bottom-left */
+              [id^="npf"], [class*="npf_"], iframe[src*="nopaperforms"] {
+                right: auto !important;
+                left: 20px !important;
+              }
+            `,
           }}
         />
       </body>
