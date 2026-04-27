@@ -321,6 +321,7 @@ const MenuOverlay = ({ isOpen, onClose, menuButtonRef }: MenuOverlayProps) => {
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1, transition: { duration: 0.4, delay: 0.6 } }}
                 exit={{ opacity: 0, transition: { duration: 0.2, delay: 0 } }}
+                data-lenis-prevent
                 className="fixed top-0 left-0 right-0 overflow-y-auto overflow-x-hidden"
                 style={{
                   zIndex: 59,
@@ -329,6 +330,11 @@ const MenuOverlay = ({ isOpen, onClose, menuButtonRef }: MenuOverlayProps) => {
                   overscrollBehavior: 'contain',
                   WebkitOverflowScrolling: 'touch',
                   touchAction: 'pan-y',
+                }}
+                onWheel={(e) => {
+                  // Defensive: drive native scroll on the container so wheel
+                  // events that bubble up to Lenis still move this scroll area.
+                  e.currentTarget.scrollTop += e.deltaY;
                 }}
               >
                 {/* Mobile/Tablet Navigation content - full-width stacked layout */}
