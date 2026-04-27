@@ -60,7 +60,7 @@ export const Footer = () => {
               <span className="italic font-serif">Global University</span>
             </h2>
             <a
-              href="/apply"
+              href="https://apply.jlu.edu.in/" target="_blank" rel="noopener noreferrer"
               className="inline-flex items-center gap-2 border border-[#d4e4a0] text-[#d4e4a0] px-4 py-2 text-xs hover:bg-[#d4e4a0] hover:text-[#027ea1] transition-colors rounded-full shrink-0"
             >
               SEND INQUIRY
@@ -73,16 +73,10 @@ export const Footer = () => {
 
           {/* Contact Info */}
           <div className="mb-3">
-            <div className="flex gap-3 items-center">
-              <div className="flex-1" style={{ fontSize: '1.1rem', lineHeight: 1.3 }}>
-                <a href="tel:+917471110101" className="font-light text-[#d4e4a0] hover:text-white transition-colors">+91 7471110101</a><br/>
-                <a href="tel:+917471110103" className="font-light text-[#d4e4a0] hover:text-white transition-colors">+91 7471110103</a><br/>
-                <a href="mailto:admission@jlu.edu.in" className="font-light text-[#d4e4a0] hover:text-white transition-colors">admission@jlu.edu.in</a>
-              </div>
-              <a href="tel:+917471110101" className="inline-flex items-center gap-2 border border-[#d4e4a0] text-[#d4e4a0] px-4 py-2 text-xs hover:bg-[#d4e4a0] hover:text-[#027ea1] transition-colors shrink-0" style={{ marginRight: '8px' }}>
-                CONTACT US
-                <span className="text-sm">↗</span>
-              </a>
+            <div className="flex-1" style={{ fontSize: '1.1rem', lineHeight: 1.3 }}>
+              <a href="tel:+917471110101" className="font-light text-[#d4e4a0] hover:text-white transition-colors">+91 7471110101</a><br/>
+              <a href="tel:+917471110103" className="font-light text-[#d4e4a0] hover:text-white transition-colors">+91 7471110103</a><br/>
+              <a href="mailto:admission@jlu.edu.in" className="font-light text-[#d4e4a0] hover:text-white transition-colors">admission@jlu.edu.in</a>
             </div>
             <address className="not-italic text-gray-300 text-xs leading-relaxed mt-2">
               Jagran Lakecity University, Mugaliyachap, Near Ratibad, Bhopal – 462044
@@ -201,7 +195,7 @@ export const Footer = () => {
                 <span className="italic font-serif">Global University</span>
               </h2>
               <a
-                href="/apply"
+                href="https://apply.jlu.edu.in/" target="_blank" rel="noopener noreferrer"
                 className="inline-flex items-center gap-3 border border-[#d4e4a0] text-[#d4e4a0] px-6 py-3 text-sm hover:bg-[#d4e4a0] hover:text-[#027ea1] transition-colors rounded-full shrink-0"
               >
                 SEND INQUIRY
@@ -214,16 +208,10 @@ export const Footer = () => {
 
             {/* Contact Info */}
             <div className="mb-5">
-              <div className="flex gap-4 items-center">
-                <div className="flex-1" style={{ fontSize: '1.25rem', lineHeight: 1.4 }}>
-                  <a href="tel:+917471110101" className="font-light text-[#d4e4a0] hover:text-white transition-colors">+91 7471110101</a><br/>
-                  <a href="tel:+917471110103" className="font-light text-[#d4e4a0] hover:text-white transition-colors">+91 7471110103</a><br/>
-                  <a href="mailto:admission@jlu.edu.in" className="font-light text-[#d4e4a0] hover:text-white transition-colors">admission@jlu.edu.in</a>
-                </div>
-                <a href="tel:+917471110101" className="inline-flex items-center gap-2 border border-[#d4e4a0] text-[#d4e4a0] px-5 py-2.5 text-sm hover:bg-[#d4e4a0] hover:text-[#027ea1] transition-colors shrink-0 rounded-full">
-                  CONTACT US
-                  <span className="text-base">↗</span>
-                </a>
+              <div className="flex-1" style={{ fontSize: '1.25rem', lineHeight: 1.4 }}>
+                <a href="tel:+917471110101" className="font-light text-[#d4e4a0] hover:text-white transition-colors">+91 7471110101</a><br/>
+                <a href="tel:+917471110103" className="font-light text-[#d4e4a0] hover:text-white transition-colors">+91 7471110103</a><br/>
+                <a href="mailto:admission@jlu.edu.in" className="font-light text-[#d4e4a0] hover:text-white transition-colors">admission@jlu.edu.in</a>
               </div>
               <address className="not-italic text-gray-300 text-sm leading-relaxed mt-3">
                 Jagran Lakecity University, Mugaliyachap, Near Ratibad, Bhopal – 462044
@@ -345,7 +333,7 @@ export const Footer = () => {
                 <span className="italic font-serif">Global University</span>
               </h2>
               <a
-                href="/apply"
+                href="https://apply.jlu.edu.in/" target="_blank" rel="noopener noreferrer"
                 className="inline-flex items-center gap-4 border border-[#d4e4a0] text-[#d4e4a0] px-8 py-4 text-sm hover:bg-[#d4e4a0] hover:text-[#027ea1] transition-colors shrink-0 rounded-full mt-4"
               >
                 SEND INQUIRY
@@ -419,10 +407,6 @@ export const Footer = () => {
               style={{ y: jluY }}
             >
               <div className="absolute right-12 bottom-32 z-10 flex flex-col items-end gap-4">
-                <a href="/apply" className="inline-flex items-center gap-3 border border-[#d4e4a0] text-[#d4e4a0] px-6 py-3 text-sm hover:bg-[#d4e4a0] hover:text-[#027ea1] transition-colors rounded-full">
-                  CONTACT US
-                  <span className="text-lg">↗</span>
-                </a>
                 <button
                   onClick={scrollToTop}
                   className="text-gray-300 text-lg font-semibold hover:text-white transition-colors flex items-center gap-2"

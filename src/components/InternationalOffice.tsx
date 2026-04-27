@@ -468,7 +468,10 @@ const JourneySection = ({ steps, onApplyClick }: { steps: JourneyStep[]; onApply
                 </svg>
               </div>
 
-              <button
+              <a
+                href="https://apply.jlu.edu.in/"
+                target="_blank"
+                rel="noopener noreferrer"
                 onClick={onApplyClick}
                 className="group inline-flex items-center gap-3 md:gap-4 px-6 py-3 md:px-10 md:py-5 bg-[#1a1a1a] text-white font-semibold text-sm md:text-lg rounded-full transition-all duration-300 hover:bg-[#1a3a3a] hover:scale-105 ml-12 md:ml-0 md:mt-8"
               >
@@ -476,7 +479,7 @@ const JourneySection = ({ steps, onApplyClick }: { steps: JourneyStep[]; onApply
                 <span className="transition-transform duration-300 group-hover:translate-x-2">
                   →
                 </span>
-              </button>
+              </a>
             </div>
           </div>
         </div>
@@ -485,321 +488,9 @@ const JourneySection = ({ steps, onApplyClick }: { steps: JourneyStep[]; onApply
   );
 };
 
-// Apply Now Modal Component
-interface ApplyModalProps {
-  isOpen: boolean;
-  onClose: () => void;
-}
-
-const ApplyModal = ({ isOpen, onClose }: ApplyModalProps) => {
-  const [formData, setFormData] = useState({
-    firstName: '',
-    lastName: '',
-    email: '',
-    phone: '',
-    country: '',
-    program: '',
-    qualification: '',
-    message: '',
-  });
-  const [errors, setErrors] = useState<Record<string, string>>({});
-  const [isSubmitted, setIsSubmitted] = useState(false);
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [submitError, setSubmitError] = useState<string | null>(null);
-
-  useEffect(() => {
-    if (isOpen) {
-      document.body.style.overflow = 'hidden';
-      document.documentElement.style.overflow = 'hidden';
-    }
-    return () => {
-      document.body.style.overflow = '';
-      document.documentElement.style.overflow = '';
-    };
-  }, [isOpen]);
-
-  const programs = [
-    'B.Tech (Computer Science)',
-    'B.Tech (Mechanical)',
-    'BBA',
-    'BA (Journalism)',
-    'B.Des',
-    'MBA',
-    'M.Tech',
-    'MA',
-    'Ph.D',
-    'Other',
-  ];
-
-  const validateForm = () => {
-    const newErrors: Record<string, string> = {};
-    if (!formData.firstName.trim()) newErrors.firstName = 'First name is required';
-    if (!formData.lastName.trim()) newErrors.lastName = 'Last name is required';
-    if (!formData.email.trim()) {
-      newErrors.email = 'Email is required';
-    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
-      newErrors.email = 'Please enter a valid email';
-    }
-    if (!formData.phone.trim()) newErrors.phone = 'Phone number is required';
-    if (!formData.country.trim()) newErrors.country = 'Country is required';
-    if (!formData.program) newErrors.program = 'Please select a program';
-    setErrors(newErrors);
-    return Object.keys(newErrors).length === 0;
-  };
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!validateForm()) return;
-    setIsSubmitting(true);
-    setSubmitError(null);
-    const result = await submitForm('international-office', { ...formData, formContext: 'apply' });
-    setIsSubmitting(false);
-    if (!result.ok) {
-      setSubmitError(result.error);
-      return;
-    }
-    setIsSubmitted(true);
-    setTimeout(() => {
-      setFormData({ firstName: '', lastName: '', email: '', phone: '', country: '', program: '', qualification: '', message: '' });
-      setIsSubmitted(false);
-      onClose();
-    }, 3000);
-  };
-
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
-    const { name, value } = e.target;
-    setFormData(prev => ({ ...prev, [name]: value }));
-    if (errors[name]) setErrors(prev => ({ ...prev, [name]: '' }));
-  };
-
-  const inputClass = (field: string) =>
-    `w-full px-4 py-3 rounded-xl border ${errors[field] ? 'border-red-400 bg-red-50' : 'border-gray-200'} focus:outline-none focus:border-[#21313c] focus:ring-2 focus:ring-[#21313c]/10 transition-all text-sm`;
-
-  return (
-    <AnimatePresence>
-      {isOpen && (
-        <>
-          <motion.div
-            className="fixed inset-0 bg-black/50 backdrop-blur-sm z-[9998]"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.4, ease: [0.32, 0.72, 0, 1] }}
-            onClick={onClose}
-          />
-          <motion.div
-            className="fixed z-[9999] bg-white shadow-2xl flex flex-col inset-0 md:inset-auto md:top-0 md:right-0 md:bottom-0 md:w-[520px] md:rounded-tl-3xl md:rounded-bl-3xl"
-            initial={{ x: '100%' }}
-            animate={{ x: 0 }}
-            exit={{ x: '100%' }}
-            transition={{ duration: 0.5, ease: [0.32, 0.72, 0, 1] }}
-          >
-            {/* Header */}
-            <motion.div
-              className="flex items-center justify-between p-6 border-b border-gray-100 shrink-0"
-              initial={{ opacity: 0, x: 40 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.4, delay: 0.2, ease: [0.32, 0.72, 0, 1] }}
-            >
-              <div>
-                <h2 className="text-xl font-semibold text-[#21313c]">International Application</h2>
-                <p className="text-sm text-gray-500 mt-1">Start your journey at JLU</p>
-              </div>
-              <button
-                onClick={onClose}
-                className="w-10 h-10 flex items-center justify-center rounded-full hover:bg-gray-100 transition-colors"
-              >
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#21313c" strokeWidth="2">
-                  <line x1="18" y1="6" x2="6" y2="18" strokeLinecap="round"/>
-                  <line x1="6" y1="6" x2="18" y2="18" strokeLinecap="round"/>
-                </svg>
-              </button>
-            </motion.div>
-
-            {/* Form */}
-            <motion.div
-              className="p-6 overflow-y-auto flex-1 min-h-0"
-              style={{ overscrollBehavior: 'contain' }}
-              initial={{ opacity: 0, x: 50 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.45, delay: 0.25, ease: [0.32, 0.72, 0, 1] }}
-            >
-              <AnimatePresence mode="wait">
-                {isSubmitted ? (
-                  <motion.div
-                    key="success"
-                    className="flex flex-col items-center justify-center h-full text-center"
-                    initial={{ opacity: 0, scale: 0.9 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    exit={{ opacity: 0, scale: 0.9 }}
-                  >
-                    <motion.div
-                      className="w-20 h-20 bg-[#027ea1] rounded-full flex items-center justify-center mb-6"
-                      initial={{ scale: 0 }}
-                      animate={{ scale: 1 }}
-                      transition={{ type: 'spring', delay: 0.2 }}
-                    >
-                      <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#027ea1" strokeWidth="3">
-                        <polyline points="20 6 9 17 4 12" strokeLinecap="round" strokeLinejoin="round"/>
-                      </svg>
-                    </motion.div>
-                    <h3 className="text-2xl font-semibold text-[#21313c] mb-2">Application Submitted!</h3>
-                    <p className="text-gray-500">Thank you for your interest in JLU. Our admissions team will review your application and contact you within 48 hours.</p>
-                  </motion.div>
-                ) : (
-                  <motion.form
-                    key="form"
-                    onSubmit={handleSubmit}
-                    className="space-y-5"
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    exit={{ opacity: 0 }}
-                  >
-                    {/* Name Row */}
-                    <div className="grid grid-cols-2 gap-3">
-                      <div>
-                        <label className="block text-sm font-medium text-[#21313c] mb-2">
-                          First Name <span className="text-red-500">*</span>
-                        </label>
-                        <input type="text" name="firstName" value={formData.firstName} onChange={handleChange} className={inputClass('firstName')} placeholder="First name" />
-                        {errors.firstName && <p className="text-red-500 text-xs mt-1">{errors.firstName}</p>}
-                      </div>
-                      <div>
-                        <label className="block text-sm font-medium text-[#21313c] mb-2">
-                          Last Name <span className="text-red-500">*</span>
-                        </label>
-                        <input type="text" name="lastName" value={formData.lastName} onChange={handleChange} className={inputClass('lastName')} placeholder="Last name" />
-                        {errors.lastName && <p className="text-red-500 text-xs mt-1">{errors.lastName}</p>}
-                      </div>
-                    </div>
-
-                    {/* Email */}
-                    <div>
-                      <label className="block text-sm font-medium text-[#21313c] mb-2">
-                        Email Address <span className="text-red-500">*</span>
-                      </label>
-                      <input type="email" name="email" value={formData.email} onChange={handleChange} className={inputClass('email')} placeholder="your@email.com" />
-                      {errors.email && <p className="text-red-500 text-xs mt-1">{errors.email}</p>}
-                    </div>
-
-                    {/* Phone */}
-                    <div>
-                      <label className="block text-sm font-medium text-[#21313c] mb-2">
-                        Phone Number <span className="text-red-500">*</span>
-                      </label>
-                      <input type="tel" name="phone" value={formData.phone} onChange={handleChange} className={inputClass('phone')} placeholder="+1 234 567 890" />
-                      {errors.phone && <p className="text-red-500 text-xs mt-1">{errors.phone}</p>}
-                    </div>
-
-                    {/* Country */}
-                    <div>
-                      <label className="block text-sm font-medium text-[#21313c] mb-2">
-                        Country of Origin <span className="text-red-500">*</span>
-                      </label>
-                      <input type="text" name="country" value={formData.country} onChange={handleChange} className={inputClass('country')} placeholder="e.g. United States" />
-                      {errors.country && <p className="text-red-500 text-xs mt-1">{errors.country}</p>}
-                    </div>
-
-                    {/* Program */}
-                    <div>
-                      <label className="block text-sm font-medium text-[#21313c] mb-2">
-                        Preferred Program <span className="text-red-500">*</span>
-                      </label>
-                      <select
-                        name="program"
-                        value={formData.program}
-                        onChange={handleChange}
-                        className={`${inputClass('program')} appearance-none bg-white`}
-                        style={{
-                          backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 24 24' fill='none' stroke='%2321313c' stroke-width='2'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E")`,
-                          backgroundRepeat: 'no-repeat',
-                          backgroundPosition: 'right 12px center',
-                        }}
-                      >
-                        <option value="">Select a program</option>
-                        {programs.map(p => (
-                          <option key={p} value={p}>{p}</option>
-                        ))}
-                      </select>
-                      {errors.program && <p className="text-red-500 text-xs mt-1">{errors.program}</p>}
-                    </div>
-
-                    {/* Highest Qualification */}
-                    <div>
-                      <label className="block text-sm font-medium text-[#21313c] mb-2">
-                        Highest Qualification
-                      </label>
-                      <input type="text" name="qualification" value={formData.qualification} onChange={handleChange} className={inputClass('qualification')} placeholder="e.g. High School Diploma, Bachelor's Degree" />
-                    </div>
-
-                    {/* Message */}
-                    <div>
-                      <label className="block text-sm font-medium text-[#21313c] mb-2">
-                        Additional Message
-                      </label>
-                      <textarea
-                        name="message"
-                        value={formData.message}
-                        onChange={handleChange}
-                        rows={3}
-                        className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:outline-none focus:border-[#21313c] focus:ring-2 focus:ring-[#21313c]/10 transition-all text-sm resize-none"
-                        placeholder="Any questions or special requirements..."
-                      />
-                    </div>
-
-                    {submitError && (
-                      <div className="p-4 rounded-xl bg-red-50 border border-red-200 text-red-600 text-sm flex items-start gap-2">
-                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="shrink-0 mt-0.5">
-                          <circle cx="12" cy="12" r="10" />
-                          <line x1="12" y1="8" x2="12" y2="12" strokeLinecap="round" />
-                          <line x1="12" y1="16" x2="12.01" y2="16" strokeLinecap="round" />
-                        </svg>
-                        <span>{submitError}</span>
-                      </div>
-                    )}
-
-                    {/* Submit */}
-                    <motion.button
-                      type="submit"
-                      disabled={isSubmitting}
-                      className="w-full py-4 bg-[#21313c] text-white font-medium rounded-xl flex items-center justify-center gap-2 disabled:opacity-60"
-                      whileHover={{ scale: 1.01 }}
-                      whileTap={{ scale: 0.99 }}
-                    >
-                      {isSubmitting ? (
-                        <>
-                          <motion.div
-                            className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full"
-                            animate={{ rotate: 360 }}
-                            transition={{ duration: 1, repeat: Infinity, ease: 'linear' }}
-                          />
-                          Submitting...
-                        </>
-                      ) : (
-                        <>
-                          Submit Application
-                          <span>→</span>
-                        </>
-                      )}
-                    </motion.button>
-
-                    <p className="text-xs text-gray-400 text-center mt-3">
-                      By submitting, you agree to JLU&apos;s privacy policy and terms of admission.
-                    </p>
-                  </motion.form>
-                )}
-              </AnimatePresence>
-            </motion.div>
-          </motion.div>
-        </>
-      )}
-    </AnimatePresence>
-  );
-};
 
 const InternationalOffice = () => {
   const heroRef = useRef<HTMLDivElement>(null);
-  const [showApplyModal, setShowApplyModal] = useState(false);
   const [orbOpen, setOrbOpen] = useState(false);
   const [visaModal, setVisaModal] = useState<typeof visaSupport[0] | null>(null);
   const [openFaq, setOpenFaq] = useState<number | null>(1);
@@ -1233,7 +924,7 @@ const InternationalOffice = () => {
       <div id="international-admissions" />
       <div id="study-abroad" />
       <div id="international-students">
-        <JourneySection steps={journeySteps} onApplyClick={() => setShowApplyModal(true)} />
+        <JourneySection steps={journeySteps} />
       </div>
 
       {/* International FAQ Section */}
@@ -1561,15 +1252,17 @@ const InternationalOffice = () => {
 
               {/* Action Buttons */}
               <div className="flex flex-col sm:flex-row gap-3 md:gap-4">
-                <motion.button
-                  onClick={() => setShowApplyModal(true)}
+                <motion.a
+                  href="https://apply.jlu.edu.in/"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="inline-flex items-center justify-center gap-2 md:gap-3 px-6 py-3 md:px-8 md:py-4 bg-[#21313c] text-white font-medium text-sm md:text-base rounded-full"
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
                 >
                   Apply Online
                   <span>→</span>
-                </motion.button>
+                </motion.a>
                 <motion.a
                   href="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/broucher/JLU-Brochure-2026.pdf"
                   download="JLU-International-Admission-Form.pdf"
@@ -1752,7 +1445,7 @@ const InternationalOffice = () => {
                 ))}
               </motion.div>
 
-              <Link href="/apply">
+              <a href="https://apply.jlu.edu.in/" target="_blank" rel="noopener noreferrer">
                 <motion.button
                   className="inline-flex items-center gap-2 md:gap-3 px-6 py-3 md:px-8 md:py-4 bg-[#21313c] text-white font-medium text-sm md:text-base rounded-full cursor-pointer"
                   whileHover={{ scale: 1.02 }}
@@ -1761,7 +1454,7 @@ const InternationalOffice = () => {
                   Explore life in Bhopal
                   <span>→</span>
                 </motion.button>
-              </Link>
+              </a>
             </motion.div>
 
             {/* Right Side - Image */}
@@ -1799,8 +1492,6 @@ const InternationalOffice = () => {
           </div>
         </div>
       </div>
-      {/* Apply Now Modal */}
-      <ApplyModal isOpen={showApplyModal} onClose={() => setShowApplyModal(false)} />
       <PartnersOrb isOpen={orbOpen} onClose={() => setOrbOpen(false)} />
 
       {/* Visa Support Modal */}

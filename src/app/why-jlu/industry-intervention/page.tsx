@@ -319,7 +319,7 @@ export default function IndustryInterventionPage() {
                   <p className="text-gray-500 text-sm mt-1">Recruiters Visit</p>
                 </div>
               </div>
-              <a href="/apply" className="inline-flex items-center gap-2 bg-[#21313c] text-white px-6 py-3 rounded-lg font-semibold text-sm hover:bg-[#1a2630] transition-all">
+              <a href="https://apply.jlu.edu.in/" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 bg-[#21313c] text-white px-6 py-3 rounded-lg font-semibold text-sm hover:bg-[#1a2630] transition-all">
                 Start Your Career
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M5 12h14M12 5l7 7-7 7" /></svg>
               </a>

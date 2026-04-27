@@ -4,7 +4,7 @@ import { motion } from 'framer-motion';
 import { useState, useEffect } from 'react';
 
 // JLU Bhopal WhatsApp Number
-const WHATSAPP_NUMBER = '917314041400'; // Replace with actual JLU WhatsApp number
+const WHATSAPP_NUMBER = '917471110103';
 const WHATSAPP_MESSAGE = 'Hello! I would like to know more about Jagran Lakecity University.';
 
 export const WhatsAppButton = () => {

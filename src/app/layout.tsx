@@ -50,6 +50,17 @@ export default function RootLayout({
         <Header />
         {children}
         <GlobalWidgets />
+        {/* NoPaperForms AI Chat Agent */}
+        <div
+          className="npf_ai_agents"
+          data-w="3bda6f65de8448d9a5dc3b6d2d0faa37"
+          style={{ display: 'none' }}
+        />
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `var s=document.createElement("script");s.type="text/javascript";s.async=true;s.src="https://o10qwyo06e.in6.agent.nopaperforms.com/en-gb/backend/agents/aiagentscpt.js/10a203f2852f41c18914147c42802132/3bda6f65de8448d9a5dc3b6d2d0faa37";document.body.appendChild(s);`,
+          }}
+        />
       </body>
     </html>
   );

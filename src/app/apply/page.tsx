@@ -1,12 +1,5 @@
-'use client';
-
-import { Apply, Footer } from '@/components';
+import { redirect } from 'next/navigation';
 
 export default function ApplyPage() {
-  return (
-    <div className="min-h-screen bg-[#f6f7f0] m-0 p-0">
-      <Apply />
-      <Footer />
-    </div>
-  );
+  redirect('https://apply.jlu.edu.in/');
 }

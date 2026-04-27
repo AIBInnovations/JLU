@@ -2753,7 +2753,7 @@ const Admissions = () => {
                     Book a Campus Visit
                     <span>→</span>
                   </motion.button>
-                  <Link href="/apply">
+                  <a href="https://apply.jlu.edu.in/" target="_blank" rel="noopener noreferrer">
                     <motion.button
                       className="bg-[#027ea1] text-white font-medium flex items-center justify-center gap-3 w-full"
                       style={{ padding: isMobile ? '10px 20px' : '16px 32px', fontSize: isMobile ? '13px' : undefined, borderRadius: '100px' }}
@@ -2767,7 +2767,7 @@ const Admissions = () => {
                         <line x1="10" y1="14" x2="21" y2="3" strokeLinecap="round"/>
                       </svg>
                     </motion.button>
-                  </Link>
+                  </a>
                 </div>
               </motion.div>
 
