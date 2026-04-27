@@ -335,7 +335,7 @@ export default function InterdisciplinaryDegreesPage() {
             <a href="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/broucher/JLU-Brochure-2026.pdf" download target="_blank" rel="noopener noreferrer" className="px-8 md:px-10 py-3 md:py-4 bg-transparent border border-white/50 text-white font-medium w-full sm:w-auto rounded-full text-center">
               Download Brochure
             </a>
-            <a href="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/broucher/Fee-Structure-2026-27.pdf" download="JLU-Fee-Structure-2026-27.pdf" target="_blank" rel="noopener noreferrer" className="px-8 md:px-10 py-3 md:py-4 bg-transparent border border-white/50 text-white font-medium w-full sm:w-auto rounded-full text-center">
+            <a href="/Fee-Structure-2026-27.pdf" download="JLU-Fee-Structure-2026-27.pdf" target="_blank" rel="noopener noreferrer" className="px-8 md:px-10 py-3 md:py-4 bg-transparent border border-white/50 text-white font-medium w-full sm:w-auto rounded-full text-center">
               Fee Structure 2026-27
             </a>
           </div>

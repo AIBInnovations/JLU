@@ -1830,7 +1830,7 @@ const Admissions = () => {
               {/* Download Button */}
               <div className="hidden lg:block mt-auto pt-8">
                 <a
-                  href="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/broucher/Fee-Structure-2026-27.pdf"
+                  href="/Fee-Structure-2026-27.pdf"
                   download="JLU-Fee-Structure-2026-27.pdf"
                   className="w-full flex items-center justify-center gap-2 px-5 py-4 bg-white text-[#21313c] rounded-xl font-semibold transition-all duration-300 text-sm cursor-pointer no-underline hover:bg-white/90"
                 >

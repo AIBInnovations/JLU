@@ -70,7 +70,7 @@ export const CtaBanner = () => {
             Download Brochure
           </motion.a>
           <motion.a
-            href="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/broucher/Fee-Structure-2026-27.pdf"
+            href="/Fee-Structure-2026-27.pdf"
             download="JLU-Fee-Structure-2026-27.pdf"
             target="_blank"
             rel="noopener noreferrer"

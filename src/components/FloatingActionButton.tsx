@@ -60,7 +60,7 @@ const actionItems = [
         <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" strokeLinecap="round" strokeLinejoin="round"/>
       </svg>
     ),
-    href: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/broucher/Fee-Structure-2026-27.pdf',
+    href: '/Fee-Structure-2026-27.pdf',
     accentColor: '#10b981',
   },
   {

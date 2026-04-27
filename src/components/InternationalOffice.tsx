@@ -1439,7 +1439,7 @@ const InternationalOffice = () => {
               * Fees are indicative and may vary by program. Scholarships available for eligible students.
             </p>
             <motion.a
-              href="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/broucher/Fee-Structure-2026-27.pdf"
+              href="/Fee-Structure-2026-27.pdf"
               download="JLU-Fee-Structure-2026-27.pdf"
               className="inline-flex items-center gap-3 text-[#21313c] font-medium group text-sm md:text-[15px] no-underline"
               whileHover={{ x: 5 }}
