@@ -124,6 +124,66 @@ const pastEvents: Event[] = [
 
 const categories = ['All', 'Arts & Culture', 'Student Leadership', 'Academic Competition', 'Awards & Recognition', 'Workshop', 'Technology'];
 
+const PastEventRow = ({ event, isMobile }: { event: Event; isMobile: boolean }) => {
+  const thumb = (
+    <div className="relative w-full h-full overflow-hidden rounded-md md:rounded-lg bg-[#f0f0f0]">
+      {event.image && (
+        <Image
+          src={event.image}
+          alt={event.title}
+          fill
+          sizes="(max-width: 768px) 110px, 180px"
+          className="object-cover group-hover:scale-105 transition-transform duration-500"
+        />
+      )}
+      {event.video && (
+        <span className="absolute bottom-1 right-1 bg-black/60 text-white rounded-full w-5 h-5 md:w-7 md:h-7 flex items-center justify-center" aria-hidden>
+          <svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z" /></svg>
+        </span>
+      )}
+    </div>
+  );
+
+  if (isMobile) {
+    return (
+      <div className="flex gap-3 items-stretch py-4 group-hover:bg-[#fafafa] transition-colors" style={{ borderBottom: '1px solid #e5e5e5', marginLeft: '-8px', marginRight: '-8px', paddingLeft: '8px', paddingRight: '8px' }}>
+        <div className="shrink-0" style={{ width: '110px', aspectRatio: '4 / 3' }}>{thumb}</div>
+        <div className="flex-1 min-w-0 flex flex-col">
+          <span className="text-[#999] text-[11px] mb-0.5">{event.date}</span>
+          <h3 className="text-[#21313c] font-semibold text-[14px] leading-tight mb-1.5 line-clamp-2">{event.title}</h3>
+          <span className="self-start inline-block px-1.5 py-0.5 bg-[#e8f0fe] text-[#3b82f6] rounded text-[9px] font-medium mb-1.5">{event.category}</span>
+          <p className="text-[#666] text-[12px] line-clamp-2 leading-snug mb-1">{event.description}</p>
+          <p className="text-[#999] text-[11px] truncate">{event.venue}</p>
+        </div>
+      </div>
+    );
+  }
+
+  return (
+    <div
+      className="grid items-start py-10 group-hover:bg-[#fafafa] transition-colors"
+      style={{ gridTemplateColumns: '120px 180px 1fr 1fr 40px', gap: '24px', marginLeft: '-24px', marginRight: '-24px', paddingLeft: '24px', paddingRight: '24px', borderBottom: '1px solid #e5e5e5' }}
+    >
+      <div>
+        <span className="text-[#21313c] font-semibold block" style={{ fontSize: '13px', lineHeight: 1.4 }}>{event.date.split(' ')[0]}</span>
+        <span className="text-[#21313c] block" style={{ fontSize: '13px' }}>{event.date.split(' ').slice(1).join(' ')}</span>
+      </div>
+      <div style={{ aspectRatio: '4 / 3' }}>{thumb}</div>
+      <div>
+        <h3 className="text-[#21313c] group-hover:text-[#666] transition-colors" style={{ fontSize: '24px', fontWeight: 600, lineHeight: 1.2, marginBottom: '12px' }}>{event.title}</h3>
+        <span className="inline-block px-3 py-1 bg-[#e8f0fe] text-[#3b82f6] rounded text-xs font-medium">{event.category}</span>
+      </div>
+      <div>
+        <p className="text-[#666] mb-3 line-clamp-2" style={{ fontSize: '15px', lineHeight: 1.6 }}>{event.description}</p>
+        <p className="text-[#999] truncate" style={{ fontSize: '13px' }}>{event.venue}</p>
+      </div>
+      <div className="flex items-center justify-end h-full">
+        <span className="text-[#21313c] opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all" style={{ fontSize: '20px' }}>→</span>
+      </div>
+    </div>
+  );
+};
+
 const Events = () => {
   const isMobile = useIsMobile();
   const [keyword, setKeyword] = useState('');
@@ -425,42 +485,7 @@ const Events = () => {
                 className="group cursor-pointer"
                 onClick={() => setSelectedEvent(event)}
               >
-                <div
-                  className="grid items-start py-4 md:py-10 group-hover:bg-[#fafafa] transition-colors"
-                  style={{ gridTemplateColumns: isMobile ? '60px 80px 1fr 1fr 20px' : '120px 180px 1fr 1fr 40px', gap: isMobile ? '8px' : '24px', marginLeft: isMobile ? '-8px' : '-24px', marginRight: isMobile ? '-8px' : '-24px', paddingLeft: isMobile ? '8px' : '24px', paddingRight: isMobile ? '8px' : '24px', borderBottom: '1px solid #e5e5e5' }}
-                >
-                  <div>
-                    <span className="text-[#21313c] font-semibold block" style={{ fontSize: isMobile ? '12px' : '13px', lineHeight: 1.4 }}>{event.date.split(' ')[0]}</span>
-                    <span className="text-[#21313c] block" style={{ fontSize: isMobile ? '12px' : '13px' }}>{event.date.split(' ').slice(1).join(' ')}</span>
-                  </div>
-                  <div className="relative w-full overflow-hidden rounded-md md:rounded-lg bg-[#f0f0f0]" style={{ aspectRatio: '4 / 3' }}>
-                    {event.image && (
-                      <Image
-                        src={event.image}
-                        alt={event.title}
-                        fill
-                        sizes="(max-width: 768px) 80px, 180px"
-                        className="object-cover group-hover:scale-105 transition-transform duration-500"
-                      />
-                    )}
-                    {event.video && (
-                      <span className="absolute bottom-1 right-1 bg-black/60 text-white rounded-full w-5 h-5 md:w-7 md:h-7 flex items-center justify-center" aria-hidden>
-                        <svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z" /></svg>
-                      </span>
-                    )}
-                  </div>
-                  <div>
-                    <h3 className="text-[#21313c] group-hover:text-[#666] transition-colors" style={{ fontSize: isMobile ? '13px' : '24px', fontWeight: 600, lineHeight: 1.2, marginBottom: isMobile ? '4px' : '12px' }}>{event.title}</h3>
-                    <span className="inline-block px-1.5 md:px-3 py-0.5 md:py-1 bg-[#e8f0fe] text-[#3b82f6] rounded text-[7px] md:text-xs font-medium">{event.category}</span>
-                  </div>
-                  <div>
-                    <p className="text-[#666] mb-1 md:mb-3 line-clamp-2" style={{ fontSize: isMobile ? '12px' : '15px', lineHeight: 1.6 }}>{event.description}</p>
-                    <p className="text-[#999] truncate" style={{ fontSize: isMobile ? '12px' : '13px' }}>{event.venue}</p>
-                  </div>
-                  <div className="flex items-center justify-end h-full">
-                    <span className="text-[#21313c] md:opacity-0 md:group-hover:opacity-100 group-hover:translate-x-1 transition-all" style={{ fontSize: isMobile ? '12px' : '20px' }}>→</span>
-                  </div>
-                </div>
+                <PastEventRow event={event} isMobile={isMobile} />
               </motion.div>
             ))}
           </div>
@@ -488,42 +513,7 @@ const Events = () => {
                       className="group cursor-pointer"
                       onClick={() => setSelectedEvent(event)}
                     >
-                      <div
-                        className="grid items-start py-4 md:py-10 group-hover:bg-[#fafafa] transition-colors"
-                        style={{ gridTemplateColumns: isMobile ? '60px 80px 1fr 1fr 20px' : '120px 180px 1fr 1fr 40px', gap: isMobile ? '8px' : '24px', marginLeft: isMobile ? '-8px' : '-24px', marginRight: isMobile ? '-8px' : '-24px', paddingLeft: isMobile ? '8px' : '24px', paddingRight: isMobile ? '8px' : '24px', borderBottom: '1px solid #e5e5e5' }}
-                      >
-                        <div>
-                          <span className="text-[#21313c] font-semibold block" style={{ fontSize: isMobile ? '12px' : '13px', lineHeight: 1.4 }}>{event.date.split(' ')[0]}</span>
-                          <span className="text-[#21313c] block" style={{ fontSize: isMobile ? '12px' : '13px' }}>{event.date.split(' ').slice(1).join(' ')}</span>
-                        </div>
-                        <div className="relative w-full overflow-hidden rounded-md md:rounded-lg bg-[#f0f0f0]" style={{ aspectRatio: '4 / 3' }}>
-                          {event.image && (
-                            <Image
-                              src={event.image}
-                              alt={event.title}
-                              fill
-                              sizes="(max-width: 768px) 80px, 180px"
-                              className="object-cover group-hover:scale-105 transition-transform duration-500"
-                            />
-                          )}
-                          {event.video && (
-                            <span className="absolute bottom-1 right-1 bg-black/60 text-white rounded-full w-5 h-5 md:w-7 md:h-7 flex items-center justify-center" aria-hidden>
-                              <svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z" /></svg>
-                            </span>
-                          )}
-                        </div>
-                        <div>
-                          <h3 className="text-[#21313c] group-hover:text-[#666] transition-colors" style={{ fontSize: isMobile ? '13px' : '24px', fontWeight: 600, lineHeight: 1.2, marginBottom: isMobile ? '4px' : '12px' }}>{event.title}</h3>
-                          <span className="inline-block px-1.5 md:px-3 py-0.5 md:py-1 bg-[#e8f0fe] text-[#3b82f6] rounded text-[7px] md:text-xs font-medium">{event.category}</span>
-                        </div>
-                        <div>
-                          <p className="text-[#666] mb-1 md:mb-3 line-clamp-2" style={{ fontSize: isMobile ? '12px' : '15px', lineHeight: 1.6 }}>{event.description}</p>
-                          <p className="text-[#999] truncate" style={{ fontSize: isMobile ? '12px' : '13px' }}>{event.venue}</p>
-                        </div>
-                        <div className="flex items-center justify-end h-full">
-                          <span className="text-[#21313c] md:opacity-0 md:group-hover:opacity-100 group-hover:translate-x-1 transition-all" style={{ fontSize: isMobile ? '12px' : '20px' }}>→</span>
-                        </div>
-                      </div>
+                      <PastEventRow event={event} isMobile={isMobile} />
                     </motion.div>
                   ))}
                 </div>
