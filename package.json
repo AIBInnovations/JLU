@@ -4,6 +4,9 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
+    "clean:appledouble": "find . -name '._*' -type f -not -path './node_modules/*' -delete 2>/dev/null; rm -rf .next/dev/cache/images .next/cache/images 2>/dev/null; true",
+    "predev": "npm run clean:appledouble",
+    "prebuild": "npm run clean:appledouble",
     "dev": "next dev",
     "build": "next build",
     "start": "next start",

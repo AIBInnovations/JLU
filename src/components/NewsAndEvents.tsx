@@ -323,6 +323,7 @@ function EventsCalendarSection() {
 }
 
 const pastEventsImages = [
+  '/events/foundation-day-2026.jpg', // Foundation Day 2026
   'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/JLu%20events/photos/Convocation/DSC_1039.JPG', // Convocation 2025
   'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/campus/computer%20lab.JPG', // Science Expo
   'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/student-clubs.jpg', // Sports Meet
@@ -331,7 +332,14 @@ const pastEventsImages = [
   'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/jlu%20ignited%20mind%20Award/photos/AMF_1081.JPG', // Alumni Meet
 ];
 
-const pastEventsData = [
+const pastEventsData: { id: number; year: string; title: string; description: string; video?: string }[] = [
+  {
+    id: 0,
+    year: '2026',
+    title: 'Foundation Day of JLU',
+    description: 'Commemorating the establishment of the university and celebrating its journey of academic excellence, innovation, and growth.',
+    video: '/events/foundation-day-2026.mp4',
+  },
   {
     id: 1,
     year: '2025',
@@ -1527,6 +1535,21 @@ const NewsAndEvents = () => {
               </div>
               {/* Modal Content */}
               <div className="p-6 md:p-8">
+                {archiveEvent.video && (
+                  <div className="mb-6 rounded-xl overflow-hidden bg-black">
+                    <video
+                      src={archiveEvent.video}
+                      autoPlay
+                      muted
+                      loop
+                      playsInline
+                      disablePictureInPicture
+                      controlsList="nodownload nofullscreen noremoteplayback noplaybackrate"
+                      onContextMenu={(e) => e.preventDefault()}
+                      className="w-full h-auto block pointer-events-none"
+                    />
+                  </div>
+                )}
                 <p className="text-[#666] text-base leading-relaxed mb-6">
                   {archiveEvent.description}
                 </p>

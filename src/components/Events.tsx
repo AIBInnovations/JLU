@@ -13,6 +13,7 @@ interface Event {
   venue: string;
   category: string;
   image?: string;
+  video?: string;
 }
 
 const upcomingEvents: Event[] = [
@@ -35,15 +36,6 @@ const upcomingEvents: Event[] = [
     image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/JLu%20events/photos/Lehar/IMG_8971.JPG',
   },
   {
-    id: 3,
-    date: '24 April 2026',
-    title: 'Foundation Day of JLU',
-    description: 'The Foundation Day of Jagran Lakecity University commemorates the establishment of the university and celebrates its journey of academic excellence, innovation, and growth. The occasion reflects on the institution\'s achievements and its continued commitment to shaping future leaders and professionals.',
-    venue: 'Jagran Lakecity University, Bhopal Campus',
-    category: 'Awards & Recognition',
-    image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/JLu%20events/photos/Convocation/DSC_0823.JPG',
-  },
-  {
     id: 4,
     date: '12 July 2026',
     title: 'Orientation for New Students',
@@ -55,6 +47,16 @@ const upcomingEvents: Event[] = [
 ];
 
 const pastEvents: Event[] = [
+  {
+    id: 3,
+    date: '24 April 2026',
+    title: 'Foundation Day of JLU',
+    description: 'The Foundation Day of Jagran Lakecity University commemorates the establishment of the university and celebrates its journey of academic excellence, innovation, and growth. The occasion reflects on the institution\'s achievements and its continued commitment to shaping future leaders and professionals.',
+    venue: 'Jagran Lakecity University, Bhopal Campus',
+    category: 'Awards & Recognition',
+    image: '/events/foundation-day-2026.jpg',
+    video: '/events/foundation-day-2026.mp4',
+  },
   {
     id: 5,
     date: '14 January 2025',
@@ -129,11 +131,11 @@ const Events = () => {
   const [selectedYear, setSelectedYear] = useState('All');
   const [showAllPastEvents, setShowAllPastEvents] = useState(false);
   const [activeModal, setActiveModal] = useState<'signature' | 'leadership' | null>(null);
-  const [selectedPastEvent, setSelectedPastEvent] = useState<Event | null>(null);
+  const [selectedEvent, setSelectedEvent] = useState<Event | null>(null);
   const heroRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    if (activeModal || selectedPastEvent) {
+    if (activeModal || selectedEvent) {
       document.body.style.overflow = 'hidden';
       document.documentElement.style.overflow = 'hidden';
     } else {
@@ -144,7 +146,15 @@ const Events = () => {
       document.body.style.overflow = '';
       document.documentElement.style.overflow = '';
     };
-  }, [activeModal, selectedPastEvent]);
+  }, [activeModal, selectedEvent]);
+
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    const id = params.get('event');
+    if (!id) return;
+    const found = [...upcomingEvents, ...pastEvents].find((e) => String(e.id) === id);
+    if (found) setSelectedEvent(found);
+  }, []);
   const { scrollYProgress } = useScroll({
     target: heroRef,
     offset: ['start start', 'end start'],
@@ -276,6 +286,7 @@ const Events = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
                 viewport={{ once: true }}
+                onClick={() => setSelectedEvent(event)}
                 className="group bg-white rounded-xl md:rounded-2xl overflow-hidden cursor-pointer hover:shadow-xl transition-all duration-300"
               >
                 {/* Image */}
@@ -387,6 +398,7 @@ const Events = () => {
                   }}
                 >
                   <option value="All">All Years</option>
+                  <option value="2026">2026</option>
                   <option value="2025">2025</option>
                   <option value="2024">2024</option>
                   <option value="2023">2023</option>
@@ -411,15 +423,31 @@ const Events = () => {
                 transition={{ duration: 0.5, delay: index * 0.1 }}
                 viewport={{ once: true }}
                 className="group cursor-pointer"
-                onClick={() => setSelectedPastEvent(event)}
+                onClick={() => setSelectedEvent(event)}
               >
                 <div
                   className="grid items-start py-4 md:py-10 group-hover:bg-[#fafafa] transition-colors"
-                  style={{ gridTemplateColumns: isMobile ? '60px 1fr 1fr 20px' : '140px 1fr 1fr 40px', gap: isMobile ? '8px' : '40px', marginLeft: isMobile ? '-8px' : '-24px', marginRight: isMobile ? '-8px' : '-24px', paddingLeft: isMobile ? '8px' : '24px', paddingRight: isMobile ? '8px' : '24px', borderBottom: '1px solid #e5e5e5' }}
+                  style={{ gridTemplateColumns: isMobile ? '60px 80px 1fr 1fr 20px' : '120px 180px 1fr 1fr 40px', gap: isMobile ? '8px' : '24px', marginLeft: isMobile ? '-8px' : '-24px', marginRight: isMobile ? '-8px' : '-24px', paddingLeft: isMobile ? '8px' : '24px', paddingRight: isMobile ? '8px' : '24px', borderBottom: '1px solid #e5e5e5' }}
                 >
                   <div>
                     <span className="text-[#21313c] font-semibold block" style={{ fontSize: isMobile ? '12px' : '13px', lineHeight: 1.4 }}>{event.date.split(' ')[0]}</span>
                     <span className="text-[#21313c] block" style={{ fontSize: isMobile ? '12px' : '13px' }}>{event.date.split(' ').slice(1).join(' ')}</span>
+                  </div>
+                  <div className="relative w-full overflow-hidden rounded-md md:rounded-lg bg-[#f0f0f0]" style={{ aspectRatio: '4 / 3' }}>
+                    {event.image && (
+                      <Image
+                        src={event.image}
+                        alt={event.title}
+                        fill
+                        sizes="(max-width: 768px) 80px, 180px"
+                        className="object-cover group-hover:scale-105 transition-transform duration-500"
+                      />
+                    )}
+                    {event.video && (
+                      <span className="absolute bottom-1 right-1 bg-black/60 text-white rounded-full w-5 h-5 md:w-7 md:h-7 flex items-center justify-center" aria-hidden>
+                        <svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z" /></svg>
+                      </span>
+                    )}
                   </div>
                   <div>
                     <h3 className="text-[#21313c] group-hover:text-[#666] transition-colors" style={{ fontSize: isMobile ? '13px' : '24px', fontWeight: 600, lineHeight: 1.2, marginBottom: isMobile ? '4px' : '12px' }}>{event.title}</h3>
@@ -458,15 +486,31 @@ const Events = () => {
                       transition={{ duration: 0.5, delay: index * 0.1 }}
                       viewport={{ once: true }}
                       className="group cursor-pointer"
-                      onClick={() => setSelectedPastEvent(event)}
+                      onClick={() => setSelectedEvent(event)}
                     >
                       <div
                         className="grid items-start py-4 md:py-10 group-hover:bg-[#fafafa] transition-colors"
-                        style={{ gridTemplateColumns: isMobile ? '60px 1fr 1fr 20px' : '140px 1fr 1fr 40px', gap: isMobile ? '8px' : '40px', marginLeft: isMobile ? '-8px' : '-24px', marginRight: isMobile ? '-8px' : '-24px', paddingLeft: isMobile ? '8px' : '24px', paddingRight: isMobile ? '8px' : '24px', borderBottom: '1px solid #e5e5e5' }}
+                        style={{ gridTemplateColumns: isMobile ? '60px 80px 1fr 1fr 20px' : '120px 180px 1fr 1fr 40px', gap: isMobile ? '8px' : '24px', marginLeft: isMobile ? '-8px' : '-24px', marginRight: isMobile ? '-8px' : '-24px', paddingLeft: isMobile ? '8px' : '24px', paddingRight: isMobile ? '8px' : '24px', borderBottom: '1px solid #e5e5e5' }}
                       >
                         <div>
                           <span className="text-[#21313c] font-semibold block" style={{ fontSize: isMobile ? '12px' : '13px', lineHeight: 1.4 }}>{event.date.split(' ')[0]}</span>
                           <span className="text-[#21313c] block" style={{ fontSize: isMobile ? '12px' : '13px' }}>{event.date.split(' ').slice(1).join(' ')}</span>
+                        </div>
+                        <div className="relative w-full overflow-hidden rounded-md md:rounded-lg bg-[#f0f0f0]" style={{ aspectRatio: '4 / 3' }}>
+                          {event.image && (
+                            <Image
+                              src={event.image}
+                              alt={event.title}
+                              fill
+                              sizes="(max-width: 768px) 80px, 180px"
+                              className="object-cover group-hover:scale-105 transition-transform duration-500"
+                            />
+                          )}
+                          {event.video && (
+                            <span className="absolute bottom-1 right-1 bg-black/60 text-white rounded-full w-5 h-5 md:w-7 md:h-7 flex items-center justify-center" aria-hidden>
+                              <svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z" /></svg>
+                            </span>
+                          )}
                         </div>
                         <div>
                           <h3 className="text-[#21313c] group-hover:text-[#666] transition-colors" style={{ fontSize: isMobile ? '13px' : '24px', fontWeight: 600, lineHeight: 1.2, marginBottom: isMobile ? '4px' : '12px' }}>{event.title}</h3>
@@ -714,14 +758,14 @@ const Events = () => {
       </div>
       {/* Past Event Detail Modal */}
       <AnimatePresence>
-        {selectedPastEvent && (
+        {selectedEvent && (
           <motion.div
             className="fixed inset-0 z-[9999] flex items-center justify-center"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.3 }}
-            onClick={() => setSelectedPastEvent(null)}
+            onClick={() => setSelectedEvent(null)}
           >
             {/* Backdrop */}
             <div className="absolute inset-0 bg-black/60 backdrop-blur-sm" />
@@ -737,10 +781,10 @@ const Events = () => {
             >
               {/* Header with image or gradient */}
               <div className="relative h-[180px] sm:h-[220px] shrink-0 overflow-hidden">
-                {selectedPastEvent.image ? (
+                {selectedEvent.image ? (
                   <Image
-                    src={selectedPastEvent.image}
-                    alt={selectedPastEvent.title}
+                    src={selectedEvent.image}
+                    alt={selectedEvent.title}
                     fill
                     className="object-cover"
                   />
@@ -751,7 +795,7 @@ const Events = () => {
 
                 {/* Close Button */}
                 <button
-                  onClick={() => setSelectedPastEvent(null)}
+                  onClick={() => setSelectedEvent(null)}
                   className="absolute top-4 right-4 w-10 h-10 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center text-white hover:bg-white/40 transition-colors cursor-pointer"
                 >
                   <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -763,20 +807,37 @@ const Events = () => {
                 {/* Category badge */}
                 <div className="absolute top-4 left-4">
                   <span className="px-3 py-1 bg-[#c3fd7a] text-[#21313c] text-xs font-semibold rounded-full">
-                    {selectedPastEvent.category}
+                    {selectedEvent.category}
                   </span>
                 </div>
 
                 {/* Title on image */}
                 <div className="absolute bottom-0 left-0 p-5 sm:p-8">
                   <h2 className="text-white text-xl sm:text-2xl md:text-[28px] font-semibold" style={{ lineHeight: 1.2 }}>
-                    {selectedPastEvent.title}
+                    {selectedEvent.title}
                   </h2>
                 </div>
               </div>
 
               {/* Content */}
               <div className="p-5 sm:p-8">
+                {/* Video (if available) */}
+                {selectedEvent.video && (
+                  <div className="mb-6 rounded-xl overflow-hidden bg-black">
+                    <video
+                      src={selectedEvent.video}
+                      autoPlay
+                      muted
+                      loop
+                      playsInline
+                      disablePictureInPicture
+                      controlsList="nodownload nofullscreen noremoteplayback noplaybackrate"
+                      onContextMenu={(e) => e.preventDefault()}
+                      className="w-full h-auto block pointer-events-none"
+                    />
+                  </div>
+                )}
+
                 {/* Date and venue */}
                 <div className="flex flex-col gap-3 mb-6">
                   <div className="flex items-center gap-3 text-[#21313c]">
@@ -787,7 +848,7 @@ const Events = () => {
                     </div>
                     <div>
                       <p className="text-xs text-[#999] uppercase tracking-wider">Date</p>
-                      <p className="text-sm font-semibold">{selectedPastEvent.date}</p>
+                      <p className="text-sm font-semibold">{selectedEvent.date}</p>
                     </div>
                   </div>
                   <div className="flex items-center gap-3 text-[#21313c]">
@@ -799,7 +860,7 @@ const Events = () => {
                     </div>
                     <div>
                       <p className="text-xs text-[#999] uppercase tracking-wider">Venue</p>
-                      <p className="text-sm font-semibold">{selectedPastEvent.venue}</p>
+                      <p className="text-sm font-semibold">{selectedEvent.venue}</p>
                     </div>
                   </div>
                 </div>
@@ -809,7 +870,7 @@ const Events = () => {
 
                 {/* Description */}
                 <p className="text-[#666] text-sm md:text-base" style={{ lineHeight: 1.8 }}>
-                  {selectedPastEvent.description}
+                  {selectedEvent.description}
                 </p>
               </div>
             </motion.div>

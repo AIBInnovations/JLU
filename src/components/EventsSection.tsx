@@ -2,9 +2,11 @@
 
 import { useState } from 'react';
 import { motion } from 'framer-motion';
+import { useRouter } from 'next/navigation';
 import { useIsMobile } from '../hooks/useIsMobile';
 
 interface Event {
+  id: number;
   day: string;
   month: string;
   title: string;
@@ -16,6 +18,7 @@ interface Event {
 
 const events: Event[] = [
   {
+    id: 1,
     day: '09',
     month: 'Mar',
     title: 'International Women\'s Day',
@@ -25,6 +28,7 @@ const events: Event[] = [
     color: 'bg-[#e85a71]',
   },
   {
+    id: 2,
     day: '01',
     month: 'Apr',
     title: 'JLU\'s Got Talent',
@@ -34,6 +38,7 @@ const events: Event[] = [
     color: 'bg-[#3b82f6]',
   },
   {
+    id: 3,
     day: '24',
     month: 'Apr',
     title: 'Foundation Day of JLU',
@@ -43,6 +48,7 @@ const events: Event[] = [
     color: 'bg-[#d4c84a]',
   },
   {
+    id: 4,
     day: '12',
     month: 'Jul',
     title: 'Orientation for New Students',
@@ -54,6 +60,7 @@ const events: Event[] = [
 ];
 
 const galleryImages = [
+  '/events/foundation-day-2026.jpg',
   'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/JLu%20events/photos/Convocation/DSC_0823.JPG',
   'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/JLu%20events/photos/Lehar/IMG_8971.JPG',
   'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/JLu%20events/photos/Anti%20Ragging%20WEEK/IMG_1879.JPG',
@@ -63,6 +70,7 @@ const galleryImages = [
 
 export const EventsSection = () => {
   const isMobile = useIsMobile();
+  const router = useRouter();
   const [currentIndex, setCurrentIndex] = useState(0);
 
   return (
@@ -143,7 +151,16 @@ export const EventsSection = () => {
               {events.map((event, index) => (
                 <div
                   key={index}
-                  className="bg-white rounded-2xl overflow-hidden shrink-0 flex flex-col p-4 md:p-6"
+                  onClick={() => router.push(`/events?event=${event.id}`)}
+                  role="button"
+                  tabIndex={0}
+                  onKeyDown={(e) => {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                      e.preventDefault();
+                      router.push(`/events?event=${event.id}`);
+                    }
+                  }}
+                  className="bg-white rounded-2xl overflow-hidden shrink-0 flex flex-col p-4 md:p-6 cursor-pointer transition-transform hover:-translate-y-1 hover:shadow-2xl"
                   style={{
                     width: isMobile ? 'calc(100vw - 2rem)' : 'clamp(300px, 22vw, 480px)',
                     height: isMobile ? 'auto' : 'clamp(380px, 26vw, 600px)',
