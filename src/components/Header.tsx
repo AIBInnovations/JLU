@@ -493,7 +493,7 @@ const MenuOverlay = ({ isOpen, onClose, menuButtonRef }: MenuOverlayProps) => {
                     </div>
 
                     {/* Quick Actions */}
-                    <div className={`grid gap-3 ${isTablet && !isMobile ? 'grid-cols-3' : 'grid-cols-2'}`}>
+                    <div className="grid gap-3 grid-cols-3">
                       <a href="https://apply.jlu.edu.in/" onClick={onClose}>
                         <motion.div
                           initial={{ opacity: 0, y: 8 }}
@@ -516,6 +516,19 @@ const MenuOverlay = ({ isOpen, onClose, menuButtonRef }: MenuOverlayProps) => {
                         style={{ backgroundColor: '#21313c', color: '#ffffff' }}
                       >
                         360° Tour
+                      </motion.a>
+                      <motion.a
+                        href="https://erp.jlu.edu.in/Login.aspx"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        onClick={onClose}
+                        initial={{ opacity: 0, y: 8 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ delay: 1.05, duration: 0.3 }}
+                        className="font-semibold py-3 px-4 rounded-lg text-sm text-center"
+                        style={{ backgroundColor: '#ef4444', color: '#ffffff' }}
+                      >
+                        ERP
                       </motion.a>
                     </div>
                   </div>
@@ -821,6 +834,16 @@ const MenuOverlay = ({ isOpen, onClose, menuButtonRef }: MenuOverlayProps) => {
                               >
                                 360° Tour
                               </a>
+                              <a
+                                href="https://erp.jlu.edu.in/Login.aspx"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                onClick={onClose}
+                                className="font-normal py-2 px-4 rounded-md transition-all shadow-sm hover:shadow-md text-center text-xs whitespace-nowrap"
+                                style={{ backgroundColor: '#ef4444', color: '#ffffff' }}
+                              >
+                                ERP
+                              </a>
                             </div>
                           </div>
                         </div>
@@ -864,6 +887,16 @@ const MenuOverlay = ({ isOpen, onClose, menuButtonRef }: MenuOverlayProps) => {
                               style={{ backgroundColor: '#21313c', color: '#ffffff' }}
                             >
                               360° Tour
+                            </a>
+                            <a
+                              href="https://erp.jlu.edu.in/Login.aspx"
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              onClick={onClose}
+                              className="font-normal py-2 px-4 rounded-md transition-all shadow-sm hover:shadow-md text-center text-xs whitespace-nowrap"
+                              style={{ backgroundColor: '#ef4444', color: '#ffffff' }}
+                            >
+                              ERP
                             </a>
                           </div>
                         </div>

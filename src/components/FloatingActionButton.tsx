@@ -75,6 +75,20 @@ const actionItems = [
     href: 'tel:+917471110101',
     accentColor: '#027ea1',
   },
+  {
+    id: 'erp',
+    label: 'ERP',
+    description: 'Student & Staff Portal',
+    icon: (
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+        <rect x="3" y="3" width="18" height="18" rx="2" ry="2" strokeLinecap="round" strokeLinejoin="round"/>
+        <path d="M3 9h18" strokeLinecap="round" strokeLinejoin="round"/>
+        <path d="M9 21V9" strokeLinecap="round" strokeLinejoin="round"/>
+      </svg>
+    ),
+    href: 'https://erp.jlu.edu.in/Login.aspx',
+    accentColor: '#ef4444',
+  },
 ];
 
 export const FloatingActionButton = ({}: FloatingActionButtonProps) => {
