@@ -59,11 +59,11 @@ const chatResponses: ChatResponse[] = [
   },
   {
     keywords: ['event', 'fest', 'cultural', 'technical', 'activity'],
-    response: 'JLU Annual Events:\n\n• Foundation Day Celebration (May 1st)\n• International Festival of Media (March)\n• Lakecity Fest - Cultural extravaganza\n• Technovate - Technical fest\n• Sports Week\n• Literary Festival\n• Convocation Ceremony\n\nRecent: 11th Foundation Day (May 2024), 7th Media Festival (March 2024)\n\nFollow @jlubhopal on Instagram!',
+    response: 'JLU Annual Events:\n\n• Foundation Day Celebration (May 1st)\n• International Festival of Media (March)\n• Lakecity Fest - Cultural extravaganza\n• Technovate - Technical fest\n• Sports Week\n• Literary Festival\n• Convocation Ceremony\n\nRecent: 13th Foundation Day (May 2026), Convocation 2025\n\nFollow @jlubhopal on Instagram!',
   },
   {
     keywords: ['ranking', 'accreditation', 'rating', 'recognition'],
-    response: 'JLU Rankings & Recognition:\n\n• QS I-GAUGE Diamond Rating (First in MP!)\n• NIRF Rank: 151-200 (2024)\n• India Today Rank: #49 Private University\n• University of the Year - MP Govt (2015-2019)\n\nApprovals: UGC, AICTE, BCI, PCI\nMemberships: CII, AIMA, AIU',
+    response: 'JLU Rankings & Recognition:\n\n• QS I-GAUGE Diamond Rating — First & only in MP\n• India Today Top Private Universities 2025\n• NIRF Rank: 151-200\n• ASSOCHAM University of the Year — 5 consecutive years\n\nApprovals: UGC, AICTE, BCI, PCI\nMemberships: CII, AIMA, AIU',
   },
   {
     keywords: ['time', 'timing', 'schedule', 'hours', 'when'],

@@ -38,7 +38,7 @@ export const CtaBanner = () => {
           </h2>
           <p className="text-white/60 text-sm md:text-base leading-relaxed mt-4 max-w-2xl mx-auto">
             Join 2,500+ students from 27 states and 8 countries at Central India&apos;s only QS Diamond-rated university.
-            50+ programs, 42+ global partnerships, and 80%+ placement rate.
+            50+ programs, 45+ global partnerships, and 80%+ placement rate.
           </p>
         </motion.div>
 

@@ -325,45 +325,45 @@ export const VoiceOfJlu = () => {
         </div>
 
         <div>
-          {/* Top Row - 3 leaders */}
+          {/* Top Row - 3 leaders (single render, responsive layout) */}
           <div className="relative mb-4 md:mb-8 lg:mb-10">
-            {/* Cards */}
-            <div className="hidden md:grid grid-cols-3 gap-4 md:gap-8 lg:gap-10 md:max-w-[900px] lg:max-w-[1100px] mx-auto relative z-10">
+            <div className="grid grid-cols-2 md:grid-cols-3 gap-3 md:gap-8 lg:gap-10 md:max-w-[900px] lg:max-w-[1100px] mx-auto relative z-10">
               {faculty.slice(0, 3).map((member, index) => (
                 <div
                   key={index}
-                  className="group relative"
+                  className={`group relative ${index === 0 ? 'col-span-2 max-w-[70%] mx-auto md:col-span-1 md:max-w-none md:mx-0' : ''}`}
                   style={{ opacity: isInView ? 1 : 0, transform: isInView ? 'none' : 'translateY(40px)', transition: `opacity 0.7s ease ${index * 0.12}s, transform 0.7s ease ${index * 0.12}s` }}
                 >
                   <div className="relative overflow-hidden rounded-2xl md:rounded-3xl" style={{ aspectRatio: '3/4' }}>
                     <img
                       src={member.image}
-                      alt={member.name}
+                      alt={`${member.name} — ${member.title}, Jagran Lakecity University`}
                       loading="lazy"
                       className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+                      style={member.objectPosition ? { objectPosition: member.objectPosition } : {}}
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                     <div className="absolute bottom-0 left-0 right-0 p-4 md:p-6 translate-y-4 group-hover:translate-y-0 opacity-0 group-hover:opacity-100 transition-all duration-500">
                       {member.linkedin && (
                         <a href={member.linkedin} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 text-white/90 text-xs md:text-sm hover:text-white transition-colors">
-                          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+                          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
                           LinkedIn
                         </a>
                       )}
                     </div>
                   </div>
-                  <div className="mt-3 md:mt-5 flex items-start justify-between">
+                  <div className={`mt-2 md:mt-5 flex items-start justify-between ${index === 0 ? 'text-center md:text-left flex-col md:flex-row items-center md:items-start' : ''}`}>
                     <div>
-                      <h3 className="text-[#21313c] font-bold text-sm md:text-lg lg:text-xl leading-tight">
+                      <h3 className="text-[#21313c] font-bold text-xs md:text-lg lg:text-xl leading-tight">
                         {member.name}
                       </h3>
-                      <p className="text-[#999] text-xs md:text-sm mt-1" style={{ letterSpacing: '0.02em' }}>
+                      <p className="text-[#999] text-[10px] md:text-sm mt-0.5 md:mt-1" style={{ letterSpacing: '0.02em' }}>
                         {member.title}
                       </p>
                     </div>
                     {member.linkedin && (
-                      <a href={member.linkedin} target="_blank" rel="noopener noreferrer" className="text-[#0077b5] hover:text-[#005582] transition-colors mt-1 shrink-0 ml-2">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+                      <a href={member.linkedin} target="_blank" rel="noopener noreferrer" aria-label={`${member.name} on LinkedIn`} className="hidden md:inline-flex text-[#0077b5] hover:text-[#005582] transition-colors mt-1 shrink-0 ml-2">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
                       </a>
                     )}
                   </div>
@@ -372,10 +372,9 @@ export const VoiceOfJlu = () => {
             </div>
           </div>
 
-          {/* Bottom Row - 4 leaders */}
+          {/* Bottom Row - 4 leaders (single render, responsive layout) */}
           <div className="relative">
-            {/* Cards */}
-            <div className="hidden md:grid grid-cols-4 gap-4 md:gap-8 lg:gap-10 md:max-w-[1200px] lg:max-w-[1400px] mx-auto relative z-10">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-8 lg:gap-10 md:max-w-[1200px] lg:max-w-[1400px] mx-auto relative z-10">
               {faculty.slice(3).map((member, index) => (
                 <div
                   key={index + 3}
@@ -385,63 +384,35 @@ export const VoiceOfJlu = () => {
                   <div className="relative overflow-hidden rounded-2xl md:rounded-3xl" style={{ aspectRatio: '3/4' }}>
                     <img
                       src={member.image}
-                      alt={member.name}
+                      alt={`${member.name} — ${member.title}, Jagran Lakecity University`}
                       loading="lazy"
                       className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+                      style={member.objectPosition ? { objectPosition: member.objectPosition } : {}}
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                     <div className="absolute bottom-0 left-0 right-0 p-4 md:p-6 translate-y-4 group-hover:translate-y-0 opacity-0 group-hover:opacity-100 transition-all duration-500">
                       {member.linkedin && (
                         <a href={member.linkedin} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 text-white/90 text-xs md:text-sm hover:text-white transition-colors">
-                          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+                          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
                           LinkedIn
                         </a>
                       )}
                     </div>
                   </div>
-                  <div className="mt-3 md:mt-5 flex items-start justify-between">
+                  <div className="mt-2 md:mt-5 flex items-start justify-between">
                     <div>
-                      <h3 className="text-[#21313c] font-bold text-sm md:text-base lg:text-lg leading-tight">
+                      <h3 className="text-[#21313c] font-bold text-xs md:text-base lg:text-lg leading-tight">
                         {member.name}
                       </h3>
-                      <p className="text-[#999] text-xs md:text-sm mt-1" style={{ letterSpacing: '0.02em' }}>
+                      <p className="text-[#999] text-[10px] md:text-sm mt-0.5 md:mt-1" style={{ letterSpacing: '0.02em' }}>
                         {member.title}
                       </p>
                     </div>
                     {member.linkedin && (
-                      <a href={member.linkedin} target="_blank" rel="noopener noreferrer" className="text-[#0077b5] hover:text-[#005582] transition-colors mt-1 shrink-0 ml-2">
-                        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+                      <a href={member.linkedin} target="_blank" rel="noopener noreferrer" aria-label={`${member.name} on LinkedIn`} className="hidden md:inline-flex text-[#0077b5] hover:text-[#005582] transition-colors mt-1 shrink-0 ml-2">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
                       </a>
                     )}
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          {/* Mobile-only: All 7 leaders */}
-          <div className="md:hidden relative z-10">
-            {/* Chancellor - big card */}
-            <div className="group relative max-w-[70%] mx-auto mb-4">
-              <div className="relative overflow-hidden rounded-2xl" style={{ aspectRatio: '3/4' }}>
-                <img src={faculty[0].image} alt={faculty[0].name} loading="lazy" className="w-full h-full object-cover" />
-              </div>
-              <div className="mt-3 text-center">
-                <h3 className="text-[#21313c] font-bold text-base leading-tight">{faculty[0].name}</h3>
-                <p className="text-[#999] text-xs mt-1">{faculty[0].title}</p>
-              </div>
-            </div>
-
-            {/* Remaining 6 in 2-column grid */}
-            <div className="grid grid-cols-2 gap-3">
-              {faculty.slice(1).map((member, index) => (
-                <div key={index + 1} className="group relative">
-                  <div className="relative overflow-hidden rounded-2xl" style={{ aspectRatio: '3/4' }}>
-                    <img src={member.image} alt={member.name} loading="lazy" className="w-full h-full object-cover" style={member.objectPosition ? { objectPosition: member.objectPosition } : {}} />
-                  </div>
-                  <div className="mt-2">
-                    <h3 className="text-[#21313c] font-bold text-xs leading-tight">{member.name}</h3>
-                    <p className="text-[#999] text-[10px] mt-0.5">{member.title}</p>
                   </div>
                 </div>
               ))}

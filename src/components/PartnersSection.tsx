@@ -89,7 +89,7 @@ export const PartnersSection = () => {
               }}
             >
               <span className="partner-text-line block overflow-hidden">
-                <span className="inline-block">42+ global collaborations</span>
+                <span className="inline-block">45+ global collaborations</span>
               </span>
               <span className="partner-text-line block overflow-hidden">
                 <span className="inline-block">powering exchange programs,</span>
@@ -215,7 +215,7 @@ export const PartnersSection = () => {
                   }}
                 >
                   <span className="partner-text-line block overflow-hidden">
-                    <span className="inline-block">42+ global collaborations</span>
+                    <span className="inline-block">45+ global collaborations</span>
                   </span>
                   <span className="partner-text-line block overflow-hidden">
                     <span className="inline-block">powering exchange</span>

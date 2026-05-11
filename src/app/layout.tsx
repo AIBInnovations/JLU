@@ -7,9 +7,119 @@ import { Header } from '../components/Header';
 import { GlobalWidgets } from '../components/GlobalWidgets';
 import '../index.css';
 
+const SITE_URL = 'https://www.jlu.edu.in';
+const OG_IMAGE = `${SITE_URL}/og-image.jpg`;
+
 export const metadata: Metadata = {
-  title: 'Jagran Lakecity University',
-  description: 'Jagran Lakecity University',
+  metadataBase: new URL(SITE_URL),
+  title: {
+    default: 'Jagran Lakecity University Bhopal | Top University in MP | Admissions 2026',
+    template: '%s | Jagran Lakecity University',
+  },
+  description:
+    "Jagran Lakecity University, Bhopal — Central India's QS Diamond-rated university. 50+ programs, 45+ global partnerships, 80%+ placement rate. Apply 2026-27.",
+  keywords: [
+    'Jagran Lakecity University',
+    'JLU Bhopal',
+    'best university in Bhopal',
+    'top private university in MP',
+    'top university in Madhya Pradesh',
+    'MBA admissions 2026 Madhya Pradesh',
+    'QS Diamond rated university India',
+    'university admissions 2026',
+  ],
+  alternates: {
+    canonical: '/',
+  },
+  openGraph: {
+    type: 'website',
+    url: SITE_URL,
+    siteName: 'Jagran Lakecity University',
+    title: 'Jagran Lakecity University Bhopal | Top University in MP | Admissions 2026',
+    description:
+      "Central India's QS Diamond-rated university. 50+ programs, 45+ global partnerships, 80%+ placement rate. Apply 2026-27.",
+    locale: 'en_IN',
+    images: [
+      {
+        url: OG_IMAGE,
+        width: 1200,
+        height: 630,
+        alt: 'Jagran Lakecity University, Bhopal — Central India\'s QS Diamond-rated university',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Jagran Lakecity University Bhopal | Top University in MP',
+    description:
+      "Central India's QS Diamond-rated university. 50+ programs, 45+ global partnerships, 80%+ placement rate. Apply 2026-27.",
+    images: [OG_IMAGE],
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
+  },
+};
+
+const organizationSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'CollegeOrUniversity',
+  '@id': `${SITE_URL}/#organization`,
+  name: 'Jagran Lakecity University',
+  alternateName: 'JLU',
+  url: SITE_URL,
+  logo: `${SITE_URL}/logo.png`,
+  image: OG_IMAGE,
+  description:
+    "Jagran Lakecity University (JLU), Bhopal is Central India's QS Diamond-rated university offering 50+ undergraduate, postgraduate and doctoral programs across schools of Management, Law, Engineering, Liberal Arts, Hospitality, Journalism, Architecture and Design, Education, and Humanities & Social Sciences.",
+  foundingDate: '2013',
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: 'Mugaliyachap, Chandanpura',
+    addressLocality: 'Bhopal',
+    addressRegion: 'Madhya Pradesh',
+    postalCode: '462044',
+    addressCountry: 'IN',
+  },
+  sameAs: [
+    'https://www.facebook.com/JagranLakecityUniversity',
+    'https://www.instagram.com/jagranlakecityuniversity',
+    'https://www.linkedin.com/school/jagran-lakecity-university',
+    'https://twitter.com/jlubhopal',
+    'https://www.youtube.com/@JagranLakecityUniversity',
+  ],
+  contactPoint: {
+    '@type': 'ContactPoint',
+    contactType: 'admissions',
+    email: 'admissions@jlu.edu.in',
+    areaServed: 'IN',
+    availableLanguage: ['English', 'Hindi'],
+  },
+  award: [
+    'QS I-GAUGE Diamond Rated University',
+    'University of the Year (ASSOCHAM) for five consecutive years',
+    'India Today Top University Rankings 2025',
+  ],
+};
+
+const websiteSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'WebSite',
+  '@id': `${SITE_URL}/#website`,
+  url: SITE_URL,
+  name: 'Jagran Lakecity University',
+  publisher: { '@id': `${SITE_URL}/#organization` },
+  potentialAction: {
+    '@type': 'SearchAction',
+    target: `${SITE_URL}/?q={search_term_string}`,
+    'query-input': 'required name=search_term_string',
+  },
 };
 
 export default function RootLayout({
@@ -33,6 +143,14 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{
             __html: `try{var s=sessionStorage.getItem('scrollPos_'+location.pathname);if(s&&+s>0){window.scrollTo(0,+s)}}catch(e){}`,
           }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteSchema) }}
         />
       </head>
       <body className={inter.className} suppressHydrationWarning>

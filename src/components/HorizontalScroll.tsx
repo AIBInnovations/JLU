@@ -37,7 +37,7 @@ export const HorizontalScroll = () => {
       hasText: true,
       isTextCard: true,
       title: "Excellence in Education",
-      content: "Jagran Lakecity University stands as the first university in MP & CG to receive the prestigious QS I-Gauge DIAMOND rating. Recognized as 'University of the Year' for five consecutive years (2015-2019) and ranked #1 multidisciplinary private university in Madhya Pradesh.\n\nSpread across a sprawling 232-acre campus, JLU offers 50+ degree programs to over 2,500 students, fostering innovation and academic excellence."
+      content: "Jagran Lakecity University is the first and only university in MP & CG to hold the prestigious QS I-Gauge DIAMOND rating, and is ranked among India Today's Top Private Universities 2025. JLU is the #1 multidisciplinary private university in Madhya Pradesh.\n\nSpread across a sprawling 232-acre campus, JLU offers 50+ degree programs to a vibrant community of 2,500+ students from 27 states and 8 countries — fostering innovation, global partnerships and academic excellence."
     },
     { width: 540, height: 500, mobileWidth: 200, mobileHeight: 260, bg: 'bg-[#c3fd7a]', hasText: true, isTextCard: false, stat: '232', statLabel: 'Acres of Campus' },
     { width: 770, height: 500, mobileWidth: 280, mobileHeight: 260, bg: 'bg-gray-200', hasText: false, isTextCard: false, image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/interdisciplinary/campus-drone.jpg' },
@@ -219,7 +219,7 @@ export const HorizontalScroll = () => {
       >
         <div className="h-full flex flex-col justify-center relative">
           {/* Top scrolling text placeholder */}
-          <div className="absolute top-8 left-0 right-0 overflow-hidden pointer-events-none">
+          <div className="absolute top-8 left-0 right-0 overflow-hidden pointer-events-none" aria-hidden="true">
             <div
               className="whitespace-nowrap text-[#21313c]/10 font-bold uppercase tracking-widest"
               style={{
@@ -227,7 +227,7 @@ export const HorizontalScroll = () => {
                 fontFamily: "'Inter', sans-serif",
               }}
             >
-              {topTextContent.repeat(8)}
+              {topTextContent.repeat(3)}
             </div>
           </div>
 
@@ -240,7 +240,7 @@ export const HorizontalScroll = () => {
           </div>
 
           {/* Bottom scrolling text placeholder */}
-          <div className="absolute bottom-8 left-0 right-0 overflow-hidden pointer-events-none">
+          <div className="absolute bottom-8 left-0 right-0 overflow-hidden pointer-events-none" aria-hidden="true">
             <div
               className="whitespace-nowrap text-[#21313c]/10 font-bold uppercase tracking-widest"
               style={{
@@ -248,7 +248,7 @@ export const HorizontalScroll = () => {
                 fontFamily: "'Inter', sans-serif",
               }}
             >
-              {bottomTextContent.repeat(8)}
+              {bottomTextContent.repeat(3)}
             </div>
           </div>
         </div>
@@ -290,7 +290,7 @@ export const HorizontalScroll = () => {
         // Desktop: Single row layout with scrolling text
         <div className="h-full flex flex-col justify-center relative">
           {/* Top scrolling text */}
-          <div className="absolute top-8 left-0 right-0 overflow-hidden pointer-events-none">
+          <div className="absolute top-8 left-0 right-0 overflow-hidden pointer-events-none" aria-hidden="true">
             <div
               ref={topTextRef}
               className="whitespace-nowrap text-[#21313c]/10 font-bold uppercase tracking-widest"
@@ -299,7 +299,7 @@ export const HorizontalScroll = () => {
                 fontFamily: "'Inter', sans-serif",
               }}
             >
-              {topTextContent.repeat(8)}
+              {topTextContent.repeat(4)}
             </div>
           </div>
 
@@ -313,7 +313,7 @@ export const HorizontalScroll = () => {
           </div>
 
           {/* Bottom scrolling text */}
-          <div className="absolute bottom-8 left-0 right-0 overflow-hidden pointer-events-none">
+          <div className="absolute bottom-8 left-0 right-0 overflow-hidden pointer-events-none" aria-hidden="true">
             <div
               ref={bottomTextRef}
               className="whitespace-nowrap text-[#21313c]/10 font-bold uppercase tracking-widest"
@@ -322,7 +322,7 @@ export const HorizontalScroll = () => {
                 fontFamily: "'Inter', sans-serif",
               }}
             >
-              {bottomTextContent.repeat(8)}
+              {bottomTextContent.repeat(4)}
             </div>
           </div>
         </div>

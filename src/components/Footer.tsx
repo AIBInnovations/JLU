@@ -57,7 +57,7 @@ export const Footer = () => {
             <h2 className="text-xl font-normal leading-tight text-[#d4e4a0]">
               Central India's
               <br />
-              <span className="italic font-serif">Global University</span>
+              <span className="italic font-serif">Diamond University</span>
             </h2>
             <a
               href="https://apply.jlu.edu.in/" target="_blank" rel="noopener noreferrer"
@@ -123,7 +123,7 @@ export const Footer = () => {
           {/* Bottom Section */}
           <div className="flex justify-between items-end mt-auto">
             <div>
-              <p className="text-gray-400 text-xs mb-1">Copyright © 2025 | Jagran Lakecity University Bhopal | All Rights Reserved</p>
+              <p className="text-gray-400 text-xs mb-1">Copyright © 2026 | Jagran Lakecity University Bhopal | All Rights Reserved</p>
               <button
                 onClick={scrollToTop}
                 className="text-gray-400 text-sm font-medium hover:text-white transition-colors"
@@ -192,7 +192,7 @@ export const Footer = () => {
               <h2 className="text-2xl font-normal leading-tight text-[#d4e4a0]">
                 Central India's
                 <br />
-                <span className="italic font-serif">Global University</span>
+                <span className="italic font-serif">Diamond University</span>
               </h2>
               <a
                 href="https://apply.jlu.edu.in/" target="_blank" rel="noopener noreferrer"
@@ -256,7 +256,7 @@ export const Footer = () => {
             {/* Bottom Section */}
             <div className="flex justify-between items-end mt-auto">
               <div>
-                <p className="text-gray-400 text-xs mb-1">Copyright © 2025 | Jagran Lakecity University Bhopal | All Rights Reserved</p>
+                <p className="text-gray-400 text-xs mb-1">Copyright © 2026 | Jagran Lakecity University Bhopal | All Rights Reserved</p>
                 <button
                   onClick={scrollToTop}
                   className="text-gray-400 text-sm font-medium hover:text-white transition-colors"
@@ -330,7 +330,7 @@ export const Footer = () => {
               <h2 className="text-3xl lg:text-4xl font-normal leading-tight text-[#d4e4a0]">
                 Central India's
                 <br />
-                <span className="italic font-serif">Global University</span>
+                <span className="italic font-serif">Diamond University</span>
               </h2>
               <a
                 href="https://apply.jlu.edu.in/" target="_blank" rel="noopener noreferrer"
@@ -398,7 +398,7 @@ export const Footer = () => {
 
             {/* Bottom Section */}
             <div className="mb-4">
-              <p className="text-gray-400 text-sm">Copyright © 2025 | Jagran Lakecity University Bhopal | All Rights Reserved</p>
+              <p className="text-gray-400 text-sm">Copyright © 2026 | Jagran Lakecity University Bhopal | All Rights Reserved</p>
             </div>
 
             {/* Large Jagran Lakecity Text with Scroll to top */}

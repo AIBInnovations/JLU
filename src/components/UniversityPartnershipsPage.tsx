@@ -12,7 +12,7 @@ const customEase: [number, number, number, number] = [0.22, 1, 0.36, 1];
 // ─── Data ───────────────────────────────────────────────────────────────────
 
 const stats = [
-  { value: '42+', label: 'Global Collaborations' },
+  { value: '45+', label: 'Global Collaborations' },
   { value: '25+', label: 'Countries' },
   { value: '5', label: 'Continents' },
   { value: '15+', label: 'Exchange Programs' },
@@ -186,7 +186,7 @@ const UniversityPartnershipsPage = () => {
               className="text-white/70 text-sm sm:text-base md:text-[clamp(1.15rem,1.8vw,1.5rem)] max-w-2xl"
               style={{ lineHeight: 1.7, fontWeight: 400 }}
             >
-              JLU's global network of 42+ universities, industry leaders and international associations brings the world into the classroom — and takes our students across the world.
+              JLU's global network of 45+ universities, industry leaders and international associations brings the world into the classroom — and takes our students across the world.
             </p>
           </motion.div>
         </div>
@@ -389,7 +389,7 @@ const UniversityPartnershipsPage = () => {
                   <line x1="2" y1="12" x2="22" y2="12" />
                   <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" />
                 </svg>
-                <span className="text-white text-sm font-semibold px-4 text-center leading-snug">View All 42+ in 3D</span>
+                <span className="text-white text-sm font-semibold px-4 text-center leading-snug">View All 45+ in 3D</span>
               </button>
               <div className="mt-3 text-center">
                 <p className="text-[#21313c] font-semibold text-sm md:text-base">All Partners</p>

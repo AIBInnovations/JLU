@@ -258,7 +258,7 @@ export const Hero = () => {
                   zIndex: 5,
                 }}
               >
-                Global University
+                Diamond University
               </span>
             </div>
           </div>
@@ -733,7 +733,7 @@ export const Hero = () => {
               >
                 <motion.img
                   src={['https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/about-us.jpg', 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/admissions.jpg', 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/student-clubs.jpg'][expandingCard]}
-                  alt="Expanding"
+                  alt={['About Jagran Lakecity University, Bhopal', 'JLU Admissions 2026-27', 'Student clubs and campus life at JLU'][expandingCard]}
                   className="w-full h-full object-cover"
                   initial={{ scale: 1 }}
                   animate={{ scale: 1.1 }}

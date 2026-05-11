@@ -59,13 +59,13 @@ const events: Event[] = [
   },
 ];
 
-const galleryImages = [
-  '/events/foundation-day-2026.jpg',
-  'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/JLu%20events/photos/Convocation/DSC_0823.JPG',
-  'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/JLu%20events/photos/Lehar/IMG_8971.JPG',
-  'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/JLu%20events/photos/Anti%20Ragging%20WEEK/IMG_1879.JPG',
-  'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/JLu%20events/photos/Mental%20Health%20week/IMG_7813.JPG',
-  'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/JLu%20events/photos/JAgran%20of%20Social%20science/DSC08838.JPG',
+const galleryImages: { src: string; alt: string }[] = [
+  { src: '/events/foundation-day-2026.jpg', alt: 'JLU Foundation Day 2026 celebrations at Jagran Lakecity University, Bhopal' },
+  { src: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/JLu%20events/photos/Convocation/DSC_0823.JPG', alt: 'JLU Convocation ceremony — graduating students at Jagran Lakecity University' },
+  { src: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/JLu%20events/photos/Lehar/IMG_8971.JPG', alt: 'Lehar cultural festival at JLU Bhopal — student performances and stage events' },
+  { src: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/JLu%20events/photos/Anti%20Ragging%20WEEK/IMG_1879.JPG', alt: 'Anti-Ragging Week awareness campaign at Jagran Lakecity University' },
+  { src: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/JLu%20events/photos/Mental%20Health%20week/IMG_7813.JPG', alt: 'Mental Health Week activities promoting student wellbeing at JLU' },
+  { src: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/JLu%20events/photos/JAgran%20of%20Social%20science/DSC08838.JPG', alt: 'Jagran of Social Science academic conference at JLU Bhopal' },
 ];
 
 export const EventsSection = () => {
@@ -257,8 +257,8 @@ export const EventsSection = () => {
                 }}
               >
                 <img
-                  src={image}
-                  alt={`Event gallery ${index + 1}`}
+                  src={image.src}
+                  alt={image.alt}
                   className="w-full h-full object-cover rounded-xl"
                 />
               </div>
@@ -268,14 +268,15 @@ export const EventsSection = () => {
               <div
                 key={`second-${index}`}
                 className="shrink-0"
+                aria-hidden="true"
                 style={{
                   width: isMobile ? '200px' : 'clamp(280px, 20vw, 500px)',
                   height: isMobile ? '240px' : 'clamp(300px, 22vw, 540px)',
                 }}
               >
                 <img
-                  src={image}
-                  alt={`Event gallery ${index + 1}`}
+                  src={image.src}
+                  alt=""
                   className="w-full h-full object-cover rounded-xl"
                 />
               </div>
