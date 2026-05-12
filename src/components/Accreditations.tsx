@@ -14,8 +14,8 @@ const Accreditations = () => {
     { src: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/Untitled design/5.png', name: 'Association of Indian Universities', shortName: 'AIU' },
     { src: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/Untitled design/6.png', name: 'AFS Intercultural Programs India', shortName: 'AFS' },
     { src: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/Untitled design/7.png', name: 'Tuning India', shortName: 'Tuning India' },
-    { src: '/badges/pci-logo.png', name: 'Pharmacy Council of India', shortName: 'PCI' },
-    { src: '/badges/coa-logo.png', name: 'Council of Architecture', shortName: 'COA' },
+    { src: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/badges/pci-logo.png', name: 'Pharmacy Council of India', shortName: 'PCI' },
+    { src: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/badges/coa-logo.png', name: 'Council of Architecture', shortName: 'COA' },
   ];
 
   return (

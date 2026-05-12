@@ -54,8 +54,8 @@ const pastEvents: Event[] = [
     description: 'The Foundation Day of Jagran Lakecity University commemorates the establishment of the university and celebrates its journey of academic excellence, innovation, and growth. The occasion reflects on the institution\'s achievements and its continued commitment to shaping future leaders and professionals.',
     venue: 'Jagran Lakecity University, Bhopal Campus',
     category: 'Awards & Recognition',
-    image: '/events/foundation-day-2026.jpg',
-    video: '/events/foundation-day-2026.mp4',
+    image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/events/foundation-day-2026.jpg',
+    video: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/events/foundation-day-2026.mp4',
   },
   {
     id: 5,

@@ -14,6 +14,9 @@ npm run build
 echo "▶ Syncing .next/ → EC2..."
 rsync -avz --delete -e "$SSH_CMD" .next/ "$EC2_HOST:$REMOTE_DIR/.next/"
 
+echo "▶ Syncing public/ → EC2..."
+rsync -avz -e "$SSH_CMD" public/ "$EC2_HOST:$REMOTE_DIR/public/"
+
 echo "▶ Syncing package files → EC2..."
 rsync -avz -e "$SSH_CMD" package.json package-lock.json "$EC2_HOST:$REMOTE_DIR/"
 

@@ -32,7 +32,7 @@ const newsItems: NewsItem[] = [
     id: '3',
     title: 'Foundation Day 2026 — JLU Marks 13 Years of Academic Excellence',
     excerpt: 'The university celebrated its 13th Foundation Day on May 1, 2026 with a vibrant cultural extravaganza, alumni reunion and annual awards ceremony at the Chandanpura campus.',
-    image: '/events/foundation-day-2026.jpg',
+    image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/events/foundation-day-2026.jpg',
     date: 'May 1, 2026',
     category: 'Event',
   },
@@ -91,9 +91,10 @@ export const LatestNews = () => {
         {/* News Grid - Staggered Layout */}
         <div className={`grid gap-3 md:gap-6 items-start ${isMobile ? 'grid-cols-2' : 'md:grid-cols-2 lg:grid-cols-4'}`}>
           {newsItems.map((item, index) => (
-            <article
+            <a
               key={item.id}
-              className={`bg-white overflow-hidden shadow-sm border border-gray-100 ${isMobile ? 'rounded-xl' : 'rounded-2xl'}`}
+              href="/news-events"
+              className={`group block bg-white overflow-hidden shadow-sm border border-gray-100 transition-all hover:shadow-lg hover:-translate-y-1 cursor-pointer ${isMobile ? 'rounded-xl' : 'rounded-2xl'}`}
               style={{ marginTop: isMobile ? '0' : (index % 2 === 1 ? '48px' : '0') }}
             >
               {/* Image */}
@@ -131,7 +132,7 @@ export const LatestNews = () => {
                   </div>
                 )}
                 <h3
-                  className={`font-bold text-[#21313c] line-clamp-2 leading-snug ${isMobile ? 'text-sm mb-1' : 'text-lg mb-2'}`}
+                  className={`font-bold text-[#21313c] line-clamp-2 leading-snug transition-colors group-hover:text-[#027ea1] ${isMobile ? 'text-sm mb-1' : 'text-lg mb-2'}`}
                   style={{ fontFamily: 'Inter, sans-serif' }}
                 >
                   {item.title}
@@ -142,7 +143,7 @@ export const LatestNews = () => {
                   <p className="text-base text-gray-500 line-clamp-2 leading-relaxed">{item.excerpt}</p>
                 )}
               </div>
-            </article>
+            </a>
           ))}
         </div>
 

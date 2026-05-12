@@ -543,7 +543,7 @@ export default function AlumniPage() {
                 {' '}Recipients
               </h2>
               <p className="text-[#999] text-xs sm:text-sm mt-1" style={{ letterSpacing: '0.05em' }}>
-                Last 3 Years
+                Last 4 Years
               </p>
               <p className="text-[#666] mt-2 md:mt-4 max-w-xl text-xs md:text-base">
                 Celebrating alumni who have excelled in their respective fields and brought pride to the JLU community.
@@ -553,7 +553,28 @@ export default function AlumniPage() {
           </motion.div>
 
           {/* Alumni Names Grouped by Year */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-10">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-10">
+            {/* 2026 */}
+            <div>
+              <h3 className="text-[#21313c] text-lg md:text-xl font-semibold mb-4 pb-2 border-b-2 border-[#027ea1]">For the Year 2026</h3>
+              <div className="space-y-3">
+                <div className="flex items-start gap-3">
+                  <span className="text-[#027ea1] font-semibold text-sm mt-0.5">1.</span>
+                  <div>
+                    <p className="text-[#21313c] font-medium text-sm md:text-base">Mr. Shrikrishna Sharma</p>
+                    <p className="text-[#999] text-xs md:text-sm">2020 Batch — B.Com.LL.B (H) Program</p>
+                  </div>
+                </div>
+                <div className="flex items-start gap-3">
+                  <span className="text-[#027ea1] font-semibold text-sm mt-0.5">2.</span>
+                  <div>
+                    <p className="text-[#21313c] font-medium text-sm md:text-base">Ms. Ishita Modi</p>
+                    <p className="text-[#999] text-xs md:text-sm">2019 Batch — BMS Program</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
             {/* 2025 */}
             <div>
               <h3 className="text-[#21313c] text-lg md:text-xl font-semibold mb-4 pb-2 border-b-2 border-[#027ea1]">For the Year 2025</h3>

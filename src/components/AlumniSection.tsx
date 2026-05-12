@@ -21,21 +21,21 @@ interface Alumni {
 const alumniData: Alumni[] = [
   {
     id: '1',
-    name: 'Mr. Namgay Dorji',
-    batch: '2024',
-    image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/morenew/alumniawardee/namgay.jpg',
-    designation: 'JLU00402',
-    company: 'BBA.LLB Program',
-    testimonial: 'Alumni Award Recipient 2024',
+    name: 'Mr. Shrikrishna Sharma',
+    batch: '2026',
+    image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/morenew/alumniawardee/shri-krishna.jpg',
+    designation: '2020 Batch',
+    company: 'B.Com.LL.B (H) Program',
+    testimonial: 'Alumni Award Recipient 2026',
   },
   {
     id: '2',
-    name: 'Mr. Sanchit Shrivastava',
-    batch: '2025',
-    image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/morenew/alumniawardee/sanchit-clean.jpg',
-    designation: 'JLU04696',
-    company: 'BAJMC Program',
-    testimonial: 'Alumni Award Recipient 2025',
+    name: 'Ms. Ishita Modi',
+    batch: '2026',
+    image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/morenew/alumniawardee/ishita.jpg',
+    designation: '2019 Batch',
+    company: 'BMS Program',
+    testimonial: 'Alumni Award Recipient 2026',
   },
 ];
 
@@ -277,12 +277,12 @@ export const AlumniSection = () => {
             {!isMobile && (
               <div className="flex items-center gap-8 mt-10">
                 <div>
-                  <p className="text-[#21313c] text-3xl font-bold">8+</p>
+                  <p className="text-[#21313c] text-3xl font-bold">10+</p>
                   <p className="text-[#999] text-xs uppercase tracking-wider mt-1">Recipients</p>
                 </div>
                 <div className="w-px h-10 bg-[#e5e5e5]" />
                 <div>
-                  <p className="text-[#21313c] text-3xl font-bold">3</p>
+                  <p className="text-[#21313c] text-3xl font-bold">4</p>
                   <p className="text-[#999] text-xs uppercase tracking-wider mt-1">Years</p>
                 </div>
                 <div className="w-px h-10 bg-[#e5e5e5]" />

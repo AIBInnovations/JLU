@@ -323,7 +323,7 @@ function EventsCalendarSection() {
 }
 
 const pastEventsImages = [
-  '/events/foundation-day-2026.jpg', // Foundation Day 2026
+  'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/events/foundation-day-2026.jpg', // Foundation Day 2026
   'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/JLu%20events/photos/Convocation/DSC_1039.JPG', // Convocation 2025
   'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/campus/computer%20lab.JPG', // Science Expo
   'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/student-clubs.jpg', // Sports Meet
@@ -338,7 +338,7 @@ const pastEventsData: { id: number; year: string; title: string; description: st
     year: '2026',
     title: 'Foundation Day of JLU',
     description: 'Commemorating the establishment of the university and celebrating its journey of academic excellence, innovation, and growth.',
-    video: '/events/foundation-day-2026.mp4',
+    video: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/events/foundation-day-2026.mp4',
   },
   {
     id: 1,

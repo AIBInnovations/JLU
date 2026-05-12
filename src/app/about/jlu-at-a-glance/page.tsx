@@ -260,7 +260,7 @@ export default function JluAtAGlancePage() {
           </span>
           {/* Actual badge image extracted directly from the official PDF */}
           <img
-            src="/badges/rankings-card-web.png"
+            src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/badges/rankings-card-web.png"
             alt="JLU Rankings — QS I-Gauge Diamond, E-LEAD, EducationWorld, India Today"
             className="w-full h-auto"
             style={{ display: 'block' }}

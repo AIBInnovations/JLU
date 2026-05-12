@@ -60,7 +60,7 @@ const events: Event[] = [
 ];
 
 const galleryImages: { src: string; alt: string }[] = [
-  { src: '/events/foundation-day-2026.jpg', alt: 'JLU Foundation Day 2026 celebrations at Jagran Lakecity University, Bhopal' },
+  { src: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/events/foundation-day-2026.jpg', alt: 'JLU Foundation Day 2026 celebrations at Jagran Lakecity University, Bhopal' },
   { src: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/JLu%20events/photos/Convocation/DSC_0823.JPG', alt: 'JLU Convocation ceremony — graduating students at Jagran Lakecity University' },
   { src: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/JLu%20events/photos/Lehar/IMG_8971.JPG', alt: 'Lehar cultural festival at JLU Bhopal — student performances and stage events' },
   { src: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/JLu%20events/photos/Anti%20Ragging%20WEEK/IMG_1879.JPG', alt: 'Anti-Ragging Week awareness campaign at Jagran Lakecity University' },
