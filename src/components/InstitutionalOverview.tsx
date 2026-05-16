@@ -61,7 +61,7 @@ const InstitutionalOverview = () => {
               className="relative h-[300px] sm:h-[400px] md:h-[500px] overflow-hidden rounded-xl"
             >
               <motion.img
-                src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/jlu-mgt-award.jpg"
+                src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/jlu-mgt-award.webp"
                 alt="Promoting Body"
                 className="absolute inset-0 w-full object-cover"
                 style={{
@@ -196,7 +196,7 @@ const InstitutionalOverview = () => {
             >
               <div ref={glanceRef} className="absolute inset-0">
               <motion.img
-                src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/interdisciplinary/campus-drone.jpg"
+                src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/interdisciplinary/campus-drone.webp"
                 alt="JLU Campus"
                 className="absolute inset-0 w-full object-cover"
                 style={{
@@ -333,28 +333,28 @@ const InstitutionalOverview = () => {
                   bg: '#c3fd7a', textColor: '#21313c',
                   title: 'Global Network',
                   description: '45+ international collaborations across 14 countries with Cambridge, UCL, RMIT & more.',
-                  icon: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/morenew/pillars/4.png',
+                  icon: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/morenew/pillars/4.webp',
                   href: '/why-jlu/global-network',
                 },
                 {
                   bg: '#027ea1', textColor: '#ffffff',
                   title: 'Industry Intervention',
                   description: '42+ industry tie-ups with EY, KPMG, Deloitte, Amazon & TCS powering real-world placements.',
-                  icon: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/morenew/pillars/5.png',
+                  icon: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/morenew/pillars/5.webp',
                   href: '/why-jlu/industry-intervention',
                 },
                 {
                   bg: '#e85a71', textColor: '#ffffff',
                   title: 'Interdisciplinary Degrees',
                   description: '50+ programs across 6 faculties blending law, tech, design, media & management.',
-                  icon: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/morenew/pillars/1.png',
+                  icon: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/morenew/pillars/1.webp',
                   href: '/why-jlu/interdisciplinary-degrees',
                 },
                 {
                   bg: '#f4c950', textColor: '#21313c',
                   title: 'Student Approach',
                   description: 'Experiential learning with 1-on-1 mentoring, 45+ labs & hands-on projects from day one.',
-                  icon: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/morenew/pillars/3.png',
+                  icon: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/morenew/pillars/3.webp',
                   href: '/why-jlu/student-approach',
                 },
               ].map((pillar, i) => (

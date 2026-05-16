@@ -179,7 +179,7 @@ const Academics = () => {
         >
           <motion.div className="absolute inset-0" style={{ y }}>
             <Image
-              src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/acedemics/acedemics%20landing%20page.JPG"
+              src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/acedemics/acedemics%20landing%20page.webp"
               alt="Students in academic session at JLU"
               fill
               className="object-cover scale-110"
@@ -322,21 +322,21 @@ const Academics = () => {
                 label: 'Undergraduate',
                 tag: 'UG',
                 count: '29',
-                image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/learning-ug.jpg',
+                image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/learning-ug.webp',
                 color: '#c3fd7a',
               },
               {
                 label: 'Postgraduate',
                 tag: 'PG',
                 count: '10',
-                image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/learning-phd.jpg',
+                image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/learning-phd.webp',
                 color: '#027ea1',
               },
               {
                 label: 'Doctoral',
                 tag: 'PhD',
                 count: '10',
-                image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/learning-pg.jpg',
+                image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/learning-pg.webp',
                 color: '#8bc34a',
               },
             ].map((cat, i) => (
@@ -696,7 +696,7 @@ const Academics = () => {
               {/* Image below text */}
               <div className="relative w-full overflow-hidden mt-6 md:mt-10 h-45 sm:h-60 md:h-70 rounded-xl md:rounded-none">
                 <Image
-                  src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/interdisciplinary/lab.jpg"
+                  src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/interdisciplinary/lab.webp"
                   alt="Students in computer lab at JLU"
                   fill
                   className="object-cover"

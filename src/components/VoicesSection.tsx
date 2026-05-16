@@ -10,12 +10,12 @@ interface Voice {
 }
 
 const voices: Voice[] = [
-  { color: 'bg-pink-400', image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/a.jpg' },
-  { color: 'bg-cyan-400', image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/b.jpg' },
-  { color: 'bg-yellow-400', image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/c.jpg' },
-  { color: 'bg-lime-400', image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/d.jpg' },
-  { color: 'bg-orange-400', image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/e.jpg' },
-  { color: 'bg-purple-400', image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/f.jpg' },
+  { color: 'bg-pink-400', image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/a.webp' },
+  { color: 'bg-cyan-400', image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/b.webp' },
+  { color: 'bg-yellow-400', image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/c.webp' },
+  { color: 'bg-lime-400', image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/d.webp' },
+  { color: 'bg-orange-400', image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/e.webp' },
+  { color: 'bg-purple-400', image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/f.webp' },
 ];
 
 export const VoicesSection = () => {

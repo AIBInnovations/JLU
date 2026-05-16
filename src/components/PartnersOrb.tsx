@@ -13,15 +13,15 @@ interface Partner {
 
 const partners: Partner[] = [
   // Universities with local logos
-  { name: 'Middlesex University', image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/mid.png', type: 'university' },
-  { name: "King's College London", image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/king.png', type: 'university' },
-  { name: 'National University of Singapore', shortName: 'NUS', image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/nus.png', type: 'university' },
+  { name: 'Middlesex University', image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/mid.webp', type: 'university' },
+  { name: "King's College London", image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/king.webp', type: 'university' },
+  { name: 'National University of Singapore', shortName: 'NUS', image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/nus.webp', type: 'university' },
 
   // Industry with local logos
-  { name: 'Confederation of Indian Industry', shortName: 'CII', image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/c11.png', type: 'industry' },
-  { name: 'FICCI', image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/ficci.png', type: 'industry' },
-  { name: 'Grant Thornton', image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/gt.png', type: 'industry' },
-  { name: 'ERA Foundation', shortName: 'ERA', image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/era.png', type: 'association' },
+  { name: 'Confederation of Indian Industry', shortName: 'CII', image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/c11.webp', type: 'industry' },
+  { name: 'FICCI', image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/ficci.webp', type: 'industry' },
+  { name: 'Grant Thornton', image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/gt.webp', type: 'industry' },
+  { name: 'ERA Foundation', shortName: 'ERA', image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/era.webp', type: 'association' },
 
   // International Universities (text cards)
   { name: 'University of Cambridge', type: 'university' },

@@ -61,35 +61,35 @@ const journeySteps = [
     number: '01',
     title: 'Choose program',
     description: 'Explore our wide range of undergraduate and postgraduate courses.',
-    image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/journey-choose.jpg',
+    image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/journey-choose.webp',
   },
   {
     id: 2,
     number: '02',
     title: 'Submit application',
     description: 'Complete the online form and upload required documents.',
-    image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/journey-apply.jpg',
+    image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/journey-apply.webp',
   },
   {
     id: 3,
     number: '03',
     title: 'Receive offer letter',
     description: 'Successful applicants will receive an offer via email.',
-    image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/journey-offer.jpg',
+    image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/journey-offer.webp',
   },
   {
     id: 4,
     number: '04',
     title: 'Apply for visa',
     description: 'Use your offer letter to start your student visa application.',
-    image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/journey-visa.jpg',
+    image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/journey-visa.webp',
   },
   {
     id: 5,
     number: '05',
     title: 'Arrive on campus',
     description: 'Book your travel and join us for orientation week.',
-    image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/journey-arrive.jpg',
+    image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/journey-arrive.webp',
   },
 ];
 
@@ -540,7 +540,7 @@ const InternationalOffice = () => {
         >
           <motion.div className="absolute inset-0" style={{ y }}>
             <Image
-              src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/intl-vanvihar.jpg"
+              src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/intl-vanvihar.webp"
               alt="International Office - Global Students at JLU"
               fill
               className="object-cover scale-110"
@@ -790,7 +790,7 @@ const InternationalOffice = () => {
                 transition={{ duration: 0.8, ease: customEase }}
               >
                 <Image
-                  src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/intl-diwali.jpg"
+                  src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/intl-diwali.webp"
                   alt="Pathway Programs"
                   fill
                   className="object-cover"
@@ -1167,7 +1167,7 @@ const InternationalOffice = () => {
                 transition={{ duration: 0.8, ease: customEase }}
               >
                 <Image
-                  src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/intl-sanchi.jpg"
+                  src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/intl-sanchi.webp"
                   alt="Student filling application"
                   fill
                   className="object-cover"
@@ -1471,7 +1471,7 @@ const InternationalOffice = () => {
                 transition={{ duration: 0.8, ease: customEase }}
               >
                 <Image
-                  src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/bhopal-city.jpg"
+                  src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/bhopal-city.webp"
                   alt="Life in Bhopal"
                   fill
                   className="object-cover"

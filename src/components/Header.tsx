@@ -544,7 +544,7 @@ const MenuOverlay = ({ isOpen, onClose, menuButtonRef }: MenuOverlayProps) => {
                   style={{ zIndex: 59 }}
                 >
                   <Image
-                    src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/menuu.png"
+                    src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/menuu.webp"
                     alt="Menu decoration"
                     width={1800}
                     height={900}
@@ -914,7 +914,7 @@ const MenuOverlay = ({ isOpen, onClose, menuButtonRef }: MenuOverlayProps) => {
                   style={{ bottom: '50px', left: '100px' }}
                 >
                   <Image
-                    src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/menuu.png"
+                    src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/menuu.webp"
                     alt="Menu decoration"
                     width={1200}
                     height={1200}
@@ -1103,7 +1103,7 @@ export const Header = () => {
         >
           <Link href="/">
             <img
-              src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/jlulogo.png"
+              src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/jlulogo.webp"
               alt="Jagran Lakecity University logo"
               className={`w-auto object-contain drop-shadow-lg cursor-pointer ${
                 isMobile ? 'h-20' : isTablet ? 'h-20' : 'h-18 sm:h-20 lg:h-24'

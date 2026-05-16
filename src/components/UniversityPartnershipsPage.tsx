@@ -20,13 +20,13 @@ const stats = [
 
 // Partners with logos — shown as logo cards (like Accreditations)
 const logoPartners = [
-  { name: 'Middlesex University', country: 'United Kingdom', src: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/mid.png', type: 'University' },
-  { name: "King's College London", country: 'United Kingdom', src: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/king.png', type: 'University' },
-  { name: 'National University of Singapore', country: 'Singapore', src: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/nus.png', type: 'University' },
-  { name: 'Grant Thornton', country: 'Global', src: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/gt.png', type: 'Industry' },
-  { name: 'Confederation of Indian Industry', country: 'India', src: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/c11.png', type: 'Industry' },
-  { name: 'FICCI', country: 'India', src: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/ficci.png', type: 'Industry' },
-  { name: 'ERA Foundation', country: 'India', src: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/era.png', type: 'Association' },
+  { name: 'Middlesex University', country: 'United Kingdom', src: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/mid.webp', type: 'University' },
+  { name: "King's College London", country: 'United Kingdom', src: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/king.webp', type: 'University' },
+  { name: 'National University of Singapore', country: 'Singapore', src: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/nus.webp', type: 'University' },
+  { name: 'Grant Thornton', country: 'Global', src: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/gt.webp', type: 'Industry' },
+  { name: 'Confederation of Indian Industry', country: 'India', src: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/c11.webp', type: 'Industry' },
+  { name: 'FICCI', country: 'India', src: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/ficci.webp', type: 'Industry' },
+  { name: 'ERA Foundation', country: 'India', src: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/era.webp', type: 'Association' },
 ];
 
 // Text-only academic partners
@@ -149,7 +149,7 @@ const UniversityPartnershipsPage = () => {
         {/* Background globe image */}
         <div className="absolute inset-0">
           <Image
-            src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/glob.jpg"
+            src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/glob.webp"
             alt="Global Network"
             fill
             className="object-cover opacity-15"

@@ -25,38 +25,38 @@ export const AwardsSection = () => {
 
   const awards = [
     {
-      image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/a1.jpeg',
+      image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/a1.webp',
       title: '4th in MP, 53rd in India — India Today Rankings 2025',
       description: 'Jagran Lakecity University has secured the 4th position in Madhya Pradesh and 53rd position in India in the India Today Best University Rankings 2025. This achievement reflects our continued commitment to academic excellence, innovative teaching practices, and holistic student development.',
       year: '2025',
       center: true,
     },
     {
-      image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/a2.jpeg',
+      image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/a2.webp',
       title: 'Top Rankings — The Week & India Today 2025',
       description: 'The Faculty of Media & Social Sciences was ranked 18th in India Overall (Govt + Private) and 14th among Private Institutions by The Week 2025, and 15th among Private Institutions by India Today 2025 and the top 10 highest scoring Institutions (Established after 2000). The Faculty of Law ranked 39th in India (Govt + Private Law Colleges) and 30th amongst Private Law Colleges by The Week 2025. These rankings are more than numbers \u2014 they\'re milestones in a journey built on passion, purpose, and perseverance.',
       year: '2025',
     },
     {
-      image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/a3.jpeg',
+      image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/a3.webp',
       title: 'No. 1 Private Multidisciplinary University — Education World',
       description: 'Jagran Lakecity University, Bhopal has been ranked No. 1 in the Education World India Higher Education Rankings 2025-26 in India under the category Private Multidisciplinary Universities.',
       year: '2025-26',
     },
     {
-      image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/a4.jpeg',
+      image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/a4.webp',
       title: 'FICCI Higher Education Summit 2025 — Key Speaker',
       description: 'Mr. Abhishek Mohan Gupta, Pro Chancellor, Jagran Lakecity University, was invited as a Key Speaker at the 20th FICCI Higher Education Summit 2025, held on October 6\u20137, 2025, in New Delhi. He shared valuable insights on shaping globally competitive universities and creating impactful learning ecosystems.',
       year: '2025',
     },
     {
-      image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/a5.jpeg',
+      image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/a5.webp',
       title: 'IRM International Affiliation — First in Central India',
       description: 'Jagran Lakecity University has become the first university in Central India to be awarded the Certificate of International Affiliation by the Institute of Risk Management (IRM) India Affiliate. This landmark collaboration integrates IRM\'s globally recognised Enterprise Risk Management (ERM) qualifications into the university\'s curriculum, empowering students with the foresight, strategic thinking, and resilience required to navigate an increasingly complex and uncertain world.',
       year: '2025',
     },
     {
-      image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/a6.jpeg',
+      image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/a6.webp',
       title: 'MP Excellence Award 2025 — Proud Sponsor',
       description: 'Jagran Lakecity University was the proud sponsor for the MP Excellence Award 2025 held on 26th October, 2025 at Minto Hall, Bhopal, to honor individuals and groups for their achievements in various fields.',
       year: '2025',

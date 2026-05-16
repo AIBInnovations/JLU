@@ -21,28 +21,28 @@ const events: PageEvent[] = [
     title: 'Photo Exhibition',
     venue: 'Art Gallery, Shri Gurudev Gupta Media Studios',
     category: 'Arts & Culture',
-    image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/e1.jpg',
+    image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/e1.webp',
   },
   {
     date: '17 Sep 2025',
     title: 'Pinning Ceremony',
     venue: 'A-Block Auditorium',
     category: 'Student Leadership',
-    image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/e2.jpg',
+    image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/e2.webp',
   },
   {
     date: '12 Sep 2025',
     title: 'Inter School Debate Competition',
     venue: 'Main Campus',
     category: 'Academic Competition',
-    image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/e3.jpg',
+    image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/e3.webp',
   },
   {
     date: '22 Jul 2025',
     title: 'Ignited Mind Awards 2025',
     venue: 'Football Ground',
     category: 'Awards & Recognition',
-    image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/e4.jpg',
+    image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/e4.webp',
   },
 ];
 

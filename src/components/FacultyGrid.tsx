@@ -15,13 +15,13 @@ const facultyMembers: FacultyMember[] = [
   {
     name: 'Mr. Hari Mohan Gupta',
     role: 'Chancellor',
-    image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/leadership/chancellor.jpg',
+    image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/leadership/chancellor.webp',
     linkedin: 'https://in.linkedin.com/in/hari-mohan-gupta-318960153',
   },
   {
     name: 'Mr. Abhishek Mohan Gupta',
     role: 'Pro Chancellor',
-    image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/leadership/pro-chancellor.jpg',
+    image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/leadership/pro-chancellor.webp',
     linkedin: 'https://in.linkedin.com/in/abhishekmgupta',
   },
   {
@@ -33,24 +33,24 @@ const facultyMembers: FacultyMember[] = [
   {
     name: 'Mr. Pankaj Das',
     role: 'Registrar',
-    image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/leadership/registrar.jpg',
+    image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/leadership/registrar.webp',
   },
   {
     name: 'CA Archana Jain',
     role: 'Chief Finance and Accounts Officer',
-    image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/leadership/cfo.jpg',
+    image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/leadership/cfo.webp',
     linkedin: 'https://www.linkedin.com/in/archana-jain-33189397/',
   },
   {
     name: 'Dr. Vivek Khare',
     role: 'Pro Vice Chancellor (Student Welfare)',
-    image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/leadership/pvc-student-welfare.jpg',
+    image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/leadership/pvc-student-welfare.webp',
     linkedin: 'https://in.linkedin.com/in/dr-vivek-khare-8666a61a',
   },
   {
     name: 'Dr. Prasheel Suryawanshi',
     role: 'Pro Vice Chancellor (Science and Technology)',
-    image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/leadership/pvc-science-tech.png',
+    image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/leadership/pvc-science-tech-new.webp',
     linkedin: 'https://www.linkedin.com/in/prasheel-suryawanshi-8b368b21/',
   },
 ];

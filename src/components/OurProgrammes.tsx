@@ -7,9 +7,9 @@ export const OurProgrammes = () => {
   const isMobile = useIsMobile();
 
   const programmes = [
-    { image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/learning-ug.jpg', title: 'Undergraduate', subtitle: 'Programmes', width: 461, height: 520, href: '/programs?tab=UG' },
-    { image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/learning-phd.jpg', title: 'Postgraduate', subtitle: 'Programmes', width: 461, height: 520, href: '/programs?tab=PG' },
-    { image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/learning-pg.jpg', title: 'Ph.D.', subtitle: 'Programmes', width: 461, height: 520, href: '/programs?tab=PhD' },
+    { image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/learning-ug.webp', title: 'Undergraduate', subtitle: 'Programmes', width: 461, height: 520, href: '/programs?tab=UG' },
+    { image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/learning-phd.webp', title: 'Postgraduate', subtitle: 'Programmes', width: 461, height: 520, href: '/programs?tab=PG' },
+    { image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/learning-pg.webp', title: 'Ph.D.', subtitle: 'Programmes', width: 461, height: 520, href: '/programs?tab=PhD' },
   ];
 
 
@@ -237,7 +237,7 @@ export const OurProgrammes = () => {
             }}
           >
             <img
-              src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/campus/campus-life-group.jpg"
+              src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/campus/campus-life-group.webp"
               alt="Students on Campus"
               className="w-full h-full object-cover rounded-t-2xl transition-transform duration-500 group-hover:scale-110"
             />
@@ -252,7 +252,7 @@ export const OurProgrammes = () => {
             }}
           >
             <img
-              src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/campus%20life%20/Landng%20photo.JPG"
+              src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/campus%20life%20/Landng%20photo.webp"
               alt="Campus Life"
               className="w-full h-full object-cover rounded-t-2xl transition-transform duration-500 group-hover:scale-110"
             />
@@ -266,7 +266,7 @@ export const OurProgrammes = () => {
             }}
           >
             <img
-              src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/beyond%20the%20class%20room/DSC09084.JPG"
+              src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/beyond%20the%20class%20room/DSC09084.webp"
               alt="Students Beyond the Classroom"
               className="w-full h-full object-cover rounded-t-2xl transition-transform duration-500 group-hover:scale-110"
             />

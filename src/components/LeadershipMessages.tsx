@@ -10,7 +10,7 @@ const leadershipData = [
     id: 'chancellor-message',
     title: "CHANCELLOR'S MESSAGE",
     name: 'Mr. Hari Mohan Gupta',
-    image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/leadership/chancellor.jpg',
+    image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/leadership/chancellor.webp',
     linkedin: 'https://in.linkedin.com/in/hari-mohan-gupta-318960153',
     messages: [
       'At JLU, education begins with people. The purpose of a university is not only to teach knowledge, but also to nurture understanding, empathy and resilience. Every voice here matters, students, teachers and staff, because together they shape the character of this institution.',
@@ -21,7 +21,7 @@ const leadershipData = [
     id: 'pro-chancellor-message',
     title: "PRO CHANCELLOR'S MESSAGE",
     name: 'Mr. Abhishek Mohan Gupta',
-    image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/leadership/pro-chancellor.jpg',
+    image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/leadership/pro-chancellor.webp',
     linkedin: 'https://in.linkedin.com/in/abhishekmgupta',
     messages: [
       'Education is a dialogue, not a monologue. It thrives on diversity of thought, openness to experience and the courage to challenge conventions. At JLU, students are encouraged to question, reflect and expand their horizons.',

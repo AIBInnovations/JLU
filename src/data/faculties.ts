@@ -66,7 +66,7 @@ export const faculties: Faculty[] = [
           title: 'Dean, Faculty of Management',
           phone: '7471110177',
           linkedin: 'https://www.linkedin.com/in/kishorekumarmorya/',
-          image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/faculty/kishore-kumar-morya.png',
+          image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/faculty/kishore-kumar-morya.webp',
         },
         programs: [
           { name: 'BBA*', duration: '3 Years', degree: 'UG', slug: 'bachelor-of-business-administration' },
@@ -98,7 +98,7 @@ export const faculties: Faculty[] = [
           title: 'Dean, Faculty of Management',
           phone: '7471110177',
           linkedin: 'https://www.linkedin.com/in/kishorekumarmorya/',
-          image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/faculty/kishore-kumar-morya.png',
+          image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/faculty/kishore-kumar-morya.webp',
         },
         programs: [
           { name: 'BBA Sports Management', duration: '3 Years', degree: 'UG', slug: 'bba-sports-management' },
@@ -126,7 +126,7 @@ export const faculties: Faculty[] = [
           title: 'Dean, Faculty of Management',
           phone: '7471110177',
           linkedin: 'https://www.linkedin.com/in/kishorekumarmorya/',
-          image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/faculty/kishore-kumar-morya.png',
+          image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/faculty/kishore-kumar-morya.webp',
         },
         programs: [
           { name: 'B.Sc (Hospitality and Hotel Administration)', duration: '3 Years', degree: 'UG', slug: 'bsc-hospitality-hotel-administration' },
@@ -168,7 +168,7 @@ export const faculties: Faculty[] = [
           title: 'Assistant Dean — Faculty of Media & Social Science',
           phone: '+91 747 111 0122',
           linkedin: 'https://www.linkedin.com/in/dr-rushit-dubal-9a802aa/',
-          image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/faculty/dr-rushit-dubal.jpg',
+          image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/faculty/dr-rushit-dubal.webp',
         },
         programs: [
           { name: 'BA Journalism and Mass Communication*', duration: '3 Years', degree: 'UG', slug: 'bachelor-journalism-mass-communication' },
@@ -196,7 +196,7 @@ export const faculties: Faculty[] = [
           title: 'Assistant Dean — Faculty of Media & Social Science',
           phone: '+91 747 111 0122',
           linkedin: 'https://www.linkedin.com/in/dr-rushit-dubal-9a802aa/',
-          image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/faculty/dr-rushit-dubal.jpg',
+          image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/faculty/dr-rushit-dubal.webp',
         },
         programs: [
           { name: 'BBA Advertising and PR', duration: '3 Years', degree: 'UG', slug: 'bba-advertising-pr' },
@@ -278,7 +278,7 @@ export const faculties: Faculty[] = [
           name: 'Dr. Manika Walia',
           title: 'Dean, Faculty of Fashion, Design & Art',
           linkedin: 'https://www.linkedin.com/in/manika-walia-77628a107',
-          image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/faculty/manika-walia.png',
+          image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/faculty/manika-walia.webp',
         },
         programs: [
           { name: 'B.Des (User Experience Design)', duration: '4 Years', degree: 'UG', slug: 'bdes-ui-ux-design' },
@@ -306,7 +306,7 @@ export const faculties: Faculty[] = [
           name: 'Dr. Manika Walia',
           title: 'Dean, Faculty of Fashion, Design & Art',
           linkedin: 'https://www.linkedin.com/in/manika-walia-77628a107',
-          image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/faculty/manika-walia.png',
+          image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/faculty/manika-walia.webp',
         },
         programs: [
           { name: 'B.Arch', duration: '5 Years', degree: 'UG', slug: 'bachelor-of-architecture' },
@@ -330,7 +330,7 @@ export const faculties: Faculty[] = [
           name: 'Dr. Manika Walia',
           title: 'Dean, Faculty of Fashion, Design & Art',
           linkedin: 'https://www.linkedin.com/in/manika-walia-77628a107',
-          image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/faculty/manika-walia.png',
+          image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/faculty/manika-walia.webp',
         },
         programs: [
           { name: 'B.Des (Fashion Communication)', duration: '4 Years', degree: 'UG', slug: 'bdes-fashion-communication' },
@@ -487,7 +487,7 @@ export const faculties: Faculty[] = [
           phone: '08130810940',
           email: 'drsachin.rastogi@jlu.edu.in',
           linkedin: 'https://www.linkedin.com/in/dr-sachin-rastogi-6459a225/',
-          image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/faculty/sachin-rastogi.jpg',
+          image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/faculty/sachin-rastogi.webp',
         },
         programs: [
           { name: 'BA LLB (Hons)', duration: '5 Years', degree: 'UG', slug: 'ba-llb-integrated' },

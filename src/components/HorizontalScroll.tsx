@@ -40,12 +40,12 @@ export const HorizontalScroll = () => {
       content: "Jagran Lakecity University is the first and only university in MP & CG to hold the prestigious QS I-Gauge DIAMOND rating, and is ranked among India Today's Top Private Universities 2025. JLU is the #1 multidisciplinary private university in Madhya Pradesh.\n\nSpread across a sprawling 232-acre campus, JLU offers 50+ degree programs to a vibrant community of 2,500+ students from 27 states and 8 countries — fostering innovation, global partnerships and academic excellence."
     },
     { width: 540, height: 500, mobileWidth: 200, mobileHeight: 260, bg: 'bg-[#c3fd7a]', hasText: true, isTextCard: false, stat: '232', statLabel: 'Acres of Campus' },
-    { width: 770, height: 500, mobileWidth: 280, mobileHeight: 260, bg: 'bg-gray-200', hasText: false, isTextCard: false, image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/interdisciplinary/campus-drone.jpg' },
+    { width: 770, height: 500, mobileWidth: 280, mobileHeight: 260, bg: 'bg-gray-200', hasText: false, isTextCard: false, image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/interdisciplinary/campus-drone.webp' },
     { width: 540, height: 500, mobileWidth: 200, mobileHeight: 260, bg: 'bg-[#1D4ED8]', hasText: true, isTextCard: false, textColor: 'text-white', stat: '2,500+', statLabel: 'Students Enrolled' },
-    { width: 540, height: 500, mobileWidth: 250, mobileHeight: 260, bg: 'bg-gray-200', hasText: false, isTextCard: false, image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/JLu%20events/photos/Convocation/DSC_5604.JPG' },
-    { width: 670, height: 500, mobileWidth: 250, mobileHeight: 260, bg: 'bg-gray-200', hasText: false, isTextCard: false, image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/learning-ug.jpg' },
+    { width: 540, height: 500, mobileWidth: 250, mobileHeight: 260, bg: 'bg-gray-200', hasText: false, isTextCard: false, image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/JLu%20events/photos/Convocation/DSC_5604.webp' },
+    { width: 670, height: 500, mobileWidth: 250, mobileHeight: 260, bg: 'bg-gray-200', hasText: false, isTextCard: false, image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/learning-ug.webp' },
     { width: 540, height: 500, mobileWidth: 200, mobileHeight: 260, bg: 'bg-[#E9D502]', hasText: true, isTextCard: false, stat: '50+', statLabel: 'Degree Programs' },
-    { width: 1320, height: 500, mobileWidth: 320, mobileHeight: 260, bg: 'bg-gray-200', hasText: false, isTextCard: false, image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/about1.jpg' },
+    { width: 1320, height: 500, mobileWidth: 320, mobileHeight: 260, bg: 'bg-gray-200', hasText: false, isTextCard: false, image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/about1.webp' },
   ];
 
   // Divide cards into 3 rows for mobile (3, 3, 2 distribution)

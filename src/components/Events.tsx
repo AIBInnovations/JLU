@@ -24,7 +24,7 @@ const upcomingEvents: Event[] = [
     description: 'Jagran Lakecity University will celebrate International Women\'s Day to recognize and appreciate the achievements, strength, and contributions of women in society. The celebration will include engaging activities and discussions aimed at promoting gender equality, empowerment, and respect for women.',
     venue: 'Jagran Lakecity University, Bhopal Campus',
     category: 'Arts & Culture',
-    image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/JLu%20events/photos/Lehar/IMG_9025.JPG',
+    image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/JLu%20events/photos/Lehar/IMG_9025.webp',
   },
   {
     id: 2,
@@ -33,7 +33,7 @@ const upcomingEvents: Event[] = [
     description: 'JLU\'s Got Talent is a vibrant platform for students to showcase their diverse talents, including singing, dancing, acting, and other creative performances. The event encourages students to express themselves, celebrate creativity, and engage with the university community through entertainment and artistic expression.',
     venue: 'JLU Main Auditorium, Bhopal Campus',
     category: 'Arts & Culture',
-    image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/JLu%20events/photos/Lehar/IMG_8971.JPG',
+    image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/JLu%20events/photos/Lehar/IMG_8971.webp',
   },
   {
     id: 4,
@@ -42,7 +42,7 @@ const upcomingEvents: Event[] = [
     description: 'Jagran Lakecity University will organize an Orientation Programme for newly admitted students to help them smoothly transition into university life. The session will introduce students to the university\'s academic structure, campus facilities, values, and opportunities. It will also provide an opportunity for students to interact with faculty and fellow students.',
     venue: 'Jagran Lakecity University, Bhopal Campus',
     category: 'Student Leadership',
-    image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/JLu%20events/photos/JAgran%20of%20Social%20science/DSC08858.JPG',
+    image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/JLu%20events/photos/JAgran%20of%20Social%20science/DSC08858.webp',
   },
 ];
 
@@ -54,7 +54,7 @@ const pastEvents: Event[] = [
     description: 'The Foundation Day of Jagran Lakecity University commemorates the establishment of the university and celebrates its journey of academic excellence, innovation, and growth. The occasion reflects on the institution\'s achievements and its continued commitment to shaping future leaders and professionals.',
     venue: 'Jagran Lakecity University, Bhopal Campus',
     category: 'Awards & Recognition',
-    image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/events/foundation-day-2026.jpg',
+    image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/events/foundation-day-2026.webp',
     video: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/events/foundation-day-2026.mp4',
   },
   {
@@ -64,7 +64,7 @@ const pastEvents: Event[] = [
     description: "Honoring Late Shri Gurudev Gupta Ji's 106th birth anniversary",
     venue: 'Shri Gurudev Gupta Media Studios',
     category: 'Commemoration',
-    image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/JLu%20events/photos/Convocation/DSC_0885.JPG',
+    image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/JLu%20events/photos/Convocation/DSC_0885.webp',
   },
   {
     id: 6,
@@ -73,7 +73,7 @@ const pastEvents: Event[] = [
     description: 'Gateway to reconnect with the JLU family',
     venue: 'Jagran Lakecity University SEH',
     category: 'Launch Event',
-    image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/JLu%20events/photos/Convocation/DSC_1020.JPG',
+    image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/JLu%20events/photos/Convocation/DSC_1020.webp',
   },
   {
     id: 7,
@@ -82,7 +82,7 @@ const pastEvents: Event[] = [
     description: 'JLU celebrates 11 years of establishment with awards and recognition',
     venue: 'Main Auditorium',
     category: 'Anniversary',
-    image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/jlu%20ignited%20mind%20Award/photos/Copy%20of%20DSC_4398.JPG',
+    image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/jlu%20ignited%20mind%20Award/photos/Copy%20of%20DSC_4398.webp',
   },
   {
     id: 8,
@@ -91,7 +91,7 @@ const pastEvents: Event[] = [
     description: 'Annual hackathon bringing together tech enthusiasts and innovators',
     venue: 'Faculty of Science and Technology',
     category: 'Technology',
-    image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/JLu%20events/photos/Anti%20Ragging%20WEEK/IMG_2091.JPG',
+    image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/JLu%20events/photos/Anti%20Ragging%20WEEK/IMG_2091.webp',
   },
   {
     id: 9,
@@ -100,7 +100,7 @@ const pastEvents: Event[] = [
     description: 'Expert-led session on data science and inclusive design practices',
     venue: 'Conference Hall',
     category: 'Workshop',
-    image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/JLu%20events/photos/Mental%20Health%20week/IMG_7856.JPG',
+    image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/JLu%20events/photos/Mental%20Health%20week/IMG_7856.webp',
   },
   {
     id: 10,
@@ -109,7 +109,7 @@ const pastEvents: Event[] = [
     description: 'Professional development workshop on communication skills',
     venue: 'Faculty of Management',
     category: 'Workshop',
-    image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/JLu%20events/photos/JAgran%20of%20Social%20science/DSC08874.JPG',
+    image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/JLu%20events/photos/JAgran%20of%20Social%20science/DSC08874.webp',
   },
   {
     id: 11,
@@ -118,7 +118,7 @@ const pastEvents: Event[] = [
     description: 'Comprehensive faculty development initiative for academic excellence',
     venue: 'Academic Block',
     category: 'Faculty Development',
-    image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/JLu%20events/photos/Lehar/IMG_9060.JPG',
+    image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/JLu%20events/photos/Lehar/IMG_9060.webp',
   },
 ];
 
@@ -249,7 +249,7 @@ const Events = () => {
         >
           <motion.div className="absolute inset-0" style={{ y }}>
             <Image
-              src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/JLu%20events/photos/Lehar/IMG_9067.JPG"
+              src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/JLu%20events/photos/Lehar/IMG_9067.webp"
               alt="Events at JLU"
               fill
               className="object-cover scale-110"
@@ -352,7 +352,7 @@ const Events = () => {
                 {/* Image */}
                 <div className="relative h-24 md:h-48 overflow-hidden">
                   <Image
-                    src={event.image || 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/e1.jpg'}
+                    src={event.image || 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/e1.webp'}
                     alt={event.title}
                     fill
                     className="object-cover group-hover:scale-105 transition-transform duration-500"
@@ -589,7 +589,7 @@ const Events = () => {
               className="group relative overflow-hidden cursor-pointer min-h-[200px] md:min-h-[520px] rounded-xl md:rounded-none"
             >
               <Image
-                src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/JLu%20events/photos/Convocation/DSC_1357.JPG"
+                src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/JLu%20events/photos/Convocation/DSC_1357.webp"
                 alt="Signature Events"
                 fill
                 className="object-cover transition-transform duration-700 group-hover:scale-105"
@@ -631,7 +631,7 @@ const Events = () => {
               className="group relative overflow-hidden cursor-pointer min-h-[200px] md:min-h-[520px] rounded-xl md:rounded-none"
             >
               <Image
-                src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/student%20council/IMG_7510.JPG"
+                src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/student%20council/IMG_7510.webp"
                 alt="Learning & Leadership"
                 fill
                 className="object-cover transition-transform duration-700 group-hover:scale-105"
@@ -897,8 +897,8 @@ const Events = () => {
               <div className="relative h-[200px] sm:h-[260px] md:h-[300px] shrink-0 rounded-t-2xl overflow-hidden">
                 <Image
                   src={activeModal === 'signature'
-                    ? 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/JLu%20events/photos/Convocation/DSC_1357.JPG'
-                    : 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/student%20council/IMG_7510.JPG'
+                    ? 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/JLu%20events/photos/Convocation/DSC_1357.webp'
+                    : 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/student%20council/IMG_7510.webp'
                   }
                   alt={activeModal === 'signature' ? 'Signature Events' : 'Learning & Leadership'}
                   fill

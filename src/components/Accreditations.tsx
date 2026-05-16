@@ -7,15 +7,15 @@ const customEase: [number, number, number, number] = [0.22, 1, 0.36, 1];
 
 const Accreditations = () => {
   const accreditations = [
-    { src: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/Untitled design/1.png', name: 'Bar Council of India', shortName: 'BCI' },
-    { src: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/Untitled design/2.png', name: 'University Grants Commission', shortName: 'UGC' },
-    { src: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/Untitled design/3.png', name: 'International Centre for Alternative Dispute Resolution', shortName: 'ICADR' },
-    { src: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/Untitled design/4.png', name: 'Association of Universities of Asia and the Pacific', shortName: 'AUAP' },
-    { src: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/Untitled design/5.png', name: 'Association of Indian Universities', shortName: 'AIU' },
-    { src: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/Untitled design/6.png', name: 'AFS Intercultural Programs India', shortName: 'AFS' },
-    { src: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/Untitled design/7.png', name: 'Tuning India', shortName: 'Tuning India' },
-    { src: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/badges/pci-logo.png', name: 'Pharmacy Council of India', shortName: 'PCI' },
-    { src: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/badges/coa-logo.png', name: 'Council of Architecture', shortName: 'COA' },
+    { src: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/Untitled design/1.webp', name: 'Bar Council of India', shortName: 'BCI' },
+    { src: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/Untitled design/2.webp', name: 'University Grants Commission', shortName: 'UGC' },
+    { src: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/Untitled design/3.webp', name: 'International Centre for Alternative Dispute Resolution', shortName: 'ICADR' },
+    { src: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/Untitled design/4.webp', name: 'Association of Universities of Asia and the Pacific', shortName: 'AUAP' },
+    { src: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/Untitled design/5.webp', name: 'Association of Indian Universities', shortName: 'AIU' },
+    { src: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/Untitled design/6.webp', name: 'AFS Intercultural Programs India', shortName: 'AFS' },
+    { src: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/Untitled design/7.webp', name: 'Tuning India', shortName: 'Tuning India' },
+    { src: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/badges/pci-logo.webp', name: 'Pharmacy Council of India', shortName: 'PCI' },
+    { src: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/badges/coa-logo.webp', name: 'Council of Architecture', shortName: 'COA' },
   ];
 
   return (

@@ -16,74 +16,74 @@ interface SchoolPageProps {
 // Curated secondary images per school for visual variety
 const secondaryImages: Record<string, string[]> = {
   jlbs: [
-    'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/schools/jlbs-1.jpg',
-    'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/schools/jlbs-2.jpg',
+    'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/schools/jlbs-1.webp',
+    'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/schools/jlbs-2.webp',
   ],
   'sports-mgmt': [
-    'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/schools/sports-1.jpg',
-    'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/schools/sports-2.jpg',
+    'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/schools/sports-1.webp',
+    'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/schools/sports-2.webp',
   ],
   hospitality: [
-    'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/schools/hospitality-1.jpg',
-    'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/schools/hospitality-2.jpg',
+    'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/schools/hospitality-1.webp',
+    'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/schools/hospitality-2.webp',
   ],
   journalism: [
-    'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/schools/journalism-1.jpg',
-    'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/schools/journalism-2.jpg',
+    'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/schools/journalism-1.webp',
+    'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/schools/journalism-2.webp',
   ],
   'advertising-pr': [
-    'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/schools/advertising-1.jpg',
-    'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/schools/advertising-2.jpg',
+    'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/schools/advertising-1.webp',
+    'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/schools/advertising-2.webp',
   ],
   'events-entertainment': [
-    'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/schools/events-1.jpg',
-    'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/schools/events-2.jpg',
+    'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/schools/events-1.webp',
+    'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/schools/events-2.webp',
   ],
   'languages-social': [
-    'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/schools/languages-1.jpg',
-    'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/schools/languages-2.jpg',
+    'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/schools/languages-1.webp',
+    'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/schools/languages-2.webp',
   ],
   design: [
-    'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/schools/design-1.jpg',
-    'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/schools/design-2.jpg',
+    'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/schools/design-1.webp',
+    'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/schools/design-2.webp',
   ],
   architecture: [
-    'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/schools/architecture-1.jpg',
-    'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/schools/architecture-2.jpg',
+    'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/schools/architecture-1.webp',
+    'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/schools/architecture-2.webp',
   ],
   fashion: [
-    'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/schools/fashion-1.jpg',
-    'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/schools/fashion-2.jpg',
+    'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/schools/fashion-1.webp',
+    'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/schools/fashion-2.webp',
   ],
   ai: [
-    'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/schools/ai-1.jpg',
-    'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/schools/ai-2.jpg',
+    'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/schools/ai-1.webp',
+    'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/schools/ai-2.webp',
   ],
   engineering: [
-    'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/schools/engineering-1.jpg',
-    'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/schools/engineering-2.jpg',
+    'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/schools/engineering-1.webp',
+    'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/schools/engineering-2.webp',
   ],
   'computer-application': [
-    'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/schools/computer-1.jpg',
-    'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/schools/computer-2.jpg',
+    'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/schools/computer-1.webp',
+    'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/schools/computer-2.webp',
   ],
   pharmacy: [
-    'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/schools/pharmacy-1.jpg',
-    'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/schools/pharmacy-2.jpg',
+    'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/schools/pharmacy-1.webp',
+    'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/schools/pharmacy-2.webp',
   ],
   law: [
-    'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/schools/law-1.jpg',
-    'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/schools/law-2.jpg',
+    'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/schools/law-1.webp',
+    'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/schools/law-2.webp',
   ],
   'iica-creative': [
-    'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/schools/iica-1.jpg',
-    'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/schools/iica-2.jpg',
+    'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/schools/iica-1.webp',
+    'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/schools/iica-2.webp',
   ],
 };
 
 const fallbackImages = [
-  'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/campus/gym.jpg',
-  'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/campus/accommodation.jpg',
+  'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/campus/gym.webp',
+  'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/campus/accommodation.webp',
 ];
 
 export const SchoolPage = ({ school, faculty }: SchoolPageProps) => {

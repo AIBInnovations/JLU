@@ -30,7 +30,7 @@ export const CampusSection = () => {
           {/* Large image - Campus Aerial */}
           <div className="md:col-span-2 relative rounded-2xl overflow-hidden aspect-[16/9] md:aspect-auto md:h-full">
             <img
-              src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/campus/hero-campus.jpg"
+              src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/campus/hero-campus.webp"
               alt="JLU Chandanpur Campus - 40 acre campus with pyramid library"
               className="w-full h-full object-cover"
               loading="lazy"
@@ -51,7 +51,7 @@ export const CampusSection = () => {
           <div className="flex flex-col gap-4 md:gap-6">
             <div className="relative rounded-2xl overflow-hidden aspect-[4/3]">
               <img
-                src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/campus/gallery-10.jpg"
+                src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/campus/gallery-10.webp"
                 alt="JLU Pyramid Library - 42,000+ books"
                 className="w-full h-full object-cover"
                 loading="lazy"
@@ -65,7 +65,7 @@ export const CampusSection = () => {
 
             <div className="relative rounded-2xl overflow-hidden aspect-[4/3]">
               <img
-                src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/campus/gallery-14.jpg"
+                src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/campus/gallery-14.webp"
                 alt="JLU Campus Entrance - Modern Architecture"
                 className="w-full h-full object-cover"
                 loading="lazy"

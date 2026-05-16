@@ -207,7 +207,7 @@ export const Hero = () => {
           >
             <img
               ref={backgroundRef}
-              src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/herobg-new.jpg"
+              src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/herobg-new.webp"
               alt="Background"
               className={`absolute inset-0 w-full h-full object-cover ${isMobile ? '' : 'scale-110'}`}
               style={{
@@ -266,7 +266,7 @@ export const Hero = () => {
           {/* Layer 3: Building/Foreground Image (z-index: 3) */}
           <img
             ref={buildingRef}
-            src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/heronew.png"
+            src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/heronew.webp"
             alt="JLU Building"
             className="absolute"
             style={{
@@ -593,9 +593,9 @@ export const Hero = () => {
             style={{ gap: isMobile ? '12px' : '16px' }}
           >
             {[
-              { src: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/about-us.jpg', alt: 'JLU Campus', height: 550, mobileHeight: 280, label: 'About Us', href: '/about' },
-              { src: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/admissions.jpg', alt: 'Admissions', height: 500, mobileHeight: 260, label: 'Admissions', href: '/admissions' },
-              { src: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/student-clubs.jpg', alt: 'Student Clubs', height: 530, mobileHeight: 270, label: 'Student Clubs', href: '/student-clubs' },
+              { src: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/about-us.webp', alt: 'JLU Campus', height: 550, mobileHeight: 280, label: 'About Us', href: '/about' },
+              { src: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/admissions.webp', alt: 'Admissions', height: 500, mobileHeight: 260, label: 'Admissions', href: '/admissions' },
+              { src: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/student-clubs.webp', alt: 'Student Clubs', height: 530, mobileHeight: 270, label: 'Student Clubs', href: '/student-clubs' },
             ].map((img, index) => (
               <div
                 key={img.src}
@@ -732,7 +732,7 @@ export const Hero = () => {
                 style={{ zIndex: 9998, overflow: 'hidden' }}
               >
                 <motion.img
-                  src={['https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/about-us.jpg', 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/admissions.jpg', 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/student-clubs.jpg'][expandingCard]}
+                  src={['https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/about-us.webp', 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/admissions.webp', 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/student-clubs.webp'][expandingCard]}
                   alt={['About Jagran Lakecity University, Bhopal', 'JLU Admissions 2026-27', 'Student clubs and campus life at JLU'][expandingCard]}
                   className="w-full h-full object-cover"
                   initial={{ scale: 1 }}

@@ -70,7 +70,7 @@ const UniversityPartnerships = () => {
             className="relative w-full h-[250px] sm:h-[320px] md:h-[400px] rounded-xl overflow-hidden"
           >
             <Image
-              src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/glob.jpg"
+              src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/glob.webp"
               alt="University Partnerships - Global Network"
               fill
               className="object-cover"

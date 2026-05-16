@@ -6,13 +6,13 @@ import { motion } from 'framer-motion';
 const customEase: [number, number, number, number] = [0.22, 1, 0.36, 1];
 
 const galleryPhotos = [
-  { src: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/jlu%20ignited%20mind%20Award/photos/AMF_1426.JPG', alt: 'Ignited Mind Awards - Award Presentation' },
-  { src: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/jlu%20ignited%20mind%20Award/photos/AMF_1441.JPG', alt: 'Ignited Mind Awards - Felicitation' },
-  { src: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/jlu%20ignited%20mind%20Award/photos/Copy%20of%20DSC_4378.JPG', alt: 'Ignited Mind Awards - Ceremony Highlight' },
-  { src: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/jlu%20ignited%20mind%20Award/photos/Copy%20of%20DSC_4398.JPG', alt: 'Ignited Mind Awards - Guest of Honour' },
-  { src: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/jlu%20ignited%20mind%20Award/photos/Copy%20of%20DSC_4644.JPG', alt: 'Ignited Mind Awards - Stage Event' },
-  { src: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/jlu%20ignited%20mind%20Award/photos/Copy%20of%20DSC_4645.JPG', alt: 'Ignited Mind Awards - Audience' },
-  { src: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/jlu%20ignited%20mind%20Award/photos/DSC_4579.JPG', alt: 'Ignited Mind Awards - Award Ceremony' },
+  { src: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/jlu%20ignited%20mind%20Award/photos/AMF_1426.webp', alt: 'Ignited Mind Awards - Award Presentation' },
+  { src: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/jlu%20ignited%20mind%20Award/photos/AMF_1441.webp', alt: 'Ignited Mind Awards - Felicitation' },
+  { src: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/jlu%20ignited%20mind%20Award/photos/Copy%20of%20DSC_4378.webp', alt: 'Ignited Mind Awards - Ceremony Highlight' },
+  { src: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/jlu%20ignited%20mind%20Award/photos/Copy%20of%20DSC_4398.webp', alt: 'Ignited Mind Awards - Guest of Honour' },
+  { src: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/jlu%20ignited%20mind%20Award/photos/Copy%20of%20DSC_4644.webp', alt: 'Ignited Mind Awards - Stage Event' },
+  { src: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/jlu%20ignited%20mind%20Award/photos/Copy%20of%20DSC_4645.webp', alt: 'Ignited Mind Awards - Audience' },
+  { src: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/jlu%20ignited%20mind%20Award/photos/DSC_4579.webp', alt: 'Ignited Mind Awards - Award Ceremony' },
 ];
 
 const IgnitedMindAwards = () => {
@@ -71,7 +71,7 @@ const IgnitedMindAwards = () => {
             style={{ aspectRatio: '4 / 5' }}
           >
             <Image
-              src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/jlu%20ignited%20mind%20Award/photos/AMF_1081.JPG"
+              src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/jlu%20ignited%20mind%20Award/photos/AMF_1081.webp"
               alt="JLU Ignited Mind Awards Ceremony"
               fill
               className="object-cover transition-transform duration-700 group-hover:scale-105"

@@ -18,7 +18,7 @@ const careerPillars = [
   {
     title: 'Industry-Ready Curriculum',
     description: 'Programs co-designed with industry leaders, ensuring skills align with market demands and emerging technologies.',
-    image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/JLu%20events/photos/Convocation/DSC_0858.JPG',
+    image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/JLu%20events/photos/Convocation/DSC_0858.webp',
     accent: '#c3fd7a',
     darkText: true,
     modalContent: {
@@ -40,7 +40,7 @@ const careerPillars = [
   {
     title: 'Dedicated Training & Development',
     description: 'Pre-placement training programs including aptitude, technical skills, and professional communication workshops.',
-    image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/JLu%20events/photos/Convocation/DSC_5604.JPG',
+    image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/JLu%20events/photos/Convocation/DSC_5604.webp',
     accent: '#027ea1',
     darkText: false,
     modalContent: {
@@ -62,7 +62,7 @@ const careerPillars = [
   {
     title: 'Mock Interviews & Soft Skills',
     description: 'Rigorous mock interviews, group discussions, and personality development sessions with industry professionals.',
-    image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/JLu%20events/photos/Convocation/DSC_0885.JPG',
+    image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/JLu%20events/photos/Convocation/DSC_0885.webp',
     accent: '#e85a71',
     darkText: false,
     modalContent: {
@@ -84,7 +84,7 @@ const careerPillars = [
   {
     title: 'Global Career Network',
     description: 'International placement partnerships and alumni network spanning Fortune 500 companies across 15+ countries.',
-    image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/JLu%20events/photos/Convocation/DSC_4625.JPG',
+    image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/JLu%20events/photos/Convocation/DSC_4625.webp',
     accent: '#f4c950',
     darkText: true,
     modalContent: {
@@ -187,13 +187,13 @@ const PillarModal = ({ isOpen, onClose, data }: { isOpen: boolean; onClose: () =
 
 // Gallery images for the multi-image showcase - placement-themed images
 const galleryImages = [
-  { id: 1, src: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/JLu%20events/photos/Convocation/DSC_5604.JPG', position: 'top-[5%] left-[2%]', size: 'w-[85px] h-[115px] md:w-[180px] md:h-[260px]', opacity: 0.7 },
-  { id: 2, src: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/jlu-placement1.jpeg', position: 'top-[2%] left-[30%]', size: 'w-[65px] h-[85px] md:w-[130px] md:h-[170px]', opacity: 0.5 },
-  { id: 3, src: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/JLu%20events/photos/Convocation/DSC_4625.JPG', position: '', size: 'w-[140px] h-[190px] md:w-[260px] md:h-[360px]', isCenter: true, opacity: 1 },
-  { id: 4, src: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/jlu-placement2.jpeg', position: 'top-[3%] right-[2%]', size: 'w-[75px] h-[100px] md:w-[160px] md:h-[220px]', opacity: 0.6 },
-  { id: 5, src: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/JLu%20events/photos/Convocation/DSC_1357.JPG', position: 'top-[22%] right-[1%]', size: 'w-[55px] h-[75px] md:w-[120px] md:h-[160px]', opacity: 0.4 },
-  { id: 6, src: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/jlu-placement3.jpeg', position: 'bottom-[8%] left-[2%]', size: 'w-[70px] h-[95px] md:w-[150px] md:h-[200px]', opacity: 0.5 },
-  { id: 7, src: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/JLu%20events/photos/Convocation/DSC_5026.JPG', position: 'bottom-[5%] right-[2%]', size: 'w-[80px] h-[105px] md:w-[170px] md:h-[230px]', opacity: 0.6 },
+  { id: 1, src: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/JLu%20events/photos/Convocation/DSC_5604.webp', position: 'top-[5%] left-[2%]', size: 'w-[85px] h-[115px] md:w-[180px] md:h-[260px]', opacity: 0.7 },
+  { id: 2, src: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/jlu-placement1.webp', position: 'top-[2%] left-[30%]', size: 'w-[65px] h-[85px] md:w-[130px] md:h-[170px]', opacity: 0.5 },
+  { id: 3, src: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/JLu%20events/photos/Convocation/DSC_4625.webp', position: '', size: 'w-[140px] h-[190px] md:w-[260px] md:h-[360px]', isCenter: true, opacity: 1 },
+  { id: 4, src: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/jlu-placement2.webp', position: 'top-[3%] right-[2%]', size: 'w-[75px] h-[100px] md:w-[160px] md:h-[220px]', opacity: 0.6 },
+  { id: 5, src: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/JLu%20events/photos/Convocation/DSC_1357.webp', position: 'top-[22%] right-[1%]', size: 'w-[55px] h-[75px] md:w-[120px] md:h-[160px]', opacity: 0.4 },
+  { id: 6, src: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/jlu-placement3.webp', position: 'bottom-[8%] left-[2%]', size: 'w-[70px] h-[95px] md:w-[150px] md:h-[200px]', opacity: 0.5 },
+  { id: 7, src: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/JLu%20events/photos/Convocation/DSC_5026.webp', position: 'bottom-[5%] right-[2%]', size: 'w-[80px] h-[105px] md:w-[170px] md:h-[230px]', opacity: 0.6 },
 ];
 
 
@@ -485,7 +485,7 @@ export default function PlacementPage() {
         >
           <motion.div className="absolute inset-0" style={{ y: heroY }}>
             <img
-              src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/JLu%20events/photos/Convocation/DSC_5604.JPG"
+              src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/JLu%20events/photos/Convocation/DSC_5604.webp"
               alt="JLU Students Celebrating Placements"
               className="w-full h-full object-cover scale-110"
             />
@@ -996,7 +996,7 @@ export default function PlacementPage() {
               className="col-span-2 row-span-2 group relative overflow-hidden rounded-2xl min-h-[280px] md:min-h-[600px]"
             >
               <img
-                src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/JLu%20events/photos/Convocation/DSC_1357.JPG"
+                src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/JLu%20events/photos/Convocation/DSC_1357.webp"
                 alt="Corporate Success"
                 loading="lazy"
                 className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
@@ -1023,7 +1023,7 @@ export default function PlacementPage() {
               className="group relative overflow-hidden rounded-2xl min-h-[180px] md:min-h-[280px]"
             >
               <img
-                src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/JLu%20events/photos/Convocation/DSC_5026.JPG"
+                src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/JLu%20events/photos/Convocation/DSC_5026.webp"
                 alt="Professional Growth"
                 loading="lazy"
                 className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
@@ -1045,7 +1045,7 @@ export default function PlacementPage() {
               className="group relative overflow-hidden rounded-2xl min-h-[180px] md:min-h-[280px]"
             >
               <img
-                src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/JLu%20events/photos/Convocation/DSC_1020.JPG"
+                src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/JLu%20events/photos/Convocation/DSC_1020.webp"
                 alt="Industry Connections"
                 loading="lazy"
                 className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
@@ -1091,21 +1091,21 @@ export default function PlacementPage() {
                 name: 'Mann Saxena',
                 role: 'Placed at AML RightSource',
                 batch: 'MBA (Business Analytics), Batch 2025',
-                image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/jlu-placement1.jpeg',
+                image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/jlu-placement1.webp',
               },
               {
                 quote: "JLU's structured placement process and dedicated training programs gave me the confidence to perform well in interviews. The career guidance was truly transformative.",
                 name: 'Neha Patkar',
                 role: 'Placed at AML RightSource',
                 batch: 'MBA (Business Analytics), Batch 2025',
-                image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/jlu-placement2.jpeg',
+                image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/jlu-placement2.webp',
               },
               {
                 quote: 'The placement cell at JLU connected me with top legal firms. The exposure through internships and moot courts prepared me for a successful career in legal consulting.',
                 name: 'Shubham Rawat',
                 role: 'Consultant - Legal, Elevate',
                 batch: 'LLM, Batch 2025',
-                image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/jlu-placement3.jpeg',
+                image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/jlu-placement3.webp',
               },
             ];
 

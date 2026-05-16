@@ -23,7 +23,7 @@ const alumniData: Alumni[] = [
     id: '1',
     name: 'Mr. Shrikrishna Sharma',
     batch: '2026',
-    image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/morenew/alumniawardee/shri-krishna.jpg',
+    image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/morenew/alumniawardee/shri-krishna.webp',
     designation: '2020 Batch',
     company: 'B.Com.LL.B (H) Program',
     testimonial: 'Alumni Award Recipient 2026',
@@ -32,7 +32,7 @@ const alumniData: Alumni[] = [
     id: '2',
     name: 'Ms. Ishita Modi',
     batch: '2026',
-    image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/morenew/alumniawardee/ishita.jpg',
+    image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/morenew/alumniawardee/ishita.webp',
     designation: '2019 Batch',
     company: 'BMS Program',
     testimonial: 'Alumni Award Recipient 2026',
@@ -164,42 +164,42 @@ export const AlumniSection = () => {
           className="alumni-parallax-1 absolute rounded-3xl overflow-hidden opacity-[0.15]"
           style={{ width: '300px', height: '200px', top: '40px', left: '3%', filter: 'blur(6px)' }}
         >
-          <img src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/alumni1.jpg" alt="" className="w-full h-full object-cover" />
+          <img src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/alumni1.webp" alt="" className="w-full h-full object-cover" />
         </div>
         {/* Top right */}
         <div
           className="alumni-parallax-2 absolute rounded-3xl overflow-hidden opacity-[0.12]"
           style={{ width: '250px', height: '170px', top: '50px', right: '5%', filter: 'blur(8px)' }}
         >
-          <img src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/jlu-mentorship.jpg" alt="" className="w-full h-full object-cover" />
+          <img src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/jlu-mentorship.webp" alt="" className="w-full h-full object-cover" />
         </div>
         {/* Middle left */}
         <div
           className="alumni-parallax-3 absolute rounded-3xl overflow-hidden opacity-[0.13]"
           style={{ width: '270px', height: '190px', top: '42%', left: '1%', filter: 'blur(7px)' }}
         >
-          <img src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/jlu-career-connect.jpg" alt="" className="w-full h-full object-cover" />
+          <img src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/jlu-career-connect.webp" alt="" className="w-full h-full object-cover" />
         </div>
         {/* Middle right */}
         <div
           className="alumni-parallax-4 absolute rounded-3xl overflow-hidden opacity-[0.1]"
           style={{ width: '240px', height: '160px', top: '38%', right: '3%', filter: 'blur(10px)' }}
         >
-          <img src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/alumni3.jpg" alt="" className="w-full h-full object-cover" />
+          <img src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/alumni3.webp" alt="" className="w-full h-full object-cover" />
         </div>
         {/* Bottom left */}
         <div
           className="alumni-parallax-5 absolute rounded-3xl overflow-hidden opacity-[0.14]"
           style={{ width: '280px', height: '190px', bottom: '40px', left: '10%', filter: 'blur(7px)' }}
         >
-          <img src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/jlu-events-reunions.jpg" alt="" className="w-full h-full object-cover" />
+          <img src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/jlu-events-reunions.webp" alt="" className="w-full h-full object-cover" />
         </div>
         {/* Bottom right */}
         <div
           className="alumni-parallax-6 absolute rounded-3xl overflow-hidden opacity-[0.11]"
           style={{ width: '260px', height: '180px', bottom: '50px', right: '8%', filter: 'blur(8px)' }}
         >
-          <img src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/alumni2.jpg" alt="" className="w-full h-full object-cover" />
+          <img src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/alumni2.webp" alt="" className="w-full h-full object-cover" />
         </div>
       </div>
 

@@ -43,7 +43,7 @@ export const Footer = () => {
             }}
           >
             <Image
-              src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/about1.jpg"
+              src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/about1.webp"
               alt="Jagran Lakecity University Campus"
               fill
               className="object-cover"
@@ -179,7 +179,7 @@ export const Footer = () => {
             }}
           >
             <Image
-              src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/about1.jpg"
+              src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/about1.webp"
               alt="Jagran Lakecity University Campus"
               fill
               className="object-cover"
@@ -316,7 +316,7 @@ export const Footer = () => {
             }}
           >
             <Image
-              src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/about1.jpg"
+              src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/about1.webp"
               alt="Jagran Lakecity University Campus"
               fill
               className="object-cover"

@@ -12,13 +12,13 @@ gsap.registerPlugin(ScrollTrigger);
 const customEase: [number, number, number, number] = [0.22, 1, 0.36, 1];
 
 const galleryImages = [
-  { id: 1, src: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/comm.jpg', position: 'top-[10%] left-[5%]', size: 'w-[70px] h-[100px] md:w-[180px] md:h-[260px]', opacity: 0.7 },
-  { id: 2, src: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/ev5.jpg', position: 'top-[5%] left-[22%]', size: 'w-[50px] h-[70px] md:w-[130px] md:h-[170px]', opacity: 0.5 },
-  { id: 3, src: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/student-clubs.jpg', position: '', size: 'w-[120px] h-[170px] md:w-[260px] md:h-[360px]', isCenter: true, opacity: 1 },
-  { id: 4, src: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/ev4.jpg', position: 'top-[8%] right-[18%]', size: 'w-[60px] h-[85px] md:w-[160px] md:h-[220px]', opacity: 0.6 },
-  { id: 5, src: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/pro1.jpg', position: 'top-[12%] right-[3%]', size: 'w-[45px] h-[65px] md:w-[120px] md:h-[160px]', opacity: 0.4 },
-  { id: 6, src: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/ev3.jpg', position: 'bottom-[12%] left-[8%]', size: 'w-[55px] h-[80px] md:w-[150px] md:h-[200px]', opacity: 0.5 },
-  { id: 7, src: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/ev2.jpg', position: 'bottom-[10%] right-[5%]', size: 'w-[65px] h-[90px] md:w-[170px] md:h-[230px]', opacity: 0.6 },
+  { id: 1, src: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/comm.webp', position: 'top-[10%] left-[5%]', size: 'w-[70px] h-[100px] md:w-[180px] md:h-[260px]', opacity: 0.7 },
+  { id: 2, src: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/ev5.webp', position: 'top-[5%] left-[22%]', size: 'w-[50px] h-[70px] md:w-[130px] md:h-[170px]', opacity: 0.5 },
+  { id: 3, src: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/student-clubs.webp', position: '', size: 'w-[120px] h-[170px] md:w-[260px] md:h-[360px]', isCenter: true, opacity: 1 },
+  { id: 4, src: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/ev4.webp', position: 'top-[8%] right-[18%]', size: 'w-[60px] h-[85px] md:w-[160px] md:h-[220px]', opacity: 0.6 },
+  { id: 5, src: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/pro1.webp', position: 'top-[12%] right-[3%]', size: 'w-[45px] h-[65px] md:w-[120px] md:h-[160px]', opacity: 0.4 },
+  { id: 6, src: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/ev3.webp', position: 'bottom-[12%] left-[8%]', size: 'w-[55px] h-[80px] md:w-[150px] md:h-[200px]', opacity: 0.5 },
+  { id: 7, src: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/ev2.webp', position: 'bottom-[10%] right-[5%]', size: 'w-[65px] h-[90px] md:w-[170px] md:h-[230px]', opacity: 0.6 },
 ];
 
 export default function StudentApproachPage() {
@@ -151,7 +151,7 @@ export default function StudentApproachPage() {
         >
           <motion.div className="absolute inset-0" style={{ y: heroY }}>
             <img
-              src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/comm.jpg"
+              src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/comm.webp"
               alt="JLU Student-Centric Approach - Experiential Learning"
               className="w-full h-full object-cover scale-110"
             />
@@ -318,10 +318,10 @@ export default function StudentApproachPage() {
             {/* Right - Images */}
             <div className="relative">
               <div className="rounded-2xl overflow-hidden aspect-[4/5]">
-                <img src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/ev4.jpg" alt="JLU Student Activities" className="w-full h-full object-cover" loading="lazy" />
+                <img src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/ev4.webp" alt="JLU Student Activities" className="w-full h-full object-cover" loading="lazy" />
               </div>
               <div className="absolute -bottom-6 -left-6 w-48 h-48 md:w-56 md:h-56 rounded-2xl overflow-hidden shadow-2xl border-4 border-[#f6f7f0]">
-                <img src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/student-clubs.jpg" alt="JLU Student Clubs and Sports" className="w-full h-full object-cover" loading="lazy" />
+                <img src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/student-clubs.webp" alt="JLU Student Clubs and Sports" className="w-full h-full object-cover" loading="lazy" />
               </div>
             </div>
           </div>

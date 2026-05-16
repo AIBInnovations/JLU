@@ -107,7 +107,7 @@ const Research = () => {
         >
           <motion.div className="absolute inset-0" style={{ y }}>
             <Image
-              src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/pro1.jpg"
+              src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/pro1.webp"
               alt="Research at JLU"
               fill
               className="object-cover scale-110"

@@ -24,32 +24,32 @@ const services = [
   {
     title: 'Alumni Directory',
     description: 'Connect with fellow graduates across the globe. Search by batch, program, location, or industry.',
-    image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/jlu-alumni-directory.jpg',
+    image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/jlu-alumni-directory.webp',
   },
   {
     title: 'Career Connect',
     description: 'Access exclusive job postings, internships, and career opportunities from our network of 500+ recruiting partners.',
-    image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/jlu-career-connect.jpg',
+    image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/jlu-career-connect.webp',
   },
   {
     title: 'Mentorship Program',
     description: 'Give back or get guidance. Our mentorship platform connects experienced alumni with current students.',
-    image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/jlu-mentorship.jpg',
+    image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/jlu-mentorship.webp',
   },
   {
     title: 'Business Network',
     description: 'Showcase your business, find partners, and unlock entrepreneurial opportunities within the JLU alumni ecosystem.',
-    image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/jlu-business-network.jpg',
+    image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/jlu-business-network.webp',
   },
   {
     title: 'Alumni Chapters',
     description: 'Join regional chapters across India and worldwide. Attend local meetups and community gatherings.',
-    image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/jlu-alumni-chapters.jpg',
+    image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/jlu-alumni-chapters.webp',
   },
   {
     title: 'Events & Reunions',
     description: 'Never miss a reunion, homecoming, or alumni event. Register for upcoming gatherings.',
-    image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/jlu-events-reunions.jpg',
+    image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/jlu-events-reunions.webp',
   },
 ];
 
@@ -239,7 +239,7 @@ export default function AlumniPage() {
         {/* Background Image */}
         <div className="absolute inset-0">
           <img
-            src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/alumni1.jpg"
+            src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/alumni1.webp"
             alt="Alumni Gathering"
             className="w-full h-full object-cover"
           />
@@ -324,7 +324,7 @@ export default function AlumniPage() {
               style={{ height: isMobile ? '180px' : '380px' }}
             >
               <img
-                src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/alumni2.jpg"
+                src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/alumni2.webp"
                 alt="Alumni gathering"
                 className="w-full h-full object-cover"
               />
@@ -399,7 +399,7 @@ export default function AlumniPage() {
               style={{ height: isMobile ? '180px' : '380px' }}
             >
               <img
-                src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/alumni3.jpg"
+                src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/alumni3.webp"
                 alt="Alumni success stories"
                 className="w-full h-full object-cover"
               />

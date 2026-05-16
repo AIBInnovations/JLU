@@ -323,13 +323,13 @@ function EventsCalendarSection() {
 }
 
 const pastEventsImages = [
-  'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/events/foundation-day-2026.jpg', // Foundation Day 2026
-  'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/JLu%20events/photos/Convocation/DSC_1039.JPG', // Convocation 2025
-  'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/campus/computer%20lab.JPG', // Science Expo
-  'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/student-clubs.jpg', // Sports Meet
-  'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/JLu%20events/photos/Lehar/IMG_9018.JPG', // Cultural Fest
-  'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/JLu%20events/photos/Mental%20Health%20week/IMG_7775.JPG', // Mental Health Week
-  'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/jlu%20ignited%20mind%20Award/photos/AMF_1081.JPG', // Alumni Meet
+  'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/events/foundation-day-2026.webp', // Foundation Day 2026
+  'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/JLu%20events/photos/Convocation/DSC_1039.webp', // Convocation 2025
+  'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/campus/computer%20lab.webp', // Science Expo
+  'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/student-clubs.webp', // Sports Meet
+  'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/JLu%20events/photos/Lehar/IMG_9018.webp', // Cultural Fest
+  'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/JLu%20events/photos/Mental%20Health%20week/IMG_7775.webp', // Mental Health Week
+  'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/jlu%20ignited%20mind%20Award/photos/AMF_1081.webp', // Alumni Meet
 ];
 
 const pastEventsData: { id: number; year: string; title: string; description: string; video?: string }[] = [
@@ -445,7 +445,7 @@ const NewsAndEvents = () => {
         >
           <motion.div className="absolute inset-0" style={{ y }}>
             <Image
-              src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/JLu%20events/photos/Convocation/DSC_1020.JPG"
+              src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/JLu%20events/photos/Convocation/DSC_1020.webp"
               alt="News & Events at JLU"
               fill
               className="object-cover scale-110"
@@ -580,7 +580,7 @@ const NewsAndEvents = () => {
                 transition={{ duration: 0.8, ease: customEase }}
               >
                 <Image
-                  src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/JLu%20events/photos/Convocation/DSC_0858.JPG"
+                  src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/JLu%20events/photos/Convocation/DSC_0858.webp"
                   alt="JLU 11th Foundation Day"
                   fill
                   className="object-cover"
@@ -622,7 +622,7 @@ const NewsAndEvents = () => {
               >
                 <div className="relative shrink-0 overflow-hidden w-20 h-20 md:w-28 md:h-28 rounded-lg">
                   <Image
-                    src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/JLu%20events/photos/Lehar/IMG_9025.JPG"
+                    src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/JLu%20events/photos/Lehar/IMG_9025.webp"
                     alt="AUAP Conference"
                     fill
                     className="object-cover group-hover:scale-105 transition-transform duration-500"
@@ -651,7 +651,7 @@ const NewsAndEvents = () => {
               >
                 <div className="relative shrink-0 overflow-hidden w-20 h-20 md:w-28 md:h-28 rounded-lg">
                   <Image
-                    src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/JLu%20events/photos/Lehar/IMG_9067.JPG"
+                    src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/JLu%20events/photos/Lehar/IMG_9067.webp"
                     alt="JLU Rankings"
                     fill
                     className="object-cover group-hover:scale-105 transition-transform duration-500"
@@ -680,7 +680,7 @@ const NewsAndEvents = () => {
               >
                 <div className="relative shrink-0 overflow-hidden w-20 h-20 md:w-28 md:h-28 rounded-lg">
                   <Image
-                    src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/JLu%20events/photos/JAgran%20of%20Social%20science/DSC08858.JPG"
+                    src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/JLu%20events/photos/JAgran%20of%20Social%20science/DSC08858.webp"
                     alt="Research Innovation"
                     fill
                     className="object-cover group-hover:scale-105 transition-transform duration-500"
@@ -709,7 +709,7 @@ const NewsAndEvents = () => {
               >
                 <div className="relative shrink-0 overflow-hidden w-20 h-20 md:w-28 md:h-28 rounded-lg">
                   <Image
-                    src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/jlu%20ignited%20mind%20Award/photos/AMF_1426.JPG"
+                    src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/jlu%20ignited%20mind%20Award/photos/AMF_1426.webp"
                     alt="Convocation"
                     fill
                     className="object-cover group-hover:scale-105 transition-transform duration-500"
@@ -879,7 +879,7 @@ const NewsAndEvents = () => {
             style={{ width: '28%', height: '24%', top: '0%', left: '13%' }}
           >
             <Image
-              src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/JLu%20events/photos/Anti%20Ragging%20WEEK/IMG_1947.JPG"
+              src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/JLu%20events/photos/Anti%20Ragging%20WEEK/IMG_1947.webp"
               alt="Students in library"
               fill
               className="object-cover group-hover:scale-105 transition-transform duration-500"
@@ -896,7 +896,7 @@ const NewsAndEvents = () => {
             style={{ width: '21%', height: '32%', top: '0%', left: '52%' }}
           >
             <Image
-              src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/JLu%20events/photos/Lehar/IMG_9025.JPG"
+              src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/JLu%20events/photos/Lehar/IMG_9025.webp"
               alt="Event hall"
               fill
               className="object-cover group-hover:scale-105 transition-transform duration-500"
@@ -930,7 +930,7 @@ const NewsAndEvents = () => {
             style={{ width: '15%', height: '22%', top: '30%', left: '80%' }}
           >
             <Image
-              src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/JLu%20events/photos/JAgran%20of%20Social%20science/DSC08858.JPG"
+              src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/JLu%20events/photos/JAgran%20of%20Social%20science/DSC08858.webp"
               alt="Lab equipment"
               fill
               className="object-cover group-hover:scale-105 transition-transform duration-500"
@@ -947,7 +947,7 @@ const NewsAndEvents = () => {
             style={{ width: '19%', height: '32%', top: '31%', left: '0%' }}
           >
             <Image
-              src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/JLu%20events/photos/Lehar/IMG_9060.JPG"
+              src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/JLu%20events/photos/Lehar/IMG_9060.webp"
               alt="Campus event"
               fill
               className="object-cover group-hover:scale-105 transition-transform duration-500"
@@ -964,7 +964,7 @@ const NewsAndEvents = () => {
             style={{ width: '20%', height: '34%', top: '60%', left: '80%' }}
           >
             <Image
-              src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/jlu%20ignited%20mind%20Award/photos/AMF_1426.JPG"
+              src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/jlu%20ignited%20mind%20Award/photos/AMF_1426.webp"
               alt="Students together"
               fill
               className="object-cover group-hover:scale-105 transition-transform duration-500"
@@ -981,7 +981,7 @@ const NewsAndEvents = () => {
             style={{ width: '28%', height: '21%', top: '79%', left: '44%' }}
           >
             <Image
-              src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/JLu%20events/photos/Convocation/DSC_0858.JPG"
+              src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/JLu%20events/photos/Convocation/DSC_0858.webp"
               alt="Graduation"
               fill
               className="object-cover group-hover:scale-105 transition-transform duration-500"
@@ -998,7 +998,7 @@ const NewsAndEvents = () => {
             style={{ width: '15%', height: '32%', top: '68%', left: '22%' }}
           >
             <Image
-              src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/JLu%20events/photos/Mental%20Health%20week/IMG_7813.JPG"
+              src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/JLu%20events/photos/Mental%20Health%20week/IMG_7813.webp"
               alt="Library"
               fill
               className="object-cover group-hover:scale-105 transition-transform duration-500"
@@ -1015,7 +1015,7 @@ const NewsAndEvents = () => {
             style={{ width: '15%', height: '18%', top: '75%', left: '-4%' }}
           >
             <Image
-              src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/JLu%20events/photos/Anti%20Ragging%20WEEK/IMG_3582.JPG"
+              src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/JLu%20events/photos/Anti%20Ragging%20WEEK/IMG_3582.webp"
               alt="Sports"
               fill
               className="object-cover group-hover:scale-105 transition-transform duration-500"
@@ -1089,7 +1089,7 @@ const NewsAndEvents = () => {
                 transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
               >
                 <Image
-                  src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/JLu%20events/photos/Anti%20Ragging%20WEEK/IMG_1947.JPG"
+                  src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/JLu%20events/photos/Anti%20Ragging%20WEEK/IMG_1947.webp"
                   alt="Students collaborating"
                   fill
                   className="object-cover"
@@ -1112,7 +1112,7 @@ const NewsAndEvents = () => {
                 transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
               >
                 <Image
-                  src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/JLu%20events/photos/Convocation/DSC_0858.JPG"
+                  src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/JLu%20events/photos/Convocation/DSC_0858.webp"
                   alt="Graduation ceremony"
                   fill
                   className="object-cover"
@@ -1158,7 +1158,7 @@ const NewsAndEvents = () => {
                 transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
               >
                 <Image
-                  src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/JLu%20events/photos/JAgran%20of%20Social%20science/DSC08858.JPG"
+                  src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/JLu%20events/photos/JAgran%20of%20Social%20science/DSC08858.webp"
                   alt="Students in lab"
                   fill
                   className="object-cover"
@@ -1181,7 +1181,7 @@ const NewsAndEvents = () => {
                 transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
               >
                 <Image
-                  src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/JLu%20events/photos/Lehar/IMG_9060.JPG"
+                  src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/JLu%20events/photos/Lehar/IMG_9060.webp"
                   alt="Cultural performance"
                   fill
                   className="object-cover"
@@ -1204,7 +1204,7 @@ const NewsAndEvents = () => {
                 transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
               >
                 <Image
-                  src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/JLu%20events/photos/Anti%20Ragging%20WEEK/IMG_3582.JPG"
+                  src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/JLu%20events/photos/Anti%20Ragging%20WEEK/IMG_3582.webp"
                   alt="Sports activity"
                   fill
                   className="object-cover"
@@ -1227,7 +1227,7 @@ const NewsAndEvents = () => {
                 transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
               >
                 <Image
-                  src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/JLu%20events/photos/Mental%20Health%20week/IMG_7813.JPG"
+                  src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/JLu%20events/photos/Mental%20Health%20week/IMG_7813.webp"
                   alt="Library"
                   fill
                   className="object-cover"
@@ -1250,7 +1250,7 @@ const NewsAndEvents = () => {
                 transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
               >
                 <Image
-                  src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/JLu%20events/photos/Convocation/DSC_1020.JPG"
+                  src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/JLu%20events/photos/Convocation/DSC_1020.webp"
                   alt="Campus grounds"
                   fill
                   className="object-cover"
@@ -1273,7 +1273,7 @@ const NewsAndEvents = () => {
                 transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
               >
                 <Image
-                  src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/jlu%20ignited%20mind%20Award/photos/AMF_1426.JPG"
+                  src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/jlu%20ignited%20mind%20Award/photos/AMF_1426.webp"
                   alt="Students socializing"
                   fill
                   className="object-cover"

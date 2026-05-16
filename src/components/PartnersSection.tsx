@@ -111,13 +111,13 @@ export const PartnersSection = () => {
                 className="border border-gray-300 flex items-center justify-center"
                 style={{ width: 'calc(50vw - 6px)', height: '80px' }}
               >
-                <img src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/mid.png" alt="Middlesex University" style={{ maxHeight: '40px' }} className="object-contain" />
+                <img src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/mid.webp" alt="Middlesex University" style={{ maxHeight: '40px' }} className="object-contain" />
               </div>
               <div
                 className="border border-l-0 border-gray-300 flex items-center justify-center"
                 style={{ width: 'calc(50vw - 6px)', height: '80px' }}
               >
-                <img src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/king.png" alt="King's College London" style={{ maxHeight: '40px' }} className="object-contain" />
+                <img src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/king.webp" alt="King's College London" style={{ maxHeight: '40px' }} className="object-contain" />
               </div>
             </div>
           </div>
@@ -130,19 +130,19 @@ export const PartnersSection = () => {
                 className="border border-gray-300 flex items-center justify-center"
                 style={{ width: 'calc(33.33vw - 4px)', height: '70px' }}
               >
-                <img src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/nus.png" alt="NUS" style={{ maxHeight: '50px' }} className="object-contain" />
+                <img src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/nus.webp" alt="NUS" style={{ maxHeight: '50px' }} className="object-contain" />
               </div>
               <div
                 className="border border-l-0 border-gray-300 flex items-center justify-center"
                 style={{ width: 'calc(33.33vw - 4px)', height: '70px' }}
               >
-                <img src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/c11.png" alt="CII" style={{ maxHeight: '32px' }} className="object-contain" />
+                <img src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/c11.webp" alt="CII" style={{ maxHeight: '32px' }} className="object-contain" />
               </div>
               <div
                 className="border border-l-0 border-gray-300 flex items-center justify-center"
                 style={{ width: 'calc(33.33vw - 4px)', height: '70px' }}
               >
-                <img src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/ficci.png" alt="FICCI" style={{ maxHeight: '32px' }} className="object-contain" />
+                <img src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/ficci.webp" alt="FICCI" style={{ maxHeight: '32px' }} className="object-contain" />
               </div>
             </div>
 
@@ -151,7 +151,7 @@ export const PartnersSection = () => {
                 className="border border-t-0 border-gray-300 flex items-center justify-center"
                 style={{ width: 'calc(33.33vw - 4px)', height: '70px' }}
               >
-                <img src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/gt.png" alt="Grant Thornton" style={{ maxHeight: '26px' }} className="object-contain" />
+                <img src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/gt.webp" alt="Grant Thornton" style={{ maxHeight: '26px' }} className="object-contain" />
               </div>
               <div
                 className="border border-t-0 border-l-0 border-gray-300 flex items-center justify-center"
@@ -165,7 +165,7 @@ export const PartnersSection = () => {
                 className="border border-t-0 border-l-0 border-gray-300 flex items-center justify-center"
                 style={{ width: 'calc(33.33vw - 4px)', height: '70px' }}
               >
-                <img src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/era.png" alt="ERA" className="object-cover w-full h-full" />
+                <img src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/era.webp" alt="ERA" className="object-cover w-full h-full" />
               </div>
             </div>
           </div>
@@ -182,7 +182,7 @@ export const PartnersSection = () => {
                 style={{ flex: '0 0 33.333%', height: 'clamp(180px, 15vw, 300px)' }}
               >
                 <img
-                  src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/mid.png"
+                  src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/mid.webp"
                   alt="Middlesex University"
                   className="max-h-28 object-contain"
                 />
@@ -192,7 +192,7 @@ export const PartnersSection = () => {
                 style={{ flex: '0 0 33.333%', height: 'clamp(180px, 15vw, 300px)' }}
               >
                 <img
-                  src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/king.png"
+                  src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/king.webp"
                   alt="King's College London"
                   className="max-h-28 object-contain"
                 />
@@ -245,7 +245,7 @@ export const PartnersSection = () => {
                 style={{ flex: '0 0 33.333%', height: 'clamp(160px, 13vw, 260px)' }}
               >
                 <img
-                  src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/nus.png"
+                  src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/nus.webp"
                   alt="NUS"
                   className="max-h-36 object-contain"
                 />
@@ -255,7 +255,7 @@ export const PartnersSection = () => {
                 style={{ flex: '0 0 33.333%', height: 'clamp(160px, 13vw, 260px)' }}
               >
                 <img
-                  src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/c11.png"
+                  src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/c11.webp"
                   alt="CII"
                   className="max-h-24 object-contain"
                 />
@@ -265,7 +265,7 @@ export const PartnersSection = () => {
                 style={{ flex: '0 0 33.334%', height: 'clamp(160px, 13vw, 260px)' }}
               >
                 <img
-                  src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/ficci.png"
+                  src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/ficci.webp"
                   alt="FICCI"
                   className="max-h-24 object-contain"
                 />
@@ -279,7 +279,7 @@ export const PartnersSection = () => {
                 style={{ flex: '0 0 33.333%', height: 'clamp(160px, 13vw, 260px)' }}
               >
                 <img
-                  src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/gt.png"
+                  src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/gt.webp"
                   alt="Grant Thornton"
                   className="max-h-16 object-contain"
                 />
@@ -304,7 +304,7 @@ export const PartnersSection = () => {
                 style={{ flex: '0 0 33.334%', height: 'clamp(160px, 13vw, 260px)' }}
               >
                 <img
-                  src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/era.png"
+                  src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/era.webp"
                   alt="ERA"
                   className="object-cover w-full h-full"
                 />

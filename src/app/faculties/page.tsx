@@ -174,7 +174,7 @@ export default function FacultiesPage() {
         >
           <motion.div className="absolute inset-0" style={{ y }}>
             <Image
-              src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/acedemics/acedemics%20landing%20page.JPG"
+              src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/acedemics/acedemics%20landing%20page.webp"
               alt="JLU Faculties"
               fill
               className="object-cover scale-110"

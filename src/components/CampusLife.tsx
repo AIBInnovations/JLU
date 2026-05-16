@@ -34,7 +34,7 @@ const staggerItem = {
 
 // ─── Student Council 2025 Data ───
 const councilLeaders = [
-  { role: 'Champion', name: 'Ms. Oshel Sachdeva', program: 'MBA AD & PR', image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/campus%20life%20/champion%20oshel%20sachdeva.jpeg' },
+  { role: 'Champion', name: 'Ms. Oshel Sachdeva', program: 'MBA AD & PR', image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/campus%20life%20/champion%20oshel%20sachdeva.webp' },
   { role: 'Co-Champion', name: 'Ms. Areeba Khan', program: 'BA Hons. Psychology', image: '' },
   { role: 'Co-Champion', name: 'Ms. Sejal Patel', program: 'BBA', image: '' },
 ];
@@ -51,12 +51,12 @@ const houseCaptains = [
 ];
 
 const councilClubs = [
-  { name: 'Cultural Club', secretary: 'Mr. Aaryan Baheti', deputySecretary: 'Ms. Lovely Motiyani', program: 'BMS', deputyProgram: 'BBA Events and Entertainment', logo: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/logo/cultural.png' },
-  { name: 'Community Service Club', secretary: 'Ms. Amna Aslam', deputySecretary: 'Ms. Aliza Khan', program: 'BA Liberal Studies', deputyProgram: 'BA Psychology', logo: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/logo/community-service.png' },
-  { name: 'MUN & Debating Club', secretary: 'Ms. Mavia Hasan', deputySecretary: 'Ms. Tamanna Shrivastava', program: 'BAJMC', deputyProgram: 'BAJMC', logo: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/logo/mun-debating.png' },
-  { name: 'Industry & Entrepreneurship Club', secretary: 'Ms. Mihika Sharma', deputySecretary: 'Mr. Lakshay Saxena', program: 'BCA Hons. Data Science', deputyProgram: 'BMS', logo: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/logo/industry-entrepreneurship.png' },
-  { name: 'Photography Club', secretary: 'Mr. Atharv Joshi', deputySecretary: 'Mr. Dikshant Chaudhary', program: 'BCA Hons. UX', deputyProgram: 'BBA', logo: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/logo/photography.png' },
-  { name: 'Sports Club', secretary: 'Mr. Samar Dwivedi', deputySecretary: 'Ms. Harshita Sharma', program: 'BA LLB Hons.', deputyProgram: 'BPES', logo: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/logo/sports-adventure.png' },
+  { name: 'Cultural Club', secretary: 'Mr. Aaryan Baheti', deputySecretary: 'Ms. Lovely Motiyani', program: 'BMS', deputyProgram: 'BBA Events and Entertainment', logo: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/logo/cultural.webp' },
+  { name: 'Community Service Club', secretary: 'Ms. Amna Aslam', deputySecretary: 'Ms. Aliza Khan', program: 'BA Liberal Studies', deputyProgram: 'BA Psychology', logo: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/logo/community-service.webp' },
+  { name: 'MUN & Debating Club', secretary: 'Ms. Mavia Hasan', deputySecretary: 'Ms. Tamanna Shrivastava', program: 'BAJMC', deputyProgram: 'BAJMC', logo: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/logo/mun-debating.webp' },
+  { name: 'Industry & Entrepreneurship Club', secretary: 'Ms. Mihika Sharma', deputySecretary: 'Mr. Lakshay Saxena', program: 'BCA Hons. Data Science', deputyProgram: 'BMS', logo: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/logo/industry-entrepreneurship.webp' },
+  { name: 'Photography Club', secretary: 'Mr. Atharv Joshi', deputySecretary: 'Mr. Dikshant Chaudhary', program: 'BCA Hons. UX', deputyProgram: 'BBA', logo: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/logo/photography.webp' },
+  { name: 'Sports Club', secretary: 'Mr. Samar Dwivedi', deputySecretary: 'Ms. Harshita Sharma', program: 'BA LLB Hons.', deputyProgram: 'BPES', logo: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/logo/sports-adventure.webp' },
 ];
 
 const editorialBoard = [
@@ -81,70 +81,70 @@ const studentClubs = [
     description: 'Competitive sports participation, skill development, and recreational fellowship through various athletic activities and outdoor adventures.',
     icon: 'sports',
     color: '#027ea1',
-    image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/campus%20life%20/sports%20and%20adventure%20club.JPG', logo: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/logo/sports-adventure.png',
+    image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/campus%20life%20/sports%20and%20adventure%20club.webp', logo: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/logo/sports-adventure.webp',
   },
   {
     name: 'Photography Club',
     description: 'Explore diverse photographic techniques through photo excursions and workshops, open to all skill levels.',
     icon: 'camera',
     color: '#21313c',
-    image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/campus%20life%20/photography.JPG', logo: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/logo/photography.png',
+    image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/campus%20life%20/photography.webp', logo: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/logo/photography.webp',
   },
   {
     name: 'Music Club',
     description: 'Jam sessions, concerts, open mics, instrument workshops, and collaborative opportunities for all music enthusiasts.',
     icon: 'music',
     color: '#6B4C9A',
-    image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/clubs/music-new.jpg', logo: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/logo/cultural.png',
+    image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/clubs/music-new.webp', logo: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/logo/cultural.webp',
   },
   {
     name: 'Dance Club',
     description: 'Ballroom, salsa, hip hop, contemporary, and folk dance styles with performances, competitions, and festival opportunities.',
     icon: 'dance',
     color: '#C4532D',
-    image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/campus%20life%20/dance%20club.JPG', logo: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/logo/cultural.png',
+    image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/campus%20life%20/dance%20club.webp', logo: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/logo/cultural.webp',
   },
   {
     name: 'Editorial Board',
     description: 'Content creation, newsletter publishing, campus journalism, and editorial management to develop communication skills.',
     icon: 'book',
     color: '#1A5276',
-    image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/pro1.jpg', logo: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/logo/editorial-board.png',
+    image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/pro1.webp', logo: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/logo/editorial-board.webp',
   },
   {
     name: 'Dramatics Club',
     description: 'Monthly performances including stage plays, road plays, mime acts, and role plays — with a vision of "Theatre in Unlikely Spaces."',
     icon: 'theater',
     color: '#8B0000',
-    image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/JLu%20events/photos/Lehar/IMG_8971.JPG', logo: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/logo/cultural.png',
+    image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/JLu%20events/photos/Lehar/IMG_8971.webp', logo: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/logo/cultural.webp',
   },
   {
     name: 'MUN & Debating Society',
     description: 'Parliamentary debate training, research skills, and Model UN participation to develop public speaking and awareness of current events.',
     icon: 'debate',
     color: '#2C3E50',
-    image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/campus%20life%20/mun%26debating%20club.JPG', logo: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/logo/mun-debating.png',
+    image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/campus%20life%20/mun%26debating%20club.webp', logo: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/logo/mun-debating.webp',
   },
   {
     name: 'Community Service Club',
     description: 'Social wellbeing, volunteering, and community outreach initiatives focused on creating positive social change.',
     icon: 'community',
     color: '#196F3D',
-    image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/campus%20life%20/communit%20service%20club.JPG', logo: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/logo/community-service.png',
+    image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/campus%20life%20/communit%20service%20club.webp', logo: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/logo/community-service.webp',
   },
   {
     name: 'Industry & Entrepreneurship Club',
     description: 'Business development mentorship, potential funding through JLU\'s innovation ecosystem, and networking opportunities.',
     icon: 'startup',
     color: '#D4AC0D',
-    image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/campus%20life%20/industry%20and%20ent%20club.JPG', logo: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/logo/industry-entrepreneurship.png',
+    image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/campus%20life%20/industry%20and%20ent%20club.webp', logo: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/logo/industry-entrepreneurship.webp',
   },
   {
     name: 'Placement & Industry Interaction Club',
     description: 'Bridges academia and industry through skill workshops, placement discussions, and professional development training.',
     icon: 'briefcase',
     color: '#34495E',
-    image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/campus/gallery-11.jpg', logo: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/logo/student-service-cell.png',
+    image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/campus/gallery-11.webp', logo: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/logo/student-service-cell.webp',
   },
 ];
 
@@ -154,21 +154,21 @@ const achievements = [
     title: '5th International Mediation Competition — Runner-Up',
     description: 'Preesha Vaswani, Suhani Jain, and Basharat Ali Zaidi from the Faculty of Law secured the Runner-Up position at the 5th International Mediation Competition organized by Kerala Law Academy Law College, Thiruvananthapuram. Their outstanding performance, strategic thinking, and dedication reflect the growing excellence of our law students on international platforms.',
     category: 'Law',
-    image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/achievements-mediation.jpeg',
+    image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/achievements-mediation.webp',
     objectPosition: '50% 20%',
   },
   {
     title: 'IMARC 2026 — Research Paper at IIM Shillong',
     description: 'Kushagra Sahai got the opportunity to present a research paper at IMARC 2026, the 5th International Marketing Conference hosted by IIM Shillong, engaging with leading academicians, researchers, and industry experts from across the globe. Under the guidance of Dr. Rushit Dubal, Aparna Jha, and Dr. Shruti Sinha, this milestone reflects academic excellence and the confidence to contribute meaningful ideas on prestigious platforms.',
     category: 'Research',
-    image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/achievements-imarc.jpeg',
+    image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/achievements-imarc.webp',
     objectPosition: '30% 20%',
   },
   {
     title: 'Khelo MP Youth Games — Silver Medal in Kayak & Canoeing',
     description: 'Priyanshu Manjhi, student of BPES, won the Silver Medal in Kayak & Canoeing at the Khelo MP Youth Games held in Bhopal. His dedication and sporting spirit make us immensely proud.',
     category: 'Sports',
-    image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/achievements-kayak.png',
+    image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/achievements-kayak.webp',
   },
 ];
 
@@ -406,7 +406,7 @@ const CampusLife = () => {
         >
           <motion.div className="absolute inset-0" style={{ y }}>
             <Image
-              src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/campus%20life%20/Landng%20photo.JPG"
+              src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/campus%20life%20/Landng%20photo.webp"
               alt="Campus Life at JLU"
               fill
               className="object-cover scale-110"
@@ -479,7 +479,7 @@ const CampusLife = () => {
           <div ref={councilImgRef} className="relative w-full h-[300px] md:h-[420px] rounded-2xl overflow-hidden mb-16" style={isMobile ? { height: '200px', marginBottom: '24px' } : {}}>
             <motion.div className="absolute inset-0" style={{ y: councilImgY }}>
               <Image
-                src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/campus%20life%20/syudent%20council.JPG"
+                src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/campus%20life%20/syudent%20council.webp"
                 alt="Student Council at JLU"
                 fill
                 className="object-cover scale-110"
@@ -567,14 +567,14 @@ const CampusLife = () => {
                   {
                     name: 'Prof. Dr. Vivek Khare',
                     title: 'Pro Vice Chancellor (Student Welfare)',
-                    image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/leadership/pvc-student-welfare-new.JPG',
+                    image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/leadership/pvc-student-welfare-new.webp',
                     linkedin: 'https://in.linkedin.com/in/dr-vivek-khare-8666a61a',
                     quote: 'Student welfare is at the heart of everything we do at JLU.',
                   },
                   {
                     name: 'Ms. Ladli Goyal',
                     title: 'Head, Communication & Student Welfare',
-                    image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/leadership/ladli-goyal.jpeg',
+                    image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/leadership/ladli-goyal.webp',
                     linkedin: '',
                     quote: 'Building a supportive and inclusive campus community.',
                     objectPosition: 'center 20%',
@@ -694,7 +694,7 @@ const CampusLife = () => {
               {['Sharks', 'Lions', 'Stallions', 'Hawks'].map((house) => (
                 <div key={house} className="border border-[#e5e5e5] rounded-xl p-4 md:p-5 hover:border-[#f0c14b] hover:shadow-sm transition-all duration-300">
                   <div className="flex flex-col items-center mb-4" style={isMobile ? { marginBottom: '10px' } : {}}>
-                    <img src={`https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/logo/${house.toLowerCase()}.png`} alt={house} className="w-14 h-14 md:w-20 md:h-20 object-contain mb-2" />
+                    <img src={`https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/logo/${house.toLowerCase()}.webp`} alt={house} className="w-14 h-14 md:w-20 md:h-20 object-contain mb-2" />
                     <h4 className="text-[#21313c] font-semibold text-sm md:text-base" style={isMobile ? { fontSize: '13px' } : {}}>{house}</h4>
                   </div>
                   {houseCaptains.filter(c => c.house === house).map((member, j) => (
@@ -1168,7 +1168,7 @@ const CampusLife = () => {
       <div id="sports-and-recreation" ref={corpBannerRef} className="relative w-full h-[40vh] md:h-[50vh] overflow-hidden" style={isMobile ? { height: '30vh' } : {}}>
         <motion.div className="absolute inset-0" style={{ y: corpBannerY }}>
           <Image
-            src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/campus/gallery-8.jpg"
+            src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/campus/gallery-8.webp"
             alt="Corporate Relations"
             fill
             className="object-cover scale-110"
@@ -1249,7 +1249,7 @@ const CampusLife = () => {
             transition={{ duration: 0.8, ease: customEase }}
             viewport={{ once: true }}
           >
-            {['https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/campus/computer%20lab.JPG', 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/campus/gallery-13.jpg', 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/campus/gallery-3.jpg'].map((src, i) => (
+            {['https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/campus/computer%20lab.webp', 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/campus/gallery-13.webp', 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/campus/gallery-3.webp'].map((src, i) => (
               <div key={i} className="relative h-[120px] md:h-[180px] overflow-hidden group" style={isMobile ? { height: '80px' } : {}}>
                 <Image src={src} alt="Corporate" fill className="object-cover group-hover:scale-110 transition-transform duration-700" />
                 <div className="absolute inset-0 bg-[#21313c]/30 group-hover:bg-transparent transition-colors duration-500" />
@@ -1379,7 +1379,7 @@ const CampusLife = () => {
               {/* Lab/Innovation image */}
               <div className="relative w-full h-[220px] md:h-[280px] rounded-2xl overflow-hidden mb-6 group" style={isMobile ? { height: '160px', marginBottom: '12px' } : {}}>
                 <Image
-                  src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/campus/gallery-12.jpg"
+                  src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/campus/gallery-12.webp"
                   alt="IgnitoX Innovation Hub"
                   fill
                   className="object-cover group-hover:scale-105 transition-transform duration-700"
@@ -1433,7 +1433,7 @@ const CampusLife = () => {
       <div id="health-and-wellness" ref={ignitingRef} className="relative w-full h-[50vh] md:h-[60vh] overflow-hidden" style={isMobile ? { height: '35vh' } : {}}>
         <motion.div className="absolute inset-0" style={{ y: ignitingY }}>
           <Image
-            src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/campus/gallery-10.jpg"
+            src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/campus/gallery-10.webp"
             alt="Igniting Minds Lecture Series"
             fill
             className="object-cover scale-110"
@@ -1541,7 +1541,7 @@ const CampusLife = () => {
             transition={{ duration: 0.8, ease: customEase }}
             viewport={{ once: true }}
           >
-            {['https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/campus/gallery-9.jpg', 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/campus/gallery-4.jpg', 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/campus/gallery-7.jpg', 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/campus/gallery-19.jpg'].map((src, i) => (
+            {['https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/campus/gallery-9.webp', 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/campus/gallery-4.webp', 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/campus/gallery-7.webp', 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/campus/gallery-19.webp'].map((src, i) => (
               <div key={i} className="relative h-[100px] md:h-[160px] overflow-hidden group" style={isMobile ? { height: '60px' } : {}}>
                 <Image src={src} alt="Campus" fill className="object-cover group-hover:scale-110 transition-transform duration-700" />
               </div>
@@ -1561,7 +1561,7 @@ const CampusLife = () => {
         >
           <motion.div className="absolute inset-0" style={{ scale: communityScale }}>
             <Image
-              src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/campus/hero-campus.jpg"
+              src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/campus/hero-campus.webp"
               alt="Campus Community"
               fill
               className="object-cover"

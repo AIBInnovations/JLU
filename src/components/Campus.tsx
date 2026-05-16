@@ -27,7 +27,7 @@ const infrastructureItems = [
     id: 1,
     label: 'University Campus',
     description: 'A thoughtfully planned campus that supports academic focus and student life.',
-    image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/interdisciplinary/campus-drone.jpg',
+    image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/interdisciplinary/campus-drone.webp',
     details: {
       overview: 'Spread across 232 acres, the JLU campus is designed to inspire learning and foster community. Every corner reflects a balance between modern infrastructure and natural surroundings, with 9 academic blocks housing world-class facilities.',
       features: [
@@ -44,7 +44,7 @@ const infrastructureItems = [
     id: 2,
     label: 'Student Accommodation',
     description: 'Modern 4-block hostel (A, B, C & D) offering comfortable and secure living environment.',
-    image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/campus/hostel.jpg',
+    image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/campus/hostel.webp',
     details: {
       overview: 'Our modern 4-block hostel (A, B, C & D) provides students with a comfortable and secure living environment, truly offering a home away from home. The hostels offer single, double, and triple occupancy options, along with facilities that support both academic focus and relaxation.',
       features: [
@@ -61,7 +61,7 @@ const infrastructureItems = [
     id: 3,
     label: 'Dining Facilities',
     description: 'APPETITE food court and mess facilities catering to diverse tastes.',
-    image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/campus/%20m%20s%20gill%20studio.JPG',
+    image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/campus/%20m%20s%20gill%20studio.webp',
     details: {
       overview: 'From a hygienic mess dining hall with 180-person capacity to the APPETITE food court featuring 5 outlets offering global cuisines, students have access to diverse food options throughout the day.',
       features: [
@@ -107,7 +107,7 @@ const facilityCards: FacilityData[] = [
     id: 'media-studio',
     title: 'Shri Gurudev Gupta Media Studio',
     category: 'Academic Infrastructure',
-    image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/interdisciplinary/campus-activity.jpg',
+    image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/interdisciplinary/campus-activity.webp',
     description: 'A professional studio environment for media production and hands-on learning. The studio is equipped with industry-standard equipment to prepare students for careers in broadcasting, film, and digital media.',
     features: [
       'Professional broadcast-quality cameras and equipment',
@@ -126,7 +126,7 @@ const facilityCards: FacilityData[] = [
     id: 'culinary-studio',
     title: 'M S Gill Culinary Studios',
     category: 'Academic Infrastructure',
-    image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/campus/%20m%20s%20gill%20studio.JPG',
+    image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/campus/%20m%20s%20gill%20studio.webp',
     description: 'Industry-standard kitchens designed for hospitality and culinary training. Students learn from professional chefs in a real-world kitchen environment that mirrors top restaurants and hotels.',
     features: [
       'Commercial-grade cooking stations',
@@ -145,7 +145,7 @@ const facilityCards: FacilityData[] = [
     id: 'tech-labs',
     title: 'Technology Labs',
     category: 'Academic Infrastructure',
-    image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/campus/tech-labs.jpg',
+    image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/campus/tech-labs.webp',
     description: 'Well-equipped labs supporting engineering, computing, and applied sciences. Our technology labs provide students with hands-on experience using the latest tools and software in their fields.',
     features: [
       'High-performance computing clusters',
@@ -164,7 +164,7 @@ const facilityCards: FacilityData[] = [
     id: 'moot-court',
     title: 'Shri Cyril Shroff Moot Court',
     category: 'Academic Infrastructure',
-    image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/campus/moot-court.jpg',
+    image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/campus/moot-court.webp',
     description: 'A dedicated space for legal practice, debates, and mock trials. The moot court replicates an actual courtroom setting, providing law students with invaluable practical experience.',
     features: [
       'Authentic courtroom design and layout',
@@ -189,7 +189,7 @@ const sportsModalData: FacilityData[] = [
     id: 'swimming-pool-sports',
     title: '6-Lane Olympic Swimming Pool',
     category: 'Sports Facilities',
-    image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/campus/pool-olympic.jpg',
+    image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/campus/pool-olympic.webp',
     description: 'An Olympic-standard 6-lane pool with trained lifeguards, temperature control, and competition-ready facilities for both recreational and competitive swimming.',
     features: [
       'Olympic standard 25m pool',
@@ -208,7 +208,7 @@ const sportsModalData: FacilityData[] = [
     id: 'outdoor-sports',
     title: 'Outdoor Sports Complex',
     category: 'Sports Facilities',
-    image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/campus/gallery-16.jpg',
+    image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/campus/gallery-16.webp',
     description: 'A sprawling outdoor sports complex with 2 football fields, a cricket ground with practice nets, basketball courts, volleyball courts, tennis courts, and an athletic track.',
     features: [
       '2 full-size football fields',
@@ -227,7 +227,7 @@ const sportsModalData: FacilityData[] = [
     id: 'indoor-hall',
     title: 'Indoor Multipurpose Hall',
     category: 'Sports Facilities',
-    image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/campus/sports.jpg',
+    image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/campus/sports.webp',
     description: 'A 15,000 sq. ft. climate-controlled venue for indoor sports, cultural events, conferences, and large gatherings. Equipped with professional lighting and sound systems.',
     features: [
       'Climate-controlled 15,000 sq. ft. space',
@@ -466,7 +466,7 @@ const Campus = () => {
         >
           <motion.div className="absolute inset-0" style={{ y }}>
             <Image
-              src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/interdisciplinary/campus-drone.jpg"
+              src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/interdisciplinary/campus-drone.webp"
               alt="JLU Campus Aerial View"
               fill
               className="object-cover scale-110"
@@ -812,7 +812,7 @@ const Campus = () => {
                   transition={{ duration: 0.8, ease: customEase }}
                 >
                   <Image
-                    src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/interdisciplinary/campus-activity.jpg"
+                    src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/interdisciplinary/campus-activity.webp"
                     alt="Shri Gurudev Gupta Media Studio"
                     fill
                     className="object-cover"
@@ -856,7 +856,7 @@ const Campus = () => {
                   transition={{ duration: 0.8, ease: customEase }}
                 >
                   <Image
-                    src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/campus/%20m%20s%20gill%20studio.JPG"
+                    src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/campus/%20m%20s%20gill%20studio.webp"
                     alt="M S Gill Culinary Studios"
                     fill
                     className="object-cover"
@@ -898,7 +898,7 @@ const Campus = () => {
                   transition={{ duration: 0.8, ease: customEase }}
                 >
                   <Image
-                    src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/campus/tech-labs.jpg"
+                    src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/campus/tech-labs.webp"
                     alt="Technology Labs"
                     fill
                     className="object-cover"
@@ -940,7 +940,7 @@ const Campus = () => {
                   transition={{ duration: 0.8, ease: customEase }}
                 >
                   <Image
-                    src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/campus/moot-court.jpg"
+                    src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/campus/moot-court.webp"
                     alt="Shri Cyril Shroff Moot Court"
                     fill
                     className="object-cover"
@@ -1030,7 +1030,7 @@ const Campus = () => {
                   transition={{ duration: 0.8, ease: customEase }}
                 >
                   <Image
-                    src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/campus/pool-olympic.jpg"
+                    src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/campus/pool-olympic.webp"
                     alt="Olympic Swimming Pool"
                     fill
                     className="object-cover"
@@ -1107,7 +1107,7 @@ const Campus = () => {
                     transition={{ duration: 0.8, ease: customEase }}
                   >
                     <Image
-                      src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/campus/gallery-16.jpg"
+                      src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/campus/gallery-16.webp"
                       alt="Outdoor Sports Fields"
                       fill
                       className="object-cover"
@@ -1172,7 +1172,7 @@ const Campus = () => {
               className="relative h-[300px] sm:h-[400px] md:h-[550px] overflow-hidden rounded-xl"
             >
               <Image
-                src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/campus/pyramid.jpeg"
+                src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/campus/pyramid.webp"
                 alt="The Pyramid - University Library"
                 fill
                 className="object-cover"
@@ -1351,7 +1351,7 @@ const Campus = () => {
               onClick={() => setSelectedFacility(sportsModalData[2])}
             >
               <Image
-                src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/campus/sports.jpg"
+                src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/campus/sports.webp"
                 alt="Indoor Multipurpose Hall"
                 fill
                 className="object-cover"
@@ -1386,7 +1386,7 @@ const Campus = () => {
             className="absolute overflow-hidden group cursor-pointer rounded-lg md:rounded-2xl"
             style={{ width: '28%', height: '24%', top: '0%', left: '13%' }}
           >
-            <Image src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/interdisciplinary/campus-drone.jpg" alt="JLU Campus Aerial View" fill className="object-cover group-hover:scale-105 transition-transform duration-500" />
+            <Image src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/interdisciplinary/campus-drone.webp" alt="JLU Campus Aerial View" fill className="object-cover group-hover:scale-105 transition-transform duration-500" />
           </motion.div>
 
           {/* Card 2 */}
@@ -1398,7 +1398,7 @@ const Campus = () => {
             className="absolute overflow-hidden group cursor-pointer rounded-lg md:rounded-2xl"
             style={{ width: '21%', height: '32%', top: '0%', left: '52%' }}
           >
-            <Image src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/campus/pyramid.jpeg" alt="The Pyramid Library" fill className="object-cover group-hover:scale-105 transition-transform duration-500" />
+            <Image src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/campus/pyramid.webp" alt="The Pyramid Library" fill className="object-cover group-hover:scale-105 transition-transform duration-500" />
           </motion.div>
 
           {/* Card 3 */}
@@ -1410,7 +1410,7 @@ const Campus = () => {
             className="absolute overflow-hidden group cursor-pointer rounded-lg md:rounded-2xl"
             style={{ width: '13%', height: '19%', top: '-5%', left: '89%' }}
           >
-            <Image src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/campus/pool-olympic.jpg" alt="Swimming Pool" fill className="object-cover group-hover:scale-105 transition-transform duration-500" />
+            <Image src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/campus/pool-olympic.webp" alt="Swimming Pool" fill className="object-cover group-hover:scale-105 transition-transform duration-500" />
           </motion.div>
 
           {/* Card 4 */}
@@ -1422,7 +1422,7 @@ const Campus = () => {
             className="absolute overflow-hidden group cursor-pointer rounded-lg md:rounded-2xl"
             style={{ width: '15%', height: '22%', top: '30%', left: '80%' }}
           >
-            <Image src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/campus/tech-labs.jpg" alt="Technology Labs" fill className="object-cover group-hover:scale-105 transition-transform duration-500" />
+            <Image src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/campus/tech-labs.webp" alt="Technology Labs" fill className="object-cover group-hover:scale-105 transition-transform duration-500" />
           </motion.div>
 
           {/* Card 5 */}
@@ -1434,7 +1434,7 @@ const Campus = () => {
             className="absolute overflow-hidden group cursor-pointer rounded-lg md:rounded-2xl"
             style={{ width: '19%', height: '32%', top: '31%', left: '0%' }}
           >
-            <Image src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/JLu%20events/photos/Lehar/IMG_9060.JPG" alt="Cultural Fest" fill className="object-cover group-hover:scale-105 transition-transform duration-500" />
+            <Image src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/JLu%20events/photos/Lehar/IMG_9060.webp" alt="Cultural Fest" fill className="object-cover group-hover:scale-105 transition-transform duration-500" />
           </motion.div>
 
           {/* Card 6 */}
@@ -1446,7 +1446,7 @@ const Campus = () => {
             className="absolute overflow-hidden group cursor-pointer rounded-lg md:rounded-2xl"
             style={{ width: '20%', height: '34%', top: '60%', left: '80%' }}
           >
-            <Image src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/campus/%20m%20s%20gill%20studio.JPG" alt="Culinary Studios" fill className="object-cover group-hover:scale-105 transition-transform duration-500" />
+            <Image src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/campus/%20m%20s%20gill%20studio.webp" alt="Culinary Studios" fill className="object-cover group-hover:scale-105 transition-transform duration-500" />
           </motion.div>
 
           {/* Card 7 */}
@@ -1458,7 +1458,7 @@ const Campus = () => {
             className="absolute overflow-hidden group cursor-pointer rounded-lg md:rounded-2xl"
             style={{ width: '28%', height: '21%', top: '79%', left: '44%' }}
           >
-            <Image src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/interdisciplinary/campus-activity.jpg" alt="Shri Gurudev Gupta Media Studio" fill className="object-cover group-hover:scale-105 transition-transform duration-500" />
+            <Image src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/interdisciplinary/campus-activity.webp" alt="Shri Gurudev Gupta Media Studio" fill className="object-cover group-hover:scale-105 transition-transform duration-500" />
           </motion.div>
 
           {/* Card 8 */}
@@ -1470,7 +1470,7 @@ const Campus = () => {
             className="absolute overflow-hidden group cursor-pointer rounded-lg md:rounded-2xl"
             style={{ width: '15%', height: '32%', top: '68%', left: '22%' }}
           >
-            <Image src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/campus/gym-new.jpg" alt="Fitness Center" fill className="object-cover group-hover:scale-105 transition-transform duration-500" />
+            <Image src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/campus/gym-new.webp" alt="Fitness Center" fill className="object-cover group-hover:scale-105 transition-transform duration-500" />
           </motion.div>
 
           {/* Card 9 */}
@@ -1482,7 +1482,7 @@ const Campus = () => {
             className="absolute overflow-hidden group cursor-pointer rounded-lg md:rounded-2xl"
             style={{ width: '15%', height: '18%', top: '75%', left: '-4%' }}
           >
-            <Image src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/campus/moot-court.jpg" alt="Moot Court" fill className="object-cover group-hover:scale-105 transition-transform duration-500" />
+            <Image src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/campus/moot-court.webp" alt="Moot Court" fill className="object-cover group-hover:scale-105 transition-transform duration-500" />
           </motion.div>
 
           {/* Center Content */}

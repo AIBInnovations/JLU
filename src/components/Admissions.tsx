@@ -1387,7 +1387,7 @@ const Admissions = () => {
         >
           <motion.div className="absolute inset-0" style={{ y }}>
             <Image
-              src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/admissions.jpg"
+              src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/admissions.webp"
               alt="JLU Admissions - Student Orientation"
               fill
               className="object-cover scale-110"
@@ -1530,7 +1530,7 @@ const Admissions = () => {
               {/* Image header */}
               <div className="relative overflow-hidden" style={{ height: isMobile ? '160px' : '192px' }}>
                 <Image
-                  src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/interdisciplinary/classroom.jpg"
+                  src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/interdisciplinary/classroom.webp"
                   alt="Academic Programs"
                   fill
                   className="object-cover group-hover:scale-105 transition-transform duration-700"
@@ -1611,7 +1611,7 @@ const Admissions = () => {
               {/* Image header */}
               <div className="relative overflow-hidden" style={{ height: isMobile ? '160px' : '192px' }}>
                 <Image
-                  src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/interdisciplinary/campus-students.jpg"
+                  src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/interdisciplinary/campus-students.webp"
                   alt="Apply to JLU"
                   fill
                   className="object-cover group-hover:scale-105 transition-transform duration-700"
@@ -1695,7 +1695,7 @@ const Admissions = () => {
               {/* Image header */}
               <div className="relative overflow-hidden" style={{ height: isMobile ? '160px' : '192px' }}>
                 <Image
-                  src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/interdisciplinary/library.jpg"
+                  src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/interdisciplinary/library.webp"
                   alt="Fee & Support"
                   fill
                   className="object-cover group-hover:scale-105 transition-transform duration-700"
@@ -2487,10 +2487,10 @@ const Admissions = () => {
                       <Image
                         src={
                           index === 0
-                            ? "https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/learning-ug.jpg"
+                            ? "https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/learning-ug.webp"
                             : index === 1
-                            ? "https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/learning-phd.jpg"
-                            : "https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/learning-pg.jpg"
+                            ? "https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/learning-phd.webp"
+                            : "https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/learning-pg.webp"
                         }
                         alt={path.title}
                         fill
@@ -2591,8 +2591,8 @@ const Admissions = () => {
                   >
                     <Image
                       src={index === 0
-                        ? "https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/campus/professional-skills-new.jpg"
-                        : "https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/campus/jlux-leadership.jpg"
+                        ? "https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/campus/professional-skills-new.webp"
+                        : "https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/campus/jlux-leadership.webp"
                       }
                       alt={item.title}
                       fill
@@ -2697,7 +2697,7 @@ const Admissions = () => {
                 transition={{ duration: 0.6 }}
               >
                 <Image
-                  src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/interdisciplinary/campus-drone.jpg"
+                  src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/interdisciplinary/campus-drone.webp"
                   alt="Campus Visit"
                   fill
                   className="object-cover"
@@ -2787,7 +2787,7 @@ const Admissions = () => {
                     transition={{ duration: 0.6 }}
                   >
                     <Image
-                      src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/interdisciplinary/campus-event.jpg"
+                      src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/interdisciplinary/campus-event.webp"
                       alt="Student Life"
                       fill
                       className="object-cover object-bottom"
@@ -2815,7 +2815,7 @@ const Admissions = () => {
                     transition={{ duration: 0.6 }}
                   >
                     <Image
-                      src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/campus/hostel.jpg"
+                      src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/campus/hostel.webp"
                       alt="Hostel"
                       fill
                       className="object-cover"

@@ -22,7 +22,7 @@ export const BestSellers = () => {
       name: 'Pure Refresh',
       category: 'True Radiance',
       price: '$39.99',
-      image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/product1.jpg',
+      image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/product1.webp',
       color: '#FFE5EC',
     },
     {
@@ -30,7 +30,7 @@ export const BestSellers = () => {
       name: 'Radiant Glow',
       category: 'Luminous Glow',
       price: '$36.99',
-      image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/product2.jpg',
+      image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/product2.webp',
       color: '#E5DEFF',
     },
     {
@@ -38,7 +38,7 @@ export const BestSellers = () => {
       name: 'Overnight Sleep',
       category: 'Pure Nourish',
       price: '$35.99',
-      image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/product3.jpg',
+      image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/product3.webp',
       color: '#FFF4E5',
     },
     {
@@ -46,7 +46,7 @@ export const BestSellers = () => {
       name: 'Vitamin C Serum',
       category: 'Bright Boost',
       price: '$42.99',
-      image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/product4.jpg',
+      image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/product4.webp',
       color: '#E5F4FF',
     },
   ];
@@ -115,7 +115,7 @@ export const BestSellers = () => {
           {/* Left Side - Image */}
           <div className="relative h-[400px] md:h-[500px] lg:h-[600px] rounded-2xl overflow-hidden">
             <img
-              src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/elysara-hero.jpg"
+              src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/elysara-hero.webp"
               alt="Elysara Brilliance"
               className="w-full h-full object-cover"
             />

@@ -139,7 +139,7 @@ export const FacultyPage = ({ facultyId, heroImage, bigText }: FacultyPageProps)
   const heroBigText = bigText ?? faculty.shortName;
 
   // Use the first school's image as hero fallback
-  const resolvedHeroImage = heroImage ?? faculty.schools[0]?.image ?? 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/acedemics/acedemics%20landing%20page.JPG';
+  const resolvedHeroImage = heroImage ?? faculty.schools[0]?.image ?? 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/acedemics/acedemics%20landing%20page.webp';
 
   // Pick a faculty-level dean from any school (deans repeat across schools in the same faculty)
   const facultyDeanContact = faculty.schools.find((s) => s.deanContact)?.deanContact;
