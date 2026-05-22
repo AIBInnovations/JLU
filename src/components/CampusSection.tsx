@@ -55,7 +55,7 @@ export const CampusSection = () => {
                 alt="JLU Pyramid Library - 42,000+ books"
                 className="w-full h-full object-cover"
                 loading="lazy"
-              />
+               srcSet="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/optimized/campus/gallery-10.webp 1280w, https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/optimized/campus/gallery-10-480w.webp 480w" sizes="(max-width: 768px) 480px, 1280px"/>
               <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
               <div className="absolute bottom-4 left-4">
                 <span className="text-white/70 text-xs tracking-widest uppercase">28,000 Sq Ft</span>

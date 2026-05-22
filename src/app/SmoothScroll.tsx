@@ -2,7 +2,20 @@
 
 import { useEffect, useRef } from 'react';
 import { usePathname } from 'next/navigation';
-import type Lenis from 'lenis';
+import Lenis from 'lenis';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+// Eager-import gsap + ScrollTrigger + Lenis here (NOT dynamic) so that pin-based
+// ScrollTriggers registered by HorizontalScroll / PassionSection / WhyJlu are
+// active before the user starts scrolling. A dynamic import here introduces a
+// race: scroll begins before pins exist, page rolls past, then ScrollTrigger
+// initialises retroactively and jumps content — visible as a brief flash of
+// downstream sections in their pre-animation state.
+if (typeof window !== 'undefined') {
+  gsap.registerPlugin(ScrollTrigger);
+  ScrollTrigger.config({ ignoreMobileResize: true });
+}
 
 export default function SmoothScroll() {
   const lenisRef = useRef<Lenis | null>(null);
@@ -16,85 +29,58 @@ export default function SmoothScroll() {
     // Honor reduced-motion users.
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
 
-    let cancelled = false;
-    let cleanup: (() => void) | null = null;
+    const isTouch =
+      'ontouchstart' in window ||
+      (navigator?.maxTouchPoints ?? 0) > 0 ||
+      window.matchMedia('(pointer: coarse)').matches;
 
-    (async () => {
-      // Dynamic imports keep gsap + ScrollTrigger + Lenis (~540 KB combined)
-      // out of the initial JS chunk. Smooth-scroll init waits for the next
-      // microtask after first paint, which is fine because there's nothing
-      // to scroll past LCP yet.
-      const [{ default: Lenis }, { gsap }, { ScrollTrigger }] = await Promise.all([
-        import('lenis'),
-        import('gsap'),
-        import('gsap/ScrollTrigger'),
-      ]);
-      if (cancelled) return;
+    // Lenis on every device. Mobile config is deliberately conservative:
+    // - lerp 0.1 = smooth without floaty lag
+    // - syncTouch true so finger swipes feed Lenis (smooth Lenis-feel)
+    // - touchMultiplier 1.0 (NOT amplified) prevents momentum overshoots
+    //   that were teleporting scroll to the bottom of the page
+    // - touchInertiaExponent 1.4 = short, controlled inertia
+    // The cost of syncTouch is only payable because every scroll-tied
+    // animation on the mobile homepage has been removed (no pins, no
+    // scrubs, no continuous animations, no backdrop-filters).
+    const lenis = new Lenis(
+      isTouch
+        ? {
+            lerp: 0.1,
+            smoothWheel: true,
+            syncTouch: true,
+            syncTouchLerp: 0.075,
+            touchInertiaExponent: 1.4,
+            touchMultiplier: 1.0,
+          }
+        : {
+            lerp: 0.1,
+            smoothWheel: true,
+            syncTouch: false,
+          },
+    );
+    lenisRef.current = lenis;
 
-      gsap.registerPlugin(ScrollTrigger);
-      // Stop ScrollTrigger from recalculating pins (and thus resetting scroll
-      // position) every time the iOS Safari / Chrome Android URL bar hides or
-      // shows.
-      ScrollTrigger.config({ ignoreMobileResize: true });
+    try {
+      const saved = Number(sessionStorage.getItem('scrollPos_' + pathname) || '0');
+      if (saved > 0) {
+        lenis.scrollTo(saved, { immediate: true });
+        sessionStorage.removeItem('scrollPos_' + pathname);
+      }
+    } catch {}
 
-      const isTouch =
-        'ontouchstart' in window ||
-        (navigator?.maxTouchPoints ?? 0) > 0 ||
-        window.matchMedia('(pointer: coarse)').matches;
+    lenis.on('scroll', ScrollTrigger.update);
 
-      // Lenis on every device. Mobile config is deliberately conservative:
-      // - lerp 0.1 = smooth without floaty lag
-      // - syncTouch true so finger swipes feed Lenis (smooth Lenis-feel)
-      // - touchMultiplier 1.0 (NOT amplified) prevents momentum overshoots
-      //   that were teleporting scroll to the bottom of the page
-      // - touchInertiaExponent 1.4 = short, controlled inertia
-      // The cost of syncTouch is only payable because every scroll-tied
-      // animation on the mobile homepage has been removed (no pins, no
-      // scrubs, no continuous animations, no backdrop-filters).
-      const lenis = new Lenis(
-        isTouch
-          ? {
-              lerp: 0.1,
-              smoothWheel: true,
-              syncTouch: true,
-              syncTouchLerp: 0.075,
-              touchInertiaExponent: 1.4,
-              touchMultiplier: 1.0,
-            }
-          : {
-              lerp: 0.1,
-              smoothWheel: true,
-              syncTouch: false,
-            },
-      );
-      lenisRef.current = lenis;
-
-      try {
-        const saved = Number(sessionStorage.getItem('scrollPos_' + pathname) || '0');
-        if (saved > 0) {
-          lenis.scrollTo(saved, { immediate: true });
-          sessionStorage.removeItem('scrollPos_' + pathname);
-        }
-      } catch {}
-
-      lenis.on('scroll', ScrollTrigger.update);
-
-      const tickerCb = (time: number) => {
-        lenis.raf(time * 1000);
-      };
-      gsap.ticker.add(tickerCb);
-      gsap.ticker.lagSmoothing(0);
-
-      cleanup = () => {
-        gsap.ticker.remove(tickerCb);
-        lenis.destroy();
-        lenisRef.current = null;
-      };
-    })();
+    const tickerCb = (time: number) => {
+      lenis.raf(time * 1000);
+    };
+    gsap.ticker.add(tickerCb);
+    gsap.ticker.lagSmoothing(0);
 
     return () => {
-      cancelled = true;
-      cleanup?.();
+      gsap.ticker.remove(tickerCb);
+      lenis.destroy();
+      lenisRef.current = null;
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);

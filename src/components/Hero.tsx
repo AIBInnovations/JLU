@@ -246,7 +246,7 @@ export const Hero = () => {
                 objectPosition: isMobile ? 'center center' : 'center top',
                 clipPath: 'polygon(0% 50%, 100% 50%, 100% 50%, 0% 50%)',
               }}
-            />
+             srcSet="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/optimized/herobg-new.webp 1280w, https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/optimized/herobg-new-480w.webp 480w" sizes="(max-width: 768px) 480px, 1280px"/>
             {/* opacity:0 initially — GSAP fades this in with the image so it never greys the background */}
             <div className="absolute inset-0 bg-black/30" style={{ zIndex: 1, opacity: 0 }} />
           </div>

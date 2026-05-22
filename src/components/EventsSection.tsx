@@ -124,7 +124,7 @@ export const EventsSection = () => {
                 loading="lazy" decoding="async" src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/optimized/JLu%20events/photos/Lehar/IMG_9067.webp"
                 alt="Campus Events"
                 className="w-full h-full object-cover rounded-xl"
-              />
+               srcSet="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/optimized/JLu%20events/photos/Lehar/IMG_9067.webp 1280w, https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/optimized/JLu%20events/photos/Lehar/IMG_9067-480w.webp 480w" sizes="(max-width: 768px) 480px, 1280px"/>
               <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
 
               {/* Button positioned inside image */}

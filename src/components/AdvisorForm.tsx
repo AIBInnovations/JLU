@@ -123,7 +123,7 @@ const AdvisorForm = () => {
             loading="lazy" decoding="async" src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/optimized/campus/gallery-3.webp"
             alt="JLU Admissions"
             className="w-full h-full object-cover"
-          />
+           srcSet="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/optimized/campus/gallery-3.webp 1280w, https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/optimized/campus/gallery-3-480w.webp 480w" sizes="(max-width: 768px) 480px, 1280px"/>
           <div className="absolute inset-0 bg-black/60" />
         </div>
 

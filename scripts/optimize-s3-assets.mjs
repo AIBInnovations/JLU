@@ -38,8 +38,10 @@ const FORCE = !!args.force;
 const MIN_BYTES_IMG = Number(args['min-bytes'] ?? 2_000_000);
 const SIZES_FILE = args.input ?? '/tmp/audit/s3_sizes_v2.txt';
 
-if (!['images', 'videos'].includes(MODE)) {
-  console.error('usage: --mode=images|videos [--dry-run] [--min-bytes=N] [--input=FILE]');
+const RESPONSIVE_WIDTH = Number(args['responsive-width'] ?? 480);
+
+if (!['images', 'videos', 'responsive'].includes(MODE)) {
+  console.error('usage: --mode=images|videos|responsive [--dry-run] [--min-bytes=N] [--responsive-width=480] [--input=FILE]');
   process.exit(1);
 }
 
@@ -62,9 +64,13 @@ const all = lines.map((l) => {
 // --- select targets ---
 function isImage(url) { return /\.(webp|png|jpe?g)$/i.test(url); }
 function isVideo(url) { return /\.(mp4|webm|mov)$/i.test(url); }
-const targets = all.filter((r) => MODE === 'images'
-  ? isImage(r.url) && r.bytes >= MIN_BYTES_IMG
-  : isVideo(r.url));
+const targets = all.filter((r) => {
+  if (MODE === 'images') return isImage(r.url) && r.bytes >= MIN_BYTES_IMG;
+  if (MODE === 'videos') return isVideo(r.url);
+  // responsive: every image; treat min-bytes as filter to skip tiny ones
+  if (MODE === 'responsive') return isImage(r.url) && r.bytes >= MIN_BYTES_IMG;
+  return false;
+});
 
 console.log(`mode=${MODE} target_count=${targets.length} dry_run=${DRY_RUN}`);
 
@@ -129,6 +135,42 @@ async function processImage(t) {
   log(['image', origKey, newKey, t.bytes, output.length, t.bytes - output.length, pct, DRY_RUN ? 'dry' : 'done']);
 }
 
+// --- responsive variant pipeline ---
+// Reads the OPTIMIZED key (1920w webp at optimized/...) and produces a
+// `optimized/path/name-<W>w.webp` mobile variant at RESPONSIVE_WIDTH px wide.
+async function processResponsive(t) {
+  const origKey = keyFromUrl(t.url);
+  const optKey = optimizedKey(origKey);
+  // We re-download the optimized version (cleaner: already rotated/q80).
+  // If optimized doesn't exist, fall back to original t.url.
+  const sourceUrl = `https://${BUCKET}.s3.${REGION}.amazonaws.com/${optKey
+    .split('/').map(encodeURIComponent).join('/')
+    .replace(/%28/g, '(').replace(/%29/g, ')')}`;
+  const dotIdx = optKey.lastIndexOf('.');
+  const newKey = `${optKey.slice(0, dotIdx)}-${RESPONSIVE_WIDTH}w${optKey.slice(dotIdx)}`;
+
+  if (!FORCE && await objectExists(newKey)) {
+    console.log(`  skip (exists): ${newKey}`);
+    log(['responsive', origKey, newKey, '', '', '', '', 'skip-exists']);
+    return;
+  }
+  let input;
+  try {
+    input = await download(sourceUrl);
+  } catch {
+    console.log(`  fallback to original`);
+    input = await download(t.url);
+  }
+  const output = await sharp(input)
+    .rotate()
+    .resize({ width: RESPONSIVE_WIDTH, withoutEnlargement: true })
+    .webp({ quality: 78, effort: 6 })
+    .toBuffer();
+  console.log(`  ${origKey}  -> ${RESPONSIVE_WIDTH}w  ${(output.length/1024).toFixed(0)}KB`);
+  await putObject({ key: newKey, body: output, contentType: 'image/webp' });
+  log(['responsive', origKey, newKey, input.length, output.length, input.length - output.length, '', DRY_RUN ? 'dry' : 'done']);
+}
+
 // --- video pipeline ---
 async function processVideo(t) {
   const origKey = keyFromUrl(t.url);
@@ -179,6 +221,7 @@ for (let i = 0; i < targets.length; i++) {
   console.log(`[${i+1}/${targets.length}] ${t.url}`);
   try {
     if (MODE === 'images') await processImage(t);
+    else if (MODE === 'responsive') await processResponsive(t);
     else await processVideo(t);
   } catch (e) {
     errs++;

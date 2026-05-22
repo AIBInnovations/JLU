@@ -255,7 +255,7 @@ export const OurProgrammes = () => {
               loading="lazy" decoding="async" src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/optimized/campus%20life%20/Landng%20photo.webp"
               alt="Campus Life"
               className="w-full h-full object-cover rounded-t-2xl transition-transform duration-500 group-hover:scale-110"
-            />
+             srcSet="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/optimized/campus%20life%20/Landng%20photo.webp 1280w, https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/optimized/campus%20life%20/Landng%20photo-480w.webp 480w" sizes="(max-width: 768px) 480px, 1280px"/>
           </div>
 
           {/* Third card - lll */}
@@ -269,7 +269,7 @@ export const OurProgrammes = () => {
               loading="lazy" decoding="async" src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/optimized/beyond%20the%20class%20room/DSC09084.webp"
               alt="Students Beyond the Classroom"
               className="w-full h-full object-cover rounded-t-2xl transition-transform duration-500 group-hover:scale-110"
-            />
+             srcSet="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/optimized/beyond%20the%20class%20room/DSC09084.webp 1280w, https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/optimized/beyond%20the%20class%20room/DSC09084-480w.webp 480w" sizes="(max-width: 768px) 480px, 1280px"/>
           </div>
         </div>
       </div>

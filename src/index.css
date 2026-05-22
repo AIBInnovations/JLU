@@ -19,6 +19,23 @@
     box-sizing: border-box;
   }
 
+  /* Tap-target minimum 48x48 on touch devices.
+     PageSpeed Mobile audit flags interactive elements (buttons, links, inputs)
+     smaller than 48x48 CSS px or with <8px between them as failing. This rule
+     enforces the W3C-recommended minimum without breaking design — visual size
+     can stay small via padding while the hit box meets the threshold. */
+  @media (pointer: coarse) {
+    button:not([data-tap-exempt]),
+    a[role="button"]:not([data-tap-exempt]),
+    input[type="button"],
+    input[type="submit"],
+    input[type="reset"],
+    [role="button"]:not([data-tap-exempt]) {
+      min-height: 48px;
+      min-width: 48px;
+    }
+  }
+
   html.lenis, html.lenis body {
     height: auto;
   }
