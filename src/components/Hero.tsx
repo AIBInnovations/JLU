@@ -178,7 +178,7 @@ export const Hero = () => {
           // 1. Background reveals from middle to top and bottom
           .to(backgroundRef.current, {
             clipPath: 'polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)',
-            duration: 1.5,
+            duration: 0.6,
             ease: 'power2.inOut',
           })
           // 2. Subtle zoom effect on background
