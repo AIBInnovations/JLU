@@ -223,10 +223,19 @@ export const PassionSection = () => {
       className="relative"
       style={{ height: '400vh' }}
     >
-      {/* Main container that scales and pins */}
+      {/* Main container that scales and pins.
+          Inline initial transform matches the GSAP starting state below, so
+          the DOM-first-paint value equals the gsap.set value. Without this,
+          the first frame renders at scale(1), gsap.set then shrinks to 0.65
+          on the next frame, and CLS spikes to ~1.0. */}
       <div
         ref={containerRef}
         className="relative w-full min-h-screen overflow-hidden"
+        style={{
+          transform: 'scale(0.65)',
+          transformOrigin: 'center center',
+          borderRadius: '24px',
+        }}
       >
         {/* Panel 1 - PASSION */}
         <div
@@ -251,7 +260,7 @@ export const PassionSection = () => {
         <div
           ref={panel2Ref}
           className="absolute inset-0 w-full h-full"
-          style={{ zIndex: 2 }}
+          style={{ zIndex: 2, clipPath: 'inset(100% 0 0 0)' }}
         >
           <video
             ref={(el) => addVideoRef(el, 1)}
@@ -270,7 +279,7 @@ export const PassionSection = () => {
         <div
           ref={panel3Ref}
           className="absolute inset-0 w-full h-full"
-          style={{ zIndex: 4 }}
+          style={{ zIndex: 4, clipPath: 'inset(100% 0 0 0)' }}
         >
           <video
             ref={(el) => addVideoRef(el, 2)}

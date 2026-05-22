@@ -130,13 +130,8 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${inter.variable} ${anton.variable} ${humane.variable}`}>
       <head>
-        {/* Google Tag Manager */}
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-NQHT5W3');`,
-          }}
-        />
-        {/* End Google Tag Manager */}
+        {/* Google Tag Manager — moved out of <head> as <Script afterInteractive> below
+            so it no longer blocks HTML parsing. */}
         {/* Preconnect + preload above-fold S3 assets to cut LCP */}
         <link rel="preconnect" href="https://jlu-website-media.s3.ap-south-1.amazonaws.com" crossOrigin="" />
         <link rel="dns-prefetch" href="https://jlu-website-media.s3.ap-south-1.amazonaws.com" />
@@ -169,6 +164,10 @@ export default function RootLayout({
         />
       </head>
       <body className={inter.className} suppressHydrationWarning>
+        {/* Google Tag Manager — async, after-interactive so it never blocks paint. */}
+        <Script id="gtm" strategy="afterInteractive">
+          {`(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-NQHT5W3');`}
+        </Script>
         {/* Google Tag Manager (noscript) */}
         <noscript>
           <iframe

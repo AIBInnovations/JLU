@@ -677,6 +677,8 @@ export const Hero = () => {
                   <img
                     src={img.src}
                     alt={img.alt}
+                    loading="lazy"
+                    decoding="async"
                     className="block w-full object-cover"
                     style={{
                       height: isMobile ? `${img.mobileHeight}px` : isTablet ? `${Math.round(img.height * 0.65)}px` : `${img.height}px`,

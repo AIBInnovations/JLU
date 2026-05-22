@@ -128,8 +128,14 @@ function exit(){
     },280);
   },wait);
 }
-if(document.readyState==='complete')exit();
-else window.addEventListener('load',exit,{once:true});
+// Exit on DOMContentLoaded (+ a short grace so the bar animation can settle)
+// rather than window.load. window.load fires only after EVERY image, font,
+// and script has loaded — which with lazy/optimized assets here is ~25s. We
+// just need the main chunk parsed; the rest can stream in behind a removed
+// loader without blocking interactivity.
+function fire(){setTimeout(exit,500);}
+if(document.readyState==='interactive'||document.readyState==='complete')fire();
+else document.addEventListener('DOMContentLoaded',fire,{once:true});
 setTimeout(exit,MAX);
 })();`,
         }}
