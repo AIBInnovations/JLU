@@ -1,12 +1,23 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
-import { gsap } from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import type { gsap as GsapType } from 'gsap';
+import type { ScrollTrigger as ScrollTriggerType } from 'gsap/ScrollTrigger';
 import { useIsMobile } from '../hooks/useIsMobile';
 
-// Register GSAP plugin
-gsap.registerPlugin(ScrollTrigger);
+// Lazy-load GSAP + ScrollTrigger off the critical path.
+type GsapBundle = { gsap: typeof GsapType; ScrollTrigger: typeof ScrollTriggerType };
+let _bundle: GsapBundle | null = null;
+const loadGsap = async (): Promise<GsapBundle> => {
+  if (_bundle) return _bundle;
+  const [{ gsap }, { ScrollTrigger }] = await Promise.all([
+    import('gsap'),
+    import('gsap/ScrollTrigger'),
+  ]);
+  gsap.registerPlugin(ScrollTrigger);
+  _bundle = { gsap, ScrollTrigger };
+  return _bundle;
+};
 
 export const PassionSection = () => {
   const wrapperRef = useRef<HTMLDivElement>(null);
@@ -61,12 +72,9 @@ export const PassionSection = () => {
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     if (!wrapperRef.current || !containerRef.current) return;
 
-    const videos = videoRefs.current;
-    const triggers: ScrollTrigger[] = [];
-
     // Prep video props (no eager .load() — IntersectionObserver below triggers it
     // when section is one viewport-height away, keeping the initial page payload light).
-    videos.forEach((video) => {
+    videoRefs.current.forEach((video) => {
       if (video) {
         video.muted = true;
         video.playsInline = true;
@@ -74,118 +82,134 @@ export const PassionSection = () => {
       }
     });
 
-    const container = containerRef.current;
+    let cancelled = false;
+    let cleanup: (() => void) | null = null;
 
-    // Initial state - container is small and centered
-    if (!prefersReducedMotion) {
-      const initialScale = isMobile ? 0.75 : 0.65;
+    (async () => {
+      const { gsap, ScrollTrigger } = await loadGsap();
+      if (cancelled) return;
 
-      gsap.set(container, {
-        scale: initialScale,
-        borderRadius: '24px',
-        transformOrigin: 'center center',
-      });
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      const triggers: any[] = [];
 
-      // Scale up animation
-      const scaleAnimation = gsap.to(container, {
-        scale: 1,
-        borderRadius: '0px',
-        ease: 'power2.out',
-      });
+      const container = containerRef.current!;
 
-      const scaleTrigger = ScrollTrigger.create({
-        trigger: wrapperRef.current,
-        start: 'top 80%',
-        end: 'top 20%',
-        scrub: 1,
-        animation: scaleAnimation,
-      });
+      // Initial state - container is small and centered
+      if (!prefersReducedMotion) {
+        const initialScale = isMobile ? 0.75 : 0.65;
 
-      triggers.push(scaleTrigger);
+        gsap.set(container, {
+          scale: initialScale,
+          borderRadius: '24px',
+          transformOrigin: 'center center',
+        });
 
-      // Text fade in
-      if (textRef.current) {
-        gsap.set(textRef.current, { opacity: 0, y: 50 });
-
-        const textFadeIn = gsap.to(textRef.current, {
-          opacity: 1,
-          y: 0,
+        // Scale up animation
+        const scaleAnimation = gsap.to(container, {
+          scale: 1,
+          borderRadius: '0px',
           ease: 'power2.out',
         });
 
-        const textTrigger = ScrollTrigger.create({
-          trigger: wrapperRef.current,
-          start: 'top 60%',
-          end: 'top 30%',
+        const scaleTrigger = ScrollTrigger.create({
+          trigger: wrapperRef.current!,
+          start: 'top 80%',
+          end: 'top 20%',
           scrub: 1,
-          animation: textFadeIn,
+          animation: scaleAnimation,
         });
 
-        triggers.push(textTrigger);
-      }
-    }
+        triggers.push(scaleTrigger);
 
-    // Set initial clip-path for panels 2 and 3 using GSAP
-    if (panel2Ref.current) {
-      gsap.set(panel2Ref.current, { clipPath: 'inset(100% 0 0 0)' });
-    }
-    if (panel3Ref.current) {
-      gsap.set(panel3Ref.current, { clipPath: 'inset(100% 0 0 0)' });
-    }
+        // Text fade in
+        if (textRef.current) {
+          gsap.set(textRef.current, { opacity: 0, y: 50 });
 
-    // Create a single timeline for both panel reveals
-    const panelTimeline = gsap.timeline();
+          const textFadeIn = gsap.to(textRef.current, {
+            opacity: 1,
+            y: 0,
+            ease: 'power2.out',
+          });
 
-    if (panel2Ref.current) {
-      panelTimeline.to(panel2Ref.current, {
-        clipPath: 'inset(0% 0 0 0)',
-        ease: 'none',
-        duration: 1,
-      });
-    }
+          const textTrigger = ScrollTrigger.create({
+            trigger: wrapperRef.current!,
+            start: 'top 60%',
+            end: 'top 30%',
+            scrub: 1,
+            animation: textFadeIn,
+          });
 
-    if (panel3Ref.current) {
-      panelTimeline.to(panel3Ref.current, {
-        clipPath: 'inset(0% 0 0 0)',
-        ease: 'none',
-        duration: 1,
-      });
-    }
-
-    // Pin the container and control the panel timeline
-    const pinTrigger = ScrollTrigger.create({
-      trigger: wrapperRef.current,
-      start: 'top top',
-      end: () => `+=${window.innerHeight * 3}`,
-      pin: container,
-      pinSpacing: true,
-      anticipatePin: 1,
-      scrub: true,
-      animation: panelTimeline,
-      onUpdate: (self) => {
-        const progress = self.progress;
-
-        // Update text based on which panel is revealed
-        if (progress < 0.33) {
-          setCurrentText(0); // PASSION - page 1 visible
-        } else if (progress < 0.66) {
-          setCurrentText(1); // STUDY - page 2 revealed
-        } else {
-          setCurrentText(2); // SUCCESS - page 3 revealed
+          triggers.push(textTrigger);
         }
-      },
-    });
+      }
 
-    triggers.push(pinTrigger);
+      // Set initial clip-path for panels 2 and 3 using GSAP
+      if (panel2Ref.current) {
+        gsap.set(panel2Ref.current, { clipPath: 'inset(100% 0 0 0)' });
+      }
+      if (panel3Ref.current) {
+        gsap.set(panel3Ref.current, { clipPath: 'inset(100% 0 0 0)' });
+      }
 
-    // Refresh after setup
-    setTimeout(() => ScrollTrigger.refresh(), 100);
+      // Create a single timeline for both panel reveals
+      const panelTimeline = gsap.timeline();
+
+      if (panel2Ref.current) {
+        panelTimeline.to(panel2Ref.current, {
+          clipPath: 'inset(0% 0 0 0)',
+          ease: 'none',
+          duration: 1,
+        });
+      }
+
+      if (panel3Ref.current) {
+        panelTimeline.to(panel3Ref.current, {
+          clipPath: 'inset(0% 0 0 0)',
+          ease: 'none',
+          duration: 1,
+        });
+      }
+
+      // Pin the container and control the panel timeline
+      const pinTrigger = ScrollTrigger.create({
+        trigger: wrapperRef.current!,
+        start: 'top top',
+        end: () => `+=${window.innerHeight * 3}`,
+        pin: container,
+        pinSpacing: true,
+        anticipatePin: 1,
+        scrub: true,
+        animation: panelTimeline,
+        onUpdate: (self) => {
+          const progress = self.progress;
+
+          // Update text based on which panel is revealed
+          if (progress < 0.33) {
+            setCurrentText(0); // PASSION - page 1 visible
+          } else if (progress < 0.66) {
+            setCurrentText(1); // STUDY - page 2 revealed
+          } else {
+            setCurrentText(2); // SUCCESS - page 3 revealed
+          }
+        },
+      });
+
+      triggers.push(pinTrigger);
+
+      // Refresh after setup
+      setTimeout(() => ScrollTrigger.refresh(), 100);
+
+      cleanup = () => {
+        triggers.forEach((t) => t.kill());
+        ScrollTrigger.getAll().forEach((t) => t.kill());
+        gsap.killTweensOf('*');
+        ScrollTrigger.refresh();
+      };
+    })();
 
     return () => {
-      triggers.forEach((t) => t.kill());
-      ScrollTrigger.getAll().forEach((t) => t.kill());
-      gsap.killTweensOf('*');
-      ScrollTrigger.refresh();
+      cancelled = true;
+      cleanup?.();
     };
   }, [mounted, isMobile]);
 

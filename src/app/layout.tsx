@@ -137,6 +137,21 @@ export default function RootLayout({
           }}
         />
         {/* End Google Tag Manager */}
+        {/* Preconnect + preload above-fold S3 assets to cut LCP */}
+        <link rel="preconnect" href="https://jlu-website-media.s3.ap-south-1.amazonaws.com" crossOrigin="" />
+        <link rel="dns-prefetch" href="https://jlu-website-media.s3.ap-south-1.amazonaws.com" />
+        <link
+          rel="preload"
+          as="image"
+          href="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/optimized/herobg-new.webp"
+          fetchPriority="high"
+        />
+        <link
+          rel="preload"
+          as="image"
+          href="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/heronew.webp"
+          fetchPriority="high"
+        />
         <meta name="color-scheme" content="light" />
         <style dangerouslySetInnerHTML={{ __html: `html,body{background-color:#f6f7f0!important;color-scheme:light}` }} />
         <script

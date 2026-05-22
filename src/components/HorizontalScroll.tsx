@@ -2,10 +2,22 @@
 
 import { useRef, useEffect, useState } from 'react';
 import { useIsMobile } from '../hooks/useIsMobile';
-import { gsap } from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import type { gsap as GsapType } from 'gsap';
+import type { ScrollTrigger as ScrollTriggerType } from 'gsap/ScrollTrigger';
 
-gsap.registerPlugin(ScrollTrigger);
+// Lazy-load GSAP + ScrollTrigger off the critical path.
+type GsapBundle = { gsap: typeof GsapType; ScrollTrigger: typeof ScrollTriggerType };
+let _bundle: GsapBundle | null = null;
+const loadGsap = async (): Promise<GsapBundle> => {
+  if (_bundle) return _bundle;
+  const [{ gsap }, { ScrollTrigger }] = await Promise.all([
+    import('gsap'),
+    import('gsap/ScrollTrigger'),
+  ]);
+  gsap.registerPlugin(ScrollTrigger);
+  _bundle = { gsap, ScrollTrigger };
+  return _bundle;
+};
 
 export const HorizontalScroll = () => {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -57,58 +69,71 @@ export const HorizontalScroll = () => {
   useEffect(() => {
     if (!mounted || isMobile || !containerRef.current || !scrollContainerRef.current) return;
 
-    const section = containerRef.current;
-    const scrollContainer = scrollContainerRef.current;
-    const topText = topTextRef.current;
-    const bottomText = bottomTextRef.current;
+    let cancelled = false;
+    let cleanup: (() => void) | null = null;
 
-    // Calculate scroll distance with extra padding - increased for longer scroll
-    const scrollDistance = scrollContainer.scrollWidth - window.innerWidth + 50;
-    const extendedScrollMultiplier = 2.5; // Extended scroll length
+    (async () => {
+      const { gsap, ScrollTrigger } = await loadGsap();
+      if (cancelled) return;
 
-    // Create timeline for synchronized animations
-    const tl = gsap.timeline({
-      scrollTrigger: {
-        trigger: section,
-        start: 'top top',
-        end: () => `+=${scrollDistance + window.innerHeight * extendedScrollMultiplier}`,
-        scrub: 1,
-        pin: true,
-        pinSpacing: true,
-        anticipatePin: 1,
-        invalidateOnRefresh: true,
-      },
-    });
+      const section = containerRef.current!;
+      const scrollContainer = scrollContainerRef.current!;
+      const topText = topTextRef.current;
+      const bottomText = bottomTextRef.current;
 
-    // Cards move right to left (negative x)
-    tl.to(scrollContainer, {
-      x: -scrollDistance,
-      ease: 'none',
-    }, 0);
+      // Calculate scroll distance with extra padding - increased for longer scroll
+      const scrollDistance = scrollContainer.scrollWidth - window.innerWidth + 50;
+      const extendedScrollMultiplier = 2.5; // Extended scroll length
 
-    // Top text moves left to right (positive x) - opposite direction
-    if (topText) {
-      tl.fromTo(topText,
-        { x: -window.innerWidth * 3 },
-        { x: window.innerWidth * 0.5, ease: 'none' },
-        0
-      );
-    }
+      // Create timeline for synchronized animations
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: section,
+          start: 'top top',
+          end: () => `+=${scrollDistance + window.innerHeight * extendedScrollMultiplier}`,
+          scrub: 1,
+          pin: true,
+          pinSpacing: true,
+          anticipatePin: 1,
+          invalidateOnRefresh: true,
+        },
+      });
 
-    // Bottom text moves left to right (positive x) - opposite direction, slightly different speed
-    if (bottomText) {
-      tl.fromTo(bottomText,
-        { x: -window.innerWidth * 2.5 },
-        { x: window.innerWidth * 0.8, ease: 'none' },
-        0
-      );
-    }
+      // Cards move right to left (negative x)
+      tl.to(scrollContainer, {
+        x: -scrollDistance,
+        ease: 'none',
+      }, 0);
+
+      // Top text moves left to right (positive x) - opposite direction
+      if (topText) {
+        tl.fromTo(topText,
+          { x: -window.innerWidth * 3 },
+          { x: window.innerWidth * 0.5, ease: 'none' },
+          0
+        );
+      }
+
+      // Bottom text moves left to right (positive x) - opposite direction, slightly different speed
+      if (bottomText) {
+        tl.fromTo(bottomText,
+          { x: -window.innerWidth * 2.5 },
+          { x: window.innerWidth * 0.8, ease: 'none' },
+          0
+        );
+      }
+
+      cleanup = () => {
+        tl.scrollTrigger?.kill();
+        ScrollTrigger.getAll().forEach((t) => t.kill());
+        gsap.killTweensOf('*');
+        ScrollTrigger.refresh();
+      };
+    })();
 
     return () => {
-      tl.scrollTrigger?.kill();
-      ScrollTrigger.getAll().forEach((t) => t.kill());
-      gsap.killTweensOf('*');
-      ScrollTrigger.refresh();
+      cancelled = true;
+      cleanup?.();
     };
   }, [mounted, isMobile]);
 
@@ -117,56 +142,70 @@ export const HorizontalScroll = () => {
     if (!mounted || !isMobile || !containerRef.current) return;
     if (!row1Ref.current || !row2Ref.current || !row3Ref.current) return;
 
-    const section = containerRef.current;
-    const animations: gsap.core.Tween[] = [];
+    let cancelled = false;
+    let cleanup: (() => void) | null = null;
 
-    const row1ScrollDistance = row1Ref.current.scrollWidth - window.innerWidth + 50;
-    animations.push(gsap.to(row1Ref.current, {
-      x: -row1ScrollDistance,
-      ease: 'none',
-      scrollTrigger: {
-        trigger: section,
-        start: 'top top',
-        end: () => `+=${row1ScrollDistance + window.innerHeight * 0.3}`,
-        scrub: true,
-        pin: false,
-        invalidateOnRefresh: true,
-      },
-    }));
+    (async () => {
+      const { gsap, ScrollTrigger } = await loadGsap();
+      if (cancelled) return;
 
-    const row2ScrollDistance = row2Ref.current.scrollWidth - window.innerWidth + 50;
-    animations.push(gsap.to(row2Ref.current, {
-      x: -row2ScrollDistance,
-      ease: 'none',
-      scrollTrigger: {
-        trigger: section,
-        start: 'top top',
-        end: () => `+=${row2ScrollDistance + window.innerHeight * 0.6}`,
-        scrub: true,
-        pin: false,
-        invalidateOnRefresh: true,
-      },
-    }));
+      const section = containerRef.current!;
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      const animations: any[] = [];
 
-    const row3ScrollDistance = row3Ref.current.scrollWidth - window.innerWidth + 50;
-    animations.push(gsap.to(row3Ref.current, {
-      x: -row3ScrollDistance,
-      ease: 'none',
-      scrollTrigger: {
-        trigger: section,
-        start: 'top top',
-        end: () => `+=${row3ScrollDistance + window.innerHeight * 0.8}`,
-        scrub: true,
-        pin: false,
-        invalidateOnRefresh: true,
-      },
-    }));
+      const row1ScrollDistance = row1Ref.current!.scrollWidth - window.innerWidth + 50;
+      animations.push(gsap.to(row1Ref.current, {
+        x: -row1ScrollDistance,
+        ease: 'none',
+        scrollTrigger: {
+          trigger: section,
+          start: 'top top',
+          end: () => `+=${row1ScrollDistance + window.innerHeight * 0.3}`,
+          scrub: true,
+          pin: false,
+          invalidateOnRefresh: true,
+        },
+      }));
+
+      const row2ScrollDistance = row2Ref.current!.scrollWidth - window.innerWidth + 50;
+      animations.push(gsap.to(row2Ref.current, {
+        x: -row2ScrollDistance,
+        ease: 'none',
+        scrollTrigger: {
+          trigger: section,
+          start: 'top top',
+          end: () => `+=${row2ScrollDistance + window.innerHeight * 0.6}`,
+          scrub: true,
+          pin: false,
+          invalidateOnRefresh: true,
+        },
+      }));
+
+      const row3ScrollDistance = row3Ref.current!.scrollWidth - window.innerWidth + 50;
+      animations.push(gsap.to(row3Ref.current, {
+        x: -row3ScrollDistance,
+        ease: 'none',
+        scrollTrigger: {
+          trigger: section,
+          start: 'top top',
+          end: () => `+=${row3ScrollDistance + window.innerHeight * 0.8}`,
+          scrub: true,
+          pin: false,
+          invalidateOnRefresh: true,
+        },
+      }));
+
+      cleanup = () => {
+        animations.forEach((anim) => anim.scrollTrigger?.kill());
+        ScrollTrigger.getAll().forEach((t) => t.kill());
+        gsap.killTweensOf('*');
+        ScrollTrigger.refresh();
+      };
+    })();
 
     return () => {
-      animations.forEach(anim => anim.scrollTrigger?.kill());
-      ScrollTrigger.getAll().forEach((t) => t.kill());
-      gsap.killTweensOf('*');
-      ScrollTrigger.refresh();
+      cancelled = true;
+      cleanup?.();
     };
   }, [mounted, isMobile]);
 

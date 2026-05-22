@@ -2,8 +2,17 @@
 
 import { useRef, useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { gsap } from 'gsap';
+import type { gsap as GsapType } from 'gsap';
 import { useIsMobile } from '../hooks/useIsMobile';
+
+// Lazy-load GSAP off the critical path. Hero needs it only after first paint.
+let _gsap: typeof GsapType | null = null;
+const loadGsap = async (): Promise<typeof GsapType> => {
+  if (_gsap) return _gsap;
+  const mod = await import('gsap');
+  _gsap = mod.gsap;
+  return _gsap;
+};
 
 const useIsTablet = () => {
   const [isTablet, setIsTablet] = useState(false);
@@ -51,27 +60,40 @@ export const Hero = () => {
     const buildingSpeed = -0.07;
     const maxParallax = -25;
 
-    const bgSetter = backgroundRef.current
-      ? gsap.quickSetter(backgroundRef.current, 'y', 'px')
-      : null;
-    const buildSetter = buildingRef.current
-      ? gsap.quickSetter(buildingRef.current, 'y', 'px')
-      : null;
+    let cancelled = false;
+    let cleanup: (() => void) | null = null;
 
-    let ticking = false;
-    const handleScroll = () => {
-      if (ticking) return;
-      ticking = true;
-      requestAnimationFrame(() => {
-        const scrollY = window.scrollY;
-        bgSetter?.(scrollY * backgroundSpeed);
-        buildSetter?.(Math.max(scrollY * buildingSpeed, maxParallax));
-        ticking = false;
-      });
+    (async () => {
+      const gsap = await loadGsap();
+      if (cancelled) return;
+
+      const bgSetter = backgroundRef.current
+        ? gsap.quickSetter(backgroundRef.current, 'y', 'px')
+        : null;
+      const buildSetter = buildingRef.current
+        ? gsap.quickSetter(buildingRef.current, 'y', 'px')
+        : null;
+
+      let ticking = false;
+      const handleScroll = () => {
+        if (ticking) return;
+        ticking = true;
+        requestAnimationFrame(() => {
+          const scrollY = window.scrollY;
+          bgSetter?.(scrollY * backgroundSpeed);
+          buildSetter?.(Math.max(scrollY * buildingSpeed, maxParallax));
+          ticking = false;
+        });
+      };
+
+      window.addEventListener('scroll', handleScroll, { passive: true });
+      cleanup = () => window.removeEventListener('scroll', handleScroll);
+    })();
+
+    return () => {
+      cancelled = true;
+      cleanup?.();
     };
-
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    return () => window.removeEventListener('scroll', handleScroll);
   }, [isMobile]);
 
   // Wait for images to load before starting animation
@@ -115,75 +137,85 @@ export const Hero = () => {
   useEffect(() => {
     if (!imagesLoaded) return;
 
-    // Set initial states immediately
-    // Background starts as a line in the middle
-    gsap.set(backgroundRef.current, {
-      opacity: 1,
-      clipPath: 'polygon(0% 50%, 100% 50%, 100% 50%, 0% 50%)',
-      scale: 1,
-    });
-    // Building starts with 30% visible at top
-    gsap.set(buildingRef.current, {
-      y: isMobile ? '50%' : '50%',
-      scale: 1,
-    });
-    gsap.set(textRef.current, {
-      opacity: 0,
-      y: 0,
-      force3D: true,
-    });
-    gsap.set(exploreButtonRef.current, {
-      opacity: 0,
-      y: 30,
-    });
+    let cancelled = false;
+    // Loose typing to avoid pulling gsap types into the initial bundle.
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    let tl: any = null;
+    let loaderDelay: ReturnType<typeof setTimeout> | null = null;
 
-    let tl: gsap.core.Timeline | null = null;
+    (async () => {
+      const gsap = await loadGsap();
+      if (cancelled) return;
 
-    // Start animation immediately (page loader deactivated)
-    const loaderDelay = setTimeout(() => {
-      tl = gsap.timeline({ defaults: { ease: 'power2.out' } });
+      // Set initial states immediately
+      // Background starts as a line in the middle
+      gsap.set(backgroundRef.current, {
+        opacity: 1,
+        clipPath: 'polygon(0% 50%, 100% 50%, 100% 50%, 0% 50%)',
+        scale: 1,
+      });
+      // Building starts with 30% visible at top
+      gsap.set(buildingRef.current, {
+        y: isMobile ? '50%' : '50%',
+        scale: 1,
+      });
+      gsap.set(textRef.current, {
+        opacity: 0,
+        y: 0,
+        force3D: true,
+      });
+      gsap.set(exploreButtonRef.current, {
+        opacity: 0,
+        y: 30,
+      });
 
-      // Animation sequence
-      tl
-        // 1. Background reveals from middle to top and bottom
-        .to(backgroundRef.current, {
-          clipPath: 'polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)',
-          duration: 1.5,
-          ease: 'power2.inOut',
-        })
-        // 2. Subtle zoom effect on background
-        .to(backgroundRef.current, {
-          scale: 1.02,
-          duration: 0.6,
-          ease: 'power2.out',
-        }, '-=0.3')
-        // 3. Building fades in and slides up from 80% position to final position
-        .to(buildingRef.current, {
-          opacity: 1,
-          y: 0,
-          duration: 1.2,
-          ease: 'power2.out',
-        }, '-=0.4')
-        // 4. Text fades in (no movement, just opacity)
-        .to(textRef.current, {
-          opacity: 1,
-          duration: 0.8,
-          ease: 'none',
-          force3D: true,
-        }, '-=0.3');
-        // (Globe removed)
+      // Start animation immediately (page loader deactivated)
+      loaderDelay = setTimeout(() => {
+        tl = gsap.timeline({ defaults: { ease: 'power2.out' } });
+
+        // Animation sequence
         tl
-        // 5. Explore button fades in
-        .to(exploreButtonRef.current, {
-          opacity: 1,
-          y: 0,
-          duration: 0.8,
-          ease: 'power2.out',
-        }, '-=0.6');
-    }, 0); // Start immediately (page loader deactivated)
+          // 1. Background reveals from middle to top and bottom
+          .to(backgroundRef.current, {
+            clipPath: 'polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)',
+            duration: 1.5,
+            ease: 'power2.inOut',
+          })
+          // 2. Subtle zoom effect on background
+          .to(backgroundRef.current, {
+            scale: 1.02,
+            duration: 0.6,
+            ease: 'power2.out',
+          }, '-=0.3')
+          // 3. Building fades in and slides up from 80% position to final position
+          .to(buildingRef.current, {
+            opacity: 1,
+            y: 0,
+            duration: 1.2,
+            ease: 'power2.out',
+          }, '-=0.4')
+          // 4. Text fades in (no movement, just opacity)
+          .to(textRef.current, {
+            opacity: 1,
+            duration: 0.8,
+            ease: 'none',
+            force3D: true,
+          }, '-=0.3');
+          // (Globe removed)
+          tl
+          // 5. Explore button fades in
+          .to(exploreButtonRef.current, {
+            opacity: 1,
+            y: 0,
+            duration: 0.8,
+            ease: 'power2.out',
+          }, '-=0.6');
+      }, 0);
+    })();
 
     return () => {
-      clearTimeout(loaderDelay);
+      cancelled = true;
+      if (loaderDelay) clearTimeout(loaderDelay);
       if (tl) tl.kill();
     };
   }, [imagesLoaded, isMobile]);
