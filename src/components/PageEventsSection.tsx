@@ -58,7 +58,7 @@ export const PageEventsSection = () => {
       {event.image && (
         <div className="relative h-[180px] overflow-hidden">
           <img
-            src={event.image}
+            loading="lazy" decoding="async" src={event.image}
             alt={event.title}
             className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
           />

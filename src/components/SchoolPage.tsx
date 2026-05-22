@@ -20,7 +20,7 @@ const secondaryImages: Record<string, string[]> = {
     'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/schools/jlbs-2.webp',
   ],
   'sports-mgmt': [
-    'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/schools/sports-1.webp',
+    'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/optimized/schools/sports-1.webp',
     'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/schools/sports-2.webp',
   ],
   hospitality: [
@@ -29,11 +29,11 @@ const secondaryImages: Record<string, string[]> = {
   ],
   journalism: [
     'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/schools/journalism-1.webp',
-    'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/schools/journalism-2.webp',
+    'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/optimized/schools/journalism-2.webp',
   ],
   'advertising-pr': [
-    'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/schools/advertising-1.webp',
-    'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/schools/advertising-2.webp',
+    'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/optimized/schools/advertising-1.webp',
+    'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/optimized/schools/advertising-2.webp',
   ],
   'events-entertainment': [
     'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/schools/events-1.webp',
@@ -44,31 +44,31 @@ const secondaryImages: Record<string, string[]> = {
     'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/schools/languages-2.webp',
   ],
   design: [
-    'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/schools/design-1.webp',
-    'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/schools/design-2.webp',
+    'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/optimized/schools/design-1.webp',
+    'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/optimized/schools/design-2.webp',
   ],
   architecture: [
-    'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/schools/architecture-1.webp',
+    'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/optimized/schools/architecture-1.webp',
     'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/schools/architecture-2.webp',
   ],
   fashion: [
-    'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/schools/fashion-1.webp',
-    'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/schools/fashion-2.webp',
+    'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/optimized/schools/fashion-1.webp',
+    'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/optimized/schools/fashion-2.webp',
   ],
   ai: [
     'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/schools/ai-1.webp',
     'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/schools/ai-2.webp',
   ],
   engineering: [
-    'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/schools/engineering-1.webp',
-    'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/schools/engineering-2.webp',
+    'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/optimized/schools/engineering-1.webp',
+    'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/optimized/schools/engineering-2.webp',
   ],
   'computer-application': [
-    'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/schools/computer-1.webp',
-    'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/schools/computer-2.webp',
+    'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/optimized/schools/computer-1.webp',
+    'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/optimized/schools/computer-2.webp',
   ],
   pharmacy: [
-    'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/schools/pharmacy-1.webp',
+    'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/optimized/schools/pharmacy-1.webp',
     'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/schools/pharmacy-2.webp',
   ],
   law: [
@@ -76,13 +76,13 @@ const secondaryImages: Record<string, string[]> = {
     'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/schools/law-2.webp',
   ],
   'iica-creative': [
-    'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/schools/iica-1.webp',
-    'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/schools/iica-2.webp',
+    'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/optimized/schools/iica-1.webp',
+    'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/optimized/schools/iica-2.webp',
   ],
 };
 
 const fallbackImages = [
-  'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/campus/gym.webp',
+  'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/optimized/campus/gym.webp',
   'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/campus/accommodation.webp',
 ];
 
@@ -122,7 +122,7 @@ export const SchoolPage = ({ school, faculty }: SchoolPageProps) => {
           >
             <motion.div className="absolute inset-0" style={{ y: heroY, willChange: 'transform' }}>
               <img
-                src={school.image}
+                loading="lazy" decoding="async" src={school.image}
                 alt={school.name}
                 className="w-full h-full object-cover"
               />
@@ -206,7 +206,7 @@ export const SchoolPage = ({ school, faculty }: SchoolPageProps) => {
               <div className="relative md:-ml-12 overflow-hidden rounded-2xl md:rounded-none md:rounded-r-3xl">
                 <div className="aspect-4/3 sm:aspect-4/5 md:aspect-auto md:h-[80vh]">
                   <img
-                    src={images[0]}
+                    loading="lazy" decoding="async" src={images[0]}
                     alt={`${school.name} campus`}
                     className="w-full h-full object-cover"
                   />
@@ -359,7 +359,7 @@ export const SchoolPage = ({ school, faculty }: SchoolPageProps) => {
       <section ref={parallaxRef} className="relative h-[40vh] sm:h-[50vh] md:h-[70vh] overflow-hidden">
         <motion.div className="absolute inset-0" style={{ y: parallaxY, willChange: 'transform' }}>
           <img
-            src={images[1]}
+            loading="lazy" decoding="async" src={images[1]}
             alt={`${school.name} experience`}
             className="w-full h-[120%] object-cover"
           />
@@ -426,7 +426,7 @@ export const SchoolPage = ({ school, faculty }: SchoolPageProps) => {
                     className="md:col-span-2 relative overflow-hidden rounded-2xl min-h-55 sm:min-h-62.5 md:min-h-80 group"
                   >
                     <img
-                      src={school.image}
+                      loading="lazy" decoding="async" src={school.image}
                       alt="Featured highlight"
                       className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                     />
@@ -532,7 +532,7 @@ export const SchoolPage = ({ school, faculty }: SchoolPageProps) => {
                       style={{ aspectRatio: '16/10' }}
                     >
                       <img
-                        src={otherSchool.image}
+                        loading="lazy" decoding="async" src={otherSchool.image}
                         alt={otherSchool.name}
                         className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                       />
@@ -575,7 +575,7 @@ export const SchoolPage = ({ school, faculty }: SchoolPageProps) => {
           {/* Left — Image */}
           <div className="relative min-h-50 sm:min-h-75 md:min-h-0">
             <img
-              src={school.image}
+              loading="lazy" decoding="async" src={school.image}
               alt={school.name}
               className="absolute inset-0 w-full h-full object-cover"
             />

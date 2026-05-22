@@ -70,7 +70,7 @@ const Accreditations = () => {
             className="group flex flex-col items-center w-[55%]"
           >
             <div className="aspect-square w-full rounded-xl bg-white border border-[#e5e5e5] flex items-center justify-center overflow-hidden">
-              <img src={accreditations[0].src} alt={accreditations[0].name} className="w-full h-full object-contain p-6 transition-transform duration-700 group-hover:scale-105" />
+              <img loading="lazy" decoding="async" src={accreditations[0].src} alt={accreditations[0].name} className="w-full h-full object-contain p-6 transition-transform duration-700 group-hover:scale-105" />
             </div>
             <div className="mt-3 text-center">
               <p className="text-[#21313c] font-semibold text-sm">{accreditations[0].shortName}</p>
@@ -90,7 +90,7 @@ const Accreditations = () => {
               className="group flex flex-col items-center"
             >
               <div className="aspect-square w-full rounded-xl bg-white border border-[#e5e5e5] flex items-center justify-center overflow-hidden">
-                <img src={item.src} alt={item.name} className="w-full h-full object-contain p-4 transition-transform duration-700 group-hover:scale-105" />
+                <img loading="lazy" decoding="async" src={item.src} alt={item.name} className="w-full h-full object-contain p-4 transition-transform duration-700 group-hover:scale-105" />
               </div>
               <div className="mt-3 text-center">
                 <p className="text-[#21313c] font-semibold text-sm">{item.shortName}</p>
@@ -112,7 +112,7 @@ const Accreditations = () => {
               className="group flex flex-col items-center"
             >
               <div className="aspect-square w-full rounded-xl bg-white border border-[#e5e5e5] flex items-center justify-center overflow-hidden">
-                <img src={item.src} alt={item.name} className="w-full h-full object-contain p-6 transition-transform duration-700 group-hover:scale-105" />
+                <img loading="lazy" decoding="async" src={item.src} alt={item.name} className="w-full h-full object-contain p-6 transition-transform duration-700 group-hover:scale-105" />
               </div>
               <div className="mt-3 text-center">
                 <p className="text-[#21313c] font-semibold text-base">{item.shortName}</p>
@@ -133,7 +133,7 @@ const Accreditations = () => {
               className="group flex flex-col items-center"
             >
               <div className="aspect-square w-full rounded-xl bg-white border border-[#e5e5e5] flex items-center justify-center overflow-hidden">
-                <img src={item.src} alt={item.name} className="w-full h-full object-contain p-6 transition-transform duration-700 group-hover:scale-105" />
+                <img loading="lazy" decoding="async" src={item.src} alt={item.name} className="w-full h-full object-contain p-6 transition-transform duration-700 group-hover:scale-105" />
               </div>
               <div className="mt-3 text-center">
                 <p className="text-[#21313c] font-semibold text-base">{item.shortName}</p>

@@ -174,7 +174,7 @@ export default function FacultiesPage() {
         >
           <motion.div className="absolute inset-0" style={{ y }}>
             <Image
-              src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/acedemics/acedemics%20landing%20page.webp"
+              src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/optimized/acedemics/acedemics%20landing%20page.webp"
               alt="JLU Faculties"
               fill
               className="object-cover scale-110"
@@ -252,7 +252,7 @@ export default function FacultiesPage() {
                   style={{ overflow: 'hidden' }}
                 >
                   <img
-                    src={faculty.image}
+                    loading="lazy" decoding="async" src={faculty.image}
                     alt={faculty.name}
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                   />

@@ -33,7 +33,7 @@ const upcomingEvents: Event[] = [
     description: 'JLU\'s Got Talent is a vibrant platform for students to showcase their diverse talents, including singing, dancing, acting, and other creative performances. The event encourages students to express themselves, celebrate creativity, and engage with the university community through entertainment and artistic expression.',
     venue: 'JLU Main Auditorium, Bhopal Campus',
     category: 'Arts & Culture',
-    image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/JLu%20events/photos/Lehar/IMG_8971.webp',
+    image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/optimized/JLu%20events/photos/Lehar/IMG_8971.webp',
   },
   {
     id: 4,
@@ -42,7 +42,7 @@ const upcomingEvents: Event[] = [
     description: 'Jagran Lakecity University will organize an Orientation Programme for newly admitted students to help them smoothly transition into university life. The session will introduce students to the university\'s academic structure, campus facilities, values, and opportunities. It will also provide an opportunity for students to interact with faculty and fellow students.',
     venue: 'Jagran Lakecity University, Bhopal Campus',
     category: 'Student Leadership',
-    image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/JLu%20events/photos/JAgran%20of%20Social%20science/DSC08858.webp',
+    image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/optimized/JLu%20events/photos/JAgran%20of%20Social%20science/DSC08858.webp',
   },
 ];
 
@@ -55,7 +55,7 @@ const pastEvents: Event[] = [
     venue: 'Jagran Lakecity University, Bhopal Campus',
     category: 'Awards & Recognition',
     image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/events/foundation-day-2026.webp',
-    video: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/events/foundation-day-2026.mp4',
+    video: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/optimized/events/foundation-day-2026.mp4',
   },
   {
     id: 5,
@@ -100,7 +100,7 @@ const pastEvents: Event[] = [
     description: 'Expert-led session on data science and inclusive design practices',
     venue: 'Conference Hall',
     category: 'Workshop',
-    image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/JLu%20events/photos/Mental%20Health%20week/IMG_7856.webp',
+    image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/optimized/JLu%20events/photos/Mental%20Health%20week/IMG_7856.webp',
   },
   {
     id: 10,
@@ -109,7 +109,7 @@ const pastEvents: Event[] = [
     description: 'Professional development workshop on communication skills',
     venue: 'Faculty of Management',
     category: 'Workshop',
-    image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/JLu%20events/photos/JAgran%20of%20Social%20science/DSC08874.webp',
+    image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/optimized/JLu%20events/photos/JAgran%20of%20Social%20science/DSC08874.webp',
   },
   {
     id: 11,
@@ -249,7 +249,7 @@ const Events = () => {
         >
           <motion.div className="absolute inset-0" style={{ y }}>
             <Image
-              src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/JLu%20events/photos/Lehar/IMG_9067.webp"
+              src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/optimized/JLu%20events/photos/Lehar/IMG_9067.webp"
               alt="Events at JLU"
               fill
               className="object-cover scale-110"
@@ -820,6 +820,7 @@ const Events = () => {
                       muted
                       loop
                       playsInline
+                      preload="none"
                       disablePictureInPicture
                       controlsList="nodownload nofullscreen noremoteplayback noplaybackrate"
                       onContextMenu={(e) => e.preventDefault()}

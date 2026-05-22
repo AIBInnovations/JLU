@@ -151,7 +151,7 @@ export default function InterdisciplinaryDegreesPage() {
         >
           <motion.div className="absolute inset-0" style={{ y: heroY }}>
             <img
-              src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/interdisciplinary/campus-slider.webp"
+              loading="lazy" decoding="async" src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/interdisciplinary/campus-slider.webp"
               alt="JLU Bhopal Campus - 50+ Interdisciplinary Programs across 6 Faculties"
               className="w-full h-full object-cover scale-110"
             />
@@ -224,7 +224,7 @@ export default function InterdisciplinaryDegreesPage() {
                 }}
               >
                 <div ref={img.isCenter ? centerImageInnerRef : undefined} className="w-full h-full">
-                  <img src={img.src} alt={`JLU Programs ${img.id}`} className="w-full h-full object-cover" />
+                  <img loading="lazy" decoding="async" src={img.src} alt={`JLU Programs ${img.id}`} className="w-full h-full object-cover" />
                 </div>
 
                 {img.isCenter && (
@@ -301,7 +301,7 @@ export default function InterdisciplinaryDegreesPage() {
               { title: 'Sciences & Humanities', desc: 'B.Sc, M.Sc, BA, MA programs with interdisciplinary electives across all faculties.', image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/interdisciplinary/library.webp' },
             ].map((faculty) => (
               <div key={faculty.title} className="group relative rounded-2xl overflow-hidden aspect-[3/4] md:aspect-[3/4]">
-                <img src={faculty.image} alt={faculty.title} className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" loading="lazy" />
+                <img loading="lazy" decoding="async" src={faculty.image} alt={faculty.title} className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent" />
                 <div className="absolute bottom-0 left-0 right-0 p-5 md:p-6">
                   <h3 className="text-white text-lg md:text-xl font-semibold mb-2">{faculty.title}</h3>

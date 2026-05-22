@@ -58,7 +58,7 @@ export const OurProgrammes = () => {
                 }}
               >
                 <img
-                  src={programme.image}
+                  loading="lazy" decoding="async" src={programme.image}
                   alt={programme.title}
                   className="absolute inset-0 w-full h-full object-cover transition-transform duration-300 hover:scale-105"
                 />
@@ -107,7 +107,7 @@ export const OurProgrammes = () => {
               }}
             >
               <img
-                src={programme.image}
+                loading="lazy" decoding="async" src={programme.image}
                 alt={programme.title}
                 className="absolute inset-0 w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
               />
@@ -237,7 +237,7 @@ export const OurProgrammes = () => {
             }}
           >
             <img
-              src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/campus/campus-life-group.webp"
+              loading="lazy" decoding="async" src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/campus/campus-life-group.webp"
               alt="Students on Campus"
               className="w-full h-full object-cover rounded-t-2xl transition-transform duration-500 group-hover:scale-110"
             />
@@ -252,7 +252,7 @@ export const OurProgrammes = () => {
             }}
           >
             <img
-              src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/campus%20life%20/Landng%20photo.webp"
+              loading="lazy" decoding="async" src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/optimized/campus%20life%20/Landng%20photo.webp"
               alt="Campus Life"
               className="w-full h-full object-cover rounded-t-2xl transition-transform duration-500 group-hover:scale-110"
             />
@@ -266,7 +266,7 @@ export const OurProgrammes = () => {
             }}
           >
             <img
-              src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/beyond%20the%20class%20room/DSC09084.webp"
+              loading="lazy" decoding="async" src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/optimized/beyond%20the%20class%20room/DSC09084.webp"
               alt="Students Beyond the Classroom"
               className="w-full h-full object-cover rounded-t-2xl transition-transform duration-500 group-hover:scale-110"
             />

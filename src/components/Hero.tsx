@@ -207,7 +207,7 @@ export const Hero = () => {
           >
             <img
               ref={backgroundRef}
-              src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/herobg-new.webp"
+              src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/optimized/herobg-new.webp"
               alt="Background"
               className={`absolute inset-0 w-full h-full object-cover ${isMobile ? '' : 'scale-110'}`}
               style={{
@@ -383,9 +383,10 @@ export const Hero = () => {
                       </button>
                       <video
                         className="w-full h-full object-cover"
-                        src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/JLU-Dynamic-Campus-Experience.mp4"
+                        src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/optimized/JLU-Dynamic-Campus-Experience.mp4"
                         autoPlay
                         playsInline
+                        preload="none"
                         onTimeUpdate={(e) => {
                           const v = e.currentTarget;
                           if (v.duration && Number.isFinite(v.duration) && v.currentTime >= v.duration - 5) {
@@ -441,9 +442,10 @@ export const Hero = () => {
                       </button>
                       <video
                         className="w-full h-full object-cover"
-                        src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/JLU-Dynamic-Campus-Experience.mp4"
+                        src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/optimized/JLU-Dynamic-Campus-Experience.mp4"
                         autoPlay
                         playsInline
+                        preload="none"
                         onTimeUpdate={(e) => {
                           const v = e.currentTarget;
                           if (v.duration && Number.isFinite(v.duration) && v.currentTime >= v.duration - 5) {

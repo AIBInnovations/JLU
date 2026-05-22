@@ -22,15 +22,39 @@ export const PassionSection = () => {
 
   // Section data
   const sections = [
-    { video: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/JLu%20events/videos/Jfss(2).mp4', text: 'PASSION' },
-    { video: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/jlu%20ignited%20mind%20Award/JLU%20Foundationday%20day.mp4', text: 'STUDY' },
-    { video: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/JLU-Dynamic-Campus-Experience.mp4', text: 'SUCCESS' },
+    { video: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/optimized/JLu%20events/videos/Jfss(2).mp4', text: 'PASSION' },
+    { video: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/optimized/jlu%20ignited%20mind%20Award/JLU%20Foundationday%20day.mp4', text: 'STUDY' },
+    { video: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/optimized/JLU-Dynamic-Campus-Experience.mp4', text: 'SUCCESS' },
   ];
 
   // Wait for mount
   useEffect(() => {
     setMounted(true);
   }, []);
+
+  // Pre-fetch videos when section is one viewport-height away from the viewport.
+  // Keeps autoplay-on-view UX without paying the byte cost at initial page load.
+  useEffect(() => {
+    if (!mounted || !wrapperRef.current) return;
+    let triggered = false;
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (triggered) return;
+        if (entries.some((e) => e.isIntersecting)) {
+          triggered = true;
+          videoRefs.current.forEach((v) => {
+            if (!v) return;
+            try { v.load(); } catch {}
+            v.play().catch(() => {});
+          });
+          observer.disconnect();
+        }
+      },
+      { rootMargin: '100% 0px 100% 0px', threshold: 0 }
+    );
+    observer.observe(wrapperRef.current);
+    return () => observer.disconnect();
+  }, [mounted]);
 
   useEffect(() => {
     if (!mounted) return;
@@ -40,14 +64,13 @@ export const PassionSection = () => {
     const videos = videoRefs.current;
     const triggers: ScrollTrigger[] = [];
 
-    // Load videos
+    // Prep video props (no eager .load() — IntersectionObserver below triggers it
+    // when section is one viewport-height away, keeping the initial page payload light).
     videos.forEach((video) => {
       if (video) {
-        video.load();
         video.muted = true;
         video.playsInline = true;
         video.loop = true;
-        video.play().catch(() => {});
       }
     });
 
@@ -189,14 +212,14 @@ export const PassionSection = () => {
         >
           <video
             ref={(el) => addVideoRef(el, 0)}
-            src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/JLu%20events/videos/Jfss(2).mp4"
+            src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/optimized/JLu%20events/videos/Jfss(2).mp4"
             className="absolute inset-0 w-full h-full object-cover"
             style={{ transform: 'scale(1.1)' }}
             autoPlay
             loop
             muted
             playsInline
-            preload="auto"
+            preload="none"
           />
         </div>
 
@@ -208,14 +231,14 @@ export const PassionSection = () => {
         >
           <video
             ref={(el) => addVideoRef(el, 1)}
-            src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/jlu%20ignited%20mind%20Award/JLU%20Foundationday%20day.mp4"
+            src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/optimized/jlu%20ignited%20mind%20Award/JLU%20Foundationday%20day.mp4"
             className="absolute inset-0 w-full h-full object-cover"
             style={{ transform: 'scale(1.1)' }}
             autoPlay
             loop
             muted
             playsInline
-            preload="auto"
+            preload="none"
           />
         </div>
 
@@ -227,14 +250,14 @@ export const PassionSection = () => {
         >
           <video
             ref={(el) => addVideoRef(el, 2)}
-            src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/JLU-Dynamic-Campus-Experience.mp4"
+            src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/optimized/JLU-Dynamic-Campus-Experience.mp4"
             className="absolute inset-0 w-full h-full object-cover"
             style={{ transform: 'scale(1.1)' }}
             autoPlay
             loop
             muted
             playsInline
-            preload="auto"
+            preload="none"
           />
         </div>
 

@@ -49,22 +49,22 @@ export const VoiceOfJlu = () => {
   };
 
   const voices = [
-    { name: 'Faiz Siddiqui', title: 'B.Tech', video: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/voices%20of%20jlu/Faiz%20siddiui%20reel.mp4', thumbnail: '' },
-    { name: 'Faiza Khan', title: 'BCA (Data Science) 4th Sem', video: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/voices%20of%20jlu/faiza%20reel%20final.mp4', thumbnail: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/thumbnails/voice-1.webp' },
-    { name: 'Khwahish Ramani', title: 'Bachelor of Management 2022-2025', video: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/voices%20of%20jlu/cdc%20reel.mp4', thumbnail: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/thumbnails/voice-2.webp' },
-    { name: 'Jamila Johaer & Aaminah Azhar', title: 'Diploma in Food Production', video: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/voices%20of%20jlu/hospitality%20w%20bgm.mp4', thumbnail: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/thumbnails/voice-4.webp' },
-    { name: 'Tanya Sharma', title: 'B.Des (User Experience) 2021-2025', video: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/voices%20of%20jlu/tanya%20sharma%20cdc%20reel.mp4', thumbnail: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/thumbnails/voice-5.webp' },
-    { name: 'Shubham Rawat', title: 'FALW-JSLW (LLM) 2024-2025', video: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/voices%20of%20jlu/shubham%20rawat%20cdc%20reel.mp4', thumbnail: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/thumbnails/voice-6.webp' },
+    { name: 'Faiz Siddiqui', title: 'B.Tech', video: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/optimized/voices%20of%20jlu/Faiz%20siddiui%20reel.mp4', thumbnail: '' },
+    { name: 'Faiza Khan', title: 'BCA (Data Science) 4th Sem', video: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/optimized/voices%20of%20jlu/faiza%20reel%20final.mp4', thumbnail: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/thumbnails/voice-1.webp' },
+    { name: 'Khwahish Ramani', title: 'Bachelor of Management 2022-2025', video: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/optimized/voices%20of%20jlu/cdc%20reel.mp4', thumbnail: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/thumbnails/voice-2.webp' },
+    { name: 'Jamila Johaer & Aaminah Azhar', title: 'Diploma in Food Production', video: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/optimized/voices%20of%20jlu/hospitality%20w%20bgm.mp4', thumbnail: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/thumbnails/voice-4.webp' },
+    { name: 'Tanya Sharma', title: 'B.Des (User Experience) 2021-2025', video: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/optimized/voices%20of%20jlu/tanya%20sharma%20cdc%20reel.mp4', thumbnail: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/thumbnails/voice-5.webp' },
+    { name: 'Shubham Rawat', title: 'FALW-JSLW (LLM) 2024-2025', video: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/optimized/voices%20of%20jlu/shubham%20rawat%20cdc%20reel.mp4', thumbnail: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/thumbnails/voice-6.webp' },
   ];
 
   const faculty = [
     { image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/leadership/chancellor.webp', name: 'Mr. Hari Mohan Gupta', title: 'Chancellor', linkedin: 'https://in.linkedin.com/in/hari-mohan-gupta-318960153' },
     { image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/leadership/pro-chancellor.webp', name: 'Mr. Abhishek Mohan Gupta', title: 'Pro Chancellor', linkedin: 'https://in.linkedin.com/in/abhishekmgupta' },
-    { image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/leadership/vice-chancellor-new.webp', name: 'Prof. Dr. Nilanjan Chattopadhyay', title: 'Vice Chancellor', linkedin: 'https://www.linkedin.com/in/nchattopadhyay/' },
-    { image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/leadership/registrar-new.webp', name: 'Mr. Pankaj Das', title: 'Registrar', linkedin: '' },
-    { image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/leadership/cfo-new.webp', name: 'CA Archana Jain', title: 'Chief Finance and Accounts Officer', linkedin: 'https://www.linkedin.com/in/archana-jain-33189397/', objectPosition: '60% center' },
+    { image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/optimized/leadership/vice-chancellor-new.webp', name: 'Prof. Dr. Nilanjan Chattopadhyay', title: 'Vice Chancellor', linkedin: 'https://www.linkedin.com/in/nchattopadhyay/' },
+    { image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/optimized/leadership/registrar-new.webp', name: 'Mr. Pankaj Das', title: 'Registrar', linkedin: '' },
+    { image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/optimized/leadership/cfo-new.webp', name: 'CA Archana Jain', title: 'Chief Finance and Accounts Officer', linkedin: 'https://www.linkedin.com/in/archana-jain-33189397/', objectPosition: '60% center' },
     { image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/leadership/pvc-student-welfare-new.webp', name: 'Dr. Vivek Khare', title: 'Pro Vice Chancellor (Student Welfare)', linkedin: 'https://in.linkedin.com/in/dr-vivek-khare-8666a61a' },
-    { image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/leadership/pvc-science-tech-new.webp', name: 'Dr. Prasheel Suryawanshi', title: 'Pro Vice Chancellor (Science and Technology)', linkedin: 'https://www.linkedin.com/in/prasheel-suryawanshi-8b368b21/' },
+    { image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/optimized/leadership/pvc-science-tech-new.webp', name: 'Dr. Prasheel Suryawanshi', title: 'Pro Vice Chancellor (Science and Technology)', linkedin: 'https://www.linkedin.com/in/prasheel-suryawanshi-8b368b21/' },
   ];
 
   return (

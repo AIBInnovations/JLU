@@ -192,7 +192,7 @@ export const WhyJlu = () => {
           opacity: 1,
         }}>
           <img
-            src={card.pillarIcon}
+            loading="lazy" decoding="async" src={card.pillarIcon}
             alt=""
             style={{
               width: mounted && isMobile ? '150px' : '320px',

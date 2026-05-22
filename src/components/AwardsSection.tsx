@@ -252,7 +252,7 @@ export const AwardsSection = () => {
                   }}
                 >
                   <img
-                    src={award.image}
+                    loading="lazy" decoding="async" src={award.image}
                     alt={award.title}
                     style={{ width: '100%', height: '100%', objectFit: 'contain' }}
                   />
@@ -284,7 +284,7 @@ export const AwardsSection = () => {
               {(() => { const award = awards[1]; return (
                 <div ref={middleCardRef} style={{ marginTop: '60px' }}>
                   <div style={{ width: '100%', aspectRatio: '3 / 2', overflow: 'hidden' }}>
-                    <img src={award.image} alt={award.title} style={{ width: '100%', height: '100%', objectFit: 'contain' }} />
+                    <img loading="lazy" decoding="async" src={award.image} alt={award.title} style={{ width: '100%', height: '100%', objectFit: 'contain' }} />
                   </div>
                   <div style={{ marginTop: '16px', textAlign: 'center' }}>
                     <p style={{ color: '#027ea1', fontSize: 'clamp(0.9rem, 1.1vw, 1.1rem)', fontWeight: 600, letterSpacing: '0.1em', textTransform: 'uppercase', marginBottom: '8px' }}>{award.year}</p>
@@ -298,7 +298,7 @@ export const AwardsSection = () => {
               {(() => { const award = awards[0]; return (
                 <div>
                   <div style={{ width: '100%', overflow: 'hidden' }}>
-                    <img src={award.image} alt={award.title} style={{ width: '100%', height: 'auto', objectFit: 'contain' }} />
+                    <img loading="lazy" decoding="async" src={award.image} alt={award.title} style={{ width: '100%', height: 'auto', objectFit: 'contain' }} />
                   </div>
                   <div style={{ marginTop: '16px', textAlign: 'center' }}>
                     <p style={{ color: '#027ea1', fontSize: 'clamp(0.9rem, 1.1vw, 1.1rem)', fontWeight: 600, letterSpacing: '0.1em', textTransform: 'uppercase', marginBottom: '8px' }}>{award.year}</p>
@@ -312,7 +312,7 @@ export const AwardsSection = () => {
               {(() => { const award = awards[2]; return (
                 <div style={{ marginTop: '100px' }}>
                   <div style={{ width: '100%', aspectRatio: '3 / 2', overflow: 'hidden' }}>
-                    <img src={award.image} alt={award.title} style={{ width: '100%', height: '100%', objectFit: 'contain' }} />
+                    <img loading="lazy" decoding="async" src={award.image} alt={award.title} style={{ width: '100%', height: '100%', objectFit: 'contain' }} />
                   </div>
                   <div style={{ marginTop: '16px', textAlign: 'center' }}>
                     <p style={{ color: '#027ea1', fontSize: 'clamp(0.9rem, 1.1vw, 1.1rem)', fontWeight: 600, letterSpacing: '0.1em', textTransform: 'uppercase', marginBottom: '8px' }}>{award.year}</p>
@@ -330,7 +330,7 @@ export const AwardsSection = () => {
               {(() => { const award = awards[3]; return (
                 <div style={{ marginTop: '40px' }}>
                   <div style={{ width: '100%', aspectRatio: '3 / 2', overflow: 'hidden' }}>
-                    <img src={award.image} alt={award.title} style={{ width: '100%', height: '100%', objectFit: 'contain' }} />
+                    <img loading="lazy" decoding="async" src={award.image} alt={award.title} style={{ width: '100%', height: '100%', objectFit: 'contain' }} />
                   </div>
                   <div style={{ marginTop: '16px', textAlign: 'center' }}>
                     <p style={{ color: '#027ea1', fontSize: 'clamp(0.9rem, 1.1vw, 1.1rem)', fontWeight: 600, letterSpacing: '0.1em', textTransform: 'uppercase', marginBottom: '8px' }}>{award.year}</p>
@@ -344,7 +344,7 @@ export const AwardsSection = () => {
               {(() => { const award = awards[5]; return (
                 <div>
                   <div style={{ width: '100%', overflow: 'hidden' }}>
-                    <img src={award.image} alt={award.title} style={{ width: '100%', height: 'auto', objectFit: 'contain' }} />
+                    <img loading="lazy" decoding="async" src={award.image} alt={award.title} style={{ width: '100%', height: 'auto', objectFit: 'contain' }} />
                   </div>
                   <div style={{ marginTop: '16px', textAlign: 'center' }}>
                     <p style={{ color: '#027ea1', fontSize: 'clamp(0.9rem, 1.1vw, 1.1rem)', fontWeight: 600, letterSpacing: '0.1em', textTransform: 'uppercase', marginBottom: '8px' }}>{award.year}</p>
@@ -358,7 +358,7 @@ export const AwardsSection = () => {
               {(() => { const award = awards[4]; return (
                 <div style={{ marginTop: '80px' }}>
                   <div style={{ width: '100%', aspectRatio: '3 / 2', overflow: 'hidden' }}>
-                    <img src={award.image} alt={award.title} style={{ width: '100%', height: '100%', objectFit: 'contain' }} />
+                    <img loading="lazy" decoding="async" src={award.image} alt={award.title} style={{ width: '100%', height: '100%', objectFit: 'contain' }} />
                   </div>
                   <div style={{ marginTop: '16px', textAlign: 'center' }}>
                     <p style={{ color: '#027ea1', fontSize: 'clamp(0.9rem, 1.1vw, 1.1rem)', fontWeight: 600, letterSpacing: '0.1em', textTransform: 'uppercase', marginBottom: '8px' }}>{award.year}</p>
@@ -410,7 +410,7 @@ export const AwardsSection = () => {
             {/* Modal Image */}
             <div style={{ position: 'relative', width: '100%', aspectRatio: '16/9', overflow: 'hidden', flexShrink: 0 }}>
               <img
-                src={selectedAward.image}
+                loading="lazy" decoding="async" src={selectedAward.image}
                 alt={selectedAward.title}
                 style={{ width: '100%', height: '100%', objectFit: 'contain', background: '#e8eae2' }}
               />

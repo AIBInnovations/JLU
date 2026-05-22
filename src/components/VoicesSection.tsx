@@ -74,7 +74,7 @@ export const VoicesSection = () => {
               className={`${voice.color} w-28 sm:w-32 md:w-36 2xl:w-44 h-72 sm:h-80 md:h-96 2xl:h-[28rem] rounded-full flex-shrink-0 relative overflow-hidden cursor-pointer`}
             >
               <img
-                src={voice.image}
+                loading="lazy" decoding="async" src={voice.image}
                 alt={`Voice ${index + 1}`}
                 className="absolute inset-0 w-full h-full object-cover"
               />

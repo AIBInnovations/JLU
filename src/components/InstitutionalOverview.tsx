@@ -365,7 +365,7 @@ const InstitutionalOverview = () => {
                   style={{ background: pillar.bg, color: pillar.textColor, textDecoration: 'none' }}
                 >
                   <div className="absolute bottom-0 right-0 w-20 h-20 md:w-28 md:h-28 opacity-20 -translate-x-4 translate-y-3 group-hover:opacity-30 transition-opacity duration-300">
-                    <img src={pillar.icon} alt="" className="w-full h-full object-contain" />
+                    <img loading="lazy" decoding="async" src={pillar.icon} alt="" className="w-full h-full object-contain" />
                   </div>
                   <div>
                     <p className="text-xs uppercase tracking-widest font-bold mb-2 opacity-60" style={{ letterSpacing: '0.15em' }}>

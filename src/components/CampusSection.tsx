@@ -51,7 +51,7 @@ export const CampusSection = () => {
           <div className="flex flex-col gap-4 md:gap-6">
             <div className="relative rounded-2xl overflow-hidden aspect-[4/3]">
               <img
-                src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/campus/gallery-10.webp"
+                src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/optimized/campus/gallery-10.webp"
                 alt="JLU Pyramid Library - 42,000+ books"
                 className="w-full h-full object-cover"
                 loading="lazy"

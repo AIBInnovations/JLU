@@ -115,7 +115,7 @@ export const BestSellers = () => {
           {/* Left Side - Image */}
           <div className="relative h-[400px] md:h-[500px] lg:h-[600px] rounded-2xl overflow-hidden">
             <img
-              src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/elysara-hero.webp"
+              loading="lazy" decoding="async" src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/elysara-hero.webp"
               alt="Elysara Brilliance"
               className="w-full h-full object-cover"
             />
@@ -181,7 +181,7 @@ export const BestSellers = () => {
                       <div className="flex-1 flex items-center justify-center my-8">
                         <div className="w-48 h-48 md:w-64 md:h-64 relative">
                           <img
-                            src={product.image}
+                            loading="lazy" decoding="async" src={product.image}
                             alt={product.name}
                             className="w-full h-full object-contain drop-shadow-2xl"
                           />

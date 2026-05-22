@@ -34,7 +34,7 @@ const staggerItem = {
 
 // ─── Student Council 2025 Data ───
 const councilLeaders = [
-  { role: 'Champion', name: 'Ms. Oshel Sachdeva', program: 'MBA AD & PR', image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/campus%20life%20/champion%20oshel%20sachdeva.webp' },
+  { role: 'Champion', name: 'Ms. Oshel Sachdeva', program: 'MBA AD & PR', image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/optimized/campus%20life%20/champion%20oshel%20sachdeva.webp' },
   { role: 'Co-Champion', name: 'Ms. Areeba Khan', program: 'BA Hons. Psychology', image: '' },
   { role: 'Co-Champion', name: 'Ms. Sejal Patel', program: 'BBA', image: '' },
 ];
@@ -81,14 +81,14 @@ const studentClubs = [
     description: 'Competitive sports participation, skill development, and recreational fellowship through various athletic activities and outdoor adventures.',
     icon: 'sports',
     color: '#027ea1',
-    image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/campus%20life%20/sports%20and%20adventure%20club.webp', logo: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/logo/sports-adventure.webp',
+    image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/optimized/campus%20life%20/sports%20and%20adventure%20club.webp', logo: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/logo/sports-adventure.webp',
   },
   {
     name: 'Photography Club',
     description: 'Explore diverse photographic techniques through photo excursions and workshops, open to all skill levels.',
     icon: 'camera',
     color: '#21313c',
-    image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/campus%20life%20/photography.webp', logo: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/logo/photography.webp',
+    image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/optimized/campus%20life%20/photography.webp', logo: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/logo/photography.webp',
   },
   {
     name: 'Music Club',
@@ -116,14 +116,14 @@ const studentClubs = [
     description: 'Monthly performances including stage plays, road plays, mime acts, and role plays — with a vision of "Theatre in Unlikely Spaces."',
     icon: 'theater',
     color: '#8B0000',
-    image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/JLu%20events/photos/Lehar/IMG_8971.webp', logo: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/logo/cultural.webp',
+    image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/optimized/JLu%20events/photos/Lehar/IMG_8971.webp', logo: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/logo/cultural.webp',
   },
   {
     name: 'MUN & Debating Society',
     description: 'Parliamentary debate training, research skills, and Model UN participation to develop public speaking and awareness of current events.',
     icon: 'debate',
     color: '#2C3E50',
-    image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/campus%20life%20/mun%26debating%20club.webp', logo: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/logo/mun-debating.webp',
+    image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/optimized/campus%20life%20/mun%26debating%20club.webp', logo: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/logo/mun-debating.webp',
   },
   {
     name: 'Community Service Club',
@@ -137,14 +137,14 @@ const studentClubs = [
     description: 'Business development mentorship, potential funding through JLU\'s innovation ecosystem, and networking opportunities.',
     icon: 'startup',
     color: '#D4AC0D',
-    image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/campus%20life%20/industry%20and%20ent%20club.webp', logo: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/logo/industry-entrepreneurship.webp',
+    image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/optimized/campus%20life%20/industry%20and%20ent%20club.webp', logo: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/logo/industry-entrepreneurship.webp',
   },
   {
     name: 'Placement & Industry Interaction Club',
     description: 'Bridges academia and industry through skill workshops, placement discussions, and professional development training.',
     icon: 'briefcase',
     color: '#34495E',
-    image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/campus/gallery-11.webp', logo: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/logo/student-service-cell.webp',
+    image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/optimized/campus/gallery-11.webp', logo: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/logo/student-service-cell.webp',
   },
 ];
 
@@ -406,7 +406,7 @@ const CampusLife = () => {
         >
           <motion.div className="absolute inset-0" style={{ y }}>
             <Image
-              src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/campus%20life%20/Landng%20photo.webp"
+              src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/optimized/campus%20life%20/Landng%20photo.webp"
               alt="Campus Life at JLU"
               fill
               className="object-cover scale-110"
@@ -694,7 +694,7 @@ const CampusLife = () => {
               {['Sharks', 'Lions', 'Stallions', 'Hawks'].map((house) => (
                 <div key={house} className="border border-[#e5e5e5] rounded-xl p-4 md:p-5 hover:border-[#f0c14b] hover:shadow-sm transition-all duration-300">
                   <div className="flex flex-col items-center mb-4" style={isMobile ? { marginBottom: '10px' } : {}}>
-                    <img src={`https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/logo/${house.toLowerCase()}.webp`} alt={house} className="w-14 h-14 md:w-20 md:h-20 object-contain mb-2" />
+                    <img loading="lazy" decoding="async" src={`https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/logo/${house.toLowerCase()}.webp`} alt={house} className="w-14 h-14 md:w-20 md:h-20 object-contain mb-2" />
                     <h4 className="text-[#21313c] font-semibold text-sm md:text-base" style={isMobile ? { fontSize: '13px' } : {}}>{house}</h4>
                   </div>
                   {houseCaptains.filter(c => c.house === house).map((member, j) => (
@@ -740,7 +740,7 @@ const CampusLife = () => {
                     style={{ minWidth: isMobile ? '260px' : '340px', ...(isMobile ? { padding: '8px 12px', gap: '10px' } : {}) }}
                   >
                     <img
-                      src={club.logo}
+                      loading="lazy" decoding="async" src={club.logo}
                       alt={club.name}
                       className="w-20 h-20 md:w-28 md:h-28 object-contain shrink-0 rounded-lg"
                       style={{ mixBlendMode: 'multiply' }}
@@ -858,7 +858,7 @@ const CampusLife = () => {
                       }}
                     >
                       {club.logo ? (
-                        <img src={club.logo} alt={club.name} className="w-full h-full object-contain" style={{ mixBlendMode: 'multiply' }} />
+                        <img loading="lazy" decoding="async" src={club.logo} alt={club.name} className="w-full h-full object-contain" style={{ mixBlendMode: 'multiply' }} />
                       ) : (
                         <span
                           className="w-full h-full rounded-full flex items-center justify-center"
@@ -914,7 +914,7 @@ const CampusLife = () => {
                       style={{ width: isMobile ? '100px' : '200px', height: isMobile ? '100px' : '200px' }}
                     >
                       {studentClubs[activeClubIndex].logo ? (
-                        <img src={studentClubs[activeClubIndex].logo} alt={studentClubs[activeClubIndex].name} className="w-full h-full object-contain drop-shadow-lg" style={{ mixBlendMode: 'multiply' }} />
+                        <img loading="lazy" decoding="async" src={studentClubs[activeClubIndex].logo} alt={studentClubs[activeClubIndex].name} className="w-full h-full object-contain drop-shadow-lg" style={{ mixBlendMode: 'multiply' }} />
                       ) : (
                         <span className="w-14 h-14 rounded-xl flex items-center justify-center bg-white/90 backdrop-blur-sm">
                           <ClubIcon type={studentClubs[activeClubIndex].icon} />
@@ -985,7 +985,7 @@ const CampusLife = () => {
                 </button>
                 {studentClubs[mobileClubModal].logo && (
                   <div className="absolute bottom-4 left-4 w-12 h-12 bg-white/90 backdrop-blur-sm rounded-xl p-1.5">
-                    <img src={studentClubs[mobileClubModal].logo} alt="" className="w-full h-full object-contain" />
+                    <img loading="lazy" decoding="async" src={studentClubs[mobileClubModal].logo} alt="" className="w-full h-full object-contain" />
                   </div>
                 )}
               </div>
@@ -1249,7 +1249,7 @@ const CampusLife = () => {
             transition={{ duration: 0.8, ease: customEase }}
             viewport={{ once: true }}
           >
-            {['https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/campus/computer%20lab.webp', 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/campus/gallery-13.webp', 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/campus/gallery-3.webp'].map((src, i) => (
+            {['https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/optimized/campus/computer%20lab.webp', 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/optimized/campus/gallery-13.webp', 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/optimized/campus/gallery-3.webp'].map((src, i) => (
               <div key={i} className="relative h-[120px] md:h-[180px] overflow-hidden group" style={isMobile ? { height: '80px' } : {}}>
                 <Image src={src} alt="Corporate" fill className="object-cover group-hover:scale-110 transition-transform duration-700" />
                 <div className="absolute inset-0 bg-[#21313c]/30 group-hover:bg-transparent transition-colors duration-500" />
@@ -1433,7 +1433,7 @@ const CampusLife = () => {
       <div id="health-and-wellness" ref={ignitingRef} className="relative w-full h-[50vh] md:h-[60vh] overflow-hidden" style={isMobile ? { height: '35vh' } : {}}>
         <motion.div className="absolute inset-0" style={{ y: ignitingY }}>
           <Image
-            src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/campus/gallery-10.webp"
+            src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/optimized/campus/gallery-10.webp"
             alt="Igniting Minds Lecture Series"
             fill
             className="object-cover scale-110"
@@ -1541,7 +1541,7 @@ const CampusLife = () => {
             transition={{ duration: 0.8, ease: customEase }}
             viewport={{ once: true }}
           >
-            {['https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/campus/gallery-9.webp', 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/campus/gallery-4.webp', 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/campus/gallery-7.webp', 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/campus/gallery-19.webp'].map((src, i) => (
+            {['https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/optimized/campus/gallery-9.webp', 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/campus/gallery-4.webp', 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/campus/gallery-7.webp', 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/campus/gallery-19.webp'].map((src, i) => (
               <div key={i} className="relative h-[100px] md:h-[160px] overflow-hidden group" style={isMobile ? { height: '60px' } : {}}>
                 <Image src={src} alt="Campus" fill className="object-cover group-hover:scale-110 transition-transform duration-700" />
               </div>

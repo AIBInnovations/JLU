@@ -485,7 +485,7 @@ export default function PlacementPage() {
         >
           <motion.div className="absolute inset-0" style={{ y: heroY }}>
             <img
-              src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/JLu%20events/photos/Convocation/DSC_5604.webp"
+              loading="lazy" decoding="async" src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/JLu%20events/photos/Convocation/DSC_5604.webp"
               alt="JLU Students Celebrating Placements"
               className="w-full h-full object-cover scale-110"
             />
@@ -578,7 +578,7 @@ export default function PlacementPage() {
                   className="w-full h-full"
                 >
                   <img
-                    src={img.src}
+                    loading="lazy" decoding="async" src={img.src}
                     alt={`Gallery ${img.id}`}
                     className="w-full h-full object-cover"
                   />

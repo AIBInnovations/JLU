@@ -50,7 +50,7 @@ const facultyMembers: FacultyMember[] = [
   {
     name: 'Dr. Prasheel Suryawanshi',
     role: 'Pro Vice Chancellor (Science and Technology)',
-    image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/leadership/pvc-science-tech-new.webp',
+    image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/optimized/leadership/pvc-science-tech-new.webp',
     linkedin: 'https://www.linkedin.com/in/prasheel-suryawanshi-8b368b21/',
   },
 ];

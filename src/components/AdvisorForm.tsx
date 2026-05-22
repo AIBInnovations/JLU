@@ -120,7 +120,7 @@ const AdvisorForm = () => {
       <div className="relative overflow-hidden">
         <div className="absolute inset-0 z-0">
           <img
-            src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/campus/gallery-3.webp"
+            loading="lazy" decoding="async" src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/optimized/campus/gallery-3.webp"
             alt="JLU Admissions"
             className="w-full h-full object-cover"
           />

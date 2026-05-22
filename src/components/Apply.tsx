@@ -242,7 +242,7 @@ const Apply = () => {
         {/* Background Image - Covers Hero + Form Section */}
         <div className="absolute inset-0 z-0">
           <img
-            src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/about1.webp"
+            loading="lazy" decoding="async" src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/about1.webp"
             alt="JLU Campus"
             className="w-full h-full object-cover"
           />

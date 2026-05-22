@@ -169,7 +169,7 @@ const LoanAssistance = () => {
       <div className="relative overflow-hidden">
         <div className="absolute inset-0 z-0">
           <img
-            src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/campus/computer%20lab.webp"
+            loading="lazy" decoding="async" src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/optimized/campus/computer%20lab.webp"
             alt="JLU Education Loan"
             className="w-full h-full object-cover"
           />

@@ -151,7 +151,7 @@ export default function StudentApproachPage() {
         >
           <motion.div className="absolute inset-0" style={{ y: heroY }}>
             <img
-              src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/comm.webp"
+              loading="lazy" decoding="async" src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/comm.webp"
               alt="JLU Student-Centric Approach - Experiential Learning"
               className="w-full h-full object-cover scale-110"
             />
@@ -224,7 +224,7 @@ export default function StudentApproachPage() {
                 }}
               >
                 <div ref={img.isCenter ? centerImageInnerRef : undefined} className="w-full h-full">
-                  <img src={img.src} alt={`JLU Student Life ${img.id}`} className="w-full h-full object-cover" />
+                  <img loading="lazy" decoding="async" src={img.src} alt={`JLU Student Life ${img.id}`} className="w-full h-full object-cover" />
                 </div>
 
                 {img.isCenter && (
@@ -318,10 +318,10 @@ export default function StudentApproachPage() {
             {/* Right - Images */}
             <div className="relative">
               <div className="rounded-2xl overflow-hidden aspect-[4/5]">
-                <img src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/ev4.webp" alt="JLU Student Activities" className="w-full h-full object-cover" loading="lazy" />
+                <img loading="lazy" decoding="async" src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/ev4.webp" alt="JLU Student Activities" className="w-full h-full object-cover" />
               </div>
               <div className="absolute -bottom-6 -left-6 w-48 h-48 md:w-56 md:h-56 rounded-2xl overflow-hidden shadow-2xl border-4 border-[#f6f7f0]">
-                <img src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/student-clubs.webp" alt="JLU Student Clubs and Sports" className="w-full h-full object-cover" loading="lazy" />
+                <img loading="lazy" decoding="async" src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/student-clubs.webp" alt="JLU Student Clubs and Sports" className="w-full h-full object-cover" />
               </div>
             </div>
           </div>

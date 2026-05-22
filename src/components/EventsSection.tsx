@@ -62,10 +62,10 @@ const events: Event[] = [
 const galleryImages: { src: string; alt: string }[] = [
   { src: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/events/foundation-day-2026.webp', alt: 'JLU Foundation Day 2026 celebrations at Jagran Lakecity University, Bhopal' },
   { src: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/JLu%20events/photos/Convocation/DSC_0823.webp', alt: 'JLU Convocation ceremony — graduating students at Jagran Lakecity University' },
-  { src: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/JLu%20events/photos/Lehar/IMG_8971.webp', alt: 'Lehar cultural festival at JLU Bhopal — student performances and stage events' },
+  { src: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/optimized/JLu%20events/photos/Lehar/IMG_8971.webp', alt: 'Lehar cultural festival at JLU Bhopal — student performances and stage events' },
   { src: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/JLu%20events/photos/Anti%20Ragging%20WEEK/IMG_1879.webp', alt: 'Anti-Ragging Week awareness campaign at Jagran Lakecity University' },
-  { src: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/JLu%20events/photos/Mental%20Health%20week/IMG_7813.webp', alt: 'Mental Health Week activities promoting student wellbeing at JLU' },
-  { src: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/JLu%20events/photos/JAgran%20of%20Social%20science/DSC08838.webp', alt: 'Jagran of Social Science academic conference at JLU Bhopal' },
+  { src: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/optimized/JLu%20events/photos/Mental%20Health%20week/IMG_7813.webp', alt: 'Mental Health Week activities promoting student wellbeing at JLU' },
+  { src: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/optimized/JLu%20events/photos/JAgran%20of%20Social%20science/DSC08838.webp', alt: 'Jagran of Social Science academic conference at JLU Bhopal' },
 ];
 
 export const EventsSection = () => {
@@ -121,7 +121,7 @@ export const EventsSection = () => {
               }}
             >
               <img
-                src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/JLu%20events/photos/Lehar/IMG_9067.webp"
+                loading="lazy" decoding="async" src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/optimized/JLu%20events/photos/Lehar/IMG_9067.webp"
                 alt="Campus Events"
                 className="w-full h-full object-cover rounded-xl"
               />
@@ -257,7 +257,7 @@ export const EventsSection = () => {
                 }}
               >
                 <img
-                  src={image.src}
+                  loading="lazy" decoding="async" src={image.src}
                   alt={image.alt}
                   className="w-full h-full object-cover rounded-xl"
                 />
@@ -275,7 +275,7 @@ export const EventsSection = () => {
                 }}
               >
                 <img
-                  src={image.src}
+                  loading="lazy" decoding="async" src={image.src}
                   alt=""
                   className="w-full h-full object-cover rounded-xl"
                 />

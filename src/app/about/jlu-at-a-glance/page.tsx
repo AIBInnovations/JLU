@@ -24,7 +24,7 @@ export default function JluAtAGlancePage() {
         {/* Campus image bg */}
         <div className="absolute inset-0">
           <img
-            src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/interdisciplinary/campus-drone.webp"
+            loading="lazy" decoding="async" src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/interdisciplinary/campus-drone.webp"
             alt="JLU Campus"
             className="w-full h-full object-cover opacity-20"
             style={{ objectPosition: 'center 40%' }}
@@ -260,7 +260,7 @@ export default function JluAtAGlancePage() {
           </span>
           {/* Actual badge image extracted directly from the official PDF */}
           <img
-            src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/badges/rankings-card-web.webp"
+            loading="lazy" decoding="async" src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/badges/rankings-card-web.webp"
             alt="JLU Rankings — QS I-Gauge Diamond, E-LEAD, EducationWorld, India Today"
             className="w-full h-auto"
             style={{ display: 'block' }}

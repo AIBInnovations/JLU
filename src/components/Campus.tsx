@@ -208,7 +208,7 @@ const sportsModalData: FacilityData[] = [
     id: 'outdoor-sports',
     title: 'Outdoor Sports Complex',
     category: 'Sports Facilities',
-    image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/campus/gallery-16.webp',
+    image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/optimized/campus/gallery-16.webp',
     description: 'A sprawling outdoor sports complex with 2 football fields, a cricket ground with practice nets, basketball courts, volleyball courts, tennis courts, and an athletic track.',
     features: [
       '2 full-size football fields',
@@ -1107,7 +1107,7 @@ const Campus = () => {
                     transition={{ duration: 0.8, ease: customEase }}
                   >
                     <Image
-                      src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/campus/gallery-16.webp"
+                      src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/optimized/campus/gallery-16.webp"
                       alt="Outdoor Sports Fields"
                       fill
                       className="object-cover"

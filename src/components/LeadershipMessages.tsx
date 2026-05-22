@@ -97,7 +97,7 @@ const LeadershipMessages = () => {
                 >
                   {leader.image ? (
                     <img
-                      src={leader.image}
+                      loading="lazy" decoding="async" src={leader.image}
                       alt={leader.name}
                       className="w-full h-full object-cover object-top"
                     />
@@ -168,7 +168,7 @@ const LeadershipMessages = () => {
                 >
                   {leader.image ? (
                     <img
-                      src={leader.image}
+                      loading="lazy" decoding="async" src={leader.image}
                       alt={leader.name}
                       className="w-full h-full object-cover object-top"
                     />

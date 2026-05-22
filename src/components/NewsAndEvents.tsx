@@ -325,10 +325,10 @@ function EventsCalendarSection() {
 const pastEventsImages = [
   'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/events/foundation-day-2026.webp', // Foundation Day 2026
   'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/JLu%20events/photos/Convocation/DSC_1039.webp', // Convocation 2025
-  'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/campus/computer%20lab.webp', // Science Expo
+  'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/optimized/campus/computer%20lab.webp', // Science Expo
   'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/student-clubs.webp', // Sports Meet
   'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/JLu%20events/photos/Lehar/IMG_9018.webp', // Cultural Fest
-  'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/JLu%20events/photos/Mental%20Health%20week/IMG_7775.webp', // Mental Health Week
+  'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/optimized/JLu%20events/photos/Mental%20Health%20week/IMG_7775.webp', // Mental Health Week
   'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/jlu%20ignited%20mind%20Award/photos/AMF_1081.webp', // Alumni Meet
 ];
 
@@ -338,7 +338,7 @@ const pastEventsData: { id: number; year: string; title: string; description: st
     year: '2026',
     title: 'Foundation Day of JLU',
     description: 'Commemorating the establishment of the university and celebrating its journey of academic excellence, innovation, and growth.',
-    video: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/events/foundation-day-2026.mp4',
+    video: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/optimized/events/foundation-day-2026.mp4',
   },
   {
     id: 1,
@@ -651,7 +651,7 @@ const NewsAndEvents = () => {
               >
                 <div className="relative shrink-0 overflow-hidden w-20 h-20 md:w-28 md:h-28 rounded-lg">
                   <Image
-                    src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/JLu%20events/photos/Lehar/IMG_9067.webp"
+                    src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/optimized/JLu%20events/photos/Lehar/IMG_9067.webp"
                     alt="JLU Rankings"
                     fill
                     className="object-cover group-hover:scale-105 transition-transform duration-500"
@@ -680,7 +680,7 @@ const NewsAndEvents = () => {
               >
                 <div className="relative shrink-0 overflow-hidden w-20 h-20 md:w-28 md:h-28 rounded-lg">
                   <Image
-                    src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/JLu%20events/photos/JAgran%20of%20Social%20science/DSC08858.webp"
+                    src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/optimized/JLu%20events/photos/JAgran%20of%20Social%20science/DSC08858.webp"
                     alt="Research Innovation"
                     fill
                     className="object-cover group-hover:scale-105 transition-transform duration-500"
@@ -930,7 +930,7 @@ const NewsAndEvents = () => {
             style={{ width: '15%', height: '22%', top: '30%', left: '80%' }}
           >
             <Image
-              src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/JLu%20events/photos/JAgran%20of%20Social%20science/DSC08858.webp"
+              src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/optimized/JLu%20events/photos/JAgran%20of%20Social%20science/DSC08858.webp"
               alt="Lab equipment"
               fill
               className="object-cover group-hover:scale-105 transition-transform duration-500"
@@ -998,7 +998,7 @@ const NewsAndEvents = () => {
             style={{ width: '15%', height: '32%', top: '68%', left: '22%' }}
           >
             <Image
-              src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/JLu%20events/photos/Mental%20Health%20week/IMG_7813.webp"
+              src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/optimized/JLu%20events/photos/Mental%20Health%20week/IMG_7813.webp"
               alt="Library"
               fill
               className="object-cover group-hover:scale-105 transition-transform duration-500"
@@ -1158,7 +1158,7 @@ const NewsAndEvents = () => {
                 transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
               >
                 <Image
-                  src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/JLu%20events/photos/JAgran%20of%20Social%20science/DSC08858.webp"
+                  src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/optimized/JLu%20events/photos/JAgran%20of%20Social%20science/DSC08858.webp"
                   alt="Students in lab"
                   fill
                   className="object-cover"
@@ -1227,7 +1227,7 @@ const NewsAndEvents = () => {
                 transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
               >
                 <Image
-                  src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/JLu%20events/photos/Mental%20Health%20week/IMG_7813.webp"
+                  src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/optimized/JLu%20events/photos/Mental%20Health%20week/IMG_7813.webp"
                   alt="Library"
                   fill
                   className="object-cover"
@@ -1543,6 +1543,7 @@ const NewsAndEvents = () => {
                       muted
                       loop
                       playsInline
+                      preload="none"
                       disablePictureInPicture
                       controlsList="nodownload nofullscreen noremoteplayback noplaybackrate"
                       onContextMenu={(e) => e.preventDefault()}

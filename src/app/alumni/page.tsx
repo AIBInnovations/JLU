@@ -239,7 +239,7 @@ export default function AlumniPage() {
         {/* Background Image */}
         <div className="absolute inset-0">
           <img
-            src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/alumni1.webp"
+            loading="lazy" decoding="async" src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/alumni1.webp"
             alt="Alumni Gathering"
             className="w-full h-full object-cover"
           />
@@ -324,7 +324,7 @@ export default function AlumniPage() {
               style={{ height: isMobile ? '180px' : '380px' }}
             >
               <img
-                src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/alumni2.webp"
+                loading="lazy" decoding="async" src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/alumni2.webp"
                 alt="Alumni gathering"
                 className="w-full h-full object-cover"
               />
@@ -399,7 +399,7 @@ export default function AlumniPage() {
               style={{ height: isMobile ? '180px' : '380px' }}
             >
               <img
-                src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/alumni3.webp"
+                loading="lazy" decoding="async" src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/alumni3.webp"
                 alt="Alumni success stories"
                 className="w-full h-full object-cover"
               />
@@ -472,7 +472,7 @@ export default function AlumniPage() {
                     style={{ height: isMobile ? '160px' : '280px' }}
                   >
                     <img
-                      src={service.image}
+                      loading="lazy" decoding="async" src={service.image}
                       alt={service.title}
                       className="w-full h-full object-cover transition-transform duration-500 hover:scale-110"
                     />
@@ -695,7 +695,7 @@ export default function AlumniPage() {
                 {/* Image */}
                 <div className="w-24 h-24 md:w-48 md:h-48 rounded-full overflow-hidden border-2 md:border-4 border-[#027ea1] flex-shrink-0">
                   <img
-                    src={testimonials[activeTestimonial].image}
+                    loading="lazy" decoding="async" src={testimonials[activeTestimonial].image}
                     alt={testimonials[activeTestimonial].name}
                     className="w-full h-full object-cover"
                   />

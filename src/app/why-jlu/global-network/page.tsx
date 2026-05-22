@@ -151,7 +151,7 @@ export default function GlobalNetworkPage() {
         >
           <motion.div className="absolute inset-0" style={{ y: heroY }}>
             <img
-              src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/glob.webp"
+              loading="lazy" decoding="async" src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/glob.webp"
               alt="JLU Global Network - 45+ International Collaborations"
               className="w-full h-full object-cover scale-110"
             />
@@ -224,7 +224,7 @@ export default function GlobalNetworkPage() {
                 }}
               >
                 <div ref={img.isCenter ? centerImageInnerRef : undefined} className="w-full h-full">
-                  <img src={img.src} alt={`JLU Global ${img.id}`} className="w-full h-full object-cover" />
+                  <img loading="lazy" decoding="async" src={img.src} alt={`JLU Global ${img.id}`} className="w-full h-full object-cover" />
                 </div>
 
                 {img.isCenter && (
@@ -318,10 +318,10 @@ export default function GlobalNetworkPage() {
             {/* Right - Images */}
             <div className="relative">
               <div className="rounded-2xl overflow-hidden aspect-[4/5] md:w-full">
-                <img src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/about1.webp" alt="JLU Campus - International Students" className="w-full h-full object-cover" loading="lazy" />
+                <img loading="lazy" decoding="async" src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/about1.webp" alt="JLU Campus - International Students" className="w-full h-full object-cover" />
               </div>
               <div className="absolute -bottom-4 -left-4 w-40 h-40 md:-bottom-6 md:-left-6 md:w-56 md:h-56 rounded-2xl overflow-hidden shadow-2xl border-4 border-[#f6f7f0]">
-                <img src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/glob.webp" alt="JLU Global Partners Map" className="w-full h-full object-cover" loading="lazy" />
+                <img loading="lazy" decoding="async" src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/glob.webp" alt="JLU Global Partners Map" className="w-full h-full object-cover" />
               </div>
             </div>
           </div>

@@ -179,7 +179,7 @@ const Academics = () => {
         >
           <motion.div className="absolute inset-0" style={{ y }}>
             <Image
-              src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/acedemics/acedemics%20landing%20page.webp"
+              src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/optimized/acedemics/acedemics%20landing%20page.webp"
               alt="Students in academic session at JLU"
               fill
               className="object-cover scale-110"

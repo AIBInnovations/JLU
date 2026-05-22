@@ -176,7 +176,7 @@ export default function RootLayout({
         />
         <Script
           id="npf-ai-agent"
-          strategy="afterInteractive"
+          strategy="lazyOnload"
           src="https://o10qwyo06e.in6.agent.nopaperforms.com/en-gb/backend/agents/aiagentscpt.js/10a203f2852f41c18914147c42802132/3bda6f65de8448d9a5dc3b6d2d0faa37"
         />
         <style

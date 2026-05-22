@@ -50,7 +50,7 @@ const clubs: Club[] = [
     name: 'Photography Club',
     shortName: 'Photography',
     description: 'Explore the many different aspects of photography. You will not need a fancy camera; you can use your mobile or any other photo-taking device. Learn tips and tricks for making the most out of your cameras, techniques for taking different kinds of images, and editing methods for creating awesome final products.',
-    image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/JLu%20events/photos/Mental%20Health%20week/IMG_7837.webp',
+    image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/optimized/JLu%20events/photos/Mental%20Health%20week/IMG_7837.webp',
     logo: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/logo/photography.webp',
   },
   {
@@ -250,7 +250,7 @@ export const StudentClubs = () => {
           >
             <motion.div className="absolute inset-0" style={{ y: heroY }}>
               <img
-                src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/JLu%20events/photos/Lehar/IMG_9060.webp"
+                loading="lazy" decoding="async" src="https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/JLu%20events/photos/Lehar/IMG_9060.webp"
                 alt="Student Clubs at JLU"
                 className="w-full h-full object-cover scale-110"
               />
@@ -358,7 +358,7 @@ export const StudentClubs = () => {
                   {/* Image */}
                   <div className={`${isMobile ? 'h-[40%]' : 'h-[55%]'} relative overflow-hidden`}>
                     <img
-                      src={club.image}
+                      loading="lazy" decoding="async" src={club.image}
                       alt={club.name}
                       className="w-full h-full object-cover"
                     />
@@ -401,7 +401,7 @@ export const StudentClubs = () => {
                   <div className={`${isMobile ? 'h-[60%] px-4 pt-2 pb-3' : 'h-[45%] px-16 xl:px-24 py-10'} relative flex flex-col justify-start`}>
                     {!isMobile && club.logo && (
                       <img
-                        src={club.logo}
+                        loading="lazy" decoding="async" src={club.logo}
                         alt={`${club.name} logo`}
                         className={`absolute w-auto object-contain opacity-90 ${club.logoHeight ? '' : 'h-32 xl:h-40'}`}
                         style={{ right: club.logoOffsetRight || '-8px', top: club.logoOffsetTop || '8px', ...(club.logoHeight ? { height: club.logoHeight } : {}) }}
@@ -423,7 +423,7 @@ export const StudentClubs = () => {
                     {isMobile && club.logo && (
                       <div className="flex items-center gap-3 mb-2">
                         <img
-                          src={club.logo}
+                          loading="lazy" decoding="async" src={club.logo}
                           alt={`${club.name} logo`}
                           className="h-12 w-auto object-contain shrink-0"
                         />
@@ -549,7 +549,7 @@ export const StudentClubs = () => {
               {/* Modal Header with club image */}
               <div className="relative h-40 overflow-hidden">
                 <img
-                  src={registrationClub.image}
+                  loading="lazy" decoding="async" src={registrationClub.image}
                   alt={registrationClub.name}
                   className="w-full h-full object-cover"
                 />

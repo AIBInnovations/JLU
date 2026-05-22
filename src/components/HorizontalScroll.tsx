@@ -182,7 +182,7 @@ export const HorizontalScroll = () => {
     >
       {card.image ? (
         <img
-          src={card.image}
+          loading="lazy" decoding="async" src={card.image}
           alt={card.title ?? 'JLU highlight'}
           className="absolute inset-0 h-full w-full object-cover"
         />
