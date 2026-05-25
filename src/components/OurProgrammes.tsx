@@ -7,9 +7,9 @@ export const OurProgrammes = () => {
   const isMobile = useIsMobile();
 
   const programmes = [
-    { image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/learning-ug.webp', title: 'Undergraduate', subtitle: 'Programmes', width: 461, height: 520, href: '/programs?tab=UG' },
-    { image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/learning-phd.webp', title: 'Postgraduate', subtitle: 'Programmes', width: 461, height: 520, href: '/programs?tab=PG' },
-    { image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/learning-pg.webp', title: 'Ph.D.', subtitle: 'Programmes', width: 461, height: 520, href: '/programs?tab=PhD' },
+    { image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/learning-ug.webp', title: 'Undergraduate', subtitle: 'Programmes', width: 461, height: 520, href: '/programs?tab=UG', rotate: 0 },
+    { image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/learning-phd.webp', title: 'Postgraduate', subtitle: 'Programmes', width: 461, height: 520, href: '/programs?tab=PG', rotate: -90 },
+    { image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/learning-pg.webp', title: 'Ph.D.', subtitle: 'Programmes', width: 461, height: 520, href: '/programs?tab=PhD', rotate: 0 },
   ];
 
 
@@ -61,6 +61,7 @@ export const OurProgrammes = () => {
                   loading="lazy" decoding="async" src={programme.image}
                   alt={programme.title}
                   className="absolute inset-0 w-full h-full object-cover transition-transform duration-300 hover:scale-105"
+                  style={programme.rotate ? { transform: `rotate(${programme.rotate}deg) scale(1.05)` } : undefined}
                 />
                 <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/20 to-black/10" />
                 <div
@@ -110,6 +111,7 @@ export const OurProgrammes = () => {
                 loading="lazy" decoding="async" src={programme.image}
                 alt={programme.title}
                 className="absolute inset-0 w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+                style={programme.rotate ? { transform: `rotate(${programme.rotate}deg) scale(1.05)` } : undefined}
               />
               <div className="absolute inset-0 bg-black/20" />
               <div

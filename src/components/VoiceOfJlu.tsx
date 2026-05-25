@@ -17,12 +17,15 @@ export const VoiceOfJlu = () => {
   const isInView = useInView(facultyRef, { once: true, amount: 0.3 });
   const voicesInView = useInView(voicesRef, { once: true, amount: 0.3 });
 
-  // Pause all videos except the given index
+  // Pause all videos except the given index, and reset them so the poster shows again
   const pauseAllExcept = (exceptIndex: number) => {
     Object.entries(videoRefs.current).forEach(([key, vid]) => {
       if (vid && Number(key) !== exceptIndex && Number(key) !== 100 + exceptIndex) {
-        vid.pause();
-        vid.currentTime = 0.5;
+        try {
+          vid.pause();
+          vid.currentTime = 0;
+          vid.load();
+        } catch {}
       }
     });
   };
@@ -131,7 +134,7 @@ export const VoiceOfJlu = () => {
                       setActiveCard(null);
                       setPlayingVideo(null);
                       const vid = videoRefs.current[index];
-                      if (vid) { vid.pause(); vid.currentTime = 0.5; vid.muted = true; }
+                      if (vid) { try { vid.pause(); vid.currentTime = 0; vid.muted = true; vid.load(); } catch {} }
                       setMutedVideo((prev) => ({ ...prev, [index]: true }));
                     } else {
                       pauseAllExcept(index);
@@ -139,22 +142,32 @@ export const VoiceOfJlu = () => {
                       setPlayingVideo(index);
                       setMutedVideo((prev) => ({ ...prev, [index]: false }));
                       const vid = videoRefs.current[index];
-                      if (vid) { vid.muted = false; vid.currentTime = 0; vid.play(); }
+                      if (vid) {
+                        vid.muted = false;
+                        vid.currentTime = 0;
+                        const p = vid.play();
+                        if (p) p.catch(() => {});
+                      }
                     }
                   }}
                 >
                   {/* Video with poster as thumbnail — preload=none so no data loads until played */}
                   <video
                     ref={(el) => { videoRefs.current[index] = el; }}
-                    src={!voice.thumbnail && activeCard === index ? `${voice.video}#t=0.5` : voice.video}
+                    src={voice.thumbnail ? voice.video : `${voice.video}#t=0.5`}
                     poster={voice.thumbnail || undefined}
                     autoPlay={playingVideo === index}
                     muted={mutedVideo[index] !== false}
                     playsInline
-                    preload={!voice.thumbnail && activeCard === index ? "metadata" : "none"}
+                    preload={voice.thumbnail ? "none" : "metadata"}
                     className="absolute inset-0 w-full h-full object-cover"
                     style={{ borderRadius: 'inherit' }}
-                    onEnded={() => { setPlayingVideo(null); setActiveCard(null); }}
+                    onEnded={(e) => {
+                  const vid = e.currentTarget;
+                  try { vid.pause(); vid.currentTime = 0; vid.load(); } catch {}
+                  setPlayingVideo(null);
+                  setActiveCard(null);
+                }}
                   />
 
                   {/* Custom controls - only when playing */}
@@ -164,7 +177,10 @@ export const VoiceOfJlu = () => {
                         onClick={(e) => {
                           e.stopPropagation();
                           const vid = videoRefs.current[index];
-                          if (vid) { vid.paused ? vid.play() : vid.pause(); }
+                          if (vid) {
+                            if (vid.paused) { const p = vid.play(); if (p) p.catch(() => {}); }
+                            else vid.pause();
+                          }
                           setPlayingVideo(vid?.paused ? null : index);
                         }}
                         className="w-8 h-8 rounded-full bg-black/40 backdrop-blur-sm flex items-center justify-center"
@@ -236,7 +252,7 @@ export const VoiceOfJlu = () => {
                   setActiveCard(null);
                   setPlayingVideo(null);
                   const vid = videoRefs.current[100 + index];
-                  if (vid) { vid.pause(); vid.currentTime = 0.5; vid.muted = true; }
+                  if (vid) { try { vid.pause(); vid.currentTime = 0; vid.muted = true; vid.load(); } catch {} }
                   setMutedVideo((prev) => ({ ...prev, [index]: true }));
                 } else {
                   pauseAllExcept(index);
@@ -244,22 +260,32 @@ export const VoiceOfJlu = () => {
                   setPlayingVideo(index);
                   setMutedVideo((prev) => ({ ...prev, [index]: false }));
                   const vid = videoRefs.current[100 + index];
-                  if (vid) { vid.muted = false; vid.currentTime = 0; vid.play(); }
+                  if (vid) {
+                    vid.muted = false;
+                    vid.currentTime = 0;
+                    const p = vid.play();
+                    if (p) p.catch(() => {});
+                  }
                 }
               }}
             >
               {/* Video with poster as thumbnail — preload=none so no data loads until played */}
               <video
                 ref={(el) => { videoRefs.current[100 + index] = el; }}
-                src={!voice.thumbnail && activeCard === index ? `${voice.video}#t=0.5` : voice.video}
+                src={voice.thumbnail ? voice.video : `${voice.video}#t=0.5`}
                 poster={voice.thumbnail || undefined}
                 autoPlay={playingVideo === index}
                 muted={mutedVideo[index] !== false}
                 playsInline
-                preload={!voice.thumbnail && activeCard === index ? "metadata" : "none"}
+                preload={voice.thumbnail ? "none" : "metadata"}
                 className="absolute inset-0 w-full h-full object-cover"
                 style={{ borderRadius: 'inherit' }}
-                onEnded={() => { setPlayingVideo(null); setActiveCard(null); }}
+                onEnded={(e) => {
+                  const vid = e.currentTarget;
+                  try { vid.pause(); vid.currentTime = 0; vid.load(); } catch {}
+                  setPlayingVideo(null);
+                  setActiveCard(null);
+                }}
               />
 
               {/* Custom controls - only when playing */}
@@ -269,7 +295,10 @@ export const VoiceOfJlu = () => {
                     onClick={(e) => {
                       e.stopPropagation();
                       const vid = videoRefs.current[100 + index];
-                      if (vid) { vid.paused ? vid.play() : vid.pause(); }
+                      if (vid) {
+                        if (vid.paused) { const p = vid.play(); if (p) p.catch(() => {}); }
+                        else vid.pause();
+                      }
                       setPlayingVideo(vid?.paused ? null : index);
                     }}
                     className="w-10 h-10 rounded-full bg-black/40 backdrop-blur-sm flex items-center justify-center hover:bg-black/60 transition-colors"
