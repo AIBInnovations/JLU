@@ -344,9 +344,9 @@ export const Hero = () => {
               }
               setIsVideoOpen(true);
             }}
-            className="absolute bottom-8 right-8 sm:bottom-12 sm:right-12 lg:bottom-16 lg:right-16 bg-white text-[#21313c] font-semibold cursor-pointer"
+            className="absolute bottom-4 left-[38%] -translate-x-1/2 right-auto sm:left-auto sm:translate-x-0 sm:bottom-12 sm:right-12 lg:bottom-16 lg:right-16 bg-white text-[#21313c] font-semibold cursor-pointer"
             style={{
-              zIndex: 40,
+              zIndex: 9999,
               padding: isMobile ? '12px 24px' : isTablet ? '12px 24px' : '16px 32px',
               borderRadius: '8px',
               fontSize: isMobile ? '14px' : isTablet ? '14px' : '16px',

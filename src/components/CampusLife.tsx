@@ -34,7 +34,7 @@ const staggerItem = {
 
 // ─── Student Council 2025 Data ───
 const councilLeaders = [
-  { role: 'Champion', name: 'Ms. Oshel Sachdeva', program: 'MBA AD & PR', image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/optimized/campus%20life%20/champion%20oshel%20sachdeva.webp' },
+  { role: 'Champion', name: 'Ms. Oshel Sachdeva', program: 'MBA AD & PR', image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/optimized/campus%20life%20/champion%20oshel%20sachdeva.webp', rotate: -90 },
   { role: 'Co-Champion', name: 'Ms. Areeba Khan', program: 'BA Hons. Psychology', image: '' },
   { role: 'Co-Champion', name: 'Ms. Sejal Patel', program: 'BBA', image: '' },
 ];
@@ -575,7 +575,7 @@ const CampusLife = () => {
                     name: 'Ms. Ladli Goyal',
                     title: 'Head, Communication & Student Welfare',
                     image: 'https://jlu-website-media.s3.ap-south-1.amazonaws.com/website-content/leadership/ladli-goyal.webp',
-                    linkedin: '',
+                    linkedin: 'https://www.linkedin.com/in/ladli-goyal-b42668251',
                     quote: 'Building a supportive and inclusive campus community.',
                     objectPosition: 'center 20%',
                   },
@@ -659,9 +659,15 @@ const CampusLife = () => {
                 style={{ minHeight: isMobile ? '160px' : '320px' }}
               >
                 {/* Background image */}
-                <div className="absolute inset-0">
+                <div className="absolute inset-0 overflow-hidden">
                   {leader.image ? (
-                    <Image src={leader.image} alt={leader.name} fill className="object-cover" />
+                    <Image
+                      src={leader.image}
+                      alt={leader.name}
+                      fill
+                      className="object-cover"
+                      style={'rotate' in leader && leader.rotate ? { transform: `rotate(${leader.rotate}deg) scale(1.35) translateX(-10%)` } : undefined}
+                    />
                   ) : (
                     <div className="w-full h-full bg-[#2a3f4c]" />
                   )}

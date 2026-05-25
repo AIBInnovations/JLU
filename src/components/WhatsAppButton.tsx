@@ -27,7 +27,7 @@ export const WhatsAppButton = () => {
   return (
     <motion.button
       onClick={handleClick}
-      className="fixed bottom-5 right-5 md:bottom-6 md:right-6 z-[9000] w-11 h-11 md:w-14 md:h-14 bg-[#25D366] rounded-full flex items-center justify-center shadow-lg hover:shadow-xl transition-shadow group"
+      className="fixed bottom-8 right-5 z-[9000] w-12 h-12 bg-[#25D366] rounded-full flex items-center justify-center shadow-lg hover:shadow-xl transition-shadow group"
       initial={{ scale: 0, opacity: 0 }}
       animate={{
         scale: isVisible ? 1 : 0,
@@ -44,7 +44,8 @@ export const WhatsAppButton = () => {
     >
       {/* WhatsApp Icon */}
       <svg
-        className="w-[22px] h-[22px] md:w-7 md:h-7"
+        width="24"
+        height="24"
         viewBox="0 0 24 24"
         fill="white"
       >
