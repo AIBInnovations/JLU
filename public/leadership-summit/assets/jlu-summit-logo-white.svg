@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 380 200" fill="none">
+  <style>
+    .logo-bold {
+      font-family: 'Montserrat', 'Inter', sans-serif;
+      font-weight: 800;
+      letter-spacing: 0.02em;
+      fill: #FFFFFF;
+    }
+    .logo-light {
+      font-family: 'Montserrat', 'Inter', sans-serif;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      fill: #FFFFFF;
+    }
+    .logo-ray {
+      fill: #FFFFFF;
+    }
+  </style>
+  <!-- Stacked Typography in Crisp White -->
+  <text x="2" y="38" font-size="44" class="logo-bold">JLU</text>
+  <text x="2" y="84" font-size="43" class="logo-bold">LEADERSHIP</text>
+  <text x="2" y="130" font-size="44" class="logo-bold">SUMMIT</text>
+  <text x="2" y="175" font-size="42" class="logo-light">2026</text>
+
+  <!-- Three Diverging Perspective Rays in Crisp White -->
+  <polygon points="256,96 378,96 378,128 256,107" class="logo-ray" />
+  <polygon points="218,113 322,138 322,169 218,125" class="logo-ray" />
+  <polygon points="194,132 260,170 260,198 194,145" class="logo-ray" />
+</svg>

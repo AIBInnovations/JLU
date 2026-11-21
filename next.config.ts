@@ -28,6 +28,12 @@ const nextConfig: NextConfig = {
       },
     ],
   },
+  // Standalone static microsites in public/ — serve their index.html at the clean URL.
+  async rewrites() {
+    return [
+      { source: '/leadership-summit', destination: '/leadership-summit/index.html' },
+    ];
+  },
 };
 
 export default nextConfig;

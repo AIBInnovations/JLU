@@ -1,0 +1,579 @@
+/* ==========================================================================
+   JLU LEADERSHIP SUMMIT 2026 — VERSION 4 ("COBALT & CHARTREUSE EDITION")
+   Color Palette Inspired by JLU Leadership Summit 2026 Official Poster
+   --------------------------------------------------------------------------
+   GLOBAL PALETTE VARIABLES (EDIT `:root` / `[data-theme="dark"]` TO RE-THEME):
+   • Primary Electric Cobalt : --v4-primary / --v4-primary-hover
+   • Accent Chartreuse-Lime  : --v4-accent / --v4-accent-ink
+   • Light / Dark Surfaces   : --v4-bg / --v4-surface / --v4-alt / --v4-border
+   • Typography              : --v4-ink / --v4-muted
+   ========================================================================== */
+
+
+:root,
+[data-theme="light"] {
+  --v4-bg: #f6f8ff;                  /* Crisp Cool Ice-White Canvas */
+  --v4-surface: #ffffff;             /* Pure White Card Surface */
+  --v4-alt: #eef2ff;                 /* Soft Cobalt-Tinted Alt Surface */
+  --v4-border: #dbe2fa;              /* Clean Cobalt-Slate Border */
+  --v4-ink: #0a0f2e;                 /* Deep Midnight Navy Ink */
+  --v4-muted: #47507a;               /* Editorial Slate-Navy Copy */
+
+  --v4-primary: #0018f9;             /* Poster Electric Cobalt Blue */
+  --v4-primary-hover: #0012c4;       /* Deep Cobalt Hover */
+  --v4-primary-tint: #e5e9ff;        /* Soft Cobalt Tag Tint */
+
+  --v4-accent: #d7f91a;              /* Poster Acid Chartreuse-Lime */
+  --v4-accent-ink: #0a0f2e;          /* High-Contrast Ink on Chartreuse */
+  --v4-accent-text: #0018f9;         /* Primary Cobalt for Text Links/Kickers on Light */
+
+  --v4-obsidian: #060a24;            /* Deep Midnight Navy Water Bar & Floating Pill */
+  --v4-header-bg: rgba(6, 10, 36, 0.90);
+  --v4-header-border: rgba(215, 249, 26, 0.22);
+
+  --v4-hero-scrim:
+    radial-gradient(ellipse 54% 66% at 22% 50%, rgba(246, 248, 255, 0.88) 0%, rgba(246, 248, 255, 0.68) 44%, rgba(246, 248, 255, 0.22) 74%, transparent 100%),
+    linear-gradient(90deg, rgba(246, 248, 255, 0.84) 0%, rgba(246, 248, 255, 0.56) 32%, rgba(246, 248, 255, 0.14) 52%, transparent 66%),
+    linear-gradient(180deg, rgba(6, 10, 36, 0.22) 0%, transparent 18%, transparent 65%, rgba(6, 10, 36, 0.88) 92%, #060a24 100%);
+
+  --v4-hero-halo: 0 1px 2px rgba(255, 255, 255, 0.95), 0 2px 14px rgba(246, 248, 255, 0.9), 0 0 28px rgba(246, 248, 255, 0.75);
+  --v4-hero-sub-halo: 0 1px 2px rgba(255, 255, 255, 0.95), 0 2px 10px rgba(246, 248, 255, 0.85);
+  --v4-logo-halo: drop-shadow(0 2px 8px rgba(3, 6, 22, 0.65));
+
+  --v4-play-bg: rgba(255, 255, 255, 0.85);
+  --v4-play-border: #0a0f2e;
+
+  --v4-modal-bg: #ffffff;
+  --v4-caption-bg: rgba(255, 255, 255, 0.94);
+  --v4-caption-border: rgba(255, 255, 255, 0.75);
+
+  --font-heading: 'Montserrat', sans-serif;
+  --font-sans: 'Inter', sans-serif;
+}
+
+[data-theme="dark"] {
+  --v4-bg: #05091f;                  /* Deep Midnight Cobalt-Navy */
+  --v4-surface: #0b1238;             /* Elevated Royal Navy Card Surface */
+  --v4-alt: #111a4d;                 /* Secondary Navy Surface */
+  --v4-border: #1e2a6b;              /* Crisp Indigo Border */
+  --v4-ink: #ffffff;                 /* Crisp Pure White Ink */
+  --v4-muted: #b8c3ee;               /* Soft Periwinkle Body Copy */
+
+  --v4-primary: #2b44ff;             /* Luminous Cobalt Blue */
+  --v4-primary-hover: #485eff;       /* Brighter Hover State */
+  --v4-primary-tint: rgba(43, 68, 255, 0.24);
+
+  --v4-accent: #d7f91a;              /* Poster Acid Chartreuse-Lime */
+  --v4-accent-ink: #05091f;          /* Deep Navy Ink on Chartreuse */
+  --v4-accent-text: #d7f91a;         /* Electric Chartreuse on Dark Navy */
+
+  --v4-obsidian: #030616;            /* Deepest Midnight Navy */
+  --v4-header-bg: rgba(5, 9, 31, 0.82);
+  --v4-header-border: rgba(215, 249, 26, 0.22);
+
+  --v4-hero-scrim:
+    radial-gradient(ellipse 56% 68% at 22% 50%, rgba(5, 9, 31, 0.88) 0%, rgba(5, 9, 31, 0.70) 44%, rgba(5, 9, 31, 0.24) 74%, transparent 100%),
+    linear-gradient(90deg, rgba(5, 9, 31, 0.86) 0%, rgba(5, 9, 31, 0.58) 32%, rgba(5, 9, 31, 0.16) 52%, transparent 68%),
+    linear-gradient(180deg, rgba(5, 9, 31, 0.65) 0%, rgba(5, 9, 31, 0.28) 12%, transparent 26%, transparent 65%, rgba(3, 6, 22, 0.90) 92%, #030616 100%);
+
+  --v4-hero-halo: 0 2px 12px rgba(3, 6, 22, 0.9), 0 4px 28px rgba(3, 6, 22, 0.75);
+  --v4-hero-sub-halo: 0 1px 6px rgba(3, 6, 22, 0.95), 0 2px 14px rgba(3, 6, 22, 0.8);
+  --v4-logo-halo: drop-shadow(0 2px 8px rgba(3, 6, 22, 0.85));
+
+  --v4-play-bg: rgba(11, 18, 56, 0.75);
+  --v4-play-border: #d7f91a;
+
+  --v4-modal-bg: #0b1238;
+  --v4-caption-bg: rgba(11, 18, 56, 0.92);
+  --v4-caption-border: rgba(215, 249, 26, 0.25);
+}
+
+html {
+  scroll-behavior: smooth;
+  background-color: var(--v4-bg);
+  color: var(--v4-ink);
+  -webkit-font-smoothing: antialiased;
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: var(--v4-bg);
+  color: var(--v4-ink);
+  margin: 0;
+  overflow-x: hidden;
+  transition: background-color 0.25s ease, color 0.25s ease;
+}
+
+.font-heading {
+  font-family: var(--font-heading);
+}
+
+/* ========================================================================
+   1. GLOBAL THEME UTILITY CLASSES
+   ======================================================================== */
+.bg-v4-bg { background-color: var(--v4-bg) !important; }
+.bg-v4-surface { background-color: var(--v4-surface) !important; }
+.bg-v4-alt { background-color: var(--v4-alt) !important; }
+.bg-v4-primary { background-color: var(--v4-primary) !important; }
+.bg-v4-primary-tint { background-color: var(--v4-primary-tint) !important; }
+.bg-v4-accent { background-color: var(--v4-accent) !important; }
+.bg-v4-obsidian { background-color: var(--v4-obsidian) !important; }
+
+.text-v4-ink { color: var(--v4-ink) !important; }
+.text-v4-muted { color: var(--v4-muted) !important; }
+.text-v4-primary { color: var(--v4-primary) !important; }
+.text-v4-accent { color: var(--v4-accent) !important; }
+.text-v4-accent-ink { color: var(--v4-accent-ink) !important; }
+.text-v4-accent-text { color: var(--v4-accent-text) !important; }
+
+.border-v4-border { border-color: var(--v4-border) !important; }
+.border-v4-primary { border-color: var(--v4-primary) !important; }
+.border-v4-accent { border-color: var(--v4-accent) !important; }
+
+.hover\:text-v4-accent-text:hover { color: var(--v4-accent-text) !important; }
+.hover\:text-v4-primary:hover { color: var(--v4-primary) !important; }
+.hover\:border-v4-primary:hover { border-color: var(--v4-primary) !important; }
+.hover\:border-v4-accent:hover { border-color: var(--v4-accent) !important; }
+.group:hover .group-hover\:text-v4-accent-text { color: var(--v4-accent-text) !important; }
+.group:hover .group-hover\:text-v4-primary { color: var(--v4-primary) !important; }
+.group:hover .group-hover\:border-v4-accent-text { border-color: var(--v4-accent-text) !important; }
+
+/* ========================================================================
+   2. HERO SEAMLESS SKY-TO-LAKE PANORAMA
+   ======================================================================== */
+.hero-v4-canvas {
+  position: relative;
+  background-color: var(--v4-bg);
+  background-image: url('./jlu-pyramid-campus.jpg');
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+}
+
+.hero-v4-sky-veil {
+  background: var(--v4-hero-scrim);
+  transition: background 0.3s ease;
+}
+
+.hero-v4-header {
+  background: var(--v4-header-bg);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--v4-header-border);
+  box-shadow: 0 4px 20px -4px rgba(6, 10, 36, 0.08);
+  transition: background 0.25s ease, border-color 0.25s ease;
+}
+
+.hero-v4-logo {
+  filter: drop-shadow(0 2px 8px rgba(3, 6, 22, 0.55));
+}
+
+
+.hero-v4-title {
+  text-shadow: var(--v4-hero-halo);
+}
+
+.hero-v4-subtitle {
+  text-shadow: var(--v4-hero-sub-halo);
+}
+
+.hero-v4-play-btn {
+  background-color: var(--v4-play-bg);
+  border-color: var(--v4-play-border);
+}
+
+/* Phone hero: portrait campus photo + top-down veil (the landscape photo crops the building out on phones) */
+@media (max-width: 767px) {
+  .hero-v4-canvas {
+    background-image: url('./jlu-pyramid-campus.jpg');
+    background-size: auto 100%;
+    background-position: 84% bottom;   /* keeps the pyramid in frame on portrait screens */
+  }
+  .hero-v4-sky-veil {
+    background:
+      linear-gradient(180deg, var(--v4-bg) 0%, color-mix(in srgb, var(--v4-bg) 82%, transparent) 26%, color-mix(in srgb, var(--v4-bg) 40%, transparent) 46%, transparent 62%),
+      linear-gradient(180deg, transparent 74%, var(--v4-obsidian) 100%);
+  }
+}
+
+/* Dark reflective water bar at the bottom of the Hero (Royal Midnight Navy) */
+.hero-water-bar {
+  border-top: 2px solid var(--v4-accent);
+  background: linear-gradient(180deg,
+      rgba(6, 10, 36, 0.25) 0%,
+      rgba(6, 10, 36, 0.84) 35%,
+      rgba(6, 10, 36, 0.97) 100%);
+  backdrop-filter: blur(3px);
+}
+
+/* ========================================================================
+   3. BUTTONS & INTERACTIVE CONTROLS
+   ======================================================================== */
+.btn-v4-primary {
+  background-color: var(--v4-primary);
+  color: #ffffff;
+  font-family: var(--font-heading);
+  font-weight: 700;
+  border-radius: 6px;
+  padding: 0.75rem 1.5rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.55rem;
+  transition: background-color 0.2s ease, transform 0.15s ease, box-shadow 0.2s ease;
+  cursor: pointer;
+}
+
+.btn-v4-primary:hover {
+  background-color: var(--v4-primary-hover);
+  transform: translateY(-1px);
+  box-shadow: 0 10px 24px -6px rgba(0, 24, 249, 0.45);
+}
+
+.btn-v4-accent {
+  background-color: var(--v4-accent);
+  color: var(--v4-accent-ink);
+  font-family: var(--font-heading);
+  font-weight: 800;
+  border-radius: 6px;
+  padding: 0.75rem 1.5rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.55rem;
+  transition: filter 0.2s ease, transform 0.15s ease, box-shadow 0.2s ease;
+  cursor: pointer;
+}
+
+.btn-v4-accent:hover {
+  filter: brightness(0.95);
+  transform: translateY(-1px);
+  box-shadow: 0 10px 24px -6px rgba(215, 249, 26, 0.45);
+}
+
+.btn-v4-ink {
+  background-color: var(--v4-ink);
+  color: var(--v4-bg);
+  font-family: var(--font-heading);
+  font-weight: 700;
+  border-radius: 6px;
+  padding: 0.75rem 1.5rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.55rem;
+  transition: opacity 0.2s ease, transform 0.15s ease;
+  cursor: pointer;
+}
+
+.btn-v4-ink:hover {
+  opacity: 0.9;
+  transform: translateY(-1px);
+}
+
+.btn-v4-ghost {
+  align-items: center;
+  justify-content: center;
+  gap: 0.55rem;
+  font-family: var(--font-heading);
+  font-weight: 700;
+  border-radius: 6px;
+  padding: 0.75rem 1.5rem;
+  color: var(--v4-ink);
+  border: 2px solid var(--v4-ink);
+  background: transparent;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+.btn-v4-ghost:hover { background: var(--v4-ink); color: var(--v4-bg); }
+
+.kicker { align-items: center; gap: 0.75rem; }
+.kicker::before { content: ''; width: 1.75rem; height: 2px; background: currentColor; flex-shrink: 0; }
+
+.divide-v4 > .fact + .fact { border-left: 1px solid var(--v4-border); }
+.fact { padding: 1.1rem 0.9rem; }
+.fact:nth-child(odd) { padding-left: 0; }
+.fact:nth-child(n+3) { border-top: 1px solid var(--v4-border); }
+.fact dt { font: 700 11px/1 var(--font-heading); letter-spacing: 0.18em; text-transform: uppercase; color: var(--v4-accent-text); }
+.fact dd { margin: 0.5rem 0 0; font: 700 14px/1.3 var(--font-heading); color: var(--v4-ink); }
+.fact dd span { display: block; margin-top: 2px; font: 500 13px/1.4 var(--font-sans); color: var(--v4-muted); }
+.divide-v4 > .fact:nth-child(3) { border-left: 0; }
+@media (min-width: 1024px) {
+  .fact { padding: 1.5rem 1.5rem; }
+  .fact:nth-child(n+3) { border-top: 0; }
+  .divide-v4 > .fact:nth-child(3) { border-left: 1px solid var(--v4-border); }
+  .fact:nth-child(odd) { padding-left: 1.5rem; }
+  .fact:first-child { padding-left: 0; }
+}
+
+/* Filter & Schedule Tabs */
+.tab-v4-active {
+  background-color: var(--v4-primary) !important;
+  color: #ffffff !important;
+  box-shadow: 0 4px 14px -3px rgba(0, 24, 249, 0.4);
+}
+
+.tab-v4-inactive {
+  background-color: transparent;
+  color: var(--v4-muted);
+  border: 1px solid var(--v4-border);
+}
+
+.tab-v4-inactive:hover {
+  background-color: var(--v4-surface);
+  color: var(--v4-ink);
+  border-color: var(--v4-primary);
+}
+
+/* ========================================================================
+   3b. SECTION RHYTHM + HEADLINE HIGHLIGHT (palette unchanged)
+   .section-dark re-scopes the existing DARK-theme tokens to one section, so the page
+   alternates white / ice / navy instead of being one flat white scroll. Chartreuse finally
+   gets used on light pages through .hl.
+   ======================================================================== */
+.section-dark {
+  --v4-bg: #05091f;
+  --v4-surface: #0b1238;
+  --v4-alt: #111a4d;
+  --v4-border: #1e2a6b;
+  --v4-ink: #ffffff;
+  --v4-muted: #b8c3ee;
+  --v4-primary: #2b44ff;
+  --v4-primary-hover: #485eff;
+  --v4-primary-tint: rgba(43, 68, 255, 0.24);
+  --v4-accent-text: #d7f91a;
+  --v4-accent-ink: #05091f;
+}
+
+.hl {
+  background: linear-gradient(transparent 62%, var(--v4-accent) 62%, var(--v4-accent) 94%, transparent 94%);
+  padding: 0 0.08em;
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+}
+/* white text on chartreuse would fail contrast, so on navy it becomes an underline */
+[data-theme="dark"] .hl,
+.section-dark .hl {
+  background: linear-gradient(transparent 88%, var(--v4-accent) 88%);
+}
+
+.speaker-tag {
+  display: inline-block;
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--v4-accent-text);
+}
+
+.filter-row { scrollbar-width: none; }
+.filter-row::-webkit-scrollbar { display: none; }
+
+/* ========================================================================
+   4. ARCHITECTURAL GEOMETRIC PATTERNS (POSTER-INSPIRED COBALT & CHARTREUSE)
+   ======================================================================== */
+.pattern-v4-stripes {
+  background-image: repeating-linear-gradient(-45deg,
+      rgba(0, 24, 249, 0.14),
+      rgba(0, 24, 249, 0.14) 2px,
+      transparent 2px,
+      transparent 9px);
+}
+
+[data-theme="dark"] .pattern-v4-stripes {
+  background-image: repeating-linear-gradient(-45deg,
+      rgba(215, 249, 26, 0.18),
+      rgba(215, 249, 26, 0.18) 2px,
+      transparent 2px,
+      transparent 9px);
+}
+
+.pattern-v4-dots {
+  background-image: radial-gradient(rgba(0, 24, 249, 0.28) 1.5px, transparent 1.5px);
+  background-size: 10px 10px;
+}
+
+[data-theme="dark"] .pattern-v4-dots {
+  background-image: radial-gradient(rgba(215, 249, 26, 0.35) 1.5px, transparent 1.5px);
+}
+
+/* ========================================================================
+   5. SPEAKER CARDS & PORTRAIT FRAMES
+   ======================================================================== */
+.speaker-v4-frame {
+  position: relative;
+  overflow: hidden;
+  background-color: var(--v4-alt);
+  border: 1px solid var(--v4-border);
+  box-shadow: none;
+}
+
+.speaker-v4-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 18%;
+  transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.speaker-card:hover .speaker-v4-img {
+  transform: scale(1.05);
+}
+
+/* ========================================================================
+   6. VERTICAL TIMELINE & SCHEDULE TRACK
+   ======================================================================== */
+.timeline-v4-rail {
+  position: absolute;
+  left: 1.05rem;
+  top: 0.75rem;
+  bottom: 0.75rem;
+  width: 2px;
+  background: linear-gradient(to bottom, var(--v4-primary) 0%, rgba(0, 24, 249, 0.18) 100%);
+}
+
+[data-theme="dark"] .timeline-v4-rail {
+  background: linear-gradient(to bottom, var(--v4-accent) 0%, rgba(215, 249, 26, 0.18) 100%);
+}
+
+.campus-caption-card {
+  background: var(--v4-caption-bg);
+  border: 1px solid var(--v4-caption-border);
+  backdrop-filter: blur(10px);
+}
+
+/* Schedule rows: one continuous rail, status-aware dots */
+.tl-node { position: relative; display: flex; justify-content: center; }
+.tl-node::before {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  margin-left: -1px;
+  background: var(--v4-border);
+}
+.tl-row:first-child .tl-node::before { top: 1.35rem; }
+.tl-row:last-child .tl-node::before { bottom: auto; height: 1.35rem; }
+.tl-dot {
+  position: relative;
+  z-index: 1;
+  margin-top: 1.0rem;
+  width: 0.95rem;
+  height: 0.95rem;
+  border-radius: 999px;
+  background: var(--v4-primary);
+  box-shadow: 0 0 0 4px var(--v4-primary-tint);
+}
+.tl-dot--tba { background: var(--v4-surface); border: 2px dashed var(--v4-muted); box-shadow: none; }
+.tl-dot--break { width: 0.6rem; height: 0.6rem; margin-top: 1.2rem; background: var(--v4-muted); box-shadow: none; }
+.tl-dot--launch { background: var(--v4-accent); border: 2px solid var(--v4-ink); box-shadow: 0 0 0 4px var(--v4-primary-tint); }
+
+/* ========================================================================
+   7. MODALS & FLOATING NAV
+   ======================================================================== */
+.modal-backdrop {
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.25s ease;
+}
+
+.modal-backdrop.open {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.modal-panel {
+  background-color: var(--v4-modal-bg);
+  color: var(--v4-ink);
+  transform: translateY(16px) scale(0.98);
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.modal-backdrop.open .modal-panel {
+  transform: translateY(0) scale(1);
+}
+
+#floating-nav {
+  opacity: 0;
+  pointer-events: none;
+  transform: translate(-50%, 24px);
+  transition: opacity 0.3s ease, transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+#floating-nav.nav-visible {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translate(-50%, 0);
+}
+
+/* Registration Confirmation Toast Banner (Hidden until .show is added) */
+.toast-banner {
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(16px);
+  transition: opacity 0.25s ease, transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.toast-banner.show {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0);
+}
+
+/* Theme Toggle Switcher in Footer */
+.theme-toggle-pill {
+  background-color: var(--v4-alt);
+  border: 1px solid var(--v4-border);
+}
+
+.theme-toggle-btn {
+  color: var(--v4-muted);
+  transition: background-color 0.2s ease, color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.theme-toggle-btn[aria-pressed="true"] {
+  background-color: var(--v4-primary);
+  color: #ffffff;
+  box-shadow: 0 2px 8px -2px rgba(0, 24, 249, 0.45);
+}
+
+[data-theme="dark"] .theme-toggle-btn[aria-pressed="true"] {
+  background-color: var(--v4-accent);
+  color: var(--v4-accent-ink);
+  box-shadow: 0 2px 10px -2px rgba(215, 249, 26, 0.4);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { transition-duration: 0.01ms !important; animation-duration: 0.01ms !important; }
+}
+
+section[id] { scroll-margin-top: 1rem; }
+
+/* ========================================================================
+   8. PRINT STYLES FOR PASS
+   ======================================================================== */
+@media print {
+  header,
+  footer,
+  #floating-nav,
+  section {
+    display: none !important;
+  }
+
+  #rsvp-modal {
+    position: static !important;
+    opacity: 1 !important;
+    background: none !important;
+  }
+
+  #rsvp-modal .modal-panel {
+    box-shadow: none !important;
+    border: 1px solid #0018f9 !important;
+    transform: none !important;
+    background: #ffffff !important;
+    color: #0a0f2e !important;
+  }
+}
