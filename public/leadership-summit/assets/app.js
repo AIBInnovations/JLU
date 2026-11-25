@@ -170,7 +170,7 @@ document.addEventListener('DOMContentLoaded', () => {
         schoolTag: 'Alumni Keynote',
         category: 'Alumni Keynote',
         title: 'Alumni Keynote: "Alumni as Leaders: Inspiring Journeys"',
-        speakerLine: 'Speaker: TBA',
+        speakerLine: '',
         location: 'Jagran Lakecity University SEH, Chandanpura, Bhopal',
         details: 'Inspiring journeys from JLU alumni leaders sharing their path from campus to industry leadership.',
         bullets: [
@@ -327,7 +327,7 @@ document.addEventListener('DOMContentLoaded', () => {
             <p class="sm:hidden font-heading font-bold text-[13px] text-v4-accent-text mb-1 flex items-center gap-2">${item.time} ${launchBadge}</p>
             <span class="inline-block text-[11px] font-heading font-bold uppercase tracking-wider px-2 py-0.5 rounded bg-v4-primary-tint text-v4-accent-text mb-1.5">${item.schoolTag}</span>
             <h4 class="font-heading font-bold text-[15px] sm:text-base text-v4-ink leading-snug">${item.title}</h4>
-            <p class="text-[13px] sm:text-sm text-v4-muted mt-1 leading-relaxed">${item.speakerLine}</p>
+            ${item.speakerLine ? `<p class="text-[13px] sm:text-sm text-v4-muted mt-1 leading-relaxed">${item.speakerLine}</p>` : ''}
           </div>
           <span class="shrink-0 mt-1 text-v4-muted sm:opacity-0 sm:group-hover:opacity-100 transition-opacity">${chevron}</span>
         </div>
@@ -462,9 +462,7 @@ document.addEventListener('DOMContentLoaded', () => {
       <h2 class="font-heading font-extrabold text-xl sm:text-2xl text-v4-ink leading-snug">
         ${session.title}
       </h2>
-      <p class="text-sm font-semibold text-v4-accent-text mt-1">
-        ${session.speakerLine}
-      </p>
+      ${session.speakerLine ? `<p class="text-sm font-semibold text-v4-accent-text mt-1">${session.speakerLine}</p>` : ''}
 
       <div class="my-4 p-3.5 rounded-lg bg-v4-bg border border-v4-border flex flex-wrap items-center justify-between gap-2 text-xs text-v4-ink">
         <div><strong>Time:</strong> ${session.time}</div>
